@@ -1,6 +1,5 @@
 extends Node
 
-
 var player: Player = null
 var camera: GameCamera = null
 var current_world: WorldBase = null
@@ -8,9 +7,6 @@ var game: Game = null
 var Interface = null
 var ui_questlog = null
 var on_main_menu: bool = false
-
-
-
 
 
 func register_node(node: Node):
@@ -45,11 +41,6 @@ func save_data():
 	var savegame = FileAccess.open("user://savegame.save", FileAccess.WRITE)
 	var save_nodes = get_tree().get_nodes_in_group("Persist")
 	for node in save_nodes:
-		# Check the node is an instanced scene so it can be instanced again during load.
-#		if node.scene_file_path.is_empty():
-#			print("persistent node '%s' is not an instanced scene, skipped" % node.name)
-#			continue
-		
 		if !node.has_method("save"):
 			print("persistent node '%s' is missing a save() function, skipped" % node.name)
 			continue
@@ -58,9 +49,6 @@ func save_data():
 			
 		var json_string = JSON.stringify(node_data)
 		savegame.store_line(json_string)
-#	var quest_data = QuestManager.save()
-#	var js_string = JSON.stringify(quest_data)
-#	savegame.store_line(js_string)
 	print("[!] Data: Savegame successfully saved!")
 
 func load_savegame():
@@ -82,7 +70,6 @@ func load_savegame():
 		# Get the data from the JSON object
 		var node_data = json.get_data()
 		return node_data
-
 
 
 func load_game():
