@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://ebdq15holk57"]
+
+[ext_resource type="Script" path="res://prefab/utils/Softcollision.gd" id="1_3agjx"]
+
+[node name="SoftCollision" type="Area2D"]
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("1_3agjx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]

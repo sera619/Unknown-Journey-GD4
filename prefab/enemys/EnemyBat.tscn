@@ -1,0 +1,225 @@
+[gd_scene load_steps=27 format=3 uid="uid://b1kt7f88vq11f"]
+
+[ext_resource type="Script" path="res://scripts/Enemy.gd" id="1_3in87"]
+[ext_resource type="PackedScene" uid="uid://kbo1bay3i1ps" path="res://prefab/utils/PlayerDetector.tscn" id="2_ss6cg"]
+[ext_resource type="Texture2D" uid="uid://cvnvhq4vu7ktw" path="res://assets/Enemies/Bat.png" id="2_ve70t"]
+[ext_resource type="PackedScene" uid="uid://c4qwbfsr4fe74" path="res://prefab/effects/HitEffect.tscn" id="2_wfl4r"]
+[ext_resource type="PackedScene" uid="uid://cblcbsx1gpy2q" path="res://prefab/effects/DeathEffect.tscn" id="3_4hokx"]
+[ext_resource type="Script" path="res://scripts/EnemyStats.gd" id="4_f2vjp"]
+[ext_resource type="PackedScene" uid="uid://b347lo6c415bh" path="res://prefab/utils/WanderController.tscn" id="4_nxulv"]
+[ext_resource type="Texture2D" uid="uid://bkiw8qsmbvtow" path="res://assets/Shadows/SmallShadow.png" id="6_dkc4q"]
+[ext_resource type="PackedScene" uid="uid://ebdq15holk57" path="res://prefab/utils/Softcollision.tscn" id="7_h3811"]
+[ext_resource type="Script" path="res://prefab/enemys/EnemyWeapon.gd" id="7_w14fy"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p5hcn"]
+radius = 3.74474
+height = 9.3066
+
+[sub_resource type="Shader" id="Shader_mgsut"]
+code = "shader_type canvas_item;
+
+uniform bool active = false;
+
+void fragment() {
+	vec4 previous_color = texture(TEXTURE, UV);
+	vec4 white_color = vec4(1.0, 1.0, 1.0, previous_color.a);
+	vec4 new_color = previous_color;
+	if (active == true) {
+		new_color = white_color;
+	}
+	COLOR = new_color;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n7g3v"]
+shader = SubResource("Shader_mgsut")
+shader_parameter/active = false
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6wciu"]
+atlas = ExtResource("2_ve70t")
+region = Rect2(0, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vn6g2"]
+atlas = ExtResource("2_ve70t")
+region = Rect2(16, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ynwi8"]
+atlas = ExtResource("2_ve70t")
+region = Rect2(32, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7kxta"]
+atlas = ExtResource("2_ve70t")
+region = Rect2(48, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_auisy"]
+atlas = ExtResource("2_ve70t")
+region = Rect2(64, 0, 16, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_b3sw1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6wciu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vn6g2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ynwi8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7kxta")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_auisy")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 12.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fju85"]
+radius = 6.0
+height = 28.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oe3uc"]
+radius = 4.0
+height = 10.491
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o3qdu"]
+radius = 145.0
+
+[sub_resource type="Animation" id="Animation_tplgg"]
+resource_name = "Hit"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:material:shader_parameter/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_i3gvs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:material:shader_parameter/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_iqwc0"]
+_data = {
+"Hit": SubResource("Animation_tplgg"),
+"RESET": SubResource("Animation_i3gvs")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8q5h5"]
+radius = 3.47585
+height = 8.71207
+
+[node name="EnemyBat" type="CharacterBody2D"]
+collision_layer = 5
+collision_mask = 5
+script = ExtResource("1_3in87")
+hit_effect_scene = ExtResource("2_wfl4r")
+death_effect_scene = ExtResource("3_4hokx")
+
+[node name="EnemyStats" type="Node" parent="."]
+script = ExtResource("4_f2vjp")
+max_health = 4
+damage = 1
+MAX_SPEED = 50
+ACCELERATION = 300
+FRICTION = 200
+WANDER_SPEED = 35
+WANDER_TARGET_RANGE = 4
+MIN_RANGE = 4
+MAX_RANGE = 32
+reward_exp = 30
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+texture = ExtResource("6_dkc4q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_p5hcn")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_n7g3v")
+sprite_frames = SubResource("SpriteFrames_b3sw1")
+animation = &"fly"
+frame_progress = 0.41685
+offset = Vector2(0, -24)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(0, -20)
+shape = SubResource("CapsuleShape2D_fju85")
+
+[node name="WeaponAngle" type="Marker2D" parent="."]
+
+[node name="HurtBox" type="Area2D" parent="WeaponAngle" groups=["enemyWeapon"]]
+collision_layer = 8
+collision_mask = 8
+script = ExtResource("7_w14fy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WeaponAngle/HurtBox"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_oe3uc")
+
+[node name="PlayerDetector" parent="." instance=ExtResource("2_ss6cg")]
+detector_shape = SubResource("CircleShape2D_o3qdu")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_iqwc0")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="WanderController" parent="." instance=ExtResource("4_nxulv")]
+
+[node name="SoftCollision" parent="." instance=ExtResource("7_h3811")]
+collision_mask = 32
+
+[node name="CollisionShape2D" parent="SoftCollision" index="0"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_8q5h5")
+
+[node name="RayCasts" type="Node2D" parent="."]
+
+[node name="RayCast2D" type="RayCast2D" parent="RayCasts"]
+target_position = Vector2(30, 0)
+collision_mask = 128
+
+[node name="RayCast2D2" type="RayCast2D" parent="RayCasts"]
+position = Vector2(0, 6)
+target_position = Vector2(30, 0)
+collision_mask = 128
+
+[node name="RayCast2D3" type="RayCast2D" parent="RayCasts"]
+position = Vector2(0, -7)
+target_position = Vector2(30, 0)
+collision_mask = 128
+
+[editable path="SoftCollision"]

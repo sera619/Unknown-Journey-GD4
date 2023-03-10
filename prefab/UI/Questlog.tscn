@@ -1,0 +1,134 @@
+[gd_scene load_steps=12 format=3 uid="uid://cc4dqpbjt2x3y"]
+
+[ext_resource type="Script" path="res://prefab/UI/Questlog.gd" id="1_1cm83"]
+[ext_resource type="LabelSettings" uid="uid://f4k617j3lq7w" path="res://prefab/UI/label_font_set.tres" id="1_cyxpa"]
+[ext_resource type="Texture2D" uid="uid://b01dlyko5c35h" path="res://assets/UI/checkmark.png" id="2_dho6n"]
+[ext_resource type="FontFile" uid="uid://c5flfxbufo73y" path="res://assets/UI/Fonts/dogica.otf" id="2_m1a6s"]
+[ext_resource type="LabelSettings" uid="uid://dsvjo0qnnlipi" path="res://prefab/UI/sublabel_font.tres" id="4_cpwg7"]
+[ext_resource type="LabelSettings" uid="uid://bellrt1sde32t" path="res://prefab/UI/green_font_set.tres" id="6_ojfxr"]
+[ext_resource type="FontFile" uid="uid://bddtsccx0qour" path="res://assets/UI/Fonts/dogicapixel.otf" id="6_vpgom"]
+[ext_resource type="Texture2D" uid="uid://bclxecir5ivmv" path="res://assets/UI/button-red-small-normalt.png" id="7_gy0m6"]
+[ext_resource type="Texture2D" uid="uid://7t4cecn0xlc6" path="res://assets/UI/button-red-small-pressedt.png" id="8_dgkxa"]
+[ext_resource type="Texture2D" uid="uid://c2mepjbti1rjb" path="res://assets/UI/button-red-small-hovert.png" id="9_rm2b3"]
+[ext_resource type="Texture2D" uid="uid://yotqew0yv4ol" path="res://assets/UI/exclamation_mark.png" id="10_xrd4w"]
+
+[node name="Questlog" type="Control"]
+layout_mode = 3
+anchor_right = 0.771875
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1cm83")
+check_quest_icon = ExtResource("2_dho6n")
+active_quest_icon = ExtResource("10_xrd4w")
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Questlog"
+label_settings = ExtResource("1_cyxpa")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ItemList" type="ItemList" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.65
+theme_override_colors/font_color = Color(0.283226, 0.566614, 0.980392, 1)
+theme_override_colors/font_selected_color = Color(1, 0.601415, 0.128775, 1)
+theme_override_fonts/font = ExtResource("2_m1a6s")
+theme_override_font_sizes/font_size = 8
+allow_reselect = true
+same_column_width = true
+icon_scale = 0.4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="QuestNameLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.933333, 0.8, 0.164706, 1)
+theme_override_fonts/font = ExtResource("6_vpgom")
+theme_override_font_sizes/font_size = 8
+text = "
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuestInfoLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+label_settings = ExtResource("1_cyxpa")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+clip_text = true
+
+[node name="QuestFinishLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Gebe die Quest ab!"
+label_settings = ExtResource("6_ojfxr")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuestQuantityLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+label_settings = ExtResource("4_cpwg7")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SetActiveButton" type="TextureButton" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+texture_normal = ExtResource("7_gy0m6")
+texture_pressed = ExtResource("8_dgkxa")
+texture_hover = ExtResource("9_rm2b3")
+
+[node name="TextureRect" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/SetActiveButton"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.187
+anchor_top = 0.187
+anchor_right = 0.812
+anchor_bottom = 0.75
+offset_left = 0.0079999
+offset_top = 0.0079999
+offset_right = 0.00799942
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_xrd4w")
+expand_mode = 1
+stretch_mode = 5
+
+[connection signal="item_selected" from="Panel/MarginContainer/VBoxContainer/HBoxContainer/ItemList" to="." method="_on_item_list_item_selected"]

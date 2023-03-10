@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://cf36jsj8qv7dc"]
+
+[ext_resource type="Texture2D" uid="uid://5u5aqv4x5dob" path="res://assets/World/graveyard/TX Props.png" id="1_kn1hc"]
+[ext_resource type="Texture2D" uid="uid://bo4wv3t8aiw1d" path="res://assets/Shadows/BoxShadowMedium.png" id="1_xihuc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_60ugb"]
+size = Vector2(30, 22)
+
+[node name="PropStone" type="StaticBody2D"]
+collision_layer = 129
+collision_mask = 129
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(0, 3)
+scale = Vector2(1.3125, 0.71875)
+texture = ExtResource("1_xihuc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -12)
+texture = ExtResource("1_kn1hc")
+region_enabled = true
+region_rect = Rect2(288, 306, 32, 46)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_60ugb")

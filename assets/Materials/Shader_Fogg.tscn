@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://h0vsqgthbw18"]
+
+[sub_resource type="FastNoiseLite" id="17"]
+seed = 4
+
+[sub_resource type="NoiseTexture2D" id="18"]
+width = 2400
+height = 800
+seamless = true
+noise = SubResource("17")
+
+[node name="ShaderFogg" type="Sprite2D"]
+modulate = Color(0.556863, 0.545098, 0.580392, 0.411765)
+self_modulate = Color(0.121569, 0.0823529, 0.4, 0.772549)
+position = Vector2(320, 180)
+texture = SubResource("18")

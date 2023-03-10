@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://ujd03jysbk8w"]
+
+[ext_resource type="Texture2D" uid="uid://dei2mienvwrxn" path="res://assets/World/graveyard/TX Shadow Plant.png" id="1_1645q"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jhytx"]
+load_path = "res://.godot/imported/TX Plant.png-621f30080e422423b0f03af4a969d821.ctex"
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_latlm"]
+radius = 8.0
+height = 40.0
+
+[node name="PropBush" type="StaticBody2D"]
+collision_layer = 129
+collision_mask = 129
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -17)
+texture = SubResource("CompressedTexture2D_jhytx")
+region_enabled = true
+region_rect = Rect2(216, 185, 47, 42)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Sprite2D"]
+show_behind_parent = true
+position = Vector2(0, 11)
+texture = ExtResource("1_1645q")
+region_enabled = true
+region_rect = Rect2(220, 205, 46, 24)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -6)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_latlm")

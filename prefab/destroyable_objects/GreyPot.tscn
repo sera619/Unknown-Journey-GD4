@@ -1,0 +1,105 @@
+[gd_scene load_steps=16 format=3 uid="uid://blnl7qu61oadd"]
+
+[ext_resource type="Script" path="res://prefab/destroyable_objects/Pot.gd" id="1_fw54k"]
+[ext_resource type="PackedScene" uid="uid://c4qwbfsr4fe74" path="res://prefab/effects/HitEffect.tscn" id="2_sb2hn"]
+[ext_resource type="Texture2D" uid="uid://dkg7d5m3wa3hh" path="res://assets/objects/breakable pots (white).png" id="3_piseu"]
+[ext_resource type="Texture2D" uid="uid://dt2540u4sj5mt" path="res://assets/Shadows/MediumShadow.png" id="3_rkcgb"]
+[ext_resource type="PackedScene" uid="uid://cg78h4dp2l02s" path="res://prefab/utils/Hitbox.tscn" id="5_ux233"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kwrcm"]
+radius = 3.0
+height = 12.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dty8l"]
+atlas = ExtResource("3_piseu")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bn3o3"]
+atlas = ExtResource("3_piseu")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ludp"]
+atlas = ExtResource("3_piseu")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m5jk7"]
+atlas = ExtResource("3_piseu")
+region = Rect2(96, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1xa1c"]
+atlas = ExtResource("3_piseu")
+region = Rect2(96, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s8x7w"]
+atlas = ExtResource("3_piseu")
+region = Rect2(64, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_644b4"]
+atlas = ExtResource("3_piseu")
+region = Rect2(32, 96, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w1arl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dty8l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bn3o3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ludp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m5jk7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1xa1c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s8x7w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_644b4")
+}],
+"loop": false,
+"name": &"animate",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_03ne4"]
+radius = 8.0
+height = 22.0
+
+[node name="GreyPot" type="Node2D"]
+script = ExtResource("1_fw54k")
+effect_scene = ExtResource("2_sb2hn")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(0, -1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_kwrcm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -1.5)
+scale = Vector2(1, 0.9)
+texture = ExtResource("3_rkcgb")
+
+[node name="Sprite2D2" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_w1arl")
+animation = &"animate"
+offset = Vector2(0, -13)
+
+[node name="Hitbox" parent="." instance=ExtResource("5_ux233")]
+position = Vector2(0, -2)
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(0, -8)
+shape = SubResource("CapsuleShape2D_03ne4")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[editable path="Hitbox"]

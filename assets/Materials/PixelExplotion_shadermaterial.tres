@@ -1,0 +1,58 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://dxsudqr0w5erq"]
+
+[ext_resource type="Texture2D" uid="uid://lj1h13hitsi8" path="res://assets/Materials/ShaderTextures/PixelExplotion_noise_normaltexture.tres" id="1"]
+[ext_resource type="Texture2D" uid="uid://c6pygnie46osj" path="res://assets/Materials/ShaderTextures/PixelExplotion_noise_texture.tres" id="2"]
+
+[sub_resource type="Shader" id="1"]
+code = "shader_type canvas_item;
+
+uniform sampler2D noise_tex_normal;
+uniform sampler2D noise_tex;
+uniform float progress : hint_range(0.0, 1.0);
+uniform float strength = 1.0;
+
+// If your sprite doesn't have enough space and the explosion gets clipped, 
+// you can uncomment this and adjust the scale
+/*void vertex() {
+	float scale = 3.0;
+	VERTEX *= scale;
+
+	UV *= scale;
+	UV -= (scale - 1.0) / 2.0;
+}*/
+
+void fragment() {
+	vec2 direction = texture(noise_tex_normal, UV).xy; // We're using normal map as direction
+	direction -= 0.5; // Since our normal map is a texture, it ranges from 0.0 to 1.0...
+	direction *= 2.0; // ...so we're going to make it range from -1.0 to 1.0.
+	direction = direction * strength * progress;
+	
+	// UV for exploded texture
+	vec2 tex_size = 1.0 / TEXTURE_PIXEL_SIZE; // Real texture size in pixels
+	vec2 uv = floor(UV * tex_size) / (tex_size - 1.0); // Pixelate UV to snap pixels
+	uv = uv - direction; // Distort UV
+	
+	// Texture2D with exploded UV
+	vec4 tex = texture(TEXTURE, uv); 
+	
+	// Dissolve alpha
+	float dissolve = texture(noise_tex, UV).x;
+	dissolve = step(progress, dissolve);
+	tex.a *= dissolve;
+	
+	// Border (in case the edge of your sprite stretches, otherwise you can remove this block)
+	vec2 border_uv = uv * 2.0 - 1.0;
+	border_uv = clamp(abs(border_uv), 0.0, 1.0);
+	float border = max(border_uv.x, border_uv.y);
+	border = ceil(1.0 - border);
+	tex.a *= border;
+	
+	COLOR = tex;
+}"
+
+[resource]
+shader = SubResource("1")
+shader_parameter/progress = 0.0
+shader_parameter/strength = 0.1
+shader_parameter/noise_tex_normal = ExtResource("1")
+shader_parameter/noise_tex = ExtResource("2")

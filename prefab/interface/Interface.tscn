@@ -1,0 +1,133 @@
+[gd_scene load_steps=8 format=3 uid="uid://b7dks5cm1l8lb"]
+
+[ext_resource type="PackedScene" uid="uid://j0mixjoaji6r" path="res://prefab/UI/DevPanel.tscn" id="2_0344k"]
+[ext_resource type="PackedScene" uid="uid://cc4dqpbjt2x3y" path="res://prefab/UI/Questlog.tscn" id="2_ka8y8"]
+[ext_resource type="PackedScene" uid="uid://brxe6x2arf7xb" path="res://prefab/UI/PauseMenu.tscn" id="3_6p8ro"]
+
+[sub_resource type="GDScript" id="GDScript_npc4p"]
+script/source = "extends CanvasLayer
+
+
+@export var show_devpanel: bool
+
+@onready var qlog = $Questlog
+@onready var animplayer = $AnimationPlayer
+@onready var pausmenu = $PauseMenu
+
+
+func _ready():
+	if show_devpanel:
+		$DevPanel.visible = true
+	else:
+		$DevPanel.visible = false
+	GameManager.register_node(self)
+	EventHandler.connect(\"start_transition\", start_transition)
+
+func _input(event):
+	if GameManager.on_main_menu == true:
+		return
+	if event.is_action_pressed(\"qlog\"):
+		if qlog.visible:
+			qlog.visible = false
+		else:
+			qlog.visible = true
+
+
+
+func start_transition():
+	animplayer.play(\"start_transition\")
+
+func transition_is_black():
+	EventHandler.emit_signal(\"transition_black\")
+"
+
+[sub_resource type="Animation" id="Animation_x5qxj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_3kh7f"]
+resource_name = "start_transition"
+length = 2.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8, 1.4, 2.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"transition_is_black"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yur8n"]
+_data = {
+"RESET": SubResource("Animation_x5qxj"),
+"start_transition": SubResource("Animation_3kh7f")
+}
+
+[node name="Interface" type="CanvasLayer"]
+layer = 10
+script = SubResource("GDScript_npc4p")
+
+[node name="Questlog" parent="." instance=ExtResource("2_ka8y8")]
+visible = false
+anchor_left = 0.021875
+anchor_top = 0.144444
+anchor_right = 0.68125
+anchor_bottom = 0.861111
+offset_right = 211.0
+offset_bottom = 129.0
+scale = Vector2(0.5, 0.5)
+size_flags_horizontal = 2
+size_flags_vertical = 2
+
+[node name="DevPanel" parent="." instance=ExtResource("2_0344k")]
+
+[node name="PauseMenu" parent="." instance=ExtResource("3_6p8ro")]
+offset_left = 131.0
+offset_top = 50.0
+offset_right = -112.0
+offset_bottom = -27.0
+scale = Vector2(0.75, 0.75)
+
+[node name="Transition" type="ColorRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_yur8n")
+}

@@ -1,0 +1,7 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://dsvjo0qnnlipi"]
+
+[ext_resource type="FontFile" uid="uid://bddtsccx0qour" path="res://assets/UI/Fonts/dogicapixel.otf" id="1_v6mti"]
+
+[resource]
+font = ExtResource("1_v6mti")
+font_size = 8

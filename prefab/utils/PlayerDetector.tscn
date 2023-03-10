@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://kbo1bay3i1ps"]
+
+[ext_resource type="Script" path="res://prefab/utils/PlayerDetector.gd" id="1_uaiuo"]
+
+[node name="PlayerDetector" type="Area2D"]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_uaiuo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]

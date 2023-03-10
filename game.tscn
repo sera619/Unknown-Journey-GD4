@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://ixbyhoij3yf1"]
+
+[ext_resource type="Script" path="res://Game.gd" id="1_ds55b"]
+[ext_resource type="PackedScene" uid="uid://b7dks5cm1l8lb" path="res://prefab/interface/Interface.tscn" id="2_f3qs3"]
+
+[node name="Game" type="Node"]
+script = ExtResource("1_ds55b")
+
+[node name="Interface" parent="." instance=ExtResource("2_f3qs3")]
+
+[node name="WorldHolder" type="Node" parent="."]

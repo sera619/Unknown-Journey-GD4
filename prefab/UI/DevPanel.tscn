@@ -1,0 +1,102 @@
+[gd_scene load_steps=3 format=3 uid="uid://j0mixjoaji6r"]
+
+[ext_resource type="LabelSettings" uid="uid://dsvjo0qnnlipi" path="res://prefab/UI/sublabel_font.tres" id="1_8ii7e"]
+[ext_resource type="Script" path="res://prefab/UI/DevPanel.gd" id="1_lyipo"]
+
+[node name="DevPanel" type="Control"]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -120.0
+offset_right = 20.0
+offset_bottom = 132.0
+grow_horizontal = 0
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(100, 0)
+size_flags_horizontal = 8
+script = ExtResource("1_lyipo")
+
+[node name="P" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="M" type="MarginContainer" parent="P"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="V" type="VBoxContainer" parent="P/M"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="P/M/V"]
+layout_mode = 2
+text = "Health:"
+label_settings = ExtResource("1_8ii7e")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="P/M/V"]
+layout_mode = 2
+text = "Max-Health:"
+label_settings = ExtResource("1_8ii7e")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="P/M/V"]
+layout_mode = 2
+text = "Speed:"
+label_settings = ExtResource("1_8ii7e")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label4" type="Label" parent="P/M/V"]
+layout_mode = 2
+text = "Damage:"
+label_settings = ExtResource("1_8ii7e")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label8" type="Label" parent="P/M/V"]
+layout_mode = 2
+text = "Energie:"
+label_settings = ExtResource("1_8ii7e")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label9" type="Label" parent="P/M/V"]
+layout_mode = 2
+text = "Max-Energie:"
+label_settings = ExtResource("1_8ii7e")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label5" type="Label" parent="P/M/V"]
+layout_mode = 2
+text = "Exp:"
+label_settings = ExtResource("1_8ii7e")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label6" type="Label" parent="P/M/V"]
+layout_mode = 2
+text = "Max-Exp:"
+label_settings = ExtResource("1_8ii7e")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label7" type="Label" parent="P/M/V"]
+layout_mode = 2
+text = "Level:"
+label_settings = ExtResource("1_8ii7e")
+horizontal_alignment = 1
+vertical_alignment = 1

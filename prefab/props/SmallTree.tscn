@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://ck2d7l0oulxbi"]
+
+[ext_resource type="Texture2D" uid="uid://badaexpxdehhd" path="res://assets/objects/Tree.png" id="1_0dd7i"]
+[ext_resource type="Texture2D" uid="uid://bqguk5b6x5gjb" path="res://assets/Shadows/LargeShadow.png" id="1_728f7"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_elrop"]
+radius = 6.0
+height = 32.0
+
+[node name="SmallTree" type="StaticBody2D"]
+collision_layer = 129
+collision_mask = 129
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+show_behind_parent = true
+position = Vector2(0.499999, -1.5)
+scale = Vector2(1.03125, 0.55)
+texture = ExtResource("1_728f7")
+region_rect = Rect2(48, 100, 86, 52)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("1_0dd7i")
+offset = Vector2(0, -22)
+region_rect = Rect2(24, 14, 113, 139)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_elrop")

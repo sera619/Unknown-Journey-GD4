@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Quest" load_steps=3 format=3 uid="uid://d2vgbt1mvas6i"]
+
+[ext_resource type="PackedScene" uid="uid://yax4y6kq0hp8" path="res://prefab/itemdrops/SwordDrop.tscn" id="1_d2mga"]
+[ext_resource type="Script" path="res://Quests/Quest.gd" id="1_xacrh"]
+
+[resource]
+script = ExtResource("1_xacrh")
+quest_id = 3
+quest_name = "Das Schwert"
+quest_description = "Suche das Schwert von dem dir erzählt wurde, es muss ganz in der Nähe sein."
+quest_type = 2
+required_quantity = 1
+quest_item_scene = ExtResource("1_d2mga")
+mob_spawn_node = NodePath("")
+item_spawn_node = NodePath("")
+reward_xp = 200

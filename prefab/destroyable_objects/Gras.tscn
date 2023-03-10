@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://dd2hmhqkymjdj"]
+
+[ext_resource type="Texture2D" uid="uid://bxldpvskxlaya" path="res://assets/objects/Grass.png" id="1_3e0f5"]
+[ext_resource type="Script" path="res://prefab/destroyable_objects/Gras.gd" id="1_ndkq3"]
+[ext_resource type="PackedScene" uid="uid://dytuevt8uf7re" path="res://prefab/effects/GrasEffect.tscn" id="2_hsq4n"]
+[ext_resource type="PackedScene" uid="uid://cg78h4dp2l02s" path="res://prefab/utils/Hitbox.tscn" id="2_wt6j2"]
+[ext_resource type="Texture2D" uid="uid://dt2540u4sj5mt" path="res://assets/Shadows/MediumShadow.png" id="3_wus5u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_84kl8"]
+size = Vector2(14, 14)
+
+[node name="Gras" type="Node2D"]
+script = ExtResource("1_ndkq3")
+effect_scene = ExtResource("2_hsq4n")
+respawn = true
+respawn_time = 25
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(-2.98023e-08, 0.5)
+scale = Vector2(0.875, 1.3)
+texture = ExtResource("3_wus5u")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_3e0f5")
+
+[node name="Hitbox" parent="." instance=ExtResource("2_wt6j2")]
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource("RectangleShape2D_84kl8")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[editable path="Hitbox"]

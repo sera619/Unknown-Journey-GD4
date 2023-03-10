@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://ddq1kas24xw88"]
+
+[ext_resource type="Texture2D" uid="uid://cq25cwc0agywk" path="res://assets/Player/Hero_with_sword.png" id="1_5xyer"]
+[ext_resource type="Script" path="res://prefab/player/GhostSprite.gd" id="2_4e3nx"]
+
+[node name="GhostSprite" type="Sprite2D"]
+modulate = Color(100, 100, 100, 0.690196)
+texture = ExtResource("1_5xyer")
+hframes = 10
+vframes = 48
+script = ExtResource("2_4e3nx")

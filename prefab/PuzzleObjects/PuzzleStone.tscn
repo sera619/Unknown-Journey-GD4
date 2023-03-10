@@ -1,0 +1,55 @@
+[gd_scene load_steps=7 format=3 uid="uid://bru0it6lqapd6"]
+
+[ext_resource type="Script" path="res://prefab/PuzzleObjects/PuzzleStone.gd" id="1_trdyh"]
+[ext_resource type="Texture2D" uid="uid://bo4wv3t8aiw1d" path="res://assets/Shadows/BoxShadowMedium.png" id="1_wtqjc"]
+[ext_resource type="Texture2D" uid="uid://5u5aqv4x5dob" path="res://assets/World/graveyard/TX Props.png" id="2_vt8tr"]
+[ext_resource type="PackedScene" uid="uid://kbo1bay3i1ps" path="res://prefab/utils/PlayerDetector.tscn" id="4_bwwle"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c6mgn"]
+size = Vector2(26, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3wjyr"]
+radius = 49.0
+
+[node name="PuzzleStone" type="Node2D"]
+script = ExtResource("1_trdyh")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+position = Vector2(1.19209e-07, 0)
+scale = Vector2(1.05859, 1.8125)
+texture = ExtResource("1_wtqjc")
+offset = Vector2(1.5, -12)
+
+[node name="Body" type="Sprite2D" parent="."]
+texture = ExtResource("2_vt8tr")
+offset = Vector2(0, -32)
+region_enabled = true
+region_rect = Rect2(227, 91, 26, 66)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 129
+collision_mask = 129
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+visible = false
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_c6mgn")
+
+[node name="Text" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("2_vt8tr")
+offset = Vector2(0.5, -26)
+region_enabled = true
+region_rect = Rect2(270, 111, 5, 40)
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="PlayerDetector" parent="." instance=ExtResource("4_bwwle")]
+visible = false
+
+[node name="CollisionShape2D" parent="PlayerDetector" index="0"]
+position = Vector2(1, -20)
+shape = SubResource("CircleShape2D_3wjyr")
+
+[editable path="PlayerDetector"]
