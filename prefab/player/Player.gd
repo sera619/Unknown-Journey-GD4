@@ -144,7 +144,7 @@ func move_state(delta):
 		can_attack = true
 		stats.set_speed(stats.MAX_SPEED)
 	
-	if Input.is_action_just_pressed("combatmode") and stats.has_sword and not is_dashing:
+	if Input.is_action_just_pressed("combatmode") and stats.has_sword and not is_dashing and combat_timer.is_stopped():
 		if combat_stance:
 			animState.travel("StickSword")
 			combat_stance = false
