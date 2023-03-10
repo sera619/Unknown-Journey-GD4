@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://cn2oyye06f0uv"]
+
+[ext_resource type="PackedScene" uid="uid://kbo1bay3i1ps" path="res://prefab/utils/PlayerDetector.tscn" id="1_by4u5"]
+[ext_resource type="Script" path="res://prefab/npc/NPCBase.gd" id="1_ksy8k"]
+[ext_resource type="PackedScene" uid="uid://b347lo6c415bh" path="res://prefab/utils/WanderController.tscn" id="3_m3txb"]
+
+[node name="NPCBase" type="CharacterBody2D"]
+script = ExtResource("1_ksy8k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="Shadow" type="Sprite2D" parent="."]
+
+[node name="Body" type="Sprite2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+
+[node name="PlayerDetector" parent="." instance=ExtResource("1_by4u5")]
+
+[node name="WanderController" parent="." instance=ExtResource("3_m3txb")]
