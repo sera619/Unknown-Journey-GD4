@@ -32,27 +32,12 @@ func load_game():
 
 
 func switch_gamelevel(levelname: String):
+	if levelname not in LevelScenes:
+		printerr("[X] Game: Scene: %s not found!" % levelname)
+		return
 	if world_holder.get_child_count() > 0:
 		world_holder.get_child(0).call_deferred("queue_free")
-	var new_scene
-	match levelname:
-		"SmallCave":
-			new_scene = LevelScenes.SmallCave
-		"WorldBase":
-			new_scene = LevelScenes.WorldBase
-		"Wood":
-			new_scene = LevelScenes.Wood
-		"SwordCave":
-			new_scene = LevelScenes.SwordCave
-		"Grasland":
-			new_scene = LevelScenes.Grasland
-		"MainMenu":
-			new_scene = LevelScenes.MainMenu
-		null:
-			printerr("[X] Game: Scene: %s not found!" % levelname)
-			return
-		
-	var node = new_scene.instantiate()
+	var node = LevelScenes[str(levelname)].instantiate()
 	world_holder.call_deferred("add_child",node)
 
 	if levelname == "MainMenu":
@@ -60,7 +45,7 @@ func switch_gamelevel(levelname: String):
 		GameManager.player = null
 	else:
 		GameManager.on_main_menu = false
-
 	print("[!] Game: Scene - %s successfully loaded!" % levelname)
+
 
 
