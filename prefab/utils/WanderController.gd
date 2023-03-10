@@ -22,3 +22,7 @@ func get_time_left():
 
 func start_wander_timer(duration:int):
 	wander_timer.start(duration)
+
+
+func _on_wander_timer_timeout():
+	update_target_position()
