@@ -32,13 +32,12 @@ func register_node(node: Node):
 		print("[!] GameManager: Cant register: %s" % node.name)
 
 
-func save_data():
+func save_data(playername=""):
+	var savepath = "user://savegame.save"
+	if playername != "":
+		savepath = "user://%s-savegame.save" % playername
 	var filename = null
-	if player == null:
-		printerr("[X] Data: No player found!")
-	else:
-		filename = player.stats.playername
-	var savegame = FileAccess.open("user://savegame.save", FileAccess.WRITE)
+	var savegame = FileAccess.open(savepath, FileAccess.WRITE)
 	var save_nodes = get_tree().get_nodes_in_group("Persist")
 	for node in save_nodes:
 		if !node.has_method("save"):
@@ -51,10 +50,15 @@ func save_data():
 		savegame.store_line(json_string)
 	print("[!] Data: Savegame successfully saved!")
 
-func load_savegame():
-	if not FileAccess.file_exists("user://savegame.save"):
+func load_savegame(playername=""):
+	var loadpath = "user://savegame.save" 
+	if playername != "":
+		loadpath = "user://%s-savegame.save" % playername
+		
+	if not FileAccess.file_exists(loadpath):
 		return # Error! We don't have a save to load.
-	var save_game = FileAccess.open("user://savegame.save", FileAccess.READ)
+		
+	var save_game = FileAccess.open(loadpath, FileAccess.READ)
 	while save_game.get_position() < save_game.get_length():
 		var json_string = save_game.get_line()
 		
