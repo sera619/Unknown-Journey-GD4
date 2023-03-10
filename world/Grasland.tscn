@@ -9717,6 +9717,7 @@ position = Vector2(-324, -173)
 position = Vector2(744, -188)
 
 [node name="GameMap" type="TileMap" parent="Map"]
+y_sort_enabled = true
 position = Vector2(-13, -12)
 tile_set = SubResource("TileSet_qr2v6")
 cell_quadrant_size = 32
@@ -9773,8 +9774,10 @@ layer_6/tile_data = PackedInt32Array(327657, 131073, 23, 262121, 131073, 23, 196
 y_sort_enabled = true
 
 [node name="NPC" type="Node2D" parent="Map/GameObjects"]
+y_sort_enabled = true
 
 [node name="Enemys" type="Node2D" parent="Map/GameObjects"]
+y_sort_enabled = true
 
 [node name="Trees" type="Node2D" parent="Map/GameObjects"]
 y_sort_enabled = true
@@ -9808,6 +9811,78 @@ position = Vector2(876, -29)
 
 [node name="SmallTree10" parent="Map/GameObjects/Trees" instance=ExtResource("5_6rw7p")]
 position = Vector2(857, -12)
+
+[node name="SmallTree27" parent="Map/GameObjects/Trees" instance=ExtResource("5_6rw7p")]
+position = Vector2(872, 91)
+
+[node name="SmallTree28" parent="Map/GameObjects/Trees" instance=ExtResource("5_6rw7p")]
+position = Vector2(882, 157)
+
+[node name="SmallTree29" parent="Map/GameObjects/Trees" instance=ExtResource("5_6rw7p")]
+position = Vector2(863, 214)
+
+[node name="SmallTree30" parent="Map/GameObjects/Trees" instance=ExtResource("5_6rw7p")]
+position = Vector2(914, 145)
+
+[node name="SmallTree31" parent="Map/GameObjects/Trees" instance=ExtResource("5_6rw7p")]
+position = Vector2(876, 115)
+
+[node name="SmallTree32" parent="Map/GameObjects/Trees" instance=ExtResource("5_6rw7p")]
+position = Vector2(876, 62)
+
+[node name="SmallTree33" parent="Map/GameObjects/Trees" instance=ExtResource("5_6rw7p")]
+position = Vector2(841, 89)
+
+[node name="SmallTree34" parent="Map/GameObjects/Trees" instance=ExtResource("5_6rw7p")]
+position = Vector2(911, 91)
+
+[node name="SmallTree35" parent="Map/GameObjects/Trees" instance=ExtResource("5_6rw7p")]
+position = Vector2(853, 138)
+
+[node name="SmallTree36" parent="Map/GameObjects/Trees" instance=ExtResource("5_6rw7p")]
+position = Vector2(902, 192)
+
+[node name="SmallTree38" parent="Map/GameObjects/Trees" instance=ExtResource("5_6rw7p")]
+position = Vector2(921, 218)
+
+[node name="SmallTree37" parent="Map/GameObjects/Trees" instance=ExtResource("5_6rw7p")]
+position = Vector2(853, 175)
+
+[node name="SmallTree39" parent="Map/GameObjects/Trees" instance=ExtResource("5_6rw7p")]
+position = Vector2(1200, 95)
+
+[node name="SmallTree40" parent="Map/GameObjects/Trees" instance=ExtResource("5_6rw7p")]
+position = Vector2(1271, 137)
+
+[node name="SmallTree41" parent="Map/GameObjects/Trees" instance=ExtResource("5_6rw7p")]
+position = Vector2(1023, 265)
+
+[node name="SmallTree42" parent="Map/GameObjects/Trees" instance=ExtResource("5_6rw7p")]
+position = Vector2(1271, 91)
+
+[node name="SmallTree43" parent="Map/GameObjects/Trees" instance=ExtResource("5_6rw7p")]
+position = Vector2(1183, 76)
+
+[node name="SmallTree44" parent="Map/GameObjects/Trees" instance=ExtResource("5_6rw7p")]
+position = Vector2(1140, 76)
+
+[node name="SmallTree50" parent="Map/GameObjects/Trees" instance=ExtResource("5_6rw7p")]
+position = Vector2(1231, 21)
+
+[node name="SmallTree45" parent="Map/GameObjects/Trees" instance=ExtResource("5_6rw7p")]
+position = Vector2(1300, 115)
+
+[node name="SmallTree46" parent="Map/GameObjects/Trees" instance=ExtResource("5_6rw7p")]
+position = Vector2(1164, 97)
+
+[node name="SmallTree47" parent="Map/GameObjects/Trees" instance=ExtResource("5_6rw7p")]
+position = Vector2(1121, 211)
+
+[node name="SmallTree48" parent="Map/GameObjects/Trees" instance=ExtResource("5_6rw7p")]
+position = Vector2(996, 272)
+
+[node name="SmallTree49" parent="Map/GameObjects/Trees" instance=ExtResource("5_6rw7p")]
+position = Vector2(1016, 242)
 
 [node name="SmallTree11" parent="Map/GameObjects/Trees" instance=ExtResource("5_6rw7p")]
 position = Vector2(711, -318)
