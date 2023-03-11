@@ -1,0 +1,170 @@
+[gd_scene load_steps=8 format=3 uid="uid://4pvo7rk61tca"]
+
+[ext_resource type="Texture2D" uid="uid://cqfo8k23gm0vc" path="res://assets/UI/text-paper.png" id="1_072pi"]
+[ext_resource type="Script" path="res://prefab/UI/DialogBox.gd" id="1_wpdax"]
+[ext_resource type="Texture2D" uid="uid://bpt7n5fbi8xg5" path="res://assets/UI/text-box.png" id="2_gc03s"]
+[ext_resource type="FontFile" uid="uid://bddtsccx0qour" path="res://assets/UI/Fonts/dogicapixel.otf" id="3_8igrc"]
+[ext_resource type="Texture2D" uid="uid://dnmhbqlysi5ph" path="res://assets/UI/red-button-normal.png" id="4_yk304"]
+[ext_resource type="Texture2D" uid="uid://cgoomtgcn04sq" path="res://assets/UI/red-button-pressed.png" id="5_gqvv4"]
+[ext_resource type="Texture2D" uid="uid://cl20mjeo1aqyx" path="res://assets/UI/red-button-hover.png" id="6_8ggnf"]
+
+[node name="DialogBox" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wpdax")
+
+[node name="BG" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_072pi")
+patch_margin_left = 7
+patch_margin_top = 25
+patch_margin_right = 7
+patch_margin_bottom = 25
+
+[node name="M" type="MarginContainer" parent="BG"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="v" type="VBoxContainer" parent="BG/M"]
+layout_mode = 2
+
+[node name="NameBox" type="NinePatchRect" parent="BG/M/v"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("2_gc03s")
+region_rect = Rect2(1, 1, 30, 30)
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
+
+[node name="M" type="MarginContainer" parent="BG/M/v/NameBox"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="NameLabel" type="Label" parent="BG/M/v/NameBox/M"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.219608, 0.666667, 0.811765, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.572549)
+theme_override_fonts/font = ExtResource("3_8igrc")
+theme_override_font_sizes/font_size = 8
+text = "Speaker Name"
+vertical_alignment = 1
+
+[node name="TextBox" type="NinePatchRect" parent="BG/M/v"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 4.0
+texture = ExtResource("2_gc03s")
+region_rect = Rect2(1, 1, 30, 30)
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
+
+[node name="M" type="MarginContainer" parent="BG/M/v/TextBox"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="DialogTextLabel" type="Label" parent="BG/M/v/TextBox/M"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_8igrc")
+theme_override_font_sizes/font_size = 8
+text = "Dialog Text"
+horizontal_alignment = 1
+autowrap_mode = 3
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="H" type="HBoxContainer" parent="BG/M/v"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="DialogOptionABtn" type="TextureButton" parent="BG/M/v/H"]
+layout_mode = 2
+texture_normal = ExtResource("4_yk304")
+texture_pressed = ExtResource("5_gqvv4")
+texture_hover = ExtResource("6_8ggnf")
+
+[node name="Label" type="Label" parent="BG/M/v/H/DialogOptionABtn"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_8igrc")
+theme_override_font_sizes/font_size = 8
+text = "Option"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DialogOptionBBtn" type="TextureButton" parent="BG/M/v/H"]
+layout_mode = 2
+texture_normal = ExtResource("4_yk304")
+texture_pressed = ExtResource("5_gqvv4")
+texture_hover = ExtResource("6_8ggnf")
+
+[node name="Label" type="Label" parent="BG/M/v/H/DialogOptionBBtn"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_8igrc")
+theme_override_font_sizes/font_size = 8
+text = "Option"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="button_down" from="BG/M/v/H/DialogOptionABtn" to="." method="_on_dialog_option_a_btn_button_down"]
+[connection signal="button_down" from="BG/M/v/H/DialogOptionBBtn" to="." method="_on_dialog_option_b_btn_button_down"]
