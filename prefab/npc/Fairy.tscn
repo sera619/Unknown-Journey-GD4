@@ -163,9 +163,10 @@ transitions = ["Idle", "Move", SubResource("AnimationNodeStateMachineTransition_
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_2xxvc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vek1e"]
-radius = 61.131
+radius = 74.0068
 
 [node name="Fairy" type="CharacterBody2D"]
+motion_mode = 1
 script = ExtResource("1_ujxfh")
 npc_name = "Fairy"
 npc_type = "Quest-NPC"
@@ -209,7 +210,7 @@ parameters/Move/blend_position = Vector2(0, 0)
 [node name="PlayerDetector" parent="." instance=ExtResource("2_jt50h")]
 
 [node name="CollisionShape2D" parent="PlayerDetector" index="0"]
-position = Vector2(0, -27)
+position = Vector2(0, -21)
 shape = SubResource("CircleShape2D_vek1e")
 
 [node name="WanderController" parent="." instance=ExtResource("4_10fak")]
