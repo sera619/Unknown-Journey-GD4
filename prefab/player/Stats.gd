@@ -24,6 +24,7 @@ signal energie_changed
 
 @onready var has_sword: bool = true
 
+var seen_npcs = []
 var health: int = 0
 var level: int = 0
 var energie: int = 0 
@@ -107,6 +108,10 @@ func level_up():
 	set_max_energie(int(MAX_ENERGIE * exp_multiplikator))
 	EventHandler.emit_signal("player_levelup")
 
+func add_seen_npc(npcname:String):
+	if not npcname in seen_npcs: 
+		seen_npcs.append(npcname)
+
 func apply_loaded_stats():
 	var data = GameManager.load_savegame()
 	MAX_HEALTH = data['max_health']
@@ -115,7 +120,9 @@ func apply_loaded_stats():
 	experience = data['experience']
 	max_experience = data['max_exp']
 	level = data['level']
-	
+	seen_npcs.clear()
+	for n in data['seen_npcs']:
+		seen_npcs.append(n)
 	print("[!] %s: Set health to %s !" % [parent, MAX_HEALTH])
 	set_max_health(MAX_HEALTH)
 	set_health(MAX_HEALTH)
@@ -161,6 +168,7 @@ func save():
 		"current_quest": cq,
 		"quest_log_active": quests,
 		"quest_log_complete": solved_quests,
-		"quest_log_finished": finished_quest
+		"quest_log_finished": finished_quest,
+		"seen_npcs": seen_npcs
 	}
 	return save_dict
