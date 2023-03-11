@@ -1,45 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://b7dks5cm1l8lb"]
+[gd_scene load_steps=9 format=3 uid="uid://b7dks5cm1l8lb"]
 
+[ext_resource type="Script" path="res://prefab/interface/Interface.gd" id="1_ghaf7"]
 [ext_resource type="PackedScene" uid="uid://j0mixjoaji6r" path="res://prefab/UI/DevPanel.tscn" id="2_0344k"]
 [ext_resource type="PackedScene" uid="uid://cc4dqpbjt2x3y" path="res://prefab/UI/Questlog.tscn" id="2_ka8y8"]
 [ext_resource type="PackedScene" uid="uid://brxe6x2arf7xb" path="res://prefab/UI/PauseMenu.tscn" id="3_6p8ro"]
-
-[sub_resource type="GDScript" id="GDScript_npc4p"]
-script/source = "extends CanvasLayer
-
-
-@export var show_devpanel: bool
-
-@onready var qlog = $Questlog
-@onready var animplayer = $AnimationPlayer
-@onready var pausmenu = $PauseMenu
-
-
-func _ready():
-	if show_devpanel:
-		$DevPanel.visible = true
-	else:
-		$DevPanel.visible = false
-	GameManager.register_node(self)
-	EventHandler.connect(\"start_transition\", start_transition)
-
-func _input(event):
-	if GameManager.on_main_menu == true:
-		return
-	if event.is_action_pressed(\"qlog\"):
-		if qlog.visible:
-			qlog.visible = false
-		else:
-			qlog.visible = true
-
-
-
-func start_transition():
-	animplayer.play(\"start_transition\")
-
-func transition_is_black():
-	EventHandler.emit_signal(\"transition_black\")
-"
+[ext_resource type="PackedScene" uid="uid://4pvo7rk61tca" path="res://prefab/UI/DialogBox.tscn" id="4_nv8pa"]
 
 [sub_resource type="Animation" id="Animation_x5qxj"]
 length = 0.001
@@ -94,7 +59,8 @@ _data = {
 
 [node name="Interface" type="CanvasLayer"]
 layer = 10
-script = SubResource("GDScript_npc4p")
+script = ExtResource("1_ghaf7")
+show_devpanel = true
 
 [node name="Questlog" parent="." instance=ExtResource("2_ka8y8")]
 visible = false
@@ -110,7 +76,16 @@ size_flags_vertical = 2
 
 [node name="DevPanel" parent="." instance=ExtResource("2_0344k")]
 
+[node name="DialogBox" parent="." instance=ExtResource("4_nv8pa")]
+visible = false
+offset_left = 80.0
+offset_top = 56.0
+offset_right = 80.0
+offset_bottom = 56.0
+scale = Vector2(0.5, 0.5)
+
 [node name="PauseMenu" parent="." instance=ExtResource("3_6p8ro")]
+visible = false
 offset_left = 131.0
 offset_top = 50.0
 offset_right = -112.0

@@ -27,7 +27,7 @@ func start_new_game():
 func load_game():
 	loaded_data = GameManager.load_savegame()
 	QuestManager.load_saved_quest()
-	GameManager.Interface.qlog.update_questlist()
+	GameManager.interface.qlog.update_questlist()
 	switch_gamelevel(loaded_data['cur_world'])
 
 
