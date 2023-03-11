@@ -40,4 +40,5 @@ func hide_info_text():
 
 func _on_timer_timeout():
 	hide_info_text()
+	await get_tree().create_timer(1).timeout
 	check_cache()
