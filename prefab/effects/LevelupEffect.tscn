@@ -1,0 +1,86 @@
+[gd_scene load_steps=12 format=3 uid="uid://mgopvrriygx2"]
+
+[ext_resource type="Script" path="res://prefab/effects/Effect.gd" id="1_gvh45"]
+[ext_resource type="Texture2D" uid="uid://i8c8502ahqyt" path="res://assets/Effects/lvlup_anim-sheet.png" id="2_mvinu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lglwk"]
+atlas = ExtResource("2_mvinu")
+region = Rect2(0, 0, 400, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o1tba"]
+atlas = ExtResource("2_mvinu")
+region = Rect2(400, 0, 400, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bqglt"]
+atlas = ExtResource("2_mvinu")
+region = Rect2(800, 0, 400, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_137l1"]
+atlas = ExtResource("2_mvinu")
+region = Rect2(1200, 0, 400, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a0axy"]
+atlas = ExtResource("2_mvinu")
+region = Rect2(1600, 0, 400, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jhfom"]
+atlas = ExtResource("2_mvinu")
+region = Rect2(2000, 0, 400, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ct71f"]
+atlas = ExtResource("2_mvinu")
+region = Rect2(2400, 0, 400, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rurpw"]
+atlas = ExtResource("2_mvinu")
+region = Rect2(2800, 0, 400, 400)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5e381"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lglwk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o1tba")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bqglt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_137l1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bqglt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_137l1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a0axy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jhfom")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ct71f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rurpw")
+}],
+"loop": false,
+"name": &"animate",
+"speed": 8.0
+}]
+
+[node name="LevelupEffect" type="Node2D"]
+script = ExtResource("1_gvh45")
+
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.3, 0.3)
+sprite_frames = SubResource("SpriteFrames_5e381")
+animation = &"animate"
+frame = 9
+frame_progress = 1.0
+offset = Vector2(0, -146)
+flip_h = true
