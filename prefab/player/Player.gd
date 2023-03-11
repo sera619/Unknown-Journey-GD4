@@ -40,6 +40,7 @@ func _ready():
 	hitbx.connect("area_entered", take_damage)
 	combat_timer.connect("timeout", combat_timer_timeout)
 	hit_timer.connect("timeout", hit_timer_timeout)
+	EventHandler.connect("player_level_up", create_levelup_effect)
 	if stats.has_sword:
 		set_sprite(1)
 	else:
@@ -50,12 +51,6 @@ func _ready():
 		GameManager.camera.player = self
 	swordHitbox.knockback_vector = roll_vector
 
-
-func create_dash_trail():
-	var ghost = dash_ghost_screne.instantiate()
-	ghost.global_position = bodySprite.global_position
-	ghost.frame = bodySprite.frame
-	get_tree().current_scene.add_child(ghost)
 
 func _process(_delta):
 	pass
@@ -218,13 +213,27 @@ func take_damage(area):
 		self.queue_free()
 
 
+
+func create_levelup_effect():
+	var effect = levelup_effect_scene.instantiate()
+	self.add_child(effect)
+	effect.global_position = global_position
+	GameManager.info_box.set_info_text("Glückwunsch!\nDu hast Level: %s erreicht!" % stats.level)
+
+
 func set_sprite(sprite: int):
 	match sprite:
 		0:
 			bodySprite.texture = SPRITE_NO_SWORD
 		1:
 			bodySprite.texture = SPRITE_SWORD
-	
+
+func create_dash_trail():
+	var ghost = dash_ghost_screne.instantiate()
+	ghost.global_position = bodySprite.global_position
+	ghost.frame = bodySprite.frame
+	get_tree().current_scene.add_child(ghost)
+
 func hit_timer_timeout():
 	if hit_box_shape.disabled:
 		hit_box_shape.call_deferred("set_disabled", false)
