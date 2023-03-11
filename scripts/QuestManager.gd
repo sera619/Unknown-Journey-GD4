@@ -51,6 +51,8 @@ func add_quest_to_log(quest: Quest):
 		printerr("[X] Questmanager: Quest: %s already exists!" % quest.quest_name)
 		return
 	if quest.quest_state == Quest.QS.NOT_GIVEN:
+		GameManager.info_box.set_info_text("Neue Quest\n\"%s\"\nerhalten!" % quest.quest_name)
+		GameManager.info_box.show_info_text()
 		quest.set_state(Quest.QS.ACTIVE)
 	player_quest_log.append(quest)
 	print("[!] Questmanager: Quest: %s added to log!" % quest.quest_name)
