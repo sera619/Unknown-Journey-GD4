@@ -12,6 +12,7 @@ var tween: Tween = null
 
 func _ready():
 	GameManager.register_node(self)
+	reset_dialog()
 	self.visible = false
 
 func show_dialog():
@@ -23,7 +24,8 @@ func reset_dialog():
 	dialog_label.visible_ratio = 0.0
 	dialog_label.text = ""
 	speakername_label.text = ""
-	
+	option_a_label.text = "Okay"
+	option_b_label.text = "Nein"
 	if tween != null and tween.is_running():
 		tween.stop()
 		tween.kill()
