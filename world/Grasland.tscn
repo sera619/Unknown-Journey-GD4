@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cmyeya6fvbgt7"]
+[gd_scene load_steps=23 format=3 uid="uid://cmyeya6fvbgt7"]
 
 [ext_resource type="Script" path="res://world/WorldBase.gd" id="1_ckw8s"]
 [ext_resource type="Texture2D" uid="uid://by0asahacrf8v" path="res://assets/World/terrain_atlas.png" id="2_velti"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cfd47vyfsu8sg" path="res://prefab/npc/Chicken.tscn" id="5_a8p4w"]
 [ext_resource type="PackedScene" uid="uid://c738vytvimynb" path="res://prefab/utils/Teleporter.tscn" id="5_fviyu"]
 [ext_resource type="Texture2D" uid="uid://dmnbpm1f1qysw" path="res://assets/tiles/wateranimate2.png" id="6_braxs"]
+[ext_resource type="PackedScene" uid="uid://c50sg12xyw5sj" path="res://prefab/npc/Fairy.tscn" id="6_scwyo"]
 [ext_resource type="PackedScene" uid="uid://dcc837c2ujx6g" path="res://prefab/utils/GameCamera.tscn" id="7_jc8e8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ho2jp"]
@@ -9796,6 +9797,9 @@ y_sort_enabled = true
 
 [node name="Chicken" parent="Map/GameObjects/NPC" instance=ExtResource("5_a8p4w")]
 position = Vector2(263, 328)
+
+[node name="Fairy" parent="Map/GameObjects/NPC" instance=ExtResource("6_scwyo")]
+position = Vector2(690, 244)
 
 [node name="Enemys" type="Node2D" parent="Map/GameObjects"]
 y_sort_enabled = true
