@@ -2,6 +2,7 @@ extends Node2D
 class_name ItemDrop
 
 @export_category('Item Settings')
+@export var item_name: String
 @export var item_image: Texture2D
 @export var shadow_image: Texture2D
 @export_enum('Normal', 'Quest') var item_type: int

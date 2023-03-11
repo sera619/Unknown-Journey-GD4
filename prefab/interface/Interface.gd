@@ -26,6 +26,9 @@ func _input(event):
 			qlog.show_questlog()
 
 
+func hide_ui():
+	qlog.hide_questlog()
+	dialogbox.hide_dialog()
 
 
 func start_transition():

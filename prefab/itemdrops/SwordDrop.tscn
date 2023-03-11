@@ -72,6 +72,7 @@ _data = {
 
 [node name="SwordDrop" type="Node2D"]
 script = ExtResource("1_tkcx5")
+item_name = "Schwert"
 item_image = ExtResource("2_emle2")
 shadow_image = ExtResource("2_gmcol")
 item_type = 1

@@ -12,8 +12,11 @@ class_name WorldBase
 @onready var game_map = $Map/GameObjects
 
 func _ready():
-	GameManager.register_node(self)
+	_on_ready()
+	
+func _on_ready():
 	spawn_player()
+	GameManager.register_node(self)
 
 func get_entry_spot():
 	if entry_spot:

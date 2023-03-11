@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://cmyeya6fvbgt7"]
+[gd_scene load_steps=25 format=3 uid="uid://cmyeya6fvbgt7"]
 
 [ext_resource type="Script" path="res://world/WorldBase.gd" id="1_ckw8s"]
 [ext_resource type="Texture2D" uid="uid://by0asahacrf8v" path="res://assets/World/terrain_atlas.png" id="2_velti"]
@@ -7,7 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://dd2hmhqkymjdj" path="res://prefab/destroyable_objects/Gras.tscn" id="5_1fi5t"]
 [ext_resource type="PackedScene" uid="uid://ck2d7l0oulxbi" path="res://prefab/props/SmallTree.tscn" id="5_6rw7p"]
 [ext_resource type="PackedScene" uid="uid://cfd47vyfsu8sg" path="res://prefab/npc/Chicken.tscn" id="5_a8p4w"]
+[ext_resource type="PackedScene" uid="uid://cvno4epl40k3u" path="res://prefab/utils/EnemySpawner.tscn" id="5_d54uc"]
 [ext_resource type="PackedScene" uid="uid://c738vytvimynb" path="res://prefab/utils/Teleporter.tscn" id="5_fviyu"]
+[ext_resource type="PackedScene" uid="uid://b1kt7f88vq11f" path="res://prefab/enemys/EnemyBat.tscn" id="6_7hhq2"]
 [ext_resource type="Texture2D" uid="uid://dmnbpm1f1qysw" path="res://assets/tiles/wateranimate2.png" id="6_braxs"]
 [ext_resource type="PackedScene" uid="uid://c50sg12xyw5sj" path="res://prefab/npc/Fairy.tscn" id="6_scwyo"]
 [ext_resource type="PackedScene" uid="uid://dcc837c2ujx6g" path="res://prefab/utils/GameCamera.tscn" id="7_jc8e8"]
@@ -9789,6 +9791,26 @@ layer_7/tile_data = PackedInt32Array(-393200, 589825, 12, -458736, 589825, 12, -
 
 [node name="MapUtils" type="Node2D" parent="Map/GameMap"]
 
+[node name="EnemySpawner" parent="Map/GameMap/MapUtils" node_paths=PackedStringArray("enemy_container") instance=ExtResource("5_d54uc")]
+enemy_container = NodePath("../../../GameObjects/Enemys")
+enemy_scene_one = ExtResource("6_7hhq2")
+enemy_scene_two = ExtResource("6_7hhq2")
+
+[node name="Marker2D" parent="Map/GameMap/MapUtils/EnemySpawner/SpawnPoints1" index="0"]
+position = Vector2(-244, 0)
+
+[node name="Marker2D2" parent="Map/GameMap/MapUtils/EnemySpawner/SpawnPoints1" index="1"]
+position = Vector2(-273, 87)
+
+[node name="Marker2D3" parent="Map/GameMap/MapUtils/EnemySpawner/SpawnPoints1" index="2"]
+position = Vector2(1404, 258)
+
+[node name="Marker2D4" parent="Map/GameMap/MapUtils/EnemySpawner/SpawnPoints1" index="3"]
+position = Vector2(1134, 304)
+
+[node name="Marker2D5" parent="Map/GameMap/MapUtils/EnemySpawner/SpawnPoints1" index="4"]
+position = Vector2(1029, 470)
+
 [node name="GameObjects" type="Node2D" parent="Map"]
 y_sort_enabled = true
 
@@ -10020,6 +10042,7 @@ position = Vector2(-669, -566)
 [node name="BottomRight" parent="Map/GameCamera/Limits" index="1"]
 position = Vector2(1699, 646)
 
+[editable path="Map/GameMap/MapUtils/EnemySpawner"]
 [editable path="Map/GameObjects/Teleporter"]
 [editable path="Map/GameObjects/Teleporter/PlayerDetector"]
 [editable path="Map/GameCamera"]

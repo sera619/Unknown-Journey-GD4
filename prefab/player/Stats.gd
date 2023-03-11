@@ -32,7 +32,6 @@ var experience:int = 0
 var max_experience:int = 0
 var damage: int = 0
 var speed: int = 0
-
 var exp_multiplikator:float = 1.2
 var parent = null
 

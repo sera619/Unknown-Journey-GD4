@@ -41,6 +41,7 @@ func go_mainmenu():
 
 func _on_p_exit_btn_button_down():
 	hidepause()
+	GameManager.interface.hide_ui()
 	EventHandler.connect("transition_black", go_mainmenu)
 	EventHandler.emit_signal("start_transition")
 

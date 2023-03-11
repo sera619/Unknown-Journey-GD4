@@ -77,10 +77,9 @@ func move_state(delta):
 	var input_vector = Vector2.ZERO
 	input_vector.x = Input.get_axis("move_left", "move_right")
 	input_vector.y = Input.get_axis("move_up", "move_down")
-	swordHitbox.knockback_vector = input_vector
 	input_vector = input_vector.normalized()
 	roll_vector = input_vector
-	dash_vector = input_vector
+
 	if knockback != Vector2.ZERO:
 		knockback = knockback.move_toward(Vector2.ZERO, stats.FRICTION * delta)
 		set_velocity(knockback)
@@ -97,6 +96,8 @@ func move_state(delta):
 		animTree.set("parameters/Run/blend_position", input_vector)
 		animTree.set("parameters/CombatMove/blend_position", input_vector)
 		animTree.set('parameters/AttackDouble/blend_position', input_vector)
+		dash_vector = input_vector
+		swordHitbox.knockback_vector = input_vector
 		if (stats.speed == stats.RUN_SPEED and not combat_stance) or is_dashing:
 			animState.travel("Run")
 		elif combat_stance == true:

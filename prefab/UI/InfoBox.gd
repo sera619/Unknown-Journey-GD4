@@ -6,9 +6,9 @@ class_name InfoBox
 @onready var show_timer: Timer = $Timer
 
 var text_cache = []
-var current_text: String = ""
 
 func _ready():
+	text_label.text = ""
 	self.visible = false
 	GameManager.register_node(self)
 

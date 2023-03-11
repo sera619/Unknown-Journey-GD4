@@ -31,8 +31,7 @@ func _ready():
 	limit_left = topLeft.position.x
 	limit_bottom = bottomRight.position.y
 	limit_right = bottomRight.position.x
-	if GameManager.player != null:
-		player = GameManager.player
+
 
 	#ignalController.connect("CloseLockedDoor",Callable(self,"_locked_door_show"))
 
@@ -41,8 +40,9 @@ func _locked_door_show():
 
 
 func _process(delta):
-	if player:
-		self.global_position = player.global_position
+		
+	if GameManager.player != null:
+		self.global_position = GameManager.player.global_position
 	zoom.x = lerp(zoom.x, zoom.x * zoom_factor, zoom_speed * delta)
 	zoom.y = lerp(zoom.y, zoom.y * zoom_factor, zoom_speed * delta)
 	
@@ -53,7 +53,6 @@ func _process(delta):
 		return
 	else:
 		offset = Vector2(randf_range(-shake_amount, shake_amount), randf_range(shake_amount, -shake_amount)) * delta + default_offset
-		
 
 func _input(event):
 	if abs(zoom_position.x - get_global_mouse_position().x) > zoom_margin:

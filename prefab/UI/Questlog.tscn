@@ -1,11 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://cc4dqpbjt2x3y"]
+[gd_scene load_steps=11 format=3 uid="uid://cc4dqpbjt2x3y"]
 
 [ext_resource type="Script" path="res://prefab/UI/Questlog.gd" id="1_1cm83"]
 [ext_resource type="LabelSettings" uid="uid://f4k617j3lq7w" path="res://prefab/UI/label_font_set.tres" id="1_cyxpa"]
 [ext_resource type="Texture2D" uid="uid://b01dlyko5c35h" path="res://assets/UI/checkmark.png" id="2_dho6n"]
 [ext_resource type="FontFile" uid="uid://c5flfxbufo73y" path="res://assets/UI/Fonts/dogica.otf" id="2_m1a6s"]
 [ext_resource type="LabelSettings" uid="uid://dsvjo0qnnlipi" path="res://prefab/UI/sublabel_font.tres" id="4_cpwg7"]
-[ext_resource type="LabelSettings" uid="uid://bellrt1sde32t" path="res://prefab/UI/green_font_set.tres" id="6_ojfxr"]
 [ext_resource type="FontFile" uid="uid://bddtsccx0qour" path="res://assets/UI/Fonts/dogicapixel.otf" id="6_vpgom"]
 [ext_resource type="Texture2D" uid="uid://bclxecir5ivmv" path="res://assets/UI/button-red-small-normalt.png" id="7_gy0m6"]
 [ext_resource type="Texture2D" uid="uid://7t4cecn0xlc6" path="res://assets/UI/button-red-small-pressedt.png" id="8_dgkxa"]
@@ -96,8 +95,10 @@ clip_text = true
 
 [node name="QuestFinishLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.253158, 0.761329, 0.929688, 1)
+theme_override_fonts/font = ExtResource("6_vpgom")
+theme_override_font_sizes/font_size = 8
 text = "Gebe die Quest ab!"
-label_settings = ExtResource("6_ojfxr")
 horizontal_alignment = 1
 vertical_alignment = 1
 

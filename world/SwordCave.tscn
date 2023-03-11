@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://dq6afkde17yc6"]
 
-[ext_resource type="Script" path="res://world/WorldBase.gd" id="1_1mr7i"]
+[ext_resource type="Script" path="res://world/SwordCave.gd" id="1_egq4y"]
 [ext_resource type="Texture2D" uid="uid://i30uy8osh588" path="res://assets/World/tileset_dungeon.png" id="2_pltvx"]
 [ext_resource type="PackedScene" uid="uid://yax4y6kq0hp8" path="res://prefab/itemdrops/SwordDrop.tscn" id="3_1jbkb"]
 [ext_resource type="PackedScene" uid="uid://c738vytvimynb" path="res://prefab/utils/Teleporter.tscn" id="3_awgl6"]
@@ -552,8 +552,8 @@ sources/0 = SubResource("TileSetAtlasSource_ol6bj")
 radius = 71.0282
 
 [node name="SwordCave" type="Node" groups=["WorldBase"]]
-script = ExtResource("1_1mr7i")
-world_name = "SwordCave"
+script = ExtResource("1_egq4y")
+world_name = null
 
 [node name="Map" type="Node2D" parent="."]
 y_sort_enabled = true

@@ -51,6 +51,8 @@ func _physics_process(delta):
 			else:
 				GameManager.dialog_box.set_dialog_text(quest_complete_text)
 				GameManager.dialog_box.show_dialog()
+	else:
+		return
 
 func okay_pressed():
 	first_seen = false

@@ -46,9 +46,22 @@ func update_questlog(quest: Quest):
 		questtitle_label.add_theme_color_override("font_color",Color(1, 0.60000002384186, 0.1294117718935))
 	questtitle_label.text = quest.quest_name
 	questinfo_label.text = quest.quest_description
-	quest_quantity_label.text = "%s:\n%s / %s" % [quest.quest_item_scene._bundled['names'][0],quest.current_quantity, quest.required_quantity]
+	var item_name =""
+	if quest.quest_item_scene != null:
+		var quest_item = quest.quest_item_scene.instantiate()
+		item_name = quest_item.item_name
+		quest_item.queue_free()
+	quest_quantity_label.text = "%s:\n%s / %s" % [item_name,quest.current_quantity, quest.required_quantity]
 	if quest.quest_state == Quest.QS.FINISHED:
+		quest_finish_label.text = "Gebe die Quest ab!"
+		quest_finish_label.add_theme_color_override("font_color", Color(0, 0.8941176533699, 0))
 		quest_finish_label.visible = true
+	elif quest.quest_state == Quest.QS.COMPLETE:
+		quest_finish_label.text = "Diese Quest ist abgeschlossen!"
+		quest_finish_label.add_theme_color_override("font_color", Color(0.25315779447556, 0.76132863759995, 0.9296875))
+		quest_finish_label.visible = true
+	else:
+		quest_finish_label.text = ""
 	activate_button.disabled = false
 	activate_button.visible = true
 
