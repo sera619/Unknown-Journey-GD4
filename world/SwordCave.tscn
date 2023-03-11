@@ -598,7 +598,7 @@ layer_3/tile_data = PackedInt32Array(16, 458752, 0, 65552, 458752, 1)
 y_sort_enabled = true
 
 [node name="Teleporter" parent="Map/GameObjects" instance=ExtResource("3_awgl6")]
-position = Vector2(529, 42)
+position = Vector2(529, 51)
 teleport_location = "Grasland"
 
 [node name="CollisionShape2D" parent="Map/GameObjects/Teleporter/TeleportArea" index="0"]

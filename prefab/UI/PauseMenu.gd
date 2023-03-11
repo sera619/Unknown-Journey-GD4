@@ -26,8 +26,13 @@ func _on_p_resume_btn_button_down():
 	hidepause()
 
 func _on_p_load_btn_button_down():
-	GameManager.game.load_game()
+	hidepause()
+	EventHandler.connect("transition_black", load_game)
+	EventHandler.emit_signal("start_transition")
 
+func load_game():
+	EventHandler.disconnect("transition_black", load_game)
+	GameManager.game.load_game()
 
 func go_mainmenu():
 	EventHandler.disconnect("transition_black", go_mainmenu)

@@ -9727,7 +9727,7 @@ world_name = "Grasland"
 position = Vector2(-324, -173)
 
 [node name="EntrySpot" type="Marker2D" parent="Map"]
-position = Vector2(524, 269)
+position = Vector2(771, -180)
 
 [node name="GameMap" type="TileMap" parent="Map"]
 y_sort_enabled = true
@@ -9797,6 +9797,10 @@ y_sort_enabled = true
 
 [node name="Chicken" parent="Map/GameObjects/NPC" instance=ExtResource("5_a8p4w")]
 position = Vector2(263, 328)
+default_text = null
+quest_start_text = null
+quest_ready_text = null
+quest_complete_text = null
 
 [node name="Fairy" parent="Map/GameObjects/NPC" instance=ExtResource("6_scwyo")]
 position = Vector2(690, 244)

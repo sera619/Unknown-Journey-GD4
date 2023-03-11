@@ -161,8 +161,9 @@ func take_damage(area):
 			effect2.global_position = animSprite.global_position
 			#effect2.global_position.y += animSprite.offset.y
 			cs.add_child(effect2)
-			if QuestManager.current_quest.quest_id == 2:
-				QuestManager.current_quest.add_quest_items()
+			if QuestManager.current_quest != null:
+				if QuestManager.current_quest.quest_id == 2:
+					QuestManager.current_quest.add_quest_items()
 			reward_player()
 			self.call_deferred("queue_free")
 			print("[!] Enemy: %s died!" % self.name)

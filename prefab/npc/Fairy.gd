@@ -1,16 +1,18 @@
 extends NPCBase
 
 func _ready():
+	if self.npc_name in GameManager.seen_npcs:
+		first_seen = false
 	animtree.active = true
 	pick_random_state([IDLE, WANDER])
 
-func _setup_movement_blends(delta):
+func _setup_movement_blends():
 	animtree.set("parameters/Idle/blend_position", velocity)
 	animtree.set("parameters/Move/blend_position", velocity)
 
 func _physics_process(delta):
 	if velocity != Vector2.ZERO:
-		_setup_movement_blends(delta)
+		_setup_movement_blends()
 		animstate.travel("Move")
 	else:
 		animstate.travel("Idle")
@@ -25,29 +27,30 @@ func _physics_process(delta):
 	
 	move_and_slide()
 	if Input.is_action_just_pressed("interact") and player_detector.player != null and GameManager.dialog_box.visible == false:
-		var seen_list = player_detector.player.stats.seen_npcs
 		GameManager.dialog_box.set_speaker_name(self.npc_name)
 		GameManager.dialog_box.option_b_btn.connect("button_down", cancel_pressed)
-		if self.npc_name not in seen_list and first_seen:
+		if first_seen:
 			GameManager.dialog_box.option_a_btn.connect("button_down", okay_pressed)
-			first_seen = false
 			player_detector.player.stats.add_seen_npc(self.npc_name)
 			GameManager.dialog_box.set_dialog_text(default_text)
 			GameManager.dialog_box.show_dialog()
-		elif self.quest.quest_state == Quest.QS.NOT_GIVEN and not first_seen:
-			GameManager.dialog_box.option_a_btn.connect("button_down", accept_quest)
-			GameManager.dialog_box.set_dialog_text(quest_start_text)
-			GameManager.dialog_box.show_dialog()
-		elif self.quest.quest_state == Quest.QS.ACTIVE:
-			GameManager.dialog_box.set_dialog_text("Kannst du die Höhle nicht finden?")
-			GameManager.dialog_box.show_dialog()
-		elif self.quest.quest_state == Quest.QS.FINISHED:
-			GameManager.dialog_box.option_a_btn.connect("button_down", reward_player)
-			GameManager.dialog_box.set_dialog_text(quest_ready_text)
-			GameManager.dialog_box.show_dialog()
-		else:
-			GameManager.dialog_box.set_dialog_text(quest_complete_text)
-			GameManager.dialog_box.show_dialog()
+			return
+		if not first_seen:
+			if self.quest.quest_state == Quest.QS.NOT_GIVEN:
+				GameManager.dialog_box.option_a_btn.connect("button_down", accept_quest)
+				GameManager.dialog_box.set_dialog_text(quest_start_text)
+				GameManager.dialog_box.show_dialog()
+			elif self.quest.quest_state == Quest.QS.ACTIVE:
+				GameManager.dialog_box.set_dialog_text("Kannst du die Höhle nicht finden?")
+				GameManager.dialog_box.show_dialog()
+			elif self.quest.quest_state == Quest.QS.FINISHED:
+				GameManager.dialog_box.option_a_btn.connect("button_down", reward_player)
+				GameManager.dialog_box.set_dialog_text(quest_ready_text)
+				GameManager.dialog_box.show_dialog()
+				
+			else:
+				GameManager.dialog_box.set_dialog_text(quest_complete_text)
+				GameManager.dialog_box.show_dialog()
 
 func okay_pressed():
 	first_seen = false
@@ -56,6 +59,10 @@ func okay_pressed():
 	GameManager.dialog_box.option_b_btn.disconnect("button_down", cancel_pressed)
 
 func reward_player():
+	GameManager.dialog_box.option_a_btn.disconnect("button_down", reward_player)
+	GameManager.dialog_box.option_b_btn.disconnect("button_down", cancel_pressed)
+	player_detector.player.stats.has_sword = true
+	player_detector.player.set_sprite(1)
 	quest.complete_quest()
 	quest = null
 

@@ -50,15 +50,15 @@ func add_quest_items():
 	current_quantity += 1
 	if current_quantity == required_quantity:
 		set_state(QS.FINISHED)
-		GameManager.info_box.set_info_text("Quest %s ist fertig!" % quest_name)
-		GameManager.info_box.show_info_text()
+		GameManager.info_box.set_info_text("Quest: \"%s\" ist fertig!\nDu kannst sie jetzt abgeben!" % quest_name)
+
 		if GameManager.ui_questlog:
 			GameManager.ui_questlog.update_questlist()
 			GameManager.ui_questlog.update_questlog(self)
 			print("[!] Quest: %s is complete!" % quest_name)
 	else:
 		GameManager.info_box.set_info_text("Questitem %s / %s erhalten" % [current_quantity, required_quantity])
-		GameManager.info_box.show_info_text()
+
 
 func complete_quest():
 	if not GameManager.player or reward_xp == 0:
@@ -66,7 +66,6 @@ func complete_quest():
 	GameManager.player.stats.set_exp(reward_xp + GameManager.player.stats.experience)
 	set_state(QS.COMPLETE)
 	GameManager.ui_questlog.update_questlist()
-	GameManager.info_box.set_info_text("Du hast die Quest:\"%s\"\n abgeschlossen!" % quest_name)
-	GameManager.info_box.show_info_text()
-	EventHandler.emit_signal("quest_complete", self)
-	
+	GameManager.info_box.set_info_text("Du hast die Quest:\n\"%s\"\n abgeschlossen!" % quest_name)
+	GameManager.save_data()
+

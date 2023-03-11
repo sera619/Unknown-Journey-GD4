@@ -147,7 +147,7 @@ WANDER_SPEED = 35
 WANDER_TARGET_RANGE = 4
 MIN_RANGE = 4
 MAX_RANGE = 32
-reward_exp = 30
+reward_exp = 15
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
 texture = ExtResource("6_dkc4q")

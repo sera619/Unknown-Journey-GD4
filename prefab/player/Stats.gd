@@ -22,9 +22,9 @@ signal energie_changed
 @export var roll_costs:int
 @export var HEAVY_ATTACK_COST: int
 
-@onready var has_sword: bool = true
+@onready var has_sword: bool = false
 
-var seen_npcs = []
+
 var health: int = 0
 var level: int = 0
 var energie: int = 0 
@@ -85,7 +85,8 @@ func set_max_exp(value):
 func set_exp(value):
 	experience = value
 	if experience >= max_experience:
-		level_up()
+		var rest = experience - max_experience
+		level_up(rest)
 	EventHandler.emit_signal("player_exp_changed", experience)
 	
 func set_energie(value):
@@ -100,17 +101,18 @@ func set_level(value):
 	level = value
 	EventHandler.emit_signal("player_level_changed", level)
 
-func level_up():
+func level_up(rest):
 	set_max_exp(int(max_experience * exp_multiplikator))
-	set_exp(0)
+	set_exp(rest)
 	set_level(level + 1)
 	set_max_health(int(MAX_HEALTH * exp_multiplikator))
 	set_max_energie(int(MAX_ENERGIE * exp_multiplikator))
-	EventHandler.emit_signal("player_levelup")
+	set_health(MAX_HEALTH)
+	EventHandler.emit_signal("player_level_up")
 
 func add_seen_npc(npcname:String):
-	if not npcname in seen_npcs: 
-		seen_npcs.append(npcname)
+	if not npcname in GameManager.seen_npcs: 
+		GameManager.seen_npcs.append(npcname)
 
 func apply_loaded_stats():
 	var data = GameManager.load_savegame()
@@ -120,9 +122,9 @@ func apply_loaded_stats():
 	experience = data['experience']
 	max_experience = data['max_exp']
 	level = data['level']
-	seen_npcs.clear()
+	GameManager.seen_npcs.clear()
 	for n in data['seen_npcs']:
-		seen_npcs.append(n)
+		GameManager.seen_npcs.append(n)
 	print("[!] %s: Set health to %s !" % [parent, MAX_HEALTH])
 	set_max_health(MAX_HEALTH)
 	set_health(MAX_HEALTH)
@@ -169,6 +171,6 @@ func save():
 		"quest_log_active": quests,
 		"quest_log_complete": solved_quests,
 		"quest_log_finished": finished_quest,
-		"seen_npcs": seen_npcs
+		"seen_npcs": GameManager.seen_npcs
 	}
 	return save_dict

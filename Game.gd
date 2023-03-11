@@ -42,6 +42,8 @@ func switch_gamelevel(levelname: String):
 
 	if levelname == "MainMenu":
 		GameManager.on_main_menu = true
+		QuestManager.current_quest = null
+		QuestManager.player_quest_log.clear()
 		GameManager.player = null
 	else:
 		GameManager.on_main_menu = false

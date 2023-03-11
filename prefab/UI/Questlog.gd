@@ -20,6 +20,9 @@ func _ready():
 	update_questlist()
 
 func activate_quest():
+	if selected_quest.quest_state == Quest.QS.COMPLETE:
+		print("[X] Questlog: Quest %s already finished!" % selected_quest.quest_name)
+		return
 	QuestManager.set_current_quest(selected_quest)
 	update_questlist()
 	update_questlog(selected_quest)

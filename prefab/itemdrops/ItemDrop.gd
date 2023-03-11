@@ -24,6 +24,8 @@ func pickup(area):
 	if not area.is_in_group("playerPickupzone"):
 		return
 	if item_type == 1:
+		if not QuestManager.current_quest:
+			return
 		var required_quest_id = QuestManager.current_quest.quest_id
 		if required_quest_id == self.quest_id:
 			QuestManager.current_quest.add_quest_items()

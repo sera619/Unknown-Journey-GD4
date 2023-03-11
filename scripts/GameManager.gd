@@ -9,6 +9,7 @@ var dialog_box: DialogBox = null
 var info_box: InfoBox = null
 var ui_questlog = null
 var on_main_menu: bool = false
+var seen_npcs = []
 
 
 func register_node(node: Node):
@@ -44,7 +45,6 @@ func save_data(playername=""):
 	var savepath = "user://savegame.save"
 	if playername != "":
 		savepath = "user://%s-savegame.save" % playername
-	var filename = null
 	var savegame = FileAccess.open(savepath, FileAccess.WRITE)
 	var save_nodes = get_tree().get_nodes_in_group("Persist")
 	for node in save_nodes:
@@ -62,24 +62,16 @@ func load_savegame(playername=""):
 	var loadpath = "user://savegame.save" 
 	if playername != "":
 		loadpath = "user://%s-savegame.save" % playername
-		
 	if not FileAccess.file_exists(loadpath):
-		return # Error! We don't have a save to load.
-		
+		return 
 	var save_game = FileAccess.open(loadpath, FileAccess.READ)
 	while save_game.get_position() < save_game.get_length():
 		var json_string = save_game.get_line()
-		
-		# Creates the helper class to interact with JSON
 		var json = JSON.new()
-		
-		# Check if there is any error while parsing the JSON string, skip in case of failure
 		var parse_result = json.parse(json_string)
 		if not parse_result == OK:
 			print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
 			continue
-			
-		# Get the data from the JSON object
 		var node_data = json.get_data()
 		return node_data
 

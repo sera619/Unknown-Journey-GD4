@@ -4,13 +4,13 @@ func _ready():
 	pick_random_state([IDLE, WANDER])
 	animtree.active = true
 	
-func _setup_movement_blends(delta):
+func _setup_movement_blends():
 	animtree.set("parameters/Idle/blend_position", velocity)
 	animtree.set("parameters/Move/blend_position", velocity)
 
 func _physics_process(delta):
 	if velocity != Vector2.ZERO:
-		_setup_movement_blends(delta)
+		_setup_movement_blends()
 		animstate.travel("Move")
 	else:
 		animstate.travel("Idle")

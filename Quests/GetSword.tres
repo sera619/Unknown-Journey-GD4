@@ -7,10 +7,10 @@
 script = ExtResource("1_xacrh")
 quest_id = 3
 quest_name = "Das Schwert"
-quest_description = "Suche das Schwert von dem dir erzählt wurde, es muss ganz in der Nähe sein."
+quest_description = "Suche das Schwert von dem dir die Fee erzählt hat, es soll in einer Höhle nördlich über den Fluss sein."
 quest_type = 2
 required_quantity = 1
 quest_item_scene = ExtResource("1_d2mga")
 mob_spawn_node = NodePath("")
 item_spawn_node = NodePath("")
-reward_xp = 200
+reward_xp = 310

@@ -32,7 +32,7 @@ enum {
 var state = IDLE
 var first_seen:bool = true
 
-func _setup_movement_blends(delta):
+func _setup_movement_blends():
 	pass
 
 func update_wander():
