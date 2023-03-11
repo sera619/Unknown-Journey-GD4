@@ -4,7 +4,8 @@ var player: Player = null
 var camera: GameCamera = null
 var current_world: WorldBase = null
 var game: Game = null
-var Interface = null
+var interface: Interface = null
+var dialog_box: DialogBox = null 
 var ui_questlog = null
 var on_main_menu: bool = false
 
@@ -23,10 +24,13 @@ func register_node(node: Node):
 		game = node
 		print("[!] GameManager: Node: %s registered!" % node.name)
 	elif node.name == "Interface":
-		Interface = node
+		interface = node
 		print("[!] GameManager: Node: %s registered!" % node.name)
 	elif node.name == "Questlog":
 		ui_questlog = node
+		print("[!] GameManager: Node: %s registered!" % node.name)
+	elif node.name == "DialogBox":
+		dialog_box = node
 		print("[!] GameManager: Node: %s registered!" % node.name)
 	else:
 		print("[!] GameManager: Cant register: %s" % node.name)
