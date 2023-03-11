@@ -24,6 +24,16 @@ func activate_quest():
 	update_questlist()
 	update_questlog(selected_quest)
 
+func show_questlog():
+	update_questlist()
+	self.visible = true
+
+func hide_questlog():
+	self.visible = false
+	reset_questinfo()
+	selected_quest = null
+	quest_list.deselect_all()
+
 
 func update_questlog(quest: Quest):
 	reset_questinfo()
