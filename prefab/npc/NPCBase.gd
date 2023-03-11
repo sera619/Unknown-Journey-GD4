@@ -32,7 +32,7 @@ enum {
 var state = IDLE
 var first_seen:bool = true
 
-func _setup_movement_blends():
+func _setup_movement_blends(delta):
 	pass
 
 func update_wander():
@@ -67,12 +67,4 @@ func idle_state(delta):
 	if wander_controller.get_time_left() == 0:
 		update_wander()
 
-func chase_state(delta):
-	var player = player_detector.player
-	if player != null:
-		if global_position.distance_to(player.global_position) <= 16 or global_position.distance_to(player.global_position) >= 64:
-			accelerate_towards_point(player.global_position, delta)
-		else:
-			state = IDLE
-	else:
-		state = IDLE
+
