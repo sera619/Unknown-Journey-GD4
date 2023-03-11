@@ -1,0 +1,217 @@
+[gd_scene load_steps=29 format=3 uid="uid://c50sg12xyw5sj"]
+
+[ext_resource type="Texture2D" uid="uid://n8ffpghrqlrf" path="res://assets/NPC/fairy.png" id="1_8cwrl"]
+[ext_resource type="Script" path="res://prefab/npc/Fairy.gd" id="1_ujxfh"]
+[ext_resource type="Resource" uid="uid://d2vgbt1mvas6i" path="res://Quests/GetSword.tres" id="2_0tbc5"]
+[ext_resource type="PackedScene" uid="uid://kbo1bay3i1ps" path="res://prefab/utils/PlayerDetector.tscn" id="2_jt50h"]
+[ext_resource type="Texture2D" uid="uid://dt2540u4sj5mt" path="res://assets/Shadows/MediumShadow.png" id="2_rb1kx"]
+[ext_resource type="PackedScene" uid="uid://b347lo6c415bh" path="res://prefab/utils/WanderController.tscn" id="4_10fak"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0nbwm"]
+radius = 4.0
+height = 18.0
+
+[sub_resource type="Animation" id="Animation_uga0c"]
+resource_name = "FlyDown"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector2i(3, 4), Vector2i(4, 4), Vector2i(5, 4)]
+}
+
+[sub_resource type="Animation" id="Animation_jkcfm"]
+resource_name = "FlyLeft"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector2i(3, 5), Vector2i(4, 5), Vector2i(5, 5)]
+}
+
+[sub_resource type="Animation" id="Animation_rem6x"]
+resource_name = "FlyRight"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector2i(3, 6), Vector2i(4, 6), Vector2i(5, 6)]
+}
+
+[sub_resource type="Animation" id="Animation_u0ydq"]
+resource_name = "FlyUp"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector2i(3, 7), Vector2i(4, 7), Vector2i(5, 7)]
+}
+
+[sub_resource type="Animation" id="Animation_h2p4w"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(3, 4)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p2ar6"]
+_data = {
+"FlyDown": SubResource("Animation_uga0c"),
+"FlyLeft": SubResource("Animation_jkcfm"),
+"FlyRight": SubResource("Animation_rem6x"),
+"FlyUp": SubResource("Animation_u0ydq"),
+"RESET": SubResource("Animation_h2p4w")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1h4n3"]
+animation = &"FlyDown"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bngek"]
+animation = &"FlyUp"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5ufp2"]
+animation = &"FlyRight"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wif8w"]
+animation = &"FlyLeft"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_8mt34"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_1h4n3")
+blend_point_0/pos = Vector2(0, 1)
+blend_point_1/node = SubResource("AnimationNodeAnimation_bngek")
+blend_point_1/pos = Vector2(0, -1)
+blend_point_2/node = SubResource("AnimationNodeAnimation_5ufp2")
+blend_point_2/pos = Vector2(1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_wif8w")
+blend_point_3/pos = Vector2(-1, 0)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_g8b5k"]
+animation = &"FlyDown"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vnjsx"]
+animation = &"FlyUp"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2di1v"]
+animation = &"FlyLeft"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_25bv8"]
+animation = &"FlyRight"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_ygno2"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_g8b5k")
+blend_point_0/pos = Vector2(0, 1)
+blend_point_1/node = SubResource("AnimationNodeAnimation_vnjsx")
+blend_point_1/pos = Vector2(0, -1)
+blend_point_2/node = SubResource("AnimationNodeAnimation_2di1v")
+blend_point_2/pos = Vector2(-1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_25bv8")
+blend_point_3/pos = Vector2(1, 0)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_006sn"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fi472"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_vi6la"]
+states/Idle/node = SubResource("AnimationNodeBlendSpace2D_8mt34")
+states/Idle/position = Vector2(561, 114)
+states/Move/node = SubResource("AnimationNodeBlendSpace2D_ygno2")
+states/Move/position = Vector2(399, 114)
+transitions = ["Idle", "Move", SubResource("AnimationNodeStateMachineTransition_006sn"), "Move", "Idle", SubResource("AnimationNodeStateMachineTransition_fi472")]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_2xxvc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vek1e"]
+radius = 61.131
+
+[node name="Fairy" type="CharacterBody2D"]
+script = ExtResource("1_ujxfh")
+npc_name = "Fairy"
+npc_type = "Quest-NPC"
+move_speed = 40
+acceleration = 300
+friction = 200
+quest = ExtResource("2_0tbc5")
+default_text = "Hallo ich bin die gute Fee."
+quest_start_text = "Gehe in die Höhle, die sich nördlich von hier über dem Fluss befindet. Dort findest du ein Schwert."
+quest_ready_text = "Gut! Du hast das Schwert. Ich hoffe du kannst damit umgehen."
+quest_complete_text = "Na du? Alles Okay?"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_0nbwm")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+scale = Vector2(0.875, 0.8)
+texture = ExtResource("2_rb1kx")
+
+[node name="Body" type="Sprite2D" parent="."]
+texture = ExtResource("1_8cwrl")
+offset = Vector2(0, -36)
+hframes = 12
+vframes = 8
+frame = 51
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_p2ar6")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_vi6la")
+anim_player = NodePath("../AnimationPlayer")
+parameters/playback = SubResource("AnimationNodeStateMachinePlayback_2xxvc")
+parameters/Idle/blend_position = Vector2(0, 0)
+parameters/Move/blend_position = Vector2(0, 0)
+
+[node name="PlayerDetector" parent="." instance=ExtResource("2_jt50h")]
+
+[node name="CollisionShape2D" parent="PlayerDetector" index="0"]
+position = Vector2(0, -27)
+shape = SubResource("CircleShape2D_vek1e")
+
+[node name="WanderController" parent="." instance=ExtResource("4_10fak")]
+
+[editable path="PlayerDetector"]
