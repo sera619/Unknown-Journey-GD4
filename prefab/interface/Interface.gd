@@ -21,9 +21,9 @@ func _input(event):
 		return
 	if event.is_action_pressed("qlog"):
 		if qlog.visible:
-			qlog.visible = false
+			qlog.hide_questlog()
 		else:
-			qlog.visible = true
+			qlog.show_questlog()
 
 
 

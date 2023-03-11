@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://b7dks5cm1l8lb"]
+[gd_scene load_steps=10 format=3 uid="uid://b7dks5cm1l8lb"]
 
 [ext_resource type="Script" path="res://prefab/interface/Interface.gd" id="1_ghaf7"]
 [ext_resource type="PackedScene" uid="uid://j0mixjoaji6r" path="res://prefab/UI/DevPanel.tscn" id="2_0344k"]
 [ext_resource type="PackedScene" uid="uid://cc4dqpbjt2x3y" path="res://prefab/UI/Questlog.tscn" id="2_ka8y8"]
 [ext_resource type="PackedScene" uid="uid://brxe6x2arf7xb" path="res://prefab/UI/PauseMenu.tscn" id="3_6p8ro"]
 [ext_resource type="PackedScene" uid="uid://4pvo7rk61tca" path="res://prefab/UI/DialogBox.tscn" id="4_nv8pa"]
+[ext_resource type="PackedScene" uid="uid://ci8ut3tki2bpo" path="res://prefab/UI/InfoBox.tscn" id="5_1eql3"]
 
 [sub_resource type="Animation" id="Animation_x5qxj"]
 length = 0.001
@@ -77,11 +78,20 @@ size_flags_vertical = 2
 [node name="DevPanel" parent="." instance=ExtResource("2_0344k")]
 
 [node name="DialogBox" parent="." instance=ExtResource("4_nv8pa")]
-visible = false
 offset_left = 80.0
-offset_top = 56.0
+offset_top = 103.0
 offset_right = 80.0
-offset_bottom = 56.0
+offset_bottom = 67.0
+scale = Vector2(0.5, 0.5)
+
+[node name="InfoBox" parent="." instance=ExtResource("5_1eql3")]
+anchors_preset = 10
+anchor_bottom = 0.0
+offset_left = 80.0
+offset_top = 8.0
+offset_right = 80.0
+offset_bottom = 78.0
+grow_vertical = 1
 scale = Vector2(0.5, 0.5)
 
 [node name="PauseMenu" parent="." instance=ExtResource("3_6p8ro")]
