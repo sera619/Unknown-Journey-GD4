@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://ctrto7ocrqsyu"]
+
+[ext_resource type="Script" path="res://prefab/UI/StatHUD.gd" id="1_3jrq7"]
+[ext_resource type="Texture2D" uid="uid://bu4rwyuvmk4xr" path="res://assets/UI/healthplate.png" id="1_3tvsr"]
+[ext_resource type="Texture2D" uid="uid://bygmow5fasyoo" path="res://assets/UI/healthbar.png" id="3_45s6m"]
+[ext_resource type="Texture2D" uid="uid://btnnin2bj8fpx" path="res://assets/UI/staminaplate.png" id="3_gbmef"]
+[ext_resource type="Texture2D" uid="uid://c5ltit7ns1gwj" path="res://assets/UI/staminaBar.png" id="5_8ljip"]
+
+[node name="StatHUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 4.0
+offset_right = -261.0
+offset_bottom = -160.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3jrq7")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="HealthBar" type="TextureProgressBar" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture_under = ExtResource("1_3tvsr")
+texture_progress = ExtResource("3_45s6m")
+
+[node name="EnergieBar" type="TextureProgressBar" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture_under = ExtResource("3_gbmef")
+texture_progress = ExtResource("5_8ljip")
