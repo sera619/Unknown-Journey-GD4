@@ -1,12 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://c1sfpfmidy6lg"]
+[gd_scene load_steps=4 format=3 uid="uid://c1sfpfmidy6lg"]
 
 [ext_resource type="PackedScene" uid="uid://kbo1bay3i1ps" path="res://prefab/utils/PlayerDetector.tscn" id="1_ixw38"]
+[ext_resource type="Script" path="res://scripts/EnemyStats.gd" id="1_lk4tv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o3qdu"]
 radius = 64.0
 
 [node name="EnemyBase" type="CharacterBody2D"]
 collision_layer = 5
+
+[node name="EnemyStats" type="Node" parent="."]
+script = ExtResource("1_lk4tv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 

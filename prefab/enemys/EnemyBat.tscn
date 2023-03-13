@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://b1kt7f88vq11f"]
+[gd_scene load_steps=28 format=3 uid="uid://b1kt7f88vq11f"]
 
 [ext_resource type="Script" path="res://scripts/Enemy.gd" id="1_3in87"]
 [ext_resource type="PackedScene" uid="uid://kbo1bay3i1ps" path="res://prefab/utils/PlayerDetector.tscn" id="2_ss6cg"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://bkiw8qsmbvtow" path="res://assets/Shadows/SmallShadow.png" id="6_dkc4q"]
 [ext_resource type="PackedScene" uid="uid://ebdq15holk57" path="res://prefab/utils/Softcollision.tscn" id="7_h3811"]
 [ext_resource type="Script" path="res://prefab/enemys/EnemyWeapon.gd" id="7_w14fy"]
+[ext_resource type="PackedScene" uid="uid://doa5hxcckh64o" path="res://prefab/enemys/EnemyHUD.tscn" id="11_5vyps"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p5hcn"]
 radius = 3.74474
@@ -148,6 +149,14 @@ WANDER_TARGET_RANGE = 4
 MIN_RANGE = 4
 MAX_RANGE = 32
 reward_exp = 15
+
+[node name="EnemyHUD" parent="." instance=ExtResource("11_5vyps")]
+offset_left = -5.0
+offset_top = -44.0
+offset_right = -5.0
+offset_bottom = -44.0
+scale = Vector2(0.25, 0.25)
+enemy_stats_path = NodePath("../EnemyStats")
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
 texture = ExtResource("6_dkc4q")
