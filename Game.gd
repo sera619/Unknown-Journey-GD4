@@ -47,6 +47,7 @@ func switch_gamelevel(levelname: String):
 		GameManager.player = null
 	else:
 		GameManager.on_main_menu = false
+		GameManager.interface.stat_hud.show()
 	print("[!] Game: Scene - %s successfully loaded!" % levelname)
 
 
