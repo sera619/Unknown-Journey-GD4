@@ -7,6 +7,7 @@ class_name Interface
 @onready var animplayer = $AnimationPlayer
 @onready var pausmenu = $PauseMenu
 @onready var dialogbox = $DialogBox
+@onready var stat_hud = $StatHUD
 
 func _ready():
 	if show_devpanel:
@@ -29,7 +30,7 @@ func _input(event):
 func hide_ui():
 	qlog.hide_questlog()
 	dialogbox.hide_dialog()
-
+	stat_hud.hide()
 
 func start_transition():
 	animplayer.play("start_transition")
