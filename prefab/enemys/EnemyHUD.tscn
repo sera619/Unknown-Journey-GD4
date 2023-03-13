@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://doa5hxcckh64o"]
+
+[ext_resource type="Script" path="res://prefab/enemys/EnemyHUD.gd" id="1_i6r8a"]
+[ext_resource type="Texture2D" uid="uid://bu4rwyuvmk4xr" path="res://assets/UI/healthplate.png" id="1_y5pni"]
+[ext_resource type="Texture2D" uid="uid://bygmow5fasyoo" path="res://assets/UI/healthbar.png" id="2_8gx5g"]
+
+[node name="EnemyHUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_i6r8a")
+
+[node name="Healthbar" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_right = 116.0
+offset_bottom = 16.0
+value = 20.0
+texture_under = ExtResource("1_y5pni")
+texture_progress = ExtResource("2_8gx5g")
