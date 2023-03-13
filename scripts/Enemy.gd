@@ -16,6 +16,7 @@ class_name Enemy
 @onready var softCollision: = $SoftCollision
 @onready var animSprite: AnimatedSprite2D =$Sprite2D
 @onready var raycasts: Node2D = $RayCasts
+@onready var enemy_hud: EnemyHUD = $EnemyHUD
 
 enum {
 	WANDER,
@@ -37,6 +38,7 @@ func _ready():
 	hurt_box.damage = stats.damage
 	animSprite.play("fly")
 	velocity = Vector2.ZERO
+	enemy_hud.visible = false
 	pick_random_state([IDLE, WANDER])
 	
 
@@ -53,7 +55,10 @@ func _physics_process(delta):
 		move_and_slide()
 	if velocity != Vector2.ZERO:
 		hurt_box.knockback_vector = velocity
-	
+	if player_detector.can_see_player():
+		enemy_hud.visible = true
+	else:
+		enemy_hud.visible = false
 	match state:
 		IDLE:
 			velocity = velocity.move_toward(Vector2.ZERO, stats.FRICTION * delta)
@@ -153,10 +158,10 @@ func take_damage(area):
 		effect.global_position.y += animSprite.offset.y
 		cs.add_child(effect)
 		stats.set_health( stats.health - area.damage)
-		knockback = area.knockback_vector * 135
+		knockback = area.knockback_vector * 115
 		anim_player.play("Hit")
 		print("[!] Enemy: %s gets hitted for %s damage!" % [self.name, area.damage])
-		if stats.health < 0:
+		if stats.health <= 0:
 			var effect2 = death_effect_scene.instantiate()
 			effect2.global_position = animSprite.global_position
 			#effect2.global_position.y += animSprite.offset.y
