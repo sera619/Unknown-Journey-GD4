@@ -22,7 +22,7 @@ signal energie_changed
 @export var roll_costs:int
 @export var HEAVY_ATTACK_COST: int
 
-@onready var has_sword: bool = false
+@onready var has_sword: bool = true
 
 
 var health: int = 0
