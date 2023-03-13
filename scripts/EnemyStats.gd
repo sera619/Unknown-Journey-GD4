@@ -1,6 +1,11 @@
 extends Node
 class_name EnemyStats
 
+signal enemy_health_changed(health)
+signal enemy_maxhealth_changed(max_health)
+
+signal enemy_died
+
 @export_category('Stats Settings')
 @export_group('Health Settings')
 @export var max_health: int
@@ -27,9 +32,14 @@ class_name EnemyStats
 @onready var health: int = 0
 
 func _ready():
+	set_max_health(max_health)
 	set_health(max_health)
 
 func set_health(new_health):
 	health = new_health
+	emit_signal("enemy_health_changed", health)
 	print("[!] Enemy - %s - : Set health to %s" % [get_parent().name, health])
 
+func set_max_health(new_max_health):
+	max_health = new_max_health
+	emit_signal("enemy_maxhealth_changed", max_health)
