@@ -1977,8 +1977,9 @@ graph_offset = Vector2(-200.344, 311.292)
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_8301o"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_3j1d6"]
-radius = 19.2354
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f3p81"]
+radius = 6.44975
+height = 18.3776
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yxsyt"]
 radius = 4.45778
@@ -2089,8 +2090,9 @@ collision_layer = 64
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, -12)
-shape = SubResource("CircleShape2D_3j1d6")
+position = Vector2(-1.19209e-07, -5.63219)
+scale = Vector2(0.907753, 0.838556)
+shape = SubResource("CapsuleShape2D_f3p81")
 
 [node name="CombatTimer" type="Timer" parent="."]
 wait_time = 6.0

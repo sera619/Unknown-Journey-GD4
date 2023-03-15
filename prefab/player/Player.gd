@@ -24,7 +24,6 @@ var combat_stance = false
 var can_teleport = true
 var can_attack = true
 
-
 @onready var animPlayer = $AnimationPlayer
 @onready var animTree = $AnimationTree
 @onready var animState = animTree.get("parameters/playback")
@@ -82,11 +81,11 @@ func move_state(delta):
 	input_vector.y = Input.get_axis("move_up", "move_down")
 	input_vector = input_vector.normalized()
 	roll_vector = input_vector
-	
 	if knockback != Vector2.ZERO:
 		knockback = knockback.move_toward(knockback, stats.FRICTION * delta)
 		set_velocity(knockback)
 		move_and_slide()
+		knockback = Vector2.ZERO
 	if input_vector != Vector2.ZERO:
 		animTree.set("parameters/Idle/blend_position", input_vector)
 		animTree.set("parameters/Move/blend_position", input_vector)
@@ -201,7 +200,7 @@ func dash_state(delta):
 func take_damage(area):
 	if not attackable and not area.is_in_group("enemyWeapon"):
 		return
-	if stats.health >= 0:
+	if stats.health > 0:
 		stats.set_health(stats.health - area.damage)
 		knockback = area.knockback_vector.normalized() * 225
 		var effect = hit_effect_scene.instantiate()
@@ -211,7 +210,7 @@ func take_damage(area):
 		hit_box_shape.call_deferred("set_disabled", true)
 		hit_timer.start(2)
 		state = HURT
-	elif stats.health <= 0:
+	else:
 		is_alive = false
 		EventHandler.emit_signal("player_died")
 		GameManager.camera.player = null
@@ -226,7 +225,7 @@ func create_levelup_effect():
 
 
 func use_health_potion():
-	if stats.player_inventory['Healthpot'] >= 0:
+	if stats.player_inventory['Healthpot'] > 0:
 		stats.player_inventory['Healthpot'] -= 1
 		EventHandler.emit_signal("player_get_healthpot", stats.player_inventory['Healthpot'])
 		stats.set_health(stats.health + 4)
@@ -235,10 +234,6 @@ func use_health_potion():
 		heal_effect.global_position = global_position
 	else:
 		return
-
-
-
-
 
 
 func set_sprite(sprite: int):
