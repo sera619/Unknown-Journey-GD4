@@ -75,6 +75,7 @@ script = ExtResource("1_bhd4i")
 item_name = "Health Potion"
 item_image = ExtResource("2_0y6mt")
 shadow_image = ExtResource("2_ayw73")
+amount = 1
 
 [node name="Shadow" type="Sprite2D" parent="."]
 texture = ExtResource("2_ayw73")
