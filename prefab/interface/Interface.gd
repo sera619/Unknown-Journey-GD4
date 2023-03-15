@@ -8,6 +8,8 @@ class_name Interface
 @onready var pausmenu = $PauseMenu
 @onready var dialogbox = $DialogBox
 @onready var stat_hud = $StatHUD
+@onready var charpanel:CharacterPanel = $CharacterPanel
+@onready var potion_panel= $PotionPanel
 
 func _ready():
 	if show_devpanel:
@@ -25,12 +27,19 @@ func _input(event):
 			qlog.hide_questlog()
 		else:
 			qlog.show_questlog()
+	if event.is_action_pressed("charpanel"):
+		if charpanel.visible:
+			charpanel.hide_charpanel()
+		else:
+			charpanel.show_charpanel()
 
 
 func hide_ui():
 	qlog.hide_questlog()
 	dialogbox.hide_dialog()
 	stat_hud.hide()
+	potion_panel.hide()
+	
 
 func start_transition():
 	animplayer.play("start_transition")

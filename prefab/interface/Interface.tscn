@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b7dks5cm1l8lb"]
+[gd_scene load_steps=14 format=3 uid="uid://b7dks5cm1l8lb"]
 
 [ext_resource type="Script" path="res://prefab/interface/Interface.gd" id="1_ghaf7"]
 [ext_resource type="PackedScene" uid="uid://j0mixjoaji6r" path="res://prefab/UI/DevPanel.tscn" id="2_0344k"]
@@ -7,6 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://brxe6x2arf7xb" path="res://prefab/UI/PauseMenu.tscn" id="3_6p8ro"]
 [ext_resource type="PackedScene" uid="uid://4pvo7rk61tca" path="res://prefab/UI/DialogBox.tscn" id="4_nv8pa"]
 [ext_resource type="PackedScene" uid="uid://ci8ut3tki2bpo" path="res://prefab/UI/InfoBox.tscn" id="5_1eql3"]
+[ext_resource type="PackedScene" uid="uid://cfbtmo61dtd0j" path="res://prefab/UI/CharacterPanel.tscn" id="5_6wngu"]
+[ext_resource type="PackedScene" uid="uid://ckoys4dftebte" path="res://prefab/UI/DeathScreen.tscn" id="7_bo1t5"]
+[ext_resource type="PackedScene" uid="uid://cfsnddkshv6p8" path="res://prefab/UI/PotionPanel.tscn" id="10_p40cy"]
 
 [sub_resource type="Animation" id="Animation_x5qxj"]
 length = 0.001
@@ -81,7 +84,21 @@ visible = false
 offset_right = -226.0
 offset_bottom = -163.0
 
+[node name="PotionPanel" parent="." instance=ExtResource("10_p40cy")]
+offset_left = -43.0
+offset_top = -27.0
+offset_right = 35.0
+offset_bottom = 19.0
+scale = Vector2(0.5, 0.5)
+
 [node name="DevPanel" parent="." instance=ExtResource("2_0344k")]
+
+[node name="CharacterPanel" parent="." instance=ExtResource("5_6wngu")]
+offset_left = 23.0
+offset_top = 47.0
+offset_right = -91.0
+offset_bottom = 47.0
+scale = Vector2(0.5, 0.5)
 
 [node name="DialogBox" parent="." instance=ExtResource("4_nv8pa")]
 offset_left = 80.0
@@ -99,6 +116,8 @@ offset_right = 80.0
 offset_bottom = 78.0
 grow_vertical = 1
 scale = Vector2(0.5, 0.5)
+
+[node name="DeathScreen" parent="." instance=ExtResource("7_bo1t5")]
 
 [node name="PauseMenu" parent="." instance=ExtResource("3_6p8ro")]
 visible = false
