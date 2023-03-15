@@ -12,7 +12,7 @@ class_name Interface
 @onready var potion_panel= $PotionPanel
 
 func _ready():
-	if show_devpanel:
+	if show_devpanel == true:
 		$DevPanel.visible = true
 	else:
 		$DevPanel.visible = false
