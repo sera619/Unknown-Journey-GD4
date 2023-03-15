@@ -7,6 +7,7 @@ class_name ItemDrop
 @export var shadow_image: Texture2D
 @export_enum('Normal', 'Quest') var item_type: int
 @export var quest_id: int
+@export var amount: int
 
 
 @onready var pickup_zone: Area2D = $Area2D 
@@ -30,5 +31,10 @@ func pickup(area):
 		var required_quest_id = QuestManager.current_quest.quest_id
 		if required_quest_id == self.quest_id:
 			QuestManager.current_quest.add_quest_items()
+	elif item_type == 0:
+		match item_name:
+			"Health Potion":
+				GameManager.player.stats.get_item(item_name, amount)
+				GameManager.info_box.set_info_text("Du hast\n%sx %s\nerhalten!" % [amount, "Heiltrank"])
 	self.call_deferred("queue_free")
 
