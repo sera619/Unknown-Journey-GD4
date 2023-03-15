@@ -8,6 +8,7 @@ class_name WorldBase
 @onready var npc_container = $Map/GameObjects/NPC
 @onready var enemy_container = $Map/GameObjects/Enemys
 @onready var entry_spot = $Map/EntrySpot
+@onready var respawn_spot = $Map/RespawnSpot
 @onready var player_scene = preload("res://prefab/player/Player.tscn")
 @onready var game_map = $Map/GameObjects
 
@@ -21,6 +22,14 @@ func _on_ready():
 func get_entry_spot():
 	if entry_spot:
 		return entry_spot.global_position
+
+func revive_player():
+	if GameManager.player != null:
+		GameManager.player = null
+	var new_player = player_scene.instantiate()
+	new_player.global_position = respawn_spot.global_position
+	game_map.add_child(new_player)
+
 
 func spawn_player():
 	if GameManager.player != null:

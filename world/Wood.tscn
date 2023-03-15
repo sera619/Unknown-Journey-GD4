@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3]
+[gd_scene load_steps=35 format=3 uid="uid://uhus7j0rwt2u"]
 
 [ext_resource type="Script" path="res://world/WorldBase.gd" id="1_akrdj"]
 [ext_resource type="PackedScene" uid="uid://dcc837c2ujx6g" path="res://prefab/utils/GameCamera.tscn" id="2_8f6jn"]
@@ -22,7 +22,6 @@
 [ext_resource type="Script" path="res://prefab/PuzzleObjects/PuzzleManager.gd" id="15_6gf5d"]
 [ext_resource type="PackedScene" uid="uid://blnl7qu61oadd" path="res://prefab/destroyable_objects/GreyPot.tscn" id="15_b5t6j"]
 [ext_resource type="PackedScene" uid="uid://bru0it6lqapd6" path="res://prefab/PuzzleObjects/PuzzleStone.tscn" id="16_ix5fd"]
-[ext_resource type="PackedScene" uid="uid://yax4y6kq0hp8" path="res://prefab/itemdrops/SwordDrop.tscn" id="21_sreie"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_bcf3c"]
 tile_data = PackedInt32Array(0, 65541, 5, 65536, 65541, 6, 131072, 65541, 3, 1, 131077, 5, 65537, 131077, 6, 131073, 131077, 3)
@@ -2470,7 +2469,7 @@ position = Vector2(973, 464)
 
 [node name="Teleporter" parent="Map/GameMap/MapUtils" instance=ExtResource("14_nat1a")]
 position = Vector2(864, 263)
-teleport_location = "SmallCave"
+teleport_location = "Grasland"
 animated = true
 
 [node name="CollisionShape2D" parent="Map/GameMap/MapUtils/Teleporter/TeleportArea" index="0"]
@@ -2652,9 +2651,6 @@ y_sort_enabled = true
 
 [node name="NPC" type="Node2D" parent="Map/GameObjects"]
 
-[node name="SwordDrop" parent="Map/GameObjects" instance=ExtResource("21_sreie")]
-position = Vector2(736, 429)
-
 [node name="GameCamera" parent="Map" instance=ExtResource("2_8f6jn")]
 zoom = Vector2(0.8, 0.8)
 position_smoothing_enabled = true
@@ -2666,6 +2662,7 @@ position = Vector2(-216, 456)
 position = Vector2(1448, 1576)
 
 [node name="ShaderFogg" parent="." instance=ExtResource("7_ealrt")]
+visible = false
 position = Vector2(655, 1040)
 scale = Vector2(0.880625, 1.81375)
 
