@@ -1,6 +1,10 @@
 extends NPCBase
 
+
+@onready var speak_icon: Sprite2D = $Icon
+
 func _ready():
+	self.speak_icon.visible = false
 	if self.npc_name in GameManager.seen_npcs:
 		first_seen = false
 	animtree.active = true
@@ -16,6 +20,12 @@ func _physics_process(delta):
 		animstate.travel("Move")
 	else:
 		animstate.travel("Idle")
+	
+	if player_detector.player != null:
+		speak_icon.visible = true
+	else:
+		speak_icon.visible = false
+	
 	
 	match state:
 		IDLE:
