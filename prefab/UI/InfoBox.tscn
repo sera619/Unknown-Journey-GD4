@@ -13,7 +13,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_dt5t2")
-show_time = 4
+show_time = 5
 
 [node name="BG" type="NinePatchRect" parent="."]
 layout_mode = 1
@@ -71,6 +71,7 @@ theme_override_font_sizes/font_size = 8
 text = "InfoText"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 2
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
