@@ -15,6 +15,7 @@ func _ready():
 func update_health(health):
 	healthbar.value = health
 
+
 func update_max_health(max_health):
 	healthbar.max_value = max_health 
 

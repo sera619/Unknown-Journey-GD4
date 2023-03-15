@@ -7,6 +7,5 @@
 script = ExtResource("1_ds55b")
 
 [node name="Interface" parent="." instance=ExtResource("2_f3qs3")]
-show_devpanel = false
 
 [node name="WorldHolder" type="Node" parent="."]

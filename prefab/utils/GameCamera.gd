@@ -32,9 +32,6 @@ func _ready():
 	limit_bottom = bottomRight.position.y
 	limit_right = bottomRight.position.x
 
-
-	#ignalController.connect("CloseLockedDoor",Callable(self,"_locked_door_show"))
-
 func _locked_door_show():
 	print("Camera3D shows door")
 

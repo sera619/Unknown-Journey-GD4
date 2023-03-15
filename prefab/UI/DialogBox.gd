@@ -25,7 +25,7 @@ func reset_dialog():
 	dialog_label.text = ""
 	speakername_label.text = ""
 	option_a_label.text = "Okay"
-	option_b_label.text = "Nein"
+	option_b_label.text = "Zurück"
 	if tween != null and tween.is_running():
 		tween.stop()
 		tween.kill()

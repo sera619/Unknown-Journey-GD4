@@ -21,6 +21,7 @@ signal energie_changed
 @export_category('Skill Settings')
 @export var roll_costs:int
 @export var HEAVY_ATTACK_COST: int
+@export var DOUBLE_ATTACK_COST: int
 
 @onready var has_sword: bool = true
 
@@ -35,12 +36,10 @@ var speed: int = 0
 var exp_multiplikator:float = 1.2
 var parent = null
 
-
 var player_inventory = {
 	"Healthpot": 0,
-	"Manapot": 0,
+	"Energiepot": 0,
 }
-
 
 func _ready():
 	if not parent:
@@ -49,7 +48,6 @@ func _ready():
 		set_default_stats()
 	else: 
 		apply_loaded_stats()
-
 
 func get_item(item_name: String, amount: int):
 	match item_name:
@@ -106,6 +104,8 @@ func set_exp(value):
 	
 func set_energie(value):
 	energie = value
+	if energie > MAX_ENERGIE:
+		energie = MAX_ENERGIE
 	EventHandler.emit_signal("player_energie_changed", energie)
 
 func set_max_energie(value):
@@ -138,6 +138,8 @@ func apply_loaded_stats():
 	max_experience = data['max_exp']
 	level = data['level']
 	player_inventory = data['player_inventory']
+	EventHandler.emit_signal("player_get_healthpot", player_inventory['Healthpot'])
+	EventHandler.emit_signal("player_get_energiepot", player_inventory['Energiepot'])
 	GameManager.seen_npcs.clear()
 	for n in data['seen_npcs']:
 		GameManager.seen_npcs.append(n)

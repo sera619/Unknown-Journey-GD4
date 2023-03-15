@@ -75,7 +75,6 @@ vertical_alignment = 2
 [node name="EnergiePots" type="TextureRect" parent="BG/M/H"]
 layout_mode = 2
 texture = ExtResource("4_csfq0")
-stretch_mode = 4
 
 [node name="AmountLabel" type="Label" parent="BG/M/H/EnergiePots"]
 layout_mode = 1
