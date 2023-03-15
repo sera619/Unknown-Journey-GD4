@@ -44,6 +44,8 @@ func load_saved_quest():
 			if loaded_data['current_quest']:
 				if questname[0] == loaded_data['current_quest']:
 					set_current_quest(quest_a)
+			else:
+				continue
 
 
 func add_quest_to_log(quest: Quest):
