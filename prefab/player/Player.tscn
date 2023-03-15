@@ -1,4 +1,4 @@
-[gd_scene load_steps=210 format=3 uid="uid://bulsih1uk7ua"]
+[gd_scene load_steps=211 format=3 uid="uid://bulsih1uk7ua"]
 
 [ext_resource type="Script" path="res://prefab/player/Player.gd" id="1_3dgss"]
 [ext_resource type="Texture2D" uid="uid://dt2540u4sj5mt" path="res://assets/Shadows/MediumShadow.png" id="2_2ndm1"]
@@ -9,15 +9,16 @@
 [ext_resource type="Script" path="res://prefab/player/SwordHitbox.gd" id="4_x1oi4"]
 [ext_resource type="PackedScene" uid="uid://ddq1kas24xw88" path="res://prefab/player/GhostSprite.tscn" id="5_cmmjq"]
 [ext_resource type="PackedScene" uid="uid://mgopvrriygx2" path="res://prefab/effects/LevelupEffect.tscn" id="5_cmv2u"]
+[ext_resource type="PackedScene" uid="uid://c7r64swnyno2b" path="res://prefab/effects/HealEffect.tscn" id="7_4yh51"]
 [ext_resource type="PackedScene" uid="uid://ebdq15holk57" path="res://prefab/utils/Softcollision.tscn" id="8_6a312"]
 [ext_resource type="Shader" path="res://assets/Materials/WhiteColorFlashShader.gdshader" id="8_ufe5d"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nur2f"]
-radius = 11.925
-height = 55.1079
+radius = 9.375
+height = 38.8403
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ilpfg"]
-radius = 37.0
+radius = 34.478
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4q5ha"]
 shader = ExtResource("8_ufe5d")
@@ -1992,12 +1993,13 @@ SPRITE_NO_SWORD = ExtResource("3_g8436")
 hit_effect_scene = ExtResource("4_1ydt2")
 levelup_effect_scene = ExtResource("5_cmv2u")
 dash_ghost_screne = ExtResource("5_cmmjq")
+heal_effect_scene = ExtResource("7_4yh51")
 
 [node name="SwordHolder" type="Marker2D" parent="."]
 position = Vector2(0, -12)
 
 [node name="SwordHitbox" type="Area2D" parent="SwordHolder" groups=["playerSword"]]
-position = Vector2(0, 24)
+position = Vector2(0, 20)
 collision_layer = 16
 collision_mask = 16
 script = ExtResource("4_x1oi4")
@@ -2010,7 +2012,7 @@ disabled = true
 [node name="AttackTimer" type="Timer" parent="SwordHolder/SwordHitbox"]
 
 [node name="HeavyShape" type="CollisionShape2D" parent="SwordHolder/SwordHitbox"]
-position = Vector2(-1.19209e-07, -24)
+position = Vector2(-1.19209e-07, -21.664)
 shape = SubResource("CircleShape2D_ilpfg")
 disabled = true
 

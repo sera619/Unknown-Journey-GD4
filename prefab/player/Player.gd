@@ -4,9 +4,12 @@ class_name Player
 @export_category('Player Sprites')
 @export var SPRITE_SWORD: Texture2D
 @export var SPRITE_NO_SWORD: Texture2D
+@export_category('Effect Scenes')
 @export var hit_effect_scene: PackedScene
 @export var levelup_effect_scene: PackedScene
 @export var dash_ghost_screne: PackedScene
+@export var heal_effect_scene: PackedScene
+
 enum { 
 	MOVE, ATTACK, HEAVY_ATTACK, DASH, HURT, DOUBLE_ATTACK
 }
@@ -79,9 +82,9 @@ func move_state(delta):
 	input_vector.y = Input.get_axis("move_up", "move_down")
 	input_vector = input_vector.normalized()
 	roll_vector = input_vector
-
+	
 	if knockback != Vector2.ZERO:
-		knockback = knockback.move_toward(Vector2.ZERO, stats.FRICTION * delta)
+		knockback = knockback.move_toward(knockback, stats.FRICTION * delta)
 		set_velocity(knockback)
 		move_and_slide()
 	if input_vector != Vector2.ZERO:
@@ -119,7 +122,7 @@ func move_state(delta):
 	
 	if Input.is_action_just_pressed("dash") and not is_dashing:
 		state = DASH
-		
+	
 	if Input.is_action_just_pressed("attack") and can_attack and stats.has_sword and not is_dashing:
 		can_attack = false
 		state = ATTACK
@@ -132,7 +135,6 @@ func move_state(delta):
 		can_attack = false
 		state = HEAVY_ATTACK
 	
-		
 	if Input.is_action_pressed("run") and not is_dashing:
 		can_attack = false
 		stats.set_speed(stats.RUN_SPEED)
@@ -147,6 +149,8 @@ func move_state(delta):
 		else:
 			animState.travel("TakeSword")
 			combat_stance = true
+	if Input.is_action_just_pressed("healthpotion") and stats.health < stats.MAX_HEALTH:
+		use_health_potion()
 	
 	if Input.is_action_just_pressed("debug_key"):
 		GameManager.save_data()
@@ -197,7 +201,7 @@ func dash_state(delta):
 func take_damage(area):
 	if not attackable and not area.is_in_group("enemyWeapon"):
 		return
-	if stats.health > 0:
+	if stats.health >= 0:
 		stats.set_health(stats.health - area.damage)
 		knockback = area.knockback_vector.normalized() * 225
 		var effect = hit_effect_scene.instantiate()
@@ -209,17 +213,32 @@ func take_damage(area):
 		state = HURT
 	elif stats.health <= 0:
 		is_alive = false
+		EventHandler.emit_signal("player_died")
 		GameManager.camera.player = null
 		GameManager.player = null
 		self.queue_free()
-
-
 
 func create_levelup_effect():
 	var effect = levelup_effect_scene.instantiate()
 	self.add_child(effect)
 	effect.global_position = global_position
 	GameManager.info_box.set_info_text("Glückwunsch!\nDu hast Level: %s erreicht!" % stats.level)
+
+
+func use_health_potion():
+	if stats.player_inventory['Healthpot'] >= 0:
+		stats.player_inventory['Healthpot'] -= 1
+		EventHandler.emit_signal("player_get_healthpot", stats.player_inventory['Healthpot'])
+		stats.set_health(stats.health + 4)
+		var heal_effect = heal_effect_scene.instantiate()
+		self.add_child(heal_effect)
+		heal_effect.global_position = global_position
+	else:
+		return
+
+
+
+
 
 
 func set_sprite(sprite: int):
