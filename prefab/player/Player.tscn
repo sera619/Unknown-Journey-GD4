@@ -2029,6 +2029,8 @@ PUSH_SPEED = 50
 ROLL_SPEED = 175
 ACCELERATION = 600
 FRICTION = 800
+HEAVY_ATTACK_COST = 2
+DOUBLE_ATTACK_COST = 1
 
 [node name="Shadow" type="Sprite2D" parent="."]
 position = Vector2(0, 0.5)

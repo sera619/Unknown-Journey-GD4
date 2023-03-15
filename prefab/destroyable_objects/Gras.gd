@@ -47,7 +47,7 @@ func on_area_entered(area):
 				print("[!] GrasObject: Respawntime %s started!" % respawn_time)
 			if reward_player:
 				var random = randf_range(1, 3)
-				if random > 1.5:
+				if random > 2:
 					var reward = reward_scene.instantiate()
 					reward.global_position = self.global_position
 					get_tree().current_scene.call_deferred("add_child", reward)

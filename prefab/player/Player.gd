@@ -126,12 +126,14 @@ func move_state(delta):
 		can_attack = false
 		state = ATTACK
 	
-	elif Input.is_action_just_pressed("double_attack") and can_attack and stats.has_sword and not is_dashing:
+	elif Input.is_action_just_pressed("double_attack") and can_attack and stats.has_sword and not is_dashing and stats.energie >= stats.DOUBLE_ATTACK_COST:
 		can_attack = false
+		stats.set_energie(stats.energie - stats.DOUBLE_ATTACK_COST)
 		state = DOUBLE_ATTACK
 	
-	if Input.is_action_just_pressed("heavy_attack") and can_attack and stats.has_sword and not is_dashing:
+	if Input.is_action_just_pressed("heavy_attack") and can_attack and stats.has_sword and not is_dashing and stats.energie >= stats.HEAVY_ATTACK_COST:
 		can_attack = false
+		stats.set_energie(stats.energie - stats.HEAVY_ATTACK_COST)
 		state = HEAVY_ATTACK
 	
 	if Input.is_action_pressed("run") and not is_dashing:
