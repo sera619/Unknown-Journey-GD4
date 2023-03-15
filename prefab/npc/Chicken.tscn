@@ -1,7 +1,8 @@
-[gd_scene load_steps=30 format=3 uid="uid://cfd47vyfsu8sg"]
+[gd_scene load_steps=31 format=3 uid="uid://cfd47vyfsu8sg"]
 
 [ext_resource type="Texture2D" uid="uid://bx5pqnqjio047" path="res://assets/NPC/chicken_white.png" id="1_00fus"]
 [ext_resource type="Script" path="res://prefab/npc/Chicken.gd" id="1_utk2x"]
+[ext_resource type="Texture2D" uid="uid://dt2540u4sj5mt" path="res://assets/Shadows/MediumShadow.png" id="2_4wux7"]
 [ext_resource type="PackedScene" uid="uid://b347lo6c415bh" path="res://prefab/utils/WanderController.tscn" id="3_igysb"]
 [ext_resource type="PackedScene" uid="uid://kbo1bay3i1ps" path="res://prefab/utils/PlayerDetector.tscn" id="4_7m3r0"]
 
@@ -246,6 +247,10 @@ friction = 200
 position = Vector2(0, -5)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_gxo3q")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -1.33333)
+texture = ExtResource("2_4wux7")
 
 [node name="BodySprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_00fus")

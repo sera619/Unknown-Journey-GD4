@@ -39,7 +39,6 @@ func switch_gamelevel(levelname: String):
 		world_holder.get_child(0).call_deferred("queue_free")
 	var node = LevelScenes[str(levelname)].instantiate()
 	world_holder.call_deferred("add_child",node)
-
 	if levelname == "MainMenu":
 		GameManager.on_main_menu = true
 		QuestManager.current_quest = null
@@ -48,6 +47,7 @@ func switch_gamelevel(levelname: String):
 	else:
 		GameManager.on_main_menu = false
 		GameManager.interface.stat_hud.show()
+		GameManager.interface.potion_panel.show()
 	print("[!] Game: Scene - %s successfully loaded!" % levelname)
 
 
