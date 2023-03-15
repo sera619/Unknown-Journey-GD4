@@ -553,7 +553,7 @@ radius = 71.0282
 
 [node name="SwordCave" type="Node" groups=["WorldBase"]]
 script = ExtResource("1_egq4y")
-world_name = null
+world_name = "SwordCave"
 
 [node name="Map" type="Node2D" parent="."]
 y_sort_enabled = true
