@@ -151,6 +151,7 @@ func avoid_obstacles():
 	return Vector2.ZERO
 	
 func take_damage(area):
+	GameManager.player.stats.set_energie(GameManager.player.stats.energie + 1)
 	if stats.health >= 0:
 		var effect = hit_effect_scene.instantiate() 
 		var cs = get_tree().current_scene
