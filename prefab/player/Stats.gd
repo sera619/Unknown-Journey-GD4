@@ -35,6 +35,13 @@ var speed: int = 0
 var exp_multiplikator:float = 1.2
 var parent = null
 
+
+var player_inventory = {
+	"Healthpot": 0,
+	"Manapot": 0,
+}
+
+
 func _ready():
 	if not parent:
 		parent = get_parent().name
@@ -43,12 +50,19 @@ func _ready():
 	else: 
 		apply_loaded_stats()
 
+
+func get_item(item_name: String, amount: int):
+	match item_name:
+		"Health Potion":
+			player_inventory['Healthpot'] += amount
+			EventHandler.emit_signal("player_get_healthpot", player_inventory['Healthpot'])
+
 func set_default_stats():
 	playername = "[Admin] Sera"
 	set_level(1)
 	set_max_damage(2)
-	set_max_energie(10)
-	set_max_health(20)
+	set_max_energie(2)
+	set_max_health(4)
 	set_max_exp(300)
 	set_exp(0)
 	set_damage(MAX_DAMAGE)
@@ -58,6 +72,8 @@ func set_default_stats():
 
 func set_health(value):
 	health = value
+	if health >= MAX_HEALTH:
+		health = MAX_HEALTH
 	emit_signal("health_changed")
 	EventHandler.emit_signal("player_health_changed", health)
 
@@ -121,6 +137,7 @@ func apply_loaded_stats():
 	experience = data['experience']
 	max_experience = data['max_exp']
 	level = data['level']
+	player_inventory = data['player_inventory']
 	GameManager.seen_npcs.clear()
 	for n in data['seen_npcs']:
 		GameManager.seen_npcs.append(n)
@@ -134,7 +151,7 @@ func apply_loaded_stats():
 	set_damage(MAX_DAMAGE)
 	set_speed(MAX_SPEED)
 	set_max_energie(MAX_ENERGIE)
-	set_energie(MAX_ENERGIE)
+	set_energie(0)
 
 func save():
 	var quests= []
@@ -170,6 +187,7 @@ func save():
 		"quest_log_active": quests,
 		"quest_log_complete": solved_quests,
 		"quest_log_finished": finished_quest,
-		"seen_npcs": GameManager.seen_npcs
+		"seen_npcs": GameManager.seen_npcs,
+		"player_inventory": player_inventory
 	}
 	return save_dict
