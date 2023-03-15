@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2gdh6u1gj3fu"]
+
+[ext_resource type="Script" path="res://prefab/utils/InformationTrigger.gd" id="1_gd75k"]
+[ext_resource type="PackedScene" uid="uid://kbo1bay3i1ps" path="res://prefab/utils/PlayerDetector.tscn" id="1_j8ntc"]
+
+[node name="InformationTrigger" type="Node2D"]
+script = ExtResource("1_gd75k")
+
+[node name="PlayerDetector" parent="." instance=ExtResource("1_j8ntc")]
+
+[editable path="PlayerDetector"]
