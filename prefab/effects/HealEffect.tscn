@@ -1,0 +1,121 @@
+[gd_scene load_steps=18 format=3 uid="uid://c7r64swnyno2b"]
+
+[ext_resource type="Script" path="res://prefab/effects/Effect.gd" id="1_ub5on"]
+[ext_resource type="Texture2D" uid="uid://di4fimm4s3keg" path="res://assets/Effects/heal_tornado.png" id="2_mtig0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wtsyy"]
+atlas = ExtResource("2_mtig0")
+region = Rect2(0, 0, 210, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qqd3p"]
+atlas = ExtResource("2_mtig0")
+region = Rect2(210, 0, 210, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n1a1y"]
+atlas = ExtResource("2_mtig0")
+region = Rect2(420, 0, 210, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t6m52"]
+atlas = ExtResource("2_mtig0")
+region = Rect2(630, 0, 210, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lwkgs"]
+atlas = ExtResource("2_mtig0")
+region = Rect2(840, 0, 210, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pxrl6"]
+atlas = ExtResource("2_mtig0")
+region = Rect2(1050, 0, 210, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tk4va"]
+atlas = ExtResource("2_mtig0")
+region = Rect2(1260, 0, 210, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lb5rd"]
+atlas = ExtResource("2_mtig0")
+region = Rect2(1470, 0, 210, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3scen"]
+atlas = ExtResource("2_mtig0")
+region = Rect2(1680, 0, 210, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yvsi1"]
+atlas = ExtResource("2_mtig0")
+region = Rect2(1890, 0, 210, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qg0u3"]
+atlas = ExtResource("2_mtig0")
+region = Rect2(2100, 0, 210, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ah2wa"]
+atlas = ExtResource("2_mtig0")
+region = Rect2(2310, 0, 210, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o5ooy"]
+atlas = ExtResource("2_mtig0")
+region = Rect2(2520, 0, 210, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cguq0"]
+atlas = ExtResource("2_mtig0")
+region = Rect2(2730, 0, 210, 200)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_35l6t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wtsyy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qqd3p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n1a1y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t6m52")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lwkgs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pxrl6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tk4va")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lb5rd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3scen")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yvsi1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qg0u3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ah2wa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o5ooy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cguq0")
+}],
+"loop": false,
+"name": &"animate",
+"speed": 12.0
+}]
+
+[node name="HealEffect" type="Node2D"]
+script = ExtResource("1_ub5on")
+
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+sprite_frames = SubResource("SpriteFrames_35l6t")
+animation = &"animate"
+frame = 13
+frame_progress = 1.0
+offset = Vector2(0, -64)
