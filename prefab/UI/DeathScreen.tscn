@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://ckoys4dftebte"]
+[gd_scene load_steps=11 format=3 uid="uid://ckoys4dftebte"]
 
 [ext_resource type="Texture2D" uid="uid://clclrmg4osram" path="res://assets/UI/Skull.png" id="1_kpyqf"]
 [ext_resource type="Script" path="res://prefab/UI/DeathScreen.gd" id="1_sx0o2"]
+[ext_resource type="PackedScene" uid="uid://b70wd67qob57b" path="res://prefab/audio/PlayerDeathSound.tscn" id="2_ryr64"]
 [ext_resource type="FontFile" uid="uid://bddtsccx0qour" path="res://assets/UI/Fonts/dogicapixel.otf" id="2_tn60c"]
 [ext_resource type="Texture2D" uid="uid://dnmhbqlysi5ph" path="res://assets/UI/red-button-normal.png" id="3_e7tme"]
 [ext_resource type="Texture2D" uid="uid://cgoomtgcn04sq" path="res://assets/UI/red-button-pressed.png" id="4_1mbqd"]
@@ -125,6 +126,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_sx0o2")
+death_music_scene = ExtResource("2_ryr64")
 
 [node name="BG" type="ColorRect" parent="."]
 layout_mode = 1

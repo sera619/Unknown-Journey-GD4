@@ -3,9 +3,14 @@ class_name Enemy
 
 signal enemy_take_damage(damage)
 
+@export var item_name: String
+@export_category("VFX Scenes")
 @export var hit_effect_scene: PackedScene
 @export var death_effect_scene: PackedScene
-@export var item_name: String
+@export_category("SFX Scenes")
+@export var hurt_sound_scene: PackedScene
+@export var death_sound_scene: PackedScene
+
 @onready var hitbox: Area2D = $HitBox
 @onready var attack_timer: Timer = $Timer
 @onready var hurt_box: Area2D = $WeaponAngle/HurtBox
@@ -156,6 +161,8 @@ func take_damage(area):
 	if area.attack_type == PlayerSword.Type.NORMAL:
 		GameManager.player.stats.set_energie(GameManager.player.stats.energie + 1)
 	if stats.health >= 0:
+		var hit_sound = hurt_sound_scene.instantiate()
+		get_tree().current_scene.add_child(hit_sound)
 		var effect = hit_effect_scene.instantiate() 
 		var cs = get_tree().current_scene
 		effect.global_position= animSprite.global_position
@@ -167,6 +174,8 @@ func take_damage(area):
 		anim_player.play("Hit")
 		print("[!] Enemy: %s gets hitted for %s damage!" % [self.name, area.damage])
 		if stats.health <= 0:
+			var death_sound = death_sound_scene.instantiate()
+			get_tree().current_scene.add_child(death_sound)
 			var effect2 = death_effect_scene.instantiate()
 			effect2.connect("effect_finished", kill_enemy)
 			#effect2.global_position.y += animSprite.offset.y

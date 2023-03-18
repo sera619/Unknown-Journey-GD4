@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://coohwdkytapxs"]
+[gd_scene load_steps=10 format=3 uid="uid://coohwdkytapxs"]
 
 [ext_resource type="Script" path="res://prefab/itemdrops/ItemDrop.gd" id="1_na0py"]
 [ext_resource type="Texture2D" uid="uid://b3ndqir8hkt88" path="res://assets/items/Mana Potion.png" id="2_60qsd"]
 [ext_resource type="Texture2D" uid="uid://bkiw8qsmbvtow" path="res://assets/Shadows/SmallShadow.png" id="3_scxq5"]
+[ext_resource type="PackedScene" uid="uid://bu5rn3m6qvm7m" path="res://prefab/audio/PotionDropSound.tscn" id="4_5h013"]
 [ext_resource type="Texture2D" uid="uid://ds24kcdfflu2t" path="res://assets/items/Practice Sword.png" id="4_8bfgb"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xh0m3"]
@@ -76,6 +77,7 @@ item_name = "Energie Potion"
 item_image = ExtResource("2_60qsd")
 shadow_image = ExtResource("3_scxq5")
 amount = 1
+potiondrop_sound_scene = ExtResource("4_5h013")
 
 [node name="Shadow" type="Sprite2D" parent="."]
 texture = ExtResource("3_scxq5")

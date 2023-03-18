@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://b0n4aoy7admi8"]
+
+[ext_resource type="Script" path="res://prefab/audio/SoundEffect.gd" id="1_88x3t"]
+[ext_resource type="AudioStream" uid="uid://bheu2uv4vsd8y" path="res://assets/Music and Sounds/Hurt.wav" id="1_jldyh"]
+
+[node name="SoundEffect" type="AudioStreamPlayer"]
+stream = ExtResource("1_jldyh")
+bus = &"CombatSFX"
+script = ExtResource("1_88x3t")

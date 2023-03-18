@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bu5rn3m6qvm7m"]
+
+[ext_resource type="Script" path="res://prefab/audio/SoundEffect.gd" id="1_4ssxp"]
+[ext_resource type="AudioStream" uid="uid://c1dlfslc6l1nx" path="res://assets/Music and Sounds/potion-SFX.ogg" id="1_ht2qv"]
+
+[node name="SoundEffect" type="AudioStreamPlayer"]
+stream = ExtResource("1_ht2qv")
+bus = &"PlayerSFX"
+script = ExtResource("1_4ssxp")

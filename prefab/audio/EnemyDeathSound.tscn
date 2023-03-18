@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://uqcsi836bkf"]
+
+[ext_resource type="Script" path="res://prefab/audio/SoundEffect.gd" id="1_uljxn"]
+[ext_resource type="AudioStream" uid="uid://c37h0j7wn6uq7" path="res://assets/Music and Sounds/EnemyDie.wav" id="1_yi15e"]
+
+[node name="SoundEffect" type="AudioStreamPlayer"]
+stream = ExtResource("1_yi15e")
+bus = &"CombatSFX"
+script = ExtResource("1_uljxn")

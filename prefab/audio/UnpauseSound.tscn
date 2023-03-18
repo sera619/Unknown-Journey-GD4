@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://wf8mpe72xyhu"]
+
+[ext_resource type="AudioStream" uid="uid://bet4veyuik46w" path="res://assets/Music and Sounds/Unpause.wav" id="1_3fdvm"]
+[ext_resource type="Script" path="res://prefab/audio/SoundEffect.gd" id="1_ht7yq"]
+
+[node name="SoundEffect" type="AudioStreamPlayer"]
+stream = ExtResource("1_3fdvm")
+bus = &"MenuSFX"
+script = ExtResource("1_ht7yq")

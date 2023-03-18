@@ -9,6 +9,8 @@ class_name ItemDrop
 @export var quest_id: int
 @export var amount: int
 @export var despawn_time: int
+@export_category("Sound Settings")
+@export var potiondrop_sound_scene: PackedScene
 
 @onready var pickup_zone: Area2D = $Area2D 
 @onready var shadow_sprite: Sprite2D = $Shadow
@@ -23,6 +25,9 @@ func _ready():
 	pickup_zone.connect("area_entered", pickup)
 	animplayer.play("loop")
 	if item_type == 0:
+		if potiondrop_sound_scene != null:
+			var sound = potiondrop_sound_scene.instantiate()
+			get_tree().current_scene.add_child(sound)
 		body_sprite.scale = Vector2(0.35, 0.35)
 		coll_shape.shape.height = 10
 		coll_shape.shape.radius = 3

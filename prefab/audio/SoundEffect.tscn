@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://csgyvpvxj43nt"]
+
+[ext_resource type="Script" path="res://prefab/audio/SoundEffect.gd" id="1_hwsso"]
+
+[node name="SoundEffect" type="AudioStreamPlayer"]
+script = ExtResource("1_hwsso")

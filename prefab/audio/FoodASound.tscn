@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://xt3agvot17mp"]
+
+[ext_resource type="AudioStream" uid="uid://bqr0hvv3p52pd" path="res://assets/Music and Sounds/sfx_movement_footsteps1a.wav" id="1_m5fg5"]
+[ext_resource type="Script" path="res://prefab/audio/SoundEffect.gd" id="1_rrl8f"]
+
+[node name="SoundEffect" type="AudioStreamPlayer"]
+stream = ExtResource("1_m5fg5")
+autoplay = true
+bus = &"PlayerSFX"
+script = ExtResource("1_rrl8f")

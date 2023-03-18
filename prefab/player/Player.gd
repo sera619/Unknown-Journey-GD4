@@ -9,6 +9,11 @@ class_name Player
 @export var levelup_effect_scene: PackedScene
 @export var dash_ghost_screne: PackedScene
 @export var heal_effect_scene: PackedScene
+@export_category("Sound Scenes")
+@export var foodstep_a_scene: PackedScene
+@export var foodstep_b_scene: PackedScene
+@export var hurt_sound_scene: PackedScene
+@export var dash_sound_scene: PackedScene
 
 enum { 
 	MOVE, ATTACK, HEAVY_ATTACK, DASH, HURT, DOUBLE_ATTACK
@@ -54,6 +59,7 @@ func _ready():
 	if GameManager.camera:
 		GameManager.camera.player = self
 	swordHitbox.knockback_vector = roll_vector
+	swordHitbox.set_sword_damage(stats.damage)
 
 
 func _process(_delta):
@@ -126,6 +132,8 @@ func move_state(delta):
 			animState.travel("Idle")
 	
 	if Input.is_action_just_pressed("dash") and not is_dashing and stats.level > 1:
+		var sound = dash_sound_scene.instantiate()
+		self.add_child(sound)
 		state = DASH
 	
 	if Input.is_action_just_pressed("attack") and can_attack and stats.has_sword and not is_dashing:
@@ -222,6 +230,8 @@ func take_damage(area):
 		var effect = hit_effect_scene.instantiate()
 		get_tree().current_scene.add_child(effect)
 		effect.global_position = self.global_position
+		var sound = hurt_sound_scene.instantiate()
+		self.add_child(sound)
 		attackable = false
 		hit_box_shape.call_deferred("set_disabled", true)
 		hit_timer.start(2)
@@ -287,3 +297,10 @@ func heavy_attack_animation_finished():
 func take_sword_animation_finished():
 	state = MOVE
 
+func _create_food_a_sound():
+	var sound  = foodstep_a_scene.instantiate()
+	self.add_child(sound)
+
+func _create_food_b_sound():
+	var sound  = foodstep_b_scene.instantiate()
+	self.add_child(sound)

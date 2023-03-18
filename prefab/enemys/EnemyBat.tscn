@@ -1,12 +1,14 @@
-[gd_scene load_steps=28 format=3 uid="uid://b1kt7f88vq11f"]
+[gd_scene load_steps=30 format=3 uid="uid://b1kt7f88vq11f"]
 
 [ext_resource type="Script" path="res://scripts/Enemy.gd" id="1_3in87"]
 [ext_resource type="PackedScene" uid="uid://kbo1bay3i1ps" path="res://prefab/utils/PlayerDetector.tscn" id="2_ss6cg"]
 [ext_resource type="Texture2D" uid="uid://cvnvhq4vu7ktw" path="res://assets/Enemies/Bat.png" id="2_ve70t"]
 [ext_resource type="PackedScene" uid="uid://c4qwbfsr4fe74" path="res://prefab/effects/HitEffect.tscn" id="2_wfl4r"]
 [ext_resource type="PackedScene" uid="uid://cblcbsx1gpy2q" path="res://prefab/effects/DeathEffect.tscn" id="3_4hokx"]
+[ext_resource type="PackedScene" uid="uid://bpr5kb8nmfivl" path="res://prefab/audio/EnemyHitSound.tscn" id="4_5r0xc"]
 [ext_resource type="Script" path="res://scripts/EnemyStats.gd" id="4_f2vjp"]
 [ext_resource type="PackedScene" uid="uid://b347lo6c415bh" path="res://prefab/utils/WanderController.tscn" id="4_nxulv"]
+[ext_resource type="PackedScene" uid="uid://uqcsi836bkf" path="res://prefab/audio/EnemyDeathSound.tscn" id="5_6303i"]
 [ext_resource type="Texture2D" uid="uid://bkiw8qsmbvtow" path="res://assets/Shadows/SmallShadow.png" id="6_dkc4q"]
 [ext_resource type="PackedScene" uid="uid://ebdq15holk57" path="res://prefab/utils/Softcollision.tscn" id="7_h3811"]
 [ext_resource type="Script" path="res://prefab/enemys/EnemyWeapon.gd" id="7_w14fy"]
@@ -134,9 +136,11 @@ height = 8.71207
 collision_layer = 5
 collision_mask = 5
 script = ExtResource("1_3in87")
+item_name = "Fledermaus"
 hit_effect_scene = ExtResource("2_wfl4r")
 death_effect_scene = ExtResource("3_4hokx")
-item_name = "Fledermaus"
+hurt_sound_scene = ExtResource("4_5r0xc")
+death_sound_scene = ExtResource("5_6303i")
 
 [node name="EnemyStats" type="Node" parent="."]
 script = ExtResource("4_f2vjp")

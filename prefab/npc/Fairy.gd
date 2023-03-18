@@ -104,6 +104,7 @@ func finish_quest1():
 	GameManager.dialog_box.option_a_btn.disconnect("button_down", finish_quest1)
 	GameManager.quest_system._complete_quest("Das Schwert")
 	GameManager.player.stats.has_sword = true
+	GameManager.player.set_sprite(1)
 
 
 func finish_quest2():

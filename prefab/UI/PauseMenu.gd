@@ -1,6 +1,8 @@
 extends Control
 
 var paused: bool = false
+@export var pause_sound_scene: PackedScene
+@export var unpause_sound_scene: PackedScene
 
 func _ready():
 	self.visible = false
@@ -16,11 +18,15 @@ func _input(event):
 
 func showpause():
 	self.visible = true
+	var sound = pause_sound_scene.instantiate()
+	self.add_child(sound)
 	get_tree().paused = true
 
 func hidepause():
 	self.visible = false
 	get_tree().paused = false
+	var sound = unpause_sound_scene.instantiate()
+	self.add_child(sound)
 
 func _on_p_resume_btn_button_down():
 	hidepause()

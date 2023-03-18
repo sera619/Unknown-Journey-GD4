@@ -1,10 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://brxe6x2arf7xb"]
+[gd_scene load_steps=12 format=3 uid="uid://brxe6x2arf7xb"]
 
 [ext_resource type="Script" path="res://prefab/UI/PauseMenu.gd" id="1_674uc"]
 [ext_resource type="Texture2D" uid="uid://8edplubtbkbr" path="res://assets/UI/wood-box.png" id="1_l6wjs"]
 [ext_resource type="Texture2D" uid="uid://cqfo8k23gm0vc" path="res://assets/UI/text-paper.png" id="2_bcsdc"]
+[ext_resource type="PackedScene" uid="uid://bpuv6b1p4ejhc" path="res://prefab/audio/PauseSound.tscn" id="2_iemml"]
 [ext_resource type="FontFile" uid="uid://bddtsccx0qour" path="res://assets/UI/Fonts/dogicapixel.otf" id="3_2dmkg"]
 [ext_resource type="FontFile" uid="uid://dabqnx5sqarav" path="res://assets/UI/Fonts/dogicapixelbold.otf" id="3_uiekp"]
+[ext_resource type="PackedScene" uid="uid://wf8mpe72xyhu" path="res://prefab/audio/UnpauseSound.tscn" id="3_wa2n5"]
 [ext_resource type="Texture2D" uid="uid://dnmhbqlysi5ph" path="res://assets/UI/red-button-normal.png" id="4_co3w6"]
 [ext_resource type="Texture2D" uid="uid://cgoomtgcn04sq" path="res://assets/UI/red-button-pressed.png" id="5_a0wnw"]
 [ext_resource type="Texture2D" uid="uid://cl20mjeo1aqyx" path="res://assets/UI/red-button-hover.png" id="6_mxhja"]
@@ -23,6 +25,8 @@ offset_bottom = -74.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_674uc")
+pause_sound_scene = ExtResource("2_iemml")
+unpause_sound_scene = ExtResource("3_wa2n5")
 
 [node name="BG" type="NinePatchRect" parent="."]
 layout_mode = 1

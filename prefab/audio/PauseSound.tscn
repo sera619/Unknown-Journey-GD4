@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bpuv6b1p4ejhc"]
+
+[ext_resource type="Script" path="res://prefab/audio/SoundEffect.gd" id="1_5nnlt"]
+[ext_resource type="AudioStream" uid="uid://c761v4yg5ykw6" path="res://assets/Music and Sounds/Pause.wav" id="1_w25gp"]
+
+[node name="SoundEffect" type="AudioStreamPlayer"]
+stream = ExtResource("1_w25gp")
+bus = &"MenuSFX"
+script = ExtResource("1_5nnlt")
