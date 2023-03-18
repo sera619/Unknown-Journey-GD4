@@ -61,16 +61,15 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="Label" type="Label" parent="BG/M/BGText/M"]
+[node name="Label" type="RichTextLabel" parent="BG/M/BGText/M"]
 layout_mode = 2
-size_flags_vertical = 1
-theme_override_colors/font_color = Color(0, 0.627451, 0, 1)
+theme_override_colors/default_color = Color(0, 0.776471, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.188235)
-theme_override_fonts/font = ExtResource("3_mw3mf")
-theme_override_font_sizes/font_size = 8
+theme_override_fonts/normal_font = ExtResource("3_mw3mf")
+theme_override_font_sizes/normal_font_size = 8
+bbcode_enabled = true
 text = "InfoText"
-horizontal_alignment = 1
-vertical_alignment = 1
+fit_content = true
 autowrap_mode = 2
 
 [node name="Timer" type="Timer" parent="."]

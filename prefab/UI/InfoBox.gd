@@ -2,7 +2,7 @@ extends Control
 class_name InfoBox
 
 @export var show_time: int 
-@onready var text_label: Label = $BG/M/BGText/M/Label
+@onready var text_label: RichTextLabel = $BG/M/BGText/M/Label
 @onready var show_timer: Timer = $Timer
 
 var text_cache = []
@@ -16,7 +16,7 @@ func set_info_text(text: String):
 	if text_label.text != "":
 		text_cache.append(text)
 	else:
-		text_label.text = text
+		text_label.text = "[center]%s[/center]" % text 
 		show_info_text()
 	
 func check_cache():
@@ -25,7 +25,6 @@ func check_cache():
 		show_info_text()
 	else:
 		return
-
 
 func reset_info_text():
 	text_label.text = ""
