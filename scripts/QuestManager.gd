@@ -3,7 +3,8 @@ extends Node
 var QUEST_LIST = {
 	"Test": load("res://Quests/TestQuest.tres"),
 	"Ungeziefer":load("res://Quests/KillBats.tres"),
-	"Das Schwert": load("res://Quests/GetSword.tres")
+	"Das Schwert": load("res://Quests/GetSword.tres"),
+	"Zum Wald": load("res://Quests/IntoWood.tres")
 }
 
 var player_quest_log = []
@@ -44,8 +45,8 @@ func load_saved_quest():
 			if loaded_data['current_quest']:
 				if questname[0] == loaded_data['current_quest']:
 					set_current_quest(quest_a)
-			else:
-				continue
+				else:
+					pass
 
 
 func add_quest_to_log(quest: Quest):
@@ -53,13 +54,24 @@ func add_quest_to_log(quest: Quest):
 		printerr("[X] Questmanager: Quest: %s already exists!" % quest.quest_name)
 		return
 	if quest.quest_state == Quest.QS.NOT_GIVEN:
-		GameManager.info_box.set_info_text("Neue Quest\n\"%s\"\nerhalten!" % quest.quest_name)
+		GameManager.info_box.set_info_text("[center]Neue Quest\n\n[color=blue]\"%s\"[/color]\n\nerhalten![/center]" % quest.quest_name)
 		quest.set_state(Quest.QS.ACTIVE)
 	player_quest_log.append(quest)
 	print("[!] Questmanager: Quest: %s added to log!" % quest.quest_name)
 
 func set_current_quest(quest:Quest):
 	current_quest = quest
+
+func get_current_quest() -> Quest:
+	return current_quest
+
+func is_quest_started(quest: Quest):
+	if check_quest_exists(quest):
+		for q in player_quest_log:
+			if q.quest_state == Quest.QS.COMPLETE:
+				return false
+			elif q.quest_state == Quest.QS.ACTIVE:
+				return true
 
 func check_quest_exists(quest) -> bool:
 	if player_quest_log.has(quest) == true:
