@@ -1,9 +1,11 @@
 extends CharacterBody2D
 class_name Enemy
 
+signal enemy_take_damage(damage)
 
 @export var hit_effect_scene: PackedScene
 @export var death_effect_scene: PackedScene
+@export var item_name: String
 @onready var hitbox: Area2D = $HitBox
 @onready var attack_timer: Timer = $Timer
 @onready var hurt_box: Area2D = $WeaponAngle/HurtBox
@@ -14,7 +16,7 @@ class_name Enemy
 @onready var player_detector: PlayerDetector = $PlayerDetector
 @onready var wander_controller: WanderController = $WanderController
 @onready var softCollision: = $SoftCollision
-@onready var animSprite: AnimatedSprite2D =$Sprite2D
+@onready var animSprite=$Sprite2D
 @onready var raycasts: Node2D = $RayCasts
 @onready var enemy_hud: EnemyHUD = $EnemyHUD
 
@@ -151,7 +153,8 @@ func avoid_obstacles():
 	return Vector2.ZERO
 	
 func take_damage(area):
-	GameManager.player.stats.set_energie(GameManager.player.stats.energie + 1)
+	if area.attack_type == PlayerSword.Type.NORMAL:
+		GameManager.player.stats.set_energie(GameManager.player.stats.energie + 1)
 	if stats.health >= 0:
 		var effect = hit_effect_scene.instantiate() 
 		var cs = get_tree().current_scene
@@ -160,22 +163,25 @@ func take_damage(area):
 		cs.add_child(effect)
 		stats.set_health( stats.health - area.damage)
 		knockback = area.knockback_vector * 115
+		emit_signal("enemy_take_damage", area.damage)
 		anim_player.play("Hit")
 		print("[!] Enemy: %s gets hitted for %s damage!" % [self.name, area.damage])
 		if stats.health <= 0:
 			var effect2 = death_effect_scene.instantiate()
-			effect2.global_position = animSprite.global_position
+			effect2.connect("effect_finished", kill_enemy)
 			#effect2.global_position.y += animSprite.offset.y
-			cs.add_child(effect2)
-			if QuestManager.current_quest != null:
-				if QuestManager.current_quest.quest_id == 2:
-					QuestManager.current_quest.add_quest_items()
+			GameManager.current_world.enemy_container.add_child(effect2)
+			effect2.global_position = animSprite.global_position
+			self.visible = false
+			GameManager.quest_system._add_quest_item("Ungeziefer")
 			reward_player()
-			self.call_deferred("queue_free")
-			print("[!] Enemy: %s died!" % self.name)
 		
 	else:
 		return
+
+func kill_enemy():
+	self.call_deferred("queue_free")
+	print("[!] Enemy: %s died!" % self.name)
 
 func reward_player():
 	if not GameManager.player or stats.reward_exp == 0:

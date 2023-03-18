@@ -27,7 +27,9 @@ var can_attack = true
 @onready var animPlayer = $AnimationPlayer
 @onready var animTree = $AnimationTree
 @onready var animState = animTree.get("parameters/playback")
-@onready var swordHitbox = $SwordHolder/SwordHitbox
+@onready var swordHitbox:PlayerSword = $SwordHolder/SwordHitbox
+@onready var sword_collider: CollisionShape2D = $SwordHolder/SwordHitbox/CollisionShape2D
+@onready var sword_heavy_collider: CollisionShape2D = $SwordHolder/SwordHitbox/HeavyShape
 @onready var bodySprite = $BodySprite
 @onready var stats: Stats = $Stats
 @onready var combat_timer: Timer =$CombatTimer
@@ -81,6 +83,10 @@ func move_state(delta):
 	input_vector.y = Input.get_axis("move_up", "move_down")
 	input_vector = input_vector.normalized()
 	roll_vector = input_vector
+	if sword_collider.disabled == false:
+		sword_collider.call_deferred("set_disabled", true)
+	if sword_heavy_collider.disabled == false:
+		sword_heavy_collider.call_deferred("set_disabled", true)
 	if knockback != Vector2.ZERO:
 		knockback = knockback.move_toward(knockback, stats.FRICTION * delta)
 		set_velocity(knockback)
@@ -100,14 +106,14 @@ func move_state(delta):
 		animTree.set('parameters/AttackDouble/blend_position', input_vector)
 		dash_vector = input_vector
 		swordHitbox.knockback_vector = input_vector
-		if (stats.speed == stats.RUN_SPEED and not combat_stance) or is_dashing:
+		if stats.speed == stats.RUN_SPEED and not combat_stance and not is_dashing:
 			animState.travel("Run")
-		elif combat_stance == true:
-			stats.set_speed(stats.COMBAT_MOVE_SPEED)
-			animState.travel("CombatMove")
-		else:
+		elif stats.speed == stats.MAX_SPEED and not combat_stance and not is_dashing:
 			stats.set_speed(stats.MAX_SPEED)
 			animState.travel("Move")
+		elif combat_stance:
+			stats.set_speed(stats.COMBAT_MOVE_SPEED)
+			animState.travel("CombatMove")
 		velocity = velocity.move_toward(input_vector * stats.speed, stats.ACCELERATION * delta)
 		move()
 	
@@ -119,21 +125,29 @@ func move_state(delta):
 		else:
 			animState.travel("Idle")
 	
-	if Input.is_action_just_pressed("dash") and not is_dashing:
+	if Input.is_action_just_pressed("dash") and not is_dashing and stats.level > 1:
 		state = DASH
 	
 	if Input.is_action_just_pressed("attack") and can_attack and stats.has_sword and not is_dashing:
 		can_attack = false
+		swordHitbox.set_attack_type("Normal")
 		state = ATTACK
 	
-	elif Input.is_action_just_pressed("double_attack") and can_attack and stats.has_sword and not is_dashing and stats.energie >= stats.DOUBLE_ATTACK_COST:
-		can_attack = false
-		stats.set_energie(stats.energie - stats.DOUBLE_ATTACK_COST)
-		state = DOUBLE_ATTACK
+	elif Input.is_action_just_pressed("double_attack") and can_attack and stats.has_sword:
+		if stats.level < stats.DOUBLE_ATTACK_CAP:
+			return
+		if not is_dashing and stats.energie >= stats.DOUBLE_ATTACK_COST:
+			can_attack = false
+			stats.set_energie(stats.energie - stats.DOUBLE_ATTACK_COST)
+			swordHitbox.set_attack_type("Double")
+			state = DOUBLE_ATTACK
 	
 	if Input.is_action_just_pressed("heavy_attack") and can_attack and stats.has_sword and not is_dashing and stats.energie >= stats.HEAVY_ATTACK_COST:
+		if stats.level < stats.HEAVY_ATTACK_CAP:
+			return
 		can_attack = false
 		stats.set_energie(stats.energie - stats.HEAVY_ATTACK_COST)
+		swordHitbox.set_attack_type("Heavy")
 		state = HEAVY_ATTACK
 	
 	if Input.is_action_pressed("run") and not is_dashing:
@@ -202,8 +216,8 @@ func dash_state(delta):
 func take_damage(area):
 	if not attackable and not area.is_in_group("enemyWeapon"):
 		return
+	stats.set_health(stats.health - area.damage)
 	if stats.health > 0:
-		stats.set_health(stats.health - area.damage)
 		knockback = area.knockback_vector.normalized() * 225
 		var effect = hit_effect_scene.instantiate()
 		get_tree().current_scene.add_child(effect)
@@ -223,7 +237,7 @@ func create_levelup_effect():
 	var effect = levelup_effect_scene.instantiate()
 	self.add_child(effect)
 	effect.global_position = global_position
-	GameManager.info_box.set_info_text("Glückwunsch!\nDu hast Level: %s erreicht!" % stats.level)
+	GameManager.info_box.set_info_text("Glückwunsch!\n\nDu hast Level: [color=red]%s[/color] erreicht!" % stats.level)
 
 
 func use_health_potion():
