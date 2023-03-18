@@ -24,8 +24,11 @@ var zoom_position: Vector2 = Vector2()
 var player: Player = null
 var shakeTween = null
 
+
+
 func _ready():
 	GameManager.register_node(self)
+	self.zoom = Vector2(0.8, 0.8)
 	#shakeTween = get_tree().create_tween().bind_node(self)
 	limit_top = topLeft.position.y
 	limit_left = topLeft.position.x
@@ -35,11 +38,16 @@ func _ready():
 func _locked_door_show():
 	print("Camera3D shows door")
 
+func levelup_position():
+	self.offset.y -= 32
+	await get_tree().create_timer(1.5).timeout
+	self.offset = default_offset
 
 func _process(delta):
 		
 	if GameManager.player != null:
 		self.global_position = GameManager.player.global_position
+		self.global_position.y -= 16
 	zoom.x = lerp(zoom.x, zoom.x * zoom_factor, zoom_speed * delta)
 	zoom.y = lerp(zoom.y, zoom.y * zoom_factor, zoom_speed * delta)
 	
