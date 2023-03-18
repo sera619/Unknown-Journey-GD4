@@ -9,6 +9,7 @@ extends Node
 
 @export_category("Reward Settings")
 @export var reward_scene: PackedScene
+@export var reward_scenes: Array[PackedScene] 
 
 @onready var hitbox: Area2D = $Hitbox
 @onready var sprite: Sprite2D = $Sprite2D
@@ -48,6 +49,11 @@ func on_area_entered(area):
 			if reward_player:
 				var random = randf_range(1, 3)
 				if random > 2:
+					var random2 = randf_range(1,3)
+					if random2 > 2 and reward_scenes.size() > 0:
+						reward_scene = reward_scenes[0]
+					else:
+						reward_scene = reward_scenes[1]
 					var reward = reward_scene.instantiate()
 					reward.global_position = self.global_position
 					get_tree().current_scene.call_deferred("add_child", reward)

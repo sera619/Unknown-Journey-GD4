@@ -1,10 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://ixbyhoij3yf1"]
+[gd_scene load_steps=7 format=3 uid="uid://ixbyhoij3yf1"]
 
 [ext_resource type="Script" path="res://Game.gd" id="1_ds55b"]
+[ext_resource type="Script" path="res://scripts/QuestSystem.gd" id="2_1ryi5"]
 [ext_resource type="PackedScene" uid="uid://b7dks5cm1l8lb" path="res://prefab/interface/Interface.tscn" id="2_f3qs3"]
+[ext_resource type="Resource" uid="uid://d2vgbt1mvas6i" path="res://Quests/GetSword.tres" id="3_ksy4k"]
+[ext_resource type="Resource" uid="uid://d3dx42jx6h3dg" path="res://Quests/KillBats.tres" id="4_7s2gg"]
+[ext_resource type="Resource" uid="uid://df6ch8efor5m5" path="res://Quests/IntoWood.tres" id="5_di64l"]
 
 [node name="Game" type="Node"]
 script = ExtResource("1_ds55b")
+
+[node name="QuestSystem" type="Node" parent="."]
+script = ExtResource("2_1ryi5")
+ALL_QUESTS = Array[Resource("res://Quests/Quest.gd")]([ExtResource("3_ksy4k"), ExtResource("4_7s2gg"), ExtResource("5_di64l")])
 
 [node name="Interface" parent="." instance=ExtResource("2_f3qs3")]
 show_devpanel = false

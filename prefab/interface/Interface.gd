@@ -6,10 +6,12 @@ class_name Interface
 @onready var qlog = $Questlog
 @onready var animplayer = $AnimationPlayer
 @onready var pausmenu = $PauseMenu
-@onready var dialogbox = $DialogBox
 @onready var stat_hud = $StatHUD
 @onready var charpanel:CharacterPanel = $CharacterPanel
 @onready var potion_panel= $PotionPanel
+@onready var exp_hud = $ExpHUD
+@onready var dialog_box: DialogBox = $DialogBox
+@onready var newskill_hud: NewSkillHUD = $NewSkillHUD
 
 func _ready():
 	if show_devpanel == true:
@@ -36,9 +38,10 @@ func _input(event):
 
 func hide_ui():
 	qlog.hide_questlog()
-	dialogbox.hide_dialog()
 	stat_hud.hide()
 	potion_panel.hide()
+	exp_hud.hide()
+	dialog_box.hide_dialog()
 	
 
 func start_transition():

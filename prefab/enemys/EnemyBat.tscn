@@ -136,6 +136,7 @@ collision_mask = 5
 script = ExtResource("1_3in87")
 hit_effect_scene = ExtResource("2_wfl4r")
 death_effect_scene = ExtResource("3_4hokx")
+item_name = "Fledermaus"
 
 [node name="EnemyStats" type="Node" parent="."]
 script = ExtResource("4_f2vjp")
@@ -151,11 +152,11 @@ MAX_RANGE = 32
 reward_exp = 15
 
 [node name="EnemyHUD" parent="." instance=ExtResource("11_5vyps")]
-offset_left = -5.0
+offset_left = -14.0
 offset_top = -44.0
-offset_right = -5.0
+offset_right = -14.0
 offset_bottom = -44.0
-scale = Vector2(0.25, 0.25)
+scale = Vector2(0.5, 0.5)
 enemy_stats_path = NodePath("../EnemyStats")
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]

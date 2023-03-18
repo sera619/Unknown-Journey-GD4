@@ -11,7 +11,7 @@ class_name NPCBase
 @export var friction: int
 
 @export_category('NPC Quest Settings')
-@export var quest: Quest
+@export var quest_names: Array[String]
 @export_multiline var default_text: String
 @export_multiline var quest_start_text: String
 @export_multiline var quest_ready_text: String
@@ -43,13 +43,12 @@ func pick_random_state(state_list: Array):
 	state_list.shuffle()
 	return state_list.pop_front()
 
-func give_quest():
-	if quest and npc_type == "Quest-NPC":
-		if quest.quest_state == Quest.QS.NOT_GIVEN:
-			QuestManager.add_quest_to_log(quest)
-			QuestManager.set_current_quest(quest)
-			GameManager.ui_questlog.update_questlist()
-			print("[!] Quest-NPC \"%s\": Add Quest \"%s\" to Questlog!" % [self.npc_name, quest.quest_name])
+func give_quest(questname: String):
+	var quest = GameManager.quest_system.player_questlog[questname]
+	if quest.quest_state == Quest.QS.NOT_GIVEN:
+		GameManager.quest_system._activate_quest(questname)
+		GameManager.ui_questlog.update_questlist()
+		print("[!] Quest-NPC \"%s\": Add Quest \"%s\" to Questlog!" % [self.npc_name, quest.quest_name])
 
 func accelerate_towards_point(point, delta):
 	var direction = global_position.direction_to(point)

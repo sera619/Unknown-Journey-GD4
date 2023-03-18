@@ -1,14 +1,12 @@
 extends Node
 class_name Stats
 
-signal health_changed
-signal energie_changed
-
 @export_category('Stat Settings')
 @export var playername: String
 @export var MAX_ENERGIE: int
 @export var MAX_HEALTH: int
 @export var MAX_DAMAGE: int
+@export var dmg_label_path: NodePath
 @export_category('Movement Settings')
 @export var MAX_SPEED:int
 @export var RUN_SPEED: int
@@ -20,10 +18,12 @@ signal energie_changed
 @export var FRICTION:int
 @export_category('Skill Settings')
 @export var roll_costs:int
-@export var HEAVY_ATTACK_COST: int
+@export var DOUBLE_ATTACK_CAP: int
 @export var DOUBLE_ATTACK_COST: int
+@export var HEAVY_ATTACK_CAP: int
+@export var HEAVY_ATTACK_COST: int
 
-@onready var has_sword: bool = true
+@onready var has_sword: bool = false
 
 
 var health: int = 0
@@ -35,15 +35,21 @@ var damage: int = 0
 var speed: int = 0
 var exp_multiplikator:float = 1.2
 var parent = null
+var dmg_label: RichTextLabel = null
+
 
 var player_inventory = {
 	"Healthpot": 0,
 	"Energiepot": 0,
+	"Doorkey": 0
 }
 
 func _ready():
 	if not parent:
 		parent = get_parent().name
+	if dmg_label_path:
+		dmg_label = get_node(dmg_label_path)
+		dmg_label.visible = false
 	if GameManager.game.loaded_data == null:
 		set_default_stats()
 	else: 
@@ -52,8 +58,14 @@ func _ready():
 func get_item(item_name: String, amount: int):
 	match item_name:
 		"Health Potion":
-			player_inventory['Healthpot'] += amount
-			EventHandler.emit_signal("player_get_healthpot", player_inventory['Healthpot'])
+			player_inventory["Healthpot"] += amount
+			EventHandler.emit_signal("player_get_healthpot", player_inventory["Healthpot"])
+		"Energie Potion":
+			player_inventory["Energiepot"] += amount
+			EventHandler.emit_signal("player_get_energiepot", player_inventory["Energiepot"])
+		"Door Key":
+			player_inventory["Doorkey"] += amount
+			EventHandler.emit_signal("player_get_doorkey", player_inventory[item_name])
 
 func set_default_stats():
 	playername = "[Admin] Sera"
@@ -69,12 +81,25 @@ func set_default_stats():
 	print("[!] Data: Set default playerstats!")
 
 func set_health(value):
+	var old_healt = health
 	health = value
 	if health >= MAX_HEALTH:
 		health = MAX_HEALTH
-	emit_signal("health_changed")
 	EventHandler.emit_signal("player_health_changed", health)
+	if old_healt > health:
+		dmg_label.add_theme_color_override("default_color", Color(0.7843137383461, 0.12156862765551, 0.03529411926866))
+		show_dmg_display("[wave amp=40 freq=10]\n-%s[/wave]" % value)
+	elif old_healt < health:
+		dmg_label.add_theme_color_override("default_color", Color(0.32941177487373, 0.7843137383461, 0.15294118225574))
+		show_dmg_display("[wave amp=40 freq=10]\n+%s[/wave]" % value)
 
+func show_dmg_display(dmgvalue: String):
+	dmg_label.text = dmgvalue
+	dmg_label.visible = true
+	await get_tree().create_timer(1.4).timeout
+	dmg_label.text = ""
+	dmg_label.visible = false
+	
 func set_max_health(value):
 	MAX_HEALTH = value
 	EventHandler.emit_signal("player_maxhealth_changed", MAX_HEALTH)
@@ -123,6 +148,12 @@ func level_up(rest):
 	set_max_health(int(MAX_HEALTH * exp_multiplikator))
 	set_max_energie(int(MAX_ENERGIE * exp_multiplikator))
 	set_health(MAX_HEALTH)
+	if level == 2:
+		GameManager.interface.newskill_hud.set_skill_text("Dash", "Du kannst dich nun\n\nkurzzeitig sehr schnell in deine Laufrichtung bewegen!\n\nDrücke hierzu beim laufen die Taste \"V\".")
+	elif level == DOUBLE_ATTACK_CAP:
+		GameManager.interface.newskill_hud.set_skill_text("Doppel Angriff", "Du kannst dein Schwert nun 2x schwingen.\n\nDafür brauchst du 1 Energiepunkt!\n\nDein Schwert sammelt Energie wenn\n\nes mit normalen Angriffen trifft.\n\nDrücke die Taste \"Q\"!")
+	elif level == HEAVY_ATTACK_CAP:
+		GameManager.interface.newskill_hud.set_skill_text("Starker Angriff", "Du kannst dein Schwert nun rotieren.\n\nDafür brauchst du 2 Energiepunkte!\n\nDein Schwert sammelt Energie wenn\n\nes mit normalen Angriffen trifft.\n\nDrücke die Taste \"Q\"!")		
 	EventHandler.emit_signal("player_level_up")
 
 func add_seen_npc(npcname:String):
@@ -137,6 +168,9 @@ func apply_loaded_stats():
 	experience = data['experience']
 	max_experience = data['max_exp']
 	level = data['level']
+	for info in data['new_quest_log']:
+		GameManager.quest_system.player_questlog[info[0]].quest_state = info[1]
+		GameManager.quest_system.player_questlog[info[0]].current_quantity = int(info[2])
 	player_inventory = data['player_inventory']
 	EventHandler.emit_signal("player_get_healthpot", player_inventory['Healthpot'])
 	EventHandler.emit_signal("player_get_energiepot", player_inventory['Energiepot'])
@@ -159,19 +193,11 @@ func save():
 	var quests= []
 	var solved_quests = []
 	var finished_quest = []
-	for i in QuestManager.player_quest_log:
-		if i.quest_state == Quest.QS.ACTIVE:
-			var quest_infos = [i.quest_name, i.current_quantity]
-			quests.append(quest_infos)
-		if i.quest_state == Quest.QS.COMPLETE:
-			solved_quests.append(i.quest_name)
-		if i.quest_state == Quest.QS.FINISHED:
-			finished_quest.append(i.quest_name)
-	var cq
-	if QuestManager.current_quest:
-		cq = QuestManager.current_quest.quest_name
-	else:
-		cq = ""
+	var new_quests = []
+	for nq in GameManager.quest_system.player_questlog:
+		var new_q_info = [GameManager.quest_system.player_questlog[nq].quest_name, GameManager.quest_system.player_questlog[nq].quest_state, GameManager.quest_system.player_questlog[nq].current_quantity]
+		new_quests.append(new_q_info)
+	var cq = ""
 	var save_dict = {
 		"playername": playername,
 		"cur_world":GameManager.current_world.world_name,
@@ -187,6 +213,7 @@ func save():
 		"level": self.level,
 		"current_quest": cq,
 		"quest_log_active": quests,
+		"new_quest_log": new_quests,
 		"quest_log_complete": solved_quests,
 		"quest_log_finished": finished_quest,
 		"seen_npcs": GameManager.seen_npcs,

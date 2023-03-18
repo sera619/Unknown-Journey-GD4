@@ -2,6 +2,7 @@ extends NPCBase
 
 
 @onready var speak_icon: Sprite2D = $Icon
+var is_talking: bool = false
 
 func _ready():
 	self.speak_icon.visible = false
@@ -36,56 +37,78 @@ func _physics_process(delta):
 			chase_state(delta)
 	
 	move_and_slide()
-	if Input.is_action_just_pressed("interact") and player_detector.player != null and GameManager.dialog_box.visible == false:
-		GameManager.dialog_box.set_speaker_name(self.npc_name)
-		GameManager.dialog_box.option_b_btn.connect("button_down", cancel_pressed)
-		if first_seen:
-			GameManager.dialog_box.option_a_btn.connect("button_down", okay_pressed)
-			player_detector.player.stats.add_seen_npc(self.npc_name)
-			GameManager.dialog_box.set_dialog_text(default_text)
+	if Input.is_action_just_pressed("interact") and player_detector.player != null:
+		if is_talking == true:
+			return
+		is_talking = true
+		GameManager.dialog_box.set_speaker(self)
+		if GameManager.quest_system.player_questlog[self.quest_names[0]].quest_state == Quest.QS.COMPLETE \
+		and GameManager.quest_system.player_questlog[self.quest_names[1]].quest_state == Quest.QS.COMPLETE:
+			if GameManager.quest_system.player_questlog[self.quest_names[2]].quest_state == Quest.QS.NOT_GIVEN:
+				GameManager.dialog_box.option_a_btn.connect("button_down", activate_quest3)
+				GameManager.dialog_box.set_dialog_text(GameManager.quest_system.player_questlog[self.quest_names[2]].quest_start_text)
+				GameManager.dialog_box.show_dialog()
+				return
+			if GameManager.quest_system.player_questlog[self.quest_names[2]].quest_state == Quest.QS.ACTIVE:
+				GameManager.dialog_box.set_dialog_text(GameManager.quest_system.player_questlog[self.quest_names[0]].quest_progress_text)
+				GameManager.dialog_box.show_dialog()
+				return
+			if GameManager.quest_system.player_questlog[self.quest_names[2]].quest_state == Quest.QS.COMPLETE:
+				GameManager.dialog_box.set_dialog_text("Na du? Wie gehts dir heute?")
+				GameManager.dialog_box.show_dialog()
+				return
+		if GameManager.quest_system.player_questlog[self.quest_names[0]].quest_state == Quest.QS.NOT_GIVEN:
+			GameManager.dialog_box.option_a_btn.connect("button_down", activate_quest1)
+			GameManager.dialog_box.set_dialog_text(GameManager.quest_system.player_questlog[self.quest_names[0]].quest_start_text)
 			GameManager.dialog_box.show_dialog()
 			return
-		if not first_seen:
-			if self.quest.quest_state == Quest.QS.NOT_GIVEN:
-				GameManager.dialog_box.option_a_btn.connect("button_down", accept_quest)
-				GameManager.dialog_box.set_dialog_text(quest_start_text)
+		if GameManager.quest_system.player_questlog[self.quest_names[0]].quest_state == Quest.QS.ACTIVE:
+			GameManager.dialog_box.set_dialog_text(GameManager.quest_system.player_questlog[self.quest_names[0]].quest_progress_text)
+			GameManager.dialog_box.show_dialog()
+			return
+		if GameManager.quest_system.player_questlog[self.quest_names[0]].quest_state == Quest.QS.FINISHED:
+			GameManager.dialog_box.option_a_btn.connect("button_down", finish_quest1)
+			GameManager.dialog_box.set_dialog_text(GameManager.quest_system.player_questlog[self.quest_names[0]].quest_complete_text)
+			GameManager.dialog_box.show_dialog()
+			return
+		if GameManager.quest_system.player_questlog[self.quest_names[0]].quest_state == Quest.QS.COMPLETE:
+			if GameManager.quest_system.player_questlog[self.quest_names[1]].quest_state == Quest.QS.NOT_GIVEN:
+				GameManager.dialog_box.option_a_btn.connect("button_down", activate_quest2)
+				GameManager.dialog_box.set_dialog_text(GameManager.quest_system.player_questlog[self.quest_names[1]].quest_start_text)
 				GameManager.dialog_box.show_dialog()
-			elif self.quest.quest_state == Quest.QS.ACTIVE:
-				GameManager.dialog_box.set_dialog_text("Kannst du die Höhle nicht finden?")
+				return
+			if GameManager.quest_system.player_questlog[self.quest_names[1]].quest_state == Quest.QS.ACTIVE:
+				GameManager.dialog_box.set_dialog_text(GameManager.quest_system.player_questlog[self.quest_names[1]].quest_progress_text)
 				GameManager.dialog_box.show_dialog()
-			elif self.quest.quest_state == Quest.QS.FINISHED:
-				GameManager.dialog_box.option_a_btn.connect("button_down", reward_player)
-				GameManager.dialog_box.set_dialog_text(quest_ready_text)
+				return
+			if GameManager.quest_system.player_questlog[self.quest_names[1]].quest_state == Quest.QS.FINISHED:
+				GameManager.dialog_box.option_a_btn.connect("button_down", finish_quest2)
+				GameManager.dialog_box.set_dialog_text(GameManager.quest_system.player_questlog[self.quest_names[1]].quest_complete_text)
 				GameManager.dialog_box.show_dialog()
-				
-			else:
-				GameManager.dialog_box.set_dialog_text(quest_complete_text)
-				GameManager.dialog_box.show_dialog()
-	else:
-		return
+				return
+			
+func activate_quest1():
+	GameManager.dialog_box.option_a_btn.disconnect("button_down", activate_quest1)
+	give_quest("Das Schwert")
 
-func okay_pressed():
-	first_seen = false
-	player_detector.player.stats.add_seen_npc(self.npc_name)
-	GameManager.dialog_box.option_a_btn.disconnect("button_down", okay_pressed)
-	GameManager.dialog_box.option_b_btn.disconnect("button_down", cancel_pressed)
 
-func reward_player():
-	GameManager.dialog_box.option_a_btn.disconnect("button_down", reward_player)
-	GameManager.dialog_box.option_b_btn.disconnect("button_down", cancel_pressed)
-	player_detector.player.stats.has_sword = true
-	player_detector.player.set_sprite(1)
-	quest.complete_quest()
-	quest = null
+func activate_quest2():
+	GameManager.dialog_box.option_a_btn.disconnect("button_down", activate_quest2)
+	give_quest("Ungeziefer")
+	
+func activate_quest3():
+	GameManager.dialog_box.option_a_btn.disconnect("button_down", activate_quest3)
+	give_quest(quest_names[2])
 
-func accept_quest():
-	GameManager.dialog_box.option_b_btn.disconnect("button_down", cancel_pressed)
-	GameManager.dialog_box.option_a_btn.disconnect("button_down", accept_quest)
-	give_quest()
+func finish_quest1():
+	GameManager.dialog_box.option_a_btn.disconnect("button_down", finish_quest1)
+	GameManager.quest_system._complete_quest("Das Schwert")
+	GameManager.player.stats.has_sword = true
 
-func cancel_pressed():
-	GameManager.dialog_box.option_b_btn.disconnect("button_down", cancel_pressed)
-	print("[!] Quest NPC \"%s\": Dialog canceled!" % self.npc_name)
+
+func finish_quest2():
+	GameManager.dialog_box.option_a_btn.disconnect("button_down", finish_quest2)
+	GameManager.quest_system._complete_quest("Ungeziefer")
 
 func chase_state(delta):
 	var player = player_detector.player

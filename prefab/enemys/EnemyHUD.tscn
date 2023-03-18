@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://doa5hxcckh64o"]
+[gd_scene load_steps=5 format=3 uid="uid://doa5hxcckh64o"]
 
 [ext_resource type="Script" path="res://prefab/enemys/EnemyHUD.gd" id="1_i6r8a"]
 [ext_resource type="Texture2D" uid="uid://bu4rwyuvmk4xr" path="res://assets/UI/healthplate.png" id="1_y5pni"]
 [ext_resource type="Texture2D" uid="uid://bygmow5fasyoo" path="res://assets/UI/healthbar.png" id="2_8gx5g"]
+[ext_resource type="FontFile" uid="uid://dabqnx5sqarav" path="res://assets/UI/Fonts/dogicapixelbold.otf" id="4_4dyqf"]
 
 [node name="EnemyHUD" type="Control"]
 layout_mode = 3
@@ -20,3 +21,20 @@ offset_bottom = 16.0
 value = 20.0
 texture_under = ExtResource("1_y5pni")
 texture_progress = ExtResource("2_8gx5g")
+
+[node name="DamageDisplay" type="RichTextLabel" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 17.0
+offset_top = -27.0
+offset_right = 39.0
+offset_bottom = -3.0
+scale = Vector2(1.25, 1.25)
+theme_override_colors/default_color = Color(0.94902, 0.345098, 0.145098, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("4_4dyqf")
+theme_override_font_sizes/normal_font_size = 8
+bbcode_enabled = true
+text = "[center]
+[wave amp=40 freq=10]10[/wave][/center]"
+fit_content = true

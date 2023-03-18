@@ -17,25 +17,23 @@ func _ready():
 	activate_button.disabled = true
 	activate_button.visible = false
 	quest_finish_label.visible = false
-	update_questlist()
 
 func activate_quest():
 	if selected_quest.quest_state == Quest.QS.COMPLETE:
 		print("[X] Questlog: Quest %s already finished!" % selected_quest.quest_name)
 		return
-	QuestManager.set_current_quest(selected_quest)
 	update_questlist()
 	update_questlog(selected_quest)
 
 func show_questlog():
+	quest_list.deselect_all()
+	selected_quest = null
+	reset_questinfo()
 	update_questlist()
 	self.visible = true
 
 func hide_questlog():
 	self.visible = false
-	reset_questinfo()
-	selected_quest = null
-	quest_list.deselect_all()
 
 
 func update_questlog(quest: Quest):
@@ -68,19 +66,30 @@ func update_questlog(quest: Quest):
 func update_questlist():
 	quest_list.clear()
 	var count = 0
-	for q in QuestManager.player_quest_log:
-		if q.quest_state == Quest.QS.COMPLETE:
-			quest_list.add_item(q.quest_name, check_quest_icon)
+#	for q in QuestManager.player_quest_log:
+#		if q.quest_state == Quest.QS.COMPLETE:
+#			quest_list.add_item(q.quest_name, check_quest_icon)
+#			quest_list.set_item_disabled(count, true)
+#		elif q.quest_state == Quest.QS.FINISHED:
+#			quest_list.add_item(q.quest_name, check_quest_icon)
+#		elif q.quest_state == Quest.QS.ACTIVE and q != QuestManager.current_quest:
+#			quest_list.add_item(q.quest_name)
+#		elif QuestManager.current_quest == q:
+#			quest_list.add_item(q.quest_name, active_quest_icon)
+#		else:
+#			quest_list.add_item(q.quest_name)
+#		count += 1
+	for q in GameManager.quest_system.player_questlog:
+		if GameManager.quest_system.player_questlog[q].quest_state == Quest.QS.ACTIVE:
+			quest_list.add_item(q, active_quest_icon)
+		if GameManager.quest_system.player_questlog[q].quest_state == Quest.QS.FINISHED:
+			quest_list.add_item(q, check_quest_icon)
+		if GameManager.quest_system.player_questlog[q].quest_state == Quest.QS.COMPLETE:
+			quest_list.add_item(q, check_quest_icon)
 			quest_list.set_item_disabled(count, true)
-		elif q.quest_state == Quest.QS.FINISHED:
-			quest_list.add_item(q.quest_name, check_quest_icon)
-		elif q.quest_state == Quest.QS.ACTIVE and q != QuestManager.current_quest:
-			quest_list.add_item(q.quest_name)
-		elif QuestManager.current_quest == q:
-			quest_list.add_item(q.quest_name, active_quest_icon)
-		else:
-			quest_list.add_item(q.quest_name)
 		count += 1
+
+
 
 func reset_questinfo():
 	questinfo_label.text = ""
@@ -93,9 +102,9 @@ func reset_questinfo():
 func _on_item_list_item_selected(index):
 	var questname = quest_list.get_item_text(index)
 	var quest: Quest
-	for i in QuestManager.player_quest_log:
-		if i['quest_name'] == questname:
-			quest = i
+	for i in GameManager.quest_system.player_questlog:
+		if i == questname:
+			quest = GameManager.quest_system.player_questlog[i]
 			break
 	if quest:
 		update_questlog(quest)

@@ -26,8 +26,7 @@ func start_new_game():
 
 func load_game():
 	loaded_data = GameManager.load_savegame()
-	QuestManager.load_saved_quest()
-	GameManager.interface.qlog.update_questlist()
+	GameManager.ui_questlog.update_questlist()
 	switch_gamelevel(loaded_data['cur_world'])
 
 
@@ -41,13 +40,12 @@ func switch_gamelevel(levelname: String):
 	world_holder.call_deferred("add_child",node)
 	if levelname == "MainMenu":
 		GameManager.on_main_menu = true
-		QuestManager.current_quest = null
-		QuestManager.player_quest_log.clear()
 		GameManager.player = null
 	else:
 		GameManager.on_main_menu = false
 		GameManager.interface.stat_hud.show()
 		GameManager.interface.potion_panel.show()
+		GameManager.interface.exp_hud.show()
 	print("[!] Game: Scene - %s successfully loaded!" % levelname)
 
 

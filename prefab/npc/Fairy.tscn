@@ -1,8 +1,7 @@
-[gd_scene load_steps=30 format=3 uid="uid://c50sg12xyw5sj"]
+[gd_scene load_steps=29 format=3 uid="uid://c50sg12xyw5sj"]
 
 [ext_resource type="Texture2D" uid="uid://n8ffpghrqlrf" path="res://assets/NPC/fairy.png" id="1_8cwrl"]
 [ext_resource type="Script" path="res://prefab/npc/Fairy.gd" id="1_ujxfh"]
-[ext_resource type="Resource" uid="uid://d2vgbt1mvas6i" path="res://Quests/GetSword.tres" id="2_0tbc5"]
 [ext_resource type="PackedScene" uid="uid://kbo1bay3i1ps" path="res://prefab/utils/PlayerDetector.tscn" id="2_jt50h"]
 [ext_resource type="Texture2D" uid="uid://dt2540u4sj5mt" path="res://assets/Shadows/MediumShadow.png" id="2_rb1kx"]
 [ext_resource type="Texture2D" uid="uid://dd1w6mxdg5pd0" path="res://assets/NPC/speakicon.png" id="3_whwli"]
@@ -174,7 +173,7 @@ npc_type = "Quest-NPC"
 move_speed = 40
 acceleration = 300
 friction = 200
-quest = ExtResource("2_0tbc5")
+quest_names = Array[String](["Das Schwert", "Ungeziefer", "Zum Wald"])
 default_text = "Hallo ich bin die gute Fee."
 quest_start_text = "Gehe in die Höhle, die sich nördlich von hier über dem Fluss befindet. Dort findest du ein Schwert."
 quest_ready_text = "Gut! Du hast das Schwert. Ich hoffe du kannst damit umgehen."

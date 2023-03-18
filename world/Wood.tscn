@@ -2662,7 +2662,6 @@ position = Vector2(-216, 456)
 position = Vector2(1448, 1576)
 
 [node name="ShaderFogg" parent="." instance=ExtResource("7_ealrt")]
-visible = false
 position = Vector2(655, 1040)
 scale = Vector2(0.880625, 1.81375)
 

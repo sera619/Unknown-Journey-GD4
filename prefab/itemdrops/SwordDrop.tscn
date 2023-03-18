@@ -1,9 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://yax4y6kq0hp8"]
+[gd_scene load_steps=11 format=3 uid="uid://yax4y6kq0hp8"]
 
 [ext_resource type="Script" path="res://prefab/itemdrops/ItemDrop.gd" id="1_tkcx5"]
 [ext_resource type="Texture2D" uid="uid://gu0i7f7odlac" path="res://assets/items/Rusty Sword.png" id="2_emle2"]
 [ext_resource type="Texture2D" uid="uid://bkiw8qsmbvtow" path="res://assets/Shadows/SmallShadow.png" id="2_gmcol"]
 [ext_resource type="Texture2D" uid="uid://ds24kcdfflu2t" path="res://assets/items/Practice Sword.png" id="3_dblpi"]
+[ext_resource type="Texture2D" uid="uid://p5qjf6yxjhlo" path="res://assets/Materials/ParticleTextures/light.png" id="5_5tau8"]
+[ext_resource type="Script" path="res://prefab/player/PlayerLight.gd" id="6_p4ltp"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xh0m3"]
 radius = 6.0
@@ -98,3 +100,16 @@ shape = SubResource("CapsuleShape2D_xh0m3")
 libraries = {
 "": SubResource("AnimationLibrary_ck4ni")
 }
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="PointLight2D" type="PointLight2D" parent="." groups=["lights"]]
+enabled = false
+color = Color(1, 0.992157, 0.607843, 1)
+energy = 0.85
+blend_mode = 2
+texture = ExtResource("5_5tau8")
+texture_scale = 0.65
+script = ExtResource("6_p4ltp")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

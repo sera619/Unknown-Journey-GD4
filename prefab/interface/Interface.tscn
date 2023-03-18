@@ -1,15 +1,17 @@
-[gd_scene load_steps=14 format=3 uid="uid://b7dks5cm1l8lb"]
+[gd_scene load_steps=16 format=3 uid="uid://b7dks5cm1l8lb"]
 
 [ext_resource type="Script" path="res://prefab/interface/Interface.gd" id="1_ghaf7"]
 [ext_resource type="PackedScene" uid="uid://j0mixjoaji6r" path="res://prefab/UI/DevPanel.tscn" id="2_0344k"]
 [ext_resource type="PackedScene" uid="uid://cc4dqpbjt2x3y" path="res://prefab/UI/Questlog.tscn" id="2_ka8y8"]
 [ext_resource type="PackedScene" uid="uid://ctrto7ocrqsyu" path="res://prefab/UI/StatHUD.tscn" id="3_1qqj3"]
 [ext_resource type="PackedScene" uid="uid://brxe6x2arf7xb" path="res://prefab/UI/PauseMenu.tscn" id="3_6p8ro"]
-[ext_resource type="PackedScene" uid="uid://4pvo7rk61tca" path="res://prefab/UI/DialogBox.tscn" id="4_nv8pa"]
+[ext_resource type="PackedScene" uid="uid://by2snosenah6j" path="res://prefab/UI/ExpHUD.tscn" id="3_ojkx5"]
 [ext_resource type="PackedScene" uid="uid://ci8ut3tki2bpo" path="res://prefab/UI/InfoBox.tscn" id="5_1eql3"]
 [ext_resource type="PackedScene" uid="uid://cfbtmo61dtd0j" path="res://prefab/UI/CharacterPanel.tscn" id="5_6wngu"]
 [ext_resource type="PackedScene" uid="uid://ckoys4dftebte" path="res://prefab/UI/DeathScreen.tscn" id="7_bo1t5"]
+[ext_resource type="PackedScene" uid="uid://4pvo7rk61tca" path="res://prefab/UI/DialogBox.tscn" id="9_kcv7y"]
 [ext_resource type="PackedScene" uid="uid://cfsnddkshv6p8" path="res://prefab/UI/PotionPanel.tscn" id="10_p40cy"]
+[ext_resource type="PackedScene" uid="uid://6ma28lukrg4r" path="res://prefab/UI/NewSkillHUD.tscn" id="11_r8hlj"]
 
 [sub_resource type="Animation" id="Animation_x5qxj"]
 length = 0.001
@@ -67,6 +69,28 @@ layer = 10
 script = ExtResource("1_ghaf7")
 show_devpanel = true
 
+[node name="StatHUD" parent="." instance=ExtResource("3_1qqj3")]
+visible = false
+offset_right = -226.0
+offset_bottom = -163.0
+
+[node name="ExpHUD" parent="." instance=ExtResource("3_ojkx5")]
+visible = false
+offset_left = 80.0
+offset_top = 91.0
+offset_right = 80.0
+offset_bottom = 91.0
+scale = Vector2(0.5, 0.5)
+
+[node name="PotionPanel" parent="." instance=ExtResource("10_p40cy")]
+offset_left = -317.0
+offset_top = -161.0
+offset_right = -239.0
+offset_bottom = -115.0
+scale = Vector2(0.25, 0.25)
+
+[node name="DevPanel" parent="." instance=ExtResource("2_0344k")]
+
 [node name="Questlog" parent="." instance=ExtResource("2_ka8y8")]
 visible = false
 anchor_left = 0.021875
@@ -79,20 +103,6 @@ scale = Vector2(0.5, 0.5)
 size_flags_horizontal = 2
 size_flags_vertical = 2
 
-[node name="StatHUD" parent="." instance=ExtResource("3_1qqj3")]
-visible = false
-offset_right = -226.0
-offset_bottom = -163.0
-
-[node name="PotionPanel" parent="." instance=ExtResource("10_p40cy")]
-offset_left = -43.0
-offset_top = -27.0
-offset_right = 35.0
-offset_bottom = 19.0
-scale = Vector2(0.5, 0.5)
-
-[node name="DevPanel" parent="." instance=ExtResource("2_0344k")]
-
 [node name="CharacterPanel" parent="." instance=ExtResource("5_6wngu")]
 offset_left = 23.0
 offset_top = 47.0
@@ -100,24 +110,22 @@ offset_right = -91.0
 offset_bottom = 47.0
 scale = Vector2(0.5, 0.5)
 
-[node name="DialogBox" parent="." instance=ExtResource("4_nv8pa")]
-offset_left = 80.0
-offset_top = 103.0
-offset_right = 80.0
-offset_bottom = 67.0
-scale = Vector2(0.5, 0.5)
-
 [node name="InfoBox" parent="." instance=ExtResource("5_1eql3")]
 anchors_preset = 10
 anchor_bottom = 0.0
-offset_left = 80.0
-offset_top = 8.0
-offset_right = 80.0
-offset_bottom = 78.0
+offset_left = 94.0
+offset_top = 2.0
+offset_right = 38.0
+offset_bottom = 64.0
 grow_vertical = 1
 scale = Vector2(0.5, 0.5)
 
-[node name="DeathScreen" parent="." instance=ExtResource("7_bo1t5")]
+[node name="DialogBox" parent="." instance=ExtResource("9_kcv7y")]
+offset_left = 105.0
+offset_top = 109.0
+offset_right = 105.0
+offset_bottom = 109.0
+scale = Vector2(0.35, 0.35)
 
 [node name="PauseMenu" parent="." instance=ExtResource("3_6p8ro")]
 visible = false
@@ -126,6 +134,10 @@ offset_top = 50.0
 offset_right = -112.0
 offset_bottom = -27.0
 scale = Vector2(0.75, 0.75)
+
+[node name="NewSkillHUD" parent="." instance=ExtResource("11_r8hlj")]
+
+[node name="DeathScreen" parent="." instance=ExtResource("7_bo1t5")]
 
 [node name="Transition" type="ColorRect" parent="."]
 modulate = Color(1, 1, 1, 0)
