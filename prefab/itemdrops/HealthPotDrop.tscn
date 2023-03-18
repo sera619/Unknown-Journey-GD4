@@ -97,3 +97,7 @@ shape = SubResource("CapsuleShape2D_xh0m3")
 libraries = {
 "": SubResource("AnimationLibrary_ck4ni")
 }
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
