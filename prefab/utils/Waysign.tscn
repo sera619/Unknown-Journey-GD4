@@ -1,0 +1,89 @@
+[gd_scene load_steps=12 format=3 uid="uid://xex3x1q2v22b"]
+
+[ext_resource type="Texture2D" uid="uid://bkiw8qsmbvtow" path="res://assets/Shadows/SmallShadow.png" id="1_2rb8y"]
+[ext_resource type="Script" path="res://prefab/utils/Waysign.gd" id="1_bolj1"]
+[ext_resource type="Texture2D" uid="uid://eh0fckgfyg0w" path="res://assets/objects/wegweißer_right.png" id="2_tmwaw"]
+[ext_resource type="PackedScene" uid="uid://kbo1bay3i1ps" path="res://prefab/utils/PlayerDetector.tscn" id="3_0aboq"]
+[ext_resource type="Texture2D" uid="uid://cghdilckno7xr" path="res://assets/objects/wegweißer_left.png" id="3_28y55"]
+[ext_resource type="Texture2D" uid="uid://hfu2fg2kopso" path="res://assets/UI/E-Key.png" id="4_xleaj"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_li22a"]
+radius = 2.0
+height = 10.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_brl4q"]
+radius = 28.0179
+
+[sub_resource type="Animation" id="Animation_t2hkl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Icon:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_a8o8t"]
+resource_name = "loop"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Icon:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 3)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tuu5b"]
+_data = {
+"RESET": SubResource("Animation_t2hkl"),
+"loop": SubResource("Animation_a8o8t")
+}
+
+[node name="Waysign" type="Node2D"]
+script = ExtResource("1_bolj1")
+right_sprite = ExtResource("2_tmwaw")
+left_sprite = ExtResource("3_28y55")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+texture = ExtResource("1_2rb8y")
+
+[node name="Body" type="Sprite2D" parent="."]
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("3_28y55")
+offset = Vector2(0, -15)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_li22a")
+
+[node name="PlayerDetector" parent="." instance=ExtResource("3_0aboq")]
+
+[node name="CollisionShape2D" parent="PlayerDetector" index="0"]
+position = Vector2(0, -12)
+shape = SubResource("CircleShape2D_brl4q")
+
+[node name="Icon" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -47)
+texture = ExtResource("4_xleaj")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_tuu5b")
+}
+
+[editable path="PlayerDetector"]
