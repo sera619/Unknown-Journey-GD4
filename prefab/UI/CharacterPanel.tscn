@@ -98,12 +98,12 @@ theme_override_constants/margin_bottom = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="BG/M/V/StatsBG/MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 25
+theme_override_constants/separation = 14
 alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="BG/M/V/StatsBG/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 0
+theme_override_constants/separation = 15
 alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="BG/M/V/StatsBG/MarginContainer/VBoxContainer/HBoxContainer"]
@@ -118,38 +118,8 @@ theme_override_colors/font_color = Color(0.109804, 0.717647, 0.988235, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.172549)
 theme_override_fonts/font = ExtResource("4_1edde")
 theme_override_font_sizes/font_size = 8
-text = "Name"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="HTitle" type="Label" parent="BG/M/V/StatsBG/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.109804, 0.717647, 0.988235, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.172549)
-theme_override_fonts/font = ExtResource("4_1edde")
-theme_override_font_sizes/font_size = 8
-text = "Leben"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="ETitle" type="Label" parent="BG/M/V/StatsBG/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.109804, 0.717647, 0.988235, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.172549)
-theme_override_fonts/font = ExtResource("4_1edde")
-theme_override_font_sizes/font_size = 8
-text = "Energie"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="DTitle" type="Label" parent="BG/M/V/StatsBG/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.109804, 0.717647, 0.988235, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.172549)
-theme_override_fonts/font = ExtResource("4_1edde")
-theme_override_font_sizes/font_size = 8
-text = "Damage"
-horizontal_alignment = 1
+text = "Name:"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="LTitle" type="Label" parent="BG/M/V/StatsBG/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
@@ -158,9 +128,48 @@ theme_override_colors/font_color = Color(0.109804, 0.717647, 0.988235, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.172549)
 theme_override_fonts/font = ExtResource("4_1edde")
 theme_override_font_sizes/font_size = 8
-text = "Level
-"
-horizontal_alignment = 1
+text = "Level:"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="HTitle" type="Label" parent="BG/M/V/StatsBG/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.109804, 0.717647, 0.988235, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.172549)
+theme_override_fonts/font = ExtResource("4_1edde")
+theme_override_font_sizes/font_size = 8
+text = "Leben:"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="ETitle" type="Label" parent="BG/M/V/StatsBG/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.109804, 0.717647, 0.988235, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.172549)
+theme_override_fonts/font = ExtResource("4_1edde")
+theme_override_font_sizes/font_size = 8
+text = "Energie:"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="DTitle" type="Label" parent="BG/M/V/StatsBG/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.109804, 0.717647, 0.988235, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.172549)
+theme_override_fonts/font = ExtResource("4_1edde")
+theme_override_font_sizes/font_size = 8
+text = "Schaden:"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="ETitle2" type="Label" parent="BG/M/V/StatsBG/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.109804, 0.717647, 0.988235, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.172549)
+theme_override_fonts/font = ExtResource("4_1edde")
+theme_override_font_sizes/font_size = 8
+text = "Exp:"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="BG/M/V/StatsBG/MarginContainer/VBoxContainer/HBoxContainer"]
@@ -176,6 +185,16 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.309804)
 theme_override_fonts/font = ExtResource("4_1edde")
 theme_override_font_sizes/font_size = 8
 text = "Name"
+vertical_alignment = 1
+
+[node name="Level" type="Label" parent="BG/M/V/StatsBG/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.976471, 0.564706, 0.0941176, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.309804)
+theme_override_fonts/font = ExtResource("4_1edde")
+theme_override_font_sizes/font_size = 8
+text = "Level
+"
 vertical_alignment = 1
 
 [node name="Health" type="Label" parent="BG/M/V/StatsBG/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
@@ -205,14 +224,13 @@ theme_override_font_sizes/font_size = 8
 text = "Damage"
 vertical_alignment = 1
 
-[node name="Level" type="Label" parent="BG/M/V/StatsBG/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+[node name="Exp" type="Label" parent="BG/M/V/StatsBG/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.976471, 0.564706, 0.0941176, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.309804)
 theme_override_fonts/font = ExtResource("4_1edde")
 theme_override_font_sizes/font_size = 8
-text = "Level
-"
+text = "0 / 300"
 vertical_alignment = 1
 
 [node name="OkBtn" type="TextureButton" parent="BG/M/V/StatsBG/MarginContainer/VBoxContainer"]
