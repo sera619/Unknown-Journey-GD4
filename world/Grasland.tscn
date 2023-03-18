@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://cmyeya6fvbgt7"]
+[gd_scene load_steps=32 format=3 uid="uid://cmyeya6fvbgt7"]
 
 [ext_resource type="Script" path="res://world/Grasland.gd" id="1_hwqie"]
 [ext_resource type="Texture2D" uid="uid://by0asahacrf8v" path="res://assets/World/terrain_atlas.png" id="2_velti"]
@@ -17,8 +17,6 @@
 [ext_resource type="PackedScene" uid="uid://dewtis55bljv5" path="res://prefab/props/SmallBush.tscn" id="10_6nct6"]
 [ext_resource type="PackedScene" uid="uid://b2gdh6u1gj3fu" path="res://prefab/utils/InformationTrigger.tscn" id="13_857up"]
 [ext_resource type="PackedScene" uid="uid://xex3x1q2v22b" path="res://prefab/utils/Waysign.tscn" id="13_nsg3c"]
-[ext_resource type="PackedScene" uid="uid://bnpcj4cccm3rm" path="res://prefab/UI/DevUtil.tscn" id="14_2wpq8"]
-[ext_resource type="PackedScene" uid="uid://dnbng2g6ad7s6" path="res://prefab/itemdrops/HealthPotDrop.tscn" id="14_ks6jh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ho2jp"]
 texture = ExtResource("2_velti")
@@ -10163,18 +10161,6 @@ position = Vector2(630, 117)
 goal_location = "Die Höhle"
 sign_direction = 1
 
-[node name="DevUtil" parent="Map/GameObjects/Buildings" instance=ExtResource("14_2wpq8")]
-position = Vector2(893, -155)
-collision_layer = 1
-collision_mask = 1
-touch_type = 1
-exp_to_add = 400
-dmg_to_add = 2
-
-[node name="DevUtil2" parent="Map/GameObjects/Buildings" instance=ExtResource("14_2wpq8")]
-position = Vector2(895, -198)
-dmg_to_add = 2
-
 [node name="Teleporter" parent="Map/GameObjects" instance=ExtResource("5_fviyu")]
 position = Vector2(755, -258)
 teleport_location = "SwordCave"
@@ -10212,9 +10198,6 @@ Monster und du kannst dich nicht verteidigen![/center]"
 position = Vector2(-36.5, -67.5)
 shape = SubResource("RectangleShape2D_wtuax")
 one_way_collision = true
-
-[node name="HealthPotDrop" parent="Map/GameObjects" instance=ExtResource("14_ks6jh")]
-position = Vector2(736, -45)
 
 [node name="WaterFall" type="AnimatedSprite2D" parent="Map"]
 position = Vector2(530, -113.5)
