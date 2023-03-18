@@ -12,9 +12,15 @@ class_name Quest
 @export var quest_mob_scene: PackedScene
 @export var quest_item_scene: PackedScene
 
+@export_group("Quest Text")
+@export_multiline var quest_start_text: String
+@export_multiline var quest_progress_text: String
+@export_multiline var quest_complete_text: String
+
 @export_category('Quest Locations')
 @export var mob_spawn_node: NodePath
 @export var item_spawn_node: NodePath
+
 
 @export_category('Quest Reward')
 @export var reward_xp: int
@@ -50,8 +56,7 @@ func add_quest_items():
 	current_quantity += 1
 	if current_quantity == required_quantity:
 		set_state(QS.FINISHED)
-		GameManager.info_box.set_info_text("Quest: \"%s\" ist fertig!\nDu kannst sie jetzt abgeben!" % quest_name)
-
+		GameManager.info_box.set_info_text("[center]Quest: \"%s\" ist fertig!\n\nDu kannst sie jetzt abgeben![/center]" % quest_name)
 		if GameManager.ui_questlog:
 			GameManager.ui_questlog.update_questlist()
 			GameManager.ui_questlog.update_questlog(self)
@@ -66,6 +71,6 @@ func complete_quest():
 	GameManager.player.stats.set_exp(reward_xp + GameManager.player.stats.experience)
 	set_state(QS.COMPLETE)
 	GameManager.ui_questlog.update_questlist()
-	GameManager.info_box.set_info_text("Du hast die Quest:\n\"%s\"\n abgeschlossen!" % quest_name)
+	GameManager.info_box.set_info_text("[center]Du hast die Quest:\n\n\"%s\"\n\n abgeschlossen![/center]" % quest_name)
 	GameManager.save_data()
 
