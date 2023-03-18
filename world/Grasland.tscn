@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://cmyeya6fvbgt7"]
+[gd_scene load_steps=34 format=3 uid="uid://cmyeya6fvbgt7"]
 
 [ext_resource type="Script" path="res://world/Grasland.gd" id="1_hwqie"]
 [ext_resource type="Texture2D" uid="uid://by0asahacrf8v" path="res://assets/World/terrain_atlas.png" id="2_velti"]
@@ -13,8 +13,11 @@
 [ext_resource type="Texture2D" uid="uid://dmnbpm1f1qysw" path="res://assets/tiles/wateranimate2.png" id="6_braxs"]
 [ext_resource type="PackedScene" uid="uid://c50sg12xyw5sj" path="res://prefab/npc/Fairy.tscn" id="6_scwyo"]
 [ext_resource type="PackedScene" uid="uid://dcc837c2ujx6g" path="res://prefab/utils/GameCamera.tscn" id="7_jc8e8"]
+[ext_resource type="PackedScene" uid="uid://duqvtvxqoyvgj" path="res://prefab/enemys/EnemyFungy.tscn" id="9_v1pbo"]
 [ext_resource type="PackedScene" uid="uid://dewtis55bljv5" path="res://prefab/props/SmallBush.tscn" id="10_6nct6"]
 [ext_resource type="PackedScene" uid="uid://b2gdh6u1gj3fu" path="res://prefab/utils/InformationTrigger.tscn" id="13_857up"]
+[ext_resource type="PackedScene" uid="uid://xex3x1q2v22b" path="res://prefab/utils/Waysign.tscn" id="13_nsg3c"]
+[ext_resource type="PackedScene" uid="uid://bnpcj4cccm3rm" path="res://prefab/UI/DevUtil.tscn" id="14_2wpq8"]
 [ext_resource type="PackedScene" uid="uid://dnbng2g6ad7s6" path="res://prefab/itemdrops/HealthPotDrop.tscn" id="14_ks6jh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ho2jp"]
@@ -9842,6 +9845,9 @@ position = Vector2(690, 244)
 [node name="Enemys" type="Node2D" parent="Map/GameObjects"]
 y_sort_enabled = true
 
+[node name="EnemyFungy" parent="Map/GameObjects/Enemys" instance=ExtResource("9_v1pbo")]
+position = Vector2(-80, 135)
+
 [node name="Grases" type="Node2D" parent="Map/GameObjects"]
 y_sort_enabled = true
 
@@ -9954,19 +9960,19 @@ position = Vector2(227, 60)
 position = Vector2(311, 89)
 
 [node name="SmallTree3" parent="Map/GameObjects/Trees" instance=ExtResource("5_6rw7p")]
-position = Vector2(543, 95)
+position = Vector2(484, 68)
 
 [node name="SmallTree4" parent="Map/GameObjects/Trees" instance=ExtResource("5_6rw7p")]
-position = Vector2(697, 87)
+position = Vector2(492, 116)
 
 [node name="SmallTree5" parent="Map/GameObjects/Trees" instance=ExtResource("5_6rw7p")]
-position = Vector2(636, 111)
+position = Vector2(438, 113)
 
 [node name="SmallTree6" parent="Map/GameObjects/Trees" instance=ExtResource("5_6rw7p")]
-position = Vector2(673, 103)
+position = Vector2(697, 86)
 
 [node name="SmallTree7" parent="Map/GameObjects/Trees" instance=ExtResource("5_6rw7p")]
-position = Vector2(651, 83)
+position = Vector2(473, 98)
 
 [node name="SmallTree8" parent="Map/GameObjects/Trees" instance=ExtResource("5_6rw7p")]
 position = Vector2(1346, 185)
@@ -10146,6 +10152,28 @@ position = Vector2(1384, 470)
 position = Vector2(1474, 554)
 
 [node name="Buildings" type="Node2D" parent="Map/GameObjects"]
+y_sort_enabled = true
+
+[node name="Waysign" parent="Map/GameObjects/Buildings" instance=ExtResource("13_nsg3c")]
+position = Vector2(562, 117)
+goal_location = "Der Wald"
+
+[node name="Waysign2" parent="Map/GameObjects/Buildings" instance=ExtResource("13_nsg3c")]
+position = Vector2(630, 117)
+goal_location = "Die Höhle"
+sign_direction = 1
+
+[node name="DevUtil" parent="Map/GameObjects/Buildings" instance=ExtResource("14_2wpq8")]
+position = Vector2(893, -155)
+collision_layer = 1
+collision_mask = 1
+touch_type = 1
+exp_to_add = 400
+dmg_to_add = 2
+
+[node name="DevUtil2" parent="Map/GameObjects/Buildings" instance=ExtResource("14_2wpq8")]
+position = Vector2(895, -198)
+dmg_to_add = 2
 
 [node name="Teleporter" parent="Map/GameObjects" instance=ExtResource("5_fviyu")]
 position = Vector2(755, -258)
@@ -10175,7 +10203,10 @@ shape = SubResource("CircleShape2D_6h2lj")
 
 [node name="InformationTrigger" parent="Map/GameObjects" instance=ExtResource("13_857up")]
 position = Vector2(133, 172)
-info_text = "Du solltest umkehren! Hier erwarten dich gefährliche Monster und du kannst dich nicht verteidigen!"
+info_text = "[center][color=red]Du solltest umkehren![/color]
+
+Hier erwarten dich gefährliche
+Monster und du kannst dich nicht verteidigen![/center]"
 
 [node name="CollisionShape2D" parent="Map/GameObjects/InformationTrigger/PlayerDetector" index="0"]
 position = Vector2(-36.5, -67.5)
@@ -10184,7 +10215,6 @@ one_way_collision = true
 
 [node name="HealthPotDrop" parent="Map/GameObjects" instance=ExtResource("14_ks6jh")]
 position = Vector2(736, -45)
-amount = 1
 
 [node name="WaterFall" type="AnimatedSprite2D" parent="Map"]
 position = Vector2(530, -113.5)
@@ -10195,6 +10225,7 @@ frame_progress = 0.0919822
 
 [node name="GameCamera" parent="Map" instance=ExtResource("7_jc8e8")]
 zoom = Vector2(0.8, 0.8)
+position_smoothing_enabled = true
 
 [node name="TopLeft" parent="Map/GameCamera/Limits" index="0"]
 position = Vector2(-647, -449)
