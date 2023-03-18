@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Quest" load_steps=2 format=3 uid="uid://df6ch8efor5m5"]
+
+[ext_resource type="Script" path="res://Quests/Quest.gd" id="1_st5u4"]
+
+[resource]
+script = ExtResource("1_st5u4")
+quest_id = 4
+quest_name = "Zum Wald"
+quest_description = "Verlasse das Tal und gehe in den Wald dort soll sich ein Mädchen befinden."
+quest_type = 0
+required_quantity = 1
+quest_start_text = "Dein erstes Training ist abgeschlossen.
+Folge den Schildern und gehe in den Wald. Meine Freundin Sara ist verschwunden bitte finde sie!"
+quest_progress_text = "Der Wald befindet sich direkt auf der anderen Seite der östlichen Brücke des Tals. Folge dem Weg du kannst es nicht verfehlen!"
+quest_complete_text = "Oh Hallo ich bin Sara und wer bist du?"
+mob_spawn_node = NodePath("")
+item_spawn_node = NodePath("")
+reward_xp = 320
