@@ -9,6 +9,8 @@ class_name DialogBox
 @onready var option_b_btn: TextureButton= $BG/M/v/H/DialogOptionBBtn
 
 var tween: Tween = null
+var current_speaker: NPCBase = null
+
 
 func _ready():
 	GameManager.register_node(self)
@@ -33,8 +35,9 @@ func reset_dialog():
 func set_dialog_text(text: String):
 	dialog_label.text = text
 
-func set_speaker_name(speakername: String):
-	speakername_label.text = speakername
+func set_speaker(speaker):
+	current_speaker = speaker 
+	speakername_label.text = speaker.name
 
 func set_options_text(optionA: String, optionB: String):
 	option_a_label.text = optionA
@@ -52,10 +55,17 @@ func hide_dialog():
 func _on_dialog_option_b_btn_button_down():
 	print("[!] DialogBox: Option B: \"%s\" choosed!" % option_b_label.text)
 	reset_dialog()
+	if self.current_speaker != null:
+		self.current_speaker.is_talking = false
+	self.current_speaker = null
 	hide_dialog()
+
 
 func _on_dialog_option_a_btn_button_down():
 	print("[!] DialogBox: Option A: \"%s\" choosed!" % option_a_label.text)
 	reset_dialog()
+	if self.current_speaker != null:
+		self.current_speaker.is_talking = false
+	self.current_speaker = null
 	hide_dialog()
 	
