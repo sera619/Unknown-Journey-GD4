@@ -18,7 +18,6 @@ func _ready():
 	GameManager.register_node(self)
 	if GameManager.player:
 		player = GameManager.player
-	GameManager.ui_questlog.update_questlist()
 	switch_gamelevel("MainMenu")
 
 func start_new_game():
@@ -26,7 +25,6 @@ func start_new_game():
 
 func load_game():
 	loaded_data = GameManager.load_savegame()
-	GameManager.ui_questlog.update_questlist()
 	switch_gamelevel(loaded_data['cur_world'])
 
 
@@ -40,6 +38,9 @@ func switch_gamelevel(levelname: String):
 	world_holder.call_deferred("add_child",node)
 	if levelname == "MainMenu":
 		GameManager.on_main_menu = true
+		GameManager.interface.stat_hud.hide()
+		GameManager.interface.potion_panel.hide()
+		GameManager.interface.exp_hud.hide()
 		GameManager.player = null
 	else:
 		GameManager.on_main_menu = false

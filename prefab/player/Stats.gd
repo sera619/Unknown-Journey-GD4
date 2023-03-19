@@ -76,22 +76,23 @@ func set_default_stats():
 	set_max_exp(300)
 	set_exp(0)
 	set_damage(MAX_DAMAGE)
-	set_health(MAX_HEALTH)
+	set_health(MAX_HEALTH, true)
 	set_energie(0)
 	print("[!] Data: Set default playerstats!")
 
-func set_health(value):
+func set_health(value, loaded=false):
 	var old_healt = health
 	health = value
 	if health >= MAX_HEALTH:
 		health = MAX_HEALTH
 	EventHandler.emit_signal("player_health_changed", health)
-	if old_healt > health:
-		dmg_label.add_theme_color_override("default_color", Color(0.7843137383461, 0.12156862765551, 0.03529411926866))
-		show_dmg_display("[wave amp=40 freq=10]\n-%s[/wave]" % value)
-	elif old_healt < health:
-		dmg_label.add_theme_color_override("default_color", Color(0.32941177487373, 0.7843137383461, 0.15294118225574))
-		show_dmg_display("[wave amp=40 freq=10]\n+%s[/wave]" % value)
+	if loaded == false:
+		if old_healt > health:
+			dmg_label.add_theme_color_override("default_color", Color(0.7843137383461, 0.12156862765551, 0.03529411926866))
+			show_dmg_display("[wave amp=40 freq=10]\n-%s[/wave]" % int(old_healt - health))
+		elif old_healt < health:
+			dmg_label.add_theme_color_override("default_color", Color(0.32941177487373, 0.7843137383461, 0.15294118225574))
+			show_dmg_display("[wave amp=40 freq=10]\n+%s[/wave]" % int(old_healt + health))
 
 func show_dmg_display(dmgvalue: String):
 	dmg_label.text = dmgvalue
@@ -145,8 +146,6 @@ func level_up(rest):
 	set_max_exp(int(max_experience * exp_multiplikator))
 	set_exp(rest)
 	set_level(level + 1)
-	set_max_health(int(MAX_HEALTH * exp_multiplikator))
-	set_max_energie(int(MAX_ENERGIE * exp_multiplikator))
 	set_health(MAX_HEALTH)
 	if level == 2:
 		GameManager.interface.newskill_hud.set_skill_text("Dash", "Du kannst dich nun\n\nkurzzeitig sehr schnell in deine Laufrichtung bewegen!\n\nDrücke hierzu beim laufen die Taste \"V\".")
@@ -154,6 +153,12 @@ func level_up(rest):
 		GameManager.interface.newskill_hud.set_skill_text("Doppel Angriff", "Du kannst dein Schwert nun 2x schwingen.\n\nDafür brauchst du 1 Energiepunkt!\n\nDein Schwert sammelt Energie wenn\n\nes mit normalen Angriffen trifft.\n\nDrücke die Taste \"Q\"!")
 	elif level == HEAVY_ATTACK_CAP:
 		GameManager.interface.newskill_hud.set_skill_text("Starker Angriff", "Du kannst dein Schwert nun rotieren.\n\nDafür brauchst du 2 Energiepunkte!\n\nDein Schwert sammelt Energie wenn\n\nes mit normalen Angriffen trifft.\n\nDrücke die Taste \"Q\"!")		
+	
+	if level == 2 or level == 4 or level == 6 or level == 8 or level == 10:
+		set_max_health(MAX_HEALTH + 1)
+		set_health(MAX_HEALTH)
+		set_max_energie(MAX_ENERGIE +1)
+		set_energie(0)
 	EventHandler.emit_signal("player_level_up")
 
 func add_seen_npc(npcname:String):
@@ -179,7 +184,7 @@ func apply_loaded_stats():
 		GameManager.seen_npcs.append(n)
 	print("[!] %s: Set health to %s !" % [parent, MAX_HEALTH])
 	set_max_health(MAX_HEALTH)
-	set_health(MAX_HEALTH)
+	set_health(MAX_HEALTH, true)
 	set_level(level)
 	set_max_exp(max_experience)
 	set_exp(experience)

@@ -26,9 +26,9 @@ func _input(event):
 		return
 	if event.is_action_pressed("qlog"):
 		if qlog.visible:
-			qlog.hide_questlog()
+			qlog.hide()
 		else:
-			qlog.show_questlog()
+			qlog.show()
 	if event.is_action_pressed("charpanel"):
 		if charpanel.visible:
 			charpanel.hide_charpanel()
@@ -37,7 +37,7 @@ func _input(event):
 
 
 func hide_ui():
-	qlog.hide_questlog()
+	qlog.hide()
 	stat_hud.hide()
 	potion_panel.hide()
 	exp_hud.hide()

@@ -158,7 +158,7 @@ func avoid_obstacles():
 	return Vector2.ZERO
 	
 func take_damage(area):
-	if area.attack_type == PlayerSword.Type.NORMAL:
+	if area.attack_type == PlayerSword.Type.NORMAL and GameManager.player.stats.level > 4:
 		GameManager.player.stats.set_energie(GameManager.player.stats.energie + 1)
 	if stats.health >= 0:
 		var hit_sound = hurt_sound_scene.instantiate()

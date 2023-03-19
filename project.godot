@@ -19,7 +19,7 @@ config/icon="res://icon.svg"
 
 GameManager="*res://scripts/GameManager.gd"
 EventHandler="*res://scripts/EventHandler.gd"
-QuestManager="*res://scripts/QuestManager.gd"
+QuestManager="*res://scripts/QuestManager.tscn"
 
 [display]
 

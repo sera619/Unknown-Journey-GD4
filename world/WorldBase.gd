@@ -18,9 +18,8 @@ func _ready():
 func _on_ready():
 	spawn_player()
 	GameManager.register_node(self)
-#	if GameManager.quest_system.player_questlog["Das Schwert"].quest_state != Quest.QS.ACTIVE:
-#		GameManager.quest_system._activate_quest("Das Schwert")
-	GameManager.ui_questlog.update_questlist()
+
+
 
 func get_entry_spot():
 	if entry_spot:

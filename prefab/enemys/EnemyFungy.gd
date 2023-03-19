@@ -2,6 +2,9 @@ extends CharacterBody2D
 
 @export var hit_effect_scene: PackedScene
 @export var death_effect_scene: PackedScene
+@export_category("SFX Scenes")
+@export var hurt_sound_scene: PackedScene
+@export var death_sound_scene: PackedScene
 @onready var hitbox: Area2D = $HitBox
 @onready var attack_timer: Timer = $Timer
 @onready var hurt_box: Area2D = $WeaponAngle/HurtBox
@@ -56,6 +59,8 @@ func _physics_process(delta):
 		hurt_box.knockback_vector = velocity
 		anim_tree.set("parameters/Idle/blend_position", velocity)
 		anim_tree.set("parameters/Move/blend_position", velocity)
+		anim_tree.set("parameters/Attack/blend_position", velocity)
+		anim_tree.set("parameters/SporeAttack/blend_position", velocity)
 		anim_stats.travel("Move")
 	else:
 		anim_stats.travel("Idle")
@@ -95,7 +100,7 @@ func _physics_process(delta):
 		ATTACK:
 			var player = player_detector.player
 			if player != null:
-				accelerate_towards_point(player.global_position, delta)
+				attack_state(delta)
 	if softCollision.is_colliding():
 		velocity += softCollision.get_push_vector() * delta * 400
 	move_and_slide()
@@ -108,6 +113,16 @@ func on_hurtbox_area_entered(area):
 		return
 	can_attack = false
 	attack_timer.start()
+	state = IDLE
+
+func attack_state(_delta):
+	can_attack = false
+	attack_timer.start()
+	velocity = Vector2.ZERO
+	anim_stats.travel("SporeAttack")
+
+
+func _on_attack_animation_finished():
 	state = IDLE
 
 func seek_player():
@@ -141,7 +156,6 @@ func accelerate_towards_point(point, delta):
 
 	velocity = velocity.move_toward(direction * speed, stats.ACCELERATION * delta)
 	velocity += avoid_obstacles()
-	animSprite.flip_h = velocity.x < 0
 
 func avoid_obstacles():
 	var avoid_vector
@@ -155,9 +169,11 @@ func avoid_obstacles():
 	return Vector2.ZERO
 	
 func take_damage(area):
-	if area.attack_type == PlayerSword.Type.NORMAL:
+	if area.attack_type == PlayerSword.Type.NORMAL and GameManager.player.stats.level > 4:
 		GameManager.player.stats.set_energie(GameManager.player.stats.energie + 1)
 	if stats.health >= 0:
+		var hit_sound = hurt_sound_scene.instantiate()
+		self.add_child(hit_sound)
 		var effect = hit_effect_scene.instantiate() 
 		var cs = get_tree().current_scene
 		effect.global_position= animSprite.global_position
@@ -168,6 +184,8 @@ func take_damage(area):
 		knockback = area.knockback_vector * 115
 		print("[!] Enemy: %s gets hitted for %s damage!" % [self.name, area.damage])
 		if stats.health <= 0:
+			var death_sound = death_sound_scene.instantiate()
+			get_tree().current_scene.add_child(death_sound)
 			var effect2 = death_effect_scene.instantiate()
 			#effect2.global_position.y += animSprite.offset.y
 			effect2.connect("effect_finished", kill_enemy)

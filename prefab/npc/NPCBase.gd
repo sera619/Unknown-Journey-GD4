@@ -43,12 +43,6 @@ func pick_random_state(state_list: Array):
 	state_list.shuffle()
 	return state_list.pop_front()
 
-func give_quest(questname: String):
-	var quest = GameManager.quest_system.player_questlog[questname]
-	if quest.quest_state == Quest.QS.NOT_GIVEN:
-		GameManager.quest_system._activate_quest(questname)
-		GameManager.ui_questlog.update_questlist()
-		print("[!] Quest-NPC \"%s\": Add Quest \"%s\" to Questlog!" % [self.npc_name, quest.quest_name])
 
 func accelerate_towards_point(point, delta):
 	var direction = global_position.direction_to(point)

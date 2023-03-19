@@ -121,11 +121,11 @@ grow_vertical = 1
 scale = Vector2(0.5, 0.5)
 
 [node name="DialogBox" parent="." instance=ExtResource("9_kcv7y")]
-offset_left = 105.0
-offset_top = 109.0
-offset_right = 105.0
-offset_bottom = 109.0
-scale = Vector2(0.35, 0.35)
+offset_left = 88.0
+offset_top = 97.0
+offset_right = 88.0
+offset_bottom = 97.0
+scale = Vector2(0.45, 0.45)
 
 [node name="PauseMenu" parent="." instance=ExtResource("3_6p8ro")]
 visible = false
