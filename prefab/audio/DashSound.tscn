@@ -1,9 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://cpnwejcyr1ecu"]
 
 [ext_resource type="Script" path="res://prefab/audio/SoundEffect.gd" id="1_r7ei8"]
-[ext_resource type="AudioStream" uid="uid://drw1f5jfd7o6g" path="res://assets/Music and Sounds/Evade.wav" id="1_u07m8"]
+[ext_resource type="AudioStream" uid="uid://decubi735askt" path="res://assets/Music and Sounds/charge.wav" id="1_w7lbn"]
 
 [node name="SoundEffect" type="AudioStreamPlayer"]
-stream = ExtResource("1_u07m8")
+stream = ExtResource("1_w7lbn")
+autoplay = true
 bus = &"PlayerSFX"
 script = ExtResource("1_r7ei8")

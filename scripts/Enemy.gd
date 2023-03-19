@@ -2,6 +2,7 @@ extends CharacterBody2D
 class_name Enemy
 
 signal enemy_take_damage(damage)
+signal enemy_died()
 
 @export var item_name: String
 @export_category("VFX Scenes")
@@ -182,7 +183,7 @@ func take_damage(area):
 			GameManager.current_world.enemy_container.add_child(effect2)
 			effect2.global_position = animSprite.global_position
 			self.visible = false
-			GameManager.quest_system._add_quest_item("Ungeziefer")
+			emit_signal("enemy_died", self)
 			reward_player()
 		
 	else:

@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://1appx5yjpb3f"]
+
+[ext_resource type="Script" path="res://dev/WeaponTrigger.gd" id="1_tv25b"]
+[ext_resource type="Texture2D" uid="uid://yotqew0yv4ol" path="res://assets/UI/exclamation_mark.png" id="2_unupb"]
+
+[node name="WeaponTrigger" type="Area2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_tv25b")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_unupb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]

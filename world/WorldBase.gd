@@ -20,7 +20,6 @@ func _on_ready():
 	GameManager.register_node(self)
 
 
-
 func get_entry_spot():
 	if entry_spot:
 		return entry_spot.global_position

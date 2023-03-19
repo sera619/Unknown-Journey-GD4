@@ -224,8 +224,8 @@ func dash_state(delta):
 func take_damage(area):
 	if not attackable and not area.is_in_group("enemyWeapon"):
 		return
-	stats.set_health(stats.health - area.damage)
-	if stats.health > 0:
+	if stats.health >= 0:
+		stats.set_health(stats.health - area.damage)
 		knockback = area.knockback_vector.normalized() * 225
 		var effect = hit_effect_scene.instantiate()
 		get_tree().current_scene.add_child(effect)
@@ -233,15 +233,13 @@ func take_damage(area):
 		var sound = hurt_sound_scene.instantiate()
 		self.add_child(sound)
 		attackable = false
+		if stats.has_sword:
+			combat_stance = true
 		hit_box_shape.call_deferred("set_disabled", true)
 		hit_timer.start(2)
+		GameManager.camera.add_trauma(1)
 		state = HURT
-	else:
-		is_alive = false
-		EventHandler.emit_signal("player_died")
-		GameManager.camera.player = null
-		GameManager.player = null
-		self.queue_free()
+
 
 func create_levelup_effect():
 	var effect = levelup_effect_scene.instantiate()
@@ -281,7 +279,14 @@ func hit_timer_timeout():
 	attackable = true
 
 func hurt_animation_finished():
-	state = MOVE
+	if stats.health <= 0:
+		is_alive = false
+		EventHandler.emit_signal("player_died")
+		GameManager.camera.player = null
+		GameManager.player = null
+		self.queue_free()
+	else:
+		state = MOVE
 
 func combat_timer_timeout():
 	combat_stance = false

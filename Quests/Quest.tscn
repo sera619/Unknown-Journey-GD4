@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://3hfqqcddupv8"]
-
-[ext_resource type="Script" path="res://Quests/Quest.gd" id="1_gpr2k"]
-
-[node name="Quest" type="Node"]
-script = ExtResource("1_gpr2k")

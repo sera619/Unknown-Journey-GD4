@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://cmyeya6fvbgt7"]
+[gd_scene load_steps=38 format=3 uid="uid://cmyeya6fvbgt7"]
 
 [ext_resource type="Script" path="res://world/Grasland.gd" id="1_hwqie"]
 [ext_resource type="Texture2D" uid="uid://by0asahacrf8v" path="res://assets/World/terrain_atlas.png" id="2_velti"]
@@ -17,6 +17,9 @@
 [ext_resource type="PackedScene" uid="uid://dewtis55bljv5" path="res://prefab/props/SmallBush.tscn" id="10_6nct6"]
 [ext_resource type="PackedScene" uid="uid://b2gdh6u1gj3fu" path="res://prefab/utils/InformationTrigger.tscn" id="13_857up"]
 [ext_resource type="PackedScene" uid="uid://xex3x1q2v22b" path="res://prefab/utils/Waysign.tscn" id="13_nsg3c"]
+[ext_resource type="PackedScene" uid="uid://cft88fjho8tcr" path="res://dev/EXPTrigger.tscn" id="16_wgv85"]
+[ext_resource type="PackedScene" uid="uid://1appx5yjpb3f" path="res://dev/WeaponTrigger.tscn" id="17_chyv5"]
+[ext_resource type="PackedScene" uid="uid://b2srh37osye8d" path="res://dev/DMGTrigger.tscn" id="18_52l5f"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ho2jp"]
 texture = ExtResource("2_velti")
@@ -9696,6 +9699,14 @@ radius = 44.2832
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wtuax"]
 size = Vector2(155, 443)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_em8yf"]
+radius = 13.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wb5cm"]
+radius = 12.0416
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ier58"]
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_2dt3r"]
 atlas = ExtResource("6_braxs")
 region = Rect2(0, 0, 96, 193)
@@ -9844,7 +9855,7 @@ position = Vector2(690, 244)
 y_sort_enabled = true
 
 [node name="EnemyFungy" parent="Map/GameObjects/Enemys" instance=ExtResource("9_v1pbo")]
-position = Vector2(-80, 135)
+position = Vector2(-79, 135)
 
 [node name="Grases" type="Node2D" parent="Map/GameObjects"]
 y_sort_enabled = true
@@ -10199,6 +10210,26 @@ position = Vector2(-36.5, -67.5)
 shape = SubResource("RectangleShape2D_wtuax")
 one_way_collision = true
 
+[node name="EXPTrigger" parent="Map/GameObjects" instance=ExtResource("16_wgv85")]
+position = Vector2(895, -191)
+exp_to_add = 400
+
+[node name="CollisionShape2D" parent="Map/GameObjects/EXPTrigger" index="0"]
+shape = SubResource("CircleShape2D_em8yf")
+
+[node name="WeaponTrigger" parent="Map/GameObjects" instance=ExtResource("17_chyv5")]
+position = Vector2(895, -143)
+
+[node name="CollisionShape2D" parent="Map/GameObjects/WeaponTrigger" index="1"]
+shape = SubResource("CircleShape2D_wb5cm")
+
+[node name="DMGTrigger" parent="Map/GameObjects" instance=ExtResource("18_52l5f")]
+position = Vector2(872, -112)
+damage = 1
+
+[node name="CollisionShape2D" parent="Map/GameObjects/DMGTrigger" index="0"]
+shape = SubResource("CircleShape2D_ier58")
+
 [node name="WaterFall" type="AnimatedSprite2D" parent="Map"]
 position = Vector2(530, -113.5)
 scale = Vector2(0.5, 0.61658)
@@ -10223,4 +10254,7 @@ position = Vector2(1699, 670)
 [editable path="Map/GameObjects/Teleporter2/PlayerDetector"]
 [editable path="Map/GameObjects/InformationTrigger"]
 [editable path="Map/GameObjects/InformationTrigger/PlayerDetector"]
+[editable path="Map/GameObjects/EXPTrigger"]
+[editable path="Map/GameObjects/WeaponTrigger"]
+[editable path="Map/GameObjects/DMGTrigger"]
 [editable path="Map/GameCamera"]

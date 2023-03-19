@@ -1,5 +1,6 @@
 extends Node2D
 class_name ItemDrop
+signal interaction_finished()
 
 @export_category('Item Settings')
 @export var item_name: String
@@ -47,7 +48,8 @@ func pickup(area):
 	if not area.is_in_group("playerPickupzone"):
 		return
 	if item_type == 1:
-		GameManager.quest_system._add_quest_item("Das Schwert")
+		emit_signal("interaction_finished", self)
+		print("Interact")
 	elif item_type == 0:
 		if item_name:
 			GameManager.player.stats.get_item(item_name, amount)

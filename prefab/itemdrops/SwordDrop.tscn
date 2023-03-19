@@ -72,7 +72,7 @@ _data = {
 "loop": SubResource("Animation_wirbg")
 }
 
-[node name="SwordDrop" type="Node2D"]
+[node name="SwordDrop" type="Node2D" groups=["interactive_object"]]
 script = ExtResource("1_tkcx5")
 item_name = "Schwert"
 item_image = ExtResource("2_emle2")

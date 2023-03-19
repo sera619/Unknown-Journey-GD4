@@ -10,9 +10,10 @@ class_name GameCamera
 
 @export_group('Shake Options')
 @export var camera_move_speed: int = 50
-@export var shake_time: float = 0.4
-@export var shake_limit: int = 100
-@export var shake_amount: int = 0
+@export var decay = 0.9  # How quickly the shaking stops [0, 1].
+@export var max_offset = Vector2(50, 25)  # Maximum hor/ver shake in pixels.
+@export var max_roll = 0.1  # Maximum rotation in radians (use sparingly).
+
 
 @onready var topLeft = $Limits/TopLeft
 @onready var bottomRight = $Limits/BottomRight
@@ -22,18 +23,25 @@ var default_offset = offset
 var is_shaking = false
 var zoom_position: Vector2 = Vector2()
 var player: Player = null
-var shakeTween = null
+var shakeTween: Tween = null
 
+
+var trauma = 0.0  # Current shake strength.
+var trauma_power = 2  # Trauma exponent. Use [2, 3].
 
 
 func _ready():
 	GameManager.register_node(self)
 	self.zoom = Vector2(0.8, 0.8)
+	randomize()
 	#shakeTween = get_tree().create_tween().bind_node(self)
 	limit_top = topLeft.position.y
 	limit_left = topLeft.position.x
 	limit_bottom = bottomRight.position.y
 	limit_right = bottomRight.position.x
+
+func add_trauma(amount):
+	trauma = min(trauma + amount, 1.0)
 
 func _locked_door_show():
 	print("Camera3D shows door")
@@ -44,20 +52,23 @@ func levelup_position():
 	self.offset = default_offset
 
 func _process(delta):
-		
 	if GameManager.player != null:
 		self.global_position = GameManager.player.global_position
 		self.global_position.y -= 16
+	if trauma:
+		trauma = max(trauma - decay  * delta, 0)
+		shake()
 	zoom.x = lerp(zoom.x, zoom.x * zoom_factor, zoom_speed * delta)
 	zoom.y = lerp(zoom.y, zoom.y * zoom_factor, zoom_speed * delta)
 	
 	zoom.x = clamp(zoom.x, zoom_min, zoom_max)
 	zoom.y = clamp(zoom.y, zoom_min, zoom_max)
-	
-	if !is_shaking:
-		return
-	else:
-		offset = Vector2(randf_range(-shake_amount, shake_amount), randf_range(shake_amount, -shake_amount)) * delta + default_offset
+
+func shake():
+	var amount = pow(trauma, trauma_power)
+	rotation = max_roll * amount * randf_range(-1, 1)
+	offset.x = max_offset.x * amount * randf_range(-1, 1)
+	offset.y = max_offset.y * amount * randf_range(-1, 1)
 
 func _input(event):
 	if abs(zoom_position.x - get_global_mouse_position().x) > zoom_margin:
@@ -73,21 +84,12 @@ func _input(event):
 			if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
 				zoom_factor -= 0.01
 				zoom_position = get_global_mouse_position()
+	
+# dev setting
+#	if event is InputEventKey:
+#		if event.is_pressed():
+#			if event.keycode == KEY_O:
+#				print("Key o pressed")
+#				add_trauma(10)
+#				pass
 
-
-func shake(new_shake):
-	shake_amount += new_shake
-	if shake_amount > shake_limit:
-		shake_amount = shake_limit
-	shakeTimer.wait_time = shake_time
-	shakeTween.stop_all()
-	is_shaking = true
-	shakeTimer.start()
-
-
-
-func _on_timer_timeout():
-	is_shaking = false
-	shake_amount = 0
-	shakeTween.interpolate_property(self, "offset", offset, default_offset, 0.1, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
-	shakeTween.start()

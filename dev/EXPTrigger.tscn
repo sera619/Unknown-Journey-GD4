@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cft88fjho8tcr"]
+
+[ext_resource type="Script" path="res://dev/EXPTrigger.gd" id="1_r2vou"]
+[ext_resource type="Texture2D" uid="uid://wsq37eyf2lon" path="res://assets/UI/ui_icons/exp_icon.png" id="2_6se6m"]
+
+[node name="EXPTrigger" type="Area2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_r2vou")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("2_6se6m")

@@ -18,13 +18,16 @@ extends CharacterBody2D
 @onready var animSprite=$Sprite2D
 @onready var raycasts: Node2D = $RayCasts
 @onready var enemy_hud: EnemyHUD = $EnemyHUD
-
+@onready var aoe_collider: CollisionShape2D =$WeaponAngle/HurtBox/CollisionShape2D2
+@onready var attack_collider: CollisionShape2D = $WeaponAngle/HurtBox/CollisionShape2D
+@onready var hurt_collider: CollisionShape2D = $HitBox/CollisionShape2D
 signal enemy_take_damage(damage)
 enum {
 	WANDER,
 	IDLE,
 	CHASE,
-	ATTACK
+	ATTACK,
+	HEAL
 }
 
 var state = CHASE
@@ -32,7 +35,7 @@ var knockback = Vector2.ZERO
 var can_attack: bool = true
 var is_infight:bool = false
 var old_position = Vector2.ZERO
-
+var heal_charges: int = 2
 func _ready():
 	hitbox.connect("area_entered", on_Hitbox_area_entered)
 	attack_timer.connect("timeout", attack_timer_timeout)
@@ -61,6 +64,7 @@ func _physics_process(delta):
 		anim_tree.set("parameters/Move/blend_position", velocity)
 		anim_tree.set("parameters/Attack/blend_position", velocity)
 		anim_tree.set("parameters/SporeAttack/blend_position", velocity)
+		anim_tree.set("parameters/Heal/blend_position", velocity)
 		anim_stats.travel("Move")
 	else:
 		anim_stats.travel("Idle")
@@ -70,28 +74,36 @@ func _physics_process(delta):
 		enemy_hud.visible = false
 	match state:
 		IDLE:
+			check_collider()
 			velocity = velocity.move_toward(Vector2.ZERO, stats.FRICTION * delta)
 			seek_player()
 			if wander_controller.get_time_left() == 0:
 				update_wander()
+			if can_attack and heal_charges > 0 and stats.health < int(stats.max_health/2):
+				state = HEAL
 			if player_detector.can_see_player():
 				state = CHASE
 				
 		WANDER:
+			check_collider()
 			seek_player()
 			if wander_controller.get_time_left() == 0:
 				update_wander()
+			if can_attack and heal_charges > 0 and stats.health < int(stats.max_health/2):
+				state = HEAL
 			accelerate_towards_point(wander_controller.target_position, delta)
 			if global_position.distance_to(wander_controller.target_position) <= stats.WANDER_TARGET_RANGE:
 				update_wander()
-			
 		CHASE:
+			check_collider()
 			var player = player_detector.player
 			if player != null:
 				if global_position.distance_to(player.global_position) <= stats.MIN_RANGE or global_position.distance_to(player.global_position) >= stats.MAX_RANGE:
 					accelerate_towards_point(player.global_position, delta)
 				else:
-					if can_attack:
+					if can_attack and heal_charges > 0 and stats.health < int(stats.max_health/2):
+						state = HEAL
+					elif can_attack:
 						state = ATTACK
 					else:
 						state = IDLE
@@ -101,6 +113,9 @@ func _physics_process(delta):
 			var player = player_detector.player
 			if player != null:
 				attack_state(delta)
+		HEAL:
+			heal_state(delta)
+		
 	if softCollision.is_colliding():
 		velocity += softCollision.get_push_vector() * delta * 400
 	move_and_slide()
@@ -121,6 +136,13 @@ func attack_state(_delta):
 	velocity = Vector2.ZERO
 	anim_stats.travel("SporeAttack")
 
+func check_collider():
+	if not aoe_collider.disabled:
+		aoe_collider.call_deferred("set_disabled", true)
+	if not attack_collider.disabled:
+		attack_collider.call_deferred("set_disabled", true)
+	if hurt_collider.disabled:
+		hurt_collider.call_deferred("set_disabled", false)
 
 func _on_attack_animation_finished():
 	state = IDLE
@@ -189,7 +211,7 @@ func take_damage(area):
 			var effect2 = death_effect_scene.instantiate()
 			#effect2.global_position.y += animSprite.offset.y
 			effect2.connect("effect_finished", kill_enemy)
-			GameManager.current_world.enemy_container.call_deferred("add_child",effect2)
+			get_tree().current_scene.add_child(effect2)
 			effect2.global_position = animSprite.global_position
 			self.visible = false
 			reward_player()
@@ -197,6 +219,20 @@ func take_damage(area):
 	else:
 		return
 
+func heal_enemy():
+	if heal_charges >= 0:
+		heal_charges -= 1
+		stats.set_health(stats.health + int(stats.max_health / 2))
+
+func heal_state(_delta):
+	can_attack = false
+	attack_timer.start()
+	velocity = Vector2.ZERO
+	anim_stats.travel("Heal")
+	
+
+func _on_heal_animation_finished():
+	state = IDLE
 
 func kill_enemy():
 	self.call_deferred("queue_free")

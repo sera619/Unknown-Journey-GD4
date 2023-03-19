@@ -1010,7 +1010,7 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.416437),
+"times": PackedFloat32Array(0, 0.4),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
@@ -2084,6 +2084,7 @@ offset_right = 21.0
 offset_bottom = -49.0
 
 [node name="DamageLabel" type="RichTextLabel" parent="DamageDisplay"]
+visible = false
 layout_mode = 0
 offset_left = 5.65913
 offset_top = 8.45323

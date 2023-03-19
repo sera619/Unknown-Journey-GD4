@@ -173,9 +173,6 @@ func apply_loaded_stats():
 	experience = data['experience']
 	max_experience = data['max_exp']
 	level = data['level']
-	for info in data['new_quest_log']:
-		GameManager.quest_system.player_questlog[info[0]].quest_state = info[1]
-		GameManager.quest_system.player_questlog[info[0]].current_quantity = int(info[2])
 	player_inventory = data['player_inventory']
 	EventHandler.emit_signal("player_get_healthpot", player_inventory['Healthpot'])
 	EventHandler.emit_signal("player_get_energiepot", player_inventory['Energiepot'])
@@ -199,9 +196,6 @@ func save():
 	var solved_quests = []
 	var finished_quest = []
 	var new_quests = []
-	for nq in GameManager.quest_system.player_questlog:
-		var new_q_info = [GameManager.quest_system.player_questlog[nq].quest_name, GameManager.quest_system.player_questlog[nq].quest_state, GameManager.quest_system.player_questlog[nq].current_quantity]
-		new_quests.append(new_q_info)
 	var cq = ""
 	var save_dict = {
 		"playername": playername,
