@@ -29,3 +29,9 @@ signal player_get_healthpot(value)
 signal player_get_energiepot(value)
 
 signal game_load_game
+
+signal start_rain
+signal stop_rain
+
+
+

@@ -1,6 +1,7 @@
 extends Camera2D
 class_name GameCamera
 
+@export_category("Zoom and Shake")
 @export_group('Zoom Options')
 @export var zoom_speed: int = 100
 @export var zoom_margin: float = 0.3
@@ -14,6 +15,8 @@ class_name GameCamera
 @export var max_offset = Vector2(50, 25)  # Maximum hor/ver shake in pixels.
 @export var max_roll = 0.1  # Maximum rotation in radians (use sparingly).
 
+@export_category("Weather Effects")
+@export var rain_effect_scene: PackedScene 
 
 @onready var topLeft = $Limits/TopLeft
 @onready var bottomRight = $Limits/BottomRight
@@ -32,6 +35,7 @@ var trauma_power = 2  # Trauma exponent. Use [2, 3].
 
 func _ready():
 	GameManager.register_node(self)
+	EventHandler.connect("start_rain", _start_raining)
 	self.zoom = Vector2(0.8, 0.8)
 	randomize()
 	#shakeTween = get_tree().create_tween().bind_node(self)
@@ -39,6 +43,10 @@ func _ready():
 	limit_left = topLeft.position.x
 	limit_bottom = bottomRight.position.y
 	limit_right = bottomRight.position.x
+
+func _start_raining():
+	var rain = rain_effect_scene.instantiate()
+	self.add_child(rain)
 
 func add_trauma(amount):
 	trauma = min(trauma + amount, 1.0)

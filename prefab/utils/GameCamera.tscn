@@ -1,9 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://dcc837c2ujx6g"]
+[gd_scene load_steps=3 format=3 uid="uid://dcc837c2ujx6g"]
 
 [ext_resource type="Script" path="res://prefab/utils/GameCamera.gd" id="1_2yw2i"]
+[ext_resource type="PackedScene" uid="uid://jo0k7nyadlcg" path="res://prefab/effects/RainVFX.tscn" id="2_x42u4"]
 
 [node name="GameCamera" type="Camera2D"]
 script = ExtResource("1_2yw2i")
+rain_effect_scene = ExtResource("2_x42u4")
 
 [node name="Limits" type="Node" parent="."]
 

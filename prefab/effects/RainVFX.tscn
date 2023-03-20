@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://jo0k7nyadlcg"]
+
+[ext_resource type="Script" path="res://prefab/effects/RainVFX.gd" id="1_kmhn4"]
+
+[node name="RainVFX" type="Node2D"]
+script = ExtResource("1_kmhn4")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(0, -180)
+amount = 50
+lifetime = 0.75
+emission_shape = 3
+emission_rect_extents = Vector2(320, 1)
+initial_velocity_min = 5.0
+initial_velocity_max = 5.0
+angular_velocity_min = 201.18
+angular_velocity_max = 720.0
+angle_min = 35.0
+angle_max = 35.0
