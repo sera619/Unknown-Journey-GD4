@@ -9,7 +9,7 @@ title = "Das Schwert"
 description = "Du brauchst als erstes eine Waffe um dich zu verteidigen! Suche in der Höhle nach dem Schwert!"
 required_amount = 1
 object_name = "Schwert"
-reward_xp = 300
+reward_xp = 150
 start_text = "Hallo und Willkommen!
 Ich bin die gute Fee und wünsche dir viel Spaß beim spielen!
 Als erstes solltest du dir etwas zum Verteidigen suchen. Suche nach dem Schwert das ich vor ein paar Tagen in der Höhle, oben über den Bach."

@@ -3,8 +3,10 @@ extends NPCBase
 
 @onready var speak_icon: Sprite2D = $Icon
 var is_talking: bool = false
+var start_position: Vector2 = Vector2.ZERO
 
 func _ready():
+	start_position = global_position
 	self.speak_icon.visible = false
 	if self.npc_name in GameManager.seen_npcs:
 		first_seen = false
@@ -46,7 +48,7 @@ func dialog_handler():
 	dialog.set_speaker(self)
 	
 	# check if quest is availbe 
-	if not QuestManager.current_quest:
+	if not QuestManager.current_quest and QuestManager.is_quest_availble("Ungeziefer"):
 		if QuestManager.is_quest_availble("Das Schwert") and QuestManager.is_quest_availble("Ungeziefer"):
 			QuestManager.activate_quest("Das Schwert")
 			var quest: Quest = QuestManager.current_quest
@@ -88,6 +90,7 @@ func complete_quest_1():
 	if QuestManager.current_quest.title == "Das Schwert":
 		GameManager.player.stats.has_sword = true
 		GameManager.player.set_sprite(1)
+		GameManager.current_world.info_trigger.queue_free()
 	QuestManager.current_quest.complete()
 
 

@@ -189,7 +189,14 @@ func take_damage(area):
 	else:
 		return
 
+func check_quest():
+	if QuestManager.current_quest:
+		var quest = QuestManager.current_quest
+		if quest.object_name == self.item_name:
+			quest.add_item()
+
 func kill_enemy():
+	check_quest()
 	self.call_deferred("queue_free")
 	print("[!] Enemy: %s died!" % self.name)
 

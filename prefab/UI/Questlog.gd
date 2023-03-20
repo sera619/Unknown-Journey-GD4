@@ -23,6 +23,7 @@ func hide_log():
 	self.visible = false
 
 func load_quest_infos():
+	var count = 0
 	list_node.clear()
 	for quest in QuestManager.current.get_children():
 		match quest.state:
@@ -32,7 +33,8 @@ func load_quest_infos():
 				list_node.add_item(quest.title, finish_icon)
 			Quest.QS.COMPLETE:
 				list_node.add_item(quest.title, finish_icon, false)
-
+				list_node.set_item_disabled(count, true)
+		count += 1
 
 func _on_item_list_item_selected(index):
 	if not list_node.is_item_selectable(index):

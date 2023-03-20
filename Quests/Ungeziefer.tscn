@@ -9,7 +9,7 @@ description = "Zeit mit dem Schwert zu üben!
 Erledige 3 Fledermäuse die sich in der Nähe befinden!"
 required_amount = 3
 object_name = "Fledermaus"
-reward_xp = 300
+reward_xp = 160
 start_text = "Da du nun eine Waffe hast wird es Zeit damit zu üben. Suche in der Nähe nach Fledermäusen und erledige 3 von ihnen!"
 progress_text = "Sind die kleinen Tiere zu stark für dich?"
 complete_text = "Großartig du kannst mit dem Schwert umgehen!"
