@@ -37,8 +37,8 @@ func load_quest_infos():
 		count += 1
 
 func _on_item_list_item_selected(index):
-	if not list_node.is_item_selectable(index):
-		return
+#	if not list_node.is_item_selectable(index):
+#		return
 	var quest_name = list_node.get_item_text(index)
 	var quest: Quest = QuestManager.get_quest_information(quest_name)
 	if quest:

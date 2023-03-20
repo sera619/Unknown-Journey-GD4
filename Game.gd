@@ -12,7 +12,8 @@ const LevelScenes: Dictionary = {
 	"Wood": preload("res://world/Wood.tscn"),
 	"SwordCave": preload("res://world/SwordCave.tscn"),
 	"Grasland": preload("res://world/Grasland.tscn"),
-	"Hills": preload("res://world/Hills.tscn")
+	"Hills": preload("res://world/Hills.tscn"),
+	"GraslandHouse": preload("res://world/GraslandHouse.tscn")
 }
 
 func _ready():
@@ -28,7 +29,7 @@ func start_new_game():
 func load_game():
 	GameManager.load_game = true
 	QuestManager.reset_quests()
-	loaded_data = GameManager.load_savegame()
+	self.loaded_data = GameManager.load_savegame()
 	switch_gamelevel(loaded_data['cur_world'])
 
 
@@ -38,8 +39,6 @@ func switch_gamelevel(levelname: String):
 		return
 	if world_holder.get_child_count() > 0:
 		world_holder.get_child(0).call_deferred("queue_free")
-	var node = LevelScenes[str(levelname)].instantiate()
-	world_holder.call_deferred("add_child",node)
 	if levelname == "MainMenu":
 		GameManager.on_main_menu = true
 		GameManager.interface.stat_hud.hide()
@@ -52,6 +51,9 @@ func switch_gamelevel(levelname: String):
 		GameManager.interface.stat_hud.show()
 		GameManager.interface.potion_panel.show()
 		GameManager.interface.exp_hud.show()
+		
+	var node = LevelScenes[str(levelname)].instantiate()
+	world_holder.call_deferred("add_child",node)
 	print("[!] Game: Scene - %s successfully loaded!" % levelname)
 
 

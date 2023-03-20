@@ -163,7 +163,7 @@ transitions = ["Idle", "Move", SubResource("AnimationNodeStateMachineTransition_
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_2xxvc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vek1e"]
-radius = 74.0068
+radius = 58.0
 
 [node name="Fairy" type="CharacterBody2D"]
 motion_mode = 1

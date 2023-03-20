@@ -55,7 +55,6 @@ func activate_quest(questname: String):
 func load_quests():
 	var data = load_quest_data()
 	for loaded_quest in data['quest_list']:
-		print(loaded_quest)
 		var quest = available.get_node(loaded_quest['title'])
 		quest.state = loaded_quest['state']
 		quest.current_amount = int(loaded_quest['amount'])

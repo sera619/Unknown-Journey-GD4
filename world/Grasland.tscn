@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://cmyeya6fvbgt7"]
+[gd_scene load_steps=30 format=3 uid="uid://cmyeya6fvbgt7"]
 
 [ext_resource type="Script" path="res://world/Grasland.gd" id="1_hwqie"]
 [ext_resource type="TileSet" uid="uid://bk5vv7fsil51w" path="res://prefab/tilesets/GraslandTileset.tres" id="2_7iqe7"]
@@ -16,10 +16,6 @@
 [ext_resource type="PackedScene" uid="uid://dwjdwpvmh7uim" path="res://prefab/props/House.tscn" id="12_00bwy"]
 [ext_resource type="PackedScene" uid="uid://b2gdh6u1gj3fu" path="res://prefab/utils/InformationTrigger.tscn" id="13_857up"]
 [ext_resource type="PackedScene" uid="uid://xex3x1q2v22b" path="res://prefab/utils/Waysign.tscn" id="13_nsg3c"]
-[ext_resource type="PackedScene" uid="uid://cft88fjho8tcr" path="res://dev/EXPTrigger.tscn" id="16_wgv85"]
-[ext_resource type="PackedScene" uid="uid://1appx5yjpb3f" path="res://dev/WeaponTrigger.tscn" id="17_chyv5"]
-[ext_resource type="PackedScene" uid="uid://b2srh37osye8d" path="res://dev/DMGTrigger.tscn" id="18_52l5f"]
-[ext_resource type="PackedScene" uid="uid://bqcuf5a05c8w6" path="res://dev/QuestTrigger.tscn" id="18_wicq7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u7hoo"]
 size = Vector2(42, 14)
@@ -34,17 +30,15 @@ radius = 25.0799
 radius = 44.2832
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wtuax"]
-size = Vector2(155, 443)
+size = Vector2(314.625, 443)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_em8yf"]
-radius = 13.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c1aiy"]
+size = Vector2(379, 212)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_wb5cm"]
-radius = 12.0416
+[sub_resource type="CircleShape2D" id="CircleShape2D_fw721"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ier58"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_rlyxf"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_nnnh6"]
+radius = 28.1603
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2dt3r"]
 atlas = ExtResource("6_braxs")
@@ -166,13 +160,13 @@ position = Vector2(-244, 0)
 position = Vector2(-273, 87)
 
 [node name="Marker2D3" parent="Map/GameMap/MapUtils/EnemySpawner/SpawnPoints1" index="2"]
-position = Vector2(1404, 258)
+position = Vector2(1189, 327)
 
 [node name="Marker2D4" parent="Map/GameMap/MapUtils/EnemySpawner/SpawnPoints1" index="3"]
-position = Vector2(1134, 304)
+position = Vector2(1055, 395)
 
 [node name="Marker2D5" parent="Map/GameMap/MapUtils/EnemySpawner/SpawnPoints1" index="4"]
-position = Vector2(1029, 470)
+position = Vector2(1268, 420)
 
 [node name="GameObjects" type="Node2D" parent="Map"]
 y_sort_enabled = true
@@ -188,7 +182,7 @@ quest_ready_text = null
 quest_complete_text = null
 
 [node name="Fairy" parent="Map/GameObjects/NPC" instance=ExtResource("6_scwyo")]
-position = Vector2(690, 244)
+position = Vector2(666, 341)
 
 [node name="Grases" type="Node2D" parent="Map/GameObjects"]
 y_sort_enabled = true
@@ -549,35 +543,25 @@ Hier erwarten dich gefährliche
 Monster und du kannst dich nicht verteidigen![/center]"
 
 [node name="CollisionShape2D" parent="Map/GameObjects/InformationTrigger/PlayerDetector" index="0"]
-position = Vector2(-36.5, -67.5)
+position = Vector2(111.313, -59)
 shape = SubResource("RectangleShape2D_wtuax")
-one_way_collision = true
 
-[node name="EXPTrigger" parent="Map/GameObjects" instance=ExtResource("16_wgv85")]
-position = Vector2(895, -191)
-exp_to_add = 400
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Map/GameObjects/InformationTrigger/PlayerDetector" index="1"]
+position = Vector2(859.5, 354)
+shape = SubResource("RectangleShape2D_c1aiy")
 
-[node name="CollisionShape2D" parent="Map/GameObjects/EXPTrigger" index="0"]
-shape = SubResource("CircleShape2D_em8yf")
+[node name="Teleporter3" parent="Map/GameObjects" instance=ExtResource("5_fviyu")]
+position = Vector2(1273, 202)
+teleport_location = "GraslandHouse"
 
-[node name="WeaponTrigger" parent="Map/GameObjects" instance=ExtResource("17_chyv5")]
-position = Vector2(895, -143)
+[node name="CollisionShape2D" parent="Map/GameObjects/Teleporter3/TeleportArea" index="0"]
+shape = SubResource("CircleShape2D_fw721")
 
-[node name="CollisionShape2D" parent="Map/GameObjects/WeaponTrigger" index="1"]
-shape = SubResource("CircleShape2D_wb5cm")
+[node name="PlayerDetector" parent="Map/GameObjects/Teleporter3" index="1"]
+visible = true
 
-[node name="DMGTrigger" parent="Map/GameObjects" instance=ExtResource("18_52l5f")]
-position = Vector2(872, -112)
-damage = 1
-
-[node name="CollisionShape2D" parent="Map/GameObjects/DMGTrigger" index="0"]
-shape = SubResource("CircleShape2D_ier58")
-
-[node name="QuestTrigger" parent="Map/GameObjects" instance=ExtResource("18_wicq7")]
-position = Vector2(863, -213)
-
-[node name="CollisionShape2D" parent="Map/GameObjects/QuestTrigger" index="0"]
-shape = SubResource("CircleShape2D_rlyxf")
+[node name="CollisionShape2D" parent="Map/GameObjects/Teleporter3/PlayerDetector" index="0"]
+shape = SubResource("CircleShape2D_nnnh6")
 
 [node name="WaterFall" type="AnimatedSprite2D" parent="Map"]
 position = Vector2(530, -113.5)
@@ -603,8 +587,6 @@ position = Vector2(1699, 670)
 [editable path="Map/GameObjects/Teleporter2/PlayerDetector"]
 [editable path="Map/GameObjects/InformationTrigger"]
 [editable path="Map/GameObjects/InformationTrigger/PlayerDetector"]
-[editable path="Map/GameObjects/EXPTrigger"]
-[editable path="Map/GameObjects/WeaponTrigger"]
-[editable path="Map/GameObjects/DMGTrigger"]
-[editable path="Map/GameObjects/QuestTrigger"]
+[editable path="Map/GameObjects/Teleporter3"]
+[editable path="Map/GameObjects/Teleporter3/PlayerDetector"]
 [editable path="Map/GameCamera"]

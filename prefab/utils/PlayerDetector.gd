@@ -11,7 +11,7 @@ func _ready():
 	self.connect("body_exited", on_body_exited)
 
 func on_body_entered(body):
-	if !body.name == "Player":
+	if body.name != "Player":
 		return
 	else:
 		player = body

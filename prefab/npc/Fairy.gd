@@ -48,7 +48,8 @@ func dialog_handler():
 	dialog.set_speaker(self)
 	
 	# check if quest is availbe 
-	if not QuestManager.current_quest and QuestManager.is_quest_availble("Ungeziefer"):
+	if not QuestManager.current_quest and QuestManager.is_quest_availble("Mein Haus"):
+		# start quests
 		if QuestManager.is_quest_availble("Das Schwert") and QuestManager.is_quest_availble("Ungeziefer"):
 			QuestManager.activate_quest("Das Schwert")
 			var quest: Quest = QuestManager.current_quest
@@ -56,6 +57,11 @@ func dialog_handler():
 			dialog.show_dialog()
 		elif not QuestManager.is_quest_availble("Das Schwert") and QuestManager.is_quest_availble("Ungeziefer"):
 			QuestManager.activate_quest("Ungeziefer")
+			var quest: Quest = QuestManager.current_quest
+			dialog.set_dialog_text(quest.start_text)
+			dialog.show_dialog()
+		elif not QuestManager.is_quest_availble("Ungeziefer") and QuestManager.is_quest_availble("Mein Haus"):
+			QuestManager.activate_quest("Mein Haus")
 			var quest: Quest = QuestManager.current_quest
 			dialog.set_dialog_text(quest.start_text)
 			dialog.show_dialog()
@@ -72,7 +78,17 @@ func dialog_handler():
 					dialog.option_a_btn.connect("button_down", complete_quest_1)
 					dialog.set_dialog_text(quest.complete_text)
 					dialog.show_dialog()
+		# Quest 2 routine
 		elif quest.title == "Ungeziefer":
+			match quest.state:
+				Quest.QS.ACTIVE:
+					dialog.set_dialog_text(quest.progress_text)
+					dialog.show_dialog()
+				Quest.QS.FINSIH:
+					dialog.option_a_btn.connect("button_down", complete_quest_1)
+					dialog.set_dialog_text(quest.complete_text)
+					dialog.show_dialog()
+		elif quest.title == "Mein Haus":
 			match quest.state:
 				Quest.QS.ACTIVE:
 					dialog.set_dialog_text(quest.progress_text)
@@ -91,6 +107,7 @@ func complete_quest_1():
 		GameManager.player.stats.has_sword = true
 		GameManager.player.set_sprite(1)
 		GameManager.current_world.info_trigger.queue_free()
+		GameManager.interface.newskill_hud.set_skill_text("Normaler Angriff", "Du hast ein\n\nSchwert gefunden.\n\nDu kannst jetzt\n\nnormale Angriffe ausführen.\n\nDrücke die Taste \"Space\"!")
 	QuestManager.current_quest.complete()
 
 

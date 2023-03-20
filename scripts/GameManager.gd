@@ -14,7 +14,7 @@ var load_game: bool = false
 
 const COLORS: Dictionary = {
 	"orange_text": Color(1, 0.60000002384186, 0.1294117718935),
-	"green_text": Color(1, 0.60000002384186, 0.1294117718935),
+	"green_text": Color(0, 0.79296875, 0.09632056951523),
 	"blue_text": Color(0.08235294371843, 0.72549021244049, 1)
 }
 

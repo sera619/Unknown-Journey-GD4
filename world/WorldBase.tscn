@@ -580,7 +580,6 @@ script = ExtResource("1_56egy")
 world_name = "BaseWorld"
 
 [node name="Map" type="Node2D" parent="."]
-y_sort_enabled = true
 
 [node name="RespawnSpot" type="Marker2D" parent="Map"]
 position = Vector2(-324, -173)
@@ -615,8 +614,13 @@ layer_2/tile_data = PackedInt32Array(-6, 65536, 2, 65530, 262144, 1, 131066, 0, 
 y_sort_enabled = true
 
 [node name="NPC" type="Node2D" parent="Map/GameObjects"]
+y_sort_enabled = true
 
 [node name="Enemys" type="Node2D" parent="Map/GameObjects"]
+y_sort_enabled = true
+
+[node name="Props" type="Node2D" parent="Map/GameObjects"]
+y_sort_enabled = true
 
 [node name="GameCamera" parent="Map" instance=ExtResource("4_ej23u")]
 zoom = Vector2(0.8, 0.8)

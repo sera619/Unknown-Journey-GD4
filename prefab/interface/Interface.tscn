@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://b7dks5cm1l8lb"]
+[gd_scene load_steps=17 format=3 uid="uid://b7dks5cm1l8lb"]
 
 [ext_resource type="Script" path="res://prefab/interface/Interface.gd" id="1_ghaf7"]
 [ext_resource type="PackedScene" uid="uid://j0mixjoaji6r" path="res://prefab/UI/DevPanel.tscn" id="2_0344k"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://4pvo7rk61tca" path="res://prefab/UI/DialogBox.tscn" id="9_kcv7y"]
 [ext_resource type="PackedScene" uid="uid://cfsnddkshv6p8" path="res://prefab/UI/PotionPanel.tscn" id="10_p40cy"]
 [ext_resource type="PackedScene" uid="uid://6ma28lukrg4r" path="res://prefab/UI/NewSkillHUD.tscn" id="11_r8hlj"]
+[ext_resource type="PackedScene" uid="uid://l61eqwib72yh" path="res://prefab/UI/SleepHUD.tscn" id="13_q1ex6"]
 
 [sub_resource type="Animation" id="Animation_x5qxj"]
 length = 0.001
@@ -138,6 +139,8 @@ scale = Vector2(0.75, 0.75)
 [node name="NewSkillHUD" parent="." instance=ExtResource("11_r8hlj")]
 
 [node name="DeathScreen" parent="." instance=ExtResource("7_bo1t5")]
+
+[node name="SleepHUD" parent="." instance=ExtResource("13_q1ex6")]
 
 [node name="Transition" type="ColorRect" parent="."]
 modulate = Color(1, 1, 1, 0)

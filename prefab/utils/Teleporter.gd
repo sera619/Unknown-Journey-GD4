@@ -2,7 +2,7 @@ extends Node2D
 class_name Teleporter
 
 var player: Player = null
-@export_enum("WorldBase", "SmallCave", "Wood", "SwordCave", "Grasland") var teleport_location: String
+@export_enum("WorldBase", "SmallCave", "Wood", "SwordCave", "Grasland", "GraslandHouse", "Hills") var teleport_location: String
 @export var animated: bool
 
 @onready var teleArea = $TeleportArea
@@ -48,6 +48,7 @@ func animSprite_finished():
 
 func teleport_player():
 	if player != null:
+		GameManager.save_data()
 		EventHandler.disconnect("transition_black", teleport_player)
 		match teleport_location:
 			"WorldBase":
@@ -59,5 +60,9 @@ func teleport_player():
 			"SwordCave":
 				GameManager.game.switch_gamelevel(teleport_location)
 			"Grasland":
+				GameManager.game.switch_gamelevel(teleport_location)
+			"GraslandHouse":
+				GameManager.game.switch_gamelevel(teleport_location)
+			"Hills":
 				GameManager.game.switch_gamelevel(teleport_location)
 		print("[!] Teleporter: Player -> %s!" % teleport_location)

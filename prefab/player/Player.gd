@@ -176,7 +176,7 @@ func move_state(delta):
 		use_health_potion()
 	
 	if Input.is_action_just_pressed("debug_key"):
-		GameManager.save_data()
+		EventHandler.emit_signal("player_sleep")
 
 func move():
 	if !is_alive:
@@ -245,7 +245,7 @@ func create_levelup_effect():
 	var effect = levelup_effect_scene.instantiate()
 	self.add_child(effect)
 	effect.global_position = global_position
-	GameManager.info_box.set_info_text("Glückwunsch!\n\nDu hast Level: [color=red]%s[/color] erreicht!" % stats.level)
+	GameManager.info_box.set_info_text("[center]Glückwunsch!\n\nDu hast [color=red]Level %s[/color] erreicht![/center]" % stats.level)
 
 
 func use_health_potion():

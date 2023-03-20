@@ -1,12 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://b0nfvrtgsqsgq"]
+[gd_scene load_steps=5 format=3 uid="uid://b0nfvrtgsqsgq"]
 
 [ext_resource type="Script" path="res://Quests/QuestManager.gd" id="1_vr7sc"]
 [ext_resource type="PackedScene" uid="uid://c3jmpn371brv1" path="res://Quests/Ungeziefer.tscn" id="3_umi76"]
 [ext_resource type="PackedScene" uid="uid://mdtm320p1d8n" path="res://Quests/Das Schwert.tscn" id="4_0a2k5"]
+[ext_resource type="PackedScene" uid="uid://b48bbqtc3d4rl" path="res://Quests/Mein Haus.tscn" id="4_ha10h"]
 
 [node name="QuestManager" type="Node"]
 script = ExtResource("1_vr7sc")
-available_quests_list = Array[PackedScene]([ExtResource("4_0a2k5"), ExtResource("3_umi76")])
+available_quests_list = Array[PackedScene]([ExtResource("4_0a2k5"), ExtResource("3_umi76"), ExtResource("4_ha10h")])
 
 [node name="Available" type="Node" parent="."]
 
