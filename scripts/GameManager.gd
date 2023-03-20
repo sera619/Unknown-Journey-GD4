@@ -10,7 +10,13 @@ var info_box: InfoBox = null
 var ui_questlog = null
 var on_main_menu: bool = false
 var seen_npcs = []
+var load_game: bool = false
 
+const COLORS: Dictionary = {
+	"orange_text": Color(1, 0.60000002384186, 0.1294117718935),
+	"green_text": Color(1, 0.60000002384186, 0.1294117718935),
+	"blue_text": Color(0.08235294371843, 0.72549021244049, 1)
+}
 
 
 func register_node(node: Node):
@@ -57,7 +63,9 @@ func save_data(playername=""):
 			
 		var json_string = JSON.stringify(node_data)
 		savegame.store_line(json_string)
+	
 	print("[!] Data: Savegame successfully saved!")
+	QuestManager.save_quests()
 
 func load_savegame(playername=""):
 	var loadpath = "user://savegame.save" 

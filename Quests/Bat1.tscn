@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://n7fpcpjmdp48"]
+
+[ext_resource type="Script" path="res://Quests/Quest.gd" id="1_a7m7h"]
+
+[node name="Bat1" type="Node"]
+script = ExtResource("1_a7m7h")
+title = "Bat1"
+description = "Erledige 1x Fledermaus"
+required_amount = 1
+object_name = "Fledermaus"
+reward_xp = 300

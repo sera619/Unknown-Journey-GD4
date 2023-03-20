@@ -11,6 +11,7 @@ class_name DialogBox
 var tween: Tween = null
 var current_speaker: NPCBase = null
 
+var quest_to_activate = null
 
 func _ready():
 	GameManager.register_node(self)
@@ -32,12 +33,15 @@ func reset_dialog():
 		tween.stop()
 		tween.kill()
 
-func set_dialog_text(text: String):
+func set_dialog_text(text: String, activate_quest:int = 0):
+	if activate_quest != 0:
+		self.quest_to_activate = int(activate_quest)
 	dialog_label.text = text
 
-func set_speaker(speaker):
+func set_speaker(speaker: NPCBase):
 	current_speaker = speaker 
 	speakername_label.text = speaker.name
+	print("[!] Dialog: Set speaker to %s" % speaker.name)
 
 func set_options_text(optionA: String, optionB: String):
 	option_a_label.text = optionA
@@ -56,7 +60,11 @@ func _on_dialog_option_b_btn_button_down():
 	print("[!] DialogBox: Option B: \"%s\" choosed!" % option_b_label.text)
 	reset_dialog()
 	if self.current_speaker != null:
+
+		
 		self.current_speaker.is_talking = false
+		
+	self.quest_to_activate = null
 	self.current_speaker = null
 	hide_dialog()
 
@@ -65,7 +73,12 @@ func _on_dialog_option_a_btn_button_down():
 	print("[!] DialogBox: Option A: \"%s\" choosed!" % option_a_label.text)
 	reset_dialog()
 	if self.current_speaker != null:
+		if self.quest_to_activate != null:
+			match self.quest_to_activate:
+				1:
+					self.current_speaker.activate_quest1()
 		self.current_speaker.is_talking = false
+	self.quest_to_activate = null
 	self.current_speaker = null
 	hide_dialog()
 	

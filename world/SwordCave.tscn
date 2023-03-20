@@ -609,7 +609,6 @@ script = ExtResource("1_egq4y")
 world_name = "SwordCave"
 
 [node name="Map" type="Node2D" parent="."]
-y_sort_enabled = true
 
 [node name="RespawnSpot" type="Marker2D" parent="Map"]
 position = Vector2(529, 112)
@@ -672,9 +671,6 @@ position = Vector2(911, 479)
 
 [node name="Enemys" type="Node2D" parent="Map/GameObjects"]
 
-[node name="CanvasModulate" type="CanvasModulate" parent="Map"]
-color = Color(0, 0, 0, 0.980392)
-
 [node name="GameCamera" parent="Map" instance=ExtResource("4_jn70g")]
 zoom = Vector2(0.8, 0.8)
 
@@ -683,6 +679,9 @@ position = Vector2(185, -6)
 
 [node name="BottomRight" parent="Map/GameCamera/Limits" index="1"]
 position = Vector2(1223, 670)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="Map/GameCamera"]
+color = Color(0, 0, 0, 0.980392)
 
 [editable path="Map/GameObjects/Teleporter"]
 [editable path="Map/GameObjects/Teleporter/PlayerDetector"]

@@ -27,7 +27,6 @@ func _physics_process(delta):
 	else:
 		speak_icon.visible = false
 	
-	
 	match state:
 		IDLE:
 			idle_state(delta)
@@ -37,6 +36,60 @@ func _physics_process(delta):
 			chase_state(delta)
 	
 	move_and_slide()
+	if Input.is_action_just_pressed("interact") and player_detector.can_see_player() and not is_talking:
+		is_talking = true
+		dialog_handler()
+
+
+func dialog_handler():
+	var dialog: DialogBox = GameManager.dialog_box
+	dialog.set_speaker(self)
+	
+	# check if quest is availbe 
+	if not QuestManager.current_quest:
+		if QuestManager.is_quest_availble("Das Schwert") and QuestManager.is_quest_availble("Ungeziefer"):
+			QuestManager.activate_quest("Das Schwert")
+			var quest: Quest = QuestManager.current_quest
+			dialog.set_dialog_text(quest.start_text)
+			dialog.show_dialog()
+		elif not QuestManager.is_quest_availble("Das Schwert") and QuestManager.is_quest_availble("Ungeziefer"):
+			QuestManager.activate_quest("Ungeziefer")
+			var quest: Quest = QuestManager.current_quest
+			dialog.set_dialog_text(quest.start_text)
+			dialog.show_dialog()
+		
+	elif QuestManager.current_quest:
+		var quest: Quest = QuestManager.current_quest
+		#Quest 1 routine
+		if quest.title == "Das Schwert":
+			match quest.state:
+				Quest.QS.ACTIVE:
+					dialog.set_dialog_text(quest.progress_text)
+					dialog.show_dialog()
+				Quest.QS.FINSIH:
+					dialog.option_a_btn.connect("button_down", complete_quest_1)
+					dialog.set_dialog_text(quest.complete_text)
+					dialog.show_dialog()
+		elif quest.title == "Ungeziefer":
+			match quest.state:
+				Quest.QS.ACTIVE:
+					dialog.set_dialog_text(quest.progress_text)
+					dialog.show_dialog()
+				Quest.QS.FINSIH:
+					dialog.option_a_btn.connect("button_down", complete_quest_1)
+					dialog.set_dialog_text(quest.complete_text)
+					dialog.show_dialog()
+	else:
+		dialog.set_dialog_text("Hallo, wie geht es dir heute?")
+		dialog.show_dialog()
+
+func complete_quest_1():
+	GameManager.dialog_box.option_a_btn.disconnect("button_down", complete_quest_1)
+	if QuestManager.current_quest.title == "Das Schwert":
+		GameManager.player.stats.has_sword = true
+		GameManager.player.set_sprite(1)
+	QuestManager.current_quest.complete()
+
 
 func chase_state(delta):
 	var player = player_detector.player

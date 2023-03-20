@@ -18,7 +18,9 @@ func _ready():
 func _on_ready():
 	spawn_player()
 	GameManager.register_node(self)
-
+	if GameManager.load_game:
+		QuestManager.load_quests()
+		GameManager.load_game = false
 
 func get_entry_spot():
 	if entry_spot:

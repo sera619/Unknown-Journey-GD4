@@ -192,11 +192,6 @@ func apply_loaded_stats():
 	set_energie(0)
 
 func save():
-	var quests= []
-	var solved_quests = []
-	var finished_quest = []
-	var new_quests = []
-	var cq = ""
 	var save_dict = {
 		"playername": playername,
 		"cur_world":GameManager.current_world.world_name,
@@ -210,11 +205,6 @@ func save():
 		"max_exp": self.max_experience,
 		"experience": self.experience,
 		"level": self.level,
-		"current_quest": cq,
-		"quest_log_active": quests,
-		"new_quest_log": new_quests,
-		"quest_log_complete": solved_quests,
-		"quest_log_finished": finished_quest,
 		"seen_npcs": GameManager.seen_npcs,
 		"player_inventory": player_inventory
 	}

@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bqcuf5a05c8w6"]
+
+[ext_resource type="Texture2D" uid="uid://b01dlyko5c35h" path="res://assets/UI/checkmark.png" id="1_0ntwf"]
+[ext_resource type="Script" path="res://dev/QuestTrigger.gd" id="1_asxao"]
+
+[node name="QuestTrigger" type="Area2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_asxao")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_0ntwf")

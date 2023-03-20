@@ -11,7 +11,8 @@ const LevelScenes: Dictionary = {
 	"SmallCave": preload("res://world/SmallCave.tscn"),
 	"Wood": preload("res://world/Wood.tscn"),
 	"SwordCave": preload("res://world/SwordCave.tscn"),
-	"Grasland": preload("res://world/Grasland.tscn")
+	"Grasland": preload("res://world/Grasland.tscn"),
+	"Hills": preload("res://world/Hills.tscn")
 }
 
 func _ready():
@@ -21,9 +22,12 @@ func _ready():
 	switch_gamelevel("MainMenu")
 
 func start_new_game():
+	QuestManager.reset_quests()
 	switch_gamelevel("Grasland")
 
 func load_game():
+	GameManager.load_game = true
+	QuestManager.reset_quests()
 	loaded_data = GameManager.load_savegame()
 	switch_gamelevel(loaded_data['cur_world'])
 
@@ -41,6 +45,7 @@ func switch_gamelevel(levelname: String):
 		GameManager.interface.stat_hud.hide()
 		GameManager.interface.potion_panel.hide()
 		GameManager.interface.exp_hud.hide()
+		QuestManager.reset_quests()
 		GameManager.player = null
 	else:
 		GameManager.on_main_menu = false

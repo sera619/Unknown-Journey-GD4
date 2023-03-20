@@ -1,11 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://cc4dqpbjt2x3y"]
+[gd_scene load_steps=8 format=3 uid="uid://cc4dqpbjt2x3y"]
 
 [ext_resource type="Script" path="res://prefab/UI/Questlog.gd" id="1_1cm83"]
-[ext_resource type="LabelSettings" uid="uid://f4k617j3lq7w" path="res://prefab/UI/label_font_set.tres" id="1_cyxpa"]
 [ext_resource type="Texture2D" uid="uid://b01dlyko5c35h" path="res://assets/UI/checkmark.png" id="2_dho6n"]
-[ext_resource type="Texture2D" uid="uid://bbhxfdms755s0" path="res://assets/UI/ui_icons/button_pause.png" id="4_e5qot"]
-[ext_resource type="Texture2D" uid="uid://b6ux1f5mdiln" path="res://assets/UI/ui_icons/button_help.png" id="5_6ej3u"]
-[ext_resource type="Texture2D" uid="uid://gw0uhfa367fc" path="res://assets/UI/ui_icons/button_X.png" id="6_oeown"]
+[ext_resource type="Texture2D" uid="uid://dnmhbqlysi5ph" path="res://assets/UI/red-button-normal.png" id="3_qqbbb"]
+[ext_resource type="Texture2D" uid="uid://cgoomtgcn04sq" path="res://assets/UI/red-button-pressed.png" id="4_esn31"]
+[ext_resource type="Texture2D" uid="uid://cl20mjeo1aqyx" path="res://assets/UI/red-button-hover.png" id="5_rtfan"]
 [ext_resource type="FontFile" uid="uid://bddtsccx0qour" path="res://assets/UI/Fonts/dogicapixel.otf" id="6_vpgom"]
 [ext_resource type="Texture2D" uid="uid://yotqew0yv4ol" path="res://assets/UI/exclamation_mark.png" id="10_xrd4w"]
 
@@ -16,11 +15,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1cm83")
-completed_icon = ExtResource("2_dho6n")
+finish_icon = ExtResource("2_dho6n")
 active_icon = ExtResource("10_xrd4w")
-inactive_icon = ExtResource("4_e5qot")
-objective_completed = ExtResource("5_6ej3u")
-objective_uncompleted = ExtResource("6_oeown")
 metadata/_edit_use_anchors_ = true
 
 [node name="Panel" type="Panel" parent="."]
@@ -50,13 +46,91 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("6_vpgom")
+theme_override_font_sizes/font_size = 16
 text = "Questlog"
-label_settings = ExtResource("1_cyxpa")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Tree" type="Tree" parent="Panel/M/V"]
+[node name="H" type="HBoxContainer" parent="Panel/M/V"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="ItemList" type="ItemList" parent="Panel/M/V/H"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.027451, 0.772549, 0.94902, 1)
+theme_override_fonts/font = ExtResource("6_vpgom")
+theme_override_font_sizes/font_size = 8
+allow_reselect = true
+auto_height = true
+item_count = 1
+fixed_icon_size = Vector2i(8, 8)
+item_0/text = "Testitem"
+item_0/icon = ExtResource("10_xrd4w")
+
+[node name="M" type="MarginContainer" parent="Panel/M/V/H"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="V" type="VBoxContainer" parent="Panel/M/V/H/M"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.75
+
+[node name="QuestHeader" type="Label" parent="Panel/M/V/H/M/V"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_vpgom")
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+
+[node name="QuestDescription" type="Label" parent="Panel/M/V/H/M/V"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("6_vpgom")
 theme_override_font_sizes/font_size = 8
+text = "dawda"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="QuestState" type="Label" parent="Panel/M/V/H/M/V"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_vpgom")
+theme_override_font_sizes/font_size = 8
+horizontal_alignment = 1
+
+[node name="OkBtn" type="TextureButton" parent="Panel/M/V"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("3_qqbbb")
+texture_pressed = ExtResource("4_esn31")
+texture_hover = ExtResource("5_rtfan")
+
+[node name="Label" type="Label" parent="Panel/M/V/OkBtn"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -8.0
+offset_right = 20.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("6_vpgom")
+theme_override_font_sizes/font_size = 8
+text = "Okay"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="item_selected" from="Panel/M/V/H/ItemList" to="." method="_on_item_list_item_selected"]
+[connection signal="button_down" from="Panel/M/V/OkBtn" to="." method="_on_ok_btn_button_down"]

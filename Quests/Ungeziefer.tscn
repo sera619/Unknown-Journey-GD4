@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://c3jmpn371brv1"]
+
+[ext_resource type="Script" path="res://Quests/Quest.gd" id="1_u7qlk"]
+
+[node name="Ungeziefer" type="Node"]
+script = ExtResource("1_u7qlk")
+title = "Ungeziefer"
+description = "Zeit mit dem Schwert zu üben!
+Erledige 3 Fledermäuse die sich in der Nähe befinden!"
+required_amount = 3
+object_name = "Fledermaus"
+reward_xp = 300
+start_text = "Da du nun eine Waffe hast wird es Zeit damit zu üben. Suche in der Nähe nach Fledermäusen und erledige 3 von ihnen!"
+progress_text = "Sind die kleinen Tiere zu stark für dich?"
+complete_text = "Großartig du kannst mit dem Schwert umgehen!"

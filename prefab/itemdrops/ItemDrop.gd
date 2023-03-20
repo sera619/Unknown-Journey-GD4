@@ -48,8 +48,8 @@ func pickup(area):
 	if not area.is_in_group("playerPickupzone"):
 		return
 	if item_type == 1:
-		emit_signal("interaction_finished", self)
-		print("Interact")
+		if QuestManager.current_quest and QuestManager.current_quest.title == "Das Schwert":
+			QuestManager.current_quest.add_item()
 	elif item_type == 0:
 		if item_name:
 			GameManager.player.stats.get_item(item_name, amount)
