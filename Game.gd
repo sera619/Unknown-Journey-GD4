@@ -5,6 +5,7 @@ class_name Game
 
 var player: Player
 var loaded_data = null
+var new_game: bool = false
 const LevelScenes: Dictionary = {
 	"MainMenu": preload("res://prefab/UI/MainMenu.tscn"),
 	"WorldBase": preload("res://world/WorldBase.tscn"),
@@ -24,6 +25,7 @@ func _ready():
 
 func start_new_game():
 	QuestManager.reset_quests()
+	new_game = true
 	switch_gamelevel("Grasland")
 
 func load_game():
@@ -51,7 +53,8 @@ func switch_gamelevel(levelname: String):
 		GameManager.interface.stat_hud.show()
 		GameManager.interface.potion_panel.show()
 		GameManager.interface.exp_hud.show()
-		
+	if not new_game:
+		self.loaded_data = GameManager.load_savegame()
 	var node = LevelScenes[str(levelname)].instantiate()
 	world_holder.call_deferred("add_child",node)
 	print("[!] Game: Scene - %s successfully loaded!" % levelname)

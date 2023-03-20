@@ -50,8 +50,9 @@ func _ready():
 	if dmg_label_path:
 		dmg_label = get_node(dmg_label_path)
 		dmg_label.visible = false
-	if GameManager.game.loaded_data == null:
+	if GameManager.game.new_game:
 		set_default_stats()
+		GameManager.game.new_game = false
 	else: 
 		apply_loaded_stats()
 

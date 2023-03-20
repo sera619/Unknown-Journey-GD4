@@ -10,7 +10,7 @@ class_name DialogBox
 
 var tween: Tween = null
 var current_speaker: NPCBase = null
-
+var writing: bool = false
 var quest_to_activate = null
 
 func _ready():
@@ -47,9 +47,31 @@ func set_options_text(optionA: String, optionB: String):
 	option_a_label.text = optionA
 	option_b_label.text = optionB
 
+func _disable_writing():
+	option_a_btn.visible = true
+	option_b_btn.visible = true
+	self.writing = false
+
+func _enable_buttons():
+	option_a_btn.mouse_filter = Control.MOUSE_FILTER_STOP
+	option_b_btn.mouse_filter = Control.MOUSE_FILTER_STOP
+	option_a_btn.visible = true
+	option_b_btn.visible = true
+
+func _disable_buttons():
+	option_a_btn.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	option_b_btn.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	option_a_btn.visible = false
+	option_b_btn.visible = false
+	
 func start_dialog_writing():
+	option_a_btn.visible = false
+	option_b_btn.visible = false
+	writing = true
 	tween = get_tree().create_tween().bind_node(self).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
 	tween.tween_property(dialog_label, "visible_ratio", 1.0, 3)
+	tween.tween_callback(self._disable_writing)
+	
 	tween.tween_callback(tween.kill)
 
 func hide_dialog():

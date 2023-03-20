@@ -45,6 +45,7 @@ theme_override_constants/margin_bottom = 5
 
 [node name="v" type="VBoxContainer" parent="BG/M"]
 layout_mode = 2
+theme_override_constants/separation = 3
 
 [node name="NameBox" type="NinePatchRect" parent="BG/M/v"]
 layout_mode = 2
@@ -115,9 +116,12 @@ visible_ratio = 0.0
 [node name="H" type="HBoxContainer" parent="BG/M/v"]
 layout_mode = 2
 size_flags_horizontal = 4
+size_flags_vertical = 10
+size_flags_stretch_ratio = 0.75
 
 [node name="DialogOptionABtn" type="TextureButton" parent="BG/M/v/H"]
 layout_mode = 2
+size_flags_horizontal = 3
 texture_normal = ExtResource("4_yk304")
 texture_pressed = ExtResource("5_gqvv4")
 texture_hover = ExtResource("6_8ggnf")
@@ -143,6 +147,7 @@ vertical_alignment = 1
 
 [node name="DialogOptionBBtn" type="TextureButton" parent="BG/M/v/H"]
 layout_mode = 2
+size_flags_horizontal = 3
 texture_normal = ExtResource("4_yk304")
 texture_pressed = ExtResource("5_gqvv4")
 texture_hover = ExtResource("6_8ggnf")

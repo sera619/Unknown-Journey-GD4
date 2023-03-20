@@ -588,6 +588,7 @@ texture_region_size = Vector2i(32, 32)
 
 [sub_resource type="TileSet" id="TileSet_ta5x1"]
 tile_size = Vector2i(32, 32)
+uv_clipping = true
 occlusion_layer_0/light_mask = 1
 physics_layer_0/collision_layer = 1
 terrain_set_0/mode = 0
