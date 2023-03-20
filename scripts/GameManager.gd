@@ -12,6 +12,7 @@ var on_main_menu: bool = false
 var seen_npcs = []
 var load_game: bool = false
 
+
 const COLORS: Dictionary = {
 	"orange_text": Color(1, 0.60000002384186, 0.1294117718935),
 	"green_text": Color(0, 0.79296875, 0.09632056951523),

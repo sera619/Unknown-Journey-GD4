@@ -83,7 +83,7 @@ world_name = "Grasland"
 [node name="Map" type="Node2D" parent="."]
 
 [node name="RespawnSpot" type="Marker2D" parent="Map"]
-position = Vector2(858, -182)
+position = Vector2(1281, 246)
 
 [node name="EntrySpot" type="Marker2D" parent="Map"]
 position = Vector2(771, -180)

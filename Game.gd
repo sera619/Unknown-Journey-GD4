@@ -6,6 +6,9 @@ class_name Game
 var player: Player
 var loaded_data = null
 var new_game: bool = false
+var change_player_spawn_location: bool = false
+
+
 const LevelScenes: Dictionary = {
 	"MainMenu": preload("res://prefab/UI/MainMenu.tscn"),
 	"WorldBase": preload("res://world/WorldBase.tscn"),
@@ -15,6 +18,9 @@ const LevelScenes: Dictionary = {
 	"Grasland": preload("res://world/Grasland.tscn"),
 	"Hills": preload("res://world/Hills.tscn"),
 	"GraslandHouse": preload("res://world/GraslandHouse.tscn")
+}
+const TELEPORT_SPAWN_LOCATIONS: Dictionary = {
+	"GraslandHouse": Vector2(1281, 246),
 }
 
 func _ready():

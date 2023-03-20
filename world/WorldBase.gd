@@ -21,6 +21,7 @@ func _on_ready():
 	if GameManager.load_game:
 		QuestManager.load_quests()
 		GameManager.load_game = false
+	
 
 func get_entry_spot():
 	if entry_spot:
@@ -40,7 +41,11 @@ func spawn_player():
 		GameManager.player = null
 	var new_player:Player = player_scene.instantiate()
 	game_map.add_child(new_player)
-	new_player.global_position = get_entry_spot()
+	if GameManager.game.change_player_spawn_location:
+		new_player.global_position = GameManager.game.TELEPORT_SPAWN_LOCATIONS['GraslandHouse']
+		GameManager.game.change_player_spawn_location = false
+	else:
+		new_player.global_position = get_entry_spot()
 
 func respawn_player():
 	var new_player:Player = player_scene.instantiate()

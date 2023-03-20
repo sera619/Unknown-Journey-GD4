@@ -60,6 +60,8 @@ func teleport_player():
 			"SwordCave":
 				GameManager.game.switch_gamelevel(teleport_location)
 			"Grasland":
+				if GameManager.current_world.world_name == "GraslandHouse":
+					GameManager.game.change_player_spawn_location = true
 				GameManager.game.switch_gamelevel(teleport_location)
 			"GraslandHouse":
 				GameManager.game.switch_gamelevel(teleport_location)
