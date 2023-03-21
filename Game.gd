@@ -17,7 +17,8 @@ const LevelScenes: Dictionary = {
 	"SwordCave": preload("res://world/SwordCave.tscn"),
 	"Grasland": preload("res://world/Grasland.tscn"),
 	"Hills": preload("res://world/Hills.tscn"),
-	"GraslandHouse": preload("res://world/GraslandHouse.tscn")
+	"GraslandHouse": preload("res://world/GraslandHouse.tscn"),
+	"GameIntro": preload("res://prefab/UI/GameIntro.tscn")
 }
 const TELEPORT_SPAWN_LOCATIONS: Dictionary = {
 	"GraslandHouse": Vector2(1281, 246),
@@ -27,7 +28,7 @@ func _ready():
 	GameManager.register_node(self)
 	if GameManager.player:
 		player = GameManager.player
-	switch_gamelevel("MainMenu")
+	switch_gamelevel("GameIntro")
 
 func start_new_game():
 	QuestManager.reset_quests()
@@ -47,7 +48,7 @@ func switch_gamelevel(levelname: String):
 		return
 	if world_holder.get_child_count() > 0:
 		world_holder.get_child(0).call_deferred("queue_free")
-	if levelname == "MainMenu":
+	if levelname == "MainMenu" or levelname == "GameIntro":
 		GameManager.on_main_menu = true
 		GameManager.interface.stat_hud.hide()
 		GameManager.interface.potion_panel.hide()

@@ -10,10 +10,11 @@ config_version=5
 
 [application]
 
-config/name="GD4"
+config/name="Unknown Journey "
 run/main_scene="res://game.tscn"
 config/features=PackedStringArray("4.0", "GL Compatibility")
 config/icon="res://icon.svg"
+config/windows_native_icon="res://assets/UI/NoPixelart/GameLogoShort.ico"
 
 [autoload]
 
@@ -61,6 +62,7 @@ variables={}
 
 window/size/viewport_width=320
 window/size/viewport_height=180
+window/size/mode=2
 window/size/initial_position_type=2
 window/size/initial_screen=1
 window/size/window_width_override=1280

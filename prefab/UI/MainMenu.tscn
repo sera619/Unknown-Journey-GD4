@@ -1,12 +1,240 @@
-[gd_scene load_steps=8 format=3 uid="uid://jif6vrcb1jke"]
+[gd_scene load_steps=14 format=3 uid="uid://jif6vrcb1jke"]
 
 [ext_resource type="Texture2D" uid="uid://cxcioix0e3f74" path="res://assets/UI/menu/rpg3.png" id="1_3jww1"]
 [ext_resource type="Script" path="res://prefab/UI/MainMenu.gd" id="1_iuelm"]
-[ext_resource type="FontFile" uid="uid://dabqnx5sqarav" path="res://assets/UI/Fonts/dogicapixelbold.otf" id="2_15g1y"]
+[ext_resource type="Texture2D" uid="uid://dek50oixsuepp" path="res://assets/UI/NoPixelart/GameLogo.png" id="3_g2obs"]
 [ext_resource type="Texture2D" uid="uid://dnmhbqlysi5ph" path="res://assets/UI/red-button-normal.png" id="3_oee0x"]
 [ext_resource type="Texture2D" uid="uid://cgoomtgcn04sq" path="res://assets/UI/red-button-pressed.png" id="4_kgy32"]
 [ext_resource type="Texture2D" uid="uid://cl20mjeo1aqyx" path="res://assets/UI/red-button-hover.png" id="5_mg7gt"]
 [ext_resource type="FontFile" uid="uid://bddtsccx0qour" path="res://assets/UI/Fonts/dogicapixel.otf" id="6_tuy52"]
+[ext_resource type="PackedScene" uid="uid://b6jxsguuegoo4" path="res://prefab/UI/NamePopup.tscn" id="8_rvqfg"]
+
+[sub_resource type="Animation" id="Animation_q3luf"]
+resource_name = "start"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel/Logo:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panel/M:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Panel:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_38e0j"]
+resource_name = "menu-name"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NamePopup:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("NamePopup:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Panel/M:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Panel/M:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_gg8o0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel/Logo:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panel/M:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Panel:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("NamePopup:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("NamePopup:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Panel/M:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_r7ym3"]
+resource_name = "name-menu"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NamePopup:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("NamePopup:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Panel/M:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Panel/M:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u8e12"]
+_data = {
+"RESET": SubResource("Animation_gg8o0"),
+"menu-name": SubResource("Animation_38e0j"),
+"name-menu": SubResource("Animation_r7ym3"),
+"start": SubResource("Animation_q3luf")
+}
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -16,6 +244,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_iuelm")
+metadata/_edit_horizontal_guides_ = [-34.0]
 
 [node name="Panel" type="TextureRect" parent="."]
 layout_mode = 1
@@ -27,41 +256,47 @@ grow_vertical = 2
 texture = ExtResource("1_3jww1")
 expand_mode = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+[node name="Logo" type="NinePatchRect" parent="Panel"]
+layout_mode = 2
+offset_left = 70.0
+offset_top = 32.0
+offset_right = 1275.0
+offset_bottom = 213.0
+scale = Vector2(0.15, 0.15)
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture = ExtResource("3_g2obs")
+patch_margin_left = 602
+patch_margin_top = 90
+patch_margin_right = 603
+patch_margin_bottom = 91
+axis_stretch_vertical = 1
+
+[node name="M" type="MarginContainer" parent="Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 79.0
+offset_top = 59.0
+offset_right = 79.0
+offset_bottom = 59.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.5, 0.5)
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="Panel/MarginContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
-theme_override_colors/font_color = Color(0.180349, 0.396105, 0.792157, 1)
-theme_override_fonts/font = ExtResource("2_15g1y")
-theme_override_font_sizes/font_size = 15
-text = "Test Header"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer2"]
+[node name="V" type="VBoxContainer" parent="Panel/M"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="MMStartBtn" type="TextureButton" parent="Panel/MarginContainer/VBoxContainer2/VBoxContainer"]
+[node name="MMStartBtn" type="TextureButton" parent="Panel/M/V"]
 layout_mode = 2
 texture_normal = ExtResource("3_oee0x")
 texture_pressed = ExtResource("4_kgy32")
 texture_hover = ExtResource("5_mg7gt")
 
-[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer2/VBoxContainer/MMStartBtn"]
+[node name="Label" type="Label" parent="Panel/M/V/MMStartBtn"]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -77,13 +312,13 @@ text = "Start"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MMLoadBtn" type="TextureButton" parent="Panel/MarginContainer/VBoxContainer2/VBoxContainer"]
+[node name="MMLoadBtn" type="TextureButton" parent="Panel/M/V"]
 layout_mode = 2
 texture_normal = ExtResource("3_oee0x")
 texture_pressed = ExtResource("4_kgy32")
 texture_hover = ExtResource("5_mg7gt")
 
-[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer2/VBoxContainer/MMLoadBtn"]
+[node name="Label" type="Label" parent="Panel/M/V/MMLoadBtn"]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -100,13 +335,13 @@ text = "Load
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MMOptionBtn" type="TextureButton" parent="Panel/MarginContainer/VBoxContainer2/VBoxContainer"]
+[node name="MMOptionBtn" type="TextureButton" parent="Panel/M/V"]
 layout_mode = 2
 texture_normal = ExtResource("3_oee0x")
 texture_pressed = ExtResource("4_kgy32")
 texture_hover = ExtResource("5_mg7gt")
 
-[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer2/VBoxContainer/MMOptionBtn"]
+[node name="Label" type="Label" parent="Panel/M/V/MMOptionBtn"]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -123,13 +358,13 @@ text = "Option
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MMExitBtn" type="TextureButton" parent="Panel/MarginContainer/VBoxContainer2/VBoxContainer"]
+[node name="MMExitBtn" type="TextureButton" parent="Panel/M/V"]
 layout_mode = 2
 texture_normal = ExtResource("3_oee0x")
 texture_pressed = ExtResource("4_kgy32")
 texture_hover = ExtResource("5_mg7gt")
 
-[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer2/VBoxContainer/MMExitBtn"]
+[node name="Label" type="Label" parent="Panel/M/V/MMExitBtn"]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -146,7 +381,30 @@ text = "Exit
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[connection signal="button_down" from="Panel/MarginContainer/VBoxContainer2/VBoxContainer/MMStartBtn" to="." method="_on_mm_start_btn_button_down"]
-[connection signal="button_down" from="Panel/MarginContainer/VBoxContainer2/VBoxContainer/MMLoadBtn" to="." method="_on_mm_load_btn_button_down"]
-[connection signal="button_down" from="Panel/MarginContainer/VBoxContainer2/VBoxContainer/MMOptionBtn" to="." method="_on_mm_option_btn_button_down"]
-[connection signal="button_down" from="Panel/MarginContainer/VBoxContainer2/VBoxContainer/MMExitBtn" to="." method="_on_mm_exit_btn_button_down"]
+[node name="NamePopup" parent="." instance=ExtResource("8_rvqfg")]
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.325
+anchor_top = 0.361111
+anchor_right = 0.6775
+anchor_bottom = 0.716667
+offset_right = 169.2
+offset_bottom = 96.0
+scale = Vector2(0.4, 0.4)
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_u8e12")
+}
+
+[connection signal="button_down" from="Panel/M/V/MMStartBtn" to="." method="_on_mm_start_btn_button_down"]
+[connection signal="button_down" from="Panel/M/V/MMLoadBtn" to="." method="_on_mm_load_btn_button_down"]
+[connection signal="button_down" from="Panel/M/V/MMOptionBtn" to="." method="_on_mm_option_btn_button_down"]
+[connection signal="button_down" from="Panel/M/V/MMExitBtn" to="." method="_on_mm_exit_btn_button_down"]
+[connection signal="button_down" from="NamePopup/BG/M/TextBG/M/V/V/H/OkBtn" to="." method="_on_ok_btn_button_down"]
+[connection signal="button_down" from="NamePopup/BG/M/TextBG/M/V/V/H/CancelBtn" to="." method="_on_cancel_btn_button_down"]
+
+[editable path="NamePopup"]

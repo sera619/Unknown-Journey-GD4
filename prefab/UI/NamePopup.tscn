@@ -1,0 +1,148 @@
+[gd_scene load_steps=8 format=3 uid="uid://b6jxsguuegoo4"]
+
+[ext_resource type="Texture2D" uid="uid://8edplubtbkbr" path="res://assets/UI/wood-box.png" id="1_bq2xf"]
+[ext_resource type="Script" path="res://prefab/UI/NamePopup.gd" id="1_i6tf7"]
+[ext_resource type="Texture2D" uid="uid://bpt7n5fbi8xg5" path="res://assets/UI/text-box.png" id="2_5yngl"]
+[ext_resource type="FontFile" uid="uid://bddtsccx0qour" path="res://assets/UI/Fonts/dogicapixel.otf" id="3_vieik"]
+[ext_resource type="Texture2D" uid="uid://dnmhbqlysi5ph" path="res://assets/UI/red-button-normal.png" id="4_e1h8e"]
+[ext_resource type="Texture2D" uid="uid://cgoomtgcn04sq" path="res://assets/UI/red-button-pressed.png" id="5_cchrc"]
+[ext_resource type="Texture2D" uid="uid://cl20mjeo1aqyx" path="res://assets/UI/red-button-hover.png" id="6_ho8bt"]
+
+[node name="NamePopup" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_i6tf7")
+
+[node name="BG" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_bq2xf")
+patch_margin_left = 24
+patch_margin_top = 16
+patch_margin_right = 24
+patch_margin_bottom = 16
+
+[node name="M" type="MarginContainer" parent="BG"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="TextBG" type="NinePatchRect" parent="BG/M"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("2_5yngl")
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+
+[node name="M" type="MarginContainer" parent="BG/M/TextBG"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="V" type="VBoxContainer" parent="BG/M/TextBG/M"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Header" type="Label" parent="BG/M/TextBG/M/V"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.992157, 0.615686, 0.027451, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.384314)
+theme_override_fonts/font = ExtResource("3_vieik")
+theme_override_font_sizes/font_size = 16
+text = "Neues Spiel"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="V" type="VBoxContainer" parent="BG/M/TextBG/M/V"]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="InfoLabel" type="Label" parent="BG/M/TextBG/M/V/V"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.0941176, 0.701961, 0.964706, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.254902)
+theme_override_fonts/font = ExtResource("3_vieik")
+theme_override_font_sizes/font_size = 8
+text = "Beachte bitte dein aktueller Spielstand wird überschrieben!
+Bitte gebe deinen Helden einen Namen.
+(max. 15)"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="NameInput" type="LineEdit" parent="BG/M/TextBG/M/V/V"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_vieik")
+theme_override_font_sizes/font_size = 8
+placeholder_text = "Hier Name..."
+alignment = 1
+max_length = 15
+
+[node name="H" type="HBoxContainer" parent="BG/M/TextBG/M/V/V"]
+layout_mode = 2
+alignment = 1
+
+[node name="OkBtn" type="TextureButton" parent="BG/M/TextBG/M/V/V/H"]
+layout_mode = 2
+texture_normal = ExtResource("4_e1h8e")
+texture_pressed = ExtResource("5_cchrc")
+texture_hover = ExtResource("6_ho8bt")
+
+[node name="Label" type="Label" parent="BG/M/TextBG/M/V/V/H/OkBtn"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_vieik")
+theme_override_font_sizes/font_size = 8
+text = "Okay"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CancelBtn" type="TextureButton" parent="BG/M/TextBG/M/V/V/H"]
+layout_mode = 2
+texture_normal = ExtResource("4_e1h8e")
+texture_pressed = ExtResource("5_cchrc")
+texture_hover = ExtResource("6_ho8bt")
+
+[node name="Label" type="Label" parent="BG/M/TextBG/M/V/V/H/CancelBtn"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_vieik")
+theme_override_font_sizes/font_size = 8
+text = "Zurück"
+horizontal_alignment = 1
+vertical_alignment = 1

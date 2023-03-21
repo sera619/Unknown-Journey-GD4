@@ -69,7 +69,11 @@ func get_item(item_name: String, amount: int):
 			EventHandler.emit_signal("player_get_doorkey", player_inventory[item_name])
 
 func set_default_stats():
-	playername = "[Admin] Sera"
+	if GameManager.new_player_name == "":
+		playername = "Sera"
+	else:
+		playername = GameManager.new_player_name
+		GameManager.new_player_name = ""
 	set_level(1)
 	set_max_damage(2)
 	set_max_energie(2)

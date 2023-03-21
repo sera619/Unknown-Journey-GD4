@@ -11,12 +11,12 @@ var ui_questlog = null
 var on_main_menu: bool = false
 var seen_npcs = []
 var load_game: bool = false
-
+var new_player_name: String = ""
 
 const COLORS: Dictionary = {
-	"orange_text": Color(1, 0.60000002384186, 0.1294117718935),
+	"orange_text":Color(0.99215686321259, 0.61568629741669, 0.0274509806186),
 	"green_text": Color(0, 0.79296875, 0.09632056951523),
-	"blue_text": Color(0.08235294371843, 0.72549021244049, 1)
+	"blue_text": Color(0.09411764889956, 0.70196080207825, 0.96470588445663)
 }
 
 
@@ -67,7 +67,14 @@ func save_data(playername=""):
 	
 	print("[!] Data: Savegame successfully saved!")
 	QuestManager.save_quests()
-
+	
+func set_player_name(player_name: String):
+	if player_name == "":
+		print("[X] GameManager: No Name set!")
+		return
+	self.new_player_name = player_name
+	print("[!] GameManager: New playername set to \"%s\"" % player_name)
+	
 func load_savegame(playername=""):
 	var loadpath = "user://savegame.save" 
 	if playername != "":
