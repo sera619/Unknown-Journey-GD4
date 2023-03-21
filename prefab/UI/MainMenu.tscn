@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://jif6vrcb1jke"]
+[gd_scene load_steps=15 format=3 uid="uid://jif6vrcb1jke"]
 
 [ext_resource type="Texture2D" uid="uid://cxcioix0e3f74" path="res://assets/UI/menu/rpg3.png" id="1_3jww1"]
 [ext_resource type="Script" path="res://prefab/UI/MainMenu.gd" id="1_iuelm"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cgoomtgcn04sq" path="res://assets/UI/red-button-pressed.png" id="4_kgy32"]
 [ext_resource type="Texture2D" uid="uid://cl20mjeo1aqyx" path="res://assets/UI/red-button-hover.png" id="5_mg7gt"]
 [ext_resource type="FontFile" uid="uid://bddtsccx0qour" path="res://assets/UI/Fonts/dogicapixel.otf" id="6_tuy52"]
+[ext_resource type="Texture2D" uid="uid://6py808jaoso2" path="res://assets/UI/button_disabled.png" id="7_aupgx"]
 [ext_resource type="PackedScene" uid="uid://b6jxsguuegoo4" path="res://prefab/UI/NamePopup.tscn" id="8_rvqfg"]
 
 [sub_resource type="Animation" id="Animation_gg8o0"]
@@ -93,7 +94,7 @@ tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-68, 59)]
+"values": [Vector2(-156, 25)]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
@@ -181,7 +182,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0.8, 2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(207, 65), Vector2(104, 65)]
+"values": [Vector2(207, 65), Vector2(81, 65)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -193,7 +194,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0, 1.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(79, 59), Vector2(-68, 59)]
+"values": [Vector2(0, 25), Vector2(-136, 25)]
 }
 
 [sub_resource type="Animation" id="Animation_r7ym3"]
@@ -257,7 +258,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0, 1.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(104, 65), Vector2(207, 65)]
+"values": [Vector2(81, 65), Vector2(207, 65)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -269,7 +270,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0.8, 2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(-68, 59), Vector2(79, 59)]
+"values": [Vector2(-136, 25), Vector2(0, 25)]
 }
 
 [sub_resource type="Animation" id="Animation_q3luf"]
@@ -333,7 +334,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(1.8, 3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(-68, 59), Vector2(79, 59)]
+"values": [Vector2(-136, 25), Vector2(0, 25)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -398,10 +399,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -68.0
-offset_top = 59.0
-offset_right = -68.0
-offset_bottom = 59.0
+offset_left = -156.0
+offset_top = 25.0
+offset_right = 164.0
+offset_bottom = 205.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.5, 0.5)
@@ -416,6 +417,7 @@ layout_mode = 2
 texture_normal = ExtResource("3_oee0x")
 texture_pressed = ExtResource("4_kgy32")
 texture_hover = ExtResource("5_mg7gt")
+texture_disabled = ExtResource("7_aupgx")
 
 [node name="Label" type="Label" parent="Panel/M/V/MMStartBtn"]
 layout_mode = 1
@@ -438,6 +440,7 @@ layout_mode = 2
 texture_normal = ExtResource("3_oee0x")
 texture_pressed = ExtResource("4_kgy32")
 texture_hover = ExtResource("5_mg7gt")
+texture_disabled = ExtResource("7_aupgx")
 
 [node name="Label" type="Label" parent="Panel/M/V/MMLoadBtn"]
 layout_mode = 1
@@ -461,6 +464,7 @@ layout_mode = 2
 texture_normal = ExtResource("3_oee0x")
 texture_pressed = ExtResource("4_kgy32")
 texture_hover = ExtResource("5_mg7gt")
+texture_disabled = ExtResource("7_aupgx")
 
 [node name="Label" type="Label" parent="Panel/M/V/MMOptionBtn"]
 layout_mode = 1
@@ -484,6 +488,7 @@ layout_mode = 2
 texture_normal = ExtResource("3_oee0x")
 texture_pressed = ExtResource("4_kgy32")
 texture_hover = ExtResource("5_mg7gt")
+texture_disabled = ExtResource("7_aupgx")
 
 [node name="Label" type="Label" parent="Panel/M/V/MMExitBtn"]
 layout_mode = 1
@@ -512,8 +517,8 @@ anchor_top = 0.361111
 anchor_right = 0.649375
 anchor_bottom = 0.716667
 offset_left = 112.0
-offset_right = 281.2
-offset_bottom = 96.0
+offset_right = 393.996
+offset_bottom = 160.0
 scale = Vector2(0.4, 0.4)
 metadata/_edit_use_anchors_ = true
 

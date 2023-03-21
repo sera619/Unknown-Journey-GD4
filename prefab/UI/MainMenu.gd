@@ -3,9 +3,14 @@ class_name MainMenu
 @onready var namepopup: NamePopup = $NamePopup
 @onready var menupanel: Control = $Panel/M 
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
+@onready var load_btn: TextureButton = $Panel/M/V/MMLoadBtn
 
 func _ready():
 	anim_player.play("start")
+	if GameManager.savegame_exists():
+		load_btn.disabled = false
+	else:
+		load_btn.disabled = true
 
 func _on_mm_start_btn_button_down():
 	print("[!] MainMenu: Start Btn clicked")

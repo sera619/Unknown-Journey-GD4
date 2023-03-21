@@ -2,13 +2,13 @@
 
 [ext_resource type="Script" path="res://prefab/UI/PauseMenu.gd" id="1_674uc"]
 [ext_resource type="Texture2D" uid="uid://8edplubtbkbr" path="res://assets/UI/wood-box.png" id="1_l6wjs"]
-[ext_resource type="Texture2D" uid="uid://cqfo8k23gm0vc" path="res://assets/UI/text-paper.png" id="2_bcsdc"]
 [ext_resource type="PackedScene" uid="uid://bpuv6b1p4ejhc" path="res://prefab/audio/PauseSound.tscn" id="2_iemml"]
 [ext_resource type="FontFile" uid="uid://bddtsccx0qour" path="res://assets/UI/Fonts/dogicapixel.otf" id="3_2dmkg"]
 [ext_resource type="FontFile" uid="uid://dabqnx5sqarav" path="res://assets/UI/Fonts/dogicapixelbold.otf" id="3_uiekp"]
 [ext_resource type="PackedScene" uid="uid://wf8mpe72xyhu" path="res://prefab/audio/UnpauseSound.tscn" id="3_wa2n5"]
 [ext_resource type="Texture2D" uid="uid://dnmhbqlysi5ph" path="res://assets/UI/red-button-normal.png" id="4_co3w6"]
 [ext_resource type="Texture2D" uid="uid://cgoomtgcn04sq" path="res://assets/UI/red-button-pressed.png" id="5_a0wnw"]
+[ext_resource type="Texture2D" uid="uid://bpt7n5fbi8xg5" path="res://assets/UI/text-box.png" id="5_yv2fo"]
 [ext_resource type="Texture2D" uid="uid://cl20mjeo1aqyx" path="res://assets/UI/red-button-hover.png" id="6_mxhja"]
 [ext_resource type="Texture2D" uid="uid://6py808jaoso2" path="res://assets/UI/button_disabled.png" id="7_keclf"]
 
@@ -61,11 +61,11 @@ alignment = 1
 [node name="NinePatchRect" type="NinePatchRect" parent="BG/M/V"]
 layout_mode = 2
 size_flags_vertical = 6
-texture = ExtResource("2_bcsdc")
+texture = ExtResource("5_yv2fo")
 patch_margin_left = 16
-patch_margin_top = 8
+patch_margin_top = 16
 patch_margin_right = 16
-patch_margin_bottom = 15
+patch_margin_bottom = 16
 
 [node name="Head" type="Label" parent="BG/M/V/NinePatchRect"]
 layout_mode = 1

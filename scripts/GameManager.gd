@@ -75,7 +75,13 @@ func set_player_name(player_name: String):
 		return
 	self.new_player_name = player_name
 	print("[!] GameManager: New playername set to \"%s\"" % player_name)
-	
+
+func savegame_exists() -> bool:
+	var loadpath = "user://savegame.save" 
+	if not FileAccess.file_exists(loadpath):
+		return false
+	return true
+
 func load_savegame(playername=""):
 	var loadpath = "user://savegame.save" 
 	if playername != "":

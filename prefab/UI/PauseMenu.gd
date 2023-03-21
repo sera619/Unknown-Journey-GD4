@@ -3,6 +3,7 @@ extends Control
 var paused: bool = false
 @export var pause_sound_scene: PackedScene
 @export var unpause_sound_scene: PackedScene
+@onready var load_btn:= $BG/M/V/V/PLoadBtn
 
 func _ready():
 	self.visible = false
@@ -20,6 +21,10 @@ func showpause():
 	self.visible = true
 	var sound = pause_sound_scene.instantiate()
 	self.add_child(sound)
+	if GameManager.savegame_exists():
+		load_btn.disabled = false
+	else:
+		load_btn.disabled = true
 	get_tree().paused = true
 
 func hidepause():
