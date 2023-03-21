@@ -55,11 +55,13 @@ func switch_gamelevel(levelname: String):
 		GameManager.interface.exp_hud.hide()
 		QuestManager.reset_quests()
 		GameManager.player = null
+		GameManager.interface.dot_hud.hide()
 	else:
 		GameManager.on_main_menu = false
 		GameManager.interface.stat_hud.show()
 		GameManager.interface.potion_panel.show()
 		GameManager.interface.exp_hud.show()
+		GameManager.interface.dot_hud.show()
 	if not new_game:
 		self.loaded_data = GameManager.load_savegame()
 	var node = LevelScenes[str(levelname)].instantiate()

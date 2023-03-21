@@ -76,6 +76,13 @@ visible = false
 offset_right = -226.0
 offset_bottom = -163.0
 
+[node name="DotHUD" parent="." instance=ExtResource("4_v8vmd")]
+offset_left = 59.0
+offset_top = 3.0
+offset_right = -105.0
+offset_bottom = -129.0
+scale = Vector2(0.325, 0.325)
+
 [node name="ExpHUD" parent="." instance=ExtResource("3_ojkx5")]
 visible = false
 offset_left = 80.0
@@ -83,12 +90,6 @@ offset_top = 91.0
 offset_right = 80.0
 offset_bottom = 91.0
 scale = Vector2(0.5, 0.5)
-
-[node name="DotHUD" parent="." instance=ExtResource("4_v8vmd")]
-offset_left = 31.0
-offset_top = 20.0
-offset_right = -279.0
-offset_bottom = -150.0
 
 [node name="PotionPanel" parent="." instance=ExtResource("10_p40cy")]
 offset_left = -317.0

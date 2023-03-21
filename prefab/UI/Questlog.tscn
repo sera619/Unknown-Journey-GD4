@@ -96,7 +96,9 @@ alignment = 1
 [node name="ItemList" type="ItemList" parent="Panel/M/V/H"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_colors/font_color = Color(0.027451, 0.772549, 0.94902, 1)
+tooltip_text = "   "
+theme_override_colors/font_color = Color(0.945098, 0.690196, 0.0313726, 1)
+theme_override_colors/font_selected_color = Color(0.827451, 0.027451, 0.0313726, 1)
 theme_override_fonts/font = ExtResource("6_vpgom")
 theme_override_font_sizes/font_size = 8
 theme_override_styles/panel = SubResource("StyleBoxTexture_ottsb")

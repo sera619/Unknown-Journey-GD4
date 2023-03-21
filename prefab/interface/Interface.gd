@@ -12,6 +12,7 @@ class_name Interface
 @onready var exp_hud = $ExpHUD
 @onready var dialog_box: DialogBox = $DialogBox
 @onready var newskill_hud: NewSkillHUD = $NewSkillHUD
+@onready var dot_hud: DotHUD = $DotHUD
 
 func _ready():
 	if show_devpanel == true:
@@ -42,6 +43,7 @@ func hide_ui():
 	potion_panel.hide()
 	exp_hud.hide()
 	dialog_box.hide_dialog()
+	dot_hud.hide()
 	
 
 func start_transition():
