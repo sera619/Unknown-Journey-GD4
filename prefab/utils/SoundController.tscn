@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://bk15h3dxda4v0"]
+
+[ext_resource type="Script" path="res://prefab/utils/SoundController.gd" id="1_8er4f"]
+
+[node name="SoundController" type="Node"]
+script = ExtResource("1_8er4f")
+move_sound = "res://assets/Music and Sounds/foodsteps/HeavyDirt1.wav"
+run_sound = "res://assets/Music and Sounds/foodsteps/HeavyDirtRun1.wav"
+
+[node name="MoveSound" type="AudioStreamPlayer" parent="."]
+
+[node name="RunSound" type="AudioStreamPlayer" parent="."]

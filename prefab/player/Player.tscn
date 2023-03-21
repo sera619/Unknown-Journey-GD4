@@ -1,4 +1,4 @@
-[gd_scene load_steps=218 format=3 uid="uid://bulsih1uk7ua"]
+[gd_scene load_steps=219 format=3 uid="uid://bulsih1uk7ua"]
 
 [ext_resource type="Script" path="res://prefab/player/Player.gd" id="1_3dgss"]
 [ext_resource type="Texture2D" uid="uid://dt2540u4sj5mt" path="res://assets/Shadows/MediumShadow.png" id="2_2ndm1"]
@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://cpnwejcyr1ecu" path="res://prefab/audio/DashSound.tscn" id="11_hto3e"]
 [ext_resource type="Texture2D" uid="uid://p5qjf6yxjhlo" path="res://assets/Materials/ParticleTextures/light.png" id="13_e5flh"]
 [ext_resource type="Script" path="res://prefab/player/PlayerLight.gd" id="14_d00ft"]
+[ext_resource type="PackedScene" uid="uid://bk15h3dxda4v0" path="res://prefab/utils/SoundController.tscn" id="20_a285j"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nur2f"]
 radius = 9.375
@@ -1003,23 +1004,6 @@ tracks/0/keys = {
 "update": 1,
 "values": [Vector2i(0, 4), Vector2i(1, 4), Vector2i(2, 4), Vector2i(3, 4), Vector2i(4, 4), Vector2i(5, 4), Vector2i(6, 4), Vector2i(7, 4), Vector2i(0, 4)]
 }
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(1, 1),
-"values": [{
-"args": [],
-"method": &"_create_food_a_sound"
-}, {
-"args": [],
-"method": &"_create_food_b_sound"
-}]
-}
 
 [sub_resource type="Animation" id="Animation_q4gmd"]
 resource_name = "MoveLeft"
@@ -1036,23 +1020,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [Vector2i(0, 7), Vector2i(1, 7), Vector2i(2, 7), Vector2i(3, 7), Vector2i(4, 7), Vector2i(5, 7), Vector2i(6, 7), Vector2i(7, 7), Vector2i(0, 7)]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(1, 1),
-"values": [{
-"args": [],
-"method": &"_create_food_a_sound"
-}, {
-"args": [],
-"method": &"_create_food_b_sound"
-}]
 }
 
 [sub_resource type="Animation" id="Animation_arm3m"]
@@ -1071,23 +1038,6 @@ tracks/0/keys = {
 "update": 1,
 "values": [Vector2i(0, 5), Vector2i(1, 5), Vector2i(2, 5), Vector2i(3, 5), Vector2i(4, 5), Vector2i(5, 5), Vector2i(6, 5), Vector2i(7, 5), Vector2i(0, 5)]
 }
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(1, 1),
-"values": [{
-"args": [],
-"method": &"_create_food_a_sound"
-}, {
-"args": [],
-"method": &"_create_food_b_sound"
-}]
-}
 
 [sub_resource type="Animation" id="Animation_poxbu"]
 resource_name = "MoveUp"
@@ -1104,23 +1054,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [Vector2i(0, 6), Vector2i(1, 6), Vector2i(2, 6), Vector2i(3, 6), Vector2i(4, 6), Vector2i(5, 6), Vector2i(6, 6), Vector2i(7, 6), Vector2i(0, 6)]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(1, 1),
-"values": [{
-"args": [],
-"method": &"_create_food_a_sound"
-}, {
-"args": [],
-"method": &"_create_food_b_sound"
-}]
 }
 
 [sub_resource type="Animation" id="Animation_eiybm"]
@@ -2223,5 +2156,7 @@ DOUBLE_ATTACK_CAP = 4
 DOUBLE_ATTACK_COST = 1
 HEAVY_ATTACK_CAP = 8
 HEAVY_ATTACK_COST = 2
+
+[node name="SoundController" parent="." instance=ExtResource("20_a285j")]
 
 [editable path="SoftCollision"]

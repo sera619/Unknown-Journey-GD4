@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b4owqqxjej2a6"
+path="res://.godot/imported/HeavyDirtRun3.wav-383ea75e7a965b89078c0863e135b95d.sample"
+
+[deps]
+
+source_file="res://assets/Music and Sounds/foodsteps/HeavyDirtRun3.wav"
+dest_files=["res://.godot/imported/HeavyDirtRun3.wav-383ea75e7a965b89078c0863e135b95d.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

@@ -5,14 +5,17 @@ class_name QuestLog
 @export var active_icon: Texture
 
 @onready var list_node: ItemList = $Panel/M/V/H/ItemList
-@onready var quest_header: Label = $Panel/M/V/H/M/V/QuestHeader
-@onready var quest_state: Label = $Panel/M/V/H/M/V/QuestState
-@onready var quest_description: Label = $Panel/M/V/H/M/V/QuestDescription
+@onready var quest_header: Label = $Panel/M/V/H/M/NinePatchRect/MarginContainer/V/QuestHeader
+@onready var quest_state: Label = $Panel/M/V/H/M/NinePatchRect/MarginContainer/V/QuestState
+@onready var quest_description: Label = $Panel/M/V/H/M/NinePatchRect/MarginContainer/V/QuestDescription
 
 
 func _ready():
 	reset_information_text()
-	$Panel/M/V/Header.add_theme_color_override("font_color", GameManager.COLORS.orange_text)
+	quest_header.add_theme_color_override("font_color", GameManager.COLORS.orange_text)
+	$Panel/M/V/NinePatchRect/Header.add_theme_color_override("font_color", GameManager.COLORS.lightgreen_text)
+	quest_description.add_theme_color_override("font_color", GameManager.COLORS.blue_text)
+
 
 func show_log():
 	load_quest_infos()

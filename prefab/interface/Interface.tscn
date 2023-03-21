@@ -91,18 +91,21 @@ offset_bottom = -115.0
 scale = Vector2(0.25, 0.25)
 
 [node name="DevPanel" parent="." instance=ExtResource("2_0344k")]
+visible = false
 
 [node name="Questlog" parent="." instance=ExtResource("2_ka8y8")]
 visible = false
+anchors_preset = -1
 anchor_left = 0.021875
 anchor_top = 0.144444
-anchor_right = 0.578125
-anchor_bottom = 0.85
-offset_right = 178.0
-offset_bottom = 127.0
+anchor_right = 0.55
+anchor_bottom = 0.8
+offset_right = 169.0
+offset_bottom = 118.0
 scale = Vector2(0.5, 0.5)
 size_flags_horizontal = 2
 size_flags_vertical = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="CharacterPanel" parent="." instance=ExtResource("5_6wngu")]
 offset_left = 23.0
@@ -112,6 +115,7 @@ offset_bottom = 47.0
 scale = Vector2(0.5, 0.5)
 
 [node name="InfoBox" parent="." instance=ExtResource("5_1eql3")]
+visible = false
 anchors_preset = 10
 anchor_bottom = 0.0
 offset_left = 94.0
@@ -122,6 +126,7 @@ grow_vertical = 1
 scale = Vector2(0.5, 0.5)
 
 [node name="DialogBox" parent="." instance=ExtResource("9_kcv7y")]
+visible = false
 offset_left = 88.0
 offset_top = 97.0
 offset_right = 88.0
