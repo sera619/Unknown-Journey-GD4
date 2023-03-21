@@ -16,12 +16,17 @@ class_name Stats
 @export var ROLL_SPEED:int
 @export var ACCELERATION:int
 @export var FRICTION:int
+
 @export_category('Skill Settings')
 @export var roll_costs:int
 @export var DOUBLE_ATTACK_CAP: int
 @export var DOUBLE_ATTACK_COST: int
 @export var HEAVY_ATTACK_CAP: int
 @export var HEAVY_ATTACK_COST: int
+
+@export_category("Cooldowns")
+@export var DASH_COOLDOWN: int
+@export var MAGIC_SKILL_COOLDOWN: int
 
 @onready var has_sword: bool = false
 
@@ -77,7 +82,7 @@ func set_default_stats():
 	set_level(1)
 	set_max_damage(2)
 	set_max_energie(2)
-	set_max_health(4)
+	set_max_health(20)
 	set_max_exp(300)
 	set_exp(0)
 	set_damage(MAX_DAMAGE)

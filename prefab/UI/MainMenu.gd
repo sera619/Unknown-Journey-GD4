@@ -37,6 +37,13 @@ func load_new():
 	EventHandler.disconnect("transition_black", load_new)
 	GameManager.game.load_game()
 
+func _input(event):
+	if event is InputEventKey:
+		if event.is_pressed():
+			if event.keycode == KEY_ENTER:
+				anim_player.play("instant")
+
+
 # Name Buttons
 func _on_ok_btn_button_down():
 	GameManager.set_player_name(namepopup.nameinput.text)

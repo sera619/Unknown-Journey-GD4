@@ -4,11 +4,13 @@ class_name Player
 @export_category('Player Sprites')
 @export var SPRITE_SWORD: Texture2D
 @export var SPRITE_NO_SWORD: Texture2D
+
 @export_category('Effect Scenes')
 @export var hit_effect_scene: PackedScene
 @export var levelup_effect_scene: PackedScene
 @export var dash_ghost_screne: PackedScene
 @export var heal_effect_scene: PackedScene
+
 @export_category("Sound Scenes")
 @export var foodstep_a_scene: PackedScene
 @export var foodstep_b_scene: PackedScene
@@ -19,15 +21,22 @@ enum {
 	MOVE, ATTACK, HEAVY_ATTACK, DASH, HURT, DOUBLE_ATTACK
 }
 var state = MOVE
-var roll_vector = Vector2.LEFT
-var dash_vector = Vector2.RIGHT
-var knockback = Vector2.ZERO
-var is_alive = true
-var is_dashing = false
-var attackable = true
-var combat_stance = false
-var can_teleport = true
-var can_attack = true
+var roll_vector: Vector2 = Vector2.LEFT
+var dash_vector: Vector2 = Vector2.RIGHT
+var knockback: Vector2 = Vector2.ZERO
+var attackable: bool = true
+var combat_stance: bool = false
+
+var is_alive: bool = true
+var is_dashing: bool = false
+
+var dot_count: int = 0
+var is_dotted: bool = false
+var dot_damage: int = 0
+
+var can_dash: bool = true
+var can_teleport: bool = true
+var can_attack: bool = true
 
 @onready var animPlayer = $AnimationPlayer
 @onready var animTree = $AnimationTree
@@ -41,6 +50,9 @@ var can_attack = true
 @onready var hitbx: Area2D = $Hitbox
 @onready var hit_timer: Timer = $Hitbox/HitTimer
 @onready var hit_box_shape = $Hitbox/CollisionShape2D
+@onready var dash_timer: Timer = $DashTimer
+@onready var dot_timer: Timer = $Hitbox/DotTimer
+@onready var debuff_handler: DebuffHandler = $DebuffHandler
 
 var vel = Vector2.ZERO
 
@@ -131,9 +143,13 @@ func move_state(delta):
 		else:
 			animState.travel("Idle")
 	
-	if Input.is_action_just_pressed("dash") and not is_dashing and stats.level > 1:
+	if Input.is_action_just_pressed("dash") and not is_dashing and stats.level > 1 and can_dash:
 		var sound = dash_sound_scene.instantiate()
 		self.add_child(sound)
+		dash_timer.wait_time = stats.DASH_COOLDOWN
+		dash_timer.start()
+		can_dash = false
+		can_attack = false
 		state = DASH
 	
 	if Input.is_action_just_pressed("attack") and can_attack and stats.has_sword and not is_dashing:
@@ -172,11 +188,14 @@ func move_state(delta):
 		else:
 			animState.travel("TakeSword")
 			combat_stance = true
+
 	if Input.is_action_just_pressed("healthpotion") and stats.health < stats.MAX_HEALTH:
 		use_health_potion()
 	
 	if Input.is_action_just_pressed("debug_key"):
-		EventHandler.emit_signal("player_sleep")
+		#debuff_handler.get_debuff_effect(SkillManager.ELEMENT.POISON)
+		#EventHandler.emit_signal("player_sleep")
+		GameManager.save_data()
 
 func move():
 	if !is_alive:
@@ -218,6 +237,7 @@ func dash_state(delta):
 	move()
 	await (get_tree().create_timer(0.3).timeout)
 	is_dashing = false
+	can_attack = true
 	velocity = velocity.move_toward(Vector2.ZERO * stats.speed, stats.ACCELERATION * delta)
 	state = MOVE
 
@@ -237,8 +257,29 @@ func take_damage(area):
 			combat_stance = true
 		hit_box_shape.call_deferred("set_disabled", true)
 		hit_timer.start(2)
-		GameManager.camera.add_trauma(1)
+		if not area.attack_element == SkillManager.ELEMENT.NONE:
+			is_dotted = true
+			self.set_dot(area.get_dot_damage(), area.get_dot_count(), area.attack_element)
+		else:
+			GameManager.camera.add_trauma(1.2)
+		Engine.time_scale = 0.8
 		state = HURT
+
+
+func set_dot(dmg: int, count: int, element):
+	debuff_handler.get_debuff_effect(element)
+	self.dot_count = count
+	self.dot_damage = dmg
+	self.dot_timer.wait_time = 1
+	print("Player dot damage %s and count %s" % [self.dot_damage, self.dot_count])
+	self.dot_timer.start()
+	EventHandler.emit_signal("player_dot_start", self.dot_count, element)
+
+func take_dot_damage():
+	self.stats.set_health(stats.health - self.dot_damage)
+	self.dot_timer.wait_time = 1
+	self.dot_timer.start()
+	print("Player take dot damage %s count %s" % [self.dot_damage, self.dot_count])
 
 
 func create_levelup_effect():
@@ -279,6 +320,7 @@ func hit_timer_timeout():
 	attackable = true
 
 func hurt_animation_finished():
+	Engine.time_scale = 1
 	if stats.health <= 0:
 		is_alive = false
 		EventHandler.emit_signal("player_died")
@@ -302,10 +344,13 @@ func heavy_attack_animation_finished():
 func take_sword_animation_finished():
 	state = MOVE
 
-func _create_food_a_sound():
-	var sound  = foodstep_a_scene.instantiate()
-	self.add_child(sound)
+func _on_dash_timer_timeout():
+	can_dash = true
 
-func _create_food_b_sound():
-	var sound  = foodstep_b_scene.instantiate()
-	self.add_child(sound)
+
+func _on_dot_timer_timeout():
+	if self.dot_count > 0:
+		self.take_dot_damage()
+		self.dot_count -= 1
+	else:
+		self.is_dotted = false

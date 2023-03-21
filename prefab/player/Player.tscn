@@ -1,4 +1,4 @@
-[gd_scene load_steps=219 format=3 uid="uid://bulsih1uk7ua"]
+[gd_scene load_steps=220 format=3 uid="uid://bulsih1uk7ua"]
 
 [ext_resource type="Script" path="res://prefab/player/Player.gd" id="1_3dgss"]
 [ext_resource type="Texture2D" uid="uid://dt2540u4sj5mt" path="res://assets/Shadows/MediumShadow.png" id="2_2ndm1"]
@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://p5qjf6yxjhlo" path="res://assets/Materials/ParticleTextures/light.png" id="13_e5flh"]
 [ext_resource type="Script" path="res://prefab/player/PlayerLight.gd" id="14_d00ft"]
 [ext_resource type="PackedScene" uid="uid://bk15h3dxda4v0" path="res://prefab/utils/SoundController.tscn" id="20_a285j"]
+[ext_resource type="PackedScene" uid="uid://c22yxboo4u2jv" path="res://prefab/utils/DebuffHandler.tscn" id="21_kbir8"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nur2f"]
 radius = 9.375
@@ -2085,6 +2086,8 @@ shape = SubResource("CapsuleShape2D_inkns")
 wait_time = 2.0
 one_shot = true
 
+[node name="DotTimer" type="Timer" parent="Hitbox"]
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_6hvkp")
@@ -2128,6 +2131,7 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_yxsyt")
 
 [node name="DashTimer" type="Timer" parent="."]
+one_shot = true
 
 [node name="PlayerLight" type="PointLight2D" parent="." groups=["lights"]]
 position = Vector2(-1.19209e-07, -12)
@@ -2156,7 +2160,14 @@ DOUBLE_ATTACK_CAP = 4
 DOUBLE_ATTACK_COST = 1
 HEAVY_ATTACK_CAP = 8
 HEAVY_ATTACK_COST = 2
+DASH_COOLDOWN = 2
 
 [node name="SoundController" parent="." instance=ExtResource("20_a285j")]
+
+[node name="DebuffHandler" parent="." instance=ExtResource("21_kbir8")]
+position = Vector2(-1.19209e-07, -13.664)
+
+[connection signal="timeout" from="Hitbox/DotTimer" to="." method="_on_dot_timer_timeout"]
+[connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
 
 [editable path="SoftCollision"]

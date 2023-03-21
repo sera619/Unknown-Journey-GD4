@@ -12,13 +12,26 @@ enum Type {
 	HEAVY,
 	DOUBLE
 }
-var attack_type = Type.NORMAL
+var attack_type: Type = Type.NORMAL
 
+var attack_element = SkillManager.ELEMENT.NONE
 
 func _ready():
 	EventHandler.connect("player_maxdamage_changed", set_sword_max_damage)
 	EventHandler.connect("player_damage_changed", set_sword_damage)
 
+func set_element_type(new_element: String):
+	match new_element:
+		"None":
+			attack_element = SkillManager.ELEMENT.NONE
+		"Lightning":
+			attack_element = SkillManager.ELEMENT.LIGHTNING
+		"Fire":
+			attack_element = SkillManager.ELEMENT.FIRE
+		"Ice":
+			attack_element = SkillManager.ELEMENT.ICE
+		"Poison":
+			attack_element = SkillManager.ELEMENT.POISON
 
 func set_sword_damage(dmg):
 	self.damage = dmg
@@ -28,6 +41,7 @@ func set_sword_damage(dmg):
 
 func set_sword_max_damage(max_dmg):
 	self.max_damage = max_dmg
+
 
 func set_attack_type(new_type: String):
 	match new_type:

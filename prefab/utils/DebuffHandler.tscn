@@ -1,0 +1,14 @@
+[gd_scene load_steps=6 format=3 uid="uid://c22yxboo4u2jv"]
+
+[ext_resource type="Script" path="res://prefab/utils/DebuffHandler.gd" id="1_d7wcm"]
+[ext_resource type="PackedScene" uid="uid://d0rc053bnm0i2" path="res://prefab/effects/PoisonDebuff.tscn" id="2_i5231"]
+[ext_resource type="PackedScene" uid="uid://dblapyqkeaosg" path="res://prefab/effects/FireDebuff.tscn" id="3_5h11h"]
+[ext_resource type="PackedScene" uid="uid://dj5nn3lqcygb8" path="res://prefab/effects/IceDebuff.tscn" id="4_vxiya"]
+[ext_resource type="PackedScene" uid="uid://clrsov20y0gts" path="res://prefab/effects/LightningDebuff.tscn" id="5_x5436"]
+
+[node name="DebuffHandler" type="Node2D"]
+script = ExtResource("1_d7wcm")
+poison_debuff_scene = ExtResource("2_i5231")
+fire_debuff_scene = ExtResource("3_5h11h")
+ice_debuff_scene = ExtResource("4_vxiya")
+lightning_debuff_scene = ExtResource("5_x5436")

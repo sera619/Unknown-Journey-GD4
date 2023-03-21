@@ -5,9 +5,11 @@ extends CharacterBody2D
 @export_category("SFX Scenes")
 @export var hurt_sound_scene: PackedScene
 @export var death_sound_scene: PackedScene
+
+
 @onready var hitbox: Area2D = $HitBox
 @onready var attack_timer: Timer = $Timer
-@onready var hurt_box: Area2D = $WeaponAngle/HurtBox
+@onready var hurt_box: EnemyWeapon = $WeaponAngle/HurtBox
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
 @onready var anim_tree:AnimationTree = $AnimationTree
 @onready var anim_stats = anim_tree.get("parameters/playback")
@@ -112,6 +114,7 @@ func _physics_process(delta):
 		ATTACK:
 			var player = player_detector.player
 			if player != null:
+				#hurt_box.set_element_type("Poison")
 				attack_state(delta)
 		HEAL:
 			heal_state(delta)
@@ -132,6 +135,7 @@ func on_hurtbox_area_entered(area):
 
 func attack_state(_delta):
 	can_attack = false
+	hurt_box.set_element_type("Poison")
 	attack_timer.start()
 	velocity = Vector2.ZERO
 	anim_stats.travel("SporeAttack")

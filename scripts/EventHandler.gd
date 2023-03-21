@@ -24,6 +24,9 @@ signal player_level_changed(level)
 signal player_level_up
 signal player_died
 signal player_sleep
+signal player_dot_start(dot_count, dot_element)
+
+
 
 signal player_get_healthpot(value)
 signal player_get_energiepot(value)
