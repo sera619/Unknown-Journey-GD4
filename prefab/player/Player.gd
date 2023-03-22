@@ -53,6 +53,7 @@ var can_attack: bool = true
 @onready var dash_timer: Timer = $DashTimer
 @onready var dot_timer: Timer = $Hitbox/DotTimer
 @onready var debuff_handler: DebuffHandler = $DebuffHandler
+@onready var sound_controller: SoundController = $SoundController
 
 var vel = Vector2.ZERO
 
@@ -72,6 +73,7 @@ func _ready():
 		GameManager.camera.player = self
 	swordHitbox.knockback_vector = roll_vector
 	swordHitbox.set_sword_damage(stats.damage)
+	sound_controller._setup_sounds("Player")
 
 
 func _process(_delta):
@@ -344,9 +346,15 @@ func heavy_attack_animation_finished():
 func take_sword_animation_finished():
 	state = MOVE
 
+func _play_move_sound():
+	sound_controller._play_food_sound()
+
+func _play_run_sound():
+	sound_controller._play_run_sound()
+
+
 func _on_dash_timer_timeout():
 	can_dash = true
-
 
 func _on_dot_timer_timeout():
 	if self.dot_count > 0:

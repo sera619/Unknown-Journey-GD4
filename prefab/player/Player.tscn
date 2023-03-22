@@ -1005,6 +1005,23 @@ tracks/0/keys = {
 "update": 1,
 "values": [Vector2i(0, 4), Vector2i(1, 4), Vector2i(2, 4), Vector2i(3, 4), Vector2i(4, 4), Vector2i(5, 4), Vector2i(6, 4), Vector2i(7, 4), Vector2i(0, 4)]
 }
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"_play_move_sound"
+}, {
+"args": [],
+"method": &"_play_move_sound"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_q4gmd"]
 resource_name = "MoveLeft"
@@ -1021,6 +1038,23 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [Vector2i(0, 7), Vector2i(1, 7), Vector2i(2, 7), Vector2i(3, 7), Vector2i(4, 7), Vector2i(5, 7), Vector2i(6, 7), Vector2i(7, 7), Vector2i(0, 7)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"_play_move_sound"
+}, {
+"args": [],
+"method": &"_play_move_sound"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_arm3m"]
@@ -1039,6 +1073,23 @@ tracks/0/keys = {
 "update": 1,
 "values": [Vector2i(0, 5), Vector2i(1, 5), Vector2i(2, 5), Vector2i(3, 5), Vector2i(4, 5), Vector2i(5, 5), Vector2i(6, 5), Vector2i(7, 5), Vector2i(0, 5)]
 }
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"_play_move_sound"
+}, {
+"args": [],
+"method": &"_play_move_sound"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_poxbu"]
 resource_name = "MoveUp"
@@ -1055,6 +1106,23 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [Vector2i(0, 6), Vector2i(1, 6), Vector2i(2, 6), Vector2i(3, 6), Vector2i(4, 6), Vector2i(5, 6), Vector2i(6, 6), Vector2i(7, 6), Vector2i(0, 6)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"_play_move_sound"
+}, {
+"args": [],
+"method": &"_play_move_sound"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_eiybm"]
@@ -2034,6 +2102,7 @@ text = "[center]
 [wave amp=40 freq=10]-10[/wave][/center]"
 
 [node name="SwordHolder" type="Marker2D" parent="."]
+visible = false
 position = Vector2(0, -12)
 
 [node name="SwordHitbox" type="Area2D" parent="SwordHolder" groups=["playerSword"]]
@@ -2067,11 +2136,13 @@ hframes = 10
 vframes = 48
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, -2)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_rpsvp")
 
 [node name="Hitbox" type="Area2D" parent="." groups=["playerHitbox"]]
+visible = false
 rotation = -0.00871367
 collision_layer = 8
 collision_mask = 8
@@ -2111,6 +2182,7 @@ parameters/SwordIdle/blend_position = Vector2(0, 0)
 parameters/TakeSword/blend_position = Vector2(0, 0)
 
 [node name="Area2D" type="Area2D" parent="." groups=["playerPickupzone"]]
+visible = false
 collision_layer = 64
 collision_mask = 0
 
@@ -2124,6 +2196,7 @@ wait_time = 6.0
 one_shot = true
 
 [node name="SoftCollision" parent="." instance=ExtResource("8_6a312")]
+visible = false
 
 [node name="CollisionShape2D" parent="SoftCollision" index="0"]
 position = Vector2(0, -2)

@@ -4,9 +4,10 @@
 
 [node name="SoundController" type="Node"]
 script = ExtResource("1_8er4f")
-move_sound = "res://assets/Music and Sounds/foodsteps/HeavyDirt1.wav"
-run_sound = "res://assets/Music and Sounds/foodsteps/HeavyDirtRun1.wav"
 
 [node name="MoveSound" type="AudioStreamPlayer" parent="."]
 
 [node name="RunSound" type="AudioStreamPlayer" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
