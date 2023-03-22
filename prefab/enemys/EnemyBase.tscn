@@ -1,18 +1,39 @@
-[gd_scene load_steps=4 format=3 uid="uid://c1sfpfmidy6lg"]
+[gd_scene load_steps=14 format=3 uid="uid://c1sfpfmidy6lg"]
 
+[ext_resource type="Script" path="res://prefab/enemys/EnemyBase.gd" id="1_cqgk1"]
 [ext_resource type="PackedScene" uid="uid://kbo1bay3i1ps" path="res://prefab/utils/PlayerDetector.tscn" id="1_ixw38"]
 [ext_resource type="Script" path="res://scripts/EnemyStats.gd" id="1_lk4tv"]
+[ext_resource type="PackedScene" uid="uid://c4qwbfsr4fe74" path="res://prefab/effects/HitEffect.tscn" id="2_k3kx8"]
+[ext_resource type="PackedScene" uid="uid://doa5hxcckh64o" path="res://prefab/enemys/EnemyHUD.tscn" id="2_pxpds"]
+[ext_resource type="Script" path="res://prefab/enemys/EnemyWeapon.gd" id="3_4xh5d"]
+[ext_resource type="PackedScene" uid="uid://cblcbsx1gpy2q" path="res://prefab/effects/DeathEffect.tscn" id="3_w8e5m"]
+[ext_resource type="PackedScene" uid="uid://bpr5kb8nmfivl" path="res://prefab/audio/EnemyHitSound.tscn" id="4_vfrrp"]
+[ext_resource type="PackedScene" uid="uid://uqcsi836bkf" path="res://prefab/audio/EnemyDeathSound.tscn" id="5_fekex"]
+[ext_resource type="PackedScene" uid="uid://c22yxboo4u2jv" path="res://prefab/utils/DebuffHandler.tscn" id="6_4rc4h"]
+[ext_resource type="PackedScene" uid="uid://b347lo6c415bh" path="res://prefab/utils/WanderController.tscn" id="7_l3o1m"]
+[ext_resource type="PackedScene" uid="uid://ebdq15holk57" path="res://prefab/utils/Softcollision.tscn" id="8_vwj4u"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o3qdu"]
 radius = 64.0
 
 [node name="EnemyBase" type="CharacterBody2D"]
 collision_layer = 5
+motion_mode = 1
+script = ExtResource("1_cqgk1")
+hit_effect_scene = ExtResource("2_k3kx8")
+death_effect_scene = ExtResource("3_w8e5m")
+hurt_sound_scene = ExtResource("4_vfrrp")
+death_sound_scene = ExtResource("5_fekex")
 
 [node name="EnemyStats" type="Node" parent="."]
 script = ExtResource("1_lk4tv")
 
+[node name="EnemyHUD" parent="." instance=ExtResource("2_pxpds")]
+enemy_stats_path = NodePath("../EnemyStats")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 
@@ -23,13 +44,14 @@ collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 
-[node name="Marker2D" type="Marker2D" parent="."]
+[node name="WeaponAngle" type="Marker2D" parent="."]
 
-[node name="HurtBox" type="Area2D" parent="."]
+[node name="HurtBox" type="Area2D" parent="WeaponAngle" groups=["enemyWeapon"]]
 collision_layer = 0
 collision_mask = 8
+script = ExtResource("3_4xh5d")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WeaponAngle/HurtBox"]
 
 [node name="PlayerDetector" parent="." instance=ExtResource("1_ixw38")]
 detector_shape = SubResource("CircleShape2D_o3qdu")
@@ -38,3 +60,25 @@ detector_shape = SubResource("CircleShape2D_o3qdu")
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 anim_player = NodePath("../AnimationPlayer")
+
+[node name="RayCasts" type="Node2D" parent="."]
+
+[node name="RayCast2D" type="RayCast2D" parent="RayCasts"]
+target_position = Vector2(30, 0)
+collision_mask = 128
+
+[node name="RayCast2D2" type="RayCast2D" parent="RayCasts"]
+position = Vector2(0, 6)
+target_position = Vector2(30, 0)
+collision_mask = 128
+
+[node name="RayCast2D3" type="RayCast2D" parent="RayCasts"]
+position = Vector2(0, -7)
+target_position = Vector2(30, 0)
+collision_mask = 128
+
+[node name="DebuffHandler" parent="." instance=ExtResource("6_4rc4h")]
+
+[node name="WanderController" parent="." instance=ExtResource("7_l3o1m")]
+
+[node name="SoftCollision" parent="." instance=ExtResource("8_vwj4u")]

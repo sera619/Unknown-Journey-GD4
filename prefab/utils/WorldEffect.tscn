@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cgun4omhyrihq"]
+
+[ext_resource type="Script" path="res://prefab/utils/WorldEffect.gd" id="1_68f8j"]
+[ext_resource type="PackedScene" uid="uid://crwa8a6e4wdjp" path="res://prefab/effects/SunlighVFX.tscn" id="1_s6rde"]
+
+[node name="WorldEffect" type="Node2D"]
+script = ExtResource("1_68f8j")
+
+[node name="SunlightVFX" parent="." instance=ExtResource("1_s6rde")]
+position = Vector2(523.5, -185)
+scale = Vector2(22.3516, 15.375)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://cmyeya6fvbgt7"]
+[gd_scene load_steps=31 format=3 uid="uid://cmyeya6fvbgt7"]
 
 [ext_resource type="Script" path="res://world/Grasland.gd" id="1_hwqie"]
 [ext_resource type="TileSet" uid="uid://bk5vv7fsil51w" path="res://prefab/tilesets/GraslandTileset.tres" id="2_7iqe7"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://dwjdwpvmh7uim" path="res://prefab/props/House.tscn" id="12_00bwy"]
 [ext_resource type="PackedScene" uid="uid://b2gdh6u1gj3fu" path="res://prefab/utils/InformationTrigger.tscn" id="13_857up"]
 [ext_resource type="PackedScene" uid="uid://xex3x1q2v22b" path="res://prefab/utils/Waysign.tscn" id="13_nsg3c"]
+[ext_resource type="PackedScene" uid="uid://cgun4omhyrihq" path="res://prefab/utils/WorldEffect.tscn" id="16_lqgbk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u7hoo"]
 size = Vector2(42, 14)
@@ -501,7 +502,7 @@ sign_direction = 1
 
 [node name="House" parent="Map/GameObjects/Buildings" instance=ExtResource("12_00bwy")]
 y_sort_enabled = true
-position = Vector2(1290, 197)
+position = Vector2(1272, 170)
 
 [node name="Enemys" type="Node2D" parent="Map/GameObjects"]
 y_sort_enabled = true
@@ -551,7 +552,7 @@ position = Vector2(859.5, 354)
 shape = SubResource("RectangleShape2D_c1aiy")
 
 [node name="Teleporter3" parent="Map/GameObjects" instance=ExtResource("5_fviyu")]
-position = Vector2(1273, 202)
+position = Vector2(1255, 175)
 teleport_location = "GraslandHouse"
 
 [node name="CollisionShape2D" parent="Map/GameObjects/Teleporter3/TeleportArea" index="0"]
@@ -569,6 +570,15 @@ scale = Vector2(0.5, 0.61658)
 sprite_frames = SubResource("SpriteFrames_a13cv")
 autoplay = "default"
 frame_progress = 0.0919822
+
+[node name="WorldEffect" parent="Map" instance=ExtResource("16_lqgbk")]
+
+[node name="SunlightVFX" parent="Map/WorldEffect" index="0"]
+position = Vector2(499, 138)
+scale = Vector2(1.2998, 0.993896)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="Map"]
+color = Color(1, 0.988235, 0.862745, 1)
 
 [node name="GameCamera" parent="Map" instance=ExtResource("7_jc8e8")]
 zoom = Vector2(0.8, 0.8)
@@ -589,4 +599,5 @@ position = Vector2(1699, 670)
 [editable path="Map/GameObjects/InformationTrigger/PlayerDetector"]
 [editable path="Map/GameObjects/Teleporter3"]
 [editable path="Map/GameObjects/Teleporter3/PlayerDetector"]
+[editable path="Map/WorldEffect"]
 [editable path="Map/GameCamera"]

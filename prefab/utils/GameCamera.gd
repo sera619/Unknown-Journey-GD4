@@ -16,7 +16,7 @@ class_name GameCamera
 @export var max_roll = 0.1  # Maximum rotation in radians (use sparingly).
 
 @export_category("Weather Effects")
-@export var rain_effect_scene: PackedScene 
+@export var rain_effect_scene: PackedScene
 
 @onready var topLeft = $Limits/TopLeft
 @onready var bottomRight = $Limits/BottomRight
@@ -47,6 +47,7 @@ func _ready():
 func _start_raining():
 	var rain = rain_effect_scene.instantiate()
 	self.add_child(rain)
+
 
 func add_trauma(amount):
 	trauma = min(trauma + amount, 1.0)
@@ -98,6 +99,6 @@ func _input(event):
 #		if event.is_pressed():
 #			if event.keycode == KEY_O:
 #				print("Key o pressed")
-#				add_trauma(10)
+#				self._start_sunlight()
 #				pass
 

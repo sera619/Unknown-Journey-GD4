@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://crwa8a6e4wdjp"]
+
+[ext_resource type="Shader" path="res://GodRayShader.gdshader" id="1_v5q65"]
+[ext_resource type="Texture2D" uid="uid://bdebkdyhxn8ai" path="res://assets/Materials/Solid_white_bordered.svg.png" id="2_ojgud"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_quy0l"]
+shader = ExtResource("1_v5q65")
+shader_parameter/is_active = false
+shader_parameter/angle = -0.894
+shader_parameter/position = 0.25
+shader_parameter/spread = 0.452
+shader_parameter/cutoff = -0.968
+shader_parameter/falloff = 0.675
+shader_parameter/edge_fade = 0.237
+shader_parameter/speed = 0.15
+shader_parameter/ray1_density = 150.0
+shader_parameter/ray2_density = 300.0
+shader_parameter/ray2_intensity = 0.048
+shader_parameter/color = Color(0.878431, 1, 0.686275, 0.0784314)
+shader_parameter/hdr = false
+shader_parameter/seed = 10.0
+
+[node name="SunlightVFX" type="Sprite2D"]
+visible = false
+material = SubResource("ShaderMaterial_quy0l")
+texture = ExtResource("2_ojgud")

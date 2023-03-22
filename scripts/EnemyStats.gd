@@ -25,6 +25,9 @@ signal enemy_died
 @export var MIN_RANGE: int
 @export var MAX_RANGE: int
 
+@export_category("Skill Settings")
+@export var heal_charges: int
+
 @export_category('Player Rewards')
 @export var reward_exp: int
 

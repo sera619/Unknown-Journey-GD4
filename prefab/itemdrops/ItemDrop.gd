@@ -53,7 +53,7 @@ func pickup(area):
 	elif item_type == 0:
 		if item_name:
 			GameManager.player.stats.get_item(item_name, amount)
-			GameManager.info_box.set_info_text("Du hast\n\n[color=red]%sx %s[/color]\n\nerhalten!" % [amount, item_name])
+			GameManager.info_box.set_info_text("[center]Du hast\n\n[color=red]%sx %s[/color]\n\nerhalten![/center]" % [amount, item_name])
 	self.call_deferred("queue_free")
 
 
