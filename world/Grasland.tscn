@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://cmyeya6fvbgt7"]
+[gd_scene load_steps=32 format=3 uid="uid://cmyeya6fvbgt7"]
 
 [ext_resource type="Script" path="res://world/Grasland.gd" id="1_hwqie"]
 [ext_resource type="TileSet" uid="uid://bk5vv7fsil51w" path="res://prefab/tilesets/GraslandTileset.tres" id="2_7iqe7"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://dewtis55bljv5" path="res://prefab/props/SmallBush.tscn" id="10_6nct6"]
 [ext_resource type="PackedScene" uid="uid://dwjdwpvmh7uim" path="res://prefab/props/House.tscn" id="12_00bwy"]
 [ext_resource type="PackedScene" uid="uid://b2gdh6u1gj3fu" path="res://prefab/utils/InformationTrigger.tscn" id="13_857up"]
+[ext_resource type="PackedScene" uid="uid://cg3dyy4clkbpr" path="res://prefab/enemys/EnemySkeletonMage.tscn" id="13_g5dlj"]
 [ext_resource type="PackedScene" uid="uid://xex3x1q2v22b" path="res://prefab/utils/Waysign.tscn" id="13_nsg3c"]
 [ext_resource type="PackedScene" uid="uid://cgun4omhyrihq" path="res://prefab/utils/WorldEffect.tscn" id="16_lqgbk"]
 
@@ -509,6 +510,9 @@ y_sort_enabled = true
 
 [node name="EnemyFungy" parent="Map/GameObjects/Enemys" instance=ExtResource("9_v1pbo")]
 position = Vector2(-79, 135)
+
+[node name="EnemySkeletonMage" parent="Map/GameObjects/Enemys" instance=ExtResource("13_g5dlj")]
+position = Vector2(795, -30)
 
 [node name="Teleporter" parent="Map/GameObjects" instance=ExtResource("5_fviyu")]
 position = Vector2(755, -258)

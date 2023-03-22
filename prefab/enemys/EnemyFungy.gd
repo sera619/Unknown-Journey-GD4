@@ -91,7 +91,7 @@ func _physics_process(delta):
 			seek_player()
 			if wander_controller.get_time_left() == 0:
 				update_wander()
-			if can_attack and heal_charges > 0 and stats.health < int(stats.max_health/2):
+			if can_attack and heal_charges > 0 and stats.health < stats.max_health / 2:
 				state = HEAL
 			accelerate_towards_point(wander_controller.target_position, delta)
 			if global_position.distance_to(wander_controller.target_position) <= stats.WANDER_TARGET_RANGE:

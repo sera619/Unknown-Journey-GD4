@@ -1,14 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://c1sfpfmidy6lg"]
+[gd_scene load_steps=9 format=3 uid="uid://c1sfpfmidy6lg"]
 
-[ext_resource type="Script" path="res://prefab/enemys/EnemyBase.gd" id="1_cqgk1"]
 [ext_resource type="PackedScene" uid="uid://kbo1bay3i1ps" path="res://prefab/utils/PlayerDetector.tscn" id="1_ixw38"]
 [ext_resource type="Script" path="res://scripts/EnemyStats.gd" id="1_lk4tv"]
-[ext_resource type="PackedScene" uid="uid://c4qwbfsr4fe74" path="res://prefab/effects/HitEffect.tscn" id="2_k3kx8"]
 [ext_resource type="PackedScene" uid="uid://doa5hxcckh64o" path="res://prefab/enemys/EnemyHUD.tscn" id="2_pxpds"]
 [ext_resource type="Script" path="res://prefab/enemys/EnemyWeapon.gd" id="3_4xh5d"]
-[ext_resource type="PackedScene" uid="uid://cblcbsx1gpy2q" path="res://prefab/effects/DeathEffect.tscn" id="3_w8e5m"]
-[ext_resource type="PackedScene" uid="uid://bpr5kb8nmfivl" path="res://prefab/audio/EnemyHitSound.tscn" id="4_vfrrp"]
-[ext_resource type="PackedScene" uid="uid://uqcsi836bkf" path="res://prefab/audio/EnemyDeathSound.tscn" id="5_fekex"]
 [ext_resource type="PackedScene" uid="uid://c22yxboo4u2jv" path="res://prefab/utils/DebuffHandler.tscn" id="6_4rc4h"]
 [ext_resource type="PackedScene" uid="uid://b347lo6c415bh" path="res://prefab/utils/WanderController.tscn" id="7_l3o1m"]
 [ext_resource type="PackedScene" uid="uid://ebdq15holk57" path="res://prefab/utils/Softcollision.tscn" id="8_vwj4u"]
@@ -19,11 +14,6 @@ radius = 64.0
 [node name="EnemyBase" type="CharacterBody2D"]
 collision_layer = 5
 motion_mode = 1
-script = ExtResource("1_cqgk1")
-hit_effect_scene = ExtResource("2_k3kx8")
-death_effect_scene = ExtResource("3_w8e5m")
-hurt_sound_scene = ExtResource("4_vfrrp")
-death_sound_scene = ExtResource("5_fekex")
 
 [node name="EnemyStats" type="Node" parent="."]
 script = ExtResource("1_lk4tv")
