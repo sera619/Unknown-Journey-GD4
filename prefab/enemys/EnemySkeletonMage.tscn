@@ -1,6 +1,7 @@
-[gd_scene load_steps=87 format=3 uid="uid://cg3dyy4clkbpr"]
+[gd_scene load_steps=88 format=3 uid="uid://cg3dyy4clkbpr"]
 
 [ext_resource type="Script" path="res://prefab/enemys/SkeletonMage.gd" id="1_n1dsa"]
+[ext_resource type="PackedScene" uid="uid://bjfxwi2rlu7co" path="res://prefab/enemys/EnemyIceProjectile.tscn" id="2_ek2w7"]
 [ext_resource type="PackedScene" uid="uid://c4qwbfsr4fe74" path="res://prefab/effects/HitEffect.tscn" id="2_ykpbt"]
 [ext_resource type="PackedScene" uid="uid://cblcbsx1gpy2q" path="res://prefab/effects/DeathEffect.tscn" id="3_ugdbn"]
 [ext_resource type="PackedScene" uid="uid://bpr5kb8nmfivl" path="res://prefab/audio/EnemyHitSound.tscn" id="4_0q6w4"]
@@ -226,9 +227,12 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.8),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
+"args": [],
+"method": &"_cast_spell"
+}, {
 "args": [],
 "method": &"_on_cast_animation_finished"
 }]
@@ -268,9 +272,12 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.8),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
+"args": [],
+"method": &"_cast_spell"
+}, {
 "args": [],
 "method": &"_on_cast_animation_finished"
 }]
@@ -310,9 +317,12 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.8),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
+"args": [],
+"method": &"_cast_spell"
+}, {
 "args": [],
 "method": &"_on_cast_animation_finished"
 }]
@@ -352,9 +362,12 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.8),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
+"args": [],
+"method": &"_cast_spell"
+}, {
 "args": [],
 "method": &"_on_cast_animation_finished"
 }]
@@ -724,6 +737,7 @@ scale = Vector2(0.75, 0.75)
 collision_layer = 5
 motion_mode = 1
 script = ExtResource("1_n1dsa")
+spell_scene = ExtResource("2_ek2w7")
 hit_effect_scene = ExtResource("2_ykpbt")
 death_effect_scene = ExtResource("3_ugdbn")
 hurt_sound_scene = ExtResource("4_0q6w4")
@@ -740,14 +754,14 @@ enemy_stats_path = NodePath("../EnemyStats")
 [node name="EnemyStats" type="Node" parent="."]
 script = ExtResource("7_4qq7q")
 max_health = 10
-damage = 1
+damage = 4
 MAX_SPEED = 40
 ACCELERATION = 300
 FRICTION = 200
 WANDER_SPEED = 15
 WANDER_TARGET_RANGE = 4
-MIN_RANGE = 4
-MAX_RANGE = 32
+MIN_RANGE = 40
+MAX_RANGE = 64
 heal_charges = 2
 reward_exp = 35
 
@@ -787,7 +801,7 @@ position = Vector2(28, 0)
 collision_layer = 8
 collision_mask = 8
 script = ExtResource("10_1xcay")
-max_poisen_dot = 4
+max_ice_dot = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WeaponAngle/HurtBox"]
 shape = SubResource("CapsuleShape2D_ljslk")

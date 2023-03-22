@@ -1,6 +1,8 @@
 class_name EnemyProjectile
 extends EnemyWeapon
 
+
+@export var spell_damage: int = 1
 @export var launch_speed: float = 30.0
 @export var speed: float = 70.0
 @export var lifetime: float = 3.0
@@ -17,7 +19,10 @@ var direction: Vector2 = Vector2.ZERO
 var target = null
 
 func _ready():
+	damage = spell_damage
+	self.set_element_type(spell_element)
 	look_at(global_position + direction)
+	knockback_vector = global_position + direction
 	self.connect("area_entered",Callable(self,"_destroy_projectile"))
 	timer.connect("timeout",Callable(self,"_on_timer_timeout"))
 	if projectile_type == "Homeing Projectile":
@@ -66,5 +71,4 @@ func _destroy_projectile(area):
 	if !area.is_in_group("playerHitbox"):
 		return
 	else:
-		area.get_parent().take_damage(damage)
-		call_deferred("queue_free")
+		self.call_deferred("queue_free")

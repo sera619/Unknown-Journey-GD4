@@ -50,6 +50,9 @@ var can_attack: bool = true
 var is_infight:bool = false
 var old_position = Vector2.ZERO
 var heal_charges: int = 2
+var last_target_position:Vector2 = Vector2.ZERO
+
+
 func _ready():
 	hitbox.connect("area_entered", on_Hitbox_area_entered)
 	attack_timer.connect("timeout", attack_timer_timeout)
@@ -118,6 +121,7 @@ func _physics_process(delta):
 					if can_attack and stats.heal_charges > 0 and stats.health < int(stats.max_health/2):
 						state = HEAL
 					elif can_attack:
+						last_target_position = player.global_position
 						state = ATTACK
 					else:
 						state = IDLE
@@ -250,11 +254,24 @@ func heal_state(_delta):
 func hurt_state(_delta):
 	anim_stats.travel("Hurt")
 
+
+func shoot_projectile():
+	var shoot_direction = $WeaponAngle/HurtBox.global_position.direction_to(last_target_position)
+	var projectile: EnemyProjectile = spell_scene.instantiate()
+	projectile.damage = stats.damage
+	projectile.global_position = $WeaponAngle/HurtBox.global_position
+	projectile.direction = shoot_direction
+	get_tree().current_scene.add_child(projectile)
+
 func _on_cast_animation_finished():
+	state = IDLE
+
+func _cast_spell():
 	if current_cast == CAST_TYPE.HEAL:
 		heal_enemy()
 		current_cast = CAST_TYPE.DAMAGE
-	state = IDLE
+	else:
+		shoot_projectile()
 
 func _on_hurt_animation_finished():
 	state = IDLE

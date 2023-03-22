@@ -32,6 +32,7 @@ var is_dashing: bool = false
 
 var dot_count: int = 0
 var is_dotted: bool = false
+var is_slowed: bool = false
 var dot_damage: int = 0
 
 var can_dash: bool = true
@@ -134,6 +135,8 @@ func move_state(delta):
 		elif combat_stance:
 			stats.set_speed(stats.COMBAT_MOVE_SPEED)
 			animState.travel("CombatMove")
+		if is_slowed :
+			stats.set_speed(stats.COMBAT_MOVE_SPEED * 0.75)
 		velocity = velocity.move_toward(input_vector * stats.speed, stats.ACCELERATION * delta)
 		move()
 	
@@ -270,8 +273,13 @@ func take_damage(area):
 
 func set_dot(dmg: int, count: int, element):
 	debuff_handler.get_debuff_effect(element)
+	
+	if element == SkillManager.ELEMENT.ICE:
+		is_slowed = true
+		self.stats.set_speed(self.stats.COMBAT_MOVE_SPEED * 0.8)
+	else:
+		self.dot_damage = dmg
 	self.dot_count = count
-	self.dot_damage = dmg
 	self.dot_timer.wait_time = 1
 	print("Player dot damage %s and count %s" % [self.dot_damage, self.dot_count])
 	self.dot_timer.start()
@@ -358,7 +366,10 @@ func _on_dash_timer_timeout():
 
 func _on_dot_timer_timeout():
 	if self.dot_count > 0:
-		self.take_dot_damage()
+		if not self.is_slowed:
+			self.take_dot_damage()
 		self.dot_count -= 1
 	else:
 		self.is_dotted = false
+		if self.is_slowed:
+			self.is_slowed = false
