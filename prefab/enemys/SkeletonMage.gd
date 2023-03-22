@@ -51,7 +51,7 @@ var is_infight:bool = false
 var old_position = Vector2.ZERO
 var heal_charges: int = 2
 var last_target_position:Vector2 = Vector2.ZERO
-
+var spell_shooted: bool = false
 
 func _ready():
 	hitbox.connect("area_entered", on_Hitbox_area_entered)
@@ -98,7 +98,7 @@ func _physics_process(delta):
 				update_wander()
 			if can_attack and heal_charges > 0 and stats.health < int(stats.max_health/2):
 				state = HEAL
-			if player_detector.can_see_player():
+			elif player_detector.can_see_player():
 				state = CHASE
 				
 		WANDER:
@@ -157,6 +157,7 @@ func on_hurtbox_area_entered(area):
 func attack_state(_delta):
 	can_attack = false
 	hurt_box.set_element_type("Ice")
+	current_cast = CAST_TYPE.DAMAGE
 	attack_timer.start()
 	velocity = Vector2.ZERO
 	anim_stats.travel("Cast")
@@ -241,9 +242,13 @@ func take_damage(area):
 
 func heal_enemy():
 	if stats.heal_charges >= 0:
+		if spell_shooted:
+			return
 		stats.heal_charges -= 1
+		spell_shooted = true
 		stats.set_health(stats.health + int(stats.max_health / 2))
-
+	else:
+		return
 func heal_state(_delta):
 	can_attack = false
 	current_cast = CAST_TYPE.HEAL
@@ -256,6 +261,9 @@ func hurt_state(_delta):
 
 
 func shoot_projectile():
+	if spell_shooted:
+		return
+	spell_shooted = true
 	var shoot_direction = $WeaponAngle/HurtBox.global_position.direction_to(last_target_position)
 	var projectile: EnemyProjectile = spell_scene.instantiate()
 	projectile.damage = stats.damage
@@ -264,12 +272,14 @@ func shoot_projectile():
 	get_tree().current_scene.add_child(projectile)
 
 func _on_cast_animation_finished():
+	if spell_shooted:
+		spell_shooted = false
 	state = IDLE
 
 func _cast_spell():
 	if current_cast == CAST_TYPE.HEAL:
-		heal_enemy()
 		current_cast = CAST_TYPE.DAMAGE
+		heal_enemy()
 	else:
 		shoot_projectile()
 

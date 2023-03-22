@@ -5,8 +5,8 @@ class_name WorldEffect
 
 
 func _set_sunlight(light):
-	sun_effect.material.set("shader_parameter/is_active", light)
 	sun_effect.visible = light
+	sun_effect.material.set("shader_parameter/is_active", light)
 
 func _input(event):
 	if event is InputEventKey:

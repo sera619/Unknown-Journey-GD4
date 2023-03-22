@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://cc0kuooc2lme" path="res://assets/Effects/IcePick_64x64.png" id="2_0orup"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fou42"]
-radius = 1.0
-height = 12.0
+radius = 3.0
+height = 32.0
 
 [sub_resource type="Animation" id="Animation_tvo4a"]
 length = 0.001
@@ -46,25 +46,24 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_66t1s"]
-radius = 371.086
+radius = 532.015
 
 [node name="EnemyIceProjectile" type="Area2D" groups=["enemyWeapon"]]
+scale = Vector2(0.25, 0.25)
 collision_layer = 8
 collision_mask = 8
 script = ExtResource("1_ikyt6")
-speed = 100.0
+speed = 110.0
 is_anitamed = true
 projectile_type = "Homeing"
 spell_element = "Ice"
 max_ice_dot = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, 0)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_fou42")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_0orup")
 hframes = 30
 

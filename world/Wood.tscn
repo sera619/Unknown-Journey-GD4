@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://uhus7j0rwt2u"]
+[gd_scene load_steps=36 format=3 uid="uid://uhus7j0rwt2u"]
 
 [ext_resource type="Script" path="res://world/WorldBase.gd" id="1_akrdj"]
 [ext_resource type="PackedScene" uid="uid://dcc837c2ujx6g" path="res://prefab/utils/GameCamera.tscn" id="2_8f6jn"]
@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://cu8lpjb4s41ob" path="res://prefab/props/PropMiddleTree.tscn" id="13_23g1l"]
 [ext_resource type="PackedScene" uid="uid://b1kt7f88vq11f" path="res://prefab/enemys/EnemyBat.tscn" id="13_p3y7m"]
 [ext_resource type="PackedScene" uid="uid://ujd03jysbk8w" path="res://prefab/props/PropBush.tscn" id="13_ygi7n"]
+[ext_resource type="PackedScene" uid="uid://cg3dyy4clkbpr" path="res://prefab/enemys/EnemySkeletonMage.tscn" id="14_l8txa"]
 [ext_resource type="PackedScene" uid="uid://c738vytvimynb" path="res://prefab/utils/Teleporter.tscn" id="14_nat1a"]
 [ext_resource type="Script" path="res://prefab/PuzzleObjects/PuzzleManager.gd" id="15_6gf5d"]
 [ext_resource type="PackedScene" uid="uid://blnl7qu61oadd" path="res://prefab/destroyable_objects/GreyPot.tscn" id="15_b5t6j"]
@@ -2450,7 +2451,8 @@ layer_4/tile_data = PackedInt32Array()
 position = Vector2(-433, -131)
 enemy_container = NodePath("../../../GameObjects/Enemys")
 enemy_scene_one = ExtResource("13_p3y7m")
-enemy_scene_two = ExtResource("13_p3y7m")
+enemy_scene_two = ExtResource("14_l8txa")
+enemys_2 = true
 
 [node name="Marker2D" parent="Map/GameMap/MapUtils/EnemySpawner/SpawnPoints1" index="0"]
 position = Vector2(-71, 339)
@@ -2466,6 +2468,24 @@ position = Vector2(217, 35)
 
 [node name="Marker2D5" parent="Map/GameMap/MapUtils/EnemySpawner/SpawnPoints1" index="4"]
 position = Vector2(973, 464)
+
+[node name="Marker2D" parent="Map/GameMap/MapUtils/EnemySpawner/SpawnPoints2" index="0"]
+position = Vector2(579, 214)
+
+[node name="Marker2D2" parent="Map/GameMap/MapUtils/EnemySpawner/SpawnPoints2" index="1"]
+position = Vector2(998, 550)
+
+[node name="Marker2D3" parent="Map/GameMap/MapUtils/EnemySpawner/SpawnPoints2" index="2"]
+position = Vector2(1035, 124)
+
+[node name="Marker2D4" parent="Map/GameMap/MapUtils/EnemySpawner/SpawnPoints2" index="3"]
+position = Vector2(301, 245)
+
+[node name="Marker2D5" parent="Map/GameMap/MapUtils/EnemySpawner/SpawnPoints2" index="4"]
+position = Vector2(414, 648)
+
+[node name="Marker2D6" parent="Map/GameMap/MapUtils/EnemySpawner/SpawnPoints2" index="5"]
+position = Vector2(785, 737)
 
 [node name="Teleporter" parent="Map/GameMap/MapUtils" instance=ExtResource("14_nat1a")]
 position = Vector2(864, 263)

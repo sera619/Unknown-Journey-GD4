@@ -65,7 +65,7 @@ func _on_target_detector_body_entered(body):
 	if body.name != "Player":
 		return
 	else:
-		target = body
+		target = body.hitbox
 
 func _destroy_projectile(area):
 	if !area.is_in_group("playerHitbox"):

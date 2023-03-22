@@ -69,7 +69,6 @@ _data = {
 [node name="Interface" type="CanvasLayer"]
 layer = 10
 script = ExtResource("1_ghaf7")
-show_devpanel = true
 
 [node name="StatHUD" parent="." instance=ExtResource("3_1qqj3")]
 visible = false
@@ -99,7 +98,6 @@ offset_bottom = -115.0
 scale = Vector2(0.25, 0.25)
 
 [node name="DevPanel" parent="." instance=ExtResource("2_0344k")]
-visible = false
 
 [node name="Questlog" parent="." instance=ExtResource("2_ka8y8")]
 visible = false
