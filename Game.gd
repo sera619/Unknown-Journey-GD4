@@ -1,6 +1,8 @@
 extends Node
 class_name Game
 
+
+@export_enum("Normal", "Development") var run_type: int
 @onready var world_holder = $WorldHolder
 
 var player: Player
@@ -28,7 +30,11 @@ func _ready():
 	GameManager.register_node(self)
 	if GameManager.player:
 		player = GameManager.player
-	switch_gamelevel("GameIntro")
+	match run_type:
+		0:
+			switch_gamelevel("GameIntro")
+		1:
+			load_game()
 
 func start_new_game():
 	QuestManager.reset_quests()
