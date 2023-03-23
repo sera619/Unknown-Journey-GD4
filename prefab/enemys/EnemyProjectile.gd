@@ -25,10 +25,9 @@ var is_active = false
 	
 func _ready():
 	is_active = true
-	damage = spell_damage
 	self.set_element_type(spell_element)
 	look_at(global_position + direction)
-	knockback_vector = global_position + direction
+	knockback_vector = direction
 	self.connect("area_entered",Callable(self,"_destroy_projectile"))
 	timer.connect("timeout",Callable(self,"_on_timer_timeout"))
 	if projectile_type == "Homeing":
@@ -43,6 +42,9 @@ func _play_spell_sound():
 	if spell_sound_scene:
 		var sound = spell_sound_scene.instantiate()
 		self.add_child(sound) 
+
+func _set_projectile_damage(dmg):
+	damage = dmg
 
 func _physics_process(delta):
 	if is_active:
