@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://6y0ljaufvvqj"
+path="res://.godot/imported/ice_cast.wav-c5a7020925264184cc2495785878e50c.sample"
+
+[deps]
+
+source_file="res://assets/Music and Sounds/spells/ice_cast.wav"
+dest_files=["res://.godot/imported/ice_cast.wav-c5a7020925264184cc2495785878e50c.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
