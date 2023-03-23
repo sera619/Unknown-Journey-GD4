@@ -273,7 +273,6 @@ func take_damage(area):
 
 func set_dot(dmg: int, count: int, element):
 	debuff_handler.get_debuff_effect(element)
-	
 	if element == SkillManager.ELEMENT.ICE:
 		is_slowed = true
 		self.stats.set_speed(self.stats.COMBAT_MOVE_SPEED * 0.8)

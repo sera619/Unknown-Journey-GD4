@@ -25,6 +25,7 @@ extends CharacterBody2D
 @onready var enemy_hud: EnemyHUD = $EnemyHUD
 @onready var attack_collider: CollisionShape2D = $WeaponAngle/HurtBox/CollisionShape2D
 @onready var hurt_collider: CollisionShape2D = $HitBox/CollisionShape2D
+@onready var sound_controller: SoundController = $SoundController
 
 
 signal enemy_take_damage(damage)
@@ -54,6 +55,7 @@ var last_target_position:Vector2 = Vector2.ZERO
 var spell_shooted: bool = false
 
 func _ready():
+	sound_controller._setup_sounds("Skeleton")
 	hitbox.connect("area_entered", on_Hitbox_area_entered)
 	attack_timer.connect("timeout", attack_timer_timeout)
 	hurt_box.connect("area_entered", on_hurtbox_area_entered)
@@ -96,7 +98,7 @@ func _physics_process(delta):
 			seek_player()
 			if wander_controller.get_time_left() == 0:
 				update_wander()
-			if can_attack and heal_charges > 0 and stats.health < int(stats.max_health/2):
+			if can_attack and heal_charges > 0 and stats.health < floor(stats.max_health/2):
 				state = HEAL
 			elif player_detector.can_see_player():
 				state = CHASE
@@ -138,6 +140,9 @@ func _physics_process(delta):
 		DEAD:
 			can_attack = false
 			dead_state(delta)
+		HURT:
+			can_attack = false
+			hurt_state(delta)
 
 	if softCollision.is_colliding():
 		velocity += softCollision.get_push_vector() * delta * 400
@@ -145,7 +150,9 @@ func _physics_process(delta):
 
 
 func dead_state(_delta):
-	pass
+	velocity = Vector2.ZERO
+	can_attack = false
+	anim_stats.travel("Dead")
 
 func on_hurtbox_area_entered(area):
 	if not area.get_parent().name == "Player":
@@ -228,15 +235,15 @@ func take_damage(area):
 		knockback = area.knockback_vector * 115
 		print("[!] Enemy: %s gets hitted for %s damage!" % [self.name, area.damage])
 		if stats.health <= 0:
+			if hit_sound:
+				hit_sound.queue_free()
 			var death_sound = death_sound_scene.instantiate()
-			get_tree().current_scene.add_child(death_sound)
+			self.add_child(death_sound)
 			var effect2 = death_effect_scene.instantiate()
 			#effect2.global_position.y += animSprite.offset.y
-			effect2.connect("effect_finished", kill_enemy)
 			get_tree().current_scene.add_child(effect2)
 			effect2.global_position = animSprite.global_position
-			self.visible = false
-			reward_player()
+			state = DEAD
 	else:
 		return
 
@@ -249,6 +256,8 @@ func heal_enemy():
 		stats.set_health(stats.health + int(stats.max_health / 2))
 	else:
 		return
+
+
 func heal_state(_delta):
 	can_attack = false
 	current_cast = CAST_TYPE.HEAL
@@ -257,6 +266,8 @@ func heal_state(_delta):
 	anim_stats.travel("Cast")
 
 func hurt_state(_delta):
+	can_attack = false
+	attack_timer.start()
 	anim_stats.travel("Hurt")
 
 
@@ -270,6 +281,11 @@ func shoot_projectile():
 	projectile.global_position = $WeaponAngle/HurtBox.global_position
 	projectile.direction = shoot_direction
 	get_tree().current_scene.add_child(projectile)
+
+func _play_cast_sound():
+	if current_cast == CAST_TYPE.HEAL:
+		return
+	sound_controller._play_spell_cast_sound(SkillManager.ELEMENT.ICE)
 
 func _on_cast_animation_finished():
 	if spell_shooted:
@@ -290,7 +306,8 @@ func _on_attack_animation_finished():
 	state = IDLE
 
 func _on_dead_animation_finished():
-	pass
+	reward_player()
+	kill_enemy()
 
 func attack_timer_timeout():
 	can_attack = true
