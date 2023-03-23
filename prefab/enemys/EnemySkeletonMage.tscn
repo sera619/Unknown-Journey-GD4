@@ -763,8 +763,9 @@ ACCELERATION = 300
 FRICTION = 200
 WANDER_SPEED = 25
 WANDER_TARGET_RANGE = 4
-MIN_RANGE = 72
-MAX_RANGE = 128
+MIN_RANGE = 64
+MAX_RANGE = 96
+TIME_BEFORE_FLEE = 2
 heal_charges = 2
 reward_exp = 35
 
@@ -857,6 +858,9 @@ target_position = Vector2(30, 0)
 collision_mask = 128
 
 [node name="SoundController" parent="." instance=ExtResource("15_1twe5")]
+
+[node name="FleeTimer" type="Timer" parent="."]
+one_shot = true
 
 [editable path="PlayerDetector"]
 [editable path="SoftCollision"]

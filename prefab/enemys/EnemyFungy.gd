@@ -24,6 +24,8 @@ extends CharacterBody2D
 @onready var attack_collider: CollisionShape2D = $WeaponAngle/HurtBox/CollisionShape2D
 @onready var hurt_collider: CollisionShape2D = $HitBox/CollisionShape2D
 signal enemy_take_damage(damage)
+signal enemy_healed(value)
+
 enum {
 	WANDER,
 	IDLE,
@@ -102,6 +104,8 @@ func _physics_process(delta):
 			if player != null:
 				if global_position.distance_to(player.global_position) <= stats.MIN_RANGE or global_position.distance_to(player.global_position) >= stats.MAX_RANGE:
 					accelerate_towards_point(player.global_position, delta)
+				if global_position.distance_to(player.global_position) >= stats.MIN_RANGE:
+					velocity = velocity.move_toward(Vector2.ZERO, stats.FRICTION * delta)
 				else:
 					if can_attack and heal_charges > 0 and stats.health < int(stats.max_health/2):
 						state = HEAL
@@ -226,7 +230,9 @@ func take_damage(area):
 func heal_enemy():
 	if heal_charges >= 0:
 		heal_charges -= 1
-		stats.set_health(stats.health + int(stats.max_health / 2))
+		var heal_value = int(floor(stats.max_health /2 ))
+		stats.set_health(stats.health + heal_value)
+		self.emit_signal("enemy_healed", heal_value)
 
 func heal_state(_delta):
 	can_attack = false

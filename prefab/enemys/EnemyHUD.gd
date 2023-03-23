@@ -16,11 +16,20 @@ func _ready():
 		stats.connect("enemy_health_changed", update_health)
 		stats.connect("enemy_maxhealth_changed", update_max_health)
 		get_parent().connect("enemy_take_damage", show_damage)
+		get_parent().connect("enemy_healed", show_heal)
 		update_health(stats.health)
 		update_max_health(stats.max_health)
 
+func show_heal(healvalue):
+	damage_display.text = "[center][wave amp=40 freq=10]\n[color=green]+%s[/color][/wave][/center]" % healvalue
+	damage_display.visible = true
+	await get_tree().create_timer(1).timeout
+	damage_display.text = ""
+	damage_display.visible = false
+
+
 func show_damage(damagevalue):
-	damage_display.text = "[center][wave amp=40 freq=10]\n-%s[/wave][/center]" % damagevalue
+	damage_display.text = "[center][wave amp=40 freq=10][color=red]\n-%s[/color][/wave][/center]" % damagevalue
 	damage_display.visible = true
 	await get_tree().create_timer(1).timeout
 	damage_display.text = ""

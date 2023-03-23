@@ -27,8 +27,7 @@ extends CharacterBody2D
 @onready var attack_collider: CollisionShape2D = $WeaponAngle/HurtBox/CollisionShape2D
 @onready var hurt_collider: CollisionShape2D = $HitBox/CollisionShape2D
 @onready var sound_controller: SoundController = $SoundController
-
-
+signal enemy_healed(heal_value)
 signal enemy_take_damage(damage)
 enum CAST_TYPE {
 	HEAL,
@@ -120,14 +119,13 @@ func _physics_process(delta):
 			if player != null:
 				if global_position.distance_to(player.global_position) <= stats.MIN_RANGE or global_position.distance_to(player.global_position) >= stats.MAX_RANGE:
 					accelerate_towards_point(player.global_position, delta)
+				if can_attack and stats.heal_charges > 0 and stats.health < int(stats.max_health/2):
+					state = HEAL
+				elif can_attack:
+					last_target_position = player.global_position
+					state = ATTACK
 				else:
-					if can_attack and stats.heal_charges > 0 and stats.health < int(stats.max_health/2):
-						state = HEAL
-					elif can_attack:
-						last_target_position = player.global_position
-						state = ATTACK
-					else:
-						state = IDLE
+					state = IDLE
 			else:
 				state = IDLE
 		ATTACK:
@@ -300,6 +298,8 @@ func _on_cast_animation_finished():
 func _cast_spell():
 	if current_cast == CAST_TYPE.HEAL:
 		current_cast = CAST_TYPE.DAMAGE
+		var heal_value = int(floor(stats.max_health / 2))
+		emit_signal("enemy_healed", heal_value)
 		heal_enemy()
 	else:
 		shoot_projectile()

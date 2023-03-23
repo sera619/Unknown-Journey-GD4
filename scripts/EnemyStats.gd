@@ -24,6 +24,7 @@ signal enemy_died
 
 @export var MIN_RANGE: int
 @export var MAX_RANGE: int
+@export var TIME_BEFORE_FLEE: int
 
 @export_category("Skill Settings")
 @export var heal_charges: int
@@ -40,6 +41,8 @@ func _ready():
 
 func set_health(new_health):
 	health = new_health
+	if new_health > max_health:
+		health = max_health
 	emit_signal("enemy_health_changed", health)
 	print("[!] Enemy - %s - : Set health to %s" % [get_parent().name, health])
 

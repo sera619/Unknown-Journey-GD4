@@ -3,6 +3,7 @@ class_name Enemy
 
 signal enemy_take_damage(damage)
 signal enemy_died()
+signal enemy_healed(heal)
 
 @export var item_name: String
 @export_category("VFX Scenes")
