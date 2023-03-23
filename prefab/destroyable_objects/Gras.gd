@@ -47,8 +47,8 @@ func on_area_entered(area):
 				respawn_timer.start()
 				print("[!] GrasObject: Respawntime %s started!" % respawn_time)
 			if reward_player:
-				var random = randf_range(1, 3)
-				if random > 2:
+				var random = randf_range(1, 6)
+				if random > 4:
 					var random2 = randf_range(1,3)
 					if random2 > 2 and reward_scenes.size() > 0:
 						reward_scene = reward_scenes[0]
@@ -56,4 +56,4 @@ func on_area_entered(area):
 						reward_scene = reward_scenes[1]
 					var reward = reward_scene.instantiate()
 					reward.global_position = self.global_position
-					get_tree().current_scene.call_deferred("add_child", reward)
+					GameManager.current_world.game_map.call_deferred("add_child", reward)
