@@ -24,7 +24,7 @@ void vertex()
 		
 	//Expands the vertexes so we have space to draw the outline if we were on the edge.
 	o = VERTEX;
-	vec2 uv = (UV - 0.5);
+	vec2 uv = (UV - 0.55);
 	VERTEX += uv * float(intensity);
 	f = VERTEX;
 	}

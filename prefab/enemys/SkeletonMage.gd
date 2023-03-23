@@ -5,6 +5,7 @@ extends CharacterBody2D
 @export_category("VFX Scenes")
 @export var hit_effect_scene: PackedScene
 @export var death_effect_scene: PackedScene
+@export var heal_effect_scene: PackedScene
 @export_category("SFX Scenes")
 @export var hurt_sound_scene: PackedScene
 @export var death_sound_scene: PackedScene
@@ -251,6 +252,9 @@ func heal_enemy():
 	if stats.heal_charges >= 0:
 		if spell_shooted:
 			return
+		var heal_effect = heal_effect_scene.instantiate()
+		self.add_child(heal_effect)
+		heal_effect.global_position = global_position
 		stats.heal_charges -= 1
 		spell_shooted = true
 		stats.set_health(stats.health + int(stats.max_health / 2))
@@ -268,6 +272,7 @@ func heal_state(_delta):
 func hurt_state(_delta):
 	can_attack = false
 	attack_timer.start()
+	velocity = Vector2.ZERO
 	anim_stats.travel("Hurt")
 
 
@@ -300,7 +305,7 @@ func _cast_spell():
 		shoot_projectile()
 
 func _on_hurt_animation_finished():
-	state = IDLE
+	state = CHASE
 
 func _on_attack_animation_finished():
 	state = IDLE
