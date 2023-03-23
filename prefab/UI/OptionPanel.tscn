@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://d2qg587omjywm"]
+[gd_scene load_steps=14 format=3 uid="uid://d2qg587omjywm"]
 
 [ext_resource type="Script" path="res://prefab/UI/OptionPanel.gd" id="1_v2t62"]
 [ext_resource type="Texture2D" uid="uid://8edplubtbkbr" path="res://assets/UI/wood-box.png" id="2_u6yxu"]
@@ -10,6 +10,9 @@
 [ext_resource type="Texture2D" uid="uid://6py808jaoso2" path="res://assets/UI/button_disabled.png" id="7_hw82d"]
 [ext_resource type="Texture2D" uid="uid://bclxecir5ivmv" path="res://assets/UI/button-red-small-normalt.png" id="9_mqodm"]
 [ext_resource type="Texture2D" uid="uid://c2mepjbti1rjb" path="res://assets/UI/button-red-small-hovert.png" id="10_j7he6"]
+[ext_resource type="Texture2D" uid="uid://7t4cecn0xlc6" path="res://assets/UI/button-red-small-pressedt.png" id="11_bk0r5"]
+[ext_resource type="Texture2D" uid="uid://dlbf0ofue7pd0" path="res://assets/UI/button-small-disabled.png" id="11_ul2d0"]
+[ext_resource type="Texture2D" uid="uid://b01dlyko5c35h" path="res://assets/UI/checkmark.png" id="13_8qtrb"]
 
 [node name="OptionPanel" type="Control"]
 process_mode = 3
@@ -41,13 +44,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 6
+theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 6
-theme_override_constants/margin_right = 6
+theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 6
 
 [node name="V" type="VBoxContainer" parent="BG/M"]
 layout_mode = 2
+theme_override_constants/separation = 0
 
 [node name="HeadBG" type="NinePatchRect" parent="BG/M/V"]
 layout_mode = 2
@@ -143,6 +147,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="AudioOptions" type="NinePatchRect" parent="BG/M/V"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 texture = ExtResource("3_vc324")
@@ -166,10 +171,12 @@ theme_override_constants/margin_bottom = 4
 [node name="Options" type="VBoxContainer" parent="BG/M/V/AudioOptions/M"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_constants/separation = 1
 alignment = 1
 
 [node name="TabHeader" type="Label" parent="BG/M/V/AudioOptions/M/Options"]
 layout_mode = 2
+size_flags_vertical = 6
 theme_override_colors/font_color = Color(1, 0.741176, 0.0509804, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.6)
 theme_override_fonts/font = ExtResource("4_bux1i")
@@ -210,6 +217,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 4
 theme_override_icons/grabber = ExtResource("9_mqodm")
 theme_override_icons/grabber_highlight = ExtResource("10_j7he6")
+theme_override_icons/grabber_disabled = ExtResource("11_ul2d0")
 min_value = -72.0
 max_value = 6.0
 step = 0.1
@@ -246,6 +254,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 4
 theme_override_icons/grabber = ExtResource("9_mqodm")
 theme_override_icons/grabber_highlight = ExtResource("10_j7he6")
+theme_override_icons/grabber_disabled = ExtResource("11_ul2d0")
 min_value = -72.0
 max_value = 6.0
 step = 0.1
@@ -282,6 +291,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 4
 theme_override_icons/grabber = ExtResource("9_mqodm")
 theme_override_icons/grabber_highlight = ExtResource("10_j7he6")
+theme_override_icons/grabber_disabled = ExtResource("11_ul2d0")
 min_value = -72.0
 max_value = 6.0
 step = 0.1
@@ -318,12 +328,12 @@ size_flags_horizontal = 3
 size_flags_vertical = 4
 theme_override_icons/grabber = ExtResource("9_mqodm")
 theme_override_icons/grabber_highlight = ExtResource("10_j7he6")
+theme_override_icons/grabber_disabled = ExtResource("11_ul2d0")
 min_value = -72.0
 max_value = 6.0
 step = 0.1
 
 [node name="VideoOptions" type="NinePatchRect" parent="BG/M/V"]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 texture = ExtResource("3_vc324")
@@ -370,24 +380,39 @@ size_flags_horizontal = 7
 theme_override_colors/font_color = Color(0.0745098, 0.537255, 0.937255, 1)
 theme_override_fonts/font = ExtResource("4_bux1i")
 theme_override_font_sizes/font_size = 8
-text = "Fenstermodus"
+text = "Vollbild"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="OptionButton" type="OptionButton" parent="BG/M/V/VideoOptions/M/Options/H1"]
+[node name="CheckButton" type="CheckButton" parent="BG/M/V/VideoOptions/M/Options/H1"]
 layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_color = Color(0.968627, 0.662745, 0, 1)
+size_flags_horizontal = 6
+theme_override_colors/font_color = Color(0.152941, 0.639216, 0.929412, 1)
+theme_override_colors/font_pressed_color = Color(0.152941, 0.639216, 0.929412, 1)
+theme_override_colors/font_focus_color = Color(0.152941, 0.639216, 0.929412, 1)
 theme_override_fonts/font = ExtResource("4_bux1i")
 theme_override_font_sizes/font_size = 8
-alignment = 1
-item_count = 3
-popup/item_0/text = "Vollbild"
-popup/item_0/id = 0
-popup/item_1/text = "Fenster (min)"
-popup/item_1/id = 1
-popup/item_2/text = "Fenster (max)"
-popup/item_2/id = 2
+theme_override_icons/checked = ExtResource("11_bk0r5")
+theme_override_icons/checked_disabled = ExtResource("11_ul2d0")
+theme_override_icons/unchecked = ExtResource("9_mqodm")
+theme_override_icons/unchecked_disabled = ExtResource("11_ul2d0")
+text = "An"
+
+[node name="CheckIcon" type="TextureRect" parent="BG/M/V/VideoOptions/M/Options/H1/CheckButton"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.609
+anchor_top = 0.292
+anchor_right = 0.783
+anchor_bottom = 0.625
+offset_left = -0.0140018
+offset_top = -0.00800037
+offset_right = -0.0180016
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("13_8qtrb")
+expand_mode = 1
 
 [node name="KeyOptions" type="NinePatchRect" parent="BG/M/V"]
 visible = false
@@ -484,5 +509,6 @@ vertical_alignment = 1
 [connection signal="value_changed" from="BG/M/V/AudioOptions/M/Options/H2/MusicSlider" to="." method="_on_music_slider_value_changed"]
 [connection signal="value_changed" from="BG/M/V/AudioOptions/M/Options/H3/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
 [connection signal="value_changed" from="BG/M/V/AudioOptions/M/Options/H4/MenuSlider" to="." method="_on_menu_slider_value_changed"]
+[connection signal="button_up" from="BG/M/V/VideoOptions/M/Options/H1/CheckButton" to="." method="_on_check_button_button_up"]
 [connection signal="button_up" from="BG/M/V/H/OkayBtn" to="." method="_on_okay_btn_button_up"]
 [connection signal="button_up" from="BG/M/V/H/BackBtn" to="." method="_on_back_btn_button_up"]

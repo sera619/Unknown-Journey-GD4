@@ -1,6 +1,7 @@
 extends Control
 class_name OptionPanel
 
+# AUDIO
 @onready var audio_all_label = $BG/M/V/AudioOptions/M/Options/H/Value
 @onready var audio_music_label = $BG/M/V/AudioOptions/M/Options/H2/Value
 @onready var audio_sfx_label = $BG/M/V/AudioOptions/M/Options/H3/Value
@@ -19,18 +20,26 @@ class_name OptionPanel
 @onready var video_panel = $BG/M/V/VideoOptions
 @onready var key_panel = $BG/M/V/KeyOptions
 
+# VIDEO
+@onready var screen_res_btn: CheckButton = $BG/M/V/VideoOptions/M/Options/H1/CheckButton
+@onready var check_icon: TextureRect = $BG/M/V/VideoOptions/M/Options/H1/CheckButton/CheckIcon
+
+var checkbutton_font_color_blue = Color(0.15294118225574, 0.63921570777893, 0.92941176891327)
+
 var default_settings: Dictionary = {
 	"audio_all": 100,
 	"audio_sfx": 70,
 	"audio_music": 50,
-	"audio_menu": 50
+	"audio_menu": 50,
+	"fullscreen": false 
 }
 
 func _ready():
+	$BG/M/V/HeadBG/Label.add_theme_color_override("font_color", GameManager.COLORS.lightgreen_text)
 	self._reset_panels()
 	self._set_current_audio_values()
 	self.key_btn.disabled = true
-	self.video_btn.disabled = true
+	#self.video_btn.disabled = true
 	self.hide()
 
 func _reset_panels():
@@ -131,3 +140,17 @@ func _on_video_btn_button_up():
 	
 func _on_key_btn_button_up():
 	_show_key_panel()
+
+
+# screen size button
+func _on_check_button_button_up():
+	if screen_res_btn.button_pressed:
+		default_settings['fullscreen'] = true
+		check_icon.visible = true
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	else:
+		default_settings['fullscreen'] = false
+		check_icon.visible = false 
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+
+

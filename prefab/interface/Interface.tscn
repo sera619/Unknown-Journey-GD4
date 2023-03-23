@@ -115,6 +115,7 @@ size_flags_vertical = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="CharacterPanel" parent="." instance=ExtResource("5_6wngu")]
+visible = false
 offset_left = 23.0
 offset_top = 47.0
 offset_right = -91.0
@@ -142,23 +143,25 @@ scale = Vector2(0.45, 0.45)
 
 [node name="PauseMenu" parent="." instance=ExtResource("3_6p8ro")]
 visible = false
-offset_left = 131.0
-offset_top = 50.0
-offset_right = -112.0
-offset_bottom = -27.0
-scale = Vector2(0.75, 0.75)
+offset_left = 135.0
+offset_top = 66.0
+offset_right = -87.0
+offset_bottom = 4.0
+scale = Vector2(0.5, 0.5)
 
 [node name="OptionPanel" parent="." instance=ExtResource("15_06kas")]
-offset_left = 80.0
-offset_top = 38.0
-offset_right = 80.0
-offset_bottom = 60.0
+visible = false
+offset_left = 91.0
+offset_top = 46.0
+offset_right = 47.0
+offset_bottom = 46.0
 scale = Vector2(0.5, 0.5)
 size_flags_vertical = 4
 
 [node name="NewSkillHUD" parent="." instance=ExtResource("11_r8hlj")]
 
 [node name="DeathScreen" parent="." instance=ExtResource("7_bo1t5")]
+visible = false
 
 [node name="SleepHUD" parent="." instance=ExtResource("13_q1ex6")]
 
