@@ -1,4 +1,4 @@
-[gd_scene load_steps=89 format=3 uid="uid://cg3dyy4clkbpr"]
+[gd_scene load_steps=88 format=3 uid="uid://cg3dyy4clkbpr"]
 
 [ext_resource type="Script" path="res://prefab/enemys/SkeletonMage.gd" id="1_n1dsa"]
 [ext_resource type="PackedScene" uid="uid://bjfxwi2rlu7co" path="res://prefab/enemys/EnemyIceProjectile.tscn" id="2_ek2w7"]
@@ -6,10 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://cblcbsx1gpy2q" path="res://prefab/effects/DeathEffect.tscn" id="3_ugdbn"]
 [ext_resource type="PackedScene" uid="uid://blhs70gqgppx5" path="res://prefab/audio/SkeletonHit.tscn" id="5_3fn2n"]
 [ext_resource type="Texture2D" uid="uid://bfw5kkygo1jmb" path="res://assets/Enemies/SkeletonMageFrost.png" id="5_gnpno"]
+[ext_resource type="PackedScene" uid="uid://c7r64swnyno2b" path="res://prefab/effects/HealEffect.tscn" id="5_lbww0"]
 [ext_resource type="PackedScene" uid="uid://cj4qvlb31bvhm" path="res://prefab/audio/SkeletonDeath.tscn" id="6_mre50"]
 [ext_resource type="PackedScene" uid="uid://doa5hxcckh64o" path="res://prefab/enemys/EnemyHUD.tscn" id="6_muj8m"]
 [ext_resource type="Script" path="res://scripts/EnemyStats.gd" id="7_4qq7q"]
-[ext_resource type="Shader" path="res://assets/Materials/Outline_Shader.gdshader" id="8_0ygw1"]
 [ext_resource type="Script" path="res://prefab/enemys/EnemyWeapon.gd" id="10_1xcay"]
 [ext_resource type="PackedScene" uid="uid://kbo1bay3i1ps" path="res://prefab/utils/PlayerDetector.tscn" id="11_s8ruv"]
 [ext_resource type="PackedScene" uid="uid://ebdq15holk57" path="res://prefab/utils/Softcollision.tscn" id="12_y7rhu"]
@@ -19,17 +19,6 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u22l5"]
 radius = 4.0
 height = 20.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_gd4yx"]
-shader = ExtResource("8_0ygw1")
-shader_parameter/intensity = 38
-shader_parameter/precision = 0.0
-shader_parameter/is_active = false
-shader_parameter/flipColors = true
-shader_parameter/outline_color = Color(0.639216, 0.815686, 0.0470588, 1)
-shader_parameter/outline_color_2 = Color(0, 1, 0, 1)
-shader_parameter/use_outline_uv = false
-shader_parameter/useTexture = false
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8mvfl"]
 radius = 8.0
@@ -41,7 +30,7 @@ height = 38.0
 radius = 64.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_k3od6"]
-radius = 137.335
+radius = 196.005
 
 [sub_resource type="Animation" id="Animation_18vex"]
 resource_name = "CastDown"
@@ -753,6 +742,7 @@ script = ExtResource("1_n1dsa")
 spell_scene = ExtResource("2_ek2w7")
 hit_effect_scene = ExtResource("2_ykpbt")
 death_effect_scene = ExtResource("3_ugdbn")
+heal_effect_scene = ExtResource("5_lbww0")
 hurt_sound_scene = ExtResource("5_3fn2n")
 death_sound_scene = ExtResource("6_mre50")
 
@@ -773,8 +763,8 @@ ACCELERATION = 300
 FRICTION = 200
 WANDER_SPEED = 25
 WANDER_TARGET_RANGE = 4
-MIN_RANGE = 64
-MAX_RANGE = 96
+MIN_RANGE = 72
+MAX_RANGE = 128
 heal_charges = 2
 reward_exp = 35
 
@@ -787,7 +777,6 @@ shape = SubResource("CapsuleShape2D_u22l5")
 visible = false
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_gd4yx")
 texture = ExtResource("5_gnpno")
 offset = Vector2(0, -28)
 hframes = 13
