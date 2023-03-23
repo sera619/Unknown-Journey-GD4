@@ -105,6 +105,7 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_ottsb")
 allow_reselect = true
 auto_height = true
 item_count = 1
+same_column_width = true
 fixed_icon_size = Vector2i(8, 8)
 item_0/text = "Testitem"
 item_0/icon = ExtResource("10_xrd4w")

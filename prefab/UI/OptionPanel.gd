@@ -34,7 +34,6 @@ func _ready():
 	#self.video_btn.disabled = true
 	self.hide()
 
-
 func _reset_panels():
 	self.audio_panel.show()
 	self.video_panel.hide()
@@ -96,7 +95,6 @@ func _set_current_audio_values():
 	self.audio_music_slider.value = music
 	self.audio_sfx_slider.value = sfx
 
-
 func _set_current_video_values():
 	var full_screen = DisplayServer.window_get_mode()
 	if full_screen == DisplayServer.WINDOW_MODE_FULLSCREEN:
@@ -107,8 +105,6 @@ func _set_current_video_values():
 		self.screen_res_btn.button_pressed = false
 		check_icon.visible = false
 		self.screen_res_btn.text = "AUS"
-
-
 
 func _show_audio_panel():
 	self.video_panel.hide()

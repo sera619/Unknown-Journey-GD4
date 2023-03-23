@@ -4,9 +4,10 @@ var paused: bool = false
 @export var pause_sound_scene: PackedScene
 @export var unpause_sound_scene: PackedScene
 @onready var load_btn:= $BG/M/V/V/PLoadBtn
-
+@onready var header: Label = $BG/M/V/NinePatchRect/Head
 func _ready():
 	self.visible = false
+	header.add_theme_color_override("font_color", GameManager.COLORS.lightgreen_text)
 
 func _input(event):
 	if event.is_action_pressed("menu"):
