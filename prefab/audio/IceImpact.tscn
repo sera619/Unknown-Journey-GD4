@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://ccbcydgfkoft0"]
+
+[ext_resource type="Script" path="res://prefab/audio/SoundEffect.gd" id="1_jpa31"]
+[ext_resource type="AudioStream" uid="uid://dqn21f6cgl34h" path="res://assets/Music and Sounds/spells/ice_impact.wav" id="1_trjv3"]
+
+[node name="SoundEffect" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_trjv3")
+max_distance = 156.0
+bus = &"PlayerSFX"
+script = ExtResource("1_jpa31")
