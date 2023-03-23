@@ -25,6 +25,7 @@ signal enemy_died()
 @onready var animSprite=$Sprite2D
 @onready var raycasts: Node2D = $RayCasts
 @onready var enemy_hud: EnemyHUD = $EnemyHUD
+@onready var sound_controller: SoundController = $SoundController
 
 enum {
 	WANDER,
@@ -40,6 +41,7 @@ var is_infight:bool = false
 var old_position = Vector2.ZERO
 
 func _ready():
+	sound_controller._setup_sounds("FlyingEnemy")
 	hitbox.connect("area_entered", on_Hitbox_area_entered)
 	attack_timer.connect("timeout", attack_timer_timeout)
 	hurt_box.connect("area_entered", on_hurtbox_area_entered)
@@ -57,6 +59,8 @@ func on_Hitbox_area_entered(area):
 
 
 func _physics_process(delta):
+	if animSprite.frame == 3:
+		sound_controller._play_food_sound()
 	if knockback != Vector2.ZERO:
 		knockback = knockback.move_toward(Vector2.ZERO, stats.FRICTION * delta)
 		set_velocity(knockback)
@@ -101,7 +105,7 @@ func _physics_process(delta):
 			if player != null:
 				accelerate_towards_point(player.global_position, delta)
 	if softCollision.is_colliding():
-		velocity += softCollision.get_push_vector() * delta * 400
+		knockback += softCollision.get_push_vector() * delta * 400
 	move_and_slide()
 
 func attack_timer_timeout():
@@ -163,7 +167,7 @@ func take_damage(area):
 		GameManager.player.stats.set_energie(GameManager.player.stats.energie + 1)
 	if stats.health >= 0:
 		var hit_sound = hurt_sound_scene.instantiate()
-		get_tree().current_scene.add_child(hit_sound)
+		self.add_child(hit_sound)
 		var effect = hit_effect_scene.instantiate() 
 		var cs = get_tree().current_scene
 		effect.global_position= animSprite.global_position
@@ -176,7 +180,7 @@ func take_damage(area):
 		print("[!] Enemy: %s gets hitted for %s damage!" % [self.name, area.damage])
 		if stats.health <= 0:
 			var death_sound = death_sound_scene.instantiate()
-			get_tree().current_scene.add_child(death_sound)
+			self.add_child(death_sound)
 			var effect2 = death_effect_scene.instantiate()
 			effect2.connect("effect_finished", kill_enemy)
 			#effect2.global_position.y += animSprite.offset.y

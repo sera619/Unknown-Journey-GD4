@@ -8,8 +8,9 @@ var interface: Interface = null
 var dialog_box: DialogBox = null
 var info_box: InfoBox = null
 var main_menu: MainMenu = null
-var ui_questlog = null
+var ui_questlog: QuestLog = null
 var on_main_menu: bool = false
+
 var seen_npcs = []
 var load_game: bool = false
 var new_player_name: String = ""
@@ -33,7 +34,6 @@ var current_game_options: Dictionary = {}
 
 func _ready():
 	_initial_process()
-
 
 func _initial_process():
 	_setup_game_settings()
@@ -88,8 +88,6 @@ func _update_window_mode(mode: bool):
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 	print("[!] GameManger: Windowmode applied!")
 
-
-
 func register_node(node: Node):
 	if node.name == "Player":
 		player = node
@@ -121,7 +119,6 @@ func register_node(node: Node):
 	else:
 		print("[!] GameManager: Cant register: %s" % node.name)
 
-
 func _save_settings(settings: Dictionary):
 	var path = "user://gameoptions.save"
 	var savefile = FileAccess.open(path, FileAccess.WRITE)
@@ -148,7 +145,7 @@ func _load_settings():
 func save_data(playername=""):
 	var savepath = "user://savegame.save"
 	if playername != "":
-		savepath = "user://%s-savegame.save" % playername
+		savepath = "user://%s/savegame.save" % playername
 	var savegame = FileAccess.open(savepath, FileAccess.WRITE)
 	var save_nodes = get_tree().get_nodes_in_group("Persist")
 	for node in save_nodes:
@@ -163,13 +160,23 @@ func save_data(playername=""):
 	
 	print("[!] Data: Savegame successfully saved!")
 	QuestManager.save_quests()
-	
+
+
 func set_player_name(player_name: String):
 	if player_name == "":
 		print("[X] GameManager: No Name set!")
 		return
 	self.new_player_name = player_name
 	print("[!] GameManager: New playername set to \"%s\"" % player_name)
+
+
+func _create_player_profile(playername: String):
+	var path = "user://%s/" % playername
+	if not DirAccess.dir_exists_absolute(path):
+		DirAccess.make_dir_absolute(path)
+	else:
+		return
+
 
 func savegame_exists() -> bool:
 	var loadpath = "user://savegame.save" 
@@ -180,7 +187,7 @@ func savegame_exists() -> bool:
 func load_savegame(playername=""):
 	var loadpath = "user://savegame.save" 
 	if playername != "":
-		loadpath = "user://%s-savegame.save" % playername
+		loadpath = "user://%s/savegame.save" % playername
 	if not FileAccess.file_exists(loadpath):
 		return 
 	var save_game = FileAccess.open(loadpath, FileAccess.READ)
