@@ -9,6 +9,7 @@ extends EnemyWeapon
 @export var is_anitamed: bool
 @export_enum("Direct", "Homeing") var projectile_type: String = "Direct"
 @export_enum( "None", "Fire", "Ice", "Poison", "Lightning") var spell_element: String = "None"
+@export var spell_sound_scene: PackedScene
 @onready var timer = $Timer
 @onready var targetDetector = $TargetDetector
 @onready var animPlayer = $AnimationPlayer
@@ -18,6 +19,8 @@ var current_velocity: Vector2 = Vector2.ZERO
 var direction: Vector2 = Vector2.ZERO
 var target = null
 
+
+	
 func _ready():
 	damage = spell_damage
 	self.set_element_type(spell_element)
@@ -31,6 +34,12 @@ func _ready():
 		animPlayer.play("loop")
 	current_velocity = speed * Vector2.RIGHT.rotated(rotation)
 	timer.start(lifetime)
+	_play_spell_sound()
+
+func _play_spell_sound():
+	if spell_sound_scene:
+		var sound = spell_sound_scene.instantiate()
+		self.add_child(sound) 
 
 func _physics_process(delta):
 	if direction.x >= 0:
