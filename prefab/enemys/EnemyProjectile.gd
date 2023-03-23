@@ -25,6 +25,7 @@ var is_active = false
 	
 func _ready():
 	is_active = true
+	self.damage = spell_damage
 	self.set_element_type(spell_element)
 	look_at(global_position + direction)
 	knockback_vector = direction
@@ -43,7 +44,7 @@ func _play_spell_sound():
 		var sound = spell_sound_scene.instantiate()
 		self.add_child(sound) 
 
-func _set_projectile_damage(dmg):
+func set_projectile_damage(dmg):
 	damage = dmg
 
 func _physics_process(delta):
@@ -68,8 +69,7 @@ func _physics_process(delta):
 			"Direct":
 				position += direction * speed * delta
 				look_at(global_position + direction)
-	else:
-		return
+
 
 
 func set_drag_factor(new_value: float) -> void:
@@ -85,14 +85,17 @@ func _on_target_detector_body_entered(body):
 		target = body.hitbx
 
 func _create_impact_effect():
+	$Sprite2D.visible = false
+	$CollisionShape2D.call_deferred("set_disabled", true)
 	var effect = impact_effect_scene.instantiate()
 	effect.connect("effect_finished", self._kill)
 	effect.global_position = self.global_position
 	var sound = impact_sound_scene.instantiate()
 	sound.global_position = self.global_position
 	effect.add_child(sound)
+	is_active = false
 	get_tree().current_scene.add_child(effect)
-	call_deferred("_kill")
+
 
 
 func _kill():

@@ -53,6 +53,7 @@ var old_position = Vector2.ZERO
 var heal_charges: int = 2
 var last_target_position:Vector2 = Vector2.ZERO
 var spell_shooted: bool = false
+var last_velocity: = Vector2.ZERO
 
 func _ready():
 	sound_controller._setup_sounds("Skeleton")
@@ -79,6 +80,7 @@ func _physics_process(delta):
 		move_and_slide()
 	if velocity != Vector2.ZERO:
 		hurt_box.knockback_vector = velocity
+		last_velocity = velocity
 		anim_tree.set("parameters/Idle/blend_position", velocity)
 		anim_tree.set("parameters/Move/blend_position", velocity)
 		anim_tree.set("parameters/Cast/blend_position", velocity)
@@ -166,7 +168,7 @@ func attack_state(_delta):
 	current_cast = CAST_TYPE.DAMAGE
 	attack_timer.start()
 	velocity = Vector2.ZERO
-	anim_tree.set("parameters/Cast/blend_position", last_target_position)
+	anim_tree.set("parameters/Cast/blend_position", global_position.direction_to(last_target_position))
 	anim_stats.travel("Cast")
 
 func check_collider():
@@ -281,7 +283,7 @@ func shoot_projectile():
 	spell_shooted = true
 	var shoot_direction = $WeaponAngle/HurtBox.global_position.direction_to(last_target_position)
 	var projectile: EnemyProjectile = spell_scene.instantiate()
-	projectile.damage = stats.damage
+	projectile.spell_damage = stats.damage
 	projectile.global_position = $WeaponAngle/HurtBox.global_position
 	projectile.direction = shoot_direction
 	get_tree().current_scene.add_child(projectile)
