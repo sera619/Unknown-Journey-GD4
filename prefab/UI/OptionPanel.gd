@@ -24,8 +24,6 @@ class_name OptionPanel
 @onready var screen_res_btn: CheckButton = $BG/M/V/VideoOptions/M/Options/H1/CheckButton
 @onready var check_icon: TextureRect = $BG/M/V/VideoOptions/M/Options/H1/CheckButton/CheckIcon
 
-var checkbutton_font_color_blue = Color(0.15294118225574, 0.63921570777893, 0.92941176891327)
-
 var default_settings: Dictionary = {
 	"audio_all": 100,
 	"audio_sfx": 70,
@@ -115,10 +113,17 @@ func _on_okay_btn_button_up():
 		self._update_audio_music()
 		self._update_audio_sfx()
 		self._reset_panels()
-	self.hide()
+		
+	if GameManager.on_main_menu:
+		GameManager.main_menu.anim_player.play_backwards("menu-option")
+	else:
+		self.hide()
 
 func _on_back_btn_button_up():
-	self.hide()
+	if GameManager.on_main_menu:
+		GameManager.main_menu.anim_player.play_backwards("menu-option")
+	else:
+		self.hide()
 
 func _on_sfx_slider_value_changed(value):
 	audio_sfx_label.text = "%s DB" % floor(value)

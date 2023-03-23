@@ -7,6 +7,7 @@ var game: Game = null
 var interface: Interface = null
 var dialog_box: DialogBox = null
 var info_box: InfoBox = null
+var main_menu: MainMenu = null
 var ui_questlog = null
 var on_main_menu: bool = false
 var seen_npcs = []
@@ -45,6 +46,9 @@ func register_node(node: Node):
 		print("[!] GameManager: Node: %s registered!" % node.name)
 	elif node.name == "InfoBox":
 		info_box = node
+		print("[!] GameManager: Node: %s registered!" % node.name)
+	elif node.name == "MainMenu":
+		main_menu = node
 		print("[!] GameManager: Node: %s registered!" % node.name)
 	else:
 		print("[!] GameManager: Cant register: %s" % node.name)

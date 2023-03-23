@@ -6,6 +6,7 @@ class_name MainMenu
 @onready var load_btn: TextureButton = $Panel/M/V/MMLoadBtn
 
 func _ready():
+	GameManager.register_node(self)
 	anim_player.play("start")
 	if GameManager.savegame_exists():
 		load_btn.disabled = false
@@ -24,6 +25,7 @@ func _on_mm_load_btn_button_down():
 
 func _on_mm_option_btn_button_down():
 	print("[!] MainMenu: Option Btn clicked")
+	anim_player.play("menu-option")
 
 func _on_mm_exit_btn_button_down():
 	print("[!] MainMenu: Exit Btn clicked")
