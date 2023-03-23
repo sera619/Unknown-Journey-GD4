@@ -2,12 +2,24 @@
 
 [ext_resource type="Script" path="res://prefab/utils/SoundController.gd" id="1_8er4f"]
 
-[node name="SoundController" type="Node"]
+[node name="SoundController" type="Node2D"]
 script = ExtResource("1_8er4f")
 
-[node name="MoveSound" type="AudioStreamPlayer" parent="."]
+[node name="MoveSound" type="AudioStreamPlayer2D" parent="."]
+max_distance = 156.0
+bus = &"PlayerSFX"
 
-[node name="RunSound" type="AudioStreamPlayer" parent="."]
+[node name="RunSound" type="AudioStreamPlayer2D" parent="."]
+max_distance = 156.0
+bus = &"PlayerSFX"
+
+[node name="ImpactPlayer" type="AudioStreamPlayer2D" parent="."]
+max_distance = 156.0
+bus = &"PlayerSFX"
+
+[node name="CastPlayer" type="AudioStreamPlayer2D" parent="."]
+max_distance = 156.0
+bus = &"PlayerSFX"
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
