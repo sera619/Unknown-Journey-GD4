@@ -35,7 +35,7 @@ func _setup_sounds(character: String):
 		"Skeleton":
 			move_player.stream = MOVEMENT.Enemys.Skeleton
 			
-	print("[!] SoundController: Sound @ %s successfully loaded!" % character) 
+	#print("[!] SoundController: Sound @ %s successfully loaded!" % character) 
 
 
 

@@ -280,7 +280,6 @@ func set_dot(dmg: int, count: int, element):
 		self.dot_damage = dmg
 	self.dot_count = count
 	self.dot_timer.wait_time = 1
-	print("Player dot damage %s and count %s" % [self.dot_damage, self.dot_count])
 	self.dot_timer.start()
 	EventHandler.emit_signal("player_dot_start", self.dot_count, element)
 
@@ -364,7 +363,7 @@ func _on_dash_timer_timeout():
 	can_dash = true
 
 func _on_dot_timer_timeout():
-	if self.dot_count > 0:
+	if self.dot_count >= 0:
 		if not self.is_slowed:
 			self.take_dot_damage()
 		self.dot_count -= 1
