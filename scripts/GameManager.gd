@@ -21,6 +21,74 @@ const COLORS: Dictionary = {
 	"lightgreen_text": Color(0.29803922772408, 0.91764706373215, 0.36862745881081)
 }
 
+const DEFAULT_GAME_OPTIONS: Dictionary = {
+	"audio_all":3.64023995399475,
+	"audio_menu":-10.0740995407104,
+	"audio_music":-13.5101003646851,
+	"audio_sfx":-4.50410985946655,
+	"fullscreen":false
+}
+var current_game_options: Dictionary = {}
+
+
+func _ready():
+	_initial_process()
+
+
+func _initial_process():
+	_setup_game_settings()
+
+func _setup_game_settings():
+	var path = "user://gameoptions.save"
+	if not FileAccess.file_exists(path):
+		current_game_options = DEFAULT_GAME_OPTIONS
+		self._save_settings(current_game_options)
+	else:
+		current_game_options = self._load_settings()
+	self._set_game_settings(current_game_options)
+	print("[!] GameManager: Gameoptions setup successfully!")
+
+func _set_game_settings(settings: Dictionary):
+	AudioServer.set_bus_volume_db(0, settings['audio_all'])
+	AudioServer.set_bus_volume_db(1, settings['audio_music'])
+	AudioServer.set_bus_volume_db(2, settings['audio_sfx'])
+	AudioServer.set_bus_volume_db(3, settings['audio_menu'])
+	if settings['fullscreen'] == true:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	else:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+	print("[!] GameManager: game settings applied!")
+
+
+func _update_audio_all(value):
+	AudioServer.set_bus_volume_db(0, value)
+	self.current_game_options['audio_all'] = value
+	print("[!] GameManger: All audio volume set to: %s" % value)
+
+func _update_audio_music(value):
+	AudioServer.set_bus_volume_db(1, value)
+	self.current_game_options['audio_music'] = value
+	print("[!] GameManger: Music audio volume set to: %s" % value)
+
+func _update_audio_sfx(value):
+	AudioServer.set_bus_volume_db(2, value)
+	self.current_game_options['audio_sfx'] = value
+	print("[!] GameManger: SFX audio volume set to: %s" % value)
+
+func _update_audio_menu(value):
+	AudioServer.set_bus_volume_db(3, value)
+	self.current_game_options['audio_menu'] = value
+	print("[!] GameManger: Menu audio volume set to: %s" % value)
+
+func _update_window_mode(mode: bool):
+	self.current_game_options['fullscreen'] = mode
+	if mode == true:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	else:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+	print("[!] GameManger: Windowmode applied!")
+
+
 
 func register_node(node: Node):
 	if node.name == "Player":
@@ -52,6 +120,29 @@ func register_node(node: Node):
 		print("[!] GameManager: Node: %s registered!" % node.name)
 	else:
 		print("[!] GameManager: Cant register: %s" % node.name)
+
+
+func _save_settings(settings: Dictionary):
+	var path = "user://gameoptions.save"
+	var savefile = FileAccess.open(path, FileAccess.WRITE)
+	var json_string = JSON.stringify(settings)
+	savefile.store_line(json_string)
+	print("[!] Options: Gamesetting successfully saved!")
+
+func _load_settings():
+	var loadpath = "user://gameoptions.save"
+	if not FileAccess.file_exists(loadpath):
+		return
+	var save_game = FileAccess.open(loadpath, FileAccess.READ)
+	while save_game.get_position() < save_game.get_length():
+		var json_string = save_game.get_line()
+		var json = JSON.new()
+		var parse_result = json.parse(json_string)
+		if not parse_result == OK:
+			print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
+			continue
+		var node_data = json.get_data()
+		return node_data
 
 
 func save_data(playername=""):

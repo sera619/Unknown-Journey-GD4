@@ -24,21 +24,16 @@ class_name OptionPanel
 @onready var screen_res_btn: CheckButton = $BG/M/V/VideoOptions/M/Options/H1/CheckButton
 @onready var check_icon: TextureRect = $BG/M/V/VideoOptions/M/Options/H1/CheckButton/CheckIcon
 
-var default_settings: Dictionary = {
-	"audio_all": 100,
-	"audio_sfx": 70,
-	"audio_music": 50,
-	"audio_menu": 50,
-	"fullscreen": false 
-}
 
 func _ready():
 	$BG/M/V/HeadBG/Label.add_theme_color_override("font_color", GameManager.COLORS.lightgreen_text)
 	self._reset_panels()
 	self._set_current_audio_values()
+	self._set_current_video_values()
 	self.key_btn.disabled = true
 	#self.video_btn.disabled = true
 	self.hide()
+
 
 func _reset_panels():
 	self.audio_panel.show()
@@ -50,38 +45,48 @@ func _update_audio_all():
 	var old_value = AudioServer.get_bus_volume_db(0)
 	if value == old_value:
 		return
-	AudioServer.set_bus_volume_db(0, value)
-	print("[!] Options: All audio volume set to: %s" % value)
+	GameManager._update_audio_all(value)
 
 func _update_audio_music():
 	var value = self.audio_music_slider.value
 	var old_value = AudioServer.get_bus_volume_db(1)
 	if value == old_value:
 		return
-	AudioServer.set_bus_volume_db(1, value)
-	print("[!] Options: Music audio volume set to: %s" % value)
+	GameManager._update_audio_music(value)
 
 func _update_audio_sfx():
 	var value = self.audio_sfx_slider.value
 	var old_value = AudioServer.get_bus_volume_db(2)
 	if value == old_value:
 		return
-	AudioServer.set_bus_volume_db(2, value)
-	print("[!] Options: SFX audio volume set to: %s" % value)
+	GameManager._update_audio_sfx(value)
 
 func _update_audio_menu():
 	var value = self.audio_menu_slider.value
 	var old_value = AudioServer.get_bus_volume_db(3)
 	if value == old_value:
 		return
-	AudioServer.set_bus_volume_db(3, value)
-	print("[!] Options: Menu audio volume set to: %s" % value)
+	GameManager._update_audio_menu(value)
+
+func _update_window_mode():
+	if screen_res_btn.button_pressed:
+		GameManager._update_window_mode(true)
+		self.check_icon.visible = true
+		self.screen_res_btn.text = "AN"
+	else:
+		GameManager._update_window_mode(false)
+		self.check_icon.visible = false 
+		self.screen_res_btn.text = "AUS"
 
 func _set_current_audio_values():
 	var all = AudioServer.get_bus_volume_db(0)
 	var music = AudioServer.get_bus_volume_db(1)
 	var sfx = AudioServer.get_bus_volume_db(2)
 	var menu = AudioServer.get_bus_volume_db(3)
+	GameManager.current_game_options["audio_all"] = all
+	GameManager.current_game_options['audio_music'] = music
+	GameManager.current_game_options['audio_sfx'] = sfx
+	GameManager.current_game_options['audio_menu'] = menu
 	self.audio_all_label.text = "%d DB" % int(all)
 	self.audio_music_label.text = "%d DB" % int(music)
 	self.audio_sfx_label.text = "%d DB" % int(sfx)
@@ -90,6 +95,20 @@ func _set_current_audio_values():
 	self.audio_menu_slider.value = menu
 	self.audio_music_slider.value = music
 	self.audio_sfx_slider.value = sfx
+
+
+func _set_current_video_values():
+	var full_screen = DisplayServer.window_get_mode()
+	if full_screen == DisplayServer.WINDOW_MODE_FULLSCREEN:
+		self.screen_res_btn.button_pressed = true
+		self.check_icon.visible = true
+		self.screen_res_btn.text = "AN"
+	else:
+		self.screen_res_btn.button_pressed = false
+		check_icon.visible = false
+		self.screen_res_btn.text = "AUS"
+
+
 
 func _show_audio_panel():
 	self.video_panel.hide()
@@ -113,7 +132,7 @@ func _on_okay_btn_button_up():
 		self._update_audio_music()
 		self._update_audio_sfx()
 		self._reset_panels()
-		
+	GameManager._save_settings(GameManager.current_game_options)
 	if GameManager.on_main_menu:
 		GameManager.main_menu.anim_player.play_backwards("menu-option")
 	else:
@@ -146,16 +165,6 @@ func _on_video_btn_button_up():
 func _on_key_btn_button_up():
 	_show_key_panel()
 
-
 # screen size button
 func _on_check_button_button_up():
-	if screen_res_btn.button_pressed:
-		default_settings['fullscreen'] = true
-		check_icon.visible = true
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-	else:
-		default_settings['fullscreen'] = false
-		check_icon.visible = false 
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-
-
+	_update_window_mode()
