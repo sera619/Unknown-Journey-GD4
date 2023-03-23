@@ -56,3 +56,6 @@ func _on_p_exit_btn_button_down():
 	EventHandler.connect("transition_black", go_mainmenu)
 	EventHandler.emit_signal("start_transition")
 
+func _on_p_option_btn_button_up():
+	GameManager.interface.option_panel.show()
+	

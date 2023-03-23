@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b7dks5cm1l8lb"]
+[gd_scene load_steps=19 format=3 uid="uid://b7dks5cm1l8lb"]
 
 [ext_resource type="Script" path="res://prefab/interface/Interface.gd" id="1_ghaf7"]
 [ext_resource type="PackedScene" uid="uid://j0mixjoaji6r" path="res://prefab/UI/DevPanel.tscn" id="2_0344k"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://cfsnddkshv6p8" path="res://prefab/UI/PotionPanel.tscn" id="10_p40cy"]
 [ext_resource type="PackedScene" uid="uid://6ma28lukrg4r" path="res://prefab/UI/NewSkillHUD.tscn" id="11_r8hlj"]
 [ext_resource type="PackedScene" uid="uid://l61eqwib72yh" path="res://prefab/UI/SleepHUD.tscn" id="13_q1ex6"]
+[ext_resource type="PackedScene" uid="uid://d2qg587omjywm" path="res://prefab/UI/OptionPanel.tscn" id="15_06kas"]
 
 [sub_resource type="Animation" id="Animation_x5qxj"]
 length = 0.001
@@ -146,6 +147,14 @@ offset_top = 50.0
 offset_right = -112.0
 offset_bottom = -27.0
 scale = Vector2(0.75, 0.75)
+
+[node name="OptionPanel" parent="." instance=ExtResource("15_06kas")]
+offset_left = 80.0
+offset_top = 38.0
+offset_right = 80.0
+offset_bottom = 60.0
+scale = Vector2(0.5, 0.5)
+size_flags_vertical = 4
 
 [node name="NewSkillHUD" parent="." instance=ExtResource("11_r8hlj")]
 

@@ -13,6 +13,7 @@ class_name Interface
 @onready var dialog_box: DialogBox = $DialogBox
 @onready var newskill_hud: NewSkillHUD = $NewSkillHUD
 @onready var dot_hud: DotHUD = $DotHUD
+@onready var option_panel: OptionPanel = $OptionPanel
 
 func _ready():
 	if show_devpanel == true:
