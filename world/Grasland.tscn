@@ -530,6 +530,12 @@ y_sort_enabled = true
 [node name="EnemyFungy" parent="Map/GameObjects/Enemys" instance=ExtResource("9_v1pbo")]
 position = Vector2(-79, 135)
 
+[node name="EnemySkeletonMage" parent="Map/GameObjects/Enemys" instance=ExtResource("13_g5dlj")]
+position = Vector2(1327, 323)
+
+[node name="EnemySkeletonMage2" parent="Map/GameObjects/Enemys" instance=ExtResource("13_g5dlj")]
+position = Vector2(53, 572)
+
 [node name="Teleporter" parent="Map/GameObjects" instance=ExtResource("5_fviyu")]
 position = Vector2(755, -258)
 teleport_location = "SwordCave"
