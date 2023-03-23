@@ -34,9 +34,11 @@ func load_quest_infos():
 				list_node.add_item(quest.title, active_icon)
 			Quest.QS.FINSIH:
 				list_node.add_item(quest.title, finish_icon)
+				
 			Quest.QS.COMPLETE:
 				list_node.add_item(quest.title, finish_icon, false)
 				list_node.set_item_disabled(count, true)
+		list_node.set_item_tooltip_enabled(count, false)
 		count += 1
 
 func _on_item_list_item_selected(index):
