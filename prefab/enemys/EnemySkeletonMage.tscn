@@ -756,7 +756,7 @@ enemy_stats_path = NodePath("../EnemyStats")
 
 [node name="EnemyStats" type="Node" parent="."]
 script = ExtResource("7_4qq7q")
-max_health = 10
+max_health = 8
 damage = 4
 MAX_SPEED = 45
 ACCELERATION = 300
@@ -785,7 +785,7 @@ vframes = 21
 frame = 26
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 4.0
+wait_time = 5.0
 one_shot = true
 
 [node name="HitBox" type="Area2D" parent="."]

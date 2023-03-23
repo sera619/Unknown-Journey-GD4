@@ -166,6 +166,7 @@ func attack_state(_delta):
 	current_cast = CAST_TYPE.DAMAGE
 	attack_timer.start()
 	velocity = Vector2.ZERO
+	anim_tree.set("parameters/Cast/blend_position", last_target_position)
 	anim_stats.travel("Cast")
 
 func check_collider():
