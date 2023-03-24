@@ -2,9 +2,11 @@ from pydub import AudioSegment
 import os
 
 
-def format(source_format):
+def format_audio(source_format):
+    current_dir = os.path.abspath(__file__)
+    current_dir = current_dir[:-17]
     if source_format == "mp3":
-        directory = "..\\assets\\Music and Sounds\\"
+        directory = current_dir+"\..\\assets\\Music and Sounds\\"
         count = 0
         for root, dirs, files in os.walk(directory):
             for filename in files:
@@ -19,15 +21,20 @@ def format(source_format):
 
 
 def main():
-    print("AudioConverter\nSelect filetype to convert in .wav!\n\n\tOptions:\n\t1) MP3\n\t2) WAV\n\t3) OOG\n\t0) Exit\n")
+    print("AudioConverter\nSelect filetype to convert in .wav!\n\n\tOptions:\n\t1) MP3\n\t0) Exit\n")
     option = int(input("[?] Choose a option: "))
     if option == 1:
-        format('mp3')
+        format_audio('mp3')
     else:
-        print("[X] Exit!")
         exit(0)
 
 
-
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except KeyboardInterrupt:
+        print("\n[X] Keyboard Exit!")
+    finally:
+        print("[!] End Converter.")
+        exit(0)
+        
