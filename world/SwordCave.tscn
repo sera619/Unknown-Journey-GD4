@@ -551,7 +551,7 @@ sources/0 = SubResource("TileSetAtlasSource_ol6bj")
 [sub_resource type="CircleShape2D" id="CircleShape2D_g4wnk"]
 radius = 71.0282
 
-[node name="SwordCave" type="Node" groups=["WorldBase"]]
+[node name="SwordCave" type="Node2D" groups=["WorldBase"]]
 script = ExtResource("1_egq4y")
 world_name = "SwordCave"
 
