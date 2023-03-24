@@ -301,7 +301,7 @@ func use_health_potion():
 	if stats.player_inventory['Healthpot'] > 0:
 		stats.player_inventory['Healthpot'] -= 1
 		EventHandler.emit_signal("player_get_healthpot", stats.player_inventory['Healthpot'])
-		stats.set_health(stats.health + 4)
+		stats.heal_player(4)
 		var heal_effect = heal_effect_scene.instantiate()
 		self.add_child(heal_effect)
 		heal_effect.global_position = global_position

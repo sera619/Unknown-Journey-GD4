@@ -44,7 +44,7 @@ func set_health(new_health):
 	if new_health > max_health:
 		health = max_health
 	emit_signal("enemy_health_changed", health)
-	print("[!] Enemy - %s - : Set health to %s" % [get_parent().name, health])
+	#print("[!] Enemy - %s - : Set health to %s" % [get_parent().name, health])
 
 func set_max_health(new_max_health):
 	max_health = new_max_health

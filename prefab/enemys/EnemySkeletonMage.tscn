@@ -1,4 +1,4 @@
-[gd_scene load_steps=88 format=3 uid="uid://cg3dyy4clkbpr"]
+[gd_scene load_steps=94 format=3 uid="uid://cg3dyy4clkbpr"]
 
 [ext_resource type="Script" path="res://prefab/enemys/SkeletonMage.gd" id="1_n1dsa"]
 [ext_resource type="PackedScene" uid="uid://bjfxwi2rlu7co" path="res://prefab/enemys/EnemyIceProjectile.tscn" id="2_ek2w7"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://doa5hxcckh64o" path="res://prefab/enemys/EnemyHUD.tscn" id="6_muj8m"]
 [ext_resource type="Script" path="res://scripts/EnemyStats.gd" id="7_4qq7q"]
 [ext_resource type="Script" path="res://prefab/enemys/EnemyWeapon.gd" id="10_1xcay"]
+[ext_resource type="Shader" path="res://assets/Materials/FlashLoop.gdshader" id="10_qbjow"]
 [ext_resource type="PackedScene" uid="uid://kbo1bay3i1ps" path="res://prefab/utils/PlayerDetector.tscn" id="11_s8ruv"]
 [ext_resource type="PackedScene" uid="uid://ebdq15holk57" path="res://prefab/utils/Softcollision.tscn" id="12_y7rhu"]
 [ext_resource type="PackedScene" uid="uid://b347lo6c415bh" path="res://prefab/utils/WanderController.tscn" id="13_uocry"]
@@ -20,9 +21,106 @@
 radius = 4.0
 height = 20.0
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3eypu"]
+shader = ExtResource("10_qbjow")
+shader_parameter/shine = false
+shader_parameter/move = false
+shader_parameter/side = 0.9
+shader_parameter/up = 0.1
+shader_parameter/color = Color(0, 0, 0, 1)
+shader_parameter/u_time = 1.0
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8mvfl"]
 radius = 8.0
 height = 38.0
+
+[sub_resource type="Animation" id="Animation_xkpff"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:material:shader_parameter/color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Sprite2D:material:shader_parameter/shine")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_7lkns"]
+resource_name = "heal_flash"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:material:shader_parameter/color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.180392, 1, 0, 1), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Sprite2D:material:shader_parameter/shine")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_5jofg"]
+resource_name = "hit_flash"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:material:shader_parameter/color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 0.945098, 0.984314, 1), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Sprite2D:material:shader_parameter/shine")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i85s1"]
+_data = {
+"RESET": SubResource("Animation_xkpff"),
+"heal_flash": SubResource("Animation_7lkns"),
+"hit_flash": SubResource("Animation_5jofg")
+}
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ljslk"]
 
@@ -778,6 +876,7 @@ shape = SubResource("CapsuleShape2D_u22l5")
 visible = false
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_3eypu")
 texture = ExtResource("5_gnpno")
 offset = Vector2(0, -28)
 hframes = 13
@@ -795,6 +894,11 @@ collision_mask = 16
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2(0, -19)
 shape = SubResource("CapsuleShape2D_8mvfl")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HitBox"]
+libraries = {
+"": SubResource("AnimationLibrary_i85s1")
+}
 
 [node name="WeaponAngle" type="Marker2D" parent="."]
 position = Vector2(0, -20)

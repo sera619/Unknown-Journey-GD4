@@ -1,8 +1,9 @@
 extends Node
 class_name Game
 
-
+@export_category("Development Options")
 @export_enum("Normal", "Development") var run_type: int
+@export_enum("Hills", "Wood", "Grasland", "GraslandHouse","SwordCave") var dev_start_map: String
 @onready var world_holder = $WorldHolder
 @onready var world_shadow_scene = preload("res://prefab/utils/WorldShadow.tscn")
 
@@ -32,6 +33,13 @@ const TELEPORT_SPAWN_LOCATIONS: Dictionary = {
 var teleport_spawn_location: Vector2 = Vector2.ZERO
 var world_shadow = null
 
+
+func _development_start():
+	if dev_start_map == "":
+		load_game()
+	else:
+		switch_gamelevel(dev_start_map)
+
 func _ready():
 	GameManager.register_node(self)
 	EventHandler.connect("show_world_shadow", _on_show_world_shadow)
@@ -41,7 +49,7 @@ func _ready():
 		0:
 			switch_gamelevel("GameIntro")
 		1:
-			load_game()
+			_development_start()
 
 func start_new_game():
 	QuestManager.reset_quests()

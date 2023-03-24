@@ -102,7 +102,21 @@ func set_health(value, loaded=false):
 			show_dmg_display("[wave amp=40 freq=10]\n-%s[/wave]" % int(old_healt - health))
 		elif old_healt < health:
 			dmg_label.add_theme_color_override("default_color", Color(0.32941177487373, 0.7843137383461, 0.15294118225574))
-			show_dmg_display("[wave amp=40 freq=10]\n+%s[/wave]" % int(old_healt + health))
+			show_dmg_display("[wave amp=40 freq=10]\n+%s[/wave]" % int(old_healt - health))
+
+
+func heal_player(value):
+	if health + value > MAX_HEALTH:
+		health = MAX_HEALTH
+	else:
+		health += value
+	EventHandler.emit_signal("player_health_changed", health)
+	dmg_label.add_theme_color_override("default_color", Color(0.32941177487373, 0.7843137383461, 0.15294118225574))
+	dmg_label.text = "[wave amp=40 freq=10]\n+%s[/wave]" % value
+	dmg_label.visible = true
+	await get_tree().create_timer(1.4).timeout
+	dmg_label.text = ""
+	dmg_label.visible = false
 
 func show_dmg_display(dmgvalue: String):
 	dmg_label.text = dmgvalue

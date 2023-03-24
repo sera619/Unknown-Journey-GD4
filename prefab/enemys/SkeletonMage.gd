@@ -1,4 +1,6 @@
 extends CharacterBody2D
+signal enemy_healed(heal_value)
+signal enemy_take_damage(damage)
 
 @export_category("Spell Scenes")
 @export var spell_scene: PackedScene
@@ -27,13 +29,20 @@ extends CharacterBody2D
 @onready var attack_collider: CollisionShape2D = $WeaponAngle/HurtBox/CollisionShape2D
 @onready var hurt_collider: CollisionShape2D = $HitBox/CollisionShape2D
 @onready var sound_controller: SoundController = $SoundController
-signal enemy_healed(heal_value)
-signal enemy_take_damage(damage)
+@onready var hit_animplayer: AnimationPlayer = $HitBox/AnimationPlayer
+
 enum CAST_TYPE {
 	HEAL,
 	DAMAGE
 }
 var current_cast = CAST_TYPE.DAMAGE
+#@export var ATTACK_RANGE:int = 32
+# should smaller then MIN_RANGE_TO_TARGET
+@export var STOP_RADIUS: int = 128
+@export var MIN_RANGE_TO_TARGET:int = 46
+
+@export var SLOW_RADIUS: int = 32
+
 
 enum {
 	WANDER,
@@ -42,7 +51,8 @@ enum {
 	ATTACK,
 	HEAL,
 	HURT,
-	DEAD
+	DEAD,
+	FLEE
 }
 
 var state = CHASE
@@ -86,6 +96,7 @@ func _physics_process(delta):
 		anim_tree.set("parameters/Cast/blend_position", velocity)
 		anim_tree.set("parameters/Dead/blend_position", velocity)
 		anim_tree.set("parameters/Hurt/blend_position", velocity)
+		anim_tree.set("parameters/Idle/blend_position", velocity)
 		anim_stats.travel("Move")
 	else:
 		anim_stats.travel("Idle")
@@ -97,13 +108,16 @@ func _physics_process(delta):
 		IDLE:
 			check_collider()
 			velocity = velocity.move_toward(Vector2.ZERO, stats.FRICTION * delta)
-			seek_player()
-			if wander_controller.get_time_left() == 0:
-				update_wander()
 			if can_attack and heal_charges > 0 and stats.health < floor(stats.max_health/2):
 				state = HEAL
-			elif player_detector.can_see_player():
+			if player_detector.player != null and can_attack:
+				last_target_position = player_detector.player.global_position
+				state = ATTACK
+			seek_player()
+			if player_detector.can_see_player():
 				state = CHASE
+			if wander_controller.get_time_left() == 0:
+				update_wander()
 				
 		WANDER:
 			check_collider()
@@ -117,19 +131,7 @@ func _physics_process(delta):
 				update_wander()
 		CHASE:
 			check_collider()
-			var player = player_detector.player
-			if player != null:
-				if global_position.distance_to(player.global_position) <= stats.MIN_RANGE or global_position.distance_to(player.global_position) >= stats.MAX_RANGE:
-					accelerate_towards_point(player.global_position, delta)
-				if can_attack and stats.heal_charges > 0 and stats.health < int(stats.max_health/2):
-					state = HEAL
-				elif can_attack:
-					last_target_position = player.global_position
-					state = ATTACK
-				else:
-					state = IDLE
-			else:
-				state = IDLE
+			chase_state(delta)
 		ATTACK:
 			var player = player_detector.player
 			if player != null:
@@ -144,6 +146,9 @@ func _physics_process(delta):
 		HURT:
 			can_attack = false
 			hurt_state(delta)
+		FLEE:
+			can_attack = false
+			flee_state(delta)
 
 	if softCollision.is_colliding():
 		velocity += softCollision.get_push_vector() * delta * 400
@@ -163,13 +168,12 @@ func on_hurtbox_area_entered(area):
 	state = IDLE
 
 func attack_state(_delta):
+	anim_stats.travel("Cast")
 	can_attack = false
 	hurt_box.set_element_type("Ice")
 	current_cast = CAST_TYPE.DAMAGE
 	attack_timer.start()
 	velocity = Vector2.ZERO
-	anim_tree.set("parameters/Cast/blend_position", global_position.direction_to(last_target_position))
-	anim_stats.travel("Cast")
 
 func check_collider():
 	if not attack_collider.disabled:
@@ -177,6 +181,25 @@ func check_collider():
 	if hurt_collider.disabled:
 		hurt_collider.call_deferred("set_disabled", false)
 
+func chase_state(delta):
+	var player = player_detector.player
+	if player != null:
+		if stats.health >= stats.max_health / 2 and stats.heal_charges >= 0:
+			state = HEAL
+		var distance = global_position.distance_to(player.global_position)
+		if distance >= STOP_RADIUS:
+			accelerate_towards_point(player.global_position, delta)
+		if distance > MIN_RANGE_TO_TARGET and can_attack == true:
+			can_attack = false
+			last_target_position = player.global_position
+			attack_timer.start(4.0)
+			state = ATTACK
+		elif distance < MIN_RANGE_TO_TARGET and can_attack == false:
+			state = FLEE
+		else:
+			state = IDLE
+	else:
+		state = IDLE
 
 func seek_player():
 	var player: Player = null
@@ -191,6 +214,22 @@ func seek_player():
 			player = null
 		return
 
+
+
+func flee_state(_delta):
+	var distance = global_position.distance_to(GameManager.player.global_position)
+	var tspeed = stats.MAX_SPEED
+	var new_vel
+	if distance >= STOP_RADIUS:
+		if attack_timer.is_stopped():
+			can_attack = true
+		state = IDLE
+	if distance > SLOW_RADIUS:
+		tspeed = stats.MAX_SPEED * (SLOW_RADIUS - distance) / (STOP_RADIUS - SLOW_RADIUS)
+		var dir = global_position.direction_to(GameManager.player.global_position) * tspeed
+		#wdprint(dir.normalized())
+		accelerate_towards_point(global_position + dir.normalized(),  _delta)
+	
 func update_wander():
 	state = pick_random_state([IDLE, WANDER])
 	wander_controller.start_wander_timer(randi_range(1, 3))
@@ -206,7 +245,6 @@ func accelerate_towards_point(point, delta):
 	else:
 		speed = stats.WANDER_SPEED
 	var direction = global_position.direction_to(point)
-
 	velocity = velocity.move_toward(direction * speed, stats.ACCELERATION * delta)
 	velocity += avoid_obstacles()
 
@@ -229,6 +267,7 @@ func take_damage(area):
 		self.add_child(hit_sound)
 		var effect = hit_effect_scene.instantiate() 
 		var cs = get_tree().current_scene
+		hit_animplayer.play("hit_flash")
 		effect.global_position= animSprite.global_position
 		effect.global_position.y += animSprite.offset.y
 		cs.add_child(effect)
@@ -252,12 +291,12 @@ func take_damage(area):
 func heal_enemy():
 	if stats.heal_charges >= 0:
 		if spell_shooted:
-			return
+			state = IDLE
+		spell_shooted = true
 		var heal_effect = heal_effect_scene.instantiate()
 		self.add_child(heal_effect)
 		heal_effect.global_position = global_position
 		stats.heal_charges -= 1
-		spell_shooted = true
 		stats.set_health(stats.health + int(stats.max_health / 2))
 	else:
 		return
@@ -278,8 +317,6 @@ func hurt_state(_delta):
 
 
 func shoot_projectile():
-	if spell_shooted:
-		return
 	spell_shooted = true
 	var shoot_direction = $WeaponAngle/HurtBox.global_position.direction_to(last_target_position)
 	var projectile: EnemyProjectile = spell_scene.instantiate()
@@ -299,10 +336,14 @@ func _on_cast_animation_finished():
 	state = IDLE
 
 func _cast_spell():
+	if spell_shooted:
+		state = IDLE
+	spell_shooted = true
 	if current_cast == CAST_TYPE.HEAL:
 		current_cast = CAST_TYPE.DAMAGE
 		var heal_value = int(floor(stats.max_health / 2))
 		emit_signal("enemy_healed", heal_value)
+		hit_animplayer.play("heal_flash")
 		heal_enemy()
 	else:
 		shoot_projectile()

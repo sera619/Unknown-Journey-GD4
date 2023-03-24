@@ -27,12 +27,16 @@ func get_entry_spot():
 	if entry_spot:
 		return entry_spot.global_position
 
+func get_respawn_spot():
+	if respawn_spot:
+		return respawn_spot.global_position
+
 func revive_player():
 	if GameManager.player != null:
 		GameManager.player = null
 	var new_player = player_scene.instantiate()
-	new_player.global_position = respawn_spot.global_position
 	game_map.add_child(new_player)
+	new_player.global_position = get_respawn_spot()
 
 
 func spawn_player():
@@ -42,7 +46,7 @@ func spawn_player():
 	var new_player:Player = player_scene.instantiate()
 	game_map.add_child(new_player)
 	if GameManager.game.change_player_spawn_location:
-		new_player.global_position = GameManager.game.teleport_spawn_location
+		new_player.global_position = GameManager.game.teleport_spawn_locationsddddddddddaadddddddddaaaaaaaaaa
 		GameManager.game.change_player_spawn_location = false
 	else:
 		new_player.global_position = get_entry_spot()

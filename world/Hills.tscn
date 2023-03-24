@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://ct8p6s4p6vulu"]
+[gd_scene load_steps=14 format=3 uid="uid://ct8p6s4p6vulu"]
 
 [ext_resource type="Script" path="res://world/WorldBase.gd" id="1_ogdfq"]
 [ext_resource type="Texture2D" uid="uid://by0asahacrf8v" path="res://assets/World/terrain_atlas.png" id="2_jwfej"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://ci8qjlxfcicx4" path="res://assets/World/base_out_atlas.png" id="3_m7kww"]
 [ext_resource type="PackedScene" uid="uid://dcc837c2ujx6g" path="res://prefab/utils/GameCamera.tscn" id="3_o07db"]
 [ext_resource type="Texture2D" uid="uid://dguk66r6bcx5q" path="res://assets/World/[Base]BaseChip_pipo.png" id="4_tp5oa"]
+[ext_resource type="PackedScene" uid="uid://dewtis55bljv5" path="res://prefab/props/SmallBush.tscn" id="6_fjbiy"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_sq0ya"]
 tile_data = PackedInt32Array(0, 327681, 1, 65536, 327681, 1, 131072, 327681, 1, 196608, 327681, 1, 262144, 327681, 1, 327680, 196609, 5, 393216, 196609, 6, 458752, 196609, 7, 524288, 196609, 8, 327681, 262145, 5, 393217, 262145, 6, 458753, 262145, 7, 524289, 262145, 8, 327682, 327681, 5, 393218, 327681, 6, 458754, 327681, 7, 524290, 327681, 8, 327683, 393217, 1, 393219, 393217, 2, 458755, 393217, 3, 524291, 393217, 4, 196612, 589825, 1, 262148, 589825, 2, 327684, 589825, 3, 393220, 458753, 2, 458756, 458753, 3, 524292, 458753, 4)
@@ -9779,7 +9780,6 @@ position = Vector2(-53, 68)
 y_sort_enabled = true
 tile_set = SubResource("TileSet_r235h")
 cell_quadrant_size = 32
-collision_visibility_mode = 1
 format = 2
 layer_0/name = "Ground"
 layer_0/tile_data = PackedInt32Array(262148, 1114113, 2, 327684, 1114113, 3, 393220, 1114113, 4, 393219, 1048577, 4, 393218, 1048577, 4, 393217, 1048577, 4, 393216, 1048577, 4, 458751, 1048577, 4, 458750, 1048577, 4, 393214, 1048577, 3, 393213, 1048577, 3, 393212, 1048577, 3, 393211, 983041, 3, 393215, 1048577, 3, 327680, 1048577, 3, 327681, 1048577, 3, 327682, 1048577, 3, 327683, 1048577, 3, 458749, 1048577, 4, 458748, 1048577, 4, 458747, 983041, 4, 262147, 1048577, 2, 262146, 1048577, 2, 262145, 1048577, 2, 262144, 1048577, 2, 327679, 1048577, 2, 327678, 1048577, 2, 327677, 1048577, 2, 327676, 1048577, 2, 327675, 983041, 2)
@@ -9796,7 +9796,7 @@ layer_2/modulate = Color(1, 1, 1, 1)
 layer_2/y_sort_enabled = false
 layer_2/y_sort_origin = 0
 layer_2/z_index = 0
-layer_2/tile_data = PackedInt32Array()
+layer_2/tile_data = PackedInt32Array(-5, 589825, 16, 65531, 589825, 17, 131067, 589825, 18, 196603, 589825, 19, -4, 655361, 16, 65532, 655361, 17, 131068, 655361, 18, 196604, 655361, 19, -3, 720897, 16, 65533, 720897, 17, 131069, 720897, 18, 196605, 720897, 19)
 layer_3/name = "watertop"
 layer_3/enabled = true
 layer_3/modulate = Color(1, 1, 1, 1)
@@ -9849,6 +9849,9 @@ y_sort_enabled = true
 
 [node name="Bushes" type="Node2D" parent="Map/GameObjects"]
 y_sort_enabled = true
+
+[node name="SmallBush" parent="Map/GameObjects/Bushes" instance=ExtResource("6_fjbiy")]
+position = Vector2(28, 80)
 
 [node name="Trees" type="Node2D" parent="Map/GameObjects"]
 y_sort_enabled = true

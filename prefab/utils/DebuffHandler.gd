@@ -19,5 +19,5 @@ func get_debuff_effect(element):
 			effect = fire_debuff_scene.instantiate()
 		SkillManager.ELEMENT.ICE:
 			effect = ice_debuff_scene.instantiate()
-	print("[!] DebuffHandler: Add debuff Scene to %s" % get_parent().name)
+	#print("[!] DebuffHandler: Add debuff Scene to %s" % get_parent().name)
 	self.add_child(effect)
