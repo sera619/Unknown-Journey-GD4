@@ -4,6 +4,8 @@ class_name Game
 
 @export_enum("Normal", "Development") var run_type: int
 @onready var world_holder = $WorldHolder
+@onready var world_shadow_scene = preload("res://prefab/utils/WorldShadow.tscn")
+
 
 var player: Player
 var loaded_data = null
@@ -24,10 +26,15 @@ const LevelScenes: Dictionary = {
 }
 const TELEPORT_SPAWN_LOCATIONS: Dictionary = {
 	"GraslandHouse": Vector2(1281, 246),
+	"WoodGrasland": Vector2(-349, 149)
 }
+
+var teleport_spawn_location: Vector2 = Vector2.ZERO
+var world_shadow = null
 
 func _ready():
 	GameManager.register_node(self)
+	EventHandler.connect("show_world_shadow", _on_show_world_shadow)
 	if GameManager.player:
 		player = GameManager.player
 	match run_type:
@@ -48,10 +55,26 @@ func load_game():
 	switch_gamelevel(loaded_data['cur_world'])
 
 
+func _on_show_world_shadow():
+	if world_shadow != null:
+		world_shadow.queue_free()
+		world_shadow = null
+		print("[!] Game: Shadow removed!")
+	var shadow = world_shadow_scene.instantiate()
+	GameManager.current_world.add_child(shadow)
+	world_shadow = shadow
+	print("[!] Game: Shadow succesfully applied!")
+	
+
+
 func switch_gamelevel(levelname: String):
 	if levelname not in LevelScenes:
 		printerr("[X] Game: Scene: %s not found!" % levelname)
 		return
+	if world_shadow != null:
+		world_shadow.queue_free()
+		world_shadow = null
+		print("[!] Game: Shadow removed!")
 	if world_holder.get_child_count() > 0:
 		world_holder.get_child(0).call_deferred("queue_free")
 	if levelname == "MainMenu" or levelname == "GameIntro":
@@ -74,5 +97,12 @@ func switch_gamelevel(levelname: String):
 	world_holder.call_deferred("add_child",node)
 	print("[!] Game: Scene - %s successfully loaded!" % levelname)
 
-
+func _change_player_spawn(location: String):
+	match location:
+		"WoodGrasland":
+			self.teleport_spawn_location = self.TELEPORT_SPAWN_LOCATIONS[str(location)]
+		"GraslandHouse":
+			self.teleport_spawn_location = self.TELEPORT_SPAWN_LOCATIONS[str(location)]
+	self.change_player_spawn_location = true
+	print("[!] Game: Change player spawn @ %s" % location)
 
