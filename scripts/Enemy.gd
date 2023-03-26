@@ -27,6 +27,7 @@ signal enemy_healed(heal)
 @onready var raycasts: Node2D = $RayCasts
 @onready var enemy_hud: EnemyHUD = $EnemyHUD
 @onready var sound_controller: SoundController = $SoundController
+@onready var weapon_collider: CollisionShape2D = $WeaponAngle/HurtBox/CollisionShape2D
 
 enum {
 	WANDER,
@@ -78,7 +79,7 @@ func _physics_process(delta):
 			seek_player()
 			if wander_controller.get_time_left() == 0:
 				update_wander()
-			if player_detector.can_see_player():
+			if player_detector.can_see_player() and global_position.distance_to(player_detector.player.global_position) < stats.MAX_RANGE:
 				state = CHASE
 				
 		WANDER:
@@ -92,18 +93,20 @@ func _physics_process(delta):
 		CHASE:
 			var player = player_detector.player
 			if player != null:
-				if global_position.distance_to(player.global_position) <= stats.MIN_RANGE or global_position.distance_to(player.global_position) >= stats.MAX_RANGE:
+				#if global_position.distance_to(player.global_position) <= stats.MIN_RANGE or
+				if global_position.distance_to(player.global_position) >= stats.MAX_RANGE:
 					accelerate_towards_point(player.global_position, delta)
 				else:
-					if can_attack:
-						state = ATTACK
-					else:
-						state = IDLE
+					state = IDLE
+				if can_attack:
+					state = ATTACK
+				else:
+					state = IDLE
 			else:
 				state = IDLE
 		ATTACK:
 			var player = player_detector.player
-			if player != null:
+			if player != null and can_attack:
 				accelerate_towards_point(player.global_position, delta)
 	if softCollision.is_colliding():
 		knockback += softCollision.get_push_vector() * delta * 400
@@ -111,10 +114,12 @@ func _physics_process(delta):
 
 func attack_timer_timeout():
 	can_attack = true
+	weapon_collider.call_deferred("set_disabled", false)
 
 func on_hurtbox_area_entered(area):
-	if not area.get_parent().name == "Player":
+	if not area.is_in_group("playerHitbox"):
 		return
+	weapon_collider.call_deferred("set_disabled", true)
 	can_attack = false
 	attack_timer.start()
 	state = IDLE
@@ -178,7 +183,6 @@ func take_damage(area):
 		knockback = area.knockback_vector * 115
 		emit_signal("enemy_take_damage", area.damage)
 		anim_player.play("Hit")
-		print("[!] Enemy: %s gets hitted for %s damage!" % [self.name, area.damage])
 		if stats.health <= 0:
 			var death_sound = death_sound_scene.instantiate()
 			self.add_child(death_sound)
@@ -190,7 +194,6 @@ func take_damage(area):
 			self.visible = false
 			emit_signal("enemy_died", self)
 			reward_player()
-		
 	else:
 		return
 

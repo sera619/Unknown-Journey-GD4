@@ -11,6 +11,7 @@ class_name WorldBase
 @onready var respawn_spot = $Map/RespawnSpot
 @onready var player_scene = preload("res://prefab/player/Player.tscn")
 @onready var game_map = $Map/GameObjects
+@onready var map_container = $Map
 
 func _ready():
 	_on_ready()

@@ -9,7 +9,7 @@ var steering: SteeringData
 var target_velocity: Vector2
 
 
-func _get_steering(obj: AIData, target: AIData = G.player_data) -> SteeringData:
+func _get_steering(_obj: AIData, _target: AIData = G.player_data) -> SteeringData:
 	steering = SteeringData.new()
 	
 	return steering

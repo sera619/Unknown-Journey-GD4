@@ -73,7 +73,8 @@ func _on_show_world_shadow():
 		world_shadow = null
 		print("[!] Game: Shadow removed!")
 	var shadow = world_shadow_scene.instantiate()
-	GameManager.current_world.add_child(shadow)
+	GameManager.current_world.map_container.add_child(shadow)
+	GameManager.current_world.map_container.move_child(shadow, shadow.get_index()-1)
 	world_shadow = shadow
 	print("[!] Game: Shadow succesfully applied!")
 	
@@ -87,8 +88,6 @@ func switch_gamelevel(levelname: String):
 		world_shadow.queue_free()
 		world_shadow = null
 		print("[!] Game: Shadow removed!")
-	if world_holder.get_child_count() > 0:
-		world_holder.get_child(0).call_deferred("queue_free")
 	if levelname == "MainMenu" or levelname == "GameIntro":
 		GameManager.on_main_menu = true
 		GameManager.interface.stat_hud.hide()
@@ -105,6 +104,8 @@ func switch_gamelevel(levelname: String):
 		GameManager.interface.dot_hud.show()
 	if not new_game:
 		self.loaded_data = GameManager.load_savegame()
+	if world_holder.get_child_count() > 0:
+		world_holder.get_child(0).call_deferred("queue_free")
 	var node = LevelScenes[str(levelname)].instantiate()
 	world_holder.call_deferred("add_child",node)
 	print("[!] Game: Scene - %s successfully loaded!" % levelname)

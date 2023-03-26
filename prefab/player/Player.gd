@@ -77,6 +77,7 @@ func _ready():
 	sound_controller._setup_sounds("Player")
 
 
+
 func _process(_delta):
 	G.player = self
 	G.player_data.pos = global_position
@@ -323,7 +324,7 @@ func create_dash_trail():
 	var ghost = dash_ghost_screne.instantiate()
 	ghost.global_position = bodySprite.global_position
 	ghost.frame = bodySprite.frame
-	get_tree().current_scene.add_child(ghost)
+	GameManager.current_world.game_map.add_child(ghost)
 
 func hit_timer_timeout():
 	if hit_box_shape.disabled:

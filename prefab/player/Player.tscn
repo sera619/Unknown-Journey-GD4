@@ -38,8 +38,8 @@ radius = 4.0
 height = 20.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_inkns"]
-radius = 7.99627
-height = 29.2995
+radius = 4.50064
+height = 21.2033
 
 [sub_resource type="Animation" id="Animation_jn3jo"]
 resource_name = "AttackDoubleDown"
@@ -2195,12 +2195,11 @@ radius = 6.44975
 height = 18.3776
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yxsyt"]
-radius = 4.45778
-height = 20.8503
+radius = 3.0
+height = 10.0
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 3
-collision_mask = 3
 script = ExtResource("1_3dgss")
 SPRITE_SWORD = ExtResource("3_k7e2f")
 SPRITE_NO_SWORD = ExtResource("3_g8436")
@@ -2276,14 +2275,14 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_rpsvp")
 
 [node name="Hitbox" type="Area2D" parent="." groups=["playerHitbox"]]
-position = Vector2(-1.19209e-07, -12)
-rotation = -0.00871367
-collision_layer = 8
+position = Vector2(0, -5)
+collision_layer = 0
 collision_mask = 8
 input_pickable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(0, -2)
+position = Vector2(0, 3)
+rotation = 1.5708
 shape = SubResource("CapsuleShape2D_inkns")
 
 [node name="HitTimer" type="Timer" parent="Hitbox"]
@@ -2315,6 +2314,7 @@ parameters/SwordIdle/blend_position = Vector2(0, 0)
 parameters/TakeSword/blend_position = Vector2(0, 0)
 
 [node name="Area2D" type="Area2D" parent="." groups=["playerPickupzone"]]
+visible = false
 collision_layer = 64
 collision_mask = 0
 
@@ -2328,6 +2328,7 @@ wait_time = 6.0
 one_shot = true
 
 [node name="SoftCollision" parent="." instance=ExtResource("8_6a312")]
+visible = false
 
 [node name="CollisionShape2D" parent="SoftCollision" index="0"]
 position = Vector2(0, -2)

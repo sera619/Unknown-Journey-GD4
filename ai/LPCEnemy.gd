@@ -161,7 +161,7 @@ func accelerate_towards_point(point, delta):
 	velocity = velocity.move_toward(direction * speed, stats.ACCELERATION * delta)
 
 # CHASING
-func _chase_state(delta):
+func _chase_state(_delta):
 	var player: Player = null
 	if _check_heal():
 		state = HEAL

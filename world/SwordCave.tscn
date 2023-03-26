@@ -619,6 +619,9 @@ position = Vector2(911, 479)
 
 [node name="Enemys" type="Node2D" parent="Map/GameObjects"]
 
+[node name="CanvasModulate" type="CanvasModulate" parent="Map"]
+color = Color(0, 0, 0, 0.803922)
+
 [node name="GameCamera" parent="Map" instance=ExtResource("4_jn70g")]
 zoom = Vector2(0.8, 0.8)
 

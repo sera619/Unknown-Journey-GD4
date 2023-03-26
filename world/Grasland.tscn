@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://dewtis55bljv5" path="res://prefab/props/SmallBush.tscn" id="10_6nct6"]
 [ext_resource type="PackedScene" uid="uid://dwjdwpvmh7uim" path="res://prefab/props/House.tscn" id="12_00bwy"]
 [ext_resource type="PackedScene" uid="uid://b2gdh6u1gj3fu" path="res://prefab/utils/InformationTrigger.tscn" id="13_857up"]
-[ext_resource type="PackedScene" uid="uid://cg3dyy4clkbpr" path="res://prefab/enemys/EnemySkeletonMage.tscn" id="13_g5dlj"]
+[ext_resource type="PackedScene" uid="uid://b4upex2fdmpee" path="res://prefab/enemys/EnemySkeletonMage.tscn" id="13_g5dlj"]
 [ext_resource type="PackedScene" uid="uid://xex3x1q2v22b" path="res://prefab/utils/Waysign.tscn" id="13_nsg3c"]
 [ext_resource type="PackedScene" uid="uid://cgun4omhyrihq" path="res://prefab/utils/WorldEffect.tscn" id="16_lqgbk"]
 
@@ -599,6 +599,7 @@ autoplay = "default"
 frame_progress = 0.0919822
 
 [node name="WorldEffect" parent="Map" instance=ExtResource("16_lqgbk")]
+visible = false
 
 [node name="SunlightVFX" parent="Map/WorldEffect" index="0"]
 position = Vector2(499, 138)

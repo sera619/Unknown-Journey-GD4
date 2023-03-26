@@ -11,7 +11,7 @@ var wait_time = 0
 func _ready():
 	randomize()
 
-func _get_steering(obj: AIData, target: AIData = G.player_data) -> SteeringData:
+func _get_steering(obj: AIData, _target: AIData = G.player_data) -> SteeringData:
 	steering = SteeringData.new()
 	
 	timer -= G.delta
