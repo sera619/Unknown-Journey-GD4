@@ -61,7 +61,7 @@ func _physics_process(delta):
 					direction = global_position.direction_to(target.global_position)
 				if direction != Vector2.ZERO:
 					var desired_velocity = direction * speed
-					var previous_velocity = current_velocity
+					#var previous_velocity = current_velocity
 					var change = (desired_velocity - current_velocity) * drag_factor
 					current_velocity += change
 					position += current_velocity * delta

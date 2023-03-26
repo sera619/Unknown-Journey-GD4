@@ -17,6 +17,9 @@ class_name Player
 @export var hurt_sound_scene: PackedScene
 @export var dash_sound_scene: PackedScene
 
+@export_category("Shader Materials")
+@export var heal_shader: ShaderMaterial
+
 enum { 
 	MOVE, ATTACK, HEAVY_ATTACK, DASH, HURT, DOUBLE_ATTACK
 }
@@ -190,13 +193,16 @@ func move_state(delta):
 		can_attack = true
 		stats.set_speed(stats.MAX_SPEED)
 	
-	if Input.is_action_just_pressed("combatmode") and stats.has_sword and not is_dashing and combat_timer.is_stopped():
+	if Input.is_action_just_pressed("combatmode") and stats.has_sword and not is_dashing:
+		if not combat_timer.is_stopped():
+			return
 		if combat_stance:
 			animState.travel("StickSword")
 			combat_stance = false
 		else:
 			animState.travel("TakeSword")
 			combat_stance = true
+				
 
 	if Input.is_action_just_pressed("healthpotion") and stats.health < stats.MAX_HEALTH:
 		use_health_potion()

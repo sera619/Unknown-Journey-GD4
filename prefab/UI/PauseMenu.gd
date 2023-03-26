@@ -48,7 +48,7 @@ func load_game():
 
 func go_mainmenu():
 	EventHandler.disconnect("transition_black", go_mainmenu)
-	GameManager.game.switch_gamelevel("MainMenu")
+	GameManager.game.call_deferred("switch_gamelevel", "MainMenu")
 	
 
 func _on_p_exit_btn_button_down():

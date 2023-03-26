@@ -154,9 +154,9 @@ func _wander_state(delta):
 func accelerate_towards_point(point, delta):
 	var speed: int = 0
 	if state == WANDER or state == IDLE:
-		speed = stats.MAX_SPEED
-	else:
 		speed = stats.WANDER_SPEED
+	else:
+		speed = stats.MAX_SPEED
 	var direction = global_position.direction_to(point)
 	velocity = velocity.move_toward(direction * speed, stats.ACCELERATION * delta)
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=220 format=3 uid="uid://bulsih1uk7ua"]
+[gd_scene load_steps=221 format=3 uid="uid://bulsih1uk7ua"]
 
 [ext_resource type="Script" path="res://prefab/player/Player.gd" id="1_3dgss"]
 [ext_resource type="Texture2D" uid="uid://dt2540u4sj5mt" path="res://assets/Shadows/MediumShadow.png" id="2_2ndm1"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://cckqaywayyhtk" path="res://prefab/audio/FoodBSound.tscn" id="9_msjkb"]
 [ext_resource type="PackedScene" uid="uid://b0n4aoy7admi8" path="res://prefab/audio/HurtSound.tscn" id="10_768l8"]
 [ext_resource type="PackedScene" uid="uid://cpnwejcyr1ecu" path="res://prefab/audio/DashSound.tscn" id="11_hto3e"]
+[ext_resource type="Material" uid="uid://b47wfikaj16y1" path="res://assets/Materials/LPCHealEffectMaterial.tres" id="12_ohrys"]
 [ext_resource type="Texture2D" uid="uid://p5qjf6yxjhlo" path="res://assets/Materials/ParticleTextures/light.png" id="13_e5flh"]
 [ext_resource type="Script" path="res://prefab/player/PlayerLight.gd" id="14_d00ft"]
 [ext_resource type="PackedScene" uid="uid://bk15h3dxda4v0" path="res://prefab/utils/SoundController.tscn" id="20_a285j"]
@@ -2211,6 +2212,7 @@ foodstep_a_scene = ExtResource("8_1ma6h")
 foodstep_b_scene = ExtResource("9_msjkb")
 hurt_sound_scene = ExtResource("10_768l8")
 dash_sound_scene = ExtResource("11_hto3e")
+heal_shader = ExtResource("12_ohrys")
 
 [node name="DamageDisplay" type="Control" parent="."]
 layout_mode = 3
@@ -2324,7 +2326,7 @@ scale = Vector2(0.907753, 0.838556)
 shape = SubResource("CapsuleShape2D_f3p81")
 
 [node name="CombatTimer" type="Timer" parent="."]
-wait_time = 6.0
+wait_time = 4.0
 one_shot = true
 
 [node name="SoftCollision" parent="." instance=ExtResource("8_6a312")]
