@@ -78,8 +78,11 @@ func _ready():
 
 
 func _process(_delta):
-	pass
-
+	G.player = self
+	G.player_data.pos = global_position
+	G.player_data.rotation = rotation
+	G.player_data.last_steering.linear = velocity * stats.MAX_SPEED
+	
 func _physics_process(delta):
 	if !is_alive:
 		return

@@ -67,11 +67,11 @@ var last_velocity: = Vector2.ZERO
 
 func _ready():
 	sound_controller._setup_sounds("Skeleton")
+	velocity = Vector2.ZERO
 	hitbox.connect("area_entered", on_Hitbox_area_entered)
 	attack_timer.connect("timeout", attack_timer_timeout)
 	hurt_box.connect("area_entered", on_hurtbox_area_entered)
 	hurt_box.damage = stats.damage
-	velocity = Vector2.ZERO
 	anim_tree.active = true
 	enemy_hud.visible = false
 	pick_random_state([IDLE, WANDER])

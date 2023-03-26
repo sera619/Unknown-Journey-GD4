@@ -5,6 +5,8 @@ signal enemy_health_changed(health)
 signal enemy_maxhealth_changed(max_health)
 
 signal enemy_died
+signal enemy_take_damage
+signal enemy_healed
 
 @export_category('Stats Settings')
 @export_group('Health Settings')
@@ -49,3 +51,12 @@ func set_health(new_health):
 func set_max_health(new_max_health):
 	max_health = new_max_health
 	emit_signal("enemy_maxhealth_changed", max_health)
+
+func take_damage(dmg):
+	health -= dmg
+	emit_signal("enemy_health_changed", health)
+	if health <= 0:
+		health = 0
+		emit_signal("enemy_died")
+	print("[!] EnemyStats: %s get damage: %s | new health: %s" % [get_parent().name, dmg, health])
+	

@@ -1,6 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://crwa8a6e4wdjp"]
+[gd_scene load_steps=4 format=3]
 
-[ext_resource type="Shader" path="res://GodRayShader.gdshader" id="1_v5q65"]
+[ext_resource type="Shader" path="res://assets/Materials/GodRayShader.gdshader" id="1_v5q65"]
 [ext_resource type="Texture2D" uid="uid://bdebkdyhxn8ai" path="res://assets/Materials/Solid_white_bordered.svg.png" id="2_ojgud"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_quy0l"]

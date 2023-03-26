@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://qrfi518grxmf"]
+
+[ext_resource type="Material" uid="uid://fqy3iw8adqtq" path="res://assets/Materials/LPCDeadEffectMaterial.tres" id="1_dnq84"]
+[ext_resource type="Script" path="res://prefab/enemys/SpriteEffectOverlay.gd" id="1_s3myw"]
+[ext_resource type="Texture2D" uid="uid://bfw5kkygo1jmb" path="res://assets/Enemies/SkeletonMageFrost.png" id="1_suhlp"]
+
+[node name="SpriteEffectOverlay" type="Sprite2D"]
+texture = ExtResource("1_suhlp")
+hframes = 13
+vframes = 21
+script = ExtResource("1_s3myw")
+shader_material = ExtResource("1_dnq84")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true

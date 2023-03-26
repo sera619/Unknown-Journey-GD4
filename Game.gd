@@ -40,6 +40,10 @@ func _development_start():
 	else:
 		switch_gamelevel(dev_start_map)
 
+func _process(delta):
+	G.delta = delta
+
+
 func _ready():
 	GameManager.register_node(self)
 	EventHandler.connect("show_world_shadow", _on_show_world_shadow)

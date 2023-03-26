@@ -1,0 +1,36 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://fqy3iw8adqtq"]
+
+[sub_resource type="Shader" id="Shader_qc56t"]
+code = "//Shader BY LURGX second shader */
+//
+
+shader_type canvas_item;
+uniform bool shine = true;
+uniform bool move = true;
+uniform float side = 0.9;
+uniform float up = 0.1;
+uniform vec4 color: source_color;
+uniform float u_time: hint_range (0.,10.);
+
+
+void vertex() {//Movement 
+if (move == true){
+	VERTEX += vec2(cos(TIME*u_time)*side,cos(TIME*u_time)*up);
+}
+}
+
+void fragment() { //COLOR SHINE
+if (shine == true){
+	COLOR = texture(TEXTURE, UV);
+	COLOR.rgb += vec3(color.r,color.g,color.b)*(abs(cos(TIME*u_time)));
+}
+}"
+
+[resource]
+shader = SubResource("Shader_qc56t")
+shader_parameter/shine = true
+shader_parameter/move = false
+shader_parameter/side = 0.9
+shader_parameter/up = 0.1
+shader_parameter/color = Color(0.862745, 0.0313726, 0.0784314, 1)
+shader_parameter/u_time = 5.0

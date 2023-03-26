@@ -6,6 +6,14 @@ class_name SoundController
 @onready var run_player: = $RunSound
 @onready var impact_player:  = $ImpactPlayer 
 @onready var cast_player: = $CastPlayer
+@onready var timer: = $Timer 
+
+enum CONNECT_STATE {
+	NONE,
+	RUN,
+	MOVE
+}
+var c_state = CONNECT_STATE.NONE
 
 
 const MOVEMENT: Dictionary = {
@@ -37,14 +45,12 @@ func _setup_sounds(character: String):
 			
 	#print("[!] SoundController: Sound @ %s successfully loaded!" % character) 
 
-
-
-
 func _play_spell_cast_sound(element):
 	match element:
 		SkillManager.ELEMENT.ICE:
 			cast_player.stream = SPELL_CAST.Ice
 	cast_player.play()
+
 
 func _play_food_sound():
 	if run_player.playing:
