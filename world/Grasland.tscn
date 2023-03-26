@@ -599,7 +599,6 @@ autoplay = "default"
 frame_progress = 0.0919822
 
 [node name="WorldEffect" parent="Map" instance=ExtResource("16_lqgbk")]
-visible = false
 
 [node name="SunlightVFX" parent="Map/WorldEffect" index="0"]
 position = Vector2(499, 138)

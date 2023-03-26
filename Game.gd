@@ -96,6 +96,7 @@ func switch_gamelevel(levelname: String):
 		QuestManager.reset_quests()
 		GameManager.player = null
 		GameManager.interface.dot_hud.hide()
+		GameManager.current_world = null
 	else:
 		GameManager.on_main_menu = false
 		GameManager.interface.stat_hud.show()
@@ -105,6 +106,10 @@ func switch_gamelevel(levelname: String):
 	if not new_game:
 		self.loaded_data = GameManager.load_savegame()
 	if world_holder.get_child_count() > 0:
+		if GameManager.current_world:
+			if GameManager.current_world.get_node_or_null("Map/CanvasModulate") != null:
+				var canvas_node = GameManager.current_world.get_node("Map/CanvasModulate")
+				canvas_node.get_parent().remove_child(canvas_node)
 		world_holder.get_child(0).call_deferred("queue_free")
 	var node = LevelScenes[str(levelname)].instantiate()
 	world_holder.call_deferred("add_child",node)
