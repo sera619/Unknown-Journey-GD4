@@ -10,7 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 205.0
 offset_right = 115.0
-offset_bottom = 55.0
+offset_bottom = -47.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.5, 0.5)
@@ -37,6 +37,7 @@ theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
 [node name="MainPanel" type="VBoxContainer" parent="BG/MarginContainer"]
+visible = false
 layout_mode = 2
 theme_override_constants/separation = 2
 alignment = 1
@@ -302,7 +303,6 @@ theme_override_font_sizes/font_size = 8
 text = "Exit"
 
 [node name="PassView" type="VBoxContainer" parent="BG/MarginContainer"]
-visible = false
 layout_mode = 2
 theme_override_constants/separation = 11
 alignment = 1

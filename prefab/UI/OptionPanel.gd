@@ -23,7 +23,8 @@ class_name OptionPanel
 # VIDEO
 @onready var screen_res_btn: CheckButton = $BG/M/V/VideoOptions/M/Options/H1/CheckButton
 @onready var check_icon: TextureRect = $BG/M/V/VideoOptions/M/Options/H1/CheckButton/CheckIcon
-
+@onready var vsync_btn: CheckButton = $BG/M/V/VideoOptions/M/Options/H2/CheckButton2
+@onready var vsync_icon: TextureRect = $BG/M/V/VideoOptions/M/Options/H2/CheckButton2/CheckIcon
 
 func _ready():
 	$BG/M/V/HeadBG/Label.add_theme_color_override("font_color", GameManager.COLORS.lightgreen_text)
@@ -77,6 +78,16 @@ func _update_window_mode():
 		self.check_icon.visible = false 
 		self.screen_res_btn.text = "AUS"
 
+func _update_vsync_mode():
+	if vsync_btn.button_pressed:
+		GameManager._update_vsync_mode(true)
+		self.vsync_btn.text = "AN"
+		self.vsync_icon.visible = true
+	else:
+		GameManager._update_vsync_mode(false)
+		self.vsync_btn.text = "AUS"
+		self.vsync_icon.visible = false
+
 func _set_current_audio_values():
 	var all = AudioServer.get_bus_volume_db(0)
 	var music = AudioServer.get_bus_volume_db(1)
@@ -105,6 +116,16 @@ func _set_current_video_values():
 		self.screen_res_btn.button_pressed = false
 		check_icon.visible = false
 		self.screen_res_btn.text = "AUS"
+	
+	var vsync = DisplayServer.window_get_vsync_mode()
+	if vsync == DisplayServer.VSYNC_ENABLED:
+		self.vsync_btn.button_pressed = true
+		self.vsync_icon.visible = true
+		self.vsync_btn.text = "AN"
+	else:
+		self.vsync_btn.button_pressed = false
+		self.vsync_icon.visible = false
+		self.vsync_btn.text = "AUS"
 
 func _show_audio_panel():
 	self.video_panel.hide()
@@ -164,3 +185,7 @@ func _on_key_btn_button_up():
 # screen size button
 func _on_check_button_button_up():
 	_update_window_mode()
+
+
+func _on_check_button_2_button_up():
+	_update_vsync_mode()

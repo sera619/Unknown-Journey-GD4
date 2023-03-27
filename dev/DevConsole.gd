@@ -55,7 +55,7 @@ func show_mainpanel():
 	pass_view.visible = false
 
 func show_passpanel():
-	self.size.y = 105
+	self.size.y = 133
 	main_panel.visible = false
 	pass_view.visible = true
 	passinput.grab_focus()

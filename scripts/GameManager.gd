@@ -27,7 +27,8 @@ const DEFAULT_GAME_OPTIONS: Dictionary = {
 	"audio_menu":-10.0740995407104,
 	"audio_music":-13.5101003646851,
 	"audio_sfx":-4.50410985946655,
-	"fullscreen":false
+	"fullscreen":false,
+	"vsync": true
 }
 var current_game_options: Dictionary = {}
 
@@ -57,6 +58,10 @@ func _set_game_settings(settings: Dictionary):
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	else:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+	if settings['vsync'] == true:
+		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED)
+	else:
+		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
 	print("[!] GameManager: game settings applied!")
 
 
@@ -87,6 +92,14 @@ func _update_window_mode(mode: bool):
 	else:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 	print("[!] GameManger: Windowmode applied!")
+
+func _update_vsync_mode(mode: bool):
+	self.current_game_options['vsync'] = mode
+	if mode == true:
+		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED)
+	else:
+		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
+		
 
 func register_node(node: Node):
 	if node.name == "Player":

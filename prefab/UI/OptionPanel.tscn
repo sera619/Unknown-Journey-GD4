@@ -357,6 +357,7 @@ theme_override_constants/margin_bottom = 4
 [node name="Options" type="VBoxContainer" parent="BG/M/V/VideoOptions/M"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_constants/separation = 0
 
 [node name="TabHeader" type="Label" parent="BG/M/V/VideoOptions/M/Options"]
 layout_mode = 2
@@ -371,7 +372,6 @@ vertical_alignment = 1
 [node name="H1" type="HBoxContainer" parent="BG/M/V/VideoOptions/M/Options"]
 layout_mode = 2
 size_flags_vertical = 4
-theme_override_constants/separation = 10
 alignment = 1
 
 [node name="Window" type="Label" parent="BG/M/V/VideoOptions/M/Options/H1"]
@@ -381,12 +381,13 @@ theme_override_colors/font_color = Color(0.0745098, 0.537255, 0.937255, 1)
 theme_override_fonts/font = ExtResource("4_bux1i")
 theme_override_font_sizes/font_size = 8
 text = "Vollbild"
-horizontal_alignment = 1
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="CheckButton" type="CheckButton" parent="BG/M/V/VideoOptions/M/Options/H1"]
 layout_mode = 2
-size_flags_horizontal = 6
+size_flags_horizontal = 2
+size_flags_vertical = 5
 theme_override_colors/font_color = Color(0.152941, 0.639216, 0.929412, 1)
 theme_override_colors/font_pressed_color = Color(0.152941, 0.639216, 0.929412, 1)
 theme_override_colors/font_focus_color = Color(0.152941, 0.639216, 0.929412, 1)
@@ -399,6 +400,52 @@ theme_override_icons/unchecked_disabled = ExtResource("11_ul2d0")
 text = "An"
 
 [node name="CheckIcon" type="TextureRect" parent="BG/M/V/VideoOptions/M/Options/H1/CheckButton"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.609
+anchor_top = 0.292
+anchor_right = 0.783
+anchor_bottom = 0.625
+offset_left = -0.0140018
+offset_top = -0.00800037
+offset_right = -0.0180016
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("13_8qtrb")
+expand_mode = 1
+
+[node name="H2" type="HBoxContainer" parent="BG/M/V/VideoOptions/M/Options"]
+layout_mode = 2
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Vsync" type="Label" parent="BG/M/V/VideoOptions/M/Options/H2"]
+layout_mode = 2
+size_flags_horizontal = 7
+theme_override_colors/font_color = Color(0.0745098, 0.537255, 0.937255, 1)
+theme_override_fonts/font = ExtResource("4_bux1i")
+theme_override_font_sizes/font_size = 8
+text = "V-Sync"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="CheckButton2" type="CheckButton" parent="BG/M/V/VideoOptions/M/Options/H2"]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 5
+theme_override_colors/font_color = Color(0.152941, 0.639216, 0.929412, 1)
+theme_override_colors/font_pressed_color = Color(0.152941, 0.639216, 0.929412, 1)
+theme_override_colors/font_focus_color = Color(0.152941, 0.639216, 0.929412, 1)
+theme_override_fonts/font = ExtResource("4_bux1i")
+theme_override_font_sizes/font_size = 8
+theme_override_icons/checked = ExtResource("11_bk0r5")
+theme_override_icons/checked_disabled = ExtResource("11_ul2d0")
+theme_override_icons/unchecked = ExtResource("9_mqodm")
+theme_override_icons/unchecked_disabled = ExtResource("11_ul2d0")
+text = "An"
+
+[node name="CheckIcon" type="TextureRect" parent="BG/M/V/VideoOptions/M/Options/H2/CheckButton2"]
 visible = false
 layout_mode = 1
 anchors_preset = -1
@@ -510,5 +557,6 @@ vertical_alignment = 1
 [connection signal="value_changed" from="BG/M/V/AudioOptions/M/Options/H3/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
 [connection signal="value_changed" from="BG/M/V/AudioOptions/M/Options/H4/MenuSlider" to="." method="_on_menu_slider_value_changed"]
 [connection signal="button_up" from="BG/M/V/VideoOptions/M/Options/H1/CheckButton" to="." method="_on_check_button_button_up"]
+[connection signal="button_up" from="BG/M/V/VideoOptions/M/Options/H2/CheckButton2" to="." method="_on_check_button_2_button_up"]
 [connection signal="button_up" from="BG/M/V/H/OkayBtn" to="." method="_on_okay_btn_button_up"]
 [connection signal="button_up" from="BG/M/V/H/BackBtn" to="." method="_on_back_btn_button_up"]
