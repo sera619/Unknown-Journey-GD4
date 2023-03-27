@@ -22,8 +22,8 @@ func spawn_enemys():
 		var enemyname: String = ""
 		for pos in spawn_points_one.get_children():
 			var enemy:CharacterBody2D = enemy_scene_one.instantiate()
-			enemy_container.add_child(enemy)
 			enemy.global_position = pos.global_position
+			enemy_container.add_child(enemy)
 			if enemyname == "":
 				enemyname = enemy.name
 			count += 1 
@@ -33,8 +33,8 @@ func spawn_enemys():
 		var enemyname: String = ""
 		for pos in spwan_points_two.get_children():
 			var enemy:CharacterBody2D = enemy_scene_two.instantiate()
-			enemy_container.add_child(enemy)
 			enemy.global_position = pos.global_position
+			enemy_container.add_child(enemy)
 			if enemyname == "":
 				enemyname = enemy.name
 			count += 1 

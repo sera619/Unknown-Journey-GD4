@@ -194,7 +194,7 @@ func _flee_state(_delta):
 		steering = null
 		state = IDLE
 	steering = move_behaviour._get_steering(ai_data)
-	if global_position.distance_to(player.global_position) >= stats.FLEE_RANGE:
+	if player != null and global_position.distance_to(player.global_position) >= stats.FLEE_RANGE:
 		steering = null
 		state = IDLE
 

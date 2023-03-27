@@ -70,8 +70,7 @@ func _physics_process(delta):
 			"Direct":
 				position += direction * speed * delta
 				look_at(global_position + direction)
-	else: 
-		return
+
 
 
 
@@ -87,7 +86,9 @@ func _on_target_detector_body_entered(body):
 	else:
 		target = body.spell_hitbox
 
-func _create_impact_effect(_area):
+func _create_impact_effect(area):
+	if not area.is_in_group("playerHitbox"):
+		return
 	animPlayer.play("RESET")
 	is_active = false
 	sprite.visible = false

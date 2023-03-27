@@ -18,7 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://cu8lpjb4s41ob" path="res://prefab/props/PropMiddleTree.tscn" id="13_23g1l"]
 [ext_resource type="PackedScene" uid="uid://b1kt7f88vq11f" path="res://prefab/enemys/EnemyBat.tscn" id="13_p3y7m"]
 [ext_resource type="PackedScene" uid="uid://ujd03jysbk8w" path="res://prefab/props/PropBush.tscn" id="13_ygi7n"]
-[ext_resource type="PackedScene" uid="uid://cg3dyy4clkbpr" path="res://prefab/enemys/EnemySkeletonMage.tscn" id="14_l8txa"]
+[ext_resource type="PackedScene" uid="uid://b4upex2fdmpee" path="res://prefab/enemys/EnemySkeletonMage.tscn" id="14_l8txa"]
 [ext_resource type="PackedScene" uid="uid://c738vytvimynb" path="res://prefab/utils/Teleporter.tscn" id="14_nat1a"]
 [ext_resource type="Script" path="res://prefab/PuzzleObjects/PuzzleManager.gd" id="15_6gf5d"]
 [ext_resource type="PackedScene" uid="uid://blnl7qu61oadd" path="res://prefab/destroyable_objects/GreyPot.tscn" id="15_b5t6j"]
@@ -2388,7 +2388,7 @@ pattern_0 = SubResource("TileMapPattern_bcf3c")
 [sub_resource type="CircleShape2D" id="CircleShape2D_mwn7j"]
 radius = 81.0555
 
-[node name="Wood" type="Node" groups=["WorldBase"]]
+[node name="Wood" type="Node2D" groups=["WorldBase"]]
 script = ExtResource("1_akrdj")
 world_name = "Wood"
 
