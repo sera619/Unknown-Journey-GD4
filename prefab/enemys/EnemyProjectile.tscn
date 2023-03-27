@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://dueybk0elqb3i"]
+[gd_scene load_steps=5 format=3 uid="uid://dueybk0elqb3i"]
 
 [ext_resource type="Script" path="res://prefab/enemys/EnemyProjectile.gd" id="1_2kf47"]
 
@@ -9,6 +9,9 @@ resource_name = "loop"
 _data = {
 "loop": SubResource("Animation_qxlgb")
 }
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i28ng"]
+radius = 532.015
 
 [node name="EnemyProjectile" type="Area2D" groups=["enemyWeapon"]]
 collision_layer = 8
@@ -25,3 +28,10 @@ script = ExtResource("1_2kf47")
 libraries = {
 "": SubResource("AnimationLibrary_b3ts2")
 }
+
+[node name="TargetDetector" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TargetDetector"]
+shape = SubResource("CircleShape2D_i28ng")

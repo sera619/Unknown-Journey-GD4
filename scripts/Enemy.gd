@@ -12,6 +12,9 @@ signal enemy_healed(heal)
 @export_category("SFX Scenes")
 @export var hurt_sound_scene: PackedScene
 @export var death_sound_scene: PackedScene
+@export_category("Shader Materials")
+@export var hit_shader: ShaderMaterial
+@export var heal_shader: ShaderMaterial 
 
 @onready var hitbox: Area2D = $HitBox
 @onready var attack_timer: Timer = $Timer
@@ -51,6 +54,7 @@ func _ready():
 	animSprite.play("fly")
 	velocity = Vector2.ZERO
 	enemy_hud.visible = false
+	animSprite.material = hit_shader
 	pick_random_state([IDLE, WANDER])
 	
 

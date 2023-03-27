@@ -9,10 +9,10 @@ signal enemy_take_damage(damage)
 @export var spell_scene: PackedScene
 @export_category("VFX Scenes")
 @export var hit_effect_scene: PackedScene
-@export var hit_efect_over: PackedScene
+@export var hit_shader: ShaderMaterial
 @export var death_effect_scene: PackedScene
 @export var heal_effect_scene: PackedScene
-@export var heal_effect_overlay: PackedScene
+@export var heal_shader: ShaderMaterial
 @export_category("SFX Scenes")
 @export var hurt_sound_scene: PackedScene
 @export var death_sound_scene: PackedScene
@@ -174,7 +174,7 @@ func _chase_state(_delta):
 	if can_attack and not _check_heal():
 		can_attack = false
 		attack_timer.start()
-		last_target_position = player.global_position
+		last_target_position = player.spell_hitbox.global_position
 		state = ATTACK
 
 # ATTACK
@@ -188,7 +188,7 @@ func _cast_spell():
 	projectile.spell_damage = stats.damage
 	projectile.global_position = $WeaponAngle/HurtBox.global_position
 	projectile.direction = shoot_direction
-	get_tree().current_scene.add_child(projectile)
+	GameManager.current_world.map_container.add_child(projectile)
 
 func _play_cast_sound():
 	sound_controller._play_spell_cast_sound(SkillManager.ELEMENT.ICE)
@@ -211,19 +211,14 @@ func _set_knockback(vector: Vector2):
 	knockback = vector * 115
 
 func _create_hit_effect():
-	if stats.health <= 0:
-		return
 	var effect = hit_effect_scene.instantiate()
 	effect.global_position.y += animSprite.offset.y
-	var overlay = hit_efect_over.instantiate()
-	overlay.frame = animSprite.frame
-	overlay.offset = animSprite.offset
-	overlay.transform = animSprite.transform
-	self.add_child(overlay)
-	self.move_child(overlay, animSprite.get_index()+1)
 	add_child(effect)
 	var sound = hurt_sound_scene.instantiate()
 	add_child(sound)
+	animSprite.material = hit_shader
+	await get_tree().create_timer(0.3).timeout
+	animSprite.material = null
 
 func on_Hitbox_area_entered(area):
 	if not area.is_in_group("playerSword"):
@@ -253,13 +248,9 @@ func _cast_heal():
 func _create_heal_effect():
 	var effect = heal_effect_scene.instantiate()
 	add_child(effect)
-	var overlay = heal_effect_overlay.instantiate()
-	overlay.frame = animSprite.frame
-	overlay.offset = animSprite.offset
-	overlay.transform = animSprite.transform
-	self.add_child(overlay)
-	self.move_child(overlay, animSprite.get_index()+1)
-
+	animSprite.material = heal_shader
+	await get_tree().create_timer(0.6).timeout
+	animSprite.material = null
 
 # DEATH
 func _kill_enemy():
@@ -285,6 +276,9 @@ func _reward_player():
 func _create_death_effect():
 #	var effect = death_effect_scene.instantiate()
 #	add_child(effect)
+	animSprite.material = heal_shader
+	await get_tree().create_timer(0.3).timeout
+	animSprite.material = null
 	var sound = death_sound_scene.instantiate()
 	add_child(sound)
 

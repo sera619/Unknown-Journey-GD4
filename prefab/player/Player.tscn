@@ -1,4 +1,4 @@
-[gd_scene load_steps=220 format=3 uid="uid://bulsih1uk7ua"]
+[gd_scene load_steps=224 format=3 uid="uid://bulsih1uk7ua"]
 
 [ext_resource type="Script" path="res://prefab/player/Player.gd" id="1_3dgss"]
 [ext_resource type="Texture2D" uid="uid://dt2540u4sj5mt" path="res://assets/Shadows/MediumShadow.png" id="2_2ndm1"]
@@ -16,12 +16,65 @@
 [ext_resource type="PackedScene" uid="uid://cckqaywayyhtk" path="res://prefab/audio/FoodBSound.tscn" id="9_msjkb"]
 [ext_resource type="PackedScene" uid="uid://b0n4aoy7admi8" path="res://prefab/audio/HurtSound.tscn" id="10_768l8"]
 [ext_resource type="PackedScene" uid="uid://cpnwejcyr1ecu" path="res://prefab/audio/DashSound.tscn" id="11_hto3e"]
-[ext_resource type="Material" uid="uid://b47wfikaj16y1" path="res://assets/Materials/LPCHealEffectMaterial.tres" id="12_ohrys"]
 [ext_resource type="Texture2D" uid="uid://p5qjf6yxjhlo" path="res://assets/Materials/ParticleTextures/light.png" id="13_e5flh"]
 [ext_resource type="Script" path="res://prefab/player/PlayerLight.gd" id="14_d00ft"]
 [ext_resource type="Material" uid="uid://bwdq0jw5irjrg" path="res://assets/Materials/WhiteColorFlash.tres" id="16_vp8ed"]
 [ext_resource type="PackedScene" uid="uid://bk15h3dxda4v0" path="res://prefab/utils/SoundController.tscn" id="20_a285j"]
 [ext_resource type="PackedScene" uid="uid://c22yxboo4u2jv" path="res://prefab/utils/DebuffHandler.tscn" id="21_kbir8"]
+
+[sub_resource type="Shader" id="Shader_vhbhr"]
+code = "//Shader BY LURGX second shader */
+//
+
+shader_type canvas_item;
+uniform bool shine = true;
+uniform bool move = true;
+uniform float side = 0.9;
+uniform float up = 0.1;
+uniform vec4 color: source_color;
+uniform float u_time: hint_range (0.,10.);
+
+
+void vertex() {//Movement 
+if (move == true){
+	VERTEX += vec2(cos(TIME*u_time)*side,cos(TIME*u_time)*up);
+}
+}
+
+void fragment() { //COLOR SHINE
+if (shine == true){
+	COLOR = texture(TEXTURE, UV);
+	COLOR.rgb += vec3(color.r,color.g,color.b)*(abs(cos(TIME*u_time)));
+}
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fmngq"]
+shader = SubResource("Shader_vhbhr")
+shader_parameter/shine = true
+shader_parameter/move = false
+shader_parameter/side = 0.9
+shader_parameter/up = 0.1
+shader_parameter/color = Color(0, 0.843137, 0.25098, 1)
+shader_parameter/u_time = 5.0
+
+[sub_resource type="Shader" id="Shader_atvfu"]
+code = "shader_type canvas_item;
+
+uniform bool active = false;
+
+void fragment() {
+	vec4 previous_color = texture(TEXTURE, UV);
+	vec4 white_color = vec4(1.0, 1.0, 1.0, previous_color.a);
+	vec4 new_color = previous_color;
+	if (active == true) {
+		new_color = white_color;
+	}
+	COLOR = new_color;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mgeth"]
+shader = SubResource("Shader_atvfu")
+shader_parameter/active = false
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nur2f"]
 radius = 9.375
@@ -37,6 +90,10 @@ height = 20.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_inkns"]
 radius = 4.50064
 height = 21.2033
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6hkfl"]
+radius = 6.89771
+height = 24.3901
 
 [sub_resource type="Animation" id="Animation_jn3jo"]
 resource_name = "AttackDoubleDown"
@@ -2208,8 +2265,8 @@ foodstep_a_scene = ExtResource("8_1ma6h")
 foodstep_b_scene = ExtResource("9_msjkb")
 hurt_sound_scene = ExtResource("10_768l8")
 dash_sound_scene = ExtResource("11_hto3e")
-heal_shader = ExtResource("12_ohrys")
-dmg_shader = ExtResource("16_vp8ed")
+heal_shader = SubResource("ShaderMaterial_fmngq")
+dmg_shader = SubResource("ShaderMaterial_mgeth")
 
 [node name="DamageDisplay" type="Control" parent="."]
 layout_mode = 3
@@ -2275,7 +2332,7 @@ shape = SubResource("CapsuleShape2D_rpsvp")
 
 [node name="Hitbox" type="Area2D" parent="." groups=["playerHitbox"]]
 position = Vector2(0, -5)
-collision_layer = 0
+collision_layer = 8
 collision_mask = 8
 input_pickable = false
 
@@ -2289,6 +2346,15 @@ wait_time = 2.0
 one_shot = true
 
 [node name="DotTimer" type="Timer" parent="Hitbox"]
+
+[node name="SpellHitBox" type="Area2D" parent="." groups=["playerHitbox"]]
+position = Vector2(0, -13.664)
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpellHitBox"]
+position = Vector2(-1.19209e-07, -5.16489)
+shape = SubResource("CapsuleShape2D_6hkfl")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

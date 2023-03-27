@@ -102,7 +102,7 @@ func set_health(value, loaded=false):
 			show_dmg_display("[wave amp=40 freq=10]\n-%s[/wave]" % int(old_healt - health))
 		elif old_healt < health:
 			dmg_label.add_theme_color_override("default_color", Color(0.32941177487373, 0.7843137383461, 0.15294118225574))
-			show_dmg_display("[wave amp=40 freq=10]\n+%s[/wave]" % int(old_healt - health))
+			show_dmg_display("[wave amp=40 freq=10]\n+%s[/wave]" % int(health - old_healt))
 
 
 func heal_player(value):

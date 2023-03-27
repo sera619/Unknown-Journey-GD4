@@ -53,6 +53,8 @@ var can_attack: bool = true
 @onready var stats: Stats = $Stats
 @onready var combat_timer: Timer =$CombatTimer
 @onready var hitbx: Area2D = $Hitbox
+@onready var spell_hitbox: Area2D = $SpellHitBox
+@onready var spell_collider: CollisionShape2D = $SpellHitBox/CollisionShape2D
 @onready var hit_timer: Timer = $Hitbox/HitTimer
 @onready var hit_box_shape = $Hitbox/CollisionShape2D
 @onready var dash_timer: Timer = $DashTimer
@@ -65,6 +67,7 @@ var vel = Vector2.ZERO
 func _ready():
 	GameManager.register_node(self)
 	hitbx.connect("area_entered", take_damage)
+	spell_hitbox.connect("area_entered", take_damage)
 	combat_timer.connect("timeout", combat_timer_timeout)
 	hit_timer.connect("timeout", hit_timer_timeout)
 	EventHandler.connect("player_level_up", create_levelup_effect)
@@ -265,7 +268,7 @@ func dash_state(delta):
 	state = MOVE
 
 func take_damage(area):
-	if not attackable and not area.is_in_group("enemyWeapon"):
+	if not attackable or not area.is_in_group("enemyWeapon"):
 		return
 	if stats.health >= 0:
 		stats.set_health(stats.health - area.damage)
@@ -279,6 +282,7 @@ func take_damage(area):
 		if stats.has_sword:
 			combat_stance = true
 		hit_box_shape.call_deferred("set_disabled", true)
+		spell_collider.call_deferred("set_disabled", true)
 		hit_timer.start(2)
 		if not area.attack_element == SkillManager.ELEMENT.NONE:
 			is_dotted = true
@@ -330,7 +334,7 @@ func use_health_potion():
 func switch_shader():
 	bodySprite.material = heal_shader
 	print("[!] Player: Switch healshader")
-	get_tree().create_timer(0.3).timeout
+	await(get_tree().create_timer(0.6).timeout)
 	bodySprite.material = dmg_shader
 	print("[!] Player: Switch dmgshader")
 
@@ -349,6 +353,7 @@ func create_dash_trail():
 
 func hit_timer_timeout():
 	if hit_box_shape.disabled:
+		spell_collider.call_deferred("set_disabled", false)
 		hit_box_shape.call_deferred("set_disabled", false)
 	attackable = true
 

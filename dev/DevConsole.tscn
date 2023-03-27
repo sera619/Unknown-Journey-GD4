@@ -8,9 +8,9 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 223.0
-offset_right = 96.0
-offset_bottom = -75.0
+offset_left = 205.0
+offset_right = 115.0
+offset_bottom = 55.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.5, 0.5)
@@ -36,103 +36,270 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="Panel" type="HBoxContainer" parent="BG/MarginContainer"]
+[node name="MainPanel" type="VBoxContainer" parent="BG/MarginContainer"]
 layout_mode = 2
+theme_override_constants/separation = 2
 alignment = 1
 
-[node name="LV" type="VBoxContainer" parent="BG/MarginContainer/Panel"]
+[node name="Label3" type="Label" parent="BG/MarginContainer/MainPanel"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.607843, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.941176, 0.905882, 0.435294, 0.207843)
+theme_override_fonts/font = ExtResource("1_7ftg0")
+theme_override_font_sizes/font_size = 8
+text = "Dev Console"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="InfoLabel" type="Label" parent="BG/MarginContainer/MainPanel"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.35
+theme_override_colors/font_color = Color(0, 1, 0.262745, 1)
+theme_override_fonts/font = ExtResource("1_7ftg0")
+theme_override_font_sizes/font_size = 8
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+uppercase = true
+
+[node name="Panel" type="HBoxContainer" parent="BG/MarginContainer/MainPanel"]
+layout_mode = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="LV" type="VBoxContainer" parent="BG/MarginContainer/MainPanel/Panel"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 3
+alignment = 1
+
+[node name="LevelBtn" type="Button" parent="BG/MarginContainer/MainPanel/Panel/LV"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.882353, 0, 1)
+theme_override_fonts/font = ExtResource("1_7ftg0")
+theme_override_font_sizes/font_size = 8
+text = "+ level"
+
+[node name="AddHPBtn" type="Button" parent="BG/MarginContainer/MainPanel/Panel/LV"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.882353, 0, 1)
+theme_override_fonts/font = ExtResource("1_7ftg0")
+theme_override_font_sizes/font_size = 8
+text = "+ Health"
+
+[node name="AddMHPBtn" type="Button" parent="BG/MarginContainer/MainPanel/Panel/LV"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.882353, 0, 1)
+theme_override_fonts/font = ExtResource("1_7ftg0")
+theme_override_font_sizes/font_size = 8
+text = "+ MHealth"
+
+[node name="AddXP" type="Button" parent="BG/MarginContainer/MainPanel/Panel/LV"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.882353, 0, 1)
+theme_override_fonts/font = ExtResource("1_7ftg0")
+theme_override_font_sizes/font_size = 8
+text = "+ exp"
+
+[node name="AddHPotBtn" type="Button" parent="BG/MarginContainer/MainPanel/Panel/LV"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.882353, 0, 1)
+theme_override_fonts/font = ExtResource("1_7ftg0")
+theme_override_font_sizes/font_size = 8
+text = "+ HPot"
+
+[node name="AddEPotBtn" type="Button" parent="BG/MarginContainer/MainPanel/Panel/LV"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.882353, 0, 1)
+theme_override_fonts/font = ExtResource("1_7ftg0")
+theme_override_font_sizes/font_size = 8
+text = "+ EPot"
+
+[node name="AddDmgBtn" type="Button" parent="BG/MarginContainer/MainPanel/Panel/LV"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.882353, 0, 1)
+theme_override_fonts/font = ExtResource("1_7ftg0")
+theme_override_font_sizes/font_size = 8
+text = "+ dmg"
+
+[node name="AddMDmgBtn" type="Button" parent="BG/MarginContainer/MainPanel/Panel/LV"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.882353, 0, 1)
+theme_override_fonts/font = ExtResource("1_7ftg0")
+theme_override_font_sizes/font_size = 8
+text = "+ Mdmg"
+
+[node name="RV" type="VBoxContainer" parent="BG/MarginContainer/MainPanel/Panel"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.75
+theme_override_constants/separation = 3
+alignment = 1
+
+[node name="lvlin" type="LineEdit" parent="BG/MarginContainer/MainPanel/Panel/RV"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_7ftg0")
+theme_override_font_sizes/font_size = 8
+text = "1"
+alignment = 1
+max_length = 2
+
+[node name="hpin" type="LineEdit" parent="BG/MarginContainer/MainPanel/Panel/RV"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_7ftg0")
+theme_override_font_sizes/font_size = 8
+text = "1"
+alignment = 1
+max_length = 2
+
+[node name="mhpin" type="LineEdit" parent="BG/MarginContainer/MainPanel/Panel/RV"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_7ftg0")
+theme_override_font_sizes/font_size = 8
+text = "1"
+alignment = 1
+max_length = 2
+
+[node name="expin" type="LineEdit" parent="BG/MarginContainer/MainPanel/Panel/RV"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_7ftg0")
+theme_override_font_sizes/font_size = 8
+text = "200"
+alignment = 1
+max_length = 5
+
+[node name="hin" type="LineEdit" parent="BG/MarginContainer/MainPanel/Panel/RV"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_7ftg0")
+theme_override_font_sizes/font_size = 8
+text = "1"
+alignment = 1
+max_length = 2
+
+[node name="ein" type="LineEdit" parent="BG/MarginContainer/MainPanel/Panel/RV"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_7ftg0")
+theme_override_font_sizes/font_size = 8
+text = "1"
+alignment = 1
+max_length = 2
+
+[node name="dmgin" type="LineEdit" parent="BG/MarginContainer/MainPanel/Panel/RV"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_7ftg0")
+theme_override_font_sizes/font_size = 8
+text = "1"
+alignment = 1
+max_length = 2
+
+[node name="mdmgin" type="LineEdit" parent="BG/MarginContainer/MainPanel/Panel/RV"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_7ftg0")
+theme_override_font_sizes/font_size = 8
+text = "1"
+alignment = 1
+max_length = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BG/MarginContainer/MainPanel/Panel"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 3
 
-[node name="LevelBtn" type="Button" parent="BG/MarginContainer/Panel/LV"]
+[node name="RlvlBtn" type="Button" parent="BG/MarginContainer/MainPanel/Panel/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_fonts/font = ExtResource("1_7ftg0")
 theme_override_font_sizes/font_size = 8
-text = "add level"
+text = "- level"
 
-[node name="AddHPBtn" type="Button" parent="BG/MarginContainer/Panel/LV"]
+[node name="RHpBtn" type="Button" parent="BG/MarginContainer/MainPanel/Panel/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_fonts/font = ExtResource("1_7ftg0")
 theme_override_font_sizes/font_size = 8
-text = "add Health"
+text = "- health"
 
-[node name="AddXP" type="Button" parent="BG/MarginContainer/Panel/LV"]
+[node name="RmhpBtn" type="Button" parent="BG/MarginContainer/MainPanel/Panel/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_fonts/font = ExtResource("1_7ftg0")
 theme_override_font_sizes/font_size = 8
-text = "add exp"
+text = "- Mhealth"
 
-[node name="AddHPotBtn" type="Button" parent="BG/MarginContainer/Panel/LV"]
+[node name="remove exp" type="Button" parent="BG/MarginContainer/MainPanel/Panel/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_fonts/font = ExtResource("1_7ftg0")
 theme_override_font_sizes/font_size = 8
-text = "add h pot"
+text = "- exp"
 
-[node name="AddEPotBtn" type="Button" parent="BG/MarginContainer/Panel/LV"]
+[node name="rhpotBtn" type="Button" parent="BG/MarginContainer/MainPanel/Panel/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_fonts/font = ExtResource("1_7ftg0")
 theme_override_font_sizes/font_size = 8
-text = "add e pot"
+text = "- HPot"
 
-[node name="SpawnBtn" type="Button" parent="BG/MarginContainer/Panel/LV"]
+[node name="repotBtn" type="Button" parent="BG/MarginContainer/MainPanel/Panel/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_fonts/font = ExtResource("1_7ftg0")
 theme_override_font_sizes/font_size = 8
-text = "spawn"
+text = "- EPot"
 
-[node name="RV" type="VBoxContainer" parent="BG/MarginContainer/Panel"]
+[node name="rdmgBtn" type="Button" parent="BG/MarginContainer/MainPanel/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_7ftg0")
+theme_override_font_sizes/font_size = 8
+text = "- dmg"
+
+[node name="rmdmgBtn" type="Button" parent="BG/MarginContainer/MainPanel/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_7ftg0")
+theme_override_font_sizes/font_size = 8
+text = "- Mdmg"
+
+[node name="H" type="HBoxContainer" parent="BG/MarginContainer/MainPanel"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="SpawnBtn" type="Button" parent="BG/MarginContainer/MainPanel/H"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0.211765, 0.803922, 0.784314, 1)
+theme_override_fonts/font = ExtResource("1_7ftg0")
+theme_override_font_sizes/font_size = 8
+text = "Repawn"
+
+[node name="CharBtn" type="Button" parent="BG/MarginContainer/MainPanel/H"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0.211765, 0.803922, 0.784314, 1)
+theme_override_fonts/font = ExtResource("1_7ftg0")
+theme_override_font_sizes/font_size = 8
+text = "Show Chari"
+
+[node name="H2" type="HBoxContainer" parent="BG/MarginContainer/MainPanel"]
+layout_mode = 2
+size_flags_vertical = 3
 theme_override_constants/separation = 3
+alignment = 1
 
-[node name="lvlin" type="LineEdit" parent="BG/MarginContainer/Panel/RV"]
+[node name="ExitBtn" type="Button" parent="BG/MarginContainer/MainPanel/H2"]
 layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_fonts/font = ExtResource("1_7ftg0")
 theme_override_font_sizes/font_size = 8
-text = "1"
-alignment = 1
-max_length = 2
-
-[node name="hpin" type="LineEdit" parent="BG/MarginContainer/Panel/RV"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("1_7ftg0")
-theme_override_font_sizes/font_size = 8
-text = "1"
-alignment = 1
-max_length = 2
-
-[node name="expin" type="LineEdit" parent="BG/MarginContainer/Panel/RV"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("1_7ftg0")
-theme_override_font_sizes/font_size = 8
-text = "1"
-alignment = 1
-max_length = 2
-
-[node name="hin" type="LineEdit" parent="BG/MarginContainer/Panel/RV"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("1_7ftg0")
-theme_override_font_sizes/font_size = 8
-text = "1"
-alignment = 1
-max_length = 2
-
-[node name="ein" type="LineEdit" parent="BG/MarginContainer/Panel/RV"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("1_7ftg0")
-theme_override_font_sizes/font_size = 8
-text = "1"
-alignment = 1
-max_length = 2
-
-[node name="dmgin" type="LineEdit" parent="BG/MarginContainer/Panel/RV"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("1_7ftg0")
-theme_override_font_sizes/font_size = 8
-text = "1"
-alignment = 1
-max_length = 2
+text = "Exit"
 
 [node name="PassView" type="VBoxContainer" parent="BG/MarginContainer"]
 visible = false
@@ -187,11 +354,24 @@ theme_override_fonts/font = ExtResource("1_7ftg0")
 theme_override_font_sizes/font_size = 8
 text = "Close"
 
-[connection signal="button_up" from="BG/MarginContainer/Panel/LV/LevelBtn" to="." method="_on_level_btn_button_up"]
-[connection signal="button_up" from="BG/MarginContainer/Panel/LV/AddHPBtn" to="." method="_on_add_hp_btn_button_up"]
-[connection signal="button_up" from="BG/MarginContainer/Panel/LV/AddXP" to="." method="_on_add_xp_button_up"]
-[connection signal="button_up" from="BG/MarginContainer/Panel/LV/AddHPotBtn" to="." method="_on_add_h_pot_btn_button_up"]
-[connection signal="button_up" from="BG/MarginContainer/Panel/LV/AddEPotBtn" to="." method="_on_add_e_pot_btn_button_up"]
-[connection signal="button_up" from="BG/MarginContainer/Panel/LV/SpawnBtn" to="." method="_on_spawn_btn_button_up"]
+[connection signal="button_up" from="BG/MarginContainer/MainPanel/Panel/LV/LevelBtn" to="." method="_on_level_btn_button_up"]
+[connection signal="button_up" from="BG/MarginContainer/MainPanel/Panel/LV/AddHPBtn" to="." method="_on_add_hp_btn_button_up"]
+[connection signal="button_up" from="BG/MarginContainer/MainPanel/Panel/LV/AddMHPBtn" to="." method="_on_add_mhp_btn_button_up"]
+[connection signal="button_up" from="BG/MarginContainer/MainPanel/Panel/LV/AddXP" to="." method="_on_add_xp_button_up"]
+[connection signal="button_up" from="BG/MarginContainer/MainPanel/Panel/LV/AddHPotBtn" to="." method="_on_add_h_pot_btn_button_up"]
+[connection signal="button_up" from="BG/MarginContainer/MainPanel/Panel/LV/AddEPotBtn" to="." method="_on_add_e_pot_btn_button_up"]
+[connection signal="button_up" from="BG/MarginContainer/MainPanel/Panel/LV/AddDmgBtn" to="." method="_on_add_dmg_btn_button_up"]
+[connection signal="button_up" from="BG/MarginContainer/MainPanel/Panel/LV/AddMDmgBtn" to="." method="_on_add_m_dmg_btn_button_up"]
+[connection signal="button_up" from="BG/MarginContainer/MainPanel/Panel/VBoxContainer/RlvlBtn" to="." method="_on_rlvl_btn_button_up"]
+[connection signal="button_up" from="BG/MarginContainer/MainPanel/Panel/VBoxContainer/RHpBtn" to="." method="_on_r_hp_btn_button_up"]
+[connection signal="button_up" from="BG/MarginContainer/MainPanel/Panel/VBoxContainer/RmhpBtn" to="." method="_on_rmhp_btn_button_up"]
+[connection signal="button_up" from="BG/MarginContainer/MainPanel/Panel/VBoxContainer/remove exp" to="." method="_on_remove_exp_button_up"]
+[connection signal="button_up" from="BG/MarginContainer/MainPanel/Panel/VBoxContainer/rhpotBtn" to="." method="_on_rhpot_btn_button_up"]
+[connection signal="button_up" from="BG/MarginContainer/MainPanel/Panel/VBoxContainer/repotBtn" to="." method="_on_repot_btn_button_up"]
+[connection signal="button_up" from="BG/MarginContainer/MainPanel/Panel/VBoxContainer/rdmgBtn" to="." method="_on_rdmg_btn_button_up"]
+[connection signal="button_up" from="BG/MarginContainer/MainPanel/Panel/VBoxContainer/rmdmgBtn" to="." method="_on_rmdmg_btn_button_up"]
+[connection signal="button_up" from="BG/MarginContainer/MainPanel/H/SpawnBtn" to="." method="_on_spawn_btn_button_up"]
+[connection signal="button_up" from="BG/MarginContainer/MainPanel/H/CharBtn" to="." method="_on_char_btn_button_up"]
+[connection signal="button_up" from="BG/MarginContainer/MainPanel/H2/ExitBtn" to="." method="_on_exit_btn_button_up"]
 [connection signal="button_up" from="BG/MarginContainer/PassView/HBoxContainer/PassBtn" to="." method="_on_pass_btn_button_up"]
 [connection signal="button_up" from="BG/MarginContainer/PassView/HBoxContainer/PassBackBtn" to="." method="_on_pass_back_btn_button_up"]

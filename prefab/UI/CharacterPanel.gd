@@ -14,6 +14,7 @@ func _ready():
 	EventHandler.connect("player_speed_changed", update_speed)
 	EventHandler.connect("player_maxhealth_changed", update_max_health)
 	EventHandler.connect("player_damage_changed", update_damage)
+	EventHandler.connect("player_maxdamage_changed", update_max_damage)
 	EventHandler.connect("player_exp_changed", update_exp)
 	EventHandler.connect("player_maxexp_changed", update_max_exp)
 	EventHandler.connect("player_level_changed", update_level)
@@ -22,10 +23,10 @@ func _ready():
 	hide_charpanel()
 
 func show_charpanel():
-	if GameManager.player and health_label.text == "Leben":
+	if GameManager.player:
 		var s = GameManager.player.stats 
 		health_label.text = "%s / %s" % [s.health, s.MAX_HEALTH]
-		damage_label.text = "%s" % s.damage
+		damage_label.text = "%s / %s" % [s.damage, s.MAX_DAMAGE]
 		name_label.text  = "%s" % s.playername
 		energie_label.text = "%s / %s" % [s.energie, s.MAX_ENERGIE]
 		level_label.text = "%s" % s.level
@@ -42,12 +43,10 @@ func update_exp(new_exp):
 	
 func update_level(new_level):
 	if GameManager.player != null:
-
 		level_label.text = "%s" % new_level
 
 func update_health(new_health):
 	if GameManager.player != null:
-
 		health_label.text = "%s / %s" % [new_health, GameManager.player.stats.MAX_HEALTH]
 
 func update_max_health(new_max_health):
@@ -67,7 +66,12 @@ func update_speed(new_speed):
 
 func update_damage(new_damage):
 	if GameManager.player != null:
-		damage_label.text = "%s" % new_damage
+		damage_label.text = "%s / %s" % [new_damage, GameManager.player.stats.MAX_DAMAGE]
+
+func update_max_damage(new_max_damage):
+	if GameManager.player != null:
+		damage_label.text = "%s / %s" % [GameManager.player.stats.damage, new_max_damage]
+
 
 
 func hide_charpanel():
