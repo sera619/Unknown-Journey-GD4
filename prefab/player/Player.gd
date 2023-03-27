@@ -16,6 +16,7 @@ class_name Player
 @export var foodstep_b_scene: PackedScene
 @export var hurt_sound_scene: PackedScene
 @export var dash_sound_scene: PackedScene
+@export var potion_sound_scene: PackedScene
 
 @export_category("Shader Materials")
 @export var heal_shader: ShaderMaterial
@@ -311,13 +312,11 @@ func take_dot_damage():
 	self.dot_timer.start()
 	print("Player take dot damage %s count %s" % [self.dot_damage, self.dot_count])
 
-
 func create_levelup_effect():
 	var effect = levelup_effect_scene.instantiate()
 	self.add_child(effect)
 	effect.global_position = global_position
 	GameManager.info_box.set_info_text("[center]Glückwunsch!\n\nDu hast [color=red]Level %s[/color] erreicht![/center]" % stats.level)
-
 
 func use_health_potion():
 	if stats.player_inventory['Healthpot'] > 0:
@@ -327,6 +326,8 @@ func use_health_potion():
 		var heal_effect = heal_effect_scene.instantiate()
 		self.add_child(heal_effect)
 		heal_effect.global_position = global_position
+		var sound = potion_sound_scene.instantiate()
+		self.add_child(sound)
 		switch_shader()
 	else:
 		return
