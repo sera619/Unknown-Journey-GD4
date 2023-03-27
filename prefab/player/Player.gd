@@ -19,6 +19,7 @@ class_name Player
 
 @export_category("Shader Materials")
 @export var heal_shader: ShaderMaterial
+@export var dmg_shader: ShaderMaterial
 
 enum { 
 	MOVE, ATTACK, HEAVY_ATTACK, DASH, HURT, DOUBLE_ATTACK
@@ -107,10 +108,11 @@ func _physics_process(delta):
 
 func move_state(delta):
 	var input_vector = Vector2.ZERO
-	input_vector.x = Input.get_axis("move_left", "move_right")
-	input_vector.y = Input.get_axis("move_up", "move_down")
-	input_vector = input_vector.normalized()
-	roll_vector = input_vector
+	if not GameManager.interface.dev_console:
+		input_vector.x = Input.get_axis("move_left", "move_right")
+		input_vector.y = Input.get_axis("move_up", "move_down")
+		input_vector = input_vector.normalized()
+		roll_vector = input_vector
 	if sword_collider.disabled == false:
 		sword_collider.call_deferred("set_disabled", true)
 	if sword_heavy_collider.disabled == false:
@@ -154,6 +156,11 @@ func move_state(delta):
 			animState.travel("SwordIdle")
 		else:
 			animState.travel("Idle")
+	_input_handler(delta)
+
+func _input_handler(_delta):
+	if GameManager.interface.dev_console == true:
+		return
 	
 	if Input.is_action_just_pressed("dash") and not is_dashing and stats.level > 1 and can_dash:
 		var sound = dash_sound_scene.instantiate()
@@ -211,6 +218,7 @@ func move_state(delta):
 		#debuff_handler.get_debuff_effect(SkillManager.ELEMENT.POISON)
 		#EventHandler.emit_signal("player_sleep")
 		GameManager.save_data()
+
 
 func move():
 	if !is_alive:
@@ -315,9 +323,16 @@ func use_health_potion():
 		var heal_effect = heal_effect_scene.instantiate()
 		self.add_child(heal_effect)
 		heal_effect.global_position = global_position
+		switch_shader()
 	else:
 		return
 
+func switch_shader():
+	bodySprite.material = heal_shader
+	print("[!] Player: Switch healshader")
+	get_tree().create_timer(0.3).timeout
+	bodySprite.material = dmg_shader
+	print("[!] Player: Switch dmgshader")
 
 func set_sprite(sprite: int):
 	match sprite:

@@ -2,7 +2,8 @@ extends CanvasLayer
 class_name Interface
 
 @export var show_devpanel: bool
-
+@export var dev_console_scene: PackedScene
+var dev_console: bool = false
 @onready var qlog = $Questlog
 @onready var animplayer = $AnimationPlayer
 @onready var pausmenu = $PauseMenu
@@ -24,7 +25,7 @@ func _ready():
 	EventHandler.connect("start_transition", start_transition)
 
 func _input(event):
-	if GameManager.on_main_menu == true:
+	if GameManager.on_main_menu == true or self.dev_console == true:
 		return
 	if event.is_action_pressed("qlog"):
 		if qlog.visible:
@@ -36,7 +37,13 @@ func _input(event):
 			charpanel.hide_charpanel()
 		else:
 			charpanel.show_charpanel()
-
+	if event.is_action_released("devconsole"):
+		if not dev_console:
+			dev_console = true 
+			var console = dev_console_scene.instantiate()
+			self.add_child(console)
+		else:
+			return
 
 func hide_ui():
 	qlog.hide()

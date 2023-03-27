@@ -34,7 +34,7 @@ func load_quest_infos():
 				list_node.add_item(quest.title, active_icon)
 			Quest.QS.FINSIH:
 				list_node.add_item(quest.title, finish_icon)
-				
+				list_node.set_item_custom_fg_color(count, GameManager.COLORS.blue_text)
 			Quest.QS.COMPLETE:
 				list_node.add_item(quest.title, finish_icon, false)
 				list_node.set_item_disabled(count, true)

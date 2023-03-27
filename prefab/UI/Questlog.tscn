@@ -12,9 +12,9 @@
 [ext_resource type="Texture2D" uid="uid://yotqew0yv4ol" path="res://assets/UI/exclamation_mark.png" id="10_xrd4w"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ottsb"]
-content_margin_left = 2.0
+content_margin_left = 7.0
 content_margin_top = 7.0
-content_margin_right = 2.0
+content_margin_right = 7.0
 content_margin_bottom = 7.0
 texture = ExtResource("6_tg4yq")
 texture_margin_left = 16.0
@@ -91,14 +91,17 @@ vertical_alignment = 1
 [node name="H" type="HBoxContainer" parent="Panel/M/V"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_constants/separation = 1
 alignment = 1
 
 [node name="ItemList" type="ItemList" parent="Panel/M/V/H"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.25
 tooltip_text = "   "
 theme_override_colors/font_color = Color(0.945098, 0.690196, 0.0313726, 1)
 theme_override_colors/font_selected_color = Color(0.827451, 0.027451, 0.0313726, 1)
+theme_override_constants/icon_margin = 8
 theme_override_fonts/font = ExtResource("6_vpgom")
 theme_override_font_sizes/font_size = 8
 theme_override_styles/panel = SubResource("StyleBoxTexture_ottsb")
@@ -134,10 +137,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 8
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
 [node name="V" type="VBoxContainer" parent="Panel/M/V/H/M/NinePatchRect/MarginContainer"]
 layout_mode = 2
@@ -165,6 +168,7 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("6_vpgom")
 theme_override_font_sizes/font_size = 8
 horizontal_alignment = 1
+autowrap_mode = 2
 
 [node name="OkBtn" type="TextureButton" parent="Panel/M/V"]
 layout_mode = 2
@@ -191,6 +195,9 @@ theme_override_font_sizes/font_size = 8
 text = "Okay"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/M/V"]
+layout_mode = 2
 
 [connection signal="item_selected" from="Panel/M/V/H/ItemList" to="." method="_on_item_list_item_selected"]
 [connection signal="button_down" from="Panel/M/V/OkBtn" to="." method="_on_ok_btn_button_down"]

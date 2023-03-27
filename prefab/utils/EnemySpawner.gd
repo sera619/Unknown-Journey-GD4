@@ -12,6 +12,7 @@ extends Node2D
 
 
 func _ready():
+	EventHandler.connect("spawn_enemys", spawn_enemys)
 	spawn_enemys()
 	
 

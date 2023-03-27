@@ -1,4 +1,4 @@
-[gd_scene load_steps=221 format=3 uid="uid://bulsih1uk7ua"]
+[gd_scene load_steps=220 format=3 uid="uid://bulsih1uk7ua"]
 
 [ext_resource type="Script" path="res://prefab/player/Player.gd" id="1_3dgss"]
 [ext_resource type="Texture2D" uid="uid://dt2540u4sj5mt" path="res://assets/Shadows/MediumShadow.png" id="2_2ndm1"]
@@ -13,13 +13,13 @@
 [ext_resource type="PackedScene" uid="uid://xt3agvot17mp" path="res://prefab/audio/FoodASound.tscn" id="8_1ma6h"]
 [ext_resource type="PackedScene" uid="uid://ebdq15holk57" path="res://prefab/utils/Softcollision.tscn" id="8_6a312"]
 [ext_resource type="FontFile" uid="uid://dabqnx5sqarav" path="res://assets/UI/Fonts/dogicapixelbold.otf" id="8_i6y6l"]
-[ext_resource type="Shader" path="res://assets/Materials/WhiteColorFlashShader.gdshader" id="8_ufe5d"]
 [ext_resource type="PackedScene" uid="uid://cckqaywayyhtk" path="res://prefab/audio/FoodBSound.tscn" id="9_msjkb"]
 [ext_resource type="PackedScene" uid="uid://b0n4aoy7admi8" path="res://prefab/audio/HurtSound.tscn" id="10_768l8"]
 [ext_resource type="PackedScene" uid="uid://cpnwejcyr1ecu" path="res://prefab/audio/DashSound.tscn" id="11_hto3e"]
 [ext_resource type="Material" uid="uid://b47wfikaj16y1" path="res://assets/Materials/LPCHealEffectMaterial.tres" id="12_ohrys"]
 [ext_resource type="Texture2D" uid="uid://p5qjf6yxjhlo" path="res://assets/Materials/ParticleTextures/light.png" id="13_e5flh"]
 [ext_resource type="Script" path="res://prefab/player/PlayerLight.gd" id="14_d00ft"]
+[ext_resource type="Material" uid="uid://bwdq0jw5irjrg" path="res://assets/Materials/WhiteColorFlash.tres" id="16_vp8ed"]
 [ext_resource type="PackedScene" uid="uid://bk15h3dxda4v0" path="res://prefab/utils/SoundController.tscn" id="20_a285j"]
 [ext_resource type="PackedScene" uid="uid://c22yxboo4u2jv" path="res://prefab/utils/DebuffHandler.tscn" id="21_kbir8"]
 
@@ -29,10 +29,6 @@ height = 38.8403
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ilpfg"]
 radius = 34.478
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_8cafp"]
-shader = ExtResource("8_ufe5d")
-shader_parameter/active = false
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rpsvp"]
 radius = 4.0
@@ -2213,6 +2209,7 @@ foodstep_b_scene = ExtResource("9_msjkb")
 hurt_sound_scene = ExtResource("10_768l8")
 dash_sound_scene = ExtResource("11_hto3e")
 heal_shader = ExtResource("12_ohrys")
+dmg_shader = ExtResource("16_vp8ed")
 
 [node name="DamageDisplay" type="Control" parent="."]
 layout_mode = 3
@@ -2265,7 +2262,7 @@ scale = Vector2(1.25, 0.9)
 texture = ExtResource("2_2ndm1")
 
 [node name="BodySprite" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_8cafp")
+material = ExtResource("16_vp8ed")
 position = Vector2(0, -13)
 texture = ExtResource("3_k7e2f")
 hframes = 10

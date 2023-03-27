@@ -1,7 +1,8 @@
-[gd_scene load_steps=19 format=3 uid="uid://b7dks5cm1l8lb"]
+[gd_scene load_steps=20 format=3 uid="uid://b7dks5cm1l8lb"]
 
 [ext_resource type="Script" path="res://prefab/interface/Interface.gd" id="1_ghaf7"]
 [ext_resource type="PackedScene" uid="uid://j0mixjoaji6r" path="res://prefab/UI/DevPanel.tscn" id="2_0344k"]
+[ext_resource type="PackedScene" uid="uid://bdnok5tk1xkmk" path="res://dev/DevConsole.tscn" id="2_g31m3"]
 [ext_resource type="PackedScene" uid="uid://cc4dqpbjt2x3y" path="res://prefab/UI/Questlog.tscn" id="2_ka8y8"]
 [ext_resource type="PackedScene" uid="uid://ctrto7ocrqsyu" path="res://prefab/UI/StatHUD.tscn" id="3_1qqj3"]
 [ext_resource type="PackedScene" uid="uid://brxe6x2arf7xb" path="res://prefab/UI/PauseMenu.tscn" id="3_6p8ro"]
@@ -70,6 +71,7 @@ _data = {
 [node name="Interface" type="CanvasLayer"]
 layer = 10
 script = ExtResource("1_ghaf7")
+dev_console_scene = ExtResource("2_g31m3")
 
 [node name="StatHUD" parent="." instance=ExtResource("3_1qqj3")]
 visible = false
