@@ -31,7 +31,7 @@ func _ready():
 	self._reset_panels()
 	self._set_current_audio_values()
 	self._set_current_video_values()
-	self.key_btn.disabled = true
+	#self.key_btn.disabled = true
 	#self.video_btn.disabled = true
 	self.hide()
 

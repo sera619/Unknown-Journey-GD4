@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://d2qg587omjywm"]
+[gd_scene load_steps=15 format=3 uid="uid://d2qg587omjywm"]
 
 [ext_resource type="Script" path="res://prefab/UI/OptionPanel.gd" id="1_v2t62"]
 [ext_resource type="Texture2D" uid="uid://8edplubtbkbr" path="res://assets/UI/wood-box.png" id="2_u6yxu"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://7t4cecn0xlc6" path="res://assets/UI/button-red-small-pressedt.png" id="11_bk0r5"]
 [ext_resource type="Texture2D" uid="uid://dlbf0ofue7pd0" path="res://assets/UI/button-small-disabled.png" id="11_ul2d0"]
 [ext_resource type="Texture2D" uid="uid://b01dlyko5c35h" path="res://assets/UI/checkmark.png" id="13_8qtrb"]
+[ext_resource type="Texture2D" uid="uid://blg1nfccii8ah" path="res://assets/UI/keyboard.png" id="14_7hvbg"]
 
 [node name="OptionPanel" type="Control"]
 process_mode = 3
@@ -334,6 +335,7 @@ max_value = 6.0
 step = 0.1
 
 [node name="VideoOptions" type="NinePatchRect" parent="BG/M/V"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 texture = ExtResource("3_vc324")
@@ -462,7 +464,6 @@ texture = ExtResource("13_8qtrb")
 expand_mode = 1
 
 [node name="KeyOptions" type="NinePatchRect" parent="BG/M/V"]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 texture = ExtResource("3_vc324")
@@ -478,10 +479,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 4
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
 
 [node name="Options" type="VBoxContainer" parent="BG/M/V/KeyOptions/M"]
 layout_mode = 2
@@ -496,6 +497,341 @@ theme_override_font_sizes/font_size = 8
 text = "Tasten"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="H" type="HBoxContainer" parent="BG/M/V/KeyOptions/M/Options"]
+layout_mode = 2
+theme_override_constants/separation = 17
+alignment = 1
+
+[node name="LV" type="VBoxContainer" parent="BG/M/V/KeyOptions/M/Options/H"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 3
+
+[node name="Key1" type="HBoxContainer" parent="BG/M/V/KeyOptions/M/Options/H/LV"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="BG/M/V/KeyOptions/M/Options/H/LV/Key1"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.0745098, 0.537255, 0.937255, 1)
+theme_override_fonts/font = ExtResource("4_bux1i")
+theme_override_font_sizes/font_size = 8
+text = "Oben"
+vertical_alignment = 1
+
+[node name="TextureRect" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/H/LV/Key1"]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture = ExtResource("14_7hvbg")
+region_rect = Rect2(76, 21, 15, 14)
+patch_margin_left = 8
+patch_margin_top = 7
+patch_margin_right = 8
+patch_margin_bottom = 7
+
+[node name="Key2" type="HBoxContainer" parent="BG/M/V/KeyOptions/M/Options/H/LV"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="BG/M/V/KeyOptions/M/Options/H/LV/Key2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.0745098, 0.537255, 0.937255, 1)
+theme_override_fonts/font = ExtResource("4_bux1i")
+theme_override_font_sizes/font_size = 8
+text = "Links"
+vertical_alignment = 1
+
+[node name="TextureRect" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/H/LV/Key2"]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture = ExtResource("14_7hvbg")
+region_rect = Rect2(70, 35, 12, 12)
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="Key3" type="HBoxContainer" parent="BG/M/V/KeyOptions/M/Options/H/LV"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="BG/M/V/KeyOptions/M/Options/H/LV/Key3"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.0745098, 0.537255, 0.937255, 1)
+theme_override_fonts/font = ExtResource("4_bux1i")
+theme_override_font_sizes/font_size = 8
+text = "Rechts
+"
+vertical_alignment = 1
+
+[node name="TextureRect" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/H/LV/Key3"]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture = ExtResource("14_7hvbg")
+region_rect = Rect2(96, 35, 12, 12)
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="Key4" type="HBoxContainer" parent="BG/M/V/KeyOptions/M/Options/H/LV"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Label" type="Label" parent="BG/M/V/KeyOptions/M/Options/H/LV/Key4"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.0745098, 0.537255, 0.937255, 1)
+theme_override_fonts/font = ExtResource("4_bux1i")
+theme_override_font_sizes/font_size = 8
+text = "Unten
+"
+vertical_alignment = 1
+
+[node name="TextureRect" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/H/LV/Key4"]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture = ExtResource("14_7hvbg")
+region_rect = Rect2(83, 35, 12, 12)
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="MV" type="VBoxContainer" parent="BG/M/V/KeyOptions/M/Options/H"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 3
+
+[node name="Key1" type="HBoxContainer" parent="BG/M/V/KeyOptions/M/Options/H/MV"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="BG/M/V/KeyOptions/M/Options/H/MV/Key1"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.0745098, 0.537255, 0.937255, 1)
+theme_override_fonts/font = ExtResource("4_bux1i")
+theme_override_font_sizes/font_size = 8
+text = "Angriff"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/H/MV/Key1"]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture = ExtResource("14_7hvbg")
+region_rect = Rect2(111, 48, 22, 12)
+patch_margin_left = 11
+patch_margin_top = 6
+patch_margin_right = 11
+patch_margin_bottom = 6
+
+[node name="Key2" type="HBoxContainer" parent="BG/M/V/KeyOptions/M/Options/H/MV"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="BG/M/V/KeyOptions/M/Options/H/MV/Key2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.0745098, 0.537255, 0.937255, 1)
+theme_override_fonts/font = ExtResource("4_bux1i")
+theme_override_font_sizes/font_size = 8
+text = "Angriff 2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/H/MV/Key2"]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture = ExtResource("14_7hvbg")
+region_rect = Rect2(64, 22, 12, 12)
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="Key3" type="HBoxContainer" parent="BG/M/V/KeyOptions/M/Options/H/MV"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="BG/M/V/KeyOptions/M/Options/H/MV/Key3"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.0745098, 0.537255, 0.937255, 1)
+theme_override_fonts/font = ExtResource("4_bux1i")
+theme_override_font_sizes/font_size = 8
+text = "Angriff 3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/H/MV/Key3"]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture = ExtResource("14_7hvbg")
+region_rect = Rect2(104, 22, 12, 12)
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="Key4" type="HBoxContainer" parent="BG/M/V/KeyOptions/M/Options/H/MV"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="BG/M/V/KeyOptions/M/Options/H/MV/Key4"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.0745098, 0.537255, 0.937255, 1)
+theme_override_fonts/font = ExtResource("4_bux1i")
+theme_override_font_sizes/font_size = 8
+text = "Sprint"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/H/MV/Key4"]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture = ExtResource("14_7hvbg")
+region_rect = Rect2(134, 48, 12, 12)
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="RV" type="VBoxContainer" parent="BG/M/V/KeyOptions/M/Options/H"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 3
+
+[node name="Key4" type="HBoxContainer" parent="BG/M/V/KeyOptions/M/Options/H/RV"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+
+[node name="Label" type="Label" parent="BG/M/V/KeyOptions/M/Options/H/RV/Key4"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.0745098, 0.537255, 0.937255, 1)
+theme_override_fonts/font = ExtResource("4_bux1i")
+theme_override_font_sizes/font_size = 8
+text = "Aktion"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/H/RV/Key4"]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture = ExtResource("14_7hvbg")
+region_rect = Rect2(91, 22, 12, 12)
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="Key1" type="HBoxContainer" parent="BG/M/V/KeyOptions/M/Options/H/RV"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+
+[node name="Label" type="Label" parent="BG/M/V/KeyOptions/M/Options/H/RV/Key1"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.0745098, 0.537255, 0.937255, 1)
+theme_override_fonts/font = ExtResource("4_bux1i")
+theme_override_font_sizes/font_size = 8
+text = "Character"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/H/RV/Key1"]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture = ExtResource("14_7hvbg")
+region_rect = Rect2(98, 48, 12, 12)
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="Key2" type="HBoxContainer" parent="BG/M/V/KeyOptions/M/Options/H/RV"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+
+[node name="Label" type="Label" parent="BG/M/V/KeyOptions/M/Options/H/RV/Key2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.0745098, 0.537255, 0.937255, 1)
+theme_override_fonts/font = ExtResource("4_bux1i")
+theme_override_font_sizes/font_size = 8
+text = "Questlog"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/H/RV/Key2"]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture = ExtResource("14_7hvbg")
+region_rect = Rect2(174, 35, 12, 12)
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="Key3" type="HBoxContainer" parent="BG/M/V/KeyOptions/M/Options/H/RV"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+
+[node name="Label" type="Label" parent="BG/M/V/KeyOptions/M/Options/H/RV/Key3"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.0745098, 0.537255, 0.937255, 1)
+theme_override_fonts/font = ExtResource("4_bux1i")
+theme_override_font_sizes/font_size = 8
+text = "Heiltrank"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/H/RV/Key3"]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture = ExtResource("14_7hvbg")
+region_rect = Rect2(64, 9, 12, 12)
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
 
 [node name="H" type="HBoxContainer" parent="BG/M/V"]
 layout_mode = 2
