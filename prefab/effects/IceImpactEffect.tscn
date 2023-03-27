@@ -361,4 +361,5 @@ script = ExtResource("1_ex6sc")
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_8ri83")
 animation = &"animate"
-frame = 6
+frame = 48
+frame_progress = 1.0

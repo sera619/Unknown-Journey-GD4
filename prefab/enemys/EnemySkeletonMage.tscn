@@ -1,4 +1,4 @@
-[gd_scene load_steps=118 format=3 uid="uid://b4upex2fdmpee"]
+[gd_scene load_steps=121 format=3 uid="uid://b4upex2fdmpee"]
 
 [ext_resource type="Script" path="res://ai/LPCEnemy.gd" id="1_w4hhm"]
 [ext_resource type="PackedScene" uid="uid://bjfxwi2rlu7co" path="res://prefab/enemys/EnemyIceProjectile.tscn" id="2_3ri4c"]
@@ -15,12 +15,48 @@
 [ext_resource type="PackedScene" uid="uid://doa5hxcckh64o" path="res://prefab/enemys/EnemyHUD.tscn" id="6_muj8m"]
 [ext_resource type="Script" path="res://scripts/EnemyStats.gd" id="7_4qq7q"]
 [ext_resource type="Material" uid="uid://b47wfikaj16y1" path="res://assets/Materials/LPCHealEffectMaterial.tres" id="7_ti6b5"]
+[ext_resource type="PackedScene" uid="uid://dav4kogmgm7o" path="res://prefab/effects/IceCastEffect.tscn" id="8_v8xx2"]
 [ext_resource type="Script" path="res://prefab/enemys/EnemyWeapon.gd" id="10_1xcay"]
 [ext_resource type="Shader" path="res://assets/Materials/FlashLoop.gdshader" id="10_qbjow"]
 [ext_resource type="PackedScene" uid="uid://kbo1bay3i1ps" path="res://prefab/utils/PlayerDetector.tscn" id="11_s8ruv"]
 [ext_resource type="PackedScene" uid="uid://ebdq15holk57" path="res://prefab/utils/Softcollision.tscn" id="12_y7rhu"]
 [ext_resource type="PackedScene" uid="uid://b347lo6c415bh" path="res://prefab/utils/WanderController.tscn" id="13_uocry"]
 [ext_resource type="PackedScene" uid="uid://bk15h3dxda4v0" path="res://prefab/utils/SoundController.tscn" id="15_1twe5"]
+
+[sub_resource type="Shader" id="Shader_qc56t"]
+code = "//Shader BY LURGX second shader */
+//
+
+shader_type canvas_item;
+uniform bool shine = true;
+uniform bool move = true;
+uniform float side = 0.9;
+uniform float up = 0.1;
+uniform vec4 color: source_color;
+uniform float u_time: hint_range (0.,10.);
+
+
+void vertex() {//Movement 
+if (move == true){
+	VERTEX += vec2(cos(TIME*u_time)*side,cos(TIME*u_time)*up);
+}
+}
+
+void fragment() { //COLOR SHINE
+if (shine == true){
+	COLOR = texture(TEXTURE, UV);
+	COLOR.rgb += vec3(color.r,color.g,color.b)*(abs(cos(TIME*u_time)));
+}
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_15itw"]
+shader = SubResource("Shader_qc56t")
+shader_parameter/shine = true
+shader_parameter/move = false
+shader_parameter/side = 0.9
+shader_parameter/up = 0.1
+shader_parameter/color = Color(0.0313726, 0.733333, 0.862745, 1)
+shader_parameter/u_time = 5.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u22l5"]
 radius = 4.0
@@ -133,7 +169,7 @@ _data = {
 radius = 64.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_k3od6"]
-radius = 157.339
+radius = 150.0
 
 [sub_resource type="Animation" id="Animation_18vex"]
 resource_name = "CastDown"
@@ -157,9 +193,12 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.2, 0.6, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.2, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "values": [{
+"args": [],
+"method": &"_create_cast_effect"
+}, {
 "args": [],
 "method": &"_play_cast_sound"
 }, {
@@ -205,9 +244,12 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.2, 0.6, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.2, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "values": [{
+"args": [],
+"method": &"_create_cast_effect"
+}, {
 "args": [],
 "method": &"_play_cast_sound"
 }, {
@@ -253,9 +295,12 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.2, 0.6, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.2, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "values": [{
+"args": [],
+"method": &"_create_cast_effect"
+}, {
 "args": [],
 "method": &"_play_cast_sound"
 }, {
@@ -301,9 +346,12 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.2, 0.6, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.2, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "values": [{
+"args": [],
+"method": &"_create_cast_effect"
+}, {
 "args": [],
 "method": &"_play_cast_sound"
 }, {
@@ -1089,6 +1137,8 @@ hit_shader = ExtResource("4_wh2he")
 death_effect_scene = ExtResource("3_ugdbn")
 heal_effect_scene = ExtResource("5_lbww0")
 heal_shader = ExtResource("7_ti6b5")
+cast_effect_scene = ExtResource("8_v8xx2")
+cast_shader = SubResource("ShaderMaterial_15itw")
 hurt_sound_scene = ExtResource("5_3fn2n")
 death_sound_scene = ExtResource("6_mre50")
 flee_ai = ExtResource("5_n18kv")
@@ -1111,10 +1161,10 @@ MAX_SPEED = 30
 ACCELERATION = 300
 FRICTION = 200
 WANDER_SPEED = 25
-WANDER_TARGET_RANGE = 32
+WANDER_TARGET_RANGE = 4
 MIN_RANGE = 64
 MAX_RANGE = 96
-TIME_BEFORE_FLEE = 3
+TIME_BEFORE_FLEE = 4
 FLEE_RANGE = 94
 heal_charges = 2
 reward_exp = 35

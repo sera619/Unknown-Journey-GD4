@@ -65,7 +65,7 @@ func _physics_process(delta):
 					#var previous_velocity = current_velocity
 					var change = (desired_velocity - current_velocity) * drag_factor
 					current_velocity += change
-					position += current_velocity * delta
+					global_position += current_velocity * delta
 					look_at(global_position + current_velocity)
 			"Direct":
 				position += direction * speed * delta

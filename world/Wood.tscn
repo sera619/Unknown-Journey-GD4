@@ -2356,7 +2356,6 @@ texture_region_size = Vector2i(32, 32)
 
 [sub_resource type="TileSet" id="TileSet_fhosx"]
 tile_size = Vector2i(32, 32)
-uv_clipping = true
 physics_layer_0/collision_layer = 129
 physics_layer_0/collision_mask = 129
 terrain_set_0/mode = 1
@@ -2397,20 +2396,17 @@ script = ExtResource("15_6gf5d")
 puzzle_container_path = NodePath("../Map/GameObjects/PuzzleContainer")
 
 [node name="Map" type="Node2D" parent="."]
-position = Vector2(496, 816)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Map"]
 environment = ExtResource("2_ckb5u")
 
 [node name="RespawnSpot" type="Marker2D" parent="Map"]
-position = Vector2(832, 568)
+position = Vector2(793, 453)
 
 [node name="EntrySpot" type="Marker2D" parent="Map"]
-position = Vector2(861, 352)
+position = Vector2(793, 249)
 
 [node name="GameMap" type="TileMap" parent="Map"]
-y_sort_enabled = true
-position = Vector2(40, 40)
 tile_set = SubResource("TileSet_fhosx")
 cell_quadrant_size = 32
 format = 2
@@ -2447,62 +2443,6 @@ layer_4/tile_data = PackedInt32Array()
 
 [node name="MapUtils" type="Node2D" parent="Map/GameMap"]
 
-[node name="EnemySpawner" parent="Map/GameMap/MapUtils" node_paths=PackedStringArray("enemy_container") instance=ExtResource("5_upllq")]
-position = Vector2(-433, -131)
-enemy_container = NodePath("../../../GameObjects/Enemys")
-enemy_scene_one = ExtResource("13_p3y7m")
-enemy_scene_two = ExtResource("14_l8txa")
-enemys_2 = true
-
-[node name="Marker2D" parent="Map/GameMap/MapUtils/EnemySpawner/SpawnPoints1" index="0"]
-position = Vector2(-71, 339)
-
-[node name="Marker2D2" parent="Map/GameMap/MapUtils/EnemySpawner/SpawnPoints1" index="1"]
-position = Vector2(-135, -173)
-
-[node name="Marker2D3" parent="Map/GameMap/MapUtils/EnemySpawner/SpawnPoints1" index="2"]
-position = Vector2(585, -157)
-
-[node name="Marker2D4" parent="Map/GameMap/MapUtils/EnemySpawner/SpawnPoints1" index="3"]
-position = Vector2(217, 35)
-
-[node name="Marker2D5" parent="Map/GameMap/MapUtils/EnemySpawner/SpawnPoints1" index="4"]
-position = Vector2(973, 464)
-
-[node name="Marker2D" parent="Map/GameMap/MapUtils/EnemySpawner/SpawnPoints2" index="0"]
-position = Vector2(579, 214)
-
-[node name="Marker2D2" parent="Map/GameMap/MapUtils/EnemySpawner/SpawnPoints2" index="1"]
-position = Vector2(998, 550)
-
-[node name="Marker2D3" parent="Map/GameMap/MapUtils/EnemySpawner/SpawnPoints2" index="2"]
-position = Vector2(1035, 124)
-
-[node name="Marker2D4" parent="Map/GameMap/MapUtils/EnemySpawner/SpawnPoints2" index="3"]
-position = Vector2(301, 245)
-
-[node name="Marker2D5" parent="Map/GameMap/MapUtils/EnemySpawner/SpawnPoints2" index="4"]
-position = Vector2(414, 648)
-
-[node name="Marker2D6" parent="Map/GameMap/MapUtils/EnemySpawner/SpawnPoints2" index="5"]
-position = Vector2(785, 737)
-
-[node name="Teleporter" parent="Map/GameMap/MapUtils" instance=ExtResource("14_nat1a")]
-position = Vector2(864, 263)
-teleport_location = "Grasland"
-animated = true
-
-[node name="CollisionShape2D" parent="Map/GameMap/MapUtils/Teleporter/TeleportArea" index="0"]
-position = Vector2(0, -16)
-shape = SubResource("CircleShape2D_kykhg")
-
-[node name="PlayerDetector" parent="Map/GameMap/MapUtils/Teleporter" index="1"]
-visible = true
-
-[node name="CollisionShape2D" parent="Map/GameMap/MapUtils/Teleporter/PlayerDetector" index="0"]
-position = Vector2(0, -20)
-shape = SubResource("CircleShape2D_mwn7j")
-
 [node name="GameObjects" type="Node2D" parent="Map"]
 y_sort_enabled = true
 
@@ -2510,49 +2450,49 @@ y_sort_enabled = true
 y_sort_enabled = true
 
 [node name="PropStone" parent="Map/GameObjects/Stones" instance=ExtResource("4_7bcnp")]
-position = Vector2(77, -56)
+position = Vector2(75, -111)
 
 [node name="PropStone2" parent="Map/GameObjects/Stones" instance=ExtResource("4_7bcnp")]
-position = Vector2(-166, 64)
+position = Vector2(-168, 9)
 
 [node name="PropStone3" parent="Map/GameObjects/Stones" instance=ExtResource("4_7bcnp")]
-position = Vector2(-6, -56)
+position = Vector2(-8, -111)
 
 [node name="PropStone4" parent="Map/GameObjects/Stones" instance=ExtResource("4_7bcnp")]
-position = Vector2(37, -56)
+position = Vector2(35, -111)
 
 [node name="Grases" type="Node2D" parent="Map/GameObjects"]
 y_sort_enabled = true
 position = Vector2(-503, -817)
 
 [node name="GreyPot" parent="Map/GameObjects/Grases" instance=ExtResource("15_b5t6j")]
-position = Vector2(720, 1049)
+position = Vector2(692, 1016)
 respawn = true
 respawn_time = 15
 
 [node name="GreyPot2" parent="Map/GameObjects/Grases" instance=ExtResource("15_b5t6j")]
-position = Vector2(720, 1049)
+position = Vector2(692, 1016)
 respawn = true
 respawn_time = 15
 
 [node name="GreyPot3" parent="Map/GameObjects/Grases" instance=ExtResource("15_b5t6j")]
-position = Vector2(248, 1286)
+position = Vector2(220, 1253)
 respawn = true
 respawn_time = 15
 
 [node name="GreyPot4" parent="Map/GameObjects/Grases" instance=ExtResource("15_b5t6j")]
-position = Vector2(-20, 1211)
+position = Vector2(-48, 1178)
 respawn = true
 respawn_time = 15
 
 [node name="GreyPot5" parent="Map/GameObjects/Grases" instance=ExtResource("15_b5t6j")]
-position = Vector2(9, 1342)
+position = Vector2(-19, 1309)
 respawn = true
 respawn_time = 15
 
 [node name="Trees" type="Node2D" parent="Map/GameObjects"]
 y_sort_enabled = true
-position = Vector2(-494, -817)
+position = Vector2(-539, -857)
 
 [node name="PropTree" parent="Map/GameObjects/Trees" instance=ExtResource("9_med8q")]
 position = Vector2(272, 938)
@@ -2671,20 +2611,75 @@ y_sort_enabled = true
 
 [node name="NPC" type="Node2D" parent="Map/GameObjects"]
 
+[node name="EnemySpawner" parent="Map/GameObjects" node_paths=PackedStringArray("enemy_container") instance=ExtResource("5_upllq")]
+enemy_container = NodePath("../Enemys")
+enemy_scene_one = ExtResource("13_p3y7m")
+enemy_scene_two = ExtResource("14_l8txa")
+enemys_2 = true
+
+[node name="Marker2D" parent="Map/GameObjects/EnemySpawner/SpawnPoints1" index="0"]
+position = Vector2(-71, 339)
+
+[node name="Marker2D2" parent="Map/GameObjects/EnemySpawner/SpawnPoints1" index="1"]
+position = Vector2(-478, -278)
+
+[node name="Marker2D3" parent="Map/GameObjects/EnemySpawner/SpawnPoints1" index="2"]
+position = Vector2(642, 21)
+
+[node name="Marker2D4" parent="Map/GameObjects/EnemySpawner/SpawnPoints1" index="3"]
+position = Vector2(-99, -133)
+
+[node name="Marker2D5" parent="Map/GameObjects/EnemySpawner/SpawnPoints1" index="4"]
+position = Vector2(557, 429)
+
+[node name="Marker2D" parent="Map/GameObjects/EnemySpawner/SpawnPoints2" index="0"]
+position = Vector2(-168, -91)
+
+[node name="Marker2D2" parent="Map/GameObjects/EnemySpawner/SpawnPoints2" index="1"]
+position = Vector2(-382, -173)
+
+[node name="Marker2D3" parent="Map/GameObjects/EnemySpawner/SpawnPoints2" index="2"]
+position = Vector2(705, 33)
+
+[node name="Marker2D4" parent="Map/GameObjects/EnemySpawner/SpawnPoints2" index="3"]
+position = Vector2(-464, 181)
+
+[node name="Marker2D5" parent="Map/GameObjects/EnemySpawner/SpawnPoints2" index="4"]
+position = Vector2(549, 351)
+
+[node name="Marker2D6" parent="Map/GameObjects/EnemySpawner/SpawnPoints2" index="5"]
+position = Vector2(-24, 463)
+
+[node name="Teleporter" parent="Map/GameObjects" instance=ExtResource("14_nat1a")]
+position = Vector2(864, 263)
+teleport_location = "Grasland"
+animated = true
+
+[node name="CollisionShape2D" parent="Map/GameObjects/Teleporter/TeleportArea" index="0"]
+position = Vector2(0, -16)
+shape = SubResource("CircleShape2D_kykhg")
+
+[node name="PlayerDetector" parent="Map/GameObjects/Teleporter" index="1"]
+visible = true
+
+[node name="CollisionShape2D" parent="Map/GameObjects/Teleporter/PlayerDetector" index="0"]
+position = Vector2(0, -20)
+shape = SubResource("CircleShape2D_mwn7j")
+
 [node name="GameCamera" parent="Map" instance=ExtResource("2_8f6jn")]
 zoom = Vector2(0.8, 0.8)
 
 [node name="TopLeft" parent="Map/GameCamera/Limits" index="0"]
-position = Vector2(-216, 456)
+position = Vector2(-801, -448)
 
 [node name="BottomRight" parent="Map/GameCamera/Limits" index="1"]
-position = Vector2(1448, 1576)
+position = Vector2(966, 772)
 
 [node name="ShaderFogg" parent="." instance=ExtResource("7_ealrt")]
-position = Vector2(655, 1040)
+position = Vector2(93, 195)
 scale = Vector2(0.880625, 1.81375)
 
-[editable path="Map/GameMap/MapUtils/EnemySpawner"]
-[editable path="Map/GameMap/MapUtils/Teleporter"]
-[editable path="Map/GameMap/MapUtils/Teleporter/PlayerDetector"]
+[editable path="Map/GameObjects/EnemySpawner"]
+[editable path="Map/GameObjects/Teleporter"]
+[editable path="Map/GameObjects/Teleporter/PlayerDetector"]
 [editable path="Map/GameCamera"]

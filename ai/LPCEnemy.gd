@@ -8,11 +8,17 @@ signal enemy_take_damage(damage)
 @export_category("Spell Scenes")
 @export var spell_scene: PackedScene
 @export_category("VFX Scenes")
+@export_group("Hit")
 @export var hit_effect_scene: PackedScene
 @export var hit_shader: ShaderMaterial
+@export_group("Death")
 @export var death_effect_scene: PackedScene
+@export_group("Heal")
 @export var heal_effect_scene: PackedScene
 @export var heal_shader: ShaderMaterial
+@export_group("Cast")
+@export var cast_effect_scene: PackedScene
+@export var cast_shader: ShaderMaterial
 @export_category("SFX Scenes")
 @export var hurt_sound_scene: PackedScene
 @export var death_sound_scene: PackedScene
@@ -45,6 +51,7 @@ var ai_data: AIData = AIData.new()
 var move_behaviour: MoveBehaviour
 var steering: SteeringData
 var last_target_position: Vector2 = Vector2()
+var start_position: Vector2 = Vector2()
 
 enum {
 	CHASE,
@@ -63,7 +70,9 @@ var knockback: Vector2 = Vector2.ZERO
 var last_velocity: Vector2 = Vector2.ZERO
 
 func _ready():
+	start_position = global_position
 	sound_controller._setup_sounds("Skeleton")
+	flee_timer.wait_time = stats.TIME_BEFORE_FLEE
 	flee_timer.connect("timeout", _on_flee_timer_timeout)
 	anim_tree.active = true
 	_connect_signals()
@@ -81,7 +90,6 @@ func _connect_signals():
 func _process(delta):
 	ai_data.pos = global_position
 	ai_data.rotation = rotation
-
 	if steering:
 		self.position += steering.linear * delta
 		self.rotation += steering.angular * delta
@@ -177,13 +185,19 @@ func _chase_state(_delta):
 		steering = null
 		state = IDLE
 	steering = move_behaviour._get_steering(ai_data)
-	if can_attack and not _check_heal():
-		can_attack = false
-		attack_timer.start()
-		last_target_position = player.spell_hitbox.global_position
-		state = ATTACK
-	if player != null and global_position.distance_to(player.global_position) <= stats.FLEE_RANGE and flee_timer.is_stopped():
-		flee_timer.start()
+	if player != null:
+		var distance = global_position.distance_to(start_position)
+		if can_attack and not _check_heal():
+			can_attack = false
+			attack_timer.start()
+			last_target_position = player.spell_hitbox.global_position
+			state = ATTACK
+		if distance > 246:
+			steering = null
+			player = null
+			state = WANDER
+		if global_position.distance_to(player.global_position) <= stats.FLEE_RANGE and flee_timer.is_stopped():
+			flee_timer.start()
 
 
 func _flee_state(_delta):
@@ -191,12 +205,18 @@ func _flee_state(_delta):
 	if player_detector.can_see_player():
 		player = player_detector.player
 	if player == null:
+		if attack_timer.is_stopped():
+			can_attack = true
 		steering = null
-		state = IDLE
-	steering = move_behaviour._get_steering(ai_data)
-	if player != null and global_position.distance_to(player.global_position) >= stats.FLEE_RANGE:
+		state = WANDER
+	if player != null and global_position.distance_to(player.global_position) <= stats.FLEE_RANGE:
+		can_attack = false
+		steering = move_behaviour._get_steering(ai_data)
+	else:
+		if attack_timer.is_stopped():
+			can_attack = true
 		steering = null
-		state = IDLE
+		state = CHASE
 
 
 # ATTACK
@@ -211,6 +231,14 @@ func _cast_spell():
 	projectile.global_position = $WeaponAngle/HurtBox.global_position
 	projectile.direction = shoot_direction
 	GameManager.current_world.map_container.add_child(projectile)
+
+func _create_cast_effect():
+	var effect = cast_effect_scene.instantiate()
+	effect.global_position.y += animSprite.offset.y
+	self.add_child(effect)
+	animSprite.material = cast_shader
+	await get_tree().create_timer(0.6).timeout
+	animSprite.material = null
 
 func _play_cast_sound():
 	sound_controller._play_spell_cast_sound(SkillManager.ELEMENT.ICE)

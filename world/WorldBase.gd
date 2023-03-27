@@ -47,7 +47,7 @@ func spawn_player():
 	var new_player:Player = player_scene.instantiate()
 	game_map.add_child(new_player)
 	if GameManager.game.change_player_spawn_location:
-		new_player.global_position = GameManager.game.teleport_spawn_locationsddddddddddaadddddddddaaaaaaaaaa
+		new_player.global_position = GameManager.game.teleport_spawn_location
 		GameManager.game.change_player_spawn_location = false
 	else:
 		new_player.global_position = get_entry_spot()

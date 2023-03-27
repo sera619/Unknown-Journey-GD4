@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cc4dqpbjt2x3y"]
+[gd_scene load_steps=17 format=3 uid="uid://cc4dqpbjt2x3y"]
 
 [ext_resource type="Script" path="res://prefab/UI/Questlog.gd" id="1_1cm83"]
 [ext_resource type="Texture2D" uid="uid://b01dlyko5c35h" path="res://assets/UI/checkmark.png" id="2_dho6n"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cqfo8k23gm0vc" path="res://assets/UI/text-paper.png" id="6_tg4yq"]
 [ext_resource type="FontFile" uid="uid://bddtsccx0qour" path="res://assets/UI/Fonts/dogicapixel.otf" id="6_vpgom"]
 [ext_resource type="Texture2D" uid="uid://bpt7n5fbi8xg5" path="res://assets/UI/text-box.png" id="7_80sum"]
+[ext_resource type="Texture2D" uid="uid://606r1v2bvvf4" path="res://assets/UI/pixelMouse.png" id="8_mt2nn"]
 [ext_resource type="Texture2D" uid="uid://yotqew0yv4ol" path="res://assets/UI/exclamation_mark.png" id="10_xrd4w"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ottsb"]
@@ -21,6 +22,28 @@ texture_margin_left = 16.0
 texture_margin_top = 16.0
 texture_margin_right = 16.0
 texture_margin_bottom = 16.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hsxut"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ucbfq"]
+bg_color = Color(0.6, 0.0431373, 0, 1)
+border_color = Color(0.8, 0.8, 0.8, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tenl8"]
+bg_color = Color(0.933333, 0.505882, 0, 0.403922)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.8, 0.513726, 0, 1)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+corner_detail = 20
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_autf3"]
+texture = ExtResource("8_mt2nn")
 
 [node name="Questlog" type="Control"]
 layout_mode = 3
@@ -81,7 +104,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.14902)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.52549)
 theme_override_fonts/font = ExtResource("6_vpgom")
 theme_override_font_sizes/font_size = 8
 text = "Questlog"
@@ -99,12 +122,17 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 1.25
 tooltip_text = "   "
+mouse_default_cursor_shape = 2
 theme_override_colors/font_color = Color(0.945098, 0.690196, 0.0313726, 1)
 theme_override_colors/font_selected_color = Color(0.827451, 0.027451, 0.0313726, 1)
-theme_override_constants/icon_margin = 8
+theme_override_constants/icon_margin = 10
 theme_override_fonts/font = ExtResource("6_vpgom")
 theme_override_font_sizes/font_size = 8
 theme_override_styles/panel = SubResource("StyleBoxTexture_ottsb")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hsxut")
+theme_override_styles/selected = SubResource("StyleBoxFlat_ucbfq")
+theme_override_styles/selected_focus = SubResource("StyleBoxFlat_tenl8")
+theme_override_styles/cursor = SubResource("StyleBoxTexture_autf3")
 allow_reselect = true
 auto_height = true
 item_count = 1
@@ -149,6 +177,7 @@ size_flags_stretch_ratio = 1.75
 
 [node name="QuestHeader" type="Label" parent="Panel/M/V/H/M/NinePatchRect/MarginContainer/V"]
 layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.545098)
 theme_override_fonts/font = ExtResource("6_vpgom")
 theme_override_font_sizes/font_size = 8
 horizontal_alignment = 1
@@ -156,15 +185,17 @@ horizontal_alignment = 1
 [node name="QuestDescription" type="Label" parent="Panel/M/V/H/M/NinePatchRect/MarginContainer/V"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.529412)
 theme_override_fonts/font = ExtResource("6_vpgom")
 theme_override_font_sizes/font_size = 8
 text = "dawda"
 horizontal_alignment = 1
 vertical_alignment = 1
-autowrap_mode = 3
+autowrap_mode = 2
 
 [node name="QuestState" type="Label" parent="Panel/M/V/H/M/NinePatchRect/MarginContainer/V"]
 layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.545098)
 theme_override_fonts/font = ExtResource("6_vpgom")
 theme_override_font_sizes/font_size = 8
 horizontal_alignment = 1
@@ -199,5 +230,6 @@ vertical_alignment = 1
 [node name="MarginContainer" type="MarginContainer" parent="Panel/M/V"]
 layout_mode = 2
 
+[connection signal="empty_clicked" from="Panel/M/V/H/ItemList" to="." method="_on_item_list_empty_clicked"]
 [connection signal="item_selected" from="Panel/M/V/H/ItemList" to="." method="_on_item_list_item_selected"]
 [connection signal="button_down" from="Panel/M/V/OkBtn" to="." method="_on_ok_btn_button_down"]

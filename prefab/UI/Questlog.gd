@@ -38,6 +38,7 @@ func load_quest_infos():
 			Quest.QS.COMPLETE:
 				list_node.add_item(quest.title, finish_icon, false)
 				list_node.set_item_disabled(count, true)
+				list_node.set_item_selectable(count, true)
 				list_node.set_item_custom_fg_color(count, GameManager.COLORS.lightgreen_text)
 		list_node.set_item_tooltip_enabled(count, false)
 		count += 1
@@ -45,6 +46,8 @@ func load_quest_infos():
 func _on_item_list_item_selected(index):
 #	if not list_node.is_item_selectable(index):
 #		return
+	list_node.deselect_all()
+	list_node.select(index)
 	var quest_name = list_node.get_item_text(index)
 	var quest: Quest = QuestManager.get_quest_information(quest_name)
 	if quest:
@@ -68,3 +71,8 @@ func reset_information_text():
 
 func _on_ok_btn_button_down():
 	hide_log()
+
+
+func _on_item_list_empty_clicked(at_position, mouse_button_index):
+	reset_information_text()
+	list_node.deselect_all()
