@@ -7,5 +7,5 @@ func _ready():
 	if GameManager.player != null:
 		if GameManager.player.stats.has_sword:
 			info_trigger.queue_free()
-	#$Map/WorldEffect._set_sunlight(true)
+	$Map/WorldEffect._set_sunlight(true)
 	#EventHandler.emit_signal("start_rain")

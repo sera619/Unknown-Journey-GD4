@@ -1,8 +1,8 @@
 extends Resource
 class_name MoveBehaviour
-var MIN_RANGE_TO_TARGET: int = 32
+var MIN_RANGE_TO_TARGET: int = 96
 var SLOW_RADIUS: int = 56
-var FLEE_STOP_RADIUS: int = 96
+var FLEE_STOP_RADIUS: int = 94
 var speed: int = 25
 var distance
 var steering: SteeringData

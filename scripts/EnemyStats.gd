@@ -27,6 +27,7 @@ signal enemy_healed
 @export var MIN_RANGE: int
 @export var MAX_RANGE: int
 @export var TIME_BEFORE_FLEE: int
+@export var FLEE_RANGE: int = 56
 
 @export_category("Skill Settings")
 @export var heal_charges: int

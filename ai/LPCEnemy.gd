@@ -38,6 +38,8 @@ signal enemy_take_damage(damage)
 @onready var hurt_collider: CollisionShape2D = $HitBox/CollisionShape2D
 @onready var sound_controller: SoundController = $SoundController
 @onready var hit_animplayer: AnimationPlayer = $HitBox/AnimationPlayer
+@onready var flee_timer: Timer = $FleeTimer
+
 
 var ai_data: AIData = AIData.new()
 var move_behaviour: MoveBehaviour
@@ -51,7 +53,8 @@ enum {
 	ATTACK,
 	HEAL,
 	DEAD,
-	HURT
+	HURT,
+	FLEE
 }
 
 var state = IDLE
@@ -61,6 +64,7 @@ var last_velocity: Vector2 = Vector2.ZERO
 
 func _ready():
 	sound_controller._setup_sounds("Skeleton")
+	flee_timer.connect("timeout", _on_flee_timer_timeout)
 	anim_tree.active = true
 	_connect_signals()
 	_change_move_behaviour(flee_ai)
@@ -114,6 +118,8 @@ func _process(delta):
 			_attack_state(delta)
 		WANDER:
 			_wander_state(delta)
+		FLEE:
+			_flee_state(delta)
 
 func _physics_process(delta):
 	if knockback != Vector2.ZERO:
@@ -176,6 +182,22 @@ func _chase_state(_delta):
 		attack_timer.start()
 		last_target_position = player.spell_hitbox.global_position
 		state = ATTACK
+	if player != null and global_position.distance_to(player.global_position) <= stats.FLEE_RANGE and flee_timer.is_stopped():
+		flee_timer.start()
+
+
+func _flee_state(_delta):
+	var player: Player = null
+	if player_detector.can_see_player():
+		player = player_detector.player
+	if player == null:
+		steering = null
+		state = IDLE
+	steering = move_behaviour._get_steering(ai_data)
+	if global_position.distance_to(player.global_position) >= stats.FLEE_RANGE:
+		steering = null
+		state = IDLE
+
 
 # ATTACK
 func _attack_state(_delta):
@@ -276,9 +298,6 @@ func _reward_player():
 func _create_death_effect():
 #	var effect = death_effect_scene.instantiate()
 #	add_child(effect)
-	animSprite.material = heal_shader
-	await get_tree().create_timer(0.3).timeout
-	animSprite.material = null
 	var sound = death_sound_scene.instantiate()
 	add_child(sound)
 
@@ -310,6 +329,11 @@ func _on_hurt_animation_finished():
 func _on_death_state():
 	_create_death_effect()
 	state = DEAD
+
+func _on_flee_timer_timeout():
+	_change_move_behaviour(flee_ai)
+	state = FLEE
+
 
 func on_hurtbox_area_entered(area):
 	if not area.get_parent().name == "Player":
