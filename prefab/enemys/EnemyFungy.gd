@@ -104,8 +104,6 @@ func _physics_process(delta):
 			if player != null:
 				if global_position.distance_to(player.global_position) <= stats.MIN_RANGE or global_position.distance_to(player.global_position) >= stats.MAX_RANGE:
 					accelerate_towards_point(player.global_position, delta)
-				if global_position.distance_to(player.global_position) >= stats.MIN_RANGE:
-					velocity = velocity.move_toward(Vector2.ZERO, stats.FRICTION * delta)
 				else:
 					if can_attack and heal_charges > 0 and stats.health < int(stats.max_health/2):
 						state = HEAL
@@ -117,9 +115,13 @@ func _physics_process(delta):
 				state = IDLE
 		ATTACK:
 			var player = player_detector.player
-			if player != null:
+			if player != null and can_attack:
+				can_attack = false
+				attack_timer.start()
 				#hurt_box.set_element_type("Poison")
 				attack_state(delta)
+			else:
+				state = IDLE
 		HEAL:
 			heal_state(delta)
 		
@@ -138,11 +140,10 @@ func on_hurtbox_area_entered(area):
 	state = IDLE
 
 func attack_state(_delta):
-	can_attack = false
-	hurt_box.set_element_type("Poison")
-	attack_timer.start()
-	velocity = Vector2.ZERO
 	anim_stats.travel("SporeAttack")
+	hurt_box.set_element_type("Poison")
+	velocity = Vector2.ZERO
+
 
 func check_collider():
 	if not aoe_collider.disabled:
