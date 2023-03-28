@@ -60,7 +60,8 @@ nine_patch_stretch = true
 texture_progress = ExtResource("1_4xxbw")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="NinePatchRect/MarginContainer/HBoxContainer/PoisonProgress"]
-modulate = Color(0.388235, 0.388235, 0.388235, 0.572549)
+modulate = Color(1, 1, 1, 0.109804)
+show_behind_parent = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -78,7 +79,8 @@ nine_patch_stretch = true
 texture_progress = ExtResource("1_4xxbw")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="NinePatchRect/MarginContainer/HBoxContainer/FireProgress"]
-modulate = Color(0.388235, 0.388235, 0.388235, 0.572549)
+modulate = Color(1, 1, 1, 0.109804)
+show_behind_parent = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -95,7 +97,8 @@ nine_patch_stretch = true
 texture_progress = ExtResource("1_4xxbw")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="NinePatchRect/MarginContainer/HBoxContainer/IceProgress"]
-modulate = Color(0.388235, 0.388235, 0.388235, 0.572549)
+modulate = Color(1, 1, 1, 0.109804)
+show_behind_parent = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -112,7 +115,8 @@ nine_patch_stretch = true
 texture_progress = ExtResource("1_4xxbw")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="NinePatchRect/MarginContainer/HBoxContainer/LightningProgress"]
-modulate = Color(0.388235, 0.388235, 0.388235, 0.572549)
+modulate = Color(1, 1, 1, 0.109804)
+show_behind_parent = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
