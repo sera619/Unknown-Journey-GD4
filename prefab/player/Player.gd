@@ -17,6 +17,7 @@ class_name Player
 @export var hurt_sound_scene: PackedScene
 @export var dash_sound_scene: PackedScene
 @export var potion_sound_scene: PackedScene
+@export var lvlup_sound_scene: PackedScene
 
 @export_category("Shader Materials")
 @export var heal_shader: ShaderMaterial
@@ -314,6 +315,8 @@ func take_dot_damage():
 
 func create_levelup_effect():
 	var effect = levelup_effect_scene.instantiate()
+	var sound = lvlup_sound_scene.instantiate()
+	get_tree().current_scene.add_child(sound)
 	self.add_child(effect)
 	effect.global_position = global_position
 	GameManager.info_box.set_info_text("[center]Glückwunsch!\n\nDu hast [color=red]Level %s[/color] erreicht![/center]" % stats.level)
