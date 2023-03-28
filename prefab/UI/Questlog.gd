@@ -34,12 +34,12 @@ func load_quest_infos():
 				list_node.add_item(quest.title, active_icon)
 			Quest.QS.FINSIH:
 				list_node.add_item(quest.title, finish_icon)
-				list_node.set_item_custom_fg_color(count, GameManager.COLORS.blue_text)
+				list_node.set_item_custom_fg_color(count, GameManager.COLORS.green_text)
 			Quest.QS.COMPLETE:
 				list_node.add_item(quest.title, finish_icon, false)
 				list_node.set_item_disabled(count, true)
 				list_node.set_item_selectable(count, true)
-				list_node.set_item_custom_fg_color(count, GameManager.COLORS.lightgreen_text)
+				list_node.set_item_custom_fg_color(count, GameManager.COLORS.blue_text)
 		list_node.set_item_tooltip_enabled(count, false)
 		count += 1
 
@@ -54,10 +54,10 @@ func _on_item_list_item_selected(index):
 		quest_header.text = str(quest.title)
 		quest_description.text = str(quest.description)
 		if quest.state == Quest.QS.ACTIVE:
-			quest_state.add_theme_color_override("font_color", GameManager.COLORS.blue_text)
+			quest_state.add_theme_color_override("font_color", GameManager.COLORS.orange_text)
 			quest_state.text = "%s %s / %s" % [quest.object_name, quest.current_amount, quest.required_amount]
 		elif quest.state == Quest.QS.FINSIH:
-			quest_state.add_theme_color_override("font_color", GameManager.COLORS.green_text)
+			quest_state.add_theme_color_override("font_color", GameManager.COLORS.blue_text)
 			quest_state.text = "Du kannst die Quest jetzt abgeben!"
 		elif quest.state == Quest.QS.COMPLETE:
 			quest_state.add_theme_color_override("font_color", GameManager.COLORS.green_text)
