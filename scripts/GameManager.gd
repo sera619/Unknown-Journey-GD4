@@ -38,6 +38,7 @@ func _ready():
 
 func _initial_process():
 	_setup_game_settings()
+	D._setup_profiles()
 
 func _setup_game_settings():
 	var path = "user://gameoptions.save"
@@ -170,6 +171,9 @@ func save_data(playername=""):
 			
 		var json_string = JSON.stringify(node_data)
 		savegame.store_line(json_string)
+	
+	D._save_profile_char_data(GameManager.player.stats.playername)
+	D._save_profile_quest_data(GameManager.player.stats.playername)
 	
 	print("[!] Data: Savegame successfully saved!")
 	QuestManager.save_quests()

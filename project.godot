@@ -20,6 +20,7 @@ config/windows_native_icon="res://assets/UI/NoPixelart/GameLogoShort.ico"
 [autoload]
 
 GameManager="*res://scripts/GameManager.gd"
+D="*res://scripts/D.gd"
 SkillManager="*res://scripts/SkillManager.gd"
 EventHandler="*res://scripts/EventHandler.gd"
 QuestManager="*res://Quests/QuestManager.tscn"
