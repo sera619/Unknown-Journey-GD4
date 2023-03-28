@@ -16,6 +16,7 @@
 [node name="LoadSlot" type="NinePatchRect"]
 offset_right = 303.0
 offset_bottom = 33.0
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_ph8xr")
 patch_margin_left = 16
 patch_margin_top = 16
