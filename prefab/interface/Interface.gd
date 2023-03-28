@@ -17,10 +17,6 @@ var dev_console: bool = false
 @onready var option_panel: OptionPanel = $OptionPanel
 
 func _ready():
-	if show_devpanel == true:
-		$DevPanel.visible = true
-	else:
-		$DevPanel.visible = false
 	GameManager.register_node(self)
 	EventHandler.connect("start_transition", start_transition)
 

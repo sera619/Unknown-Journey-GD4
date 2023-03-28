@@ -1,7 +1,6 @@
-[gd_scene load_steps=20 format=3 uid="uid://b7dks5cm1l8lb"]
+[gd_scene load_steps=19 format=3 uid="uid://b7dks5cm1l8lb"]
 
 [ext_resource type="Script" path="res://prefab/interface/Interface.gd" id="1_ghaf7"]
-[ext_resource type="PackedScene" uid="uid://j0mixjoaji6r" path="res://prefab/UI/DevPanel.tscn" id="2_0344k"]
 [ext_resource type="PackedScene" uid="uid://bdnok5tk1xkmk" path="res://dev/DevConsole.tscn" id="2_g31m3"]
 [ext_resource type="PackedScene" uid="uid://cc4dqpbjt2x3y" path="res://prefab/UI/Questlog.tscn" id="2_ka8y8"]
 [ext_resource type="PackedScene" uid="uid://ctrto7ocrqsyu" path="res://prefab/UI/StatHUD.tscn" id="3_1qqj3"]
@@ -34,7 +33,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_3kh7f"]
 resource_name = "start_transition"
-length = 2.2
+length = 2.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -42,7 +41,7 @@ tracks/0/path = NodePath("Transition:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.8, 1.4, 2.2),
+"times": PackedFloat32Array(0, 0.7, 1.8, 2.5),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
@@ -99,8 +98,6 @@ offset_top = -161.0
 offset_right = -239.0
 offset_bottom = -115.0
 scale = Vector2(0.25, 0.25)
-
-[node name="DevPanel" parent="." instance=ExtResource("2_0344k")]
 
 [node name="Questlog" parent="." instance=ExtResource("2_ka8y8")]
 visible = false
