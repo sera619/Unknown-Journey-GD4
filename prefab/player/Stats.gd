@@ -190,13 +190,14 @@ func add_seen_npc(npcname:String):
 		GameManager.seen_npcs.append(npcname)
 
 func apply_loaded_stats():
-	var data = GameManager.load_savegame()
+	var data = D._load_profile_char_data(GameManager.selected_playername)
 	MAX_HEALTH = data['max_health']
 	has_sword = data['has_sword']
 	MAX_ENERGIE = data['max_energie']
 	experience = data['experience']
 	max_experience = data['max_exp']
 	level = data['level']
+	playername = data['playername']
 	player_inventory = data['player_inventory']
 	EventHandler.emit_signal("player_get_healthpot", player_inventory['Healthpot'])
 	EventHandler.emit_signal("player_get_energiepot", player_inventory['Energiepot'])

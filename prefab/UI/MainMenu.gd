@@ -4,6 +4,7 @@ class_name MainMenu
 @onready var menupanel: Control = $Panel/M 
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
 @onready var load_btn: TextureButton = $Panel/M/V/MMLoadBtn
+@onready var loadpanel: LoadMenu = $LoadMenu
 
 func _ready():
 	GameManager.register_node(self)
@@ -20,8 +21,8 @@ func _on_mm_start_btn_button_down():
 	
 func _on_mm_load_btn_button_down():
 	print("[!] MainMenu: Load Btn clicked")
-	EventHandler.connect("transition_black", load_new)
-	EventHandler.emit_signal("start_transition")
+	loadpanel._initialize_loadmenu()
+	anim_player.play("menu-load")
 
 func _on_mm_option_btn_button_down():
 	print("[!] MainMenu: Option Btn clicked")
@@ -44,7 +45,11 @@ func _input(event):
 		if event.is_pressed():
 			if event.keycode == KEY_ENTER:
 				anim_player.play("instant")
-
+			elif event.keycode == KEY_C:
+				if not loadpanel.visible:
+					loadpanel.show_loadmenu()
+				else:
+					loadpanel.hide_loadmenu()
 
 # Name Buttons
 func _on_ok_btn_button_down():

@@ -1,21 +1,16 @@
-[gd_scene load_steps=15 format=3 uid="uid://b2vjb6d6ok5vr"]
+[gd_scene load_steps=9 format=3 uid="uid://b2vjb6d6ok5vr"]
 
 [ext_resource type="Script" path="res://prefab/UI/LoadMenu.gd" id="1_phbqq"]
 [ext_resource type="Texture2D" uid="uid://8edplubtbkbr" path="res://assets/UI/wood-box.png" id="1_whrs6"]
 [ext_resource type="Texture2D" uid="uid://bpt7n5fbi8xg5" path="res://assets/UI/text-box.png" id="2_vtmv2"]
 [ext_resource type="FontFile" uid="uid://bddtsccx0qour" path="res://assets/UI/Fonts/dogicapixel.otf" id="3_qol1k"]
-[ext_resource type="Texture2D" uid="uid://cqfo8k23gm0vc" path="res://assets/UI/text-paper.png" id="4_65t8k"]
 [ext_resource type="Texture2D" uid="uid://dnmhbqlysi5ph" path="res://assets/UI/red-button-normal.png" id="5_m4wif"]
 [ext_resource type="Texture2D" uid="uid://cgoomtgcn04sq" path="res://assets/UI/red-button-pressed.png" id="6_luefn"]
 [ext_resource type="Texture2D" uid="uid://cl20mjeo1aqyx" path="res://assets/UI/red-button-hover.png" id="7_b72l3"]
 [ext_resource type="Texture2D" uid="uid://6py808jaoso2" path="res://assets/UI/button_disabled.png" id="8_7ctis"]
-[ext_resource type="Texture2D" uid="uid://bclxecir5ivmv" path="res://assets/UI/button-red-small-normalt.png" id="9_vbwbj"]
-[ext_resource type="Texture2D" uid="uid://7t4cecn0xlc6" path="res://assets/UI/button-red-small-pressedt.png" id="10_niiq6"]
-[ext_resource type="Texture2D" uid="uid://c2mepjbti1rjb" path="res://assets/UI/button-red-small-hovert.png" id="11_tx5x6"]
-[ext_resource type="Texture2D" uid="uid://dlbf0ofue7pd0" path="res://assets/UI/button-small-disabled.png" id="12_224xt"]
-[ext_resource type="Texture2D" uid="uid://bm7dew6ejtahq" path="res://assets/UI/x-symbol.png" id="13_yacvq"]
 
 [node name="LoadMenu" type="Control"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -81,275 +76,15 @@ text = "Spielstand laden"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Profil1" type="NinePatchRect" parent="BG/M/V"]
+[node name="ScrollContainer" type="ScrollContainer" parent="BG/M/V"]
 layout_mode = 2
-texture = ExtResource("4_65t8k")
-patch_margin_left = 16
-patch_margin_top = 16
-patch_margin_right = 16
-patch_margin_bottom = 16
+size_flags_vertical = 3
+follow_focus = true
+horizontal_scroll_mode = 0
 
-[node name="M" type="MarginContainer" parent="BG/M/V/Profil1"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="H" type="HBoxContainer" parent="BG/M/V/Profil1/M"]
-layout_mode = 2
-theme_override_constants/separation = 15
-alignment = 1
-
-[node name="NameLabel" type="Label" parent="BG/M/V/Profil1/M/H"]
+[node name="V" type="VBoxContainer" parent="BG/M/V/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("3_qol1k")
-theme_override_font_sizes/font_size = 8
-text = "playername"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="LevelLabel" type="Label" parent="BG/M/V/Profil1/M/H"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("3_qol1k")
-theme_override_font_sizes/font_size = 8
-text = "Level"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="H" type="HBoxContainer" parent="BG/M/V/Profil1/M/H"]
-layout_mode = 2
-size_flags_horizontal = 3
-alignment = 1
-
-[node name="LoadBtn" type="TextureButton" parent="BG/M/V/Profil1/M/H/H"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture_normal = ExtResource("5_m4wif")
-texture_pressed = ExtResource("6_luefn")
-texture_hover = ExtResource("7_b72l3")
-texture_disabled = ExtResource("8_7ctis")
-
-[node name="Label" type="Label" parent="BG/M/V/Profil1/M/H/H/LoadBtn"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("3_qol1k")
-theme_override_font_sizes/font_size = 8
-text = "Laden"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="DelBtn" type="TextureButton" parent="BG/M/V/Profil1/M/H/H"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture_normal = ExtResource("9_vbwbj")
-texture_pressed = ExtResource("10_niiq6")
-texture_hover = ExtResource("11_tx5x6")
-texture_disabled = ExtResource("12_224xt")
-
-[node name="TextureRect" type="TextureRect" parent="BG/M/V/Profil1/M/H/H/DelBtn"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("13_yacvq")
-
-[node name="Profil2" type="NinePatchRect" parent="BG/M/V"]
-layout_mode = 2
-texture = ExtResource("4_65t8k")
-patch_margin_left = 16
-patch_margin_top = 16
-patch_margin_right = 16
-patch_margin_bottom = 16
-
-[node name="M" type="MarginContainer" parent="BG/M/V/Profil2"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="H" type="HBoxContainer" parent="BG/M/V/Profil2/M"]
-layout_mode = 2
-theme_override_constants/separation = 15
-alignment = 1
-
-[node name="NameLabel" type="Label" parent="BG/M/V/Profil2/M/H"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("3_qol1k")
-theme_override_font_sizes/font_size = 8
-text = "playername"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="LevelLabel" type="Label" parent="BG/M/V/Profil2/M/H"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("3_qol1k")
-theme_override_font_sizes/font_size = 8
-text = "Level"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="H" type="HBoxContainer" parent="BG/M/V/Profil2/M/H"]
-layout_mode = 2
-size_flags_horizontal = 3
-alignment = 1
-
-[node name="LoadBtn" type="TextureButton" parent="BG/M/V/Profil2/M/H/H"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture_normal = ExtResource("5_m4wif")
-texture_pressed = ExtResource("6_luefn")
-texture_hover = ExtResource("7_b72l3")
-texture_disabled = ExtResource("8_7ctis")
-
-[node name="Label" type="Label" parent="BG/M/V/Profil2/M/H/H/LoadBtn"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("3_qol1k")
-theme_override_font_sizes/font_size = 8
-text = "Laden"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="DelBtn" type="TextureButton" parent="BG/M/V/Profil2/M/H/H"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture_normal = ExtResource("9_vbwbj")
-texture_pressed = ExtResource("10_niiq6")
-texture_hover = ExtResource("11_tx5x6")
-texture_disabled = ExtResource("12_224xt")
-
-[node name="TextureRect" type="TextureRect" parent="BG/M/V/Profil2/M/H/H/DelBtn"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("13_yacvq")
-
-[node name="Profil3" type="NinePatchRect" parent="BG/M/V"]
-layout_mode = 2
-texture = ExtResource("4_65t8k")
-patch_margin_left = 16
-patch_margin_top = 16
-patch_margin_right = 16
-patch_margin_bottom = 16
-
-[node name="M" type="MarginContainer" parent="BG/M/V/Profil3"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="H" type="HBoxContainer" parent="BG/M/V/Profil3/M"]
-layout_mode = 2
-theme_override_constants/separation = 15
-alignment = 1
-
-[node name="NameLabel" type="Label" parent="BG/M/V/Profil3/M/H"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("3_qol1k")
-theme_override_font_sizes/font_size = 8
-text = "playername"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="LevelLabel" type="Label" parent="BG/M/V/Profil3/M/H"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("3_qol1k")
-theme_override_font_sizes/font_size = 8
-text = "Level"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="H" type="HBoxContainer" parent="BG/M/V/Profil3/M/H"]
-layout_mode = 2
-size_flags_horizontal = 3
-alignment = 1
-
-[node name="LoadBtn" type="TextureButton" parent="BG/M/V/Profil3/M/H/H"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture_normal = ExtResource("5_m4wif")
-texture_pressed = ExtResource("6_luefn")
-texture_hover = ExtResource("7_b72l3")
-texture_disabled = ExtResource("8_7ctis")
-
-[node name="Label" type="Label" parent="BG/M/V/Profil3/M/H/H/LoadBtn"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("3_qol1k")
-theme_override_font_sizes/font_size = 8
-text = "Laden"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="DelBtn" type="TextureButton" parent="BG/M/V/Profil3/M/H/H"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture_normal = ExtResource("9_vbwbj")
-texture_pressed = ExtResource("10_niiq6")
-texture_hover = ExtResource("11_tx5x6")
-texture_disabled = ExtResource("12_224xt")
-
-[node name="TextureRect" type="TextureRect" parent="BG/M/V/Profil3/M/H/H/DelBtn"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("13_yacvq")
 
 [node name="LoadBtn" type="TextureButton" parent="BG/M/V"]
 layout_mode = 2
@@ -378,3 +113,5 @@ theme_override_font_sizes/font_size = 8
 text = "Zurück"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[connection signal="button_up" from="BG/M/V/LoadBtn" to="." method="_on_load_btn_button_up"]

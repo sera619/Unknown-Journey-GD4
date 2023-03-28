@@ -3,7 +3,7 @@ class_name Game
 
 @export_category("Development Options")
 @export_enum("Normal", "Development") var run_type: int
-@export_enum("Hills", "Wood", "Grasland", "GraslandHouse","SwordCave") var dev_start_map: String
+@export_enum("None", "MainMenu", "Hills", "Wood", "Grasland", "GraslandHouse","SwordCave") var dev_start_map: String
 @onready var world_holder = $WorldHolder
 @onready var world_shadow_scene = preload("res://prefab/utils/WorldShadow.tscn")
 
@@ -35,7 +35,7 @@ var world_shadow = null
 
 
 func _development_start():
-	if dev_start_map == "":
+	if dev_start_map == "None":
 		load_game()
 	else:
 		switch_gamelevel(dev_start_map)
@@ -66,6 +66,11 @@ func load_game():
 	self.loaded_data = GameManager.load_savegame()
 	switch_gamelevel(loaded_data['cur_world'])
 
+func _load_profile_game(data):
+	GameManager.load_game = true
+	QuestManager.reset_quests()
+	self.loaded_data = data
+	switch_gamelevel(self.loaded_data['cur_world'])
 
 func _on_show_world_shadow():
 	if world_shadow != null:

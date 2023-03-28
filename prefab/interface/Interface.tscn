@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://b7dks5cm1l8lb"]
+[gd_scene load_steps=20 format=3 uid="uid://b7dks5cm1l8lb"]
 
 [ext_resource type="Script" path="res://prefab/interface/Interface.gd" id="1_ghaf7"]
 [ext_resource type="PackedScene" uid="uid://bdnok5tk1xkmk" path="res://dev/DevConsole.tscn" id="2_g31m3"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://4pvo7rk61tca" path="res://prefab/UI/DialogBox.tscn" id="9_kcv7y"]
 [ext_resource type="PackedScene" uid="uid://cfsnddkshv6p8" path="res://prefab/UI/PotionPanel.tscn" id="10_p40cy"]
 [ext_resource type="PackedScene" uid="uid://6ma28lukrg4r" path="res://prefab/UI/NewSkillHUD.tscn" id="11_r8hlj"]
+[ext_resource type="PackedScene" uid="uid://b2vjb6d6ok5vr" path="res://prefab/UI/LoadMenu.tscn" id="13_cofjd"]
 [ext_resource type="PackedScene" uid="uid://l61eqwib72yh" path="res://prefab/UI/SleepHUD.tscn" id="13_q1ex6"]
 [ext_resource type="PackedScene" uid="uid://d2qg587omjywm" path="res://prefab/UI/OptionPanel.tscn" id="15_06kas"]
 
@@ -156,6 +157,13 @@ offset_right = 47.0
 offset_bottom = 46.0
 scale = Vector2(0.5, 0.5)
 size_flags_vertical = 4
+
+[node name="LoadMenu" parent="." instance=ExtResource("13_cofjd")]
+offset_left = 82.0
+offset_top = 48.0
+offset_right = 82.0
+offset_bottom = 48.0
+scale = Vector2(0.5, 0.5)
 
 [node name="NewSkillHUD" parent="." instance=ExtResource("11_r8hlj")]
 

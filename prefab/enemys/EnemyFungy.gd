@@ -231,7 +231,7 @@ func take_damage(area):
 func heal_enemy():
 	if heal_charges >= 0:
 		heal_charges -= 1
-		var heal_value = int(floor(stats.max_health /2 ))
+		var heal_value = int(floor(float(stats.max_health /2) ))
 		stats.set_health(stats.health + heal_value)
 		self.emit_signal("enemy_healed", heal_value)
 

@@ -1,0 +1,124 @@
+[gd_scene load_steps=13 format=3 uid="uid://cjht4oemfexba"]
+
+[ext_resource type="Texture2D" uid="uid://cqfo8k23gm0vc" path="res://assets/UI/text-paper.png" id="1_ph8xr"]
+[ext_resource type="Script" path="res://prefab/UI/LoadSlot.gd" id="2_dg5b7"]
+[ext_resource type="FontFile" uid="uid://bddtsccx0qour" path="res://assets/UI/Fonts/dogicapixel.otf" id="2_t2b7c"]
+[ext_resource type="Texture2D" uid="uid://dnmhbqlysi5ph" path="res://assets/UI/red-button-normal.png" id="3_n077b"]
+[ext_resource type="Texture2D" uid="uid://cgoomtgcn04sq" path="res://assets/UI/red-button-pressed.png" id="4_5psn2"]
+[ext_resource type="Texture2D" uid="uid://cl20mjeo1aqyx" path="res://assets/UI/red-button-hover.png" id="5_t1wqs"]
+[ext_resource type="Texture2D" uid="uid://6py808jaoso2" path="res://assets/UI/button_disabled.png" id="6_dps1j"]
+[ext_resource type="Texture2D" uid="uid://bclxecir5ivmv" path="res://assets/UI/button-red-small-normalt.png" id="7_f668t"]
+[ext_resource type="Texture2D" uid="uid://7t4cecn0xlc6" path="res://assets/UI/button-red-small-pressedt.png" id="8_hhhp1"]
+[ext_resource type="Texture2D" uid="uid://c2mepjbti1rjb" path="res://assets/UI/button-red-small-hovert.png" id="9_yrpow"]
+[ext_resource type="Texture2D" uid="uid://dlbf0ofue7pd0" path="res://assets/UI/button-small-disabled.png" id="10_mj7pn"]
+[ext_resource type="Texture2D" uid="uid://bm7dew6ejtahq" path="res://assets/UI/x-symbol.png" id="11_o8sls"]
+
+[node name="LoadSlot" type="NinePatchRect"]
+offset_right = 303.0
+offset_bottom = 33.0
+texture = ExtResource("1_ph8xr")
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+script = ExtResource("2_dg5b7")
+
+[node name="M" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 1
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 1
+
+[node name="H" type="HBoxContainer" parent="M"]
+layout_mode = 2
+theme_override_constants/separation = 3
+alignment = 1
+
+[node name="Label" type="Label" parent="M/H"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.156863, 0.380392, 0.803922, 1)
+theme_override_fonts/font = ExtResource("2_t2b7c")
+theme_override_font_sizes/font_size = 8
+text = "Name:"
+vertical_alignment = 1
+
+[node name="NameLabel" type="Label" parent="M/H"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_t2b7c")
+theme_override_font_sizes/font_size = 8
+text = "dawd"
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="M/H"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.156863, 0.380392, 0.803922, 1)
+theme_override_fonts/font = ExtResource("2_t2b7c")
+theme_override_font_sizes/font_size = 8
+text = "Level:"
+vertical_alignment = 1
+
+[node name="LevelLabel" type="Label" parent="M/H"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_t2b7c")
+theme_override_font_sizes/font_size = 8
+vertical_alignment = 1
+
+[node name="H" type="HBoxContainer" parent="M/H"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="LoadBtn" type="TextureButton" parent="M/H/H"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("3_n077b")
+texture_pressed = ExtResource("4_5psn2")
+texture_hover = ExtResource("5_t1wqs")
+texture_disabled = ExtResource("6_dps1j")
+
+[node name="Label" type="Label" parent="M/H/H/LoadBtn"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_t2b7c")
+theme_override_font_sizes/font_size = 8
+text = "Laden"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DelBtn" type="TextureButton" parent="M/H/H"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("7_f668t")
+texture_pressed = ExtResource("8_hhhp1")
+texture_hover = ExtResource("9_yrpow")
+texture_disabled = ExtResource("10_mj7pn")
+
+[node name="TextureRect" type="TextureRect" parent="M/H/H/DelBtn"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_o8sls")

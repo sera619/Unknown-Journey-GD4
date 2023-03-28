@@ -14,6 +14,8 @@ var on_main_menu: bool = false
 var seen_npcs = []
 var load_game: bool = false
 var new_player_name: String = ""
+var selected_playername: String = ""
+
 
 const COLORS: Dictionary = {
 	"orange_text":Color(0.99215686321259, 0.61568629741669, 0.0274509806186),

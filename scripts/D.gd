@@ -78,6 +78,15 @@ func _save_profile_char_data(playername: String):
 	
 	print("[Data]: Char-Savegame from player \"%s\"successfully saved!" % playername)
 
+func _delete_profile(playername: String):
+	if not _check_profile_exists(playername):
+		return
+	DirAccess.remove_absolute("user://profiles/%s/questsavegame.save" % playername)
+	DirAccess.remove_absolute("user://profiles/%s/savegame.save" % playername)
+	DirAccess.remove_absolute("user://profiles/%s" % playername)
+	print("[Data]: Saveprofile from player \"%s\" deleted!" % playername)
+
+
 func _load_all_player_char_data() -> Array:
 	var profile_names = _get_all_player_profile_names()
 	var loaded_data: Array = []

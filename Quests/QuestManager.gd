@@ -53,7 +53,7 @@ func activate_quest(questname: String):
 		GameManager.info_box.set_info_text("[center]Neue Quest:\n\n[color=blue]\"%s\"[/color]\n\nerhalten![/center]" % quest.title)
 
 func load_quests():
-	var data = load_quest_data()
+	var data = D._load_profile_quest_data(GameManager.player.stats.playername)
 	for loaded_quest in data['quest_list']:
 		var quest = available.get_node(loaded_quest['title'])
 		quest.state = loaded_quest['state']

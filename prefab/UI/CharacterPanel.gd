@@ -61,7 +61,7 @@ func update_max_energie(new_max_energie):
 	if GameManager.player != null:
 		energie_label.text = "%s / %s" % [GameManager.player.stats.energie, new_max_energie]
 
-func update_speed(new_speed):
+func update_speed(_new_speed):
 	pass
 
 func update_damage(new_damage):

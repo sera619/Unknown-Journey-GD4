@@ -73,6 +73,6 @@ func _on_ok_btn_button_down():
 	hide_log()
 
 
-func _on_item_list_empty_clicked(at_position, mouse_button_index):
+func _on_item_list_empty_clicked(_at_position, _mouse_button_index):
 	reset_information_text()
 	list_node.deselect_all()
