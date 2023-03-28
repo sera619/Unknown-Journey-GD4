@@ -216,7 +216,7 @@ func _flee_state(_delta):
 		if attack_timer.is_stopped():
 			can_attack = true
 		steering = null
-		state = CHASE
+		state = IDLE
 
 
 # ATTACK
@@ -246,6 +246,8 @@ func _play_cast_sound():
 
 # TAKE DAMAGE
 func take_damage(area):
+	if area.attack_type == PlayerSword.Type.NORMAL and GameManager.player.stats.level > 4:
+		GameManager.player.stats.set_energie(GameManager.player.stats.energie + 1)
 	stats.take_damage(area.damage)
 	knockback = area.knockback_vector * 115
 	emit_signal("enemy_take_damage", area.damage)
