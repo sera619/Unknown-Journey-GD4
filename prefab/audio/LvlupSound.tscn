@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://4evcf5t61vus"]
+
+[ext_resource type="AudioStream" uid="uid://cha4v5vpdceuw" path="res://assets/Music and Sounds/lvlup.wav" id="1_guqyt"]
+[ext_resource type="Script" path="res://prefab/audio/SoundEffect.gd" id="1_wnnj2"]
+
+[node name="SoundEffect" type="AudioStreamPlayer"]
+stream = ExtResource("1_guqyt")
+volume_db = -1.486
+bus = &"MenuSFX"
+script = ExtResource("1_wnnj2")
