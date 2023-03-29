@@ -2,7 +2,7 @@ extends Node2D
 class_name Teleporter
 
 var player: Player = null
-@export_enum("WorldBase", "SmallCave", "Wood", "SwordCave", "Grasland", "GraslandHouse", "Hills") var teleport_location: String
+@export_enum("WorldBase", "SmallCave", "Wood", "SwordCave", "Grasland", "GraslandHouse", "Hills", "City") var teleport_location: String
 @export var animated: bool
 
 @onready var teleArea = $TeleportArea

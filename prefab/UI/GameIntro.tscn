@@ -299,7 +299,6 @@ patch_margin_bottom = 76
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_q7aqx")
-autoplay = true
 bus = &"MenuSFX"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

@@ -29,6 +29,7 @@ const DEFAULT_GAME_OPTIONS: Dictionary = {
 	"audio_menu":-10.0740995407104,
 	"audio_music":-13.5101003646851,
 	"audio_sfx":-4.50410985946655,
+	"musicmute": false,
 	"fullscreen":false,
 	"vsync": true
 }
@@ -57,6 +58,7 @@ func _set_game_settings(settings: Dictionary):
 	AudioServer.set_bus_volume_db(1, settings['audio_music'])
 	AudioServer.set_bus_volume_db(2, settings['audio_sfx'])
 	AudioServer.set_bus_volume_db(3, settings['audio_menu'])
+	#AudioServer.set_bus_mute(3, settings['musicmute'])
 	if settings['fullscreen'] == true:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	else:
@@ -87,6 +89,11 @@ func _update_audio_menu(value):
 	AudioServer.set_bus_volume_db(3, value)
 	self.current_game_options['audio_menu'] = value
 	print("[!] GameManger: Menu audio volume set to: %s" % value)
+
+func _update_musik_mute(mode: bool):
+	self.current_game_options['musicmute'] = mode
+	AudioServer.set_bus_mute(3, mode)
+	print("[!] GameManger: Musicmute set to: %s" % mode)
 
 func _update_window_mode(mode: bool):
 	self.current_game_options['fullscreen'] = mode

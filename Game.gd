@@ -3,16 +3,14 @@ class_name Game
 
 @export_category("Development Options")
 @export_enum("Normal", "Development") var run_type: int
-@export_enum("None", "MainMenu", "Hills", "Wood", "Grasland", "GraslandHouse","SwordCave") var dev_start_map: String
+@export_enum("None", "MainMenu", "Hills", "Wood", "Grasland", "GraslandHouse","SwordCave", "City") var dev_start_map: String
 @onready var world_holder = $WorldHolder
 @onready var world_shadow_scene = preload("res://prefab/utils/WorldShadow.tscn")
-
 
 var player: Player
 var loaded_data = null
 var new_game: bool = false
 var change_player_spawn_location: bool = false
-
 
 const LevelScenes: Dictionary = {
 	"MainMenu": preload("res://prefab/UI/MainMenu.tscn"),
@@ -22,6 +20,7 @@ const LevelScenes: Dictionary = {
 	"SwordCave": preload("res://world/SwordCave.tscn"),
 	"Grasland": preload("res://world/Grasland.tscn"),
 	"Hills": preload("res://world/Hills.tscn"),
+	"City": preload("res://world/City.tscn"),
 	"GraslandHouse": preload("res://world/GraslandHouse.tscn"),
 	"GameIntro": preload("res://prefab/UI/GameIntro.tscn")
 }

@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://jusgco0v274w"]
+
+[ext_resource type="Texture2D" uid="uid://cmhdftxlixiif" path="res://assets/Shadows/farm_shadow.png" id="1_3itg2"]
+[ext_resource type="Texture2D" uid="uid://c0j6062rbhl7n" path="res://assets/objects/houses.png" id="2_ux3u6"]
+
+[node name="House" type="Node2D"]
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(-9, -97)
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("1_3itg2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("2_ux3u6")
+offset = Vector2(0, -82)
+region_enabled = true
+region_rect = Rect2(16, 268, 189, 187)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(0, 19)
+polygon = PackedVector2Array(1, -8, 100, -8, 100, -7, 111, -7, 111, -75, -110, -75, -110, -7, -101, -7, -99, -9, -34, -9, -34, -7, -26, -7, -26, -9, -8, -9, -8, -7, 0, -7)
