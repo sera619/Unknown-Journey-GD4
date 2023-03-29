@@ -11,6 +11,8 @@ class_name OptionPanel
 @onready var audio_music_slider = $BG/M/V/AudioOptions/M/Options/H2/MusicSlider
 @onready var audio_sfx_slider = $BG/M/V/AudioOptions/M/Options/H3/SFXSlider
 @onready var audio_menu_slider = $BG/M/V/AudioOptions/M/Options/H4/MenuSlider
+@onready var music_mute_btn = $BG/M/V/AudioOptions/M/Options/H5/MMuteBtn
+@onready var music_mute_icon = $BG/M/V/AudioOptions/M/Options/H5/MMuteBtn/CheckIcon
 
 @onready var audio_btn = $BG/M/V/BBox/AudioBtn
 @onready var video_btn = $BG/M/V/BBox/VideoBtn
@@ -88,6 +90,17 @@ func _update_vsync_mode():
 		self.vsync_btn.text = "AUS"
 		self.vsync_icon.visible = false
 
+func _update_music_mute():
+	if music_mute_btn.button_pressed:
+		GameManager._update_musik_mute(true)
+		self.music_mute_btn.text = "AUS"
+		self.music_mute_icon.visible = true
+	else:
+		GameManager._update_musik_mute(false)
+		self.music_mute_btn.text = "AN"
+		self.music_mute_icon.visible = false
+	
+
 func _set_current_audio_values():
 	var all = AudioServer.get_bus_volume_db(0)
 	var music = AudioServer.get_bus_volume_db(1)
@@ -97,6 +110,7 @@ func _set_current_audio_values():
 	GameManager.current_game_options['audio_music'] = music
 	GameManager.current_game_options['audio_sfx'] = sfx
 	GameManager.current_game_options['audio_menu'] = menu
+	GameManager.current_game_options['musicmute'] = AudioServer.is_bus_mute(3)
 	self.audio_all_label.text = "%d DB" % int(all)
 	self.audio_music_label.text = "%d DB" % int(music)
 	self.audio_sfx_label.text = "%d DB" % int(sfx)
@@ -189,3 +203,7 @@ func _on_check_button_button_up():
 
 func _on_check_button_2_button_up():
 	_update_vsync_mode()
+
+
+func _on_m_mute_btn_button_up():
+	_update_music_mute()
