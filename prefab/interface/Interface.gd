@@ -3,6 +3,7 @@ class_name Interface
 
 @export var show_devpanel: bool
 @export var dev_console_scene: PackedScene
+@export var alpha_info_scene: PackedScene
 var dev_console: bool = false
 @onready var qlog = $Questlog
 @onready var animplayer = $AnimationPlayer
@@ -19,6 +20,13 @@ var dev_console: bool = false
 func _ready():
 	GameManager.register_node(self)
 	EventHandler.connect("start_transition", start_transition)
+
+func _show_alphainfo():
+	await get_tree().create_timer(1).timeout
+	var info = alpha_info_scene.instantiate()
+	self.add_child(info)
+
+
 
 func _input(event):
 	if GameManager.on_main_menu == true or self.dev_console == true:

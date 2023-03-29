@@ -4,6 +4,7 @@ class_name WorldBase
 @export_category('Base Information')
 @export var world_name: String
 
+
 @onready var maputils = $Map/GameMap/MapUtils
 @onready var npc_container = $Map/GameObjects/NPC
 @onready var enemy_container = $Map/GameObjects/Enemys
@@ -22,7 +23,8 @@ func _on_ready():
 	if GameManager.load_game:
 		QuestManager.load_quests()
 		GameManager.load_game = false
-	
+
+
 
 func get_entry_spot():
 	if entry_spot:

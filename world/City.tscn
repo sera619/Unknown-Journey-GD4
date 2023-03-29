@@ -31966,7 +31966,7 @@ y_sort_enabled = true
 
 [node name="Teleporter" parent="Map/GameObjects" instance=ExtResource("10_s5w8j")]
 position = Vector2(90, -16)
-teleport_location = "City"
+teleport_location = "Grasland"
 
 [node name="CollisionShape2D" parent="Map/GameObjects/Teleporter/TeleportArea" index="0"]
 shape = SubResource("CircleShape2D_u7xn7")
