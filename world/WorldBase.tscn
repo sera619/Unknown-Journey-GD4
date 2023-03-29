@@ -575,7 +575,7 @@ terrain_set_0/terrain_2/name = "wall"
 terrain_set_0/terrain_2/color = Color(0.501961, 0.0392157, 0, 1)
 sources/0 = SubResource("TileSetAtlasSource_ol6bj")
 
-[node name="WorldBase" type="Node" groups=["WorldBase"]]
+[node name="WorldBase" type="Node2D" groups=["WorldBase"]]
 script = ExtResource("1_56egy")
 world_name = "BaseWorld"
 
