@@ -34,6 +34,7 @@ var world_shadow = null
 
 
 func _development_start():
+	GameManager.selected_playername = "Sera"
 	if dev_start_map == "None":
 		load_game()
 	else:

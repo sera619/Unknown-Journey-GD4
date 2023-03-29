@@ -1,10 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://dq6afkde17yc6"]
+[gd_scene load_steps=12 format=3 uid="uid://dq6afkde17yc6"]
 
 [ext_resource type="Script" path="res://world/SwordCave.gd" id="1_egq4y"]
 [ext_resource type="Texture2D" uid="uid://i30uy8osh588" path="res://assets/World/tileset_dungeon.png" id="2_pltvx"]
 [ext_resource type="PackedScene" uid="uid://yax4y6kq0hp8" path="res://prefab/itemdrops/SwordDrop.tscn" id="3_1jbkb"]
 [ext_resource type="PackedScene" uid="uid://c738vytvimynb" path="res://prefab/utils/Teleporter.tscn" id="3_awgl6"]
+[ext_resource type="Script" path="res://prefab/player/PlayerLight.gd" id="3_phkur"]
 [ext_resource type="PackedScene" uid="uid://dcc837c2ujx6g" path="res://prefab/utils/GameCamera.tscn" id="4_jn70g"]
+[ext_resource type="Texture2D" uid="uid://p5qjf6yxjhlo" path="res://assets/Materials/ParticleTextures/light.png" id="4_o0qsx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ol6bj"]
 texture = ExtResource("2_pltvx")
@@ -595,6 +597,12 @@ layer_3/tile_data = PackedInt32Array(16, 458752, 0, 65552, 458752, 1)
 
 [node name="GameObjects" type="Node2D" parent="Map"]
 y_sort_enabled = true
+
+[node name="PointLight2D" type="PointLight2D" parent="Map/GameObjects"]
+position = Vector2(528, 45)
+energy = 0.35
+texture = ExtResource("4_o0qsx")
+script = ExtResource("3_phkur")
 
 [node name="Teleporter" parent="Map/GameObjects" instance=ExtResource("3_awgl6")]
 visible = false
