@@ -73,9 +73,10 @@ _data = {
 
 [node name="HealthPotDrop" type="Node2D"]
 script = ExtResource("1_bhd4i")
-item_name = "Health Potion"
+item_name = "Heiltrank"
 item_image = ExtResource("2_0y6mt")
 shadow_image = ExtResource("2_ayw73")
+item_type = 1
 amount = 1
 potiondrop_sound_scene = ExtResource("4_vnhu7")
 
