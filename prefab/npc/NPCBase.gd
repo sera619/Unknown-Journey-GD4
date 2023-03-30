@@ -3,6 +3,8 @@ class_name NPCBase
 
 @export_category('NPC Settings')
 @export var npc_name: String
+@export var npc_sprite: Texture
+@export var lpc_sprite: bool
 @export_enum("Normal-NPC", "Quest-NPC") var npc_type: String
 
 @export_category('NPC Movement')
@@ -22,6 +24,7 @@ class_name NPCBase
 @onready var animstate = animtree.get("parameters/playback")
 @onready var wander_controller: WanderController = $WanderController
 @onready var player_detector: PlayerDetector = $PlayerDetector
+@onready var body_sprite: Sprite2D = $Body
 
 enum {
 	WANDER,
@@ -34,6 +37,16 @@ var first_seen:bool = true
 
 func _setup_movement_blends():
 	pass
+
+
+func _on_ready():
+	if lpc_sprite:
+		self.body_sprite.texture = npc_sprite
+		self.body_sprite.hframes = 13
+		self.body_sprite.vframes = 21
+		self.body_sprite.offset.y = -28
+	animtree.active = true
+
 
 func update_wander():
 	state = pick_random_state([IDLE, WANDER])
