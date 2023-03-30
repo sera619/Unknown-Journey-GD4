@@ -16,13 +16,20 @@ var dev_console: bool = false
 @onready var newskill_hud: NewSkillHUD = $NewSkillHUD
 @onready var dot_hud: DotHUD = $DotHUD
 @onready var option_panel: OptionPanel = $OptionPanel
+@onready var inventory_panel: InventoryHUD = $InventoryHUD
+
+var showinfo = true 
 
 func _ready():
 	GameManager.register_node(self)
 	EventHandler.connect("start_transition", start_transition)
+	
 
 func _show_alphainfo():
-	await get_tree().create_timer(1).timeout
+	if not showinfo:
+		return
+	showinfo = false
+	await get_tree().create_timer(3).timeout
 	var info = alpha_info_scene.instantiate()
 	self.add_child(info)
 
@@ -48,6 +55,11 @@ func _input(event):
 			self.add_child(console)
 		else:
 			return
+	if event.is_action_pressed("inventory"):
+		if not inventory_panel.visible:
+			inventory_panel.show_inventory()
+		else:
+			inventory_panel.hide_inventory()
 
 func hide_ui():
 	qlog.hide()
