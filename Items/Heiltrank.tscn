@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7elc7t4hgq5m"]
+
+[ext_resource type="Script" path="res://Items/Item.gd" id="1_kyes3"]
+[ext_resource type="Texture2D" uid="uid://b7dlgeuf7s57n" path="res://assets/items/Health Potion.png" id="2_c8g1g"]
+
+[node name="Heiltrank" type="Node"]
+script = ExtResource("1_kyes3")
+item_name = "Heiltrank"
+item_icon = ExtResource("2_c8g1g")
+item_max_amount = 10
+item_type = "Consumable"
+item_description = "Eine rote Flüssigkeit, mit Korken verschlossen. Stellt 5 deiner Lebenpunkte wieder her."
+item_price = 40
+item_sellprice = 10
+item_value = 5
