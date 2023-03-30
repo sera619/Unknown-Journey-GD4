@@ -9,13 +9,11 @@ class_name MainMenu
 func _ready():
 	GameManager.register_node(self)
 	anim_player.play("start")
-	if GameManager.savegame_exists():
-		load_btn.disabled = false
-	else:
-		load_btn.disabled = true
+
 
 func _on_mm_start_btn_button_down():
 	print("[!] MainMenu: Start Btn clicked")
+	GameManager.interface.showinfo = true
 	anim_player.play("menu-name")
 
 	
