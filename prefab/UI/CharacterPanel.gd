@@ -7,7 +7,7 @@ class_name CharacterPanel
 @onready var energie_label = $BG/M/V/StatsBG/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/Energie
 @onready var level_label =  $BG/M/V/StatsBG/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/Level
 @onready var exp_label = $BG/M/V/StatsBG/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/Exp
-
+@onready var gold_label = $BG/M/V/StatsBG/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/Gold
 
 func _ready():
 	EventHandler.connect("player_health_changed", update_health)
@@ -20,6 +20,8 @@ func _ready():
 	EventHandler.connect("player_level_changed", update_level)
 	EventHandler.connect("player_maxenergie_changed", update_max_energie)
 	EventHandler.connect("player_energie_changed", update_energie)
+	EventHandler.connect("player_gold_changed", update_gold)
+	EventHandler.connect("player_maxgold_changed", update_max_gold)
 	hide_charpanel()
 
 func show_charpanel():
@@ -31,6 +33,7 @@ func show_charpanel():
 		energie_label.text = "%s / %s" % [s.energie, s.MAX_ENERGIE]
 		level_label.text = "%s" % s.level
 		exp_label.text = "%s / %s" % [s.experience, s.max_experience]
+		gold_label.text = "%s / %s" % [s.gold, s.MAX_GOLD]
 	visible = true
 
 func update_max_exp(new_max_exp):
@@ -72,7 +75,13 @@ func update_max_damage(new_max_damage):
 	if GameManager.player != null:
 		damage_label.text = "%s / %s" % [GameManager.player.stats.damage, new_max_damage]
 
+func update_gold(new_gold):
+	if GameManager.player != null:
+		gold_label.text = "%s / %s" % [new_gold, GameManager.player.stats.MAX_GOLD]
 
+func update_max_gold(new_max_gold):
+	if GameManager.player != null:
+		gold_label.text = "%s / %s" %[GameManager.player.stats.gold, new_max_gold]
 
 func hide_charpanel():
 	visible = false

@@ -173,6 +173,16 @@ text = "Exp:"
 horizontal_alignment = 2
 vertical_alignment = 1
 
+[node name="GTitle" type="Label" parent="BG/M/V/StatsBG/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.109804, 0.717647, 0.988235, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.172549)
+theme_override_fonts/font = ExtResource("4_1edde")
+theme_override_font_sizes/font_size = 8
+text = "Gold:"
+horizontal_alignment = 2
+vertical_alignment = 1
+
 [node name="VBoxContainer2" type="VBoxContainer" parent="BG/M/V/StatsBG/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -226,6 +236,15 @@ text = "Damage"
 vertical_alignment = 1
 
 [node name="Exp" type="Label" parent="BG/M/V/StatsBG/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.976471, 0.564706, 0.0941176, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.309804)
+theme_override_fonts/font = ExtResource("4_1edde")
+theme_override_font_sizes/font_size = 8
+text = "0 / 300"
+vertical_alignment = 1
+
+[node name="Gold" type="Label" parent="BG/M/V/StatsBG/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.976471, 0.564706, 0.0941176, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.309804)
