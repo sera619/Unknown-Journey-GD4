@@ -364,6 +364,7 @@ theme_override_icons/unchecked_disabled = ExtResource("11_ul2d0")
 text = "An"
 
 [node name="CheckIcon" type="TextureRect" parent="BG/M/V/AudioOptions/M/Options/H5/MMuteBtn"]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.609

@@ -111,6 +111,15 @@ func _set_current_audio_values():
 	GameManager.current_game_options['audio_sfx'] = sfx
 	GameManager.current_game_options['audio_menu'] = menu
 	GameManager.current_game_options['musicmute'] = AudioServer.is_bus_mute(3)
+	if GameManager.current_game_options['musicmute'] == true:
+		self.music_mute_btn.button_pressed = true
+		self.music_mute_btn.text = "AUS"
+		self.music_mute_icon.visible = true
+	else:
+		self.music_mute_btn.button_pressed = false
+		self.music_mute_btn.text = "AN"
+		self.music_mute_icon.visible = false
+		
 	self.audio_all_label.text = "%d DB" % int(all)
 	self.audio_music_label.text = "%d DB" % int(music)
 	self.audio_sfx_label.text = "%d DB" % int(sfx)
@@ -128,8 +137,8 @@ func _set_current_video_values():
 		self.screen_res_btn.text = "AN"
 	else:
 		self.screen_res_btn.button_pressed = false
-		check_icon.visible = false
 		self.screen_res_btn.text = "AUS"
+		check_icon.visible = false
 	
 	var vsync = DisplayServer.window_get_vsync_mode()
 	if vsync == DisplayServer.VSYNC_ENABLED:
