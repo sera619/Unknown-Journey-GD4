@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://b7dks5cm1l8lb"]
+[gd_scene load_steps=22 format=3 uid="uid://b7dks5cm1l8lb"]
 
 [ext_resource type="Script" path="res://prefab/interface/Interface.gd" id="1_ghaf7"]
 [ext_resource type="PackedScene" uid="uid://bdnok5tk1xkmk" path="res://dev/DevConsole.tscn" id="2_g31m3"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://b2vjb6d6ok5vr" path="res://prefab/UI/LoadMenu.tscn" id="13_cofjd"]
 [ext_resource type="PackedScene" uid="uid://l61eqwib72yh" path="res://prefab/UI/SleepHUD.tscn" id="13_q1ex6"]
 [ext_resource type="PackedScene" uid="uid://d2qg587omjywm" path="res://prefab/UI/OptionPanel.tscn" id="15_06kas"]
+[ext_resource type="PackedScene" uid="uid://b4txcvasvt27s" path="res://prefab/UI/InventoryHUD.tscn" id="18_p0ljd"]
 
 [sub_resource type="Animation" id="Animation_x5qxj"]
 length = 0.001
@@ -186,3 +187,9 @@ color = Color(0, 0, 0, 1)
 libraries = {
 "": SubResource("AnimationLibrary_yur8n")
 }
+
+[node name="InventoryHUD" parent="." instance=ExtResource("18_p0ljd")]
+offset_left = 167.0
+offset_top = 24.0
+offset_right = 125.0
+offset_bottom = 92.0
