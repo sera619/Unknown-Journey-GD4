@@ -34,6 +34,7 @@ var world_shadow = null
 
 
 func _development_start():
+	new_game = true
 	GameManager.selected_playername = "Sera"
 	if dev_start_map == "None":
 		load_game()
@@ -57,18 +58,21 @@ func _ready():
 
 func start_new_game():
 	QuestManager.reset_quests()
+	InventoryManager.reset_items()
 	new_game = true
 	switch_gamelevel("Grasland")
 
 func load_game():
 	GameManager.load_game = true
 	QuestManager.reset_quests()
+	InventoryManager.reset_items()
 	self.loaded_data = GameManager.load_savegame()
 	switch_gamelevel(loaded_data['cur_world'])
 
 func _load_profile_game(data):
 	GameManager.load_game = true
 	QuestManager.reset_quests()
+	InventoryManager.reset_items()
 	self.loaded_data = data
 	switch_gamelevel(self.loaded_data['cur_world'])
 
