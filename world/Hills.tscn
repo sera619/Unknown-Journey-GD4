@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ct8p6s4p6vulu"]
+[gd_scene load_steps=17 format=3 uid="uid://ct8p6s4p6vulu"]
 
 [ext_resource type="Script" path="res://world/WorldBase.gd" id="1_ogdfq"]
 [ext_resource type="Texture2D" uid="uid://by0asahacrf8v" path="res://assets/World/terrain_atlas.png" id="2_jwfej"]
@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://dguk66r6bcx5q" path="res://assets/World/[Base]BaseChip_pipo.png" id="4_tp5oa"]
 [ext_resource type="PackedScene" uid="uid://dewtis55bljv5" path="res://prefab/props/SmallBush.tscn" id="6_fjbiy"]
 [ext_resource type="PackedScene" uid="uid://b4upex2fdmpee" path="res://prefab/enemys/EnemySkeletonMage.tscn" id="6_thinr"]
+[ext_resource type="PackedScene" uid="uid://dnbng2g6ad7s6" path="res://prefab/itemdrops/HealthPotDrop.tscn" id="8_ka3es"]
+[ext_resource type="PackedScene" uid="uid://bdjnceh2b5es" path="res://prefab/itemdrops/CoinDrop.tscn" id="9_e0mx5"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_sq0ya"]
 tile_data = PackedInt32Array(0, 327681, 1, 65536, 327681, 1, 131072, 327681, 1, 196608, 327681, 1, 262144, 327681, 1, 327680, 196609, 5, 393216, 196609, 6, 458752, 196609, 7, 524288, 196609, 8, 327681, 262145, 5, 393217, 262145, 6, 458753, 262145, 7, 524289, 262145, 8, 327682, 327681, 5, 393218, 327681, 6, 458754, 327681, 7, 524290, 327681, 8, 327683, 393217, 1, 393219, 393217, 2, 458755, 393217, 3, 524291, 393217, 4, 196612, 589825, 1, 262148, 589825, 2, 327684, 589825, 3, 393220, 458753, 2, 458756, 458753, 3, 524292, 458753, 4)
@@ -9859,6 +9861,12 @@ position = Vector2(28, 80)
 
 [node name="Trees" type="Node2D" parent="Map/GameObjects"]
 y_sort_enabled = true
+
+[node name="HealthPotDrop" parent="Map/GameObjects" instance=ExtResource("8_ka3es")]
+position = Vector2(-199, 305)
+
+[node name="CoinDrop" parent="Map/GameObjects" instance=ExtResource("9_e0mx5")]
+position = Vector2(-139, 252)
 
 [node name="GameCamera" parent="Map" instance=ExtResource("3_o07db")]
 zoom = Vector2(0.8, 0.8)
