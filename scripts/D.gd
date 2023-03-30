@@ -78,6 +78,44 @@ func _save_profile_char_data(playername: String):
 	
 	print("[Data]: Char-Savegame from player \"%s\"successfully saved!" % playername)
 
+func _save_profile_inventory_data(playername: String):
+	if not _check_profile_exists(playername):
+		_create_profile_directory(playername)
+	var savepath = "user://profiles/%s/inventorysavegame.save" % playername
+	var inventory_list = []
+	for item in InventoryManager.current.get_children():
+		var item_data = {
+			"name": item.item_name,
+			"amount": item.item_amount,
+		}
+		inventory_list.append(item_data)
+	var data = {
+		"inv_list": inventory_list
+	}
+	var json_string = JSON.stringify(data)
+	var itemsave = FileAccess.open(savepath, FileAccess.WRITE)
+	itemsave.store_line(json_string)
+
+func _load_profile_inventory_data(playername: String):
+	if not _check_profile_exists(playername):
+		return
+	var loadpath = "user://profiles/%s/inventorysavegame.save" % playername
+	if not FileAccess.file_exists(loadpath):
+		return
+	
+	var inventory_save = FileAccess.open(loadpath, FileAccess.READ)
+	while inventory_save.get_position() < inventory_save.get_length():
+		var json_string = inventory_save.get_line()
+		var json = JSON.new()
+		var result = json.parse(json_string)
+		if not result == OK:
+			print("[Data]: Inventory-Savegame from player \"%s\" is corrupted!" % playername) 
+			print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
+			continue
+		var inventory_data = json.get_data()
+		return inventory_data
+
+
 func _delete_profile(playername: String):
 	if not _check_profile_exists(playername):
 		return
