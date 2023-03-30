@@ -1,0 +1,193 @@
+[gd_scene load_steps=9 format=3 uid="uid://b4txcvasvt27s"]
+
+[ext_resource type="Script" path="res://prefab/UI/InventoryHUD.gd" id="1_50rxr"]
+[ext_resource type="Texture2D" uid="uid://8edplubtbkbr" path="res://assets/UI/wood-box.png" id="2_wgcfe"]
+[ext_resource type="Texture2D" uid="uid://bpt7n5fbi8xg5" path="res://assets/UI/text-box.png" id="3_lhmru"]
+[ext_resource type="FontFile" uid="uid://bddtsccx0qour" path="res://assets/UI/Fonts/dogicapixel.otf" id="4_meubq"]
+[ext_resource type="Texture2D" uid="uid://b7dlgeuf7s57n" path="res://assets/items/Health Potion.png" id="5_rdqig"]
+[ext_resource type="Texture2D" uid="uid://dnmhbqlysi5ph" path="res://assets/UI/red-button-normal.png" id="6_ow45t"]
+[ext_resource type="Texture2D" uid="uid://cgoomtgcn04sq" path="res://assets/UI/red-button-pressed.png" id="7_v486d"]
+[ext_resource type="Texture2D" uid="uid://cl20mjeo1aqyx" path="res://assets/UI/red-button-hover.png" id="8_xnnbr"]
+
+[node name="InventoryHUD" type="Control"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -42.0
+offset_bottom = 68.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_50rxr")
+
+[node name="BG" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_wgcfe")
+patch_margin_left = 24
+patch_margin_top = 16
+patch_margin_right = 24
+patch_margin_bottom = 16
+
+[node name="M" type="MarginContainer" parent="BG"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="V" type="VBoxContainer" parent="BG/M"]
+layout_mode = 2
+
+[node name="Header" type="NinePatchRect" parent="BG/M/V"]
+layout_mode = 2
+texture = ExtResource("3_lhmru")
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+
+[node name="Label" type="Label" parent="BG/M/V/Header"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.545098)
+theme_override_fonts/font = ExtResource("4_meubq")
+theme_override_font_sizes/font_size = 8
+text = "Inventar"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="H" type="HBoxContainer" parent="BG/M/V"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ItemList" type="ItemList" parent="BG/M/V/H"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.6
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("4_meubq")
+theme_override_font_sizes/font_size = 8
+allow_reselect = true
+auto_height = true
+item_count = 1
+same_column_width = true
+fixed_icon_size = Vector2i(16, 16)
+item_0/text = "Heiltrank"
+item_0/icon = ExtResource("5_rdqig")
+
+[node name="InfoPanel" type="NinePatchRect" parent="BG/M/V/H"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("3_lhmru")
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+
+[node name="M" type="MarginContainer" parent="BG/M/V/H/InfoPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="V" type="VBoxContainer" parent="BG/M/V/H/InfoPanel/M"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="BG/M/V/H/InfoPanel/M/V"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.545098)
+theme_override_fonts/font = ExtResource("4_meubq")
+theme_override_font_sizes/font_size = 8
+text = "Item Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Type" type="Label" parent="BG/M/V/H/InfoPanel/M/V"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.545098)
+theme_override_fonts/font = ExtResource("4_meubq")
+theme_override_font_sizes/font_size = 8
+text = "Item Type"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Amount" type="Label" parent="BG/M/V/H/InfoPanel/M/V"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.545098)
+theme_override_fonts/font = ExtResource("4_meubq")
+theme_override_font_sizes/font_size = 8
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Des" type="Label" parent="BG/M/V/H/InfoPanel/M/V"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.545098)
+theme_override_fonts/font = ExtResource("4_meubq")
+theme_override_font_sizes/font_size = 8
+text = "Item Description"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="OkBtn" type="TextureButton" parent="BG/M/V"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("6_ow45t")
+texture_pressed = ExtResource("7_v486d")
+texture_hover = ExtResource("8_xnnbr")
+
+[node name="Label" type="Label" parent="BG/M/V/OkBtn"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_meubq")
+theme_override_font_sizes/font_size = 8
+text = "Okay"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="empty_clicked" from="BG/M/V/H/ItemList" to="." method="_on_item_list_empty_clicked"]
+[connection signal="item_selected" from="BG/M/V/H/ItemList" to="." method="_on_item_list_item_selected"]
+[connection signal="button_up" from="BG/M/V/OkBtn" to="." method="_on_ok_btn_button_up"]
