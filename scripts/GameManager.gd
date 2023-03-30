@@ -46,10 +46,8 @@ func _initial_process():
 func _setup_game_settings():
 	var path = "user://gameoptions.save"
 	if not FileAccess.file_exists(path):
-		current_game_options = DEFAULT_GAME_OPTIONS
-		self._save_settings(current_game_options)
-	else:
-		current_game_options = self._load_settings()
+		self._save_settings(DEFAULT_GAME_OPTIONS)
+	current_game_options = self._load_settings()
 	self._set_game_settings(current_game_options)
 	print("[!] GameManager: Gameoptions setup successfully!")
 
@@ -183,6 +181,7 @@ func save_data(playername=""):
 	
 	D._save_profile_char_data(GameManager.player.stats.playername)
 	D._save_profile_quest_data(GameManager.player.stats.playername)
+	D._save_profile_inventory_data(GameManager.player.stats.playername)
 	
 	print("[!] Data: Savegame successfully saved!")
 	QuestManager.save_quests()
