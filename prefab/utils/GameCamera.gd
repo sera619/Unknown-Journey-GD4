@@ -11,12 +11,16 @@ class_name GameCamera
 
 @export_group('Shake Options')
 @export var camera_move_speed: int = 50
-@export var decay = 0.9  # How quickly the shaking stops [0, 1].
+@export var decay = 0.3  # How quickly the shaking stops [0, 1].
 @export var max_offset = Vector2(50, 25)  # Maximum hor/ver shake in pixels.
 @export var max_roll = 0.1  # Maximum rotation in radians (use sparingly).
 
 @export_category("Weather Effects")
 @export var rain_effect_scene: PackedScene
+
+@export_category("NPCs to follow")
+@export var follow_npc_1: NodePath
+@export var follow_npc_2: NodePath
 
 @onready var topLeft = $Limits/TopLeft
 @onready var bottomRight = $Limits/BottomRight
@@ -31,7 +35,8 @@ var shakeTween: Tween = null
 
 var trauma = 0.0  # Current shake strength.
 var trauma_power = 2  # Trauma exponent. Use [2, 3].
-
+var follow_npc: bool = false
+var npc_to_follow = null
 
 func _ready():
 	GameManager.register_node(self)
@@ -61,9 +66,11 @@ func levelup_position():
 	self.offset = default_offset
 
 func _process(delta):
-	if GameManager.player != null:
+	if GameManager.player != null and not npc_to_follow:
 		self.global_position = GameManager.player.global_position
-		self.global_position.y -= 16
+	if npc_to_follow:
+		self.global_position = npc_to_follow.global_position
+	self.global_position.y -= 16
 	if trauma:
 		trauma = max(trauma - decay  * delta, 0)
 		shake()
@@ -84,7 +91,20 @@ func _input(event):
 		zoom_factor = 1.0
 	if abs(zoom_position.y - get_global_mouse_position().y) > zoom_margin:
 		zoom_factor = 1.0
-		
+	
+	if event is InputEventKey:
+		if event.is_pressed():
+			if event.keycode == KEY_KP_1:
+				if get_node_or_null(follow_npc_1) == null:
+					return
+				npc_to_follow = get_node(follow_npc_1)
+			elif event.keycode == KEY_KP_2:
+				if get_node_or_null(follow_npc_2) == null:
+					return
+				npc_to_follow = get_node(follow_npc_2)
+			elif event.keycode == KEY_KP_0:
+				npc_to_follow = null
+	
 	if event is InputEventMouseButton:
 		if event.is_pressed():
 			if event.button_index == MOUSE_BUTTON_WHEEL_UP:
