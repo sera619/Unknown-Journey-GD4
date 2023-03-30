@@ -77,7 +77,7 @@ script = ExtResource("1_tkcx5")
 item_name = "Schwert"
 item_image = ExtResource("2_emle2")
 shadow_image = ExtResource("2_gmcol")
-item_type = 1
+item_type = 2
 quest_id = 3
 
 [node name="Shadow" type="Sprite2D" parent="."]
