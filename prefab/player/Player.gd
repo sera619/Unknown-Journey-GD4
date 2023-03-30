@@ -84,6 +84,12 @@ func _ready():
 	swordHitbox.knockback_vector = roll_vector
 	swordHitbox.set_sword_damage(stats.damage)
 	sound_controller._setup_sounds("Player")
+	InventoryManager.load_inventory()
+	_auto_save()
+
+func _auto_save():
+	await get_tree().create_timer(1).timeout
+	GameManager.save_data()
 
 
 
@@ -217,12 +223,15 @@ func _input_handler(_delta):
 				
 
 	if Input.is_action_just_pressed("healthpotion") and stats.health < stats.MAX_HEALTH:
-		use_health_potion()
+		#use_health_potion()
+		_use_potion("Heiltrank")
 	
 	if Input.is_action_just_pressed("debug_key"):
 		#debuff_handler.get_debuff_effect(SkillManager.ELEMENT.POISON)
 		#EventHandler.emit_signal("player_sleep")
 		GameManager.save_data()
+	if Input.is_key_pressed(KEY_2):
+		InventoryManager.add_item("Heiltrank", 1)
 
 
 func move():
@@ -320,6 +329,23 @@ func create_levelup_effect():
 	self.add_child(effect)
 	effect.global_position = global_position
 	GameManager.info_box.set_info_text("[center]Glückwunsch!\n\nDu hast [color=red]Level %s[/color] erreicht![/center]" % stats.level)
+
+
+func _use_potion(itemname: String):
+	if InventoryManager.can_use_item(itemname):
+		var item = InventoryManager.get_item_information(itemname)
+		match itemname:
+			"Heiltrank":
+				stats.heal_player(item.item_value)
+		InventoryManager.remove_item(itemname, 1)
+		var heal_effect = heal_effect_scene.instantiate()
+		self.add_child(heal_effect)
+		heal_effect.global_position = global_position
+		var sound = potion_sound_scene.instantiate()
+		self.add_child(sound)
+		switch_shader()
+	else:
+		return
 
 func use_health_potion():
 	if stats.player_inventory['Healthpot'] > 0:
