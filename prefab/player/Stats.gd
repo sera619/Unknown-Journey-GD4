@@ -6,6 +6,8 @@ class_name Stats
 @export var MAX_ENERGIE: int
 @export var MAX_HEALTH: int
 @export var MAX_DAMAGE: int
+@export var gold: int
+@export var MAX_GOLD: int
 @export var dmg_label_path: NodePath
 @export_category('Movement Settings')
 @export var MAX_SPEED:int
@@ -43,11 +45,6 @@ var parent = null
 var dmg_label: RichTextLabel = null
 
 
-var player_inventory = {
-	"Healthpot": 0,
-	"Energiepot": 0,
-	"Doorkey": 0
-}
 
 func _ready():
 	if not parent:
@@ -61,17 +58,6 @@ func _ready():
 	else: 
 		apply_loaded_stats()
 
-func get_item(item_name: String, amount: int):
-	match item_name:
-		"Health Potion":
-			player_inventory["Healthpot"] += amount
-			EventHandler.emit_signal("player_get_healthpot", player_inventory["Healthpot"])
-		"Energie Potion":
-			player_inventory["Energiepot"] += amount
-			EventHandler.emit_signal("player_get_energiepot", player_inventory["Energiepot"])
-		"Door Key":
-			player_inventory["Doorkey"] += amount
-			EventHandler.emit_signal("player_get_doorkey", player_inventory[item_name])
 
 func set_default_stats():
 	if GameManager.new_player_name == "":
@@ -79,6 +65,8 @@ func set_default_stats():
 	else:
 		playername = GameManager.new_player_name
 		GameManager.new_player_name = ""
+	set_max_gold(250)
+	set_gold(50)
 	set_level(1)
 	set_max_damage(2)
 	set_max_energie(2)
@@ -166,6 +154,16 @@ func set_level(value):
 	level = value
 	EventHandler.emit_signal("player_level_changed", level)
 
+func set_gold(value):
+	gold = value
+	if gold > MAX_GOLD:
+		gold = MAX_GOLD
+	EventHandler.emit_signal("player_gold_changed", gold)
+
+func set_max_gold(value):
+	MAX_GOLD = value
+	EventHandler.emit_signal("player_maxgold_changed", MAX_GOLD)
+
 func level_up(rest):
 	set_max_exp(int(max_experience * exp_multiplikator))
 	set_exp(rest)
@@ -190,31 +188,31 @@ func add_seen_npc(npcname:String):
 		GameManager.seen_npcs.append(npcname)
 
 func apply_loaded_stats():
-	var data = D._load_profile_char_data(GameManager.selected_playername)
-	MAX_HEALTH = data['max_health']
-	has_sword = data['has_sword']
-	MAX_ENERGIE = data['max_energie']
-	experience = data['experience']
-	max_experience = data['max_exp']
-	level = data['level']
-	playername = data['playername']
-	player_inventory = data['player_inventory']
-	EventHandler.emit_signal("player_get_healthpot", player_inventory['Healthpot'])
-	EventHandler.emit_signal("player_get_energiepot", player_inventory['Energiepot'])
-	GameManager.seen_npcs.clear()
-	for n in data['seen_npcs']:
-		GameManager.seen_npcs.append(n)
-	print("[!] %s: Set health to %s !" % [parent, MAX_HEALTH])
-	set_max_health(MAX_HEALTH)
-	set_health(MAX_HEALTH, true)
-	set_level(level)
-	set_max_exp(max_experience)
-	set_exp(experience)
-	set_max_damage(data['max_damage'])
-	set_damage(MAX_DAMAGE)
-	set_speed(MAX_SPEED)
-	set_max_energie(MAX_ENERGIE)
-	set_energie(0)
+	var data = GameManager.game.loaded_data
+	if data:
+		playername = data['playername']
+		MAX_HEALTH = data['max_health']
+		has_sword = data['has_sword']
+		MAX_ENERGIE = data['max_energie']
+		experience = data['experience']
+		max_experience = data['max_exp']
+		level = data['level']
+		gold = data['gold']
+		GameManager.seen_npcs.clear()
+		for n in data['seen_npcs']:
+			GameManager.seen_npcs.append(n)
+		print("[!] %s: Set health to %s !" % [parent, MAX_HEALTH])
+		set_max_health(MAX_HEALTH)
+		set_health(MAX_HEALTH, true)
+		set_level(level)
+		set_max_exp(max_experience)
+		set_exp(experience)
+		set_gold(gold)
+		set_max_damage(data['max_damage'])
+		set_damage(MAX_DAMAGE)
+		set_speed(MAX_SPEED)
+		set_max_energie(MAX_ENERGIE)
+		set_energie(0)
 
 func save():
 	var save_dict = {
@@ -231,6 +229,6 @@ func save():
 		"experience": self.experience,
 		"level": self.level,
 		"seen_npcs": GameManager.seen_npcs,
-		"player_inventory": player_inventory
+		"gold": self.gold
 	}
 	return save_dict
