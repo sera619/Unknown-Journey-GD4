@@ -6,7 +6,7 @@ signal interaction_finished()
 @export var item_name: String
 @export var item_image: Texture2D
 @export var shadow_image: Texture2D
-@export_enum('Normal', 'Quest') var item_type: int
+@export_enum('Normal', 'Consumable', 'Quest', 'Gold') var item_type: int
 @export var quest_id: int
 @export var amount: int
 @export var despawn_time: int
@@ -23,6 +23,8 @@ signal interaction_finished()
 func _ready():
 	body_sprite.texture = item_image
 	shadow_sprite.texture = shadow_image
+	if item_type == 3:
+		body_sprite.hframes = 16
 	pickup_zone.connect("area_entered", pickup)
 	animplayer.play("loop")
 	if item_type == 0:
@@ -47,13 +49,17 @@ func _ready():
 func pickup(area):
 	if not area.is_in_group("playerPickupzone"):
 		return
-	if item_type == 1:
+	if item_type == 2:
 		if QuestManager.current_quest and QuestManager.current_quest.title == "Das Schwert":
 			QuestManager.current_quest.add_item()
 	elif item_type == 0:
 		if item_name:
-			GameManager.player.stats.get_item(item_name, amount)
 			GameManager.info_box.set_info_text("[center]Du hast\n\n[color=red]%sx %s[/color]\n\nerhalten![/center]" % [amount, item_name])
+	elif item_type == 1:
+		if item_name:
+			InventoryManager.add_item(item_name, amount)
+	elif item_type == 3:
+		GameManager.player.stats.set_gold(GameManager.player.stats.gold + amount)
 	self.call_deferred("queue_free")
 
 
