@@ -82,15 +82,26 @@ func _save_profile_inventory_data(playername: String):
 	if not _check_profile_exists(playername):
 		_create_profile_directory(playername)
 	var savepath = "user://profiles/%s/inventorysavegame.save" % playername
-	var inventory_list = []
+	var inventory_list: Array = []
+	var equip_list: Array = []
+	
 	for item in InventoryManager.current.get_children():
 		var item_data = {
 			"name": item.item_name,
 			"amount": item.item_amount,
 		}
 		inventory_list.append(item_data)
+	
+	for equip in InventoryManager.current_equip.get_children():
+		var equip_data = {
+			"name": equip.item_name,
+			"equipped": equip.item_equipped
+		}
+		equip_list.append(equip_data)
+		
 	var data = {
-		"inv_list": inventory_list
+		"inv_list": inventory_list,
+		"equip_list": equip_list
 	}
 	var json_string = JSON.stringify(data)
 	var itemsave = FileAccess.open(savepath, FileAccess.WRITE)
