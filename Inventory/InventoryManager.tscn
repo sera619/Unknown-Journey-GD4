@@ -1,14 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://cgdo8jlbhoe7r"]
+[gd_scene load_steps=7 format=3 uid="uid://cgdo8jlbhoe7r"]
 
 [ext_resource type="Script" path="res://Inventory/InventoryManager.gd" id="1_154xb"]
 [ext_resource type="PackedScene" uid="uid://b7elc7t4hgq5m" path="res://Items/Heiltrank.tscn" id="2_jcmdg"]
 [ext_resource type="PackedScene" uid="uid://sa1iwjudqfss" path="res://Items/Energietrank.tscn" id="3_tdm1w"]
 [ext_resource type="PackedScene" uid="uid://bci7hl2sl4fi0" path="res://Items/Schwert.tscn" id="4_26gra"]
+[ext_resource type="PackedScene" uid="uid://ce8ia1r58oopy" path="res://Items/Eisschwert.tscn" id="5_ot0sn"]
+[ext_resource type="PackedScene" uid="uid://ctsfrp6cxtycd" path="res://Items/Feuerschwert.tscn" id="6_iwb32"]
 
 [node name="InventoryManager" type="Node"]
 script = ExtResource("1_154xb")
 available_item_list = Array[PackedScene]([ExtResource("2_jcmdg"), ExtResource("3_tdm1w")])
-available_equip_list = Array[PackedScene]([ExtResource("4_26gra")])
+available_equip_list = Array[PackedScene]([ExtResource("4_26gra"), ExtResource("5_ot0sn"), ExtResource("6_iwb32")])
 
 [node name="Available" type="Node" parent="."]
 
