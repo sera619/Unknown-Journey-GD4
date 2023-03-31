@@ -12,6 +12,6 @@ object_name = "Schwert"
 reward_xp = 150
 start_text = "Hallo und Willkommen!
 Ich bin die gute Fee und wünsche dir viel Spaß beim spielen!
-Als erstes solltest du dir etwas zum Verteidigen suchen. Suche nach dem Schwert das ich vor ein paar Tagen in der Höhle, oben über den Bach."
+Als erstes solltest du dir etwas zum Verteidigen suchen. Suche nach dem Schwert das ich vor ein paar Tagen in der Höhle, oben über den Bach, gesehen habe."
 progress_text = "Hast du das Schwert gefunden?"
 complete_text = "Super du hast das Schwert! Komme wieder wenn du bereit bist weiter zu machen!"
