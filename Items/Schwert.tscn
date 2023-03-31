@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bci7hl2sl4fi0"]
+
+[ext_resource type="Script" path="res://Items/Item.gd" id="1_dodte"]
+[ext_resource type="Texture2D" uid="uid://gu0i7f7odlac" path="res://assets/items/Rusty Sword.png" id="2_1xxi6"]
+
+[node name="Schwert" type="Node"]
+script = ExtResource("1_dodte")
+item_name = "Schwert"
+item_icon = ExtResource("2_1xxi6")
+item_amount = 1
+item_max_amount = 1
+item_type = "Equip"
+item_description = "Ein altes Schwert, etwas rostig. Es ist nicht mehr sonderlich scharf aber es tut seine Dienste."
+item_damage = 6
