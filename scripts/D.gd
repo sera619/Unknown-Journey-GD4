@@ -76,7 +76,7 @@ func _save_profile_char_data(playername: String):
 		var json_string = JSON.stringify(node_data)
 		savegame.store_line(json_string)
 	
-	print("[Data]: Char-Savegame from player \"%s\"successfully saved!" % playername)
+	print("[Data]: Char-Savegame from player \"%s\" saved in profiles!" % playername)
 
 func _save_profile_inventory_data(playername: String):
 	if not _check_profile_exists(playername):
@@ -106,6 +106,8 @@ func _save_profile_inventory_data(playername: String):
 	var json_string = JSON.stringify(data)
 	var itemsave = FileAccess.open(savepath, FileAccess.WRITE)
 	itemsave.store_line(json_string)
+	print("[Data]: Inventory-Savegame from player \"%s\" saved in profiles!" % playername)
+
 
 func _load_profile_inventory_data(playername: String):
 	if not _check_profile_exists(playername):
@@ -170,6 +172,7 @@ func _check_profile_exists(playername: String) -> bool:
 func _create_profile_directory(playername: String):
 	if DirAccess.dir_exists_absolute(user_path+playername):
 		print("[Data]: Profile %s already exists!" % playername)
+		return
 	DirAccess.make_dir_absolute(user_path+playername)
 
 func _setup_profiles():
