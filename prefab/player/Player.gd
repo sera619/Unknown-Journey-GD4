@@ -10,6 +10,7 @@ class_name Player
 @export var levelup_effect_scene: PackedScene
 @export var dash_ghost_screne: PackedScene
 @export var heal_effect_scene: PackedScene
+@export var energie_effect_scene: PackedScene
 
 @export_category("Sound Scenes")
 @export var foodstep_a_scene: PackedScene
@@ -22,6 +23,7 @@ class_name Player
 @export_category("Shader Materials")
 @export var heal_shader: ShaderMaterial
 @export var dmg_shader: ShaderMaterial
+@export var energie_shader: ShaderMaterial
 
 enum { 
 	MOVE, ATTACK, HEAVY_ATTACK, DASH, HURT, DOUBLE_ATTACK
@@ -225,7 +227,7 @@ func _input_handler(_delta):
 	if Input.is_action_just_pressed("healthpotion") and stats.health < stats.MAX_HEALTH:
 		#use_health_potion()
 		_use_potion("Heiltrank")
-	if Input.is_action_just_pressed("energiepotion"):
+	if Input.is_action_just_pressed("energiepotion"):# and stats.level >= 3:
 		_use_potion("Energietrank")
 	
 	if Input.is_action_just_pressed("debug_key"):
@@ -342,29 +344,26 @@ func _use_potion(itemname: String):
 				var heal_effect = heal_effect_scene.instantiate()
 				self.add_child(heal_effect)
 				heal_effect.global_position = global_position
+				var sound = potion_sound_scene.instantiate()
+				self.add_child(sound)
 				switch_shader()
 			"Energietrank":
 				stats.set_energie(stats.energie + item.item_value)
+				var energie_effect = energie_effect_scene.instantiate()
+				self.add_child(energie_effect)
+				energie_effect.global_position = global_position
+				var sound = potion_sound_scene.instantiate()
+				self.add_child(sound)
+				switch_energie_shader()
 		InventoryManager.remove_item(itemname, 1)
-		var sound = potion_sound_scene.instantiate()
-		self.add_child(sound)
 	else:
 		return
 
-func use_health_potion():
-	if stats.player_inventory['Healthpot'] > 0:
-		stats.player_inventory['Healthpot'] -= 1
-		EventHandler.emit_signal("player_get_healthpot", stats.player_inventory['Healthpot'])
-		stats.heal_player(4)
-		var heal_effect = heal_effect_scene.instantiate()
-		self.add_child(heal_effect)
-		heal_effect.global_position = global_position
-		var sound = potion_sound_scene.instantiate()
-		self.add_child(sound)
-		switch_shader()
-	else:
-		return
-
+func switch_energie_shader():
+	bodySprite.material = energie_shader
+	await get_tree().create_timer(0.6).timeout
+	bodySprite.material = dmg_shader
+	
 func switch_shader():
 	bodySprite.material = heal_shader
 	print("[!] Player: Switch healshader")
