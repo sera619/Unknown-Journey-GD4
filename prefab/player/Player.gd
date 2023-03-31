@@ -225,13 +225,13 @@ func _input_handler(_delta):
 	if Input.is_action_just_pressed("healthpotion") and stats.health < stats.MAX_HEALTH:
 		#use_health_potion()
 		_use_potion("Heiltrank")
+	if Input.is_action_just_pressed("energiepotion"):
+		_use_potion("Energietrank")
 	
 	if Input.is_action_just_pressed("debug_key"):
 		#debuff_handler.get_debuff_effect(SkillManager.ELEMENT.POISON)
 		#EventHandler.emit_signal("player_sleep")
 		GameManager.save_data()
-	if Input.is_key_pressed(KEY_2):
-		InventoryManager.add_item("Heiltrank", 1)
 
 
 func move():
@@ -337,13 +337,15 @@ func _use_potion(itemname: String):
 		match itemname:
 			"Heiltrank":
 				stats.heal_player(item.item_value)
+				var heal_effect = heal_effect_scene.instantiate()
+				self.add_child(heal_effect)
+				heal_effect.global_position = global_position
+				switch_shader()
+			"Energietrank":
+				stats.set_energie(stats.energie + item.item_value)
 		InventoryManager.remove_item(itemname, 1)
-		var heal_effect = heal_effect_scene.instantiate()
-		self.add_child(heal_effect)
-		heal_effect.global_position = global_position
 		var sound = potion_sound_scene.instantiate()
 		self.add_child(sound)
-		switch_shader()
 	else:
 		return
 
