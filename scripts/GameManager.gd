@@ -56,7 +56,7 @@ func _set_game_settings(settings: Dictionary):
 	AudioServer.set_bus_volume_db(1, settings['audio_music'])
 	AudioServer.set_bus_volume_db(2, settings['audio_sfx'])
 	AudioServer.set_bus_volume_db(3, settings['audio_menu'])
-	#AudioServer.set_bus_mute(3, settings['musicmute'])
+	AudioServer.set_bus_mute(3, settings['musicmute'])
 	if settings['fullscreen'] == true:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	else:
@@ -193,14 +193,6 @@ func set_player_name(player_name: String):
 		return
 	self.new_player_name = player_name
 	print("[!] GameManager: New playername set to \"%s\"" % player_name)
-
-
-func _create_player_profile(playername: String):
-	var path = "user://%s/" % playername
-	if not DirAccess.dir_exists_absolute(path):
-		DirAccess.make_dir_absolute(path)
-	else:
-		return
 
 
 func savegame_exists() -> bool:
