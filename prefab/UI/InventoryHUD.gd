@@ -159,4 +159,4 @@ func _on_change_button_button_up():
 			self.equip_amount.text = ""
 			self.change_btn.disabled = false
 		if equip.item_type == "Equip":
-			self.equip_type.text = "Ausrüstung"
+			self.equip_type.text = "%s Scaden" % equip.item_damage
