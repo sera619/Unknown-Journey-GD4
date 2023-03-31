@@ -119,7 +119,7 @@ func _equip_item(equipname: String):
 		if equip_item.item_equipped:
 			equip_item.item_equipped = false
 	equip.item_equipped = true
-	GameManager.info_box.set_info_text("[center]Du hast\n\n[color=red]%s[/color]\n\nausgerüstet![/center]" %  [equip.item_name])
+	#GameManager.info_box.set_info_text("[center]Du hast\n\n[color=red]%s[/color]\n\nausgerüstet![/center]" %  [equip.item_name])
 	EventHandler.emit_signal("player_inventory_equip_changed", equip)
 
 func load_inventory():
