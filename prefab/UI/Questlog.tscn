@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cc4dqpbjt2x3y"]
+[gd_scene load_steps=16 format=3 uid="uid://cc4dqpbjt2x3y"]
 
 [ext_resource type="Script" path="res://prefab/UI/Questlog.gd" id="1_1cm83"]
 [ext_resource type="Texture2D" uid="uid://b01dlyko5c35h" path="res://assets/UI/checkmark.png" id="2_dho6n"]
@@ -24,10 +24,6 @@ texture_margin_right = 16.0
 texture_margin_bottom = 16.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hsxut"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ucbfq"]
-bg_color = Color(0.6, 0.0431373, 0, 1)
-border_color = Color(0.8, 0.8, 0.8, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tenl8"]
 bg_color = Color(0.933333, 0.505882, 0, 0.403922)
@@ -130,7 +126,6 @@ theme_override_fonts/font = ExtResource("6_vpgom")
 theme_override_font_sizes/font_size = 8
 theme_override_styles/panel = SubResource("StyleBoxTexture_ottsb")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_hsxut")
-theme_override_styles/selected = SubResource("StyleBoxFlat_ucbfq")
 theme_override_styles/selected_focus = SubResource("StyleBoxFlat_tenl8")
 theme_override_styles/cursor = SubResource("StyleBoxTexture_autf3")
 allow_reselect = true
