@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://ce8ia1r58oopy"]
+
+[ext_resource type="Script" path="res://Items/Item.gd" id="1_hu4ay"]
+[ext_resource type="Texture2D" uid="uid://hmapibrgsupj" path="res://assets/items/Eis-Schwert.png" id="2_bp54y"]
+
+[node name="Eisschwert" type="Node"]
+script = ExtResource("1_hu4ay")
+item_name = "Eisschwert"
+item_icon = ExtResource("2_bp54y")
+item_max_amount = 1
+item_type = "Equip"
+item_description = "Eine frostige Klinge. Der Griff ist so kalt, das deine Hand langsam taub wird."
+item_damage = 10

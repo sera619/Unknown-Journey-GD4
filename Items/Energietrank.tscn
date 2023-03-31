@@ -9,6 +9,7 @@ item_name = "Energietrank"
 item_icon = ExtResource("2_2hmqq")
 item_max_amount = 10
 item_type = "Consumable"
+item_description = "Eine blaue Flüssigkeit, mit Korken verschlossen. Stellt 2 deiner Energiepunkte wieder her."
 item_price = 60
 item_sellprice = 20
 item_value = 2
