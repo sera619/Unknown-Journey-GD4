@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bdjnceh2b5es"]
+[gd_scene load_steps=10 format=3 uid="uid://bdjnceh2b5es"]
 
 [ext_resource type="Script" path="res://prefab/itemdrops/ItemDrop.gd" id="1_ng7xm"]
 [ext_resource type="Texture2D" uid="uid://bkiw8qsmbvtow" path="res://assets/Shadows/SmallShadow.png" id="2_oc8p5"]
 [ext_resource type="Texture2D" uid="uid://cwyj4dbu7ekrg" path="res://assets/items/coin-sheet.png" id="3_xkyq0"]
+[ext_resource type="PackedScene" uid="uid://bchvi3ge3woi" path="res://prefab/audio/ItemDropSound.tscn" id="4_bekjj"]
+[ext_resource type="PackedScene" uid="uid://3ke52rknu6gw" path="res://prefab/audio/QuestPickupSound.tscn" id="5_gtfok"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xh0m3"]
 radius = 6.0
@@ -100,6 +102,8 @@ item_image = ExtResource("3_xkyq0")
 shadow_image = ExtResource("2_oc8p5")
 item_type = 3
 amount = 10
+item_drop_sound = ExtResource("4_bekjj")
+quest_pick_sound = ExtResource("5_gtfok")
 
 [node name="Shadow" type="Sprite2D" parent="."]
 texture = ExtResource("2_oc8p5")
