@@ -15,8 +15,12 @@ class_name Item
 @export var item_price: int
 @export var item_sellprice: int
 
-@export_category("Consumable")
+@export_category("Consumable Settings")
 @export var item_value: int
+
+@export_category("Equip Settings")
+@export var item_damage: int
+@export var item_equipped: bool
 
 
 func reset():
