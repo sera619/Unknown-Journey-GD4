@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://crp1sf2d47gln"]
+
+[ext_resource type="AudioStream" uid="uid://cbjqbjobxxj5q" path="res://assets/Music and Sounds/sword_slash.wav" id="1_au6qg"]
+[ext_resource type="Script" path="res://prefab/audio/SoundEffect.gd" id="1_k2bsp"]
+
+[node name="SoundEffect" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_au6qg")
+volume_db = -52.185
+bus = &"PlayerSFX"
+script = ExtResource("1_k2bsp")
