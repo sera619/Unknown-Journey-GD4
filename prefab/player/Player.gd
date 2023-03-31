@@ -235,8 +235,8 @@ func _input_handler(_delta):
 		#EventHandler.emit_signal("player_sleep")
 		GameManager.save_data()
 
-	if Input.is_key_pressed(KEY_4):
-		InventoryManager.add_equip("Schwert")
+#	if Input.is_key_pressed(KEY_4):
+#		InventoryManager.add_equip("Schwert")
 
 func move():
 	if !is_alive:
