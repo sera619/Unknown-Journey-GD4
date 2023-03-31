@@ -1,0 +1,119 @@
+[gd_scene load_steps=18 format=3 uid="uid://7cggqvy0gsec"]
+
+[ext_resource type="Script" path="res://prefab/effects/Effect.gd" id="1_i70j4"]
+[ext_resource type="Texture2D" uid="uid://dh02o1wjqap1u" path="res://assets/Effects/energie_tornado-export.png" id="2_6dthq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_agsx0"]
+atlas = ExtResource("2_6dthq")
+region = Rect2(0, 0, 210, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ljutn"]
+atlas = ExtResource("2_6dthq")
+region = Rect2(210, 0, 210, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fma82"]
+atlas = ExtResource("2_6dthq")
+region = Rect2(420, 0, 210, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ejaor"]
+atlas = ExtResource("2_6dthq")
+region = Rect2(630, 0, 210, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dkstl"]
+atlas = ExtResource("2_6dthq")
+region = Rect2(840, 0, 210, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vdipq"]
+atlas = ExtResource("2_6dthq")
+region = Rect2(1050, 0, 210, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jtcvp"]
+atlas = ExtResource("2_6dthq")
+region = Rect2(1260, 0, 210, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i5414"]
+atlas = ExtResource("2_6dthq")
+region = Rect2(1470, 0, 210, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pxbgv"]
+atlas = ExtResource("2_6dthq")
+region = Rect2(1680, 0, 210, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e4rka"]
+atlas = ExtResource("2_6dthq")
+region = Rect2(1890, 0, 210, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cmmh5"]
+atlas = ExtResource("2_6dthq")
+region = Rect2(2100, 0, 210, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yddri"]
+atlas = ExtResource("2_6dthq")
+region = Rect2(2310, 0, 210, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w1ypd"]
+atlas = ExtResource("2_6dthq")
+region = Rect2(2520, 0, 210, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u2xfk"]
+atlas = ExtResource("2_6dthq")
+region = Rect2(2730, 0, 210, 200)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kioi7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_agsx0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ljutn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fma82")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ejaor")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dkstl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vdipq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jtcvp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i5414")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pxbgv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e4rka")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cmmh5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yddri")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w1ypd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u2xfk")
+}],
+"loop": false,
+"name": &"animate",
+"speed": 12.0
+}]
+
+[node name="HitEffect" type="Node2D"]
+script = ExtResource("1_i70j4")
+
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+sprite_frames = SubResource("SpriteFrames_kioi7")
+animation = &"animate"
+offset = Vector2(0, -64)
