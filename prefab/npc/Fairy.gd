@@ -105,6 +105,8 @@ func complete_quest_1():
 	GameManager.dialog_box.option_a_btn.disconnect("button_down", complete_quest_1)
 	if QuestManager.current_quest.title == "Das Schwert":
 		GameManager.player.stats.has_sword = true
+		InventoryManager.add_equip("Schwert")
+		InventoryManager._equip_item("Schwert")
 		GameManager.player.set_sprite(1)
 		GameManager.current_world.info_trigger.queue_free()
 		GameManager.interface.newskill_hud.set_skill_text("Normaler Angriff", "Du hast ein\n\nSchwert gefunden.\n\nDu kannst jetzt\n\nnormale Angriffe ausführen.\n\nDrücke die Taste \"Space\"!")
