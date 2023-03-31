@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://c6mrqxqq142ct"]
+[gd_scene load_steps=11 format=3 uid="uid://dwcxmhhwc8oua"]
 
-[ext_resource type="Script" path="res://prefab/itemdrops/ItemDrop.gd" id="1_peejx"]
-[ext_resource type="PackedScene" uid="uid://bchvi3ge3woi" path="res://prefab/audio/ItemDropSound.tscn" id="2_6ykf1"]
-[ext_resource type="Texture2D" uid="uid://bkiw8qsmbvtow" path="res://assets/Shadows/SmallShadow.png" id="2_si46e"]
-[ext_resource type="Texture2D" uid="uid://ds24kcdfflu2t" path="res://assets/items/Practice Sword.png" id="3_807nx"]
-[ext_resource type="PackedScene" uid="uid://3ke52rknu6gw" path="res://prefab/audio/QuestPickupSound.tscn" id="3_jklxc"]
+[ext_resource type="Script" path="res://prefab/itemdrops/ItemDrop.gd" id="1_xex4j"]
+[ext_resource type="Texture2D" uid="uid://hmapibrgsupj" path="res://assets/items/Eis-Schwert.png" id="2_dpew3"]
+[ext_resource type="Texture2D" uid="uid://bkiw8qsmbvtow" path="res://assets/Shadows/SmallShadow.png" id="2_igp74"]
+[ext_resource type="Texture2D" uid="uid://ds24kcdfflu2t" path="res://assets/items/Practice Sword.png" id="3_fy66f"]
+[ext_resource type="PackedScene" uid="uid://bchvi3ge3woi" path="res://prefab/audio/ItemDropSound.tscn" id="4_b3ljx"]
+[ext_resource type="PackedScene" uid="uid://3ke52rknu6gw" path="res://prefab/audio/QuestPickupSound.tscn" id="5_grkd6"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xh0m3"]
 radius = 6.0
@@ -72,16 +73,21 @@ _data = {
 }
 
 [node name="ItemDropBase" type="Node2D" groups=["interactive_object"]]
-script = ExtResource("1_peejx")
-item_drop_sound = ExtResource("2_6ykf1")
-quest_pick_sound = ExtResource("3_jklxc")
+script = ExtResource("1_xex4j")
+item_name = "Eisschwert"
+item_image = ExtResource("2_dpew3")
+shadow_image = ExtResource("2_igp74")
+item_type = 4
+amount = 1
+item_drop_sound = ExtResource("4_b3ljx")
+quest_pick_sound = ExtResource("5_grkd6")
 
 [node name="Shadow" type="Sprite2D" parent="."]
-texture = ExtResource("2_si46e")
+texture = ExtResource("2_igp74")
 
 [node name="Body" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("3_807nx")
+texture = ExtResource("3_fy66f")
 offset = Vector2(0, -64)
 
 [node name="Area2D" type="Area2D" parent="."]

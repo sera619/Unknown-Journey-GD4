@@ -6,12 +6,13 @@ signal interaction_finished()
 @export var item_name: String
 @export var item_image: Texture2D
 @export var shadow_image: Texture2D
-@export_enum('Normal', 'Consumable', 'Quest', 'Gold') var item_type: int
+@export_enum('Normal', 'Consumable', 'Quest', 'Gold', "Equip") var item_type: int
 @export var quest_id: int
 @export var amount: int
 @export var despawn_time: int
 @export_category("Sound Settings")
-@export var potiondrop_sound_scene: PackedScene
+@export var item_drop_sound: PackedScene
+@export var quest_pick_sound: PackedScene
 
 @onready var pickup_zone: Area2D = $Area2D 
 @onready var shadow_sprite: Sprite2D = $Shadow
@@ -27,10 +28,10 @@ func _ready():
 		body_sprite.hframes = 16
 	pickup_zone.connect("area_entered", pickup)
 	animplayer.play("loop")
-	if item_type == 0:
-		if potiondrop_sound_scene != null:
-			var sound = potiondrop_sound_scene.instantiate()
-			get_tree().current_scene.add_child(sound)
+	if item_drop_sound != null:
+		var sound = item_drop_sound.instantiate()
+		get_tree().current_scene.add_child(sound)
+	if item_type == 1:
 		body_sprite.scale = Vector2(0.35, 0.35)
 		coll_shape.shape.height = 10
 		coll_shape.shape.radius = 3
@@ -51,6 +52,8 @@ func pickup(area):
 		return
 	if item_type == 2:
 		if QuestManager.current_quest and QuestManager.current_quest.title == "Das Schwert":
+			var sound = quest_pick_sound.instantiate()
+			get_tree().current_scene.add_child(sound)
 			QuestManager.current_quest.add_item()
 	elif item_type == 0:
 		if item_name:
@@ -60,6 +63,9 @@ func pickup(area):
 			InventoryManager.add_item(item_name, amount)
 	elif item_type == 3:
 		GameManager.player.stats.set_gold(GameManager.player.stats.gold + amount)
+	elif item_type == 4:
+		if item_name:
+			InventoryManager.add_equip(item_name)
 	self.call_deferred("queue_free")
 
 

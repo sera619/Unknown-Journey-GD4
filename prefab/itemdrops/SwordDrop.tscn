@@ -1,10 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://yax4y6kq0hp8"]
+[gd_scene load_steps=13 format=3 uid="uid://yax4y6kq0hp8"]
 
 [ext_resource type="Script" path="res://prefab/itemdrops/ItemDrop.gd" id="1_tkcx5"]
 [ext_resource type="Texture2D" uid="uid://gu0i7f7odlac" path="res://assets/items/Rusty Sword.png" id="2_emle2"]
 [ext_resource type="Texture2D" uid="uid://bkiw8qsmbvtow" path="res://assets/Shadows/SmallShadow.png" id="2_gmcol"]
 [ext_resource type="Texture2D" uid="uid://ds24kcdfflu2t" path="res://assets/items/Practice Sword.png" id="3_dblpi"]
+[ext_resource type="PackedScene" uid="uid://bchvi3ge3woi" path="res://prefab/audio/ItemDropSound.tscn" id="4_83641"]
 [ext_resource type="Texture2D" uid="uid://p5qjf6yxjhlo" path="res://assets/Materials/ParticleTextures/light.png" id="5_5tau8"]
+[ext_resource type="PackedScene" uid="uid://3ke52rknu6gw" path="res://prefab/audio/QuestPickupSound.tscn" id="5_opork"]
 [ext_resource type="Script" path="res://prefab/player/PlayerLight.gd" id="6_p4ltp"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xh0m3"]
@@ -79,6 +81,8 @@ item_image = ExtResource("2_emle2")
 shadow_image = ExtResource("2_gmcol")
 item_type = 2
 quest_id = 3
+item_drop_sound = ExtResource("4_83641")
+quest_pick_sound = ExtResource("5_opork")
 
 [node name="Shadow" type="Sprite2D" parent="."]
 texture = ExtResource("2_gmcol")
