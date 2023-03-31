@@ -47,6 +47,7 @@ var dmg_label: RichTextLabel = null
 
 
 func _ready():
+	EventHandler.connect("player_inventory_equip_changed", _change_equip)
 	if not parent:
 		parent = get_parent().name
 	if dmg_label_path:
@@ -57,6 +58,12 @@ func _ready():
 		GameManager.game.new_game = false
 	else: 
 		apply_loaded_stats()
+
+func _change_equip(equip: Item):
+	if not equip.item_type == "Equip":
+		return
+	self.set_max_damage(equip.item_damage)
+	self.set_damage(equip.item_damage)
 
 
 func set_default_stats():
