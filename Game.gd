@@ -32,7 +32,6 @@ const TELEPORT_SPAWN_LOCATIONS: Dictionary = {
 var teleport_spawn_location: Vector2 = Vector2.ZERO
 var world_shadow = null
 
-
 func _development_start():
 	new_game = true
 	GameManager.selected_playername = "Sera"
@@ -43,7 +42,6 @@ func _development_start():
 
 func _process(delta):
 	G.delta = delta
-
 
 func _ready():
 	GameManager.register_node(self)
@@ -86,8 +84,6 @@ func _on_show_world_shadow():
 	GameManager.current_world.map_container.move_child(shadow, shadow.get_index()-1)
 	world_shadow = shadow
 	print("[!] Game: Shadow succesfully applied!")
-	
-
 
 func switch_gamelevel(levelname: String):
 	if levelname not in LevelScenes:

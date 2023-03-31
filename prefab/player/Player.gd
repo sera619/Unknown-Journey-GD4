@@ -227,7 +227,7 @@ func _input_handler(_delta):
 	if Input.is_action_just_pressed("healthpotion") and stats.health < stats.MAX_HEALTH:
 		#use_health_potion()
 		_use_potion("Heiltrank")
-	if Input.is_action_just_pressed("energiepotion"):# and stats.level >= 3:
+	if Input.is_action_just_pressed("energiepotion") and stats.level >= 3:
 		_use_potion("Energietrank")
 	
 	if Input.is_action_just_pressed("debug_key"):
