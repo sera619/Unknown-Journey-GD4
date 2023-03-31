@@ -126,9 +126,10 @@ offset_bottom = 47.0
 scale = Vector2(0.5, 0.5)
 
 [node name="InventoryHUD" parent="." instance=ExtResource("18_p0ljd")]
-offset_left = 167.0
+visible = false
+offset_left = 156.0
 offset_top = 24.0
-offset_right = 125.0
+offset_right = 136.0
 
 [node name="InfoBox" parent="." instance=ExtResource("5_1eql3")]
 visible = false
