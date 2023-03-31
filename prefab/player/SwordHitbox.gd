@@ -50,7 +50,7 @@ func set_attack_type(new_type: String):
 			set_sword_damage(normal_dmg)
 		"Heavy":
 			attack_type = Type.HEAVY
-			set_sword_damage(normal_dmg * 1.3)
+			set_sword_damage(normal_dmg + 2)
 		"Double":
 			attack_type = Type.DOUBLE
-			set_sword_damage(normal_dmg * 1.15)
+			set_sword_damage(normal_dmg + 1)
