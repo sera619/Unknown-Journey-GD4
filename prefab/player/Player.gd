@@ -421,6 +421,8 @@ func _play_move_sound():
 func _play_run_sound():
 	sound_controller._play_run_sound()
 
+func _play_attack_sound():
+	sound_controller._play_attack_sound()
 
 func _on_dash_timer_timeout():
 	can_dash = true

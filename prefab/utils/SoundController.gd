@@ -6,6 +6,7 @@ class_name SoundController
 @onready var run_player: = $RunSound
 @onready var impact_player:  = $ImpactPlayer 
 @onready var cast_player: = $CastPlayer
+@onready var attack_player: = $AttackPlayer
 @onready var timer: = $Timer 
 
 enum CONNECT_STATE {
@@ -19,7 +20,8 @@ var c_state = CONNECT_STATE.NONE
 const MOVEMENT: Dictionary = {
 	"Player": {
 		"Move": preload("res://assets/Music and Sounds/foodsteps/HeavyDirt1.wav"),
-		"Run": preload("res://assets/Music and Sounds/foodsteps/HeavyDirtRun1.wav")
+		"Run": preload("res://assets/Music and Sounds/foodsteps/HeavyDirtRun1.wav"),
+		"Attack": preload("res://assets/Music and Sounds/sword_slash.wav")
 	},
 	"Enemys": {
 		"WingFlap": preload("res://assets/Music and Sounds/wing_fap.wav"),
@@ -38,6 +40,7 @@ func _setup_sounds(character: String):
 		"Player":
 			move_player.stream = MOVEMENT.Player.Move
 			run_player.stream =	MOVEMENT.Player.Run
+			attack_player.stream = MOVEMENT.Player.Attack
 		"FlyingEnemy":
 			move_player.stream = MOVEMENT.Enemys.WingFlap
 		"Skeleton":
@@ -51,6 +54,10 @@ func _play_spell_cast_sound(element):
 			cast_player.stream = SPELL_CAST.Ice
 	cast_player.play()
 
+func _play_attack_sound():
+	if attack_player.playing:
+		attack_player.stop()
+	attack_player.play()
 
 func _play_food_sound():
 	if run_player.playing:

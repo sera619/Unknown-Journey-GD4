@@ -21,5 +21,9 @@ bus = &"PlayerSFX"
 max_distance = 156.0
 bus = &"PlayerSFX"
 
+[node name="AttackPlayer" type="AudioStreamPlayer2D" parent="."]
+max_distance = 156.0
+bus = &"PlayerSFX"
+
 [node name="Timer" type="Timer" parent="."]
 one_shot = true

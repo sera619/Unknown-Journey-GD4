@@ -167,9 +167,15 @@ tracks/2/path = NodePath(".")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.9),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.1, 0.5, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1),
 "values": [{
+"args": [],
+"method": &"_play_attack_sound"
+}, {
+"args": [],
+"method": &"_play_attack_sound"
+}, {
 "args": [],
 "method": &"attack_animation_finished"
 }]
@@ -221,9 +227,15 @@ tracks/2/path = NodePath(".")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.9),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.1, 0.5, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1),
 "values": [{
+"args": [],
+"method": &"_play_attack_sound"
+}, {
+"args": [],
+"method": &"_play_attack_sound"
+}, {
 "args": [],
 "method": &"attack_animation_finished"
 }]
@@ -275,9 +287,15 @@ tracks/2/path = NodePath(".")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.9),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.1, 0.5, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1),
 "values": [{
+"args": [],
+"method": &"_play_attack_sound"
+}, {
+"args": [],
+"method": &"_play_attack_sound"
+}, {
 "args": [],
 "method": &"attack_animation_finished"
 }]
@@ -329,9 +347,15 @@ tracks/2/path = NodePath(".")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.9),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.1, 0.5, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1),
 "values": [{
+"args": [],
+"method": &"_play_attack_sound"
+}, {
+"args": [],
+"method": &"_play_attack_sound"
+}, {
 "args": [],
 "method": &"attack_animation_finished"
 }]
@@ -383,9 +407,12 @@ tracks/2/path = NodePath(".")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.5),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.1, 0.5),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
+"args": [],
+"method": &"_play_attack_sound"
+}, {
 "args": [],
 "method": &"attack_animation_finished"
 }]
@@ -437,9 +464,12 @@ tracks/2/path = NodePath(".")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.5),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.1, 0.5),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
+"args": [],
+"method": &"_play_attack_sound"
+}, {
 "args": [],
 "method": &"attack_animation_finished"
 }]
@@ -491,9 +521,12 @@ tracks/2/path = NodePath(".")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.5),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.1, 0.5),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
+"args": [],
+"method": &"_play_attack_sound"
+}, {
 "args": [],
 "method": &"attack_animation_finished"
 }]
@@ -545,9 +578,12 @@ tracks/2/path = NodePath(".")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.5),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.1, 0.5),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
+"args": [],
+"method": &"_play_attack_sound"
+}, {
 "args": [],
 "method": &"attack_animation_finished"
 }]
@@ -2336,6 +2372,7 @@ text = "[center]
 
 [node name="SwordHolder" type="Marker2D" parent="."]
 position = Vector2(0, -12)
+rotation = 3.14159
 
 [node name="SwordHitbox" type="Area2D" parent="SwordHolder" groups=["playerSword"]]
 position = Vector2(0, 20)
