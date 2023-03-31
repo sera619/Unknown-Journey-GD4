@@ -69,7 +69,7 @@ func start_dialog_writing():
 	option_b_btn.visible = false
 	writing = true
 	tween = get_tree().create_tween().bind_node(self).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
-	tween.tween_property(dialog_label, "visible_ratio", 1.0, 3)
+	tween.tween_property(dialog_label, "visible_ratio", 1.0, 1.5)
 	tween.tween_callback(self._disable_writing)
 	
 	tween.tween_callback(tween.kill)

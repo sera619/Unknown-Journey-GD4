@@ -110,8 +110,7 @@ theme_override_font_sizes/font_size = 8
 text = "Dialog Text"
 horizontal_alignment = 1
 autowrap_mode = 3
-visible_characters = 0
-visible_ratio = 0.0
+visible_ratio = -0.0909091
 
 [node name="H" type="HBoxContainer" parent="BG/M/v"]
 layout_mode = 2
