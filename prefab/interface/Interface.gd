@@ -23,7 +23,6 @@ var showinfo = true
 func _ready():
 	GameManager.register_node(self)
 	EventHandler.connect("start_transition", start_transition)
-	
 
 func _show_alphainfo():
 	if not showinfo:
@@ -32,8 +31,6 @@ func _show_alphainfo():
 	await get_tree().create_timer(3).timeout
 	var info = alpha_info_scene.instantiate()
 	self.add_child(info)
-
-
 
 func _input(event):
 	if GameManager.on_main_menu == true or self.dev_console == true:
@@ -68,7 +65,6 @@ func hide_ui():
 	exp_hud.hide()
 	dialog_box.hide_dialog()
 	dot_hud.hide()
-	
 
 func start_transition():
 	animplayer.play("start_transition")
