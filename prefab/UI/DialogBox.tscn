@@ -1,12 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://4pvo7rk61tca"]
+[gd_scene load_steps=9 format=3 uid="uid://4pvo7rk61tca"]
 
 [ext_resource type="Texture2D" uid="uid://cqfo8k23gm0vc" path="res://assets/UI/text-paper.png" id="1_072pi"]
 [ext_resource type="Script" path="res://prefab/UI/DialogBox.gd" id="1_wpdax"]
 [ext_resource type="Texture2D" uid="uid://bpt7n5fbi8xg5" path="res://assets/UI/text-box.png" id="2_gc03s"]
 [ext_resource type="FontFile" uid="uid://bddtsccx0qour" path="res://assets/UI/Fonts/dogicapixel.otf" id="3_8igrc"]
-[ext_resource type="Texture2D" uid="uid://dnmhbqlysi5ph" path="res://assets/UI/red-button-normal.png" id="4_yk304"]
-[ext_resource type="Texture2D" uid="uid://cgoomtgcn04sq" path="res://assets/UI/red-button-pressed.png" id="5_gqvv4"]
-[ext_resource type="Texture2D" uid="uid://cl20mjeo1aqyx" path="res://assets/UI/red-button-hover.png" id="6_8ggnf"]
+[ext_resource type="Texture2D" uid="uid://cefc0kofjjbtu" path="res://assets/UI/big-red-button-normal-export.png" id="5_1ljqf"]
+[ext_resource type="Texture2D" uid="uid://cvqmjd6jh0jma" path="res://assets/UI/big-red-button-pressed-export.png" id="6_0aymn"]
+[ext_resource type="Texture2D" uid="uid://bnhgifjigfyny" path="res://assets/UI/big-red-button-hover-export.png" id="7_5ugpu"]
+[ext_resource type="Texture2D" uid="uid://dg8totcenq1rk" path="res://assets/UI/big-button_disabled-export.png" id="8_761dx"]
 
 [node name="DialogBox" type="Control"]
 process_mode = 3
@@ -110,7 +111,8 @@ theme_override_font_sizes/font_size = 8
 text = "Dialog Text"
 horizontal_alignment = 1
 autowrap_mode = 3
-visible_ratio = -0.0909091
+visible_characters = 0
+visible_ratio = 0.0
 
 [node name="H" type="HBoxContainer" parent="BG/M/v"]
 layout_mode = 2
@@ -121,9 +123,10 @@ size_flags_stretch_ratio = 0.75
 [node name="DialogOptionABtn" type="TextureButton" parent="BG/M/v/H"]
 layout_mode = 2
 size_flags_horizontal = 3
-texture_normal = ExtResource("4_yk304")
-texture_pressed = ExtResource("5_gqvv4")
-texture_hover = ExtResource("6_8ggnf")
+texture_normal = ExtResource("5_1ljqf")
+texture_pressed = ExtResource("6_0aymn")
+texture_hover = ExtResource("7_5ugpu")
+texture_disabled = ExtResource("8_761dx")
 
 [node name="Label" type="Label" parent="BG/M/v/H/DialogOptionABtn"]
 layout_mode = 1
@@ -147,9 +150,10 @@ vertical_alignment = 1
 [node name="DialogOptionBBtn" type="TextureButton" parent="BG/M/v/H"]
 layout_mode = 2
 size_flags_horizontal = 3
-texture_normal = ExtResource("4_yk304")
-texture_pressed = ExtResource("5_gqvv4")
-texture_hover = ExtResource("6_8ggnf")
+texture_normal = ExtResource("5_1ljqf")
+texture_pressed = ExtResource("6_0aymn")
+texture_hover = ExtResource("7_5ugpu")
+texture_disabled = ExtResource("8_761dx")
 
 [node name="Label" type="Label" parent="BG/M/v/H/DialogOptionBBtn"]
 layout_mode = 1
