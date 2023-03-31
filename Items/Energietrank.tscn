@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://sa1iwjudqfss"]
+
+[ext_resource type="Script" path="res://Items/Item.gd" id="1_w7aa8"]
+[ext_resource type="Texture2D" uid="uid://b3ndqir8hkt88" path="res://assets/items/Mana Potion.png" id="2_2hmqq"]
+
+[node name="Energietrank" type="Node"]
+script = ExtResource("1_w7aa8")
+item_name = "Energietrank"
+item_icon = ExtResource("2_2hmqq")
+item_max_amount = 10
+item_type = "Consumable"
+item_price = 60
+item_sellprice = 20
+item_value = 2
