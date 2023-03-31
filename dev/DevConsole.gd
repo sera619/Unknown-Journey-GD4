@@ -96,8 +96,7 @@ func _on_add_xp_button_up():
 
 func _on_add_h_pot_btn_button_up():
 	if ps:
-		ps.player_inventory['Healthpot'] += int(hin.text)
-		EventHandler.emit_signal("player_get_healthpot", ps.player_inventory['Healthpot'])
+		InventoryManager.add_item("Heiltrank", int(hin.text))
 #		print("[DEV] Console: Add %s + HP pot to player!" % hin.text)
 		infolabel.text = "Add %s + Health Pot" % hin.text
 	else:
@@ -105,8 +104,7 @@ func _on_add_h_pot_btn_button_up():
 
 func _on_add_e_pot_btn_button_up():
 	if ps:
-		ps.player_inventory['Energiepot'] += int(ein.text)
-		EventHandler.emit_signal("player_get_energiepot", ps.player_inventory['Energiepot'])
+		InventoryManager.add_item("Energietrank", int(ein.text))
 		infolabel.text = "Add %s + Energie Pot" % ein.text
 	else:
 		print("[DEV] No stats currently loaded!")
@@ -184,8 +182,7 @@ func _on_remove_exp_button_up():
 
 func _on_rhpot_btn_button_up():
 	if ps:
-		ps.player_inventory['Healthpot'] -= int(hin.text)
-		EventHandler.emit_signal("player_get_healthpot", ps.player_inventory['Healthpot'])
+		InventoryManager.remove_item("Heiltrank", int(hin.text))
 #		print("[DEV] Console: Add %s + HP pot to player!" % hin.text)
 		infolabel.text = "Remove %s + Health Pot" % hin.text
 	else:
@@ -193,8 +190,7 @@ func _on_rhpot_btn_button_up():
 
 func _on_repot_btn_button_up():
 	if ps:
-		ps.player_inventory['Energiepot'] -= int(ein.text)
-		EventHandler.emit_signal("player_get_energiepot", ps.player_inventory['Energiepot'])
+		InventoryManager.remove_item("Energietrank", int(ein.text))
 		infolabel.text = "Remove %s + Energie Pot" % ein.text
 	else:
 		print("[DEV] No stats currently loaded!")
