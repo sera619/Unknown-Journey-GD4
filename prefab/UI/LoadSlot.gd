@@ -12,6 +12,7 @@ func _ready():
 	del_slot_btn.connect("button_up", _delete_slot)
 	load_slot_btn.connect("button_up", _load_slot)
 
+
 func _set_slot_information(playername: String, playerlevel: String):
 	slot_playername = playername
 	namelabel.text="%s" % playername
@@ -26,6 +27,11 @@ func _delete_slot():
 		GameManager.interface.load_menu._refresh_loadmenu()
 
 func _load_slot():
+	EventHandler.connect("transition_black", _load_game)
+	EventHandler.emit_signal("start_transition")
+
+func _load_game():
 	var data = D._load_profile_char_data(slot_playername)
 	GameManager.selected_playername = slot_playername
 	GameManager.game._load_profile_game(data)
+
