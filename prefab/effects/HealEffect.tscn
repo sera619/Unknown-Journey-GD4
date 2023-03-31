@@ -116,6 +116,4 @@ script = ExtResource("1_ub5on")
 scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_35l6t")
 animation = &"animate"
-frame = 13
-frame_progress = 1.0
 offset = Vector2(0, -64)
