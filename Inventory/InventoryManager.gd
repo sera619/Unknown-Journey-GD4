@@ -68,7 +68,7 @@ func remove_item(itemname: String, amount: int):
 		return
 	item = current.get_node(itemname)
 	item.item_amount -= amount
-	if item.item_amount < 0:
+	if item.item_amount == 0:
 		item.item_amount = 0
 		current.remove_child(item)
 		available.add_child(item)
