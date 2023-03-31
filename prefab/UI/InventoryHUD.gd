@@ -28,10 +28,12 @@ func _ready():
 	item_header.add_theme_color_override("font_color", GameManager.COLORS.orange_text)
 	item_des.add_theme_color_override("font_color", GameManager.COLORS.blue_text)
 	item_amount.add_theme_color_override("font_color", GameManager.COLORS.green_text)
-	equip_type.add_theme_color_override("font_color", GameManager.COLORS.orange_text)
+	equip_type.add_theme_color_override("font_color", GameManager.COLORS.lightgreen_text)
 	equip_name.add_theme_color_override("font_color", GameManager.COLORS.orange_text)
 	equip_des.add_theme_color_override("font_color", GameManager.COLORS.blue_text)
 	equip_amount.add_theme_color_override("font_color", GameManager.COLORS.green_text)
+	#equip_list.add_theme_color_override("font_color", GameManager.COLORS.orange_text)
+	equip_list.add_theme_color_override("font_selected_color", GameManager.COLORS.blue_text)
 
 func hide_inventory():
 	self._reset_item_information()
@@ -51,6 +53,7 @@ func _show_equip_panel():
 	bag_panel.visible = false
 
 func _show_bag_panel():
+	self._reset_item_information()
 	equip_btn.button_pressed = false
 	bag_btn.button_pressed = true
 	equip_panel.visible = false
@@ -89,7 +92,6 @@ func _on_item_list_empty_clicked(_at_position, _mouse_button_index):
 	self._reset_item_information()
 	item_list.deselect_all()
 
-
 # TOGGLE BUTTONS
 func _on_bag_btn_toggled(button_pressed):
 	if button_pressed:
@@ -111,10 +113,11 @@ func _update_equip_hud():
 	var count = 0
 	equip_list.clear()
 	for equip in InventoryManager.current_equip.get_children():
+		equip_list.add_item(equip.item_name, equip.item_icon)
 		if equip.item_equipped:
-			equip_list.add_item(equip.item_name, check_icon)
+			equip_list.set_item_custom_fg_color(count, GameManager.COLORS.lightgreen_text)
 		else:
-			equip_list.add_item(equip.item_name)
+			equip_list.set_item_custom_fg_color(count, GameManager.COLORS.orange_text)
 		equip_list.set_item_tooltip_enabled(count, false)
 		count += 1
 
@@ -139,7 +142,6 @@ func _on_equip_list_item_selected(index):
 func _on_equip_list_empty_clicked(_at_position, _mouse_button_index):
 	self._reset_equip_information()
 	equip_list.deselect_all()
-
 
 func _on_change_button_button_up():
 	var selected = equip_list.get_selected_items()

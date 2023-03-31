@@ -125,6 +125,11 @@ offset_right = -91.0
 offset_bottom = 47.0
 scale = Vector2(0.5, 0.5)
 
+[node name="InventoryHUD" parent="." instance=ExtResource("18_p0ljd")]
+offset_left = 167.0
+offset_top = 24.0
+offset_right = 125.0
+
 [node name="InfoBox" parent="." instance=ExtResource("5_1eql3")]
 visible = false
 anchors_preset = 10
@@ -187,9 +192,3 @@ color = Color(0, 0, 0, 1)
 libraries = {
 "": SubResource("AnimationLibrary_yur8n")
 }
-
-[node name="InventoryHUD" parent="." instance=ExtResource("18_p0ljd")]
-offset_left = 167.0
-offset_top = 24.0
-offset_right = 125.0
-offset_bottom = 92.0
