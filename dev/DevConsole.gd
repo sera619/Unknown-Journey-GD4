@@ -21,6 +21,7 @@ const NORMCOLOR = Color(0.16470588743687, 0.99215686321259, 1)
 @onready var ein = $BG/MarginContainer/MainPanel/Panel/RV/ein
 @onready var dmgin = $BG/MarginContainer/MainPanel/Panel/RV/dmgin
 @onready var mdmgin = $BG/MarginContainer/MainPanel/Panel/RV/mdmgin
+@onready var goldin = $BG/MarginContainer/MainPanel/Panel/RV/goldin
 @onready var infolabel = $BG/MarginContainer/MainPanel/InfoLabel
 
 var ps: Stats = null
@@ -50,7 +51,7 @@ func _check_key(key: String):
 
 func show_mainpanel():
 	passinput.text = ""
-	self.size.y = 235
+	self.size.y = 272
 	main_panel.visible = true
 	pass_view.visible = false
 
@@ -210,3 +211,12 @@ func _on_rmdmg_btn_button_up():
 		print("[DEV] No stats currently loaded!")
 
 
+func _on_rm_gold_btn_button_up():
+	if ps:
+		ps.set_gold(ps.gold - int(goldin.text))
+		infolabel.text = "Remove %s Gold" % goldin.text
+		
+func _on_add_gold_btn_button_up():
+	if ps:
+		ps.set_gold(ps.gold + int(goldin.text))
+		infolabel.text = "Add %s Gold" % goldin.text
