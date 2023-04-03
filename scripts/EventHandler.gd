@@ -29,6 +29,7 @@ signal player_get_healthpot(value)
 signal player_get_energiepot(value)
 signal player_gold_changed(value)
 signal player_maxgold_changed(value)
+signal player_set_interact(mode)
 
 signal player_inventory_item_changed(item)
 signal player_inventory_equip_changed(equip)
