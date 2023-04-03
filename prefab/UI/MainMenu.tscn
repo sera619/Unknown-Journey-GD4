@@ -3,11 +3,11 @@
 [ext_resource type="Texture2D" uid="uid://cxcioix0e3f74" path="res://assets/UI/menu/rpg3.png" id="1_3jww1"]
 [ext_resource type="Script" path="res://prefab/UI/MainMenu.gd" id="1_iuelm"]
 [ext_resource type="Texture2D" uid="uid://dek50oixsuepp" path="res://assets/UI/NoPixelart/GameLogo.png" id="3_g2obs"]
-[ext_resource type="Texture2D" uid="uid://dnmhbqlysi5ph" path="res://assets/UI/red-button-normal.png" id="3_oee0x"]
-[ext_resource type="Texture2D" uid="uid://cgoomtgcn04sq" path="res://assets/UI/red-button-pressed.png" id="4_kgy32"]
-[ext_resource type="Texture2D" uid="uid://cl20mjeo1aqyx" path="res://assets/UI/red-button-hover.png" id="5_mg7gt"]
+[ext_resource type="Texture2D" uid="uid://cefc0kofjjbtu" path="res://assets/UI/big-red-button-normal-export.png" id="4_gr38b"]
+[ext_resource type="Texture2D" uid="uid://cvqmjd6jh0jma" path="res://assets/UI/big-red-button-pressed-export.png" id="5_0gs6k"]
 [ext_resource type="FontFile" uid="uid://bddtsccx0qour" path="res://assets/UI/Fonts/dogicapixel.otf" id="6_tuy52"]
-[ext_resource type="Texture2D" uid="uid://6py808jaoso2" path="res://assets/UI/button_disabled.png" id="7_aupgx"]
+[ext_resource type="Texture2D" uid="uid://bnhgifjigfyny" path="res://assets/UI/big-red-button-hover-export.png" id="6_yk7wl"]
+[ext_resource type="Texture2D" uid="uid://dg8totcenq1rk" path="res://assets/UI/big-button_disabled-export.png" id="7_8pb5h"]
 [ext_resource type="PackedScene" uid="uid://b6jxsguuegoo4" path="res://prefab/UI/NamePopup.tscn" id="8_rvqfg"]
 [ext_resource type="PackedScene" uid="uid://d2qg587omjywm" path="res://prefab/UI/OptionPanel.tscn" id="10_jramj"]
 [ext_resource type="PackedScene" uid="uid://b2vjb6d6ok5vr" path="res://prefab/UI/LoadMenu.tscn" id="11_5oxx5"]
@@ -54,79 +54,79 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("NamePopup:visible")
+tracks/3/path = NodePath("Panel/M:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"update": 0,
+"values": [Vector2(-156, 25)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("NamePopup:modulate")
+tracks/4/path = NodePath("Panel/Logo:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 0)]
+"values": [Vector2(70, 0)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Panel/M:visible")
+tracks/5/path = NodePath("OptionPanel:modulate")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Panel/M:position")
+tracks/6/path = NodePath("OptionPanel:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-156, 25)]
+"values": [Vector2(80, 185)]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("Panel/Logo:position")
+tracks/7/path = NodePath("LoadMenu:size")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(70, 0)]
+"values": [Vector2(360, 180)]
 }
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("NamePopup:position")
+tracks/8/path = NodePath("Panel/M:visible")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(207, 65)]
+"update": 1,
+"values": [true]
 }
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("OptionPanel:modulate")
+tracks/9/path = NodePath("NamePopup:modulate")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
@@ -134,42 +134,6 @@ tracks/9/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 0)]
-}
-tracks/10/type = "value"
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/path = NodePath("OptionPanel:visible")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/11/type = "value"
-tracks/11/imported = false
-tracks/11/enabled = true
-tracks/11/path = NodePath("OptionPanel:position")
-tracks/11/interp = 1
-tracks/11/loop_wrap = true
-tracks/11/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(80, 185)]
-}
-tracks/12/type = "value"
-tracks/12/imported = false
-tracks/12/enabled = true
-tracks/12/path = NodePath("LoadMenu:size")
-tracks/12/interp = 1
-tracks/12/loop_wrap = true
-tracks/12/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(360, 180)]
 }
 
 [sub_resource type="Animation" id="Animation_b1qet"]
@@ -406,74 +370,74 @@ length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("NamePopup:modulate")
+tracks/0/path = NodePath("NamePopup:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1, 2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("NamePopup:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("NamePopup:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.8, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(207, 65), Vector2(88, 65)]
+}
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Panel/M:visible")
+tracks/2/path = NodePath("Panel/M:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0, 1.2),
 "transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
+"update": 0,
+"values": [Vector2(0, 25), Vector2(-136, 25)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Panel/M:modulate")
+tracks/3/path = NodePath("Panel/M:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+"update": 1,
+"values": [true, false]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("NamePopup:position")
+tracks/4/path = NodePath("Panel/M:modulate")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0.8, 2),
+"times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(207, 65), Vector2(81, 65)]
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Panel/M:position")
+tracks/5/path = NodePath("NamePopup:modulate")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 1.2),
+"times": PackedFloat32Array(1, 2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, 25), Vector2(-136, 25)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_rnj0e"]
@@ -558,74 +522,74 @@ length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("NamePopup:modulate")
+tracks/0/path = NodePath("NamePopup:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1, 2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("NamePopup:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("NamePopup:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(88, 65), Vector2(207, 65)]
+}
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Panel/M:visible")
+tracks/2/path = NodePath("Panel/M:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
+"times": PackedFloat32Array(0.8, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-136, 25), Vector2(0, 25)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("NamePopup:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Panel/M:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
 }
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Panel/M:modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 1, 2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("NamePopup:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 1.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(81, 65), Vector2(207, 65)]
-}
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Panel/M:position")
+tracks/5/path = NodePath("Panel/M:modulate")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0.8, 2),
+"times": PackedFloat32Array(1, 2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(-136, 25), Vector2(0, 25)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_q3luf"]
@@ -724,7 +688,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_iuelm")
-metadata/_edit_horizontal_guides_ = [-34.0]
+metadata/_edit_horizontal_guides_ = [-50.0]
 
 [node name="Panel" type="TextureRect" parent="."]
 layout_mode = 1
@@ -753,7 +717,6 @@ patch_margin_bottom = 91
 axis_stretch_vertical = 1
 
 [node name="M" type="MarginContainer" parent="Panel"]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -776,10 +739,10 @@ alignment = 2
 
 [node name="MMStartBtn" type="TextureButton" parent="Panel/M/V"]
 layout_mode = 2
-texture_normal = ExtResource("3_oee0x")
-texture_pressed = ExtResource("4_kgy32")
-texture_hover = ExtResource("5_mg7gt")
-texture_disabled = ExtResource("7_aupgx")
+texture_normal = ExtResource("4_gr38b")
+texture_pressed = ExtResource("5_0gs6k")
+texture_hover = ExtResource("6_yk7wl")
+texture_disabled = ExtResource("7_8pb5h")
 
 [node name="Label" type="Label" parent="Panel/M/V/MMStartBtn"]
 layout_mode = 1
@@ -799,10 +762,10 @@ vertical_alignment = 1
 
 [node name="MMLoadBtn" type="TextureButton" parent="Panel/M/V"]
 layout_mode = 2
-texture_normal = ExtResource("3_oee0x")
-texture_pressed = ExtResource("4_kgy32")
-texture_hover = ExtResource("5_mg7gt")
-texture_disabled = ExtResource("7_aupgx")
+texture_normal = ExtResource("4_gr38b")
+texture_pressed = ExtResource("5_0gs6k")
+texture_hover = ExtResource("6_yk7wl")
+texture_disabled = ExtResource("7_8pb5h")
 
 [node name="Label" type="Label" parent="Panel/M/V/MMLoadBtn"]
 layout_mode = 1
@@ -823,10 +786,10 @@ vertical_alignment = 1
 
 [node name="MMOptionBtn" type="TextureButton" parent="Panel/M/V"]
 layout_mode = 2
-texture_normal = ExtResource("3_oee0x")
-texture_pressed = ExtResource("4_kgy32")
-texture_hover = ExtResource("5_mg7gt")
-texture_disabled = ExtResource("7_aupgx")
+texture_normal = ExtResource("4_gr38b")
+texture_pressed = ExtResource("5_0gs6k")
+texture_hover = ExtResource("6_yk7wl")
+texture_disabled = ExtResource("7_8pb5h")
 
 [node name="Label" type="Label" parent="Panel/M/V/MMOptionBtn"]
 layout_mode = 1
@@ -847,10 +810,10 @@ vertical_alignment = 1
 
 [node name="MMExitBtn" type="TextureButton" parent="Panel/M/V"]
 layout_mode = 2
-texture_normal = ExtResource("3_oee0x")
-texture_pressed = ExtResource("4_kgy32")
-texture_hover = ExtResource("5_mg7gt")
-texture_disabled = ExtResource("7_aupgx")
+texture_normal = ExtResource("4_gr38b")
+texture_pressed = ExtResource("5_0gs6k")
+texture_hover = ExtResource("6_yk7wl")
+texture_disabled = ExtResource("7_8pb5h")
 
 [node name="Label" type="Label" parent="Panel/M/V/MMExitBtn"]
 layout_mode = 1
@@ -869,24 +832,7 @@ text = "Ende
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="NamePopup" parent="." instance=ExtResource("8_rvqfg")]
-visible = false
-modulate = Color(1, 1, 1, 0)
-layout_mode = 1
-anchors_preset = -1
-anchor_left = -0.118112
-anchor_top = 0.016668
-anchor_right = -0.118112
-anchor_bottom = 0.016668
-offset_left = 244.796
-offset_top = 61.9998
-offset_right = 639.592
-offset_bottom = 286.0
-scale = Vector2(0.4, 0.4)
-metadata/_edit_use_anchors_ = true
-
 [node name="OptionPanel" parent="." instance=ExtResource("10_jramj")]
-visible = false
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 offset_left = 80.0
@@ -895,11 +841,20 @@ offset_right = 80.0
 offset_bottom = 185.0
 
 [node name="LoadMenu" parent="." instance=ExtResource("11_5oxx5")]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 1
-offset_left = 69.5
+offset_left = 320.0
 offset_top = 65.0
-offset_right = 109.5
+offset_right = 360.0
 offset_bottom = 65.0
+
+[node name="NamePopup" parent="." instance=ExtResource("8_rvqfg")]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+offset_left = 207.0
+offset_top = 65.0
+offset_right = 175.0
+offset_bottom = 45.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
