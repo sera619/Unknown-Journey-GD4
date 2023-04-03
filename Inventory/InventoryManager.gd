@@ -123,6 +123,7 @@ func _equip_item(equipname: String):
 	EventHandler.emit_signal("player_inventory_equip_changed", equip)
 
 func load_inventory():
+	self.reset_items()
 	var data = D._load_profile_inventory_data(GameManager.player.stats.playername)
 	if data:
 		for loaded_item in data['inv_list']:
