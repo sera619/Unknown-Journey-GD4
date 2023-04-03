@@ -6,7 +6,7 @@
 [node name="Game" type="Node"]
 script = ExtResource("1_ds55b")
 run_type = 1
-dev_start_map = "CityShop"
+dev_start_map = "City"
 
 [node name="Interface" parent="." instance=ExtResource("2_f3qs3")]
 

@@ -2372,7 +2372,6 @@ text = "[center]
 
 [node name="SwordHolder" type="Marker2D" parent="."]
 position = Vector2(0, -12)
-rotation = 3.14159
 
 [node name="SwordHitbox" type="Area2D" parent="SwordHolder" groups=["playerSword"]]
 position = Vector2(0, 20)
