@@ -3,7 +3,7 @@
 [resource]
 bus/0/volume_db = -0.130497
 bus/1/name = &"PlayerSFX"
-bus/1/solo = true
+bus/1/solo = false
 bus/1/mute = false
 bus/1/bypass_fx = false
 bus/1/volume_db = -5.625
@@ -18,5 +18,5 @@ bus/3/name = &"MenuSFX"
 bus/3/solo = false
 bus/3/mute = false
 bus/3/bypass_fx = false
-bus/3/volume_db = -10.0741
+bus/3/volume_db = -0.526013
 bus/3/send = &"MenuSFX 2"
