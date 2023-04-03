@@ -46,6 +46,7 @@ var dot_damage: int = 0
 var can_dash: bool = true
 var can_teleport: bool = true
 var can_attack: bool = true
+var can_interact: bool = true
 
 @onready var animPlayer = $AnimationPlayer
 @onready var animTree = $AnimationTree
@@ -75,6 +76,7 @@ func _ready():
 	combat_timer.connect("timeout", combat_timer_timeout)
 	hit_timer.connect("timeout", hit_timer_timeout)
 	EventHandler.connect("player_level_up", create_levelup_effect)
+	EventHandler.connect("player_set_interact", _set_interact)
 	if stats.has_sword:
 		set_sprite(1)
 	else:
@@ -93,7 +95,8 @@ func _auto_save():
 	await get_tree().create_timer(1).timeout
 	GameManager.save_data()
 
-
+func _set_interact(mode: bool):
+	can_interact = mode
 
 func _process(_delta):
 	G.player = self
@@ -122,6 +125,8 @@ func _physics_process(delta):
 func move_state(delta):
 	var input_vector = Vector2.ZERO
 	if not GameManager.interface.dev_console:
+		if not can_interact:
+			return
 		input_vector.x = Input.get_axis("move_left", "move_right")
 		input_vector.y = Input.get_axis("move_up", "move_down")
 		input_vector = input_vector.normalized()
@@ -172,7 +177,7 @@ func move_state(delta):
 	_input_handler(delta)
 
 func _input_handler(_delta):
-	if GameManager.interface.dev_console == true:
+	if GameManager.interface.dev_console == true or not can_interact:
 		return
 	
 	if Input.is_action_just_pressed("dash") and not is_dashing and stats.level > 1 and can_dash:
