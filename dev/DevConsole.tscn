@@ -10,7 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 205.0
 offset_right = 115.0
-offset_bottom = -47.0
+offset_bottom = 92.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.5, 0.5)
@@ -37,7 +37,6 @@ theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
 [node name="MainPanel" type="VBoxContainer" parent="BG/MarginContainer"]
-visible = false
 layout_mode = 2
 theme_override_constants/separation = 2
 alignment = 1
@@ -131,6 +130,13 @@ theme_override_fonts/font = ExtResource("1_7ftg0")
 theme_override_font_sizes/font_size = 8
 text = "+ Mdmg"
 
+[node name="AddGoldBtn" type="Button" parent="BG/MarginContainer/MainPanel/Panel/LV"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.882353, 0, 1)
+theme_override_fonts/font = ExtResource("1_7ftg0")
+theme_override_font_sizes/font_size = 8
+text = "+ G"
+
 [node name="RV" type="VBoxContainer" parent="BG/MarginContainer/MainPanel/Panel"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -202,6 +208,14 @@ text = "1"
 alignment = 1
 max_length = 2
 
+[node name="goldin" type="LineEdit" parent="BG/MarginContainer/MainPanel/Panel/RV"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_7ftg0")
+theme_override_font_sizes/font_size = 8
+text = "1"
+alignment = 1
+max_length = 3
+
 [node name="VBoxContainer" type="VBoxContainer" parent="BG/MarginContainer/MainPanel/Panel"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -263,6 +277,13 @@ theme_override_fonts/font = ExtResource("1_7ftg0")
 theme_override_font_sizes/font_size = 8
 text = "- Mdmg"
 
+[node name="rmGoldBtn" type="Button" parent="BG/MarginContainer/MainPanel/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_7ftg0")
+theme_override_font_sizes/font_size = 8
+text = "- G"
+
 [node name="H" type="HBoxContainer" parent="BG/MarginContainer/MainPanel"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -303,6 +324,7 @@ theme_override_font_sizes/font_size = 8
 text = "Exit"
 
 [node name="PassView" type="VBoxContainer" parent="BG/MarginContainer"]
+visible = false
 layout_mode = 2
 theme_override_constants/separation = 11
 alignment = 1
@@ -362,6 +384,7 @@ text = "Close"
 [connection signal="button_up" from="BG/MarginContainer/MainPanel/Panel/LV/AddEPotBtn" to="." method="_on_add_e_pot_btn_button_up"]
 [connection signal="button_up" from="BG/MarginContainer/MainPanel/Panel/LV/AddDmgBtn" to="." method="_on_add_dmg_btn_button_up"]
 [connection signal="button_up" from="BG/MarginContainer/MainPanel/Panel/LV/AddMDmgBtn" to="." method="_on_add_m_dmg_btn_button_up"]
+[connection signal="button_up" from="BG/MarginContainer/MainPanel/Panel/LV/AddGoldBtn" to="." method="_on_add_gold_btn_button_up"]
 [connection signal="button_up" from="BG/MarginContainer/MainPanel/Panel/VBoxContainer/RlvlBtn" to="." method="_on_rlvl_btn_button_up"]
 [connection signal="button_up" from="BG/MarginContainer/MainPanel/Panel/VBoxContainer/RHpBtn" to="." method="_on_r_hp_btn_button_up"]
 [connection signal="button_up" from="BG/MarginContainer/MainPanel/Panel/VBoxContainer/RmhpBtn" to="." method="_on_rmhp_btn_button_up"]
@@ -370,6 +393,7 @@ text = "Close"
 [connection signal="button_up" from="BG/MarginContainer/MainPanel/Panel/VBoxContainer/repotBtn" to="." method="_on_repot_btn_button_up"]
 [connection signal="button_up" from="BG/MarginContainer/MainPanel/Panel/VBoxContainer/rdmgBtn" to="." method="_on_rdmg_btn_button_up"]
 [connection signal="button_up" from="BG/MarginContainer/MainPanel/Panel/VBoxContainer/rmdmgBtn" to="." method="_on_rmdmg_btn_button_up"]
+[connection signal="button_up" from="BG/MarginContainer/MainPanel/Panel/VBoxContainer/rmGoldBtn" to="." method="_on_rm_gold_btn_button_up"]
 [connection signal="button_up" from="BG/MarginContainer/MainPanel/H/SpawnBtn" to="." method="_on_spawn_btn_button_up"]
 [connection signal="button_up" from="BG/MarginContainer/MainPanel/H/CharBtn" to="." method="_on_char_btn_button_up"]
 [connection signal="button_up" from="BG/MarginContainer/MainPanel/H2/ExitBtn" to="." method="_on_exit_btn_button_up"]
