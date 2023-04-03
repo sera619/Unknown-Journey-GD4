@@ -186,15 +186,18 @@ func _on_back_btn_button_up():
 
 func _on_sfx_slider_value_changed(value):
 	audio_sfx_label.text = "%s DB" % floor(value)
+	AudioServer.set_bus_volume_db(1, value)
 
 func _on_music_slider_value_changed(value):
 	audio_music_label.text = "%s DB" % floor(value)
 
 func _on_menu_slider_value_changed(value):
 	audio_menu_label.text = "%s DB" % floor(value)
+	AudioServer.set_bus_volume_db(2, value)
 
 func _on_all_audio_slider_value_changed(value):
 	audio_all_label.text = "%s DB" % floor(value)
+	AudioServer.set_bus_volume_db(0,value)
 
 func _on_audio_btn_button_up():
 	_show_audio_panel()
