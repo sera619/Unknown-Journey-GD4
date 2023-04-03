@@ -837,8 +837,8 @@ modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 offset_left = 80.0
 offset_top = 185.0
-offset_right = 80.0
-offset_bottom = 185.0
+offset_right = 240.0
+offset_bottom = 275.0
 
 [node name="LoadMenu" parent="." instance=ExtResource("11_5oxx5")]
 modulate = Color(1, 1, 1, 0)

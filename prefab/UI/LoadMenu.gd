@@ -11,6 +11,10 @@ func _initialize_loadmenu():
 		profile_container.add_child(slot)
 		slot._set_slot_information(profile['playername'], str(profile['level']))
 
+func _create_btn_click_sound():
+	var sound = GameManager.interface.button_click_sound.instantiate()
+	self.add_child(sound)
+
 func _reset_loadmenu():
 	if not profile_container.get_child_count() > 0:
 		return
@@ -30,6 +34,7 @@ func _refresh_loadmenu():
 	_initialize_loadmenu()
 
 func _on_load_btn_button_up():
+	_create_btn_click_sound()
 	if GameManager.on_main_menu:
 		_reset_loadmenu()
 		GameManager.main_menu.anim_player.play("load-menu")

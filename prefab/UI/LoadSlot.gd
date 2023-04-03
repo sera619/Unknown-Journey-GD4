@@ -12,6 +12,9 @@ func _ready():
 	del_slot_btn.connect("button_up", _delete_slot)
 	load_slot_btn.connect("button_up", _load_slot)
 
+func _create_btn_click_sound():
+	var sound = GameManager.interface.button_click_sound.instantiate()
+	self.add_child(sound)
 
 func _set_slot_information(playername: String, playerlevel: String):
 	slot_playername = playername
@@ -19,7 +22,7 @@ func _set_slot_information(playername: String, playerlevel: String):
 	levellabel.text ="%s" % playerlevel
 
 func _delete_slot():
-	print("Slotdel clicked")
+	_create_btn_click_sound()
 	D._delete_profile(slot_playername)
 	if GameManager.on_main_menu:
 		GameManager.main_menu.loadpanel._refresh_loadmenu()
@@ -27,6 +30,7 @@ func _delete_slot():
 		GameManager.interface.load_menu._refresh_loadmenu()
 
 func _load_slot():
+	_create_btn_click_sound()
 	EventHandler.connect("transition_black", _load_game)
 	EventHandler.emit_signal("start_transition")
 

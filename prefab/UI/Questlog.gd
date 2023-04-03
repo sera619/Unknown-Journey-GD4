@@ -16,6 +16,9 @@ func _ready():
 	$Panel/M/V/NinePatchRect/Header.add_theme_color_override("font_color", GameManager.COLORS.lightgreen_text)
 	quest_description.add_theme_color_override("font_color", GameManager.COLORS.blue_text)
 
+func _create_btn_click_sound():
+	var sound = GameManager.interface.button_click_sound.instantiate()
+	self.add_child(sound)
 
 func show_log():
 	load_quest_infos()
@@ -46,6 +49,7 @@ func load_quest_infos():
 func _on_item_list_item_selected(index):
 #	if not list_node.is_item_selectable(index):
 #		return
+	_create_btn_click_sound()
 	list_node.deselect_all()
 	list_node.select(index)
 	var quest_name = list_node.get_item_text(index)
@@ -70,6 +74,7 @@ func reset_information_text():
 
 
 func _on_ok_btn_button_down():
+	_create_btn_click_sound()
 	hide_log()
 
 

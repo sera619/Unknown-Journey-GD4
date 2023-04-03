@@ -12,21 +12,25 @@ func _ready():
 
 
 func _on_mm_start_btn_button_down():
+	_create_btn_click_sound()
 	print("[!] MainMenu: Start Btn clicked")
 	GameManager.interface.showinfo = true
 	anim_player.play("menu-name")
 
 	
 func _on_mm_load_btn_button_down():
+	_create_btn_click_sound()
 	print("[!] MainMenu: Load Btn clicked")
 	loadpanel._initialize_loadmenu()
 	anim_player.play("menu-load")
 
 func _on_mm_option_btn_button_down():
+	_create_btn_click_sound()
 	print("[!] MainMenu: Option Btn clicked")
 	anim_player.play("menu-option")
 
 func _on_mm_exit_btn_button_down():
+	_create_btn_click_sound()
 	print("[!] MainMenu: Exit Btn clicked")
 	get_tree().quit()
 
@@ -49,13 +53,20 @@ func _input(event):
 				else:
 					loadpanel.hide_loadmenu()
 
+func _create_btn_click_sound():
+	var sound = GameManager.interface.button_click_sound.instantiate()
+	self.add_child(sound)
+
 # Name Buttons
 func _on_ok_btn_button_down():
+	_create_btn_click_sound()
 	GameManager.set_player_name(namepopup.nameinput.text)
 	namepopup.nameinput.text = ""
 	EventHandler.connect("transition_black", start_new)
 	EventHandler.emit_signal("start_transition")
 
 func _on_cancel_btn_button_down():
+	_create_btn_click_sound()
 	namepopup.nameinput.text = ""
 	anim_player.play("name-menu")
+

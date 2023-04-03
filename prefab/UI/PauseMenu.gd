@@ -18,6 +18,10 @@ func _input(event):
 		else:
 			showpause()
 
+func _create_btn_click_sound():
+	var sound = GameManager.interface.button_click_sound.instatiate()
+	self.add_child(sound)
+
 func showpause():
 	self.visible = true
 	var sound = pause_sound_scene.instantiate()

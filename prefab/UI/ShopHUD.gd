@@ -35,6 +35,10 @@ func _ready():
 	player_item_amount_label.add_theme_color_override("font_color", GameManager.COLORS.orange_text)
 	panel_header.add_theme_color_override("font_color", GameManager.COLORS.lightgreen_text)
 
+func _create_btn_click_sound():
+	var sound = GameManager.interface.button_click_sound.instantiate()
+	self.add_child(sound)
+
 func _reset_buy_information():
 	itemname_label.text = ""
 	itemdes_label.text = ""
@@ -64,6 +68,7 @@ func hide_shop():
 	EventHandler.emit_signal("player_set_interact", true)
 
 func _on_back_btn_button_up():
+	_create_btn_click_sound()
 	hide_shop()
 
 func setup_shop(itemlist, npc):
@@ -79,6 +84,7 @@ func setup_shop(itemlist, npc):
 	show_shop()
 
 func _increase_amount():
+	_create_btn_click_sound()
 	var selected = item_list.get_selected_items()
 	var item = current.get_node_or_null(item_list.get_item_text(selected[0]))
 	var player_items = InventoryManager.current.get_node(item.item_name).item_amount
@@ -94,6 +100,7 @@ func _increase_amount():
 			amount_up_btn.disabled = true
 
 func _decrease_amount():
+	_create_btn_click_sound()
 	var selected = item_list.get_selected_items()
 	var item = current.get_node_or_null(item_list.get_item_text(selected[0]))
 	if buy_amount > 1:
@@ -108,6 +115,7 @@ func _decrease_amount():
 
 
 func _buy_item():
+	_create_btn_click_sound()
 	var selected = item_list.get_selected_items()
 	var item = current.get_node_or_null(item_list.get_item_text(selected[0]))
 	InventoryManager.add_item(item.item_name, buy_amount)
@@ -127,6 +135,7 @@ func _check_player_gold() -> bool:
 	return false
 
 func _on_item_list_item_selected(index):
+	_create_btn_click_sound()
 	_reset_buy_information()
 	var item_name = item_list.get_item_text(index)
 	var item: Item = current.get_node_or_null(item_name)

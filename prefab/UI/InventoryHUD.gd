@@ -74,6 +74,7 @@ func _reset_item_information():
 	item_des.text = ""
 
 func _on_item_list_item_selected(index):
+	_create_btn_click_sound()
 	item_list.deselect_all()
 	item_list.select(index)
 	var item_name = item_list.get_item_text(index) 
@@ -86,6 +87,7 @@ func _on_item_list_item_selected(index):
 		item_amount.text = "%s / %s" % [item.item_amount, item.item_max_amount]
 
 func _on_ok_btn_button_up():
+	_create_btn_click_sound()
 	self.hide_inventory()
 
 func _on_item_list_empty_clicked(_at_position, _mouse_button_index):
@@ -94,10 +96,12 @@ func _on_item_list_empty_clicked(_at_position, _mouse_button_index):
 
 # TOGGLE BUTTONS
 func _on_bag_btn_toggled(button_pressed):
+	_create_btn_click_sound()
 	if button_pressed:
 		_show_bag_panel()
 
 func _on_equip_btn_toggled(button_pressed):
+	_create_btn_click_sound()
 	if button_pressed:
 		_show_equip_panel()
 
@@ -122,6 +126,7 @@ func _update_equip_hud():
 		count += 1
 
 func _on_equip_list_item_selected(index):
+	_create_btn_click_sound()
 	equip_list.deselect_all()
 	equip_list.select(index)
 	var equipname = equip_list.get_item_text(index)
@@ -143,7 +148,13 @@ func _on_equip_list_empty_clicked(_at_position, _mouse_button_index):
 	self._reset_equip_information()
 	equip_list.deselect_all()
 
+func _create_btn_click_sound():
+	var sound = GameManager.interface.button_click_sound.instantiate()
+	self.add_child(sound)
+
+
 func _on_change_button_button_up():
+	_create_btn_click_sound()
 	var selected = equip_list.get_selected_items()
 	selected = equip_list.get_item_text(selected[0])
 	#print(selected)

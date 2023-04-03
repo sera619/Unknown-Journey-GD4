@@ -36,6 +36,10 @@ func show_charpanel():
 		gold_label.text = "%s / %s" % [s.gold, s.MAX_GOLD]
 	visible = true
 
+func _create_btn_click_sound():
+	var sound = GameManager.interface.button_click_sound.instantiate()
+	self.add_child(sound)
+
 func update_max_exp(new_max_exp):
 	if GameManager.player != null:
 		exp_label.text = "%s / %s" % [GameManager.player.stats.experience, new_max_exp]
@@ -88,4 +92,5 @@ func hide_charpanel():
 
 
 func _on_ok_btn_button_down():
+	_create_btn_click_sound()
 	hide_charpanel()

@@ -37,6 +37,10 @@ func _ready():
 	#self.video_btn.disabled = true
 	self.hide()
 
+func _create_btn_click_sound():
+	var sound = GameManager.interface.button_click_sound.instantiate()
+	self.add_child(sound)
+
 func _reset_panels():
 	self.audio_panel.show()
 	self.video_panel.hide()
@@ -166,6 +170,7 @@ func _show_key_panel():
 	self.key_panel.show()
 
 func _on_okay_btn_button_up():
+	_create_btn_click_sound()
 	if self.audio_panel.visible:
 		self._update_audio_all()
 		self._update_audio_menu()
@@ -179,6 +184,7 @@ func _on_okay_btn_button_up():
 		self.hide()
 
 func _on_back_btn_button_up():
+	_create_btn_click_sound()
 	if GameManager.on_main_menu:
 		GameManager.main_menu.anim_player.play_backwards("menu-option")
 	else:
@@ -201,22 +207,28 @@ func _on_all_audio_slider_value_changed(value):
 	AudioServer.set_bus_volume_db(0,value)
 
 func _on_audio_btn_button_up():
+	_create_btn_click_sound()
 	_show_audio_panel()
 	
 func _on_video_btn_button_up():
+	_create_btn_click_sound()
 	_show_video_panel()
 	
 func _on_key_btn_button_up():
+	_create_btn_click_sound()
 	_show_key_panel()
 
 # screen size button
 func _on_check_button_button_up():
+	_create_btn_click_sound()
 	_update_window_mode()
 
 
 func _on_check_button_2_button_up():
+	_create_btn_click_sound()
 	_update_vsync_mode()
 
 
 func _on_m_mute_btn_button_up():
+	_create_btn_click_sound()
 	_update_music_mute()

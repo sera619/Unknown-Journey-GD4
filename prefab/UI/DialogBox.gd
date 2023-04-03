@@ -33,6 +33,10 @@ func reset_dialog():
 		tween.stop()
 		tween.kill()
 
+func _create_btn_click_sound():
+	var sound = GameManager.interface.button_click_sound.instantiate()
+	self.add_child(sound)
+
 func set_dialog_text(text: String, activate_quest:int = 0):
 	if activate_quest != 0:
 		self.quest_to_activate = int(activate_quest)
@@ -79,6 +83,7 @@ func hide_dialog():
 	self.hide()
 
 func _on_dialog_option_b_btn_button_down():
+	_create_btn_click_sound()
 	print("[!] DialogBox: Option B: \"%s\" choosed!" % option_b_label.text)
 	reset_dialog()
 	if self.current_speaker != null:
@@ -92,6 +97,7 @@ func _on_dialog_option_b_btn_button_down():
 
 
 func _on_dialog_option_a_btn_button_down():
+	_create_btn_click_sound()
 	print("[!] DialogBox: Option A: \"%s\" choosed!" % option_a_label.text)
 	reset_dialog()
 	if self.current_speaker != null:
