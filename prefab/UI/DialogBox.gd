@@ -40,8 +40,8 @@ func set_dialog_text(text: String, activate_quest:int = 0):
 
 func set_speaker(speaker: NPCBase):
 	current_speaker = speaker 
-	speakername_label.text = speaker.name
-	print("[!] Dialog: Set speaker to %s" % speaker.name)
+	speakername_label.text = speaker.npc_name
+	print("[!] Dialog: Set speaker to %s" % speaker.npc_name)
 
 func set_options_text(optionA: String, optionB: String):
 	option_a_label.text = optionA
