@@ -103,9 +103,9 @@ func _update_music_mute():
 
 func _set_current_audio_values():
 	var all = AudioServer.get_bus_volume_db(0)
-	var music = AudioServer.get_bus_volume_db(1)
-	var sfx = AudioServer.get_bus_volume_db(2)
-	var menu = AudioServer.get_bus_volume_db(3)
+	var music = AudioServer.get_bus_volume_db(3)
+	var sfx = AudioServer.get_bus_volume_db(1)
+	var menu = AudioServer.get_bus_volume_db(2)
 	GameManager.current_game_options["audio_all"] = all
 	GameManager.current_game_options['audio_music'] = music
 	GameManager.current_game_options['audio_sfx'] = sfx
@@ -190,10 +190,11 @@ func _on_sfx_slider_value_changed(value):
 
 func _on_music_slider_value_changed(value):
 	audio_music_label.text = "%s DB" % floor(value)
+	AudioServer.set_bus_volume_db(3, value)
 
 func _on_menu_slider_value_changed(value):
 	audio_menu_label.text = "%s DB" % floor(value)
-	AudioServer.set_bus_volume_db(2, value)
+	AudioServer.set_bus_volume_db(3, value)
 
 func _on_all_audio_slider_value_changed(value):
 	audio_all_label.text = "%s DB" % floor(value)
