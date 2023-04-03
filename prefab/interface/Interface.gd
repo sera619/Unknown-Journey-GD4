@@ -1,9 +1,15 @@
 extends CanvasLayer
 class_name Interface
 
+@export_category("Dev Settings")
 @export var show_devpanel: bool
 @export var dev_console_scene: PackedScene
 @export var alpha_info_scene: PackedScene
+
+@export_category("Sound Settings")
+@export_group("UI Sound Scenes")
+@export var button_click_sound: PackedScene
+
 var dev_console: bool = false
 @onready var qlog = $Questlog
 @onready var animplayer = $AnimationPlayer
