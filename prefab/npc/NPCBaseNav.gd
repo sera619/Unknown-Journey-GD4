@@ -3,7 +3,7 @@ class_name NPCNav
 
 @export_category("NPC Navigation")
 @export var MIN_DISTANCE_TARGET: float = 4.0
-@export var PATH_DISTANCE: float = 4.0
+@export var PATH_DISTANCE: float = 10.0
 @export var MIN_WAIT_TIME: int = 2
 @export var MAX_WAIT_TIME: int = 5
 @export var MOVE_POINT_CONTAINER: NodePath
@@ -109,21 +109,21 @@ func _wander_state():
 func _set_waittimer():
 	var time = randi_range(MIN_WAIT_TIME, MAX_WAIT_TIME)
 	wait_timer.wait_time = time
-	print("[NPC NAV] %s: Wait for %s seconds." % [self.npc_name, time])
+	#print("[NPC NAV] %s: Wait for %s seconds." % [self.npc_name, time])
 
 func _set_wander_positions():
 	var container = get_node(MOVE_POINT_CONTAINER)
 	for node in container.get_children():
 		wander_positions.append(node.global_position)
-	print("[NPC NAV] %s: Set Wander Positions to: %s " % [self.npc_name, wander_positions])
+	#print("[NPC NAV] %s: Set Wander Positions to: %s " % [self.npc_name, wander_positions])
 
 func _get_next_wander_position():
 	if wander_positions.is_empty():
-		print("[NPC NAV] %s: Wander Cycle Positions empty, setup new cycle" % [self.npc_name])
+		#print("[NPC NAV] %s: Wander Cycle Positions empty, setup new cycle" % [self.npc_name])
 		_set_wander_positions()
 		wander_positions.shuffle()
 	var next_pos = wander_positions.pop_front()
-	print("[NPC NAV] %s: Next pos is: %s" % [self.npc_name, next_pos])
+	#print("[NPC NAV] %s: Next pos is: %s" % [self.npc_name, next_pos])
 	return next_pos
 
 

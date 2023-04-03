@@ -865,8 +865,6 @@ graph_offset = Vector2(5, 50)
 
 [node name="NPCCitizen" type="CharacterBody2D"]
 scale = Vector2(0.75, 0.75)
-collision_layer = 3
-collision_mask = 3
 motion_mode = 1
 script = ExtResource("1_y4pq8")
 npc_type = "Normal-NPC"

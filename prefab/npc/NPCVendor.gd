@@ -23,8 +23,10 @@ func _physics_process(delta):
 		animstate.travel("Idle")
 	
 	if player_detector.can_see_player():
+		animtree.set("parameters/Idle/blend_position", player_detector.player.global_position)
 		icon.visible = true
 	else:
+		animtree.set("parameters/Idle/blend_position", velocity)
 		icon.visible = false
 	if Input.is_action_just_pressed("interact") and player_detector.can_see_player() and not is_talking:
 		is_talking = true
