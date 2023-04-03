@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://b1kt7f88vq11f"]
+[gd_scene load_steps=32 format=3 uid="uid://b1kt7f88vq11f"]
 
 [ext_resource type="Script" path="res://scripts/Enemy.gd" id="1_3in87"]
 [ext_resource type="PackedScene" uid="uid://kbo1bay3i1ps" path="res://prefab/utils/PlayerDetector.tscn" id="2_ss6cg"]
@@ -77,6 +77,9 @@ height = 9.80725
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o3qdu"]
 radius = 145.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_myogi"]
+radius = 69.029
 
 [sub_resource type="Animation" id="Animation_tplgg"]
 resource_name = "Hit"
@@ -191,6 +194,10 @@ shape = SubResource("CapsuleShape2D_oe3uc")
 [node name="PlayerDetector" parent="." instance=ExtResource("2_ss6cg")]
 detector_shape = SubResource("CircleShape2D_o3qdu")
 
+[node name="CollisionShape2D" parent="PlayerDetector" index="0"]
+position = Vector2(0, -15)
+shape = SubResource("CircleShape2D_myogi")
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_iqwc0")
@@ -226,4 +233,5 @@ collision_mask = 128
 
 [node name="SoundController" parent="." instance=ExtResource("14_oos6h")]
 
+[editable path="PlayerDetector"]
 [editable path="SoftCollision"]
