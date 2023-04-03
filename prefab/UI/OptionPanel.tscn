@@ -222,6 +222,7 @@ max_value = 6.0
 step = 0.1
 
 [node name="H2" type="HBoxContainer" parent="BG/M/V/AudioOptions/M/Options"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/separation = 10
@@ -307,7 +308,7 @@ size_flags_horizontal = 7
 theme_override_colors/font_color = Color(0.0745098, 0.537255, 0.937255, 1)
 theme_override_fonts/font = ExtResource("4_bux1i")
 theme_override_font_sizes/font_size = 8
-text = "Menu"
+text = "Musik"
 horizontal_alignment = 1
 vertical_alignment = 1
 
