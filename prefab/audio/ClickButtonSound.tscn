@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3petpyi8adpk"]
+
+[ext_resource type="Script" path="res://prefab/audio/SoundEffect.gd" id="1_e3wwx"]
+[ext_resource type="AudioStream" uid="uid://di2ja0yrn10f5" path="res://assets/Music and Sounds/click_button.wav" id="1_yxbac"]
+
+[node name="SoundEffect" type="AudioStreamPlayer"]
+stream = ExtResource("1_yxbac")
+script = ExtResource("1_e3wwx")
