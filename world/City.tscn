@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://1qcyn1bd5uw2"]
+[gd_scene load_steps=31 format=3 uid="uid://1qcyn1bd5uw2"]
 
 [ext_resource type="Script" path="res://world/WorldBase.gd" id="1_qw135"]
 [ext_resource type="Texture2D" uid="uid://i30uy8osh588" path="res://assets/World/tileset_dungeon.png" id="2_rpbj0"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://dsjgqh65g0ryt" path="res://prefab/npc/NPCSarah.tscn" id="10_gq8pe"]
 [ext_resource type="PackedScene" uid="uid://c738vytvimynb" path="res://prefab/utils/Teleporter.tscn" id="10_s5w8j"]
 [ext_resource type="PackedScene" uid="uid://uwk6jeagpd72" path="res://prefab/npc/NPCCitizen.tscn" id="11_83b7t"]
+[ext_resource type="Texture2D" uid="uid://ylu5pfhn6oks" path="res://assets/NPC/Sara.png" id="11_chxi3"]
 [ext_resource type="Texture2D" uid="uid://cmy5rvwmgippa" path="res://assets/NPC/npc_old1.png" id="12_jbfwc"]
 [ext_resource type="Texture2D" uid="uid://c6durkjv6yx1r" path="res://assets/NPC/npc_child_f1.png" id="13_16pjv"]
 
@@ -31888,6 +31889,11 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-681, -82, -684, 195, -
 [sub_resource type="CircleShape2D" id="CircleShape2D_6g8yj"]
 radius = 63.0317
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_vp6kd"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7e1vd"]
+radius = 47.0956
+
 [node name="WorldBase" type="Node2D" groups=["WorldBase"]]
 script = ExtResource("1_qw135")
 world_name = "City"
@@ -31903,7 +31909,7 @@ position = Vector2(-28, -25)
 [node name="SaraMovePos" type="Node2D" parent="Map"]
 
 [node name="Pos1" type="Marker2D" parent="Map/SaraMovePos"]
-position = Vector2(-1123, 238)
+position = Vector2(-1143, 238)
 
 [node name="Pos2" type="Marker2D" parent="Map/SaraMovePos"]
 position = Vector2(-654, 687)
@@ -31983,6 +31989,8 @@ y_sort_enabled = true
 [node name="NPCSarah" parent="Map/GameObjects/NPC" instance=ExtResource("10_gq8pe")]
 position = Vector2(-1071, -382)
 MOVE_POINT_CONTAINER = NodePath("../../../SaraMovePos")
+npc_sprite = ExtResource("11_chxi3")
+lpc_sprite = true
 move_speed = 30
 
 [node name="NPCCitizen" parent="Map/GameObjects/NPC" instance=ExtResource("11_83b7t")]
@@ -32022,6 +32030,19 @@ visible = true
 [node name="CollisionShape2D" parent="Map/GameObjects/Teleporter/PlayerDetector" index="0"]
 shape = SubResource("CircleShape2D_6g8yj")
 
+[node name="Teleporter2" parent="Map/GameObjects" instance=ExtResource("10_s5w8j")]
+position = Vector2(-1040, 191)
+teleport_location = "CityShop"
+
+[node name="CollisionShape2D" parent="Map/GameObjects/Teleporter2/TeleportArea" index="0"]
+shape = SubResource("CircleShape2D_vp6kd")
+
+[node name="PlayerDetector" parent="Map/GameObjects/Teleporter2" index="1"]
+visible = true
+
+[node name="CollisionShape2D" parent="Map/GameObjects/Teleporter2/PlayerDetector" index="0"]
+shape = SubResource("CircleShape2D_7e1vd")
+
 [node name="GameCamera" parent="Map" instance=ExtResource("3_d0mdu")]
 zoom = Vector2(0.8, 0.8)
 follow_npc_1 = NodePath("../GameObjects/NPC/NPCSarah")
@@ -32035,4 +32056,6 @@ position = Vector2(116, 847)
 
 [editable path="Map/GameObjects/Teleporter"]
 [editable path="Map/GameObjects/Teleporter/PlayerDetector"]
+[editable path="Map/GameObjects/Teleporter2"]
+[editable path="Map/GameObjects/Teleporter2/PlayerDetector"]
 [editable path="Map/GameCamera"]
