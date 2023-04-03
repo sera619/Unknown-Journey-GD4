@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://dtxqutqdlt8rn"]
+
+[ext_resource type="Texture2D" uid="uid://cq130trvyd152" path="res://assets/objects/lamp-1-post-2-short-single-blue.png" id="1_f0orp"]
+[ext_resource type="Script" path="res://prefab/props/StreetLamp.gd" id="1_qaawc"]
+[ext_resource type="Texture2D" uid="uid://p5qjf6yxjhlo" path="res://assets/Materials/ParticleTextures/light.png" id="2_lasnu"]
+[ext_resource type="Texture2D" uid="uid://dt2540u4sj5mt" path="res://assets/Shadows/MediumShadow.png" id="2_t1tjf"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dxelg"]
+radius = 4.0
+height = 12.0
+
+[node name="StreetLamp" type="Node2D" groups=["street_light"]]
+script = ExtResource("1_qaawc")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(5.96046e-07, -5.96046e-08)
+scale = Vector2(0.875, 0.8)
+texture = ExtResource("2_t1tjf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("1_f0orp")
+offset = Vector2(0, -36)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_dxelg")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, -46)
+enabled = false
+color = Color(0.956863, 1, 0.0431373, 1)
+energy = 0.26
+texture = ExtResource("2_lasnu")
