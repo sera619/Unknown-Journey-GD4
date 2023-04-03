@@ -2,7 +2,7 @@ extends Node2D
 class_name Teleporter
 
 var player: Player = null
-@export_enum("WorldBase", "SmallCave", "Wood", "SwordCave", "Grasland", "GraslandHouse", "Hills", "City") var teleport_location: String
+@export_enum("WorldBase", "SmallCave", "Wood", "SwordCave", "Grasland", "GraslandHouse", "Hills", "City", "CityShop") var teleport_location: String
 @export var animated: bool
 
 @onready var teleArea = $TeleportArea
@@ -68,5 +68,11 @@ func teleport_player():
 			"GraslandHouse":
 				GameManager.game.switch_gamelevel(teleport_location)
 			"Hills":
+				GameManager.game.switch_gamelevel(teleport_location)
+			"CityShop":
+				GameManager.game.switch_gamelevel(teleport_location)
+			"City":
+				if GameManager.current_world.world_name == "CityShop":
+					GameManager.game._change_player_spawn("CityShop")
 				GameManager.game.switch_gamelevel(teleport_location)
 		print("[!] Teleporter: Player -> %s!" % teleport_location)
