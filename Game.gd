@@ -3,7 +3,7 @@ class_name Game
 
 @export_category("Development Options")
 @export_enum("Normal", "Development") var run_type: int
-@export_enum("None", "MainMenu", "Hills", "Wood", "Grasland", "GraslandHouse","SwordCave", "City", "CityShop") var dev_start_map: String
+@export_enum("None", "MainMenu", "Hills", "Wood", "Grasland", "GraslandHouse","SwordCave", "City", "CityShop", "SmallWood") var dev_start_map: String
 @onready var world_holder = $WorldHolder
 @onready var world_shadow_scene = preload("res://prefab/utils/WorldShadow.tscn")
 
@@ -23,12 +23,15 @@ const LevelScenes: Dictionary = {
 	"City": preload("res://world/City.tscn"),
 	"CityShop": preload("res://world/CityShop.tscn"),
 	"GraslandHouse": preload("res://world/GraslandHouse.tscn"),
-	"GameIntro": preload("res://prefab/UI/GameIntro.tscn")
+	"GameIntro": preload("res://prefab/UI/GameIntro.tscn"),
+	"SmallWood": preload("res://world/SmallWood.tscn")
 }
 const TELEPORT_SPAWN_LOCATIONS: Dictionary = {
 	"GraslandHouse": Vector2(1281, 246),
 	"WoodGrasland": Vector2(-349, 149),
-	"CityShop": Vector2(-1039, 222)
+	"CityShop": Vector2(-1041, 164),
+	"WoodSmallWood": Vector2(-673, 271),
+	"CitySmallWood": Vector2(223, 630)
 }
 
 var teleport_spawn_location: Vector2 = Vector2.ZERO
