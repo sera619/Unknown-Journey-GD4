@@ -1,0 +1,78 @@
+[gd_scene load_steps=12 format=3 uid="uid://dlunw27gr7q4w"]
+
+[ext_resource type="Script" path="res://prefab/effects/Effect.gd" id="1_qbw58"]
+[ext_resource type="Texture2D" uid="uid://b43pbj8sbfg6a" path="res://assets/Effects/smoke_c.png" id="2_fcjpe"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4m0gt"]
+atlas = ExtResource("2_fcjpe")
+region = Rect2(0, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_34jip"]
+atlas = ExtResource("2_fcjpe")
+region = Rect2(192, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0nu3h"]
+atlas = ExtResource("2_fcjpe")
+region = Rect2(384, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l3hwq"]
+atlas = ExtResource("2_fcjpe")
+region = Rect2(576, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5e2l0"]
+atlas = ExtResource("2_fcjpe")
+region = Rect2(768, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_da06o"]
+atlas = ExtResource("2_fcjpe")
+region = Rect2(960, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0xjsy"]
+atlas = ExtResource("2_fcjpe")
+region = Rect2(1152, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hggfq"]
+atlas = ExtResource("2_fcjpe")
+region = Rect2(1344, 0, 192, 192)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mvmm2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4m0gt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_34jip")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0nu3h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l3hwq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5e2l0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_da06o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0xjsy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hggfq")
+}],
+"loop": true,
+"name": &"animate",
+"speed": 10.0
+}]
+
+[node name="SmokeEffectA" type="Node2D"]
+script = ExtResource("1_qbw58")
+
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
+z_index = 2
+scale = Vector2(0.4, 0.4)
+sprite_frames = SubResource("SpriteFrames_mvmm2")
+animation = &"animate"
+frame_progress = 0.512428
