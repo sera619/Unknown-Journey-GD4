@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://b7dks5cm1l8lb"]
+[gd_scene load_steps=24 format=3 uid="uid://b7dks5cm1l8lb"]
 
 [ext_resource type="Script" path="res://prefab/interface/Interface.gd" id="1_ghaf7"]
 [ext_resource type="PackedScene" uid="uid://bdnok5tk1xkmk" path="res://dev/DevConsole.tscn" id="2_g31m3"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://brxe6x2arf7xb" path="res://prefab/UI/PauseMenu.tscn" id="3_6p8ro"]
 [ext_resource type="PackedScene" uid="uid://bvnu7k4u8xdn8" path="res://prefab/UI/AlphaInfoPanel.tscn" id="3_j5v3i"]
 [ext_resource type="PackedScene" uid="uid://by2snosenah6j" path="res://prefab/UI/ExpHUD.tscn" id="3_ojkx5"]
+[ext_resource type="PackedScene" uid="uid://d3petpyi8adpk" path="res://prefab/audio/ClickButtonSound.tscn" id="4_hpb42"]
 [ext_resource type="PackedScene" uid="uid://byyabnwbd5exm" path="res://prefab/UI/DotHUD.tscn" id="4_v8vmd"]
 [ext_resource type="PackedScene" uid="uid://ci8ut3tki2bpo" path="res://prefab/UI/InfoBox.tscn" id="5_1eql3"]
 [ext_resource type="PackedScene" uid="uid://cfbtmo61dtd0j" path="res://prefab/UI/CharacterPanel.tscn" id="5_6wngu"]
@@ -76,6 +77,7 @@ layer = 10
 script = ExtResource("1_ghaf7")
 dev_console_scene = ExtResource("2_g31m3")
 alpha_info_scene = ExtResource("3_j5v3i")
+button_click_sound = ExtResource("4_hpb42")
 
 [node name="StatHUD" parent="." instance=ExtResource("3_1qqj3")]
 visible = false
@@ -172,10 +174,10 @@ scale = Vector2(0.5, 0.5)
 
 [node name="OptionPanel" parent="." instance=ExtResource("15_06kas")]
 visible = false
-offset_left = 91.0
-offset_top = 46.0
-offset_right = 47.0
-offset_bottom = 46.0
+offset_left = 77.0
+offset_top = 40.0
+offset_right = 237.0
+offset_bottom = 130.0
 size_flags_vertical = 4
 
 [node name="LoadMenu" parent="." instance=ExtResource("13_cofjd")]
