@@ -1,0 +1,65 @@
+[gd_scene load_steps=10 format=3 uid="uid://bjvuvridc52x3"]
+
+[ext_resource type="Texture2D" uid="uid://bg6xo5wgyr6fp" path="res://assets/tiles/animated_clock.png" id="1_10a5m"]
+[ext_resource type="Script" path="res://prefab/props/Clock.gd" id="1_j3cip"]
+[ext_resource type="PackedScene" uid="uid://kbo1bay3i1ps" path="res://prefab/utils/PlayerDetector.tscn" id="2_257sg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rxdwi"]
+atlas = ExtResource("1_10a5m")
+region = Rect2(0, 0, 32, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y617s"]
+atlas = ExtResource("1_10a5m")
+region = Rect2(32, 0, 32, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_foqxt"]
+atlas = ExtResource("1_10a5m")
+region = Rect2(64, 0, 32, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xyils"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rxdwi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y617s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_foqxt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y617s")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0smo8"]
+size = Vector2(20, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w32h2"]
+size = Vector2(28, 61)
+
+[node name="Clock" type="Node2D"]
+script = ExtResource("1_j3cip")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_xyils")
+offset = Vector2(0, -30)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_0smo8")
+
+[node name="PlayerDetector" parent="." instance=ExtResource("2_257sg")]
+
+[node name="CollisionShape2D" parent="PlayerDetector" index="0"]
+position = Vector2(0, -21.5)
+shape = SubResource("RectangleShape2D_w32h2")
+
+[editable path="PlayerDetector"]
