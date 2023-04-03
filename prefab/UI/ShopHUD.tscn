@@ -1,7 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://c63ephblivbui"]
+[gd_scene load_steps=19 format=3 uid="uid://c63ephblivbui"]
 
 [ext_resource type="Script" path="res://prefab/UI/ShopHUD.gd" id="1_4pprs"]
 [ext_resource type="Texture2D" uid="uid://8edplubtbkbr" path="res://assets/UI/wood-box.png" id="1_qqmja"]
+[ext_resource type="PackedScene" uid="uid://bchvi3ge3woi" path="res://prefab/audio/ItemDropSound.tscn" id="2_pm3pf"]
 [ext_resource type="Texture2D" uid="uid://bpt7n5fbi8xg5" path="res://assets/UI/text-box.png" id="2_qrs6k"]
 [ext_resource type="FontFile" uid="uid://bddtsccx0qour" path="res://assets/UI/Fonts/dogicapixel.otf" id="3_c6xcp"]
 [ext_resource type="Texture2D" uid="uid://bclxecir5ivmv" path="res://assets/UI/button-red-small-normalt.png" id="4_v15gx"]
@@ -51,6 +52,7 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_4pprs")
+buy_sound_scene = ExtResource("2_pm3pf")
 
 [node name="Bg" type="NinePatchRect" parent="."]
 layout_mode = 1
@@ -97,6 +99,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.545098)
 theme_override_fonts/font = ExtResource("3_c6xcp")
 theme_override_font_sizes/font_size = 8
 text = "Shop"
@@ -152,6 +155,7 @@ size_flags_horizontal = 3
 [node name="Name" type="Label" parent="Bg/M/V/H/InfoBG/M/V"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.545098)
 theme_override_fonts/font = ExtResource("3_c6xcp")
 theme_override_font_sizes/font_size = 8
 text = "Name"
@@ -162,6 +166,7 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.545098)
 theme_override_fonts/font = ExtResource("3_c6xcp")
 theme_override_font_sizes/font_size = 8
 text = "Description"
@@ -176,10 +181,13 @@ alignment = 1
 
 [node name="V" type="VBoxContainer" parent="Bg/M/V/H/InfoBG/M/V/H"]
 layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="BuyAmount" type="Label" parent="Bg/M/V/H/InfoBG/M/V/H/V"]
 layout_mode = 2
+size_flags_vertical = 6
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.545098)
 theme_override_fonts/font = ExtResource("3_c6xcp")
 theme_override_font_sizes/font_size = 8
 text = "amount"
@@ -189,6 +197,7 @@ vertical_alignment = 1
 [node name="FullPrice" type="Label" parent="Bg/M/V/H/InfoBG/M/V/H/V"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.545098)
 theme_override_fonts/font = ExtResource("3_c6xcp")
 theme_override_font_sizes/font_size = 8
 text = "full price"
@@ -242,12 +251,15 @@ vertical_alignment = 1
 
 [node name="PInfo" type="HBoxContainer" parent="Bg/M/V/H/InfoBG/M/V"]
 layout_mode = 2
+size_flags_vertical = 8
 theme_override_constants/separation = 18
 alignment = 1
 
 [node name="PlayerAmount" type="Label" parent="Bg/M/V/H/InfoBG/M/V/PInfo"]
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.545098)
 theme_override_fonts/font = ExtResource("3_c6xcp")
 theme_override_font_sizes/font_size = 8
 text = "Player have"
@@ -256,7 +268,9 @@ vertical_alignment = 1
 
 [node name="PlayerGold" type="Label" parent="Bg/M/V/H/InfoBG/M/V/PInfo"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.968627, 0.0649877, 0.0216131, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.545098)
 theme_override_fonts/font = ExtResource("3_c6xcp")
 theme_override_font_sizes/font_size = 8
 text = "Player Gold"
