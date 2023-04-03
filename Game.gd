@@ -3,7 +3,7 @@ class_name Game
 
 @export_category("Development Options")
 @export_enum("Normal", "Development") var run_type: int
-@export_enum("None", "MainMenu", "Hills", "Wood", "Grasland", "GraslandHouse","SwordCave", "City") var dev_start_map: String
+@export_enum("None", "MainMenu", "Hills", "Wood", "Grasland", "GraslandHouse","SwordCave", "City", "CityShop") var dev_start_map: String
 @onready var world_holder = $WorldHolder
 @onready var world_shadow_scene = preload("res://prefab/utils/WorldShadow.tscn")
 
@@ -21,12 +21,14 @@ const LevelScenes: Dictionary = {
 	"Grasland": preload("res://world/Grasland.tscn"),
 	"Hills": preload("res://world/Hills.tscn"),
 	"City": preload("res://world/City.tscn"),
+	"CityShop": preload("res://world/CityShop.tscn"),
 	"GraslandHouse": preload("res://world/GraslandHouse.tscn"),
 	"GameIntro": preload("res://prefab/UI/GameIntro.tscn")
 }
 const TELEPORT_SPAWN_LOCATIONS: Dictionary = {
 	"GraslandHouse": Vector2(1281, 246),
-	"WoodGrasland": Vector2(-349, 149)
+	"WoodGrasland": Vector2(-349, 149),
+	"CityShop": Vector2(-1039, 222)
 }
 
 var teleport_spawn_location: Vector2 = Vector2.ZERO
@@ -125,6 +127,8 @@ func _change_player_spawn(location: String):
 		"WoodGrasland":
 			self.teleport_spawn_location = self.TELEPORT_SPAWN_LOCATIONS[str(location)]
 		"GraslandHouse":
+			self.teleport_spawn_location = self.TELEPORT_SPAWN_LOCATIONS[str(location)]
+		"CityShop":
 			self.teleport_spawn_location = self.TELEPORT_SPAWN_LOCATIONS[str(location)]
 	self.change_player_spawn_location = true
 	print("[!] Game: Change player spawn @ %s" % location)
