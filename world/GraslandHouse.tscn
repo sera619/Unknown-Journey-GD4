@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://04scy05jiaid"]
+[gd_scene load_steps=15 format=3 uid="uid://04scy05jiaid"]
 
 [ext_resource type="Script" path="res://world/WorldBase.gd" id="1_gjfdg"]
 [ext_resource type="Texture2D" uid="uid://cvlvkaue2u7hm" path="res://assets/World/Inside_B.png" id="2_421gp"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://c7fiywcu0t2e4" path="res://assets/World/Inside_A4.png" id="3_ddq27"]
 [ext_resource type="Texture2D" uid="uid://b4qbbwfrqi71q" path="res://assets/World/Inside_A2.png" id="4_w3wvr"]
 [ext_resource type="PackedScene" uid="uid://bjh0j476ynyk4" path="res://prefab/PuzzleObjects/PlayerBed.tscn" id="5_v6wm3"]
+[ext_resource type="PackedScene" uid="uid://bjvuvridc52x3" path="res://prefab/props/Clock.tscn" id="6_4wieb"]
 [ext_resource type="PackedScene" uid="uid://c738vytvimynb" path="res://prefab/utils/Teleporter.tscn" id="6_av85k"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_52x3q"]
@@ -4332,6 +4333,9 @@ y_sort_enabled = true
 [node name="PlayerBed" parent="Map/GameObjects/Props" instance=ExtResource("5_v6wm3")]
 position = Vector2(-179, -117)
 
+[node name="Clock" parent="Map/GameObjects/Props" instance=ExtResource("6_4wieb")]
+position = Vector2(-30, 84)
+
 [node name="Teleporter" parent="Map/GameObjects" instance=ExtResource("6_av85k")]
 position = Vector2(-40, 157)
 teleport_location = "Grasland"
@@ -4339,9 +4343,6 @@ teleport_location = "Grasland"
 [node name="CollisionShape2D" parent="Map/GameObjects/Teleporter/TeleportArea" index="0"]
 position = Vector2(0, 7)
 shape = SubResource("CircleShape2D_afyrp")
-
-[node name="PlayerDetector" parent="Map/GameObjects/Teleporter" index="1"]
-visible = true
 
 [node name="CollisionShape2D" parent="Map/GameObjects/Teleporter/PlayerDetector" index="0"]
 position = Vector2(0, 7)
