@@ -1,0 +1,343 @@
+[gd_scene load_steps=18 format=3 uid="uid://c63ephblivbui"]
+
+[ext_resource type="Script" path="res://prefab/UI/ShopHUD.gd" id="1_4pprs"]
+[ext_resource type="Texture2D" uid="uid://8edplubtbkbr" path="res://assets/UI/wood-box.png" id="1_qqmja"]
+[ext_resource type="Texture2D" uid="uid://bpt7n5fbi8xg5" path="res://assets/UI/text-box.png" id="2_qrs6k"]
+[ext_resource type="FontFile" uid="uid://bddtsccx0qour" path="res://assets/UI/Fonts/dogicapixel.otf" id="3_c6xcp"]
+[ext_resource type="Texture2D" uid="uid://bclxecir5ivmv" path="res://assets/UI/button-red-small-normalt.png" id="4_v15gx"]
+[ext_resource type="Texture2D" uid="uid://7t4cecn0xlc6" path="res://assets/UI/button-red-small-pressedt.png" id="5_7x37g"]
+[ext_resource type="Texture2D" uid="uid://cqfo8k23gm0vc" path="res://assets/UI/text-paper.png" id="5_74we8"]
+[ext_resource type="Texture2D" uid="uid://c2mepjbti1rjb" path="res://assets/UI/button-red-small-hovert.png" id="6_c2y87"]
+[ext_resource type="Texture2D" uid="uid://b7dlgeuf7s57n" path="res://assets/items/Health Potion.png" id="6_hflbr"]
+[ext_resource type="Texture2D" uid="uid://dlbf0ofue7pd0" path="res://assets/UI/button-small-disabled.png" id="7_bcf8v"]
+[ext_resource type="Texture2D" uid="uid://cefc0kofjjbtu" path="res://assets/UI/big-red-button-normal-export.png" id="8_s6yia"]
+[ext_resource type="Texture2D" uid="uid://cvqmjd6jh0jma" path="res://assets/UI/big-red-button-pressed-export.png" id="9_a5one"]
+[ext_resource type="Texture2D" uid="uid://bnhgifjigfyny" path="res://assets/UI/big-red-button-hover-export.png" id="10_b8sjr"]
+[ext_resource type="Texture2D" uid="uid://dg8totcenq1rk" path="res://assets/UI/big-button_disabled-export.png" id="11_ltkga"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8pd1s"]
+content_margin_left = 7.0
+content_margin_top = 7.0
+content_margin_right = 7.0
+content_margin_bottom = 7.0
+texture = ExtResource("5_74we8")
+texture_margin_left = 16.0
+texture_margin_top = 16.0
+texture_margin_right = 16.0
+texture_margin_bottom = 16.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rqryi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_afthq"]
+bg_color = Color(0.933333, 0.505882, 0, 0.403922)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.8, 0.513726, 0, 1)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+corner_detail = 20
+
+[node name="ShopHUD" type="Control"]
+layout_mode = 3
+anchor_right = 0.687
+anchor_bottom = 0.744
+offset_right = 220.16
+offset_bottom = 134.08
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_4pprs")
+
+[node name="Bg" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_qqmja")
+patch_margin_left = 24
+patch_margin_top = 16
+patch_margin_right = 24
+patch_margin_bottom = 16
+
+[node name="M" type="MarginContainer" parent="Bg"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="V" type="VBoxContainer" parent="Bg/M"]
+layout_mode = 2
+
+[node name="HeadBG" type="NinePatchRect" parent="Bg/M/V"]
+layout_mode = 2
+size_flags_vertical = 0
+texture = ExtResource("2_qrs6k")
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+
+[node name="Label" type="Label" parent="Bg/M/V/HeadBG"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_c6xcp")
+theme_override_font_sizes/font_size = 8
+text = "Shop"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="H" type="HBoxContainer" parent="Bg/M/V"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="ItemList" type="ItemList" parent="Bg/M/V/H"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.65
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_c6xcp")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/panel = SubResource("StyleBoxTexture_8pd1s")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_rqryi")
+theme_override_styles/selected_focus = SubResource("StyleBoxFlat_afthq")
+item_count = 1
+same_column_width = true
+fixed_icon_size = Vector2i(16, 16)
+item_0/text = "Heiltrank"
+item_0/icon = ExtResource("6_hflbr")
+
+[node name="InfoBG" type="NinePatchRect" parent="Bg/M/V/H"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("2_qrs6k")
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+
+[node name="M" type="MarginContainer" parent="Bg/M/V/H/InfoBG"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="V" type="VBoxContainer" parent="Bg/M/V/H/InfoBG/M"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Name" type="Label" parent="Bg/M/V/H/InfoBG/M/V"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_c6xcp")
+theme_override_font_sizes/font_size = 8
+text = "Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Des" type="Label" parent="Bg/M/V/H/InfoBG/M/V"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_c6xcp")
+theme_override_font_sizes/font_size = 8
+text = "Description"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="H" type="HBoxContainer" parent="Bg/M/V/H/InfoBG/M/V"]
+layout_mode = 2
+size_flags_vertical = 8
+alignment = 1
+
+[node name="V" type="VBoxContainer" parent="Bg/M/V/H/InfoBG/M/V/H"]
+layout_mode = 2
+
+[node name="BuyAmount" type="Label" parent="Bg/M/V/H/InfoBG/M/V/H/V"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_c6xcp")
+theme_override_font_sizes/font_size = 8
+text = "amount"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FullPrice" type="Label" parent="Bg/M/V/H/InfoBG/M/V/H/V"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_c6xcp")
+theme_override_font_sizes/font_size = 8
+text = "full price"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AmountUpBtn" type="TextureButton" parent="Bg/M/V/H/InfoBG/M/V/H"]
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_vertical = 4
+texture_normal = ExtResource("4_v15gx")
+texture_pressed = ExtResource("5_7x37g")
+texture_hover = ExtResource("6_c2y87")
+texture_disabled = ExtResource("7_bcf8v")
+
+[node name="Label5" type="Label" parent="Bg/M/V/H/InfoBG/M/V/H/AmountUpBtn"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_c6xcp")
+theme_override_font_sizes/font_size = 8
+text = "+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AmountDownBtn" type="TextureButton" parent="Bg/M/V/H/InfoBG/M/V/H"]
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_vertical = 4
+texture_normal = ExtResource("4_v15gx")
+texture_pressed = ExtResource("5_7x37g")
+texture_hover = ExtResource("6_c2y87")
+texture_disabled = ExtResource("7_bcf8v")
+
+[node name="Label6" type="Label" parent="Bg/M/V/H/InfoBG/M/V/H/AmountDownBtn"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_c6xcp")
+theme_override_font_sizes/font_size = 8
+text = "-
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PInfo" type="HBoxContainer" parent="Bg/M/V/H/InfoBG/M/V"]
+layout_mode = 2
+theme_override_constants/separation = 18
+alignment = 1
+
+[node name="PlayerAmount" type="Label" parent="Bg/M/V/H/InfoBG/M/V/PInfo"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_c6xcp")
+theme_override_font_sizes/font_size = 8
+text = "Player have"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayerGold" type="Label" parent="Bg/M/V/H/InfoBG/M/V/PInfo"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_c6xcp")
+theme_override_font_sizes/font_size = 8
+text = "Player Gold"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HB" type="HBoxContainer" parent="Bg/M/V"]
+layout_mode = 2
+alignment = 1
+
+[node name="BuyBtn" type="TextureButton" parent="Bg/M/V/HB"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("8_s6yia")
+texture_pressed = ExtResource("9_a5one")
+texture_hover = ExtResource("10_b8sjr")
+texture_disabled = ExtResource("11_ltkga")
+
+[node name="Label7" type="Label" parent="Bg/M/V/HB/BuyBtn"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_c6xcp")
+theme_override_font_sizes/font_size = 8
+text = "Kaufen"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BackBtn" type="TextureButton" parent="Bg/M/V/HB"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("8_s6yia")
+texture_pressed = ExtResource("9_a5one")
+texture_hover = ExtResource("10_b8sjr")
+texture_disabled = ExtResource("11_ltkga")
+
+[node name="Label7" type="Label" parent="Bg/M/V/HB/BackBtn"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_c6xcp")
+theme_override_font_sizes/font_size = 8
+text = "Zurück
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureButton3" type="TextureButton" parent="Bg/M/V/HB"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("8_s6yia")
+texture_pressed = ExtResource("9_a5one")
+texture_hover = ExtResource("10_b8sjr")
+texture_disabled = ExtResource("11_ltkga")
+
+[node name="Label7" type="Label" parent="Bg/M/V/HB/TextureButton3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_c6xcp")
+theme_override_font_sizes/font_size = 8
+text = "Zurück
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Current" type="Node" parent="."]
+
+[connection signal="item_selected" from="Bg/M/V/H/ItemList" to="." method="_on_item_list_item_selected"]
+[connection signal="button_up" from="Bg/M/V/HB/BackBtn" to="." method="_on_back_btn_button_up"]
