@@ -18,7 +18,6 @@ var move_target_position: Vector2 = Vector2(-847,245)
 
 func _ready():
 	_on_ready()
-	randomize()
 	wait_timer.connect("timeout", _start_wander)
 	nav_agent.path_desired_distance = MIN_DISTANCE_TARGET
 	nav_agent.target_desired_distance = PATH_DISTANCE
@@ -126,3 +125,8 @@ func _get_next_wander_position():
 	var next_pos = wander_positions.pop_front()
 	print("[NPC NAV] %s: Next pos is: %s" % [self.npc_name, next_pos])
 	return next_pos
+
+
+func _on_navigation_agent_2d_velocity_computed(safe_velocity):
+	var oldvelocity = get_real_velocity()
+	set_velocity(safe_velocity + oldvelocity)
