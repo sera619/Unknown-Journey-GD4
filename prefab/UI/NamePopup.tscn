@@ -1,20 +1,25 @@
-[gd_scene load_steps=8 format=3 uid="uid://b6jxsguuegoo4"]
+[gd_scene load_steps=9 format=3 uid="uid://b6jxsguuegoo4"]
 
 [ext_resource type="Texture2D" uid="uid://8edplubtbkbr" path="res://assets/UI/wood-box.png" id="1_bq2xf"]
 [ext_resource type="Script" path="res://prefab/UI/NamePopup.gd" id="1_i6tf7"]
 [ext_resource type="Texture2D" uid="uid://bpt7n5fbi8xg5" path="res://assets/UI/text-box.png" id="2_5yngl"]
 [ext_resource type="FontFile" uid="uid://bddtsccx0qour" path="res://assets/UI/Fonts/dogicapixel.otf" id="3_vieik"]
-[ext_resource type="Texture2D" uid="uid://dnmhbqlysi5ph" path="res://assets/UI/red-button-normal.png" id="4_e1h8e"]
-[ext_resource type="Texture2D" uid="uid://cgoomtgcn04sq" path="res://assets/UI/red-button-pressed.png" id="5_cchrc"]
-[ext_resource type="Texture2D" uid="uid://cl20mjeo1aqyx" path="res://assets/UI/red-button-hover.png" id="6_ho8bt"]
+[ext_resource type="Texture2D" uid="uid://cefc0kofjjbtu" path="res://assets/UI/big-red-button-normal-export.png" id="5_0t0r0"]
+[ext_resource type="Texture2D" uid="uid://cvqmjd6jh0jma" path="res://assets/UI/big-red-button-pressed-export.png" id="6_0mra7"]
+[ext_resource type="Texture2D" uid="uid://bnhgifjigfyny" path="res://assets/UI/big-red-button-hover-export.png" id="7_gessw"]
+[ext_resource type="Texture2D" uid="uid://dg8totcenq1rk" path="res://assets/UI/big-button_disabled-export.png" id="8_nncja"]
 
 [node name="NamePopup" type="Control"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -32.0
+offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.5, 0.5)
 script = ExtResource("1_i6tf7")
 
 [node name="BG" type="NinePatchRect" parent="."]
@@ -90,8 +95,7 @@ theme_override_colors/font_color = Color(0.0941176, 0.701961, 0.964706, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.254902)
 theme_override_fonts/font = ExtResource("3_vieik")
 theme_override_font_sizes/font_size = 8
-text = "Beachte bitte dein aktueller Spielstand wird überschrieben!
-Bitte gebe deinen Helden einen Namen.
+text = "Bitte gebe deinen Helden einen Namen.
 (max. 15)"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -111,9 +115,10 @@ alignment = 1
 
 [node name="OkBtn" type="TextureButton" parent="BG/M/TextBG/M/V/V/H"]
 layout_mode = 2
-texture_normal = ExtResource("4_e1h8e")
-texture_pressed = ExtResource("5_cchrc")
-texture_hover = ExtResource("6_ho8bt")
+texture_normal = ExtResource("5_0t0r0")
+texture_pressed = ExtResource("6_0mra7")
+texture_hover = ExtResource("7_gessw")
+texture_disabled = ExtResource("8_nncja")
 
 [node name="Label" type="Label" parent="BG/M/TextBG/M/V/V/H/OkBtn"]
 layout_mode = 1
@@ -130,9 +135,10 @@ vertical_alignment = 1
 
 [node name="CancelBtn" type="TextureButton" parent="BG/M/TextBG/M/V/V/H"]
 layout_mode = 2
-texture_normal = ExtResource("4_e1h8e")
-texture_pressed = ExtResource("5_cchrc")
-texture_hover = ExtResource("6_ho8bt")
+texture_normal = ExtResource("5_0t0r0")
+texture_pressed = ExtResource("6_0mra7")
+texture_hover = ExtResource("7_gessw")
+texture_disabled = ExtResource("8_nncja")
 
 [node name="Label" type="Label" parent="BG/M/TextBG/M/V/V/H/CancelBtn"]
 layout_mode = 1
