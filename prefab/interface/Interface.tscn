@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://b7dks5cm1l8lb"]
+[gd_scene load_steps=23 format=3 uid="uid://b7dks5cm1l8lb"]
 
 [ext_resource type="Script" path="res://prefab/interface/Interface.gd" id="1_ghaf7"]
 [ext_resource type="PackedScene" uid="uid://bdnok5tk1xkmk" path="res://dev/DevConsole.tscn" id="2_g31m3"]
@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://l61eqwib72yh" path="res://prefab/UI/SleepHUD.tscn" id="13_q1ex6"]
 [ext_resource type="PackedScene" uid="uid://d2qg587omjywm" path="res://prefab/UI/OptionPanel.tscn" id="15_06kas"]
 [ext_resource type="PackedScene" uid="uid://b4txcvasvt27s" path="res://prefab/UI/InventoryHUD.tscn" id="18_p0ljd"]
+[ext_resource type="PackedScene" uid="uid://c63ephblivbui" path="res://prefab/UI/ShopHUD.tscn" id="19_iv8cx"]
 
 [sub_resource type="Animation" id="Animation_x5qxj"]
 length = 0.001
@@ -130,6 +131,17 @@ visible = false
 offset_left = 156.0
 offset_top = 24.0
 offset_right = 136.0
+
+[node name="ShopHUD" parent="." instance=ExtResource("19_iv8cx")]
+visible = false
+anchor_left = 0.256
+anchor_top = 0.167
+anchor_right = 0.772
+anchor_bottom = 0.833
+offset_left = 0.0799942
+offset_top = -0.0600014
+offset_right = 164.96
+offset_bottom = 120.06
 
 [node name="InfoBox" parent="." instance=ExtResource("5_1eql3")]
 visible = false
