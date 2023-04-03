@@ -17,7 +17,7 @@ var dev_console: bool = false
 @onready var dot_hud: DotHUD = $DotHUD
 @onready var option_panel: OptionPanel = $OptionPanel
 @onready var inventory_panel: InventoryHUD = $InventoryHUD
-
+@onready var shop_panel: ShopHUD = $ShopHUD
 var showinfo = true 
 
 func _ready():
