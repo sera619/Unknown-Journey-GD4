@@ -41,4 +41,11 @@ func dialog_handler():
 func open_shop():
 	var dialog: DialogBox = GameManager.dialog_box
 	dialog.option_a_btn.disconnect("button_up", open_shop)
-	GameManager.interface.shop_panel.setup_shop(item_list)
+	GameManager.interface.shop_panel.setup_shop(item_list, self)
+
+func close_shop():
+	var dialog: DialogBox = GameManager.dialog_box
+	is_talking = true
+	dialog.set_speaker(self)
+	dialog.set_dialog_text("Vielen Dank für deinen Einkauf!\nKomme bald wieder!")
+	dialog.show_dialog()
