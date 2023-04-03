@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cgc5ivjt1ppu5"]
+
+[ext_resource type="Script" path="res://prefab/audio/SoundEffect.gd" id="1_asd41"]
+[ext_resource type="AudioStream" uid="uid://b3g1tph15n1ml" path="res://assets/Music and Sounds/door_close.wav" id="1_bysfa"]
+
+[node name="SoundEffect" type="AudioStreamPlayer"]
+stream = ExtResource("1_bysfa")
+bus = &"PlayerSFX"
+script = ExtResource("1_asd41")
