@@ -72,7 +72,7 @@ func set_default_stats():
 	else:
 		playername = GameManager.new_player_name
 		GameManager.new_player_name = ""
-	set_max_gold(250)
+	set_max_gold(2000)
 	set_gold(0)
 	set_level(1)
 	set_max_damage(1)
