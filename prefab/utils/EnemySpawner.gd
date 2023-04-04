@@ -23,7 +23,7 @@ func spawn_enemys():
 		for pos in spawn_points_one.get_children():
 			var enemy:CharacterBody2D = enemy_scene_one.instantiate()
 			enemy.global_position = pos.global_position
-			enemy_container.add_child(enemy)
+			enemy_container.call_deferred("add_child",enemy)
 			if enemyname == "":
 				enemyname = enemy.name
 			count += 1 
