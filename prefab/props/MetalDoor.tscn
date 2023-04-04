@@ -1,0 +1,113 @@
+[gd_scene load_steps=18 format=3 uid="uid://tlprd1hoiiri"]
+
+[ext_resource type="Script" path="res://prefab/props/Door.gd" id="1_1g23f"]
+[ext_resource type="PackedScene" uid="uid://cc8l6lk7w7m76" path="res://prefab/audio/DoorOpenSound.tscn" id="2_3yelk"]
+[ext_resource type="PackedScene" uid="uid://cgc5ivjt1ppu5" path="res://prefab/audio/DoorCloseSound.tscn" id="3_li57m"]
+[ext_resource type="PackedScene" uid="uid://mpkll07nsyod" path="res://prefab/audio/CellDoorOpenSound.tscn" id="4_eg1yr"]
+[ext_resource type="Texture2D" uid="uid://k116cblkntyx" path="res://assets/objects/CellDoorAnimated.png" id="5_nbjwa"]
+[ext_resource type="PackedScene" uid="uid://kbo1bay3i1ps" path="res://prefab/utils/PlayerDetector.tscn" id="5_sktrm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4y2e0"]
+atlas = ExtResource("5_nbjwa")
+region = Rect2(108, 0, 36, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cyc8r"]
+atlas = ExtResource("5_nbjwa")
+region = Rect2(72, 0, 36, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r8g4n"]
+atlas = ExtResource("5_nbjwa")
+region = Rect2(36, 0, 36, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vuihw"]
+atlas = ExtResource("5_nbjwa")
+region = Rect2(0, 0, 36, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ey71"]
+atlas = ExtResource("5_nbjwa")
+region = Rect2(0, 0, 36, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2cnlo"]
+atlas = ExtResource("5_nbjwa")
+region = Rect2(36, 0, 36, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hbuy4"]
+atlas = ExtResource("5_nbjwa")
+region = Rect2(72, 0, 36, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4pfw8"]
+atlas = ExtResource("5_nbjwa")
+region = Rect2(108, 0, 36, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mwnlf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4y2e0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cyc8r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r8g4n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vuihw")
+}],
+"loop": false,
+"name": &"close",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ey71")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2cnlo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hbuy4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4pfw8")
+}],
+"loop": false,
+"name": &"open",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ydvkj"]
+size = Vector2(31.8414, 20)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_in5io"]
+radius = 16.0614
+
+[node name="MetalDoor" type="Node2D"]
+script = ExtResource("1_1g23f")
+door_type = 1
+close_time = 5
+sound_open_scene = ExtResource("2_3yelk")
+sound_close_scene = ExtResource("3_li57m")
+cell_open_sound_scene = ExtResource("4_eg1yr")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_mwnlf")
+animation = &"open"
+offset = Vector2(-1.5, -16)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -5.62805)
+shape = SubResource("RectangleShape2D_ydvkj")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="PlayerDetector" parent="." instance=ExtResource("5_sktrm")]
+
+[node name="CollisionShape2D" parent="PlayerDetector" index="0"]
+position = Vector2(0, -2.82843)
+shape = SubResource("CircleShape2D_in5io")
+
+[editable path="PlayerDetector"]
