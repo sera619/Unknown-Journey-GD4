@@ -1,0 +1,59 @@
+[gd_scene load_steps=8 format=3 uid="uid://5l2uk2ujjved"]
+
+[ext_resource type="Texture2D" uid="uid://b5pros6cas6w7" path="res://assets/objects/brunnen_sheet.png" id="1_t0hdm"]
+[ext_resource type="AudioStream" uid="uid://cetjfb2lw8gbw" path="res://assets/Music and Sounds/fountain_sound.mp3" id="2_31lam"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_etiwf"]
+atlas = ExtResource("1_t0hdm")
+region = Rect2(0, 0, 64, 76)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2lxto"]
+atlas = ExtResource("1_t0hdm")
+region = Rect2(64, 0, 64, 76)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k5ikn"]
+atlas = ExtResource("1_t0hdm")
+region = Rect2(128, 0, 64, 76)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uxcb2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_etiwf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2lxto")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k5ikn")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_16mdh"]
+radius = 15.0
+height = 60.0
+
+[node name="Spring" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_uxcb2")
+autoplay = "default"
+frame_progress = 0.77227
+offset = Vector2(0, -18)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(0, 3)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -4)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_16mdh")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_31lam")
+autoplay = true
+max_distance = 190.0
+bus = &"PlayerSFX"
