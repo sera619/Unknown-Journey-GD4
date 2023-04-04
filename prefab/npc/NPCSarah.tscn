@@ -1,6 +1,6 @@
 [gd_scene load_steps=99 format=3 uid="uid://dsjgqh65g0ryt"]
 
-[ext_resource type="Script" path="res://prefab/npc/NPCBaseNav.gd" id="1_72164"]
+[ext_resource type="Script" path="res://prefab/npc/NPCSarah.gd" id="1_s4q04"]
 [ext_resource type="Texture2D" uid="uid://dd1w6mxdg5pd0" path="res://assets/NPC/speakicon.png" id="2_cqrmd"]
 [ext_resource type="Shader" path="res://assets/Materials/FlashLoop.gdshader" id="3_rus36"]
 [ext_resource type="Texture2D" uid="uid://ylu5pfhn6oks" path="res://assets/NPC/Sara.png" id="4_mheli"]
@@ -880,10 +880,10 @@ scale = Vector2(0.75, 0.75)
 collision_layer = 7
 collision_mask = 3
 motion_mode = 1
-script = ExtResource("1_72164")
+script = ExtResource("1_s4q04")
 npc_name = "Sarah"
-npc_type = "Normal-NPC"
-move_speed = 35
+npc_type = "Quest-NPC"
+move_speed = 25
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
