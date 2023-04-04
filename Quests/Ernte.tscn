@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://dm05iummyesmd"]
+
+[ext_resource type="Script" path="res://Quests/Quest.gd" id="1_q0n12"]
+
+[node name="Ernte" type="Node"]
+script = ExtResource("1_q0n12")
+type = 1
+title = "Ernte"
+description = "Die Pflanzen von Sarah sind bereit zum ernten. Gehe in den Garten und sammle die Roten Früchte von den Sträuchern."
+required_amount = 4
+object_name = "Rote Beeren"
+reward_xp = 370
+start_text = "Durch das Wasser konnten sich die Pflanzen prima entwickeln! Die Beeren sind jetzt reif und können geerntet werden. Kannst du mir dabei helfen?"
+progress_text = "Gehe in meinen Garten und ernte die Roten Früchte von den Sträuchern dort."
+complete_text = "Du warst ja wirklich schnell! Vielen Dank!"
