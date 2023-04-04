@@ -11,6 +11,7 @@ class_name NPCNav
 @onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
 @onready var wait_timer: Timer = $Timer
 @onready var icon: Sprite2D = $SpeakIcon
+@onready var sound_controller: SoundController = $SoundController
 
 var wander_positions: Array = []
 var is_talking:bool = false
@@ -19,6 +20,7 @@ var move_target_position: Vector2 = Vector2(-847,245)
 func _ready():
 	_on_ready()
 	wait_timer.connect("timeout", _start_wander)
+	sound_controller._setup_sounds("NPC")
 	nav_agent.path_desired_distance = MIN_DISTANCE_TARGET
 	nav_agent.target_desired_distance = PATH_DISTANCE
 	call_deferred("actor_setup")
@@ -126,6 +128,8 @@ func _get_next_wander_position():
 	#print("[NPC NAV] %s: Next pos is: %s" % [self.npc_name, next_pos])
 	return next_pos
 
+func _play_food_sound():
+	sound_controller._play_food_sound()
 
 func _on_navigation_agent_2d_velocity_computed(safe_velocity):
 	var oldvelocity = get_real_velocity()
