@@ -2,6 +2,51 @@ extends Node
 
 const user_path: String = "user://profiles/"
 
+var unique_open_data = {
+	"Grasland":[
+		
+	],
+	"SmallWood": [
+		
+	],
+	"City":[
+		
+	],
+	"Wood":[
+		
+	]
+}
+
+
+
+func _save_unique_open_data(playername: String):
+	if not _check_profile_exists(playername):
+		_create_profile_directory(playername)
+	var save_path = "user://profiles/%s/uniquesavegame.save" % playername
+	var json_string = JSON.stringify(unique_open_data)
+	var save_data = FileAccess.open(save_path, FileAccess.WRITE)
+	save_data.store_line(json_string)
+	print("[Data]: Unique-Opensavegame from player \"%s\" saved in profiles!" % playername)
+
+func _load_unique_open_data(playername: String):
+	if not _check_profile_exists(playername):
+		return
+	var loadpath = "user://profiles/%s/uniquesavegame.save" % playername
+	if not FileAccess.file_exists(loadpath):
+		return
+	var unique_save = FileAccess.open(loadpath, FileAccess.READ)
+	while unique_save.get_position() < unique_save.get_length():
+		var json_string = unique_save.get_line()
+		var json = JSON.new()
+		var result = json.parse(json_string)
+		if not result == OK:
+			print("[Data]: Unique-Savegame from player \"%s\" is corrupted!" % playername) 
+			print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
+			continue
+		var unique_data = json.get_data()
+		self.unique_open_data = unique_data
+	print("[Data]: Unique-Savegame from player \"%s\" loaded from profiles." % playername)
+
 func _load_profile_quest_data(playername: String):
 	if not _check_profile_exists(playername):
 		return
@@ -134,6 +179,8 @@ func _delete_profile(playername: String):
 		return
 	DirAccess.remove_absolute("user://profiles/%s/questsavegame.save" % playername)
 	DirAccess.remove_absolute("user://profiles/%s/savegame.save" % playername)
+	DirAccess.remove_absolute("user://profiles/%s/inventorysavegame.save" % playername)
+	DirAccess.remove_absolute("user://profiles/%s/uniquesavegame.save" % playername)	
 	DirAccess.remove_absolute("user://profiles/%s" % playername)
 	print("[Data]: Saveprofile from player \"%s\" deleted!" % playername)
 
