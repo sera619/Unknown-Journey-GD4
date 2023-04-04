@@ -12,6 +12,7 @@ class_name Chest
 var is_open: bool = false
 var reward_given: bool = false
 
+
 func _ready():
 	anim_player.connect("animation_finished", _on_animation_finished)
 	call_deferred("_check_unique")
@@ -19,8 +20,6 @@ func _ready():
 func _check_unique():
 	await get_tree().create_timer(0.5).timeout
 	var unique_data: Dictionary = D.unique_open_data
-	print(GameManager.current_world.world_name)
-	print(unique_data)
 	for i in unique_data[str(GameManager.current_world.world_name)]:
 		if i == chest_id:
 			is_open = true
@@ -48,7 +47,7 @@ func _reward_player():
 		reward_given = true
 		var reward_size = reward_list.size()
 		var item = reward_list[ randi_range(0, reward_size)-1].instantiate()
-		InventoryManager.add_item(item.item_name, 1)
+		InventoryManager.add_item(item.item_name, randi_range(1, 4))
 
 func _on_animation_finished(anim_name):
 	if anim_name == "open":
