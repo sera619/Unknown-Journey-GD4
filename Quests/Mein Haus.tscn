@@ -12,5 +12,4 @@ object_name = "Gespeichert"
 reward_xp = 175
 start_text = "Du kannst das Spiel auch speichern. Hierfür musst du ein Bett finden und schlafen. Ein Bett kannst du in manchen Häusern in der ganzen Spielwelt finden!"
 progress_text = "Kannst du das Haus nicht finden? Folge dem Weg Richtung Süden!"
-complete_text = "Super du hast das kurze Tutorial erfolgreich abgeschlossen! Vielen Dank für deinen Test! Solltest du Bugs bemerkt haben, besuche das Repository auf Github.com und öffne ein neues \"Issue\"! Danke. 
-[HeadAdmin] S3R43o3."
+complete_text = "Du hast das Tutorial abgeschlossen. Es wird Zeit deine Reise zu beginnen. Bereite dich auf eine lange Reise vor! Komm zu mir wenn du bereit bist!"
