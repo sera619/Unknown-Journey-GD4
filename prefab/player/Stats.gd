@@ -195,7 +195,7 @@ func add_seen_npc(npcname:String):
 		GameManager.seen_npcs.append(npcname)
 
 func apply_loaded_stats():
-	var data = GameManager.game.loaded_data
+	var data = D._load_profile_char_data(GameManager.selected_playername)
 	if data:
 		playername = data['playername']
 		MAX_HEALTH = data['max_health']
