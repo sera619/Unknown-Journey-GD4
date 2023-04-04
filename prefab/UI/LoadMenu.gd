@@ -7,9 +7,12 @@ class_name LoadMenu
 func _initialize_loadmenu():
 	var profiles = D._load_all_player_char_data()
 	for profile in profiles:
-		var slot: LoadSlot = profile_slot_scene.instantiate()
-		profile_container.add_child(slot)
-		slot._set_slot_information(profile['playername'], str(profile['level']))
+		if profile != null:
+			var slot: LoadSlot = profile_slot_scene.instantiate()
+			profile_container.add_child(slot)
+			slot._set_slot_information(profile['playername'], str(profile['level']))
+		else:
+			break
 
 func _create_btn_click_sound():
 	var sound = GameManager.interface.button_click_sound.instantiate()
