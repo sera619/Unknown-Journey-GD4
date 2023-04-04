@@ -185,8 +185,18 @@ func save_data(playername=""):
 	D._save_profile_quest_data(GameManager.player.stats.playername)
 	D._save_profile_inventory_data(GameManager.player.stats.playername)
 	D._save_unique_open_data(GameManager.player.stats.playername)
+	print("[ZEIT]: Gespielte zeit %s" % self.get_played_time_string(self.player.stats.played_time))
 	print("[!] Data: Savegame successfully saved!")
 	QuestManager.save_quests()
+
+func get_played_time_string(time_played):
+	var play_time = time_played
+	var h = floor(play_time / 3600)
+	play_time -= h * 3600
+	var m = floor(play_time / 60)
+	play_time -= m * 60
+	var s = floor(play_time)
+	return str(h) + ":" + str(m).lpad(2, "0") + ":" + str(s).lpad(2, "0")  
 
 
 func set_player_name(player_name: String):

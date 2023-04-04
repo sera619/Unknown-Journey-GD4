@@ -17,6 +17,21 @@ var unique_open_data = {
 	]
 }
 
+func _reset_unique_data():
+	unique_open_data = {
+	"Grasland":[
+		
+	],
+	"SmallWood": [
+		
+	],
+	"City":[
+		
+	],
+	"Wood":[
+		
+	]
+}
 
 
 func _save_unique_open_data(playername: String):

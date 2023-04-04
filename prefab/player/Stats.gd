@@ -43,8 +43,11 @@ var speed: int = 0
 var exp_multiplikator:float = 1.2
 var parent = null
 var dmg_label: RichTextLabel = null
+var played_time = 0
 
 
+func _record_playtime(delta: float):
+	played_time += delta
 
 func _ready():
 	EventHandler.connect("player_inventory_equip_changed", _change_equip)
@@ -194,6 +197,7 @@ func add_seen_npc(npcname:String):
 	if not npcname in GameManager.seen_npcs: 
 		GameManager.seen_npcs.append(npcname)
 
+
 func apply_loaded_stats():
 	var data = D._load_profile_char_data(GameManager.selected_playername)
 	if data:
@@ -208,6 +212,8 @@ func apply_loaded_stats():
 		GameManager.seen_npcs.clear()
 		for n in data['seen_npcs']:
 			GameManager.seen_npcs.append(n)
+		if data['played_time'] != null:
+			self.played_time = data['played_time']
 		print("[!] %s: Set health to %s !" % [parent, MAX_HEALTH])
 		set_max_health(MAX_HEALTH)
 		set_health(MAX_HEALTH, true)
@@ -236,6 +242,7 @@ func save():
 		"experience": self.experience,
 		"level": self.level,
 		"seen_npcs": GameManager.seen_npcs,
-		"gold": self.gold
+		"gold": self.gold,
+		"played_time": self.played_time
 	}
 	return save_dict

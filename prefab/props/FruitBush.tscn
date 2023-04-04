@@ -1,7 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://5ybdfq5erhqr"]
+[gd_scene load_steps=11 format=3 uid="uid://don77lxqfcjk6"]
 
-[ext_resource type="Script" path="res://prefab/props/FruitBush.gd" id="1_3rait"]
 [ext_resource type="Texture2D" uid="uid://cfyp1b1ri0rlw" path="res://assets/objects/FruitFlower-Empty.png" id="1_ldlml"]
+[ext_resource type="Script" path="res://prefab/props/LootableItem.gd" id="1_yw48b"]
 [ext_resource type="Texture2D" uid="uid://hfu2fg2kopso" path="res://assets/UI/E-Key.png" id="2_f1nya"]
 [ext_resource type="Texture2D" uid="uid://dq4br7t2i0hik" path="res://assets/objects/FruitFlower-Full.png" id="2_k1pjx"]
 [ext_resource type="PackedScene" uid="uid://kbo1bay3i1ps" path="res://prefab/utils/PlayerDetector.tscn" id="2_mgnn7"]
@@ -51,7 +51,7 @@ _data = {
 }
 
 [node name="FruitBush" type="Node2D"]
-script = ExtResource("1_3rait")
+script = ExtResource("1_yw48b")
 item_name = "Rote Beeren"
 full_sprite = ExtResource("2_k1pjx")
 empty_sprite = ExtResource("1_ldlml")

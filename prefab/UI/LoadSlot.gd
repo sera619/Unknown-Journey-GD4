@@ -5,6 +5,7 @@ class_name LoadSlot
 @onready var levellabel = $M/H/LevelLabel
 @onready var del_slot_btn = $M/H/H/DelBtn
 @onready var load_slot_btn = $M/H/H/LoadBtn
+@onready var timelabel = $M/H/ZeitLabel
 
 var slot_playername: String
 
@@ -16,10 +17,11 @@ func _create_btn_click_sound():
 	var sound = GameManager.interface.button_click_sound.instantiate()
 	self.add_child(sound)
 
-func _set_slot_information(playername: String, playerlevel: String):
+func _set_slot_information(playername: String, playerlevel: String, played_time: String):
 	slot_playername = playername
 	namelabel.text="%s" % playername
 	levellabel.text ="%s" % playerlevel
+	timelabel.text = "%s" % played_time
 
 func _delete_slot():
 	_create_btn_click_sound()

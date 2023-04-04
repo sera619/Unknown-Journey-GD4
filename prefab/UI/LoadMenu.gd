@@ -10,7 +10,7 @@ func _initialize_loadmenu():
 		if profile != null:
 			var slot: LoadSlot = profile_slot_scene.instantiate()
 			profile_container.add_child(slot)
-			slot._set_slot_information(profile['playername'], str(profile['level']))
+			slot._set_slot_information(profile['playername'], str(profile['level']), GameManager.get_played_time_string(profile['played_time']))
 		else:
 			break
 
