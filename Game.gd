@@ -62,6 +62,7 @@ func _ready():
 func start_new_game():
 	QuestManager.reset_quests()
 	InventoryManager.reset_items()
+	D._reset_unique_data()
 	new_game = true
 	switch_gamelevel("Grasland")
 
