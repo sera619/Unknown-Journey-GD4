@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://cx6kd2qvfr2u8"]
+
+[ext_resource type="Script" path="res://Quests/Quest.gd" id="1_gc0vu"]
+
+[node name="Finde Sarah" type="Node"]
+script = ExtResource("1_gc0vu")
+type = 1
+title = "Finde Sarah"
+description = "Gehe in den kleinen Wald und laufe Richtung Süden in die Stadt \"Arkairos\". Suche in der Stadt nach Sarah."
+required_amount = 1
+object_name = "Sarah"
+reward_xp = 340
+start_text = "Du lernst sehr schnell junger Held. Es wird Zeit das du die Welt erkundest. Gehe durch den Wald und folge dem Weg um in die Stadt \"Arkairos\" zu gelangen. Finde dort meine Freundin Sarah. Sie wird deine Hilfe brauchen."
+progress_text = "Die Stadt \"Arkairos\" befindet sich südlich von hier. Reise dorthin und suche nach meiner Freundin Sarah. "
+complete_text = "Hallo! Ich bin Sarah. Du sagst das die Fee dich schickt? Sehr nett von ihr ich kann jede Hilfe brauchen!"
