@@ -11,4 +11,4 @@ item_amount = 1
 item_max_amount = 1
 item_type = "Equip"
 item_description = "Ein altes Schwert, etwas rostig. Es ist nicht mehr sonderlich scharf aber es tut seine Dienste."
-item_damage = 6
+item_damage = 3
