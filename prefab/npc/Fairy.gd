@@ -48,7 +48,7 @@ func dialog_handler():
 	dialog.set_speaker(self)
 	
 	# check if quest is availbe 
-	if not QuestManager.current_quest and QuestManager.is_quest_availble("Mein Haus"):
+	if not QuestManager.current_quest and QuestManager.is_quest_availble("Finde Sarah"):
 		# start quests
 		if QuestManager.is_quest_availble("Das Schwert") and QuestManager.is_quest_availble("Ungeziefer"):
 			QuestManager.activate_quest("Das Schwert")
@@ -62,6 +62,11 @@ func dialog_handler():
 			dialog.show_dialog()
 		elif not QuestManager.is_quest_availble("Ungeziefer") and QuestManager.is_quest_availble("Mein Haus"):
 			QuestManager.activate_quest("Mein Haus")
+			var quest: Quest = QuestManager.current_quest
+			dialog.set_dialog_text(quest.start_text)
+			dialog.show_dialog()
+		elif not QuestManager.is_quest_availble("Mein Haus") and QuestManager.is_quest_availble("Finde Sarah"):
+			QuestManager.activate_quest("Finde Sarah")
 			var quest: Quest = QuestManager.current_quest
 			dialog.set_dialog_text(quest.start_text)
 			dialog.show_dialog()
@@ -96,6 +101,11 @@ func dialog_handler():
 				Quest.QS.FINSIH:
 					dialog.option_a_btn.connect("button_down", complete_quest_1)
 					dialog.set_dialog_text(quest.complete_text)
+					dialog.show_dialog()
+		elif quest.title == "Finde Sarah":
+			match quest.state:
+				Quest.QS.ACTIVE:
+					dialog.set_dialog_text(quest.progress_text)
 					dialog.show_dialog()
 	else:
 		dialog.set_dialog_text("Hallo, wie geht es dir heute?")
