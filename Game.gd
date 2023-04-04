@@ -31,7 +31,7 @@ const TELEPORT_SPAWN_LOCATIONS: Dictionary = {
 	"WoodGrasland": Vector2(-349, 149),
 	"CityShop": Vector2(-1041, 164),
 	"WoodSmallWood": Vector2(-673, 271),
-	"CitySmallWood": Vector2(223, 630)
+	"CitySmallWood": Vector2(225, 595)
 }
 
 var teleport_spawn_location: Vector2 = Vector2.ZERO
@@ -77,6 +77,7 @@ func _load_profile_game(data):
 	QuestManager.reset_quests()
 	InventoryManager.reset_items()
 	self.loaded_data = data
+	D._load_unique_open_data(self.loaded_data['playername'])
 	switch_gamelevel(self.loaded_data['cur_world'])
 
 func _on_show_world_shadow():
@@ -113,8 +114,8 @@ func switch_gamelevel(levelname: String):
 		GameManager.interface.potion_panel.show()
 		GameManager.interface.exp_hud.show()
 		GameManager.interface.dot_hud.show()
-	if not new_game:
-		self.loaded_data = GameManager.load_savegame()
+#	if not new_game:
+#		self.loaded_data = GameManager.load_savegame()
 	if world_holder.get_child_count() > 0:
 		if GameManager.current_world:
 			if GameManager.current_world.get_node_or_null("Map/CanvasModulate") != null:
@@ -132,6 +133,10 @@ func _change_player_spawn(location: String):
 		"GraslandHouse":
 			self.teleport_spawn_location = self.TELEPORT_SPAWN_LOCATIONS[str(location)]
 		"CityShop":
+			self.teleport_spawn_location = self.TELEPORT_SPAWN_LOCATIONS[str(location)]
+		"CitySmallWood":
+			self.teleport_spawn_location = self.TELEPORT_SPAWN_LOCATIONS[str(location)]
+		"WoodSmallWood":
 			self.teleport_spawn_location = self.TELEPORT_SPAWN_LOCATIONS[str(location)]
 	self.change_player_spawn_location = true
 	print("[!] Game: Change player spawn @ %s" % location)
