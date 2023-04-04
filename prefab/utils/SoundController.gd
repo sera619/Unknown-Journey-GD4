@@ -27,6 +27,9 @@ const MOVEMENT: Dictionary = {
 		"WingFlap": preload("res://assets/Music and Sounds/wing_fap.wav"),
 		"Mushroom": preload("res://assets/Music and Sounds/foodsteps/mushroom_step.wav"),
 		"Skeleton": preload("res://assets/Music and Sounds/foodsteps/skeleton_step.wav")
+	},
+	"NPC":{
+		"Move": preload("res://assets/Music and Sounds/sfx_movement_footsteps1a.wav")
 	}
 } 
 
@@ -45,6 +48,8 @@ func _setup_sounds(character: String):
 			move_player.stream = MOVEMENT.Enemys.WingFlap
 		"Skeleton":
 			move_player.stream = MOVEMENT.Enemys.Skeleton
+		"NPC":
+			move_player.stream = MOVEMENT.NPC.Move
 			
 	#print("[!] SoundController: Sound @ %s successfully loaded!" % character) 
 
