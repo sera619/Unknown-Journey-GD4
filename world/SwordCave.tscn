@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dq6afkde17yc6"]
+[gd_scene load_steps=13 format=3 uid="uid://dq6afkde17yc6"]
 
 [ext_resource type="Script" path="res://world/SwordCave.gd" id="1_egq4y"]
 [ext_resource type="Texture2D" uid="uid://i30uy8osh588" path="res://assets/World/tileset_dungeon.png" id="2_pltvx"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://prefab/player/PlayerLight.gd" id="3_phkur"]
 [ext_resource type="PackedScene" uid="uid://dcc837c2ujx6g" path="res://prefab/utils/GameCamera.tscn" id="4_jn70g"]
 [ext_resource type="Texture2D" uid="uid://p5qjf6yxjhlo" path="res://assets/Materials/ParticleTextures/light.png" id="4_o0qsx"]
+[ext_resource type="AudioStream" uid="uid://qkjq8w1jnf2d" path="res://assets/Music and Sounds/BG/dungeon_bg.ogg" id="8_c1uyu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ol6bj"]
 texture = ExtResource("2_pltvx")
@@ -613,9 +614,6 @@ teleport_location = "Grasland"
 position = Vector2(1, -21)
 shape = SubResource("CircleShape2D_qq23h")
 
-[node name="PlayerDetector" parent="Map/GameObjects/Teleporter" index="1"]
-visible = true
-
 [node name="CollisionShape2D" parent="Map/GameObjects/Teleporter/PlayerDetector" index="0"]
 position = Vector2(0, -28)
 shape = SubResource("CircleShape2D_g4wnk")
@@ -638,6 +636,11 @@ position = Vector2(185, -6)
 
 [node name="BottomRight" parent="Map/GameCamera/Limits" index="1"]
 position = Vector2(1223, 670)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_c1uyu")
+autoplay = true
+bus = &"MenuSFX"
 
 [editable path="Map/GameObjects/Teleporter"]
 [editable path="Map/GameObjects/Teleporter/PlayerDetector"]

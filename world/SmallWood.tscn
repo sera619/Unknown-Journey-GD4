@@ -1,11 +1,14 @@
-[gd_scene load_steps=13 format=3 uid="uid://hkw6vakpucsu"]
+[gd_scene load_steps=16 format=3 uid="uid://hkw6vakpucsu"]
 
 [ext_resource type="Script" path="res://world/WorldBase.gd" id="1_31k03"]
 [ext_resource type="TileSet" uid="uid://bk5vv7fsil51w" path="res://prefab/tilesets/GraslandTileset.tres" id="2_o6h7u"]
 [ext_resource type="PackedScene" uid="uid://dcc837c2ujx6g" path="res://prefab/utils/GameCamera.tscn" id="3_l0wq8"]
+[ext_resource type="PackedScene" uid="uid://cvno4epl40k3u" path="res://prefab/utils/EnemySpawner.tscn" id="3_nhjtc"]
 [ext_resource type="PackedScene" uid="uid://ck2d7l0oulxbi" path="res://prefab/props/SmallTree.tscn" id="3_tqr8e"]
+[ext_resource type="PackedScene" uid="uid://b1kt7f88vq11f" path="res://prefab/enemys/EnemyBat.tscn" id="4_65s6a"]
 [ext_resource type="PackedScene" uid="uid://dewtis55bljv5" path="res://prefab/props/SmallBush.tscn" id="4_i4nlg"]
 [ext_resource type="PackedScene" uid="uid://c738vytvimynb" path="res://prefab/utils/Teleporter.tscn" id="5_0ktek"]
+[ext_resource type="AudioStream" uid="uid://by0hknsdbofxt" path="res://assets/Music and Sounds/BG/Forest_BG.mp3" id="9_rki4w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jvljq"]
 size = Vector2(32, 58)
@@ -82,6 +85,26 @@ y_sort_enabled = true
 
 [node name="Enemys" type="Node2D" parent="Map/GameObjects"]
 y_sort_enabled = true
+
+[node name="EnemySpawner" parent="Map/GameObjects/Enemys" node_paths=PackedStringArray("enemy_container") instance=ExtResource("3_nhjtc")]
+enemy_container = NodePath("..")
+enemy_scene_one = ExtResource("4_65s6a")
+enemys_1 = true
+
+[node name="Marker2D" parent="Map/GameObjects/Enemys/EnemySpawner/SpawnPoints1" index="0"]
+position = Vector2(264, -59)
+
+[node name="Marker2D2" parent="Map/GameObjects/Enemys/EnemySpawner/SpawnPoints1" index="1"]
+position = Vector2(-270, 84)
+
+[node name="Marker2D3" parent="Map/GameObjects/Enemys/EnemySpawner/SpawnPoints1" index="2"]
+position = Vector2(403, 310)
+
+[node name="Marker2D4" parent="Map/GameObjects/Enemys/EnemySpawner/SpawnPoints1" index="3"]
+position = Vector2(-181, 522)
+
+[node name="Marker2D5" parent="Map/GameObjects/Enemys/EnemySpawner/SpawnPoints1" index="4"]
+position = Vector2(-270, 343)
 
 [node name="Props" type="Node2D" parent="Map/GameObjects"]
 y_sort_enabled = true
@@ -661,6 +684,12 @@ position = Vector2(-754, -307)
 [node name="BottomRight" parent="Map/GameCamera/Limits" index="1"]
 position = Vector2(571, 698)
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_rki4w")
+autoplay = true
+bus = &"MenuSFX"
+
+[editable path="Map/GameObjects/Enemys/EnemySpawner"]
 [editable path="Map/GameObjects/Teleporter"]
 [editable path="Map/GameObjects/Teleporter/PlayerDetector"]
 [editable path="Map/GameObjects/Teleporter2"]
