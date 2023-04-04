@@ -1,13 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://b0nfvrtgsqsgq"]
+[gd_scene load_steps=8 format=3 uid="uid://b0nfvrtgsqsgq"]
 
 [ext_resource type="Script" path="res://Quests/QuestManager.gd" id="1_vr7sc"]
 [ext_resource type="PackedScene" uid="uid://c3jmpn371brv1" path="res://Quests/Ungeziefer.tscn" id="3_umi76"]
 [ext_resource type="PackedScene" uid="uid://mdtm320p1d8n" path="res://Quests/Das Schwert.tscn" id="4_0a2k5"]
 [ext_resource type="PackedScene" uid="uid://b48bbqtc3d4rl" path="res://Quests/Mein Haus.tscn" id="4_ha10h"]
+[ext_resource type="PackedScene" uid="uid://cx6kd2qvfr2u8" path="res://Quests/Finde Sarah.tscn" id="5_to8dt"]
+[ext_resource type="PackedScene" uid="uid://cqf5p3i3ts66t" path="res://Quests/Wasserträger.tscn" id="6_hwylh"]
+[ext_resource type="PackedScene" uid="uid://dm05iummyesmd" path="res://Quests/Ernte.tscn" id="7_0s681"]
 
 [node name="QuestManager" type="Node"]
 script = ExtResource("1_vr7sc")
-available_quests_list = Array[PackedScene]([ExtResource("4_0a2k5"), ExtResource("3_umi76"), ExtResource("4_ha10h")])
+available_quests_list = Array[PackedScene]([ExtResource("4_0a2k5"), ExtResource("3_umi76"), ExtResource("4_ha10h"), ExtResource("5_to8dt"), ExtResource("6_hwylh"), ExtResource("7_0s681")])
 
 [node name="Available" type="Node" parent="."]
 
