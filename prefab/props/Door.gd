@@ -1,10 +1,12 @@
 extends Node2D
 class_name Door
 
-@export_enum("Normal", "Locked") var door_type: int 
+@export_enum("Normal", "Metal", "Locked") var door_type: int 
+@export_enum("Left", "Right") var open_side: int
 @export var close_time: int
 @export var sound_open_scene: PackedScene
 @export var sound_close_scene: PackedScene
+@export var cell_open_sound_scene: PackedScene
 
 @onready var anim_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var block_shape: CollisionShape2D = $StaticBody2D/CollisionShape2D
@@ -18,6 +20,13 @@ func _ready():
 	anim_sprite.animation = "open"
 	anim_sprite.frame = 0
 	timer.connect("timeout", _close_door)
+	if open_side == 0:
+		anim_sprite.flip_h = false
+		anim_sprite.offset.x = -1.5
+	elif open_side == 1:
+		anim_sprite.offset.x = 2.5
+		anim_sprite.flip_h = true
+	
 	if close_time != 0:
 		timer.wait_time = close_time
 
@@ -34,19 +43,27 @@ func _close_door():
 	is_open = false
 	if not timer.is_stopped():
 		timer.stop()
-	if sound_close_scene:
-		var sound = sound_close_scene.instantiate()
-		self.add_child(sound)
+	match door_type:
+		0:
+			var sound = sound_close_scene.instantiate()
+			self.add_child(sound)
+		1:
+			var sound = cell_open_sound_scene.instantiate()
+			self.add_child(sound)
 	anim_sprite.play("close")
 
 func _open_door():
-	if sound_open_scene:
-		var sound = sound_open_scene.instantiate()
-		self.add_child(sound)
 	match door_type:
 		0:
-			is_open = true
-			anim_sprite.play("open")
+			if sound_open_scene:
+				var sound = sound_open_scene.instantiate()
+				self.add_child(sound)
+		1: 
+			if cell_open_sound_scene:
+				var sound = cell_open_sound_scene.instantiate()
+				self.add_child(sound)
+	is_open = true
+	anim_sprite.play("open")
 
 func _on_animation_finished():
 	if not is_open:
