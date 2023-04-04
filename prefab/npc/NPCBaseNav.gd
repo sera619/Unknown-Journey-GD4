@@ -75,9 +75,10 @@ func _talk_state():
 	else:
 		state = WANDER
 
+
 func dialog_handler():
 	var dialog: DialogBox = GameManager.dialog_box
-	dialog.set_speaker(self)
+	dialog.set_speaker(self) 
 	dialog.set_dialog_text(T.get_random_greeting())
 	dialog.show_dialog()
 
