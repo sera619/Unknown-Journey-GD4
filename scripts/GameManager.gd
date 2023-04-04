@@ -184,7 +184,7 @@ func save_data(playername=""):
 	D._save_profile_char_data(GameManager.player.stats.playername)
 	D._save_profile_quest_data(GameManager.player.stats.playername)
 	D._save_profile_inventory_data(GameManager.player.stats.playername)
-	
+	D._save_unique_open_data(GameManager.player.stats.playername)
 	print("[!] Data: Savegame successfully saved!")
 	QuestManager.save_quests()
 
