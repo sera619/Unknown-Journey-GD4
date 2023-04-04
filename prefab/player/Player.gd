@@ -98,7 +98,8 @@ func _auto_save():
 func _set_interact(mode: bool):
 	can_interact = mode
 
-func _process(_delta):
+func _process(delta):
+	stats._record_playtime(delta)
 	G.player = self
 	G.player_data.pos = global_position
 	G.player_data.rotation = rotation
