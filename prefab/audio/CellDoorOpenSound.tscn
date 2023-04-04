@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://mpkll07nsyod"]
+
+[ext_resource type="AudioStream" uid="uid://c1lhbw5wqojm1" path="res://assets/Music and Sounds/metal_door_open.wav" id="1_fcokn"]
+[ext_resource type="Script" path="res://prefab/audio/SoundEffect.gd" id="2_pg3fg"]
+
+[node name="SoundEffect" type="AudioStreamPlayer"]
+stream = ExtResource("1_fcokn")
+bus = &"PlayerSFX"
+script = ExtResource("2_pg3fg")
