@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://cqf5p3i3ts66t"]
+
+[ext_resource type="Script" path="res://Quests/Quest.gd" id="1_h688t"]
+
+[node name="Wasserträger" type="Node"]
+script = ExtResource("1_h688t")
+type = 1
+title = "Wasserträger"
+description = "Sarah´s Pflanzen sind vertrocknet sie brauchen dringend Wasser! Rund um den See in der Stadt kannst du Wasser finden."
+required_amount = 5
+object_name = "Wasser"
+reward_xp = 360
+start_text = "Tatsächlich kann ich Hilfe gebrauchen. Meine Pflanzen sind total vertrocknet und benötigen dringend Wasser! Kannst du für mich zum See hier in der Stadt gehen und Wasser holen?	"
+progress_text = "Wasser kannst du beim See im südlichen Teil der Stadt finden!"
+complete_text = "Vielen Dank lieber Freund! Wenn du noch Zeit für eine weitere Aufgabe hast komm zu mir zurück!"
