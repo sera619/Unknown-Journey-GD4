@@ -42,7 +42,7 @@ func load_quest_infos():
 				list_node.add_item(quest.title, finish_icon, false)
 				list_node.set_item_disabled(count, true)
 				list_node.set_item_selectable(count, true)
-				list_node.set_item_custom_fg_color(count, GameManager.COLORS.blue_text)
+				list_node.set_item_custom_fg_color(count, GameManager.COLORS.lightgreen_text)
 		list_node.set_item_tooltip_enabled(count, false)
 		count += 1
 
