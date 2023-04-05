@@ -1,15 +1,13 @@
 import os
-import pathlib
 import shutil
 import sys
-
-
-
+from colorama import init, Fore
 
 def main():
     path = 'Makefile'
-    print("+++Makefile Updater+++\n")
-    new = input("Enter Version: ")
+    os.system('cls')
+    print(Fore.CYAN + "\n+++ Makefile Updater +++\n"+ Fore.RESET)
+    new = input(Fore.YELLOW +"Enter Version (CTRL+C to exit): " + Fore.RESET)
 
     if new == "":
         exit()
@@ -29,9 +27,10 @@ def main():
 
 if __name__ == "__main__":
     try:
+        init()
         main()
     except KeyboardInterrupt:
-        print("[!] User exit programm")
+        print(Fore.RED +"\n[!] User exit programm!\n" + Fore.RESET)
     finally:
         sys.exit()
 
