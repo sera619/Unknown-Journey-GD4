@@ -3,3 +3,4 @@
 export
 addons/
 changelog.md
+Makefile
