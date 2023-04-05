@@ -26,6 +26,16 @@ func check_cache():
 	else:
 		return
 
+func clear_cache():
+	if not text_cache.is_empty():
+		text_cache.clear()
+		hide_info_text()
+		reset_info_text()
+		show_timer.stop()
+		print("[Infobox]: Cache cleared!")
+	else:
+		return
+
 func reset_info_text():
 	text_label.text = ""
 
