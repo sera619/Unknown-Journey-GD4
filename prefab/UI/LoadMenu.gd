@@ -44,3 +44,8 @@ func _on_load_btn_button_up():
 		GameManager.main_menu.anim_player.play("load-menu")
 	else:
 		self.hide_loadmenu()
+
+
+func _on_del_button_button_down():
+	D._delete_old_save_files()
+	_refresh_loadmenu()

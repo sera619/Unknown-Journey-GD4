@@ -245,6 +245,9 @@ func _setup_profiles():
 		print("[Data]: User Directory created!")
 
 func _delete_old_save_files():
+	for n in _get_all_player_profile_names():
+		_delete_profile(n)
+		print("[Data]: Old files from player \"%s\" deleted!" % n) 
 	if FileAccess.file_exists("user://savegame.save"):
 		DirAccess.remove_absolute("user://savegame.save")
 	if FileAccess.file_exists("user://questsavegame.save"):

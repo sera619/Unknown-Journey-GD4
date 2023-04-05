@@ -90,7 +90,12 @@ horizontal_scroll_mode = 0
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="LoadBtn" type="TextureButton" parent="BG/M/V"]
+[node name="H" type="HBoxContainer" parent="BG/M/V"]
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="DelButton" type="TextureButton" parent="BG/M/V/H"]
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
@@ -99,7 +104,35 @@ texture_pressed = ExtResource("6_luefn")
 texture_hover = ExtResource("7_b72l3")
 texture_disabled = ExtResource("8_7ctis")
 
-[node name="Label" type="Label" parent="BG/M/V/LoadBtn"]
+[node name="Label" type="Label" parent="BG/M/V/H/DelButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.5
+offset_top = -11.5
+offset_right = 20.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_qol1k")
+theme_override_font_sizes/font_size = 8
+text = "Reset"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LoadBtn" type="TextureButton" parent="BG/M/V/H"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+texture_normal = ExtResource("5_m4wif")
+texture_pressed = ExtResource("6_luefn")
+texture_hover = ExtResource("7_b72l3")
+texture_disabled = ExtResource("8_7ctis")
+
+[node name="Label" type="Label" parent="BG/M/V/H/LoadBtn"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -118,4 +151,5 @@ text = "Zurück"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[connection signal="button_up" from="BG/M/V/LoadBtn" to="." method="_on_load_btn_button_up"]
+[connection signal="button_down" from="BG/M/V/H/DelButton" to="." method="_on_del_button_button_down"]
+[connection signal="button_up" from="BG/M/V/H/LoadBtn" to="." method="_on_load_btn_button_up"]

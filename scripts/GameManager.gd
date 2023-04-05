@@ -76,12 +76,12 @@ func _update_audio_all(value):
 	print("[!] GameManger: All audio volume set to: %s" % value)
 
 func _update_audio_music(value):
-	AudioServer.set_bus_volume_db(3, value)
+	AudioServer.set_bus_volume_db(2, value)
 	self.current_game_options['audio_music'] = value
 	print("[!] GameManger: Music audio volume set to: %s" % value)
 
 func _update_audio_sfx(value):
-	AudioServer.set_bus_volume_db(2, value)
+	AudioServer.set_bus_volume_db(1, value)
 	self.current_game_options['audio_sfx'] = value
 	print("[!] GameManger: SFX audio volume set to: %s" % value)
 
