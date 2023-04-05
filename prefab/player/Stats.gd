@@ -49,7 +49,9 @@ var player_statistic: Dictionary = {
 	"max_gold_hold": 0,
 	"max_dmg_done": 0,
 	"killed_enemys": 0,
-	"total_gold": 0
+	"total_gold": 0,
+	"quest_done": 0,
+	"died": 0
 }
 
 
@@ -57,10 +59,12 @@ func _record_playtime(delta: float):
 	played_time += delta
 
 func _ready():
+	EventHandler.connect("player_died", _check_died)
 	EventHandler.connect("player_inventory_equip_changed", _change_equip)
 	EventHandler.connect("statistic_update_dmg_done", _check_max_dmg_done)
 	EventHandler.connect("statistic_update_dmg_taken", _check_max_dmg_taken)
 	EventHandler.connect("statistic_update_killed", _check_killed_enemys)
+	EventHandler.connect("statistic_update_quests", _check_quests_done)
 	if not parent:
 		parent = get_parent().name
 	if dmg_label_path:
@@ -72,6 +76,11 @@ func _ready():
 	else: 
 		apply_loaded_stats()
 
+func _check_died():
+	player_statistic['died'] += 1
+
+func _check_quests_done():
+	player_statistic['quest_done'] += 1
 
 func _check_max_dmg_done(value):
 	if not value >= player_statistic['max_dmg_done']:

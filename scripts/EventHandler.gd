@@ -35,7 +35,7 @@ signal statistic_update_gold(amount)
 signal statistic_update_killed(amount)
 signal statistic_update_dmg_done(amount)
 signal statistic_update_dmg_taken(amount)
-
+signal statistic_update_quests
 signal player_inventory_item_changed(item)
 signal player_inventory_equip_changed(equip)
 

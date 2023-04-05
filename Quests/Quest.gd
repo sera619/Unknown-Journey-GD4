@@ -48,6 +48,7 @@ func complete():
 		var stats = GameManager.player.stats
 		stats.set_exp(stats.experience + self.reward_xp)
 	QuestManager.current_quest = null
+	EventHandler.emit_signal("statistic_update_quests")
 	GameManager.info_box.set_info_text("[center]Quest:\n\n[color=blue]\"%s\"[/color]\n\nabgeschlossen![/center]" % self.title)
 	self.state = QS.COMPLETE
 

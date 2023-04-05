@@ -166,10 +166,10 @@ offset_bottom = 97.0
 scale = Vector2(0.45, 0.45)
 
 [node name="StatisticHUD" parent="." instance=ExtResource("15_mvvhj")]
-offset_left = 78.0
-offset_top = 47.0
-offset_right = 78.0
-offset_bottom = 47.0
+offset_left = 74.0
+offset_top = 35.0
+offset_right = 94.0
+offset_bottom = 83.0
 
 [node name="PauseMenu" parent="." instance=ExtResource("3_6p8ro")]
 visible = false

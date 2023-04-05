@@ -191,7 +191,7 @@ func take_damage(area):
 		effect.global_position.y += animSprite.offset.y
 		cs.add_child(effect)
 		stats.set_health( stats.health - area.damage)
-		knockback = area.knockback_vector * 115
+		knockback = area.knockback_vector * 105
 		EventHandler.emit_signal("statistic_update_dmg_done", area.damage)
 		emit_signal("enemy_take_damage", area.damage)
 		anim_player.play("Hit")

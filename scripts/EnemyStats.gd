@@ -56,10 +56,8 @@ func set_max_health(new_max_health):
 func take_damage(dmg):
 	health -= dmg
 	emit_signal("enemy_health_changed", health)
-	EventHandler.emit_signal("statistic_update_dmg_done", dmg)
 	if health <= 0:
 		health = 0
-		EventHandler.emit_signal('statistic_update_killed', 1)
 		emit_signal("enemy_died")
 	print("[!] EnemyStats: %s get damage: %s | new health: %s" % [get_parent().name, dmg, health])
 	

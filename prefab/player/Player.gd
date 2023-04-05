@@ -411,6 +411,7 @@ func hurt_animation_finished():
 	if stats.health <= 0:
 		is_alive = false
 		EventHandler.emit_signal("player_died")
+		
 		GameManager.camera.player = null
 		GameManager.player = null
 		self.queue_free()
