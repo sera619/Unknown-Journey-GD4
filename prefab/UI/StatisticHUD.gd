@@ -40,7 +40,7 @@ func hide_statistic():
 
 func _update_statistic():
 	var s = GameManager.player.stats.player_statistic
-	info_label.text = "Spielerstatistik für\nden Spieler \"%s\"" % GameManager.selected_playername
+	info_label.text = "Spielerstatistik für den Spieler\n\"%s\"" % GameManager.selected_playername
 	max_gold_label.text = str(s['max_gold_hold']) + " x"
 	total_gold_label.text = str(s['total_gold']) + " x"
 	dmg_done_label.text = str(s['max_dmg_done']) + " x"

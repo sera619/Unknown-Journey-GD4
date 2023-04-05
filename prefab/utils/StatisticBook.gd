@@ -14,10 +14,14 @@ func _process(delta):
 	if player_detector.can_see_player():
 		icon.visible = true
 		if Input.is_action_just_released("interact"):
-			if not body_sprite.is_playing():
-				body_sprite.play("default")
+			if not GameManager.interface.statistic_hud.visible:
+				if not body_sprite.is_playing():
+					body_sprite.play("default")
+			else:
+				GameManager.interface.statistic_hud.hide_statistic()
 	else:
 		icon.visible = false
 
 func open_statistic():
-	GameManager.interface.statistic_hud.show_statistic()
+	if not GameManager.interface.statistic_hud.visible:
+		GameManager.interface.statistic_hud.show_statistic()

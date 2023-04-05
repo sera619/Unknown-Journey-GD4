@@ -37,7 +37,6 @@ func _show_alphainfo():
 	if not showinfo:
 		return
 	showinfo = false
-	await get_tree().create_timer(3).timeout
 	var info = alpha_info_scene.instantiate()
 	self.add_child(info)
 

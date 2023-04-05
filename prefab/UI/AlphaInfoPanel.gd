@@ -8,4 +8,5 @@ func _ready():
 
 func _on_texture_button_button_up():
 	get_tree().paused = false
-	self.queue_free()
+	D._delete_old_save_files()
+	self.call_deferred("queue_free")

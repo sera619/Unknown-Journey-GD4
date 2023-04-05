@@ -8,6 +8,8 @@ class_name MainMenu
 
 func _ready():
 	GameManager.register_node(self)
+	anim_player.connect("animation_finished", _on_animation_finished)
+	
 	anim_player.play("start")
 
 
@@ -70,3 +72,6 @@ func _on_cancel_btn_button_down():
 	namepopup.nameinput.text = ""
 	anim_player.play("name-menu")
 
+func _on_animation_finished(anim_name):
+	if anim_name == "start":
+		GameManager.interface._show_alphainfo()
