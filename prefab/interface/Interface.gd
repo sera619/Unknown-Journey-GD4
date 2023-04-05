@@ -11,9 +11,9 @@ class_name Interface
 @export var button_click_sound: PackedScene
 
 var dev_console: bool = false
-@onready var qlog = $Questlog
+@onready var qlog: QuestLog = $Questlog
 @onready var animplayer = $AnimationPlayer
-@onready var pausmenu = $PauseMenu
+@onready var pausmenu: PauseMenu = $PauseMenu
 @onready var stat_hud = $StatHUD
 @onready var charpanel: CharacterPanel = $CharacterPanel
 @onready var potion_panel= $PotionPanel

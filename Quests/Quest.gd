@@ -35,7 +35,7 @@ func add_item():
 func reset():
 	self.state = QS.NOT_GIVEN
 	self.current_amount = 0
-	print("[!] Quest: \"%s\" successfully reseted" % self.title)
+	#print("[!] Quest: \"%s\" successfully reseted" % self.title)
 
 func finish():
 	self.state = QS.FINSIH

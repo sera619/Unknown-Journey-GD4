@@ -1,5 +1,5 @@
 extends Control
-
+class_name PauseMenu
 var paused: bool = false
 @export var pause_sound_scene: PackedScene
 @export var unpause_sound_scene: PackedScene

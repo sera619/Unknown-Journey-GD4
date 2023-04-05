@@ -34,9 +34,9 @@ func _delete_slot():
 func _load_slot():
 	if not GameManager.on_main_menu:
 		get_tree().paused = false
-		GameManager.selected_playername = slot_playername
 		print(slot_playername)
 	#_create_btn_click_sound()
+	GameManager.selected_playername = slot_playername
 	EventHandler.connect("transition_black", _load_game)
 	EventHandler.emit_signal("start_transition")
 
