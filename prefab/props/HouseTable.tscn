@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://de1qg2ncmb1ps"]
+
+[ext_resource type="Texture2D" uid="uid://cvlvkaue2u7hm" path="res://assets/World/Inside_B.png" id="1_hg1ww"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7wpdy"]
+size = Vector2(67, 80)
+
+[node name="HouseTable" type="StaticBody2D"]
+collision_layer = 129
+collision_mask = 129
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_hg1ww")
+offset = Vector2(0, -24)
+region_enabled = true
+region_rect = Rect2(0, 143, 96, 81)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Sprite2D"]
+show_behind_parent = true
+position = Vector2(0, 51)
+region_enabled = true
+region_rect = Rect2(48, 100, 86, 52)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.90735e-06, -18)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_7wpdy")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://b7dks5cm1l8lb"]
+[gd_scene load_steps=25 format=3 uid="uid://b7dks5cm1l8lb"]
 
 [ext_resource type="Script" path="res://prefab/interface/Interface.gd" id="1_ghaf7"]
 [ext_resource type="PackedScene" uid="uid://bdnok5tk1xkmk" path="res://dev/DevConsole.tscn" id="2_g31m3"]
@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://b2vjb6d6ok5vr" path="res://prefab/UI/LoadMenu.tscn" id="13_cofjd"]
 [ext_resource type="PackedScene" uid="uid://l61eqwib72yh" path="res://prefab/UI/SleepHUD.tscn" id="13_q1ex6"]
 [ext_resource type="PackedScene" uid="uid://d2qg587omjywm" path="res://prefab/UI/OptionPanel.tscn" id="15_06kas"]
+[ext_resource type="PackedScene" uid="uid://h4tb1xbes0cn" path="res://prefab/UI/StatisticHUD.tscn" id="15_mvvhj"]
 [ext_resource type="PackedScene" uid="uid://b4txcvasvt27s" path="res://prefab/UI/InventoryHUD.tscn" id="18_p0ljd"]
 [ext_resource type="PackedScene" uid="uid://c63ephblivbui" path="res://prefab/UI/ShopHUD.tscn" id="19_iv8cx"]
 
@@ -163,6 +164,12 @@ offset_top = 97.0
 offset_right = 88.0
 offset_bottom = 97.0
 scale = Vector2(0.45, 0.45)
+
+[node name="StatisticHUD" parent="." instance=ExtResource("15_mvvhj")]
+offset_left = 78.0
+offset_top = 47.0
+offset_right = 78.0
+offset_bottom = 47.0
 
 [node name="PauseMenu" parent="." instance=ExtResource("3_6p8ro")]
 visible = false

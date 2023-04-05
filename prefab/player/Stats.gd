@@ -44,6 +44,13 @@ var exp_multiplikator:float = 1.2
 var parent = null
 var dmg_label: RichTextLabel = null
 var played_time = 0
+var player_statistic: Dictionary = {
+	"max_dmg_taken": 0,
+	"max_gold_hold": 0,
+	"max_dmg_done": 0,
+	"killed_enemys": 0,
+	"total_gold": 0
+}
 
 
 func _record_playtime(delta: float):
@@ -51,6 +58,9 @@ func _record_playtime(delta: float):
 
 func _ready():
 	EventHandler.connect("player_inventory_equip_changed", _change_equip)
+	EventHandler.connect("statistic_update_dmg_done", _check_max_dmg_done)
+	EventHandler.connect("statistic_update_dmg_taken", _check_max_dmg_taken)
+	EventHandler.connect("statistic_update_killed", _check_killed_enemys)
 	if not parent:
 		parent = get_parent().name
 	if dmg_label_path:
@@ -61,6 +71,26 @@ func _ready():
 		GameManager.game.new_game = false
 	else: 
 		apply_loaded_stats()
+
+
+func _check_max_dmg_done(value):
+	if not value >= player_statistic['max_dmg_done']:
+		return
+	player_statistic['max_dmg_done'] = value
+
+func _check_max_dmg_taken(value):
+	if not value >= player_statistic['max_dmg_taken']:
+		return
+	player_statistic['max_dmg_taken'] = value
+
+func _check_killed_enemys(value):
+	player_statistic['killed_enemys'] += value
+
+func _check_max_gold_hold(value):
+	if not value >= player_statistic['max_gold_hold']:
+		return
+	player_statistic['max_gold_hold'] = value
+
 
 func _change_equip(equip: Item):
 	if not equip.item_type == "Equip":
@@ -165,7 +195,9 @@ func set_level(value):
 	EventHandler.emit_signal("player_level_changed", level)
 
 func set_gold(value):
+	player_statistic['total_gold'] += (value - gold)
 	gold = value
+	_check_max_gold_hold(gold)
 	if gold > MAX_GOLD:
 		gold = MAX_GOLD
 	EventHandler.emit_signal("player_gold_changed", gold)
@@ -205,6 +237,7 @@ func apply_loaded_stats():
 		max_experience = data['max_exp']
 		level = data['level']
 		gold = data['gold']
+		player_statistic = data['statistic']
 		GameManager.seen_npcs.clear()
 		for n in data['seen_npcs']:
 			GameManager.seen_npcs.append(n)
@@ -239,6 +272,7 @@ func save():
 		"level": self.level,
 		"seen_npcs": GameManager.seen_npcs,
 		"gold": self.gold,
-		"played_time": self.played_time
+		"played_time": self.played_time,
+		"statistic": self.player_statistic
 	}
 	return save_dict

@@ -29,7 +29,7 @@ func _process(delta):
 		self.time_label.text = "%s Uhr" % Time.get_time_string_from_system()
 
 func _create_btn_click_sound():
-	var sound = GameManager.interface.button_click_sound.instatiate()
+	var sound = GameManager.interface.button_click_sound.instantiate()
 	self.add_child(sound)
 
 func showpause():

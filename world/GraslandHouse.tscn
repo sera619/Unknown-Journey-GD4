@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://04scy05jiaid"]
+[gd_scene load_steps=18 format=3 uid="uid://04scy05jiaid"]
 
 [ext_resource type="Script" path="res://world/WorldBase.gd" id="1_gjfdg"]
 [ext_resource type="Texture2D" uid="uid://cvlvkaue2u7hm" path="res://assets/World/Inside_B.png" id="2_421gp"]
@@ -8,6 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://bjh0j476ynyk4" path="res://prefab/PuzzleObjects/PlayerBed.tscn" id="5_v6wm3"]
 [ext_resource type="PackedScene" uid="uid://bjvuvridc52x3" path="res://prefab/props/Clock.tscn" id="6_4wieb"]
 [ext_resource type="PackedScene" uid="uid://c738vytvimynb" path="res://prefab/utils/Teleporter.tscn" id="6_av85k"]
+[ext_resource type="PackedScene" uid="uid://de1qg2ncmb1ps" path="res://prefab/props/HouseTable.tscn" id="7_ivai8"]
+[ext_resource type="PackedScene" uid="uid://dufcf53i77hkn" path="res://prefab/utils/StatisticBook.tscn" id="8_7g62a"]
+[ext_resource type="PackedScene" uid="uid://c1ywcyppymlpl" path="res://prefab/props/HouseChair.tscn" id="9_g0w8e"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_52x3q"]
 texture = ExtResource("2_421gp")
@@ -4335,6 +4338,18 @@ position = Vector2(-179, -117)
 
 [node name="Clock" parent="Map/GameObjects/Props" instance=ExtResource("6_4wieb")]
 position = Vector2(-30, 84)
+
+[node name="HouseTable" parent="Map/GameObjects/Props" instance=ExtResource("7_ivai8")]
+position = Vector2(200, -109)
+
+[node name="StatisticBook" parent="Map/GameObjects/Props/HouseTable" instance=ExtResource("8_7g62a")]
+position = Vector2(0, -17)
+
+[node name="HouseChair" parent="Map/GameObjects/Props" instance=ExtResource("9_g0w8e")]
+position = Vector2(135, -143)
+
+[node name="HouseChair2" parent="Map/GameObjects/Props" instance=ExtResource("9_g0w8e")]
+position = Vector2(135, -110)
 
 [node name="Teleporter" parent="Map/GameObjects" instance=ExtResource("6_av85k")]
 position = Vector2(-40, 157)

@@ -293,6 +293,7 @@ func take_damage(area):
 		return
 	if stats.health >= 0:
 		stats.set_health(stats.health - area.damage)
+		EventHandler.emit_signal("statistic_update_dmg_taken", area.damage)
 		knockback = area.knockback_vector.normalized() * 225
 		var effect = hit_effect_scene.instantiate()
 		get_tree().current_scene.add_child(effect)

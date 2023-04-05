@@ -1,0 +1,296 @@
+[gd_scene load_steps=9 format=3 uid="uid://h4tb1xbes0cn"]
+
+[ext_resource type="Script" path="res://prefab/UI/StatisticHUD.gd" id="1_o8676"]
+[ext_resource type="Texture2D" uid="uid://8edplubtbkbr" path="res://assets/UI/wood-box.png" id="2_5giyj"]
+[ext_resource type="Texture2D" uid="uid://bpt7n5fbi8xg5" path="res://assets/UI/text-box.png" id="3_3e45x"]
+[ext_resource type="FontFile" uid="uid://bddtsccx0qour" path="res://assets/UI/Fonts/dogicapixel.otf" id="3_5be53"]
+[ext_resource type="Texture2D" uid="uid://cefc0kofjjbtu" path="res://assets/UI/big-red-button-normal-export.png" id="5_rop1p"]
+[ext_resource type="Texture2D" uid="uid://cvqmjd6jh0jma" path="res://assets/UI/big-red-button-pressed-export.png" id="6_tbwu6"]
+[ext_resource type="Texture2D" uid="uid://bnhgifjigfyny" path="res://assets/UI/big-red-button-hover-export.png" id="7_yicg3"]
+[ext_resource type="Texture2D" uid="uid://dg8totcenq1rk" path="res://assets/UI/big-button_disabled-export.png" id="8_ykqys"]
+
+[node name="StatisticHUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_o8676")
+
+[node name="BG" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_5giyj")
+patch_margin_left = 24
+patch_margin_top = 16
+patch_margin_right = 24
+patch_margin_bottom = 16
+
+[node name="M" type="MarginContainer" parent="BG"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="V" type="VBoxContainer" parent="BG/M"]
+layout_mode = 2
+
+[node name="HeadBG" type="NinePatchRect" parent="BG/M/V"]
+layout_mode = 2
+texture = ExtResource("3_3e45x")
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+
+[node name="Label" type="Label" parent="BG/M/V/HeadBG"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.545098)
+theme_override_fonts/font = ExtResource("3_5be53")
+theme_override_font_sizes/font_size = 8
+text = "Statistik"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MainBG" type="NinePatchRect" parent="BG/M/V"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("3_3e45x")
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+
+[node name="M" type="MarginContainer" parent="BG/M/V/MainBG"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="V" type="VBoxContainer" parent="BG/M/V/MainBG/M"]
+layout_mode = 2
+theme_override_constants/separation = 3
+
+[node name="Info" type="Label" parent="BG/M/V/MainBG/M/V"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.00784314, 0.768627, 0.25098, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.45098)
+theme_override_fonts/font = ExtResource("3_5be53")
+theme_override_font_sizes/font_size = 8
+text = "Spielerstatistik
+für Spieler Keks"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="H" type="HBoxContainer" parent="BG/M/V/MainBG/M/V"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="BG/M/V/MainBG/M/V/H"]
+layout_mode = 2
+size_flags_horizontal = 7
+theme_override_colors/font_color = Color(0.360784, 0.882353, 0.890196, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.545098)
+theme_override_fonts/font = ExtResource("3_5be53")
+theme_override_font_sizes/font_size = 8
+text = "Gegner besiegt:"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="KilledEnemys" type="Label" parent="BG/M/V/MainBG/M/V/H"]
+layout_mode = 2
+size_flags_horizontal = 7
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.490196)
+theme_override_fonts/font = ExtResource("3_5be53")
+theme_override_font_sizes/font_size = 8
+text = "Test"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="H2" type="HBoxContainer" parent="BG/M/V/MainBG/M/V"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="BG/M/V/MainBG/M/V/H2"]
+layout_mode = 2
+size_flags_horizontal = 7
+theme_override_colors/font_color = Color(0.360784, 0.882353, 0.890196, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.545098)
+theme_override_fonts/font = ExtResource("3_5be53")
+theme_override_font_sizes/font_size = 8
+text = "max. DMG verursacht:"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="DmgDone" type="Label" parent="BG/M/V/MainBG/M/V/H2"]
+layout_mode = 2
+size_flags_horizontal = 7
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.490196)
+theme_override_fonts/font = ExtResource("3_5be53")
+theme_override_font_sizes/font_size = 8
+text = "Test"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="H3" type="HBoxContainer" parent="BG/M/V/MainBG/M/V"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="BG/M/V/MainBG/M/V/H3"]
+layout_mode = 2
+size_flags_horizontal = 7
+theme_override_colors/font_color = Color(0.360784, 0.882353, 0.890196, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.545098)
+theme_override_fonts/font = ExtResource("3_5be53")
+theme_override_font_sizes/font_size = 8
+text = "max. DMG erhalten:"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="DmgTaken" type="Label" parent="BG/M/V/MainBG/M/V/H3"]
+layout_mode = 2
+size_flags_horizontal = 7
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.490196)
+theme_override_fonts/font = ExtResource("3_5be53")
+theme_override_font_sizes/font_size = 8
+text = "Test"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="H4" type="HBoxContainer" parent="BG/M/V/MainBG/M/V"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="BG/M/V/MainBG/M/V/H4"]
+layout_mode = 2
+size_flags_horizontal = 7
+theme_override_colors/font_color = Color(0.360784, 0.882353, 0.890196, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.545098)
+theme_override_fonts/font = ExtResource("3_5be53")
+theme_override_font_sizes/font_size = 8
+text = "max. Goldbesitz:"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="MaxGoldHold" type="Label" parent="BG/M/V/MainBG/M/V/H4"]
+layout_mode = 2
+size_flags_horizontal = 7
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.490196)
+theme_override_fonts/font = ExtResource("3_5be53")
+theme_override_font_sizes/font_size = 8
+text = "Test"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="H5" type="HBoxContainer" parent="BG/M/V/MainBG/M/V"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="BG/M/V/MainBG/M/V/H5"]
+layout_mode = 2
+size_flags_horizontal = 7
+theme_override_colors/font_color = Color(0.360784, 0.882353, 0.890196, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.545098)
+theme_override_fonts/font = ExtResource("3_5be53")
+theme_override_font_sizes/font_size = 8
+text = "Gold erhalten:"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="TotalGold" type="Label" parent="BG/M/V/MainBG/M/V/H5"]
+layout_mode = 2
+size_flags_horizontal = 7
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.490196)
+theme_override_fonts/font = ExtResource("3_5be53")
+theme_override_font_sizes/font_size = 8
+text = "Test"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="H6" type="HBoxContainer" parent="BG/M/V/MainBG/M/V"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="BG/M/V/MainBG/M/V/H6"]
+layout_mode = 2
+size_flags_horizontal = 7
+theme_override_colors/font_color = Color(0.360784, 0.882353, 0.890196, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.545098)
+theme_override_fonts/font = ExtResource("3_5be53")
+theme_override_font_sizes/font_size = 8
+text = "gespielte Zeit:"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="TimePlayed" type="Label" parent="BG/M/V/MainBG/M/V/H6"]
+layout_mode = 2
+size_flags_horizontal = 7
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.490196)
+theme_override_fonts/font = ExtResource("3_5be53")
+theme_override_font_sizes/font_size = 8
+text = "Test"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureButton" type="TextureButton" parent="BG/M/V"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("5_rop1p")
+texture_pressed = ExtResource("6_tbwu6")
+texture_hover = ExtResource("7_yicg3")
+texture_disabled = ExtResource("8_ykqys")
+
+[node name="Label" type="Label" parent="BG/M/V/TextureButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("3_5be53")
+theme_override_font_sizes/font_size = 8
+text = "OKay"
+horizontal_alignment = 1
+vertical_alignment = 1

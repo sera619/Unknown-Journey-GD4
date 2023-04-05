@@ -25,6 +25,7 @@ var dev_console: bool = false
 @onready var inventory_panel: InventoryHUD = $InventoryHUD
 @onready var shop_panel: ShopHUD = $ShopHUD
 @onready var load_menu: LoadMenu = $LoadMenu
+@onready var statistic_hud: StatisticHUD = $StatisticHUD
 
 var showinfo = true 
 

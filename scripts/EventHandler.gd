@@ -31,6 +31,11 @@ signal player_gold_changed(value)
 signal player_maxgold_changed(value)
 signal player_set_interact(mode)
 
+signal statistic_update_gold(amount)
+signal statistic_update_killed(amount)
+signal statistic_update_dmg_done(amount)
+signal statistic_update_dmg_taken(amount)
+
 signal player_inventory_item_changed(item)
 signal player_inventory_equip_changed(equip)
 

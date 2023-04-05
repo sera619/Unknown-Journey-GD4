@@ -192,6 +192,7 @@ func take_damage(area):
 		cs.add_child(effect)
 		stats.set_health( stats.health - area.damage)
 		knockback = area.knockback_vector * 115
+		EventHandler.emit_signal("statistic_update_dmg_done", area.damage)
 		emit_signal("enemy_take_damage", area.damage)
 		anim_player.play("Hit")
 		if stats.health <= 0:
@@ -216,6 +217,7 @@ func check_quest():
 func kill_enemy():
 	check_quest()
 	reward_player()
+	EventHandler.emit_signal("statistic_update_killed", 1)
 	self.call_deferred("queue_free")
 	print("[!] Enemy: %s died!" % self.name)
 
