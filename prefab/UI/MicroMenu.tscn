@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bcyuj58ovb3b8"]
+[gd_scene load_steps=12 format=3 uid="uid://bcyuj58ovb3b8"]
 
 [ext_resource type="Texture2D" uid="uid://bclxecir5ivmv" path="res://assets/UI/button-red-small-normalt.png" id="1_wkkl3"]
 [ext_resource type="Script" path="res://prefab/UI/MicroMenu.gd" id="1_xpq2c"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://b74m67mxdxx1r" path="res://assets/UI/ui_icons/button_char.png" id="7_j248f"]
 [ext_resource type="Texture2D" uid="uid://1yrg10w5aaxq" path="res://assets/UI/ui_icons/button_inv.png" id="8_ctf37"]
 [ext_resource type="Texture2D" uid="uid://b6ux1f5mdiln" path="res://assets/UI/ui_icons/button_help.png" id="9_ddyt1"]
+[ext_resource type="Texture2D" uid="uid://cfnv0a5xh4cde" path="res://assets/UI/ui_icons/button_save.png" id="10_n7ts2"]
 
 [node name="MicroMenu" type="Control"]
 process_mode = 3
@@ -124,6 +125,27 @@ texture = ExtResource("9_ddyt1")
 expand_mode = 2
 stretch_mode = 5
 
+[node name="SaveBtn" type="TextureButton" parent="H/MenuBox"]
+layout_mode = 2
+size_flags_vertical = 4
+texture_normal = ExtResource("1_wkkl3")
+texture_pressed = ExtResource("2_wtx3o")
+texture_hover = ExtResource("3_v1psb")
+texture_disabled = ExtResource("4_k7tl1")
+
+[node name="TextureRect" type="TextureRect" parent="H/MenuBox/SaveBtn"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_n7ts2")
+expand_mode = 2
+stretch_mode = 5
+
 [node name="MenuBtn" type="TextureButton" parent="H"]
 layout_mode = 2
 size_flags_vertical = 4
@@ -145,4 +167,5 @@ texture = ExtResource("5_gmx33")
 [connection signal="button_down" from="H/MenuBox/CharBtn" to="." method="_on_char_btn_button_down"]
 [connection signal="button_down" from="H/MenuBox/InventoryBtn" to="." method="_on_inventory_btn_button_down"]
 [connection signal="button_down" from="H/MenuBox/QuestBtn" to="." method="_on_quest_btn_button_down"]
+[connection signal="button_down" from="H/MenuBox/SaveBtn" to="." method="_on_save_btn_button_down"]
 [connection signal="button_down" from="H/MenuBtn" to="." method="_on_menu_btn_button_down"]
