@@ -108,6 +108,7 @@ func switch_gamelevel(levelname: String):
 		QuestManager.reset_quests()
 		GameManager.player = null
 		GameManager.interface.dot_hud.hide()
+		GameManager.interface.micro_menu.hide()
 		GameManager.current_world = null
 	else:
 		GameManager.on_main_menu = false
@@ -115,6 +116,7 @@ func switch_gamelevel(levelname: String):
 		GameManager.interface.potion_panel.show()
 		GameManager.interface.exp_hud.show()
 		GameManager.interface.dot_hud.show()
+		GameManager.interface.micro_menu.show()
 	if not new_game:
 		self.loaded_data = D._load_profile_char_data(GameManager.selected_playername)
 	if world_holder.get_child_count() > 0:

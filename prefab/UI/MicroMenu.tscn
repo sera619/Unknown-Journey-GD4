@@ -1,0 +1,148 @@
+[gd_scene load_steps=11 format=3 uid="uid://bcyuj58ovb3b8"]
+
+[ext_resource type="Texture2D" uid="uid://bclxecir5ivmv" path="res://assets/UI/button-red-small-normalt.png" id="1_wkkl3"]
+[ext_resource type="Script" path="res://prefab/UI/MicroMenu.gd" id="1_xpq2c"]
+[ext_resource type="Texture2D" uid="uid://7t4cecn0xlc6" path="res://assets/UI/button-red-small-pressedt.png" id="2_wtx3o"]
+[ext_resource type="Texture2D" uid="uid://c2mepjbti1rjb" path="res://assets/UI/button-red-small-hovert.png" id="3_v1psb"]
+[ext_resource type="Texture2D" uid="uid://dlbf0ofue7pd0" path="res://assets/UI/button-small-disabled.png" id="4_k7tl1"]
+[ext_resource type="Texture2D" uid="uid://dbghkube08kyc" path="res://assets/UI/ui_icons/menu-btn.png" id="5_gmx33"]
+[ext_resource type="Texture2D" uid="uid://bbhxfdms755s0" path="res://assets/UI/ui_icons/button_pause.png" id="6_c8rqd"]
+[ext_resource type="Texture2D" uid="uid://b74m67mxdxx1r" path="res://assets/UI/ui_icons/button_char.png" id="7_j248f"]
+[ext_resource type="Texture2D" uid="uid://1yrg10w5aaxq" path="res://assets/UI/ui_icons/button_inv.png" id="8_ctf37"]
+[ext_resource type="Texture2D" uid="uid://b6ux1f5mdiln" path="res://assets/UI/ui_icons/button_help.png" id="9_ddyt1"]
+
+[node name="MicroMenu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_xpq2c")
+
+[node name="H" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -84.0
+offset_top = -16.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/separation = 1
+alignment = 2
+
+[node name="MenuBox" type="HBoxContainer" parent="H"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 1
+alignment = 1
+
+[node name="PauseBtn" type="TextureButton" parent="H/MenuBox"]
+layout_mode = 2
+size_flags_vertical = 4
+texture_normal = ExtResource("1_wkkl3")
+texture_pressed = ExtResource("2_wtx3o")
+texture_hover = ExtResource("3_v1psb")
+texture_disabled = ExtResource("4_k7tl1")
+
+[node name="TextureRect" type="TextureRect" parent="H/MenuBox/PauseBtn"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 2.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_c8rqd")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="CharBtn" type="TextureButton" parent="H/MenuBox"]
+layout_mode = 2
+size_flags_vertical = 4
+texture_normal = ExtResource("1_wkkl3")
+texture_pressed = ExtResource("2_wtx3o")
+texture_hover = ExtResource("3_v1psb")
+texture_disabled = ExtResource("4_k7tl1")
+
+[node name="TextureRect" type="TextureRect" parent="H/MenuBox/CharBtn"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_j248f")
+
+[node name="InventoryBtn" type="TextureButton" parent="H/MenuBox"]
+layout_mode = 2
+size_flags_vertical = 4
+texture_normal = ExtResource("1_wkkl3")
+texture_pressed = ExtResource("2_wtx3o")
+texture_hover = ExtResource("3_v1psb")
+texture_disabled = ExtResource("4_k7tl1")
+
+[node name="TextureRect" type="TextureRect" parent="H/MenuBox/InventoryBtn"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_ctf37")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="QuestBtn" type="TextureButton" parent="H/MenuBox"]
+layout_mode = 2
+size_flags_vertical = 4
+texture_normal = ExtResource("1_wkkl3")
+texture_pressed = ExtResource("2_wtx3o")
+texture_hover = ExtResource("3_v1psb")
+texture_disabled = ExtResource("4_k7tl1")
+
+[node name="TextureRect" type="TextureRect" parent="H/MenuBox/QuestBtn"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_ddyt1")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="MenuBtn" type="TextureButton" parent="H"]
+layout_mode = 2
+size_flags_vertical = 4
+texture_normal = ExtResource("1_wkkl3")
+texture_pressed = ExtResource("2_wtx3o")
+texture_hover = ExtResource("3_v1psb")
+texture_disabled = ExtResource("4_k7tl1")
+
+[node name="TextureRect" type="TextureRect" parent="H/MenuBtn"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_gmx33")
+
+[connection signal="button_down" from="H/MenuBox/PauseBtn" to="." method="_on_pause_btn_button_down"]
+[connection signal="button_down" from="H/MenuBox/CharBtn" to="." method="_on_char_btn_button_down"]
+[connection signal="button_down" from="H/MenuBox/InventoryBtn" to="." method="_on_inventory_btn_button_down"]
+[connection signal="button_down" from="H/MenuBox/QuestBtn" to="." method="_on_quest_btn_button_down"]
+[connection signal="button_down" from="H/MenuBtn" to="." method="_on_menu_btn_button_down"]

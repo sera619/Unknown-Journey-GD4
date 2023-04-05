@@ -26,6 +26,7 @@ var dev_console: bool = false
 @onready var shop_panel: ShopHUD = $ShopHUD
 @onready var load_menu: LoadMenu = $LoadMenu
 @onready var statistic_hud: StatisticHUD = $StatisticHUD
+@onready var micro_menu: MicroMenu = $MicroMenu
 
 var showinfo = true 
 

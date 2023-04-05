@@ -74,4 +74,5 @@ func _on_cancel_btn_button_down():
 
 func _on_animation_finished(anim_name):
 	if anim_name == "start":
-		GameManager.interface._show_alphainfo()
+		pass
+		#GameManager.interface._show_alphainfo()

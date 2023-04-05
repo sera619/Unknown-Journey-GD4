@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://b7dks5cm1l8lb"]
+[gd_scene load_steps=26 format=3 uid="uid://b7dks5cm1l8lb"]
 
 [ext_resource type="Script" path="res://prefab/interface/Interface.gd" id="1_ghaf7"]
 [ext_resource type="PackedScene" uid="uid://bdnok5tk1xkmk" path="res://dev/DevConsole.tscn" id="2_g31m3"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://ci8ut3tki2bpo" path="res://prefab/UI/InfoBox.tscn" id="5_1eql3"]
 [ext_resource type="PackedScene" uid="uid://cfbtmo61dtd0j" path="res://prefab/UI/CharacterPanel.tscn" id="5_6wngu"]
 [ext_resource type="PackedScene" uid="uid://ckoys4dftebte" path="res://prefab/UI/DeathScreen.tscn" id="7_bo1t5"]
+[ext_resource type="PackedScene" uid="uid://bcyuj58ovb3b8" path="res://prefab/UI/MicroMenu.tscn" id="9_bb3bs"]
 [ext_resource type="PackedScene" uid="uid://4pvo7rk61tca" path="res://prefab/UI/DialogBox.tscn" id="9_kcv7y"]
 [ext_resource type="PackedScene" uid="uid://cfsnddkshv6p8" path="res://prefab/UI/PotionPanel.tscn" id="10_p40cy"]
 [ext_resource type="PackedScene" uid="uid://6ma28lukrg4r" path="res://prefab/UI/NewSkillHUD.tscn" id="11_r8hlj"]
@@ -106,6 +107,12 @@ offset_top = -161.0
 offset_right = -239.0
 offset_bottom = -115.0
 scale = Vector2(0.25, 0.25)
+
+[node name="MicroMenu" parent="." instance=ExtResource("9_bb3bs")]
+offset_left = -4.0
+offset_top = -3.0
+offset_right = -4.0
+offset_bottom = -3.0
 
 [node name="Questlog" parent="." instance=ExtResource("2_ka8y8")]
 visible = false
