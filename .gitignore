@@ -2,5 +2,5 @@
 .godot/
 export
 addons/
-changelog.md
+changelog*
 .env
