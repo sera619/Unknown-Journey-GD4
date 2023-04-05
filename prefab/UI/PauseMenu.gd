@@ -68,5 +68,6 @@ func _on_p_exit_btn_button_down():
 	EventHandler.emit_signal("start_transition")
 
 func _on_p_option_btn_button_up():
+	_create_btn_click_sound()
 	GameManager.interface.option_panel.show()
 	
