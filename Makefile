@@ -1,15 +1,16 @@
-version = "TechAlpha-v0.2.6"
+version = "TechAlpha-v0.2.9"
 build: clean
-	cls
 	@C:\1Coding\GDScript\godot.exe --export-debug "Windows Desktop"
-
 clean:
-	@C:\1Coding\GDScript\godot.exe --version
+	@powershell write-host ""
+	@powershell write-host -fore Yellow "Start cleaning..."
 	@if exist "./export/windows" del /s /q .\export\windows
 	@if exist "./export/web" del /s /q .\export\web
+	@powershell write-host -fore Green "Cleaning finished!"
+	@powershell write-host ""
 
 pack: build
-	cls
+	@powershell write-host ""
 	@powershell write-host -fore Yellow "Start packaging process..."
 	@if exist "./export/windows/UnknownJourney-TechAlpha.zip" del /s /q .\export\windows\UnknownJourney-TechAlpha.zip
 	@move .\export\windows\UnknownJourney-TechAlpha.exe .
@@ -22,7 +23,7 @@ pack: build
 	@powershell write-host -fore Yellow "Create new Github-Release for version: $(version)..."
 	@gh release create $(version) -F .\changelog.md '.\export\windows\UnknownJourney-TechAlpha.zip#Windows'
 	@powershell write-host -fore Green "Packaging successfully finished!"
+	@powershell write-host ""
 
 update:
-	cls
 	@python .\src\Updater.py

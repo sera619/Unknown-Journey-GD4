@@ -5,7 +5,7 @@ from colorama import init, Fore
 
 def main():
     path = 'Makefile'
-    os.system('cls')
+    #os.system('cls')
     print(Fore.CYAN + "\n+++ Makefile Updater +++\n"+ Fore.RESET)
     new = input(Fore.YELLOW +"Enter Version (CTRL+C to exit): " + Fore.RESET)
 
@@ -23,6 +23,8 @@ def main():
     new_file.close()
     os.remove(path)
     os.rename("Makefile2", path)
+    print(Fore.GREEN+f"\n[!] Makefile updated to version:\n\n\t\"TechAlpha-v{new}\""+ Fore.RESET)
+    print(Fore.RED + f"\n[!] Exit programm!\n"+ Fore.RESET)
 
 
 if __name__ == "__main__":
