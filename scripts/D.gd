@@ -195,7 +195,7 @@ func _delete_profile(playername: String):
 	DirAccess.remove_absolute("user://profiles/%s/questsavegame.save" % playername)
 	DirAccess.remove_absolute("user://profiles/%s/savegame.save" % playername)
 	DirAccess.remove_absolute("user://profiles/%s/inventorysavegame.save" % playername)
-	DirAccess.remove_absolute("user://profiles/%s/uniquesavegame.save" % playername)	
+	DirAccess.remove_absolute("user://profiles/%s/uniquesavegame.save" % playername)
 	DirAccess.remove_absolute("user://profiles/%s" % playername)
 	print("[Data]: Saveprofile from player \"%s\" deleted!" % playername)
 
@@ -243,4 +243,12 @@ func _setup_profiles():
 	else:
 		DirAccess.make_dir_absolute(user_path)
 		print("[Data]: User Directory created!")
+
+func _delete_old_save_files():
+	if FileAccess.file_exists("user://savegame.save"):
+		DirAccess.remove_absolute("user://savegame.save")
+	if FileAccess.file_exists("user://questsavegame.save"):
+		DirAccess.remove_absolute("user://questsavegame.save")
+	if FileAccess.file_exists("user://inventorysavegame.save"):
+		DirAccess.remove_absolute("user://inventorysavegame.save")
 
