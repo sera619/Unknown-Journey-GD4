@@ -1,13 +1,19 @@
 extends Control
 class_name PauseMenu
+
 var paused: bool = false
+
 @export var pause_sound_scene: PackedScene
 @export var unpause_sound_scene: PackedScene
 @onready var load_btn:= $BG/M/V/V/PLoadBtn
 @onready var header: Label = $BG/M/V/NinePatchRect/Head
+@onready var time_label: Label = $BG/M/V/TimeLabel
+
+
 func _ready():
 	self.visible = false
 	header.add_theme_color_override("font_color", GameManager.COLORS.lightgreen_text)
+	time_label.add_theme_color_override("font_color", GameManager.COLORS.orange_text)
 
 func _input(event):
 	if event.is_action_pressed("menu"):
@@ -18,6 +24,10 @@ func _input(event):
 		else:
 			showpause()
 
+func _process(delta):
+	if self.visible:
+		self.time_label.text = "%s Uhr" % Time.get_time_string_from_system()
+
 func _create_btn_click_sound():
 	var sound = GameManager.interface.button_click_sound.instatiate()
 	self.add_child(sound)
@@ -26,6 +36,7 @@ func showpause():
 	self.visible = true
 	var sound = pause_sound_scene.instantiate()
 	self.add_child(sound)
+	self.time_label.text = "%s Uhr" %Time.get_time_string_from_system()
 	get_tree().paused = true
 
 func hidepause():
@@ -38,6 +49,7 @@ func _on_p_resume_btn_button_down():
 	hidepause()
 
 func _on_p_load_btn_button_down():
+	_create_btn_click_sound()
 	GameManager.interface.load_menu.show_loadmenu()
 
 func load_game():

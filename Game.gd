@@ -110,7 +110,6 @@ func switch_gamelevel(levelname: String):
 		GameManager.interface.dot_hud.hide()
 		GameManager.current_world = null
 	else:
-		GameManager.info_box.clear_cache()
 		GameManager.on_main_menu = false
 		GameManager.interface.stat_hud.show()
 		GameManager.interface.potion_panel.show()

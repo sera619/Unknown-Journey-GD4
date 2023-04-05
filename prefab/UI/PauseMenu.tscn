@@ -18,7 +18,7 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_right = -178.0
-offset_bottom = -53.0
+offset_bottom = -36.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_674uc")
@@ -52,7 +52,7 @@ theme_override_constants/margin_bottom = 8
 
 [node name="V" type="VBoxContainer" parent="BG/M"]
 layout_mode = 2
-theme_override_constants/separation = 1
+theme_override_constants/separation = 4
 alignment = 1
 
 [node name="NinePatchRect" type="NinePatchRect" parent="BG/M/V"]
@@ -82,6 +82,14 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.215686)
 theme_override_fonts/font = ExtResource("3_2dmkg")
 theme_override_font_sizes/font_size = 8
 text = "Pause"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TimeLabel" type="Label" parent="BG/M/V"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_2dmkg")
+theme_override_font_sizes/font_size = 8
+text = "Uhrzeit:"
 horizontal_alignment = 1
 vertical_alignment = 1
 

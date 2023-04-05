@@ -42,6 +42,7 @@ func _load_slot():
 
 func _load_game():
 	var data = D._load_profile_char_data(slot_playername)
+	GameManager.info_box.clear_cache()
 	GameManager.game._load_profile_game(data)
 	GameManager.interface.pausmenu.visible = false
 	GameManager.interface.load_menu.hide_loadmenu()
