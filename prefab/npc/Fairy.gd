@@ -120,7 +120,7 @@ func complete_quest_1():
 		GameManager.player.set_sprite(1)
 		GameManager.current_world.info_trigger.queue_free()
 		QuestManager.current_quest.complete()
-		#GameManager.interface.newskill_hud.set_skill_text("Normaler Angriff", "Du hast ein\n\nSchwert gefunden.\n\nDu kannst jetzt\n\nnormale Angriffe ausführen.\n\nDrücke die Taste \"Space\"!")
+		GameManager.interface.newskill_hud.set_skill_text("Normaler Angriff", "Du hast ein\n\nSchwert gefunden.\n\nDu kannst jetzt\n\nnormale Angriffe ausführen.\n\nDrücke die Taste \"Space\"!")
 	else:
 		QuestManager.current_quest.complete()
 
