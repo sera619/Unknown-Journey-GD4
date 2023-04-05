@@ -24,6 +24,8 @@ var dev_console: bool = false
 @onready var option_panel: OptionPanel = $OptionPanel
 @onready var inventory_panel: InventoryHUD = $InventoryHUD
 @onready var shop_panel: ShopHUD = $ShopHUD
+@onready var load_menu: LoadMenu = $LoadMenu
+
 var showinfo = true 
 
 func _ready():

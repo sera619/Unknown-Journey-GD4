@@ -26,10 +26,6 @@ func showpause():
 	self.visible = true
 	var sound = pause_sound_scene.instantiate()
 	self.add_child(sound)
-	if GameManager.savegame_exists():
-		load_btn.disabled = false
-	else:
-		load_btn.disabled = true
 	get_tree().paused = true
 
 func hidepause():
@@ -42,9 +38,7 @@ func _on_p_resume_btn_button_down():
 	hidepause()
 
 func _on_p_load_btn_button_down():
-	hidepause()
-	EventHandler.connect("transition_black", load_game)
-	EventHandler.emit_signal("start_transition")
+	GameManager.interface.load_menu.show_loadmenu()
 
 func load_game():
 	EventHandler.disconnect("transition_black", load_game)

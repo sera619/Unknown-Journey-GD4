@@ -5,6 +5,7 @@ class_name LoadMenu
 @onready var profile_container = $BG/M/V/ScrollContainer/V
 
 func _initialize_loadmenu():
+	_reset_loadmenu()
 	var profiles = D._load_all_player_char_data()
 	for profile in profiles:
 		if profile != null:

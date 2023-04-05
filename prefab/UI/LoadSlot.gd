@@ -32,12 +32,17 @@ func _delete_slot():
 		GameManager.interface.load_menu._refresh_loadmenu()
 
 func _load_slot():
-	_create_btn_click_sound()
+	if not GameManager.on_main_menu:
+		get_tree().paused = false
+		GameManager.selected_playername = slot_playername
+		print(slot_playername)
+	#_create_btn_click_sound()
 	EventHandler.connect("transition_black", _load_game)
 	EventHandler.emit_signal("start_transition")
 
 func _load_game():
 	var data = D._load_profile_char_data(slot_playername)
-	GameManager.selected_playername = slot_playername
 	GameManager.game._load_profile_game(data)
+	GameManager.interface.pausmenu.visible = false
+	GameManager.interface.load_menu.hide_loadmenu()
 

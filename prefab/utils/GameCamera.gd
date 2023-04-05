@@ -11,7 +11,7 @@ class_name GameCamera
 
 @export_group('Shake Options')
 @export var camera_move_speed: int = 50
-@export var decay = 1.4  # How quickly the shaking stops [0, 1].
+@export var decay = 1.6  # How quickly the shaking stops [0, 1].
 @export var max_offset = Vector2(50, 25)  # Maximum hor/ver shake in pixels.
 @export var max_roll = 0.1  # Maximum rotation in radians (use sparingly).
 
@@ -105,7 +105,7 @@ func _input(event):
 			elif event.keycode == KEY_KP_0:
 				npc_to_follow = null
 			elif event.keycode == KEY_KP_8:
-				add_trauma(1)
+				add_trauma(0.8)
 	
 	if event is InputEventMouseButton:
 		if event.is_pressed():

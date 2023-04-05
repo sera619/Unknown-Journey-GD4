@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://6py808jaoso2" path="res://assets/UI/button_disabled.png" id="8_7ctis"]
 
 [node name="LoadMenu" type="Control"]
+process_mode = 3
 visible = false
 layout_mode = 3
 anchors_preset = 15
