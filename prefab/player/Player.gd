@@ -335,11 +335,20 @@ func take_dot_damage():
 func create_levelup_effect():
 	var effect = levelup_effect_scene.instantiate()
 	var sound = lvlup_sound_scene.instantiate()
+	effect.connect("effect_finished", _check_new_skills)
 	get_tree().current_scene.add_child(sound)
 	self.add_child(effect)
 	effect.global_position = global_position
 	GameManager.info_box.set_info_text("[center]Glückwunsch!\n\nDu hast [color=red]Level %s[/color] erreicht![/center]" % stats.level)
 
+func _check_new_skills():
+	if stats.level == 2:
+		GameManager.interface.newskill_hud.set_skill_text("Dash", "Du kannst dich nun\n\nkurzzeitig sehr schnell in\n\ndeine Laufrichtung bewegen!\n\nDrücke hierzu beim laufen die Taste \"V\".")
+	elif stats.level == stats.DOUBLE_ATTACK_CAP:
+		GameManager.interface.newskill_hud.set_skill_text("Doppel Angriff", "Du kannst dein\n\nSchwert nun 2x schwingen.\n\nDafür brauchst du 1 Energiepunkt!\n\nDein Schwert sammelt Energie wenn\n\nes mit normalen Angriffen trifft.\n\nDrücke die Taste \"Q\"!")
+	elif stats.level == stats.HEAVY_ATTACK_CAP:
+		GameManager.interface.newskill_hud.set_skill_text("Starker Angriff", "Du kannst dein\n\nSchwert nun rotieren.\n\nDafür brauchst du 2 Energiepunkte!\n\nDein Schwert sammelt Energie wenn\n\nes mit normalen Angriffen trifft.\n\nDrücke die Taste \"Q\"!")		
+	
 
 func _use_potion(itemname: String):
 	if InventoryManager.can_use_item(itemname):

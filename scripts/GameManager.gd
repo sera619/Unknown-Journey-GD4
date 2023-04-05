@@ -76,7 +76,7 @@ func _update_audio_all(value):
 	print("[!] GameManger: All audio volume set to: %s" % value)
 
 func _update_audio_music(value):
-	AudioServer.set_bus_volume_db(1, value)
+	AudioServer.set_bus_volume_db(3, value)
 	self.current_game_options['audio_music'] = value
 	print("[!] GameManger: Music audio volume set to: %s" % value)
 
@@ -166,28 +166,13 @@ func _load_settings():
 
 
 func save_data(playername=""):
-	var savepath = "user://savegame.save"
-	if playername != "":
-		savepath = "user://%s/savegame.save" % playername
-	var savegame = FileAccess.open(savepath, FileAccess.WRITE)
-	var save_nodes = get_tree().get_nodes_in_group("Persist")
-	for node in save_nodes:
-		if !node.has_method("save"):
-			print("persistent node '%s' is missing a save() function, skipped" % node.name)
-			continue
-		
-		var node_data = node.call("save")
-			
-		var json_string = JSON.stringify(node_data)
-		savegame.store_line(json_string)
-	
 	D._save_profile_char_data(GameManager.player.stats.playername)
 	D._save_profile_quest_data(GameManager.player.stats.playername)
 	D._save_profile_inventory_data(GameManager.player.stats.playername)
 	D._save_unique_open_data(GameManager.player.stats.playername)
 	print("[ZEIT]: Gespielte zeit %s" % self.get_played_time_string(self.player.stats.played_time))
 	print("[!] Data: Savegame successfully saved!")
-	QuestManager.save_quests()
+
 
 func get_played_time_string(time_played):
 	var play_time = time_played
@@ -204,6 +189,7 @@ func set_player_name(player_name: String):
 		print("[X] GameManager: No Name set!")
 		return
 	self.new_player_name = player_name
+	self.selected_playername = player_name
 	print("[!] GameManager: New playername set to \"%s\"" % player_name)
 
 

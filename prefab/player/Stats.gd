@@ -175,17 +175,13 @@ func set_max_gold(value):
 	EventHandler.emit_signal("player_maxgold_changed", MAX_GOLD)
 
 func level_up(rest):
-	set_max_exp(int(max_experience * exp_multiplikator))
-	set_exp(rest)
+	var new_max_exp = max_experience * exp_multiplikator
+	var new_exp = rest
+	set_max_exp(new_max_exp)
 	set_level(level + 1)
 	set_health(MAX_HEALTH)
-	if level == 2:
-		GameManager.interface.newskill_hud.set_skill_text("Dash", "Du kannst dich nun\n\nkurzzeitig sehr schnell in\n\ndeine Laufrichtung bewegen!\n\nDrücke hierzu beim laufen die Taste \"V\".")
-	elif level == DOUBLE_ATTACK_CAP:
-		GameManager.interface.newskill_hud.set_skill_text("Doppel Angriff", "Du kannst dein\n\nSchwert nun 2x schwingen.\n\nDafür brauchst du 1 Energiepunkt!\n\nDein Schwert sammelt Energie wenn\n\nes mit normalen Angriffen trifft.\n\nDrücke die Taste \"Q\"!")
-	elif level == HEAVY_ATTACK_CAP:
-		GameManager.interface.newskill_hud.set_skill_text("Starker Angriff", "Du kannst dein\n\nSchwert nun rotieren.\n\nDafür brauchst du 2 Energiepunkte!\n\nDein Schwert sammelt Energie wenn\n\nes mit normalen Angriffen trifft.\n\nDrücke die Taste \"Q\"!")		
-	
+	set_exp(new_exp)
+
 	if level == 2 or level == 4 or level == 6 or level == 8 or level == 10:
 		set_max_health(MAX_HEALTH + 1)
 		set_health(MAX_HEALTH)

@@ -115,8 +115,8 @@ func switch_gamelevel(levelname: String):
 		GameManager.interface.potion_panel.show()
 		GameManager.interface.exp_hud.show()
 		GameManager.interface.dot_hud.show()
-#	if not new_game:
-#		self.loaded_data = GameManager.load_savegame()
+	if not new_game:
+		self.loaded_data = D._load_profile_char_data(GameManager.selected_playername)
 	if world_holder.get_child_count() > 0:
 		if GameManager.current_world:
 			if GameManager.current_world.get_node_or_null("Map/CanvasModulate") != null:
