@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://cedf8cswltnk0"]
+
+[ext_resource type="Script" path="res://prefab/UI/NoticeBox.gd" id="1_le6xi"]
+[ext_resource type="PackedScene" uid="uid://ossy0fecnccg" path="res://prefab/UI/NoticeMessage.tscn" id="2_0s8do"]
+
+[node name="NoticeBox" type="Control"]
+layout_mode = 3
+anchor_left = 0.75
+anchor_right = 1.0
+anchor_bottom = 0.889
+offset_left = -1.52588e-05
+offset_right = 80.0
+offset_bottom = 159.98
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+mouse_filter = 1
+script = ExtResource("1_le6xi")
+notice_scene = ExtResource("2_0s8do")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="V" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
