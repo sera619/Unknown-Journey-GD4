@@ -27,4 +27,4 @@ def countlines(directory = "./", lines=0, ext=".py", skip_blank=False):
     return lines
  
 # call the function
-print(countlines(directory="./",ext="gd", skip_blank=True))
+#print(countlines(directory="./",ext="gd", skip_blank=True))

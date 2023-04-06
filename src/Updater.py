@@ -3,7 +3,7 @@ import shutil
 import sys
 from colorama import init, Fore
 
-def main():
+def Updater():
     path = 'Makefile'
     #os.system('cls')
     print(Fore.CYAN + "\n+++ Makefile Updater +++\n"+ Fore.RESET)
@@ -27,10 +27,15 @@ def main():
     print(Fore.RED + f"\n[!] Exit programm!\n"+ Fore.RESET)
 
 
+
+
+
+
+
 if __name__ == "__main__":
     try:
         init()
-        main()
+        Updater()
     except KeyboardInterrupt:
         print(Fore.RED +"\n[!] User exit programm!\n" + Fore.RESET)
     finally:

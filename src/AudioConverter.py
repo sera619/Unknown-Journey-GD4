@@ -1,5 +1,5 @@
 from pydub import AudioSegment
-import os
+import os,sys
 
 
 def format_audio(source_format):
@@ -20,18 +20,18 @@ def format_audio(source_format):
         print(f"[!] {count}x {source_format.upper()} Files converted!")
 
 
-def main():
+def Converter():
     print("AudioConverter\nSelect filetype to convert in .wav!\n\n\tOptions:\n\t1) MP3\n\t0) Exit\n")
     option = int(input("[?] Choose a option: "))
     if option == 1:
         format_audio('mp3')
     else:
-        exit(0)
+        sys.exit(0)
 
 
 if __name__ == "__main__":
     try:
-        main()
+        Converter()
     except KeyboardInterrupt:
         print("\n[X] Keyboard Exit!")
     finally:
