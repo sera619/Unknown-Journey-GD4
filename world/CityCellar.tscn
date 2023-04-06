@@ -1,0 +1,63 @@
+[gd_scene load_steps=4 format=3 uid="uid://blu2fjm62uqjt"]
+
+[ext_resource type="Script" path="res://world/WorldBase.gd" id="1_6p0us"]
+[ext_resource type="PackedScene" uid="uid://dcc837c2ujx6g" path="res://prefab/utils/GameCamera.tscn" id="3_nsuir"]
+
+[sub_resource type="TileSet" id="TileSet_0n8er"]
+
+[node name="CityCellar" type="Node2D" groups=["WorldBase"]]
+script = ExtResource("1_6p0us")
+world_name = "CityCellar"
+
+[node name="Map" type="Node2D" parent="."]
+
+[node name="RespawnSpot" type="Marker2D" parent="Map"]
+position = Vector2(-324, -173)
+
+[node name="EntrySpot" type="Marker2D" parent="Map"]
+position = Vector2(278, -76)
+
+[node name="GameMap" type="TileMap" parent="Map"]
+tile_set = SubResource("TileSet_0n8er")
+cell_quadrant_size = 32
+format = 2
+layer_0/name = "Ground"
+layer_1/name = "GroundTop"
+layer_1/enabled = true
+layer_1/modulate = Color(1, 1, 1, 1)
+layer_1/y_sort_enabled = false
+layer_1/y_sort_origin = 0
+layer_1/z_index = 1
+layer_1/tile_data = PackedInt32Array()
+layer_2/name = "Walls"
+layer_2/enabled = true
+layer_2/modulate = Color(1, 1, 1, 1)
+layer_2/y_sort_enabled = false
+layer_2/y_sort_origin = 0
+layer_2/z_index = 0
+layer_2/tile_data = PackedInt32Array()
+
+[node name="MapUtils" type="Node2D" parent="Map/GameMap"]
+
+[node name="GameObjects" type="Node2D" parent="Map"]
+y_sort_enabled = true
+
+[node name="NPC" type="Node2D" parent="Map/GameObjects"]
+y_sort_enabled = true
+
+[node name="Enemys" type="Node2D" parent="Map/GameObjects"]
+y_sort_enabled = true
+
+[node name="Props" type="Node2D" parent="Map/GameObjects"]
+y_sort_enabled = true
+
+[node name="GameCamera" parent="Map" instance=ExtResource("3_nsuir")]
+zoom = Vector2(0.8, 0.8)
+
+[node name="TopLeft" parent="Map/GameCamera/Limits" index="0"]
+position = Vector2(-530, -362)
+
+[node name="BottomRight" parent="Map/GameCamera/Limits" index="1"]
+position = Vector2(585, 456)
+
+[editable path="Map/GameCamera"]
