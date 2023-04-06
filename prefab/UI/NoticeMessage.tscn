@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://ossy0fecnccg"]
+
+[ext_resource type="Texture2D" uid="uid://cbulnqpvnv1et" path="res://assets/UI/NoticePanel.png" id="1_2ricy"]
+[ext_resource type="Script" path="res://prefab/UI/NoticeMessage.gd" id="2_3jfic"]
+[ext_resource type="FontFile" uid="uid://bddtsccx0qour" path="res://assets/UI/Fonts/dogicapixel.otf" id="2_gvb7t"]
+[ext_resource type="Texture2D" uid="uid://q30gtd05y1h5" path="res://assets/UI/NoticePanelItem.png" id="3_ric34"]
+[ext_resource type="Texture2D" uid="uid://dbxicfe57g6wf" path="res://assets/UI/NoticePanelQuest.png" id="4_ht2tq"]
+[ext_resource type="Texture2D" uid="uid://ie5mkrqjamsr" path="res://assets/UI/NoticePanelYellow.png" id="5_3yu2u"]
+
+[node name="NoticeMessage" type="NinePatchRect"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_2ricy")
+patch_margin_left = 64
+patch_margin_top = 16
+patch_margin_right = 64
+patch_margin_bottom = 16
+script = ExtResource("2_3jfic")
+item_bg = ExtResource("3_ric34")
+quest_bg = ExtResource("4_ht2tq")
+yellow_bg = ExtResource("5_3yu2u")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Label" type="RichTextLabel" parent="MarginContainer"]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("2_gvb7t")
+theme_override_font_sizes/normal_font_size = 8
+bbcode_enabled = true
+text = "[center]1x Heiltrank
+
+erhalten.[/center]"
+fit_content = true
+scroll_active = false
+scroll_following = true
+autowrap_mode = 2
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
