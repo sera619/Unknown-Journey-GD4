@@ -196,8 +196,6 @@ func _chase_state(_delta):
 			steering = null
 			player = null
 			state = IDLE
-	elif player != null and global_position.distance_to(player.global_position) <= stats.FLEE_RANGE and flee_timer.is_stopped():
-		flee_timer.start()
 	else:
 		state = IDLE
 

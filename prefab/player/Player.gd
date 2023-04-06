@@ -66,9 +66,10 @@ var can_interact: bool = true
 @onready var dot_timer: Timer = $Hitbox/DotTimer
 @onready var debuff_handler: DebuffHandler = $DebuffHandler
 @onready var sound_controller: SoundController = $SoundController
+@onready var body_collider: CollisionShape2D = $CollisionShape2D
 
 var vel = Vector2.ZERO
-
+var PUSH_SPEED = 50
 func _ready():
 	GameManager.register_node(self)
 	hitbx.connect("area_entered", take_damage)
@@ -175,7 +176,19 @@ func move_state(delta):
 			animState.travel("SwordIdle")
 		else:
 			animState.travel("Idle")
+	if get_slide_collision_count() > 0:
+		check_box_collision(input_vector)
+
 	_input_handler(delta)
+
+func check_box_collision(push_velocity):
+	var box = get_slide_collision(0).get_collider() as PhysicBox
+	if !box:
+		return
+	if abs(push_velocity.x) + abs(push_velocity.y) > 1:
+		return
+	if box:
+		box._push(push_velocity*PUSH_SPEED)
 
 func _input_handler(_delta):
 	if GameManager.interface.dev_console == true or not can_interact:

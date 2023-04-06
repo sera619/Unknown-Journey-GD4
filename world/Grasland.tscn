@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://cmyeya6fvbgt7"]
+[gd_scene load_steps=37 format=3 uid="uid://cmyeya6fvbgt7"]
 
 [ext_resource type="Script" path="res://world/Grasland.gd" id="1_hwqie"]
 [ext_resource type="TileSet" uid="uid://bk5vv7fsil51w" path="res://prefab/tilesets/GraslandTileset.tres" id="2_7iqe7"]
@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://b2gdh6u1gj3fu" path="res://prefab/utils/InformationTrigger.tscn" id="13_857up"]
 [ext_resource type="PackedScene" uid="uid://b4upex2fdmpee" path="res://prefab/enemys/EnemySkeletonMage.tscn" id="13_g5dlj"]
 [ext_resource type="PackedScene" uid="uid://xex3x1q2v22b" path="res://prefab/utils/Waysign.tscn" id="13_nsg3c"]
+[ext_resource type="PackedScene" uid="uid://bfunkbx2xnrd7" path="res://prefab/utils/PushBox.tscn" id="14_tc44l"]
 [ext_resource type="PackedScene" uid="uid://cgun4omhyrihq" path="res://prefab/utils/WorldEffect.tscn" id="16_lqgbk"]
 [ext_resource type="AudioStream" uid="uid://by0hknsdbofxt" path="res://assets/Music and Sounds/BG/Forest_BG.mp3" id="20_n60f5"]
 
@@ -3781,6 +3782,9 @@ sign_direction = 1
 [node name="House" parent="Map/GameObjects/Buildings" instance=ExtResource("12_00bwy")]
 y_sort_enabled = true
 position = Vector2(1272, 170)
+
+[node name="PushBox" parent="Map/GameObjects/Buildings" instance=ExtResource("14_tc44l")]
+position = Vector2(866, -112)
 
 [node name="Enemys" type="Node2D" parent="Map/GameObjects"]
 y_sort_enabled = true

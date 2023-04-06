@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://bfunkbx2xnrd7"]
+
+[ext_resource type="Texture2D" uid="uid://ciroen1f15hso" path="res://assets/objects/Box.png" id="1_dkv10"]
+[ext_resource type="Script" path="res://prefab/utils/PushBox.gd" id="1_khnbn"]
+[ext_resource type="Texture2D" uid="uid://bo4wv3t8aiw1d" path="res://assets/Shadows/BoxShadowMedium.png" id="1_ydmcp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ryllc"]
+size = Vector2(31.7797, 32.9723)
+
+[node name="PushBox" type="CharacterBody2D" groups=["PushObject"]]
+collision_layer = 3
+collision_mask = 3
+motion_mode = 1
+script = ExtResource("1_khnbn")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+position = Vector2(0, -0.590587)
+scale = Vector2(1.3199, 0.830206)
+texture = ExtResource("1_ydmcp")
+
+[node name="Body" type="Sprite2D" parent="."]
+texture = ExtResource("1_dkv10")
+offset = Vector2(0, -14)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.00759172, -7.46741)
+shape = SubResource("RectangleShape2D_ryllc")

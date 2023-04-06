@@ -130,8 +130,8 @@ radius = 4.50064
 height = 21.2033
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6hkfl"]
-radius = 6.89771
-height = 17.5036
+radius = 3.49114
+height = 15.2308
 
 [sub_resource type="Animation" id="Animation_jn3jo"]
 resource_name = "AttackDoubleDown"
@@ -2319,8 +2319,8 @@ graph_offset = Vector2(-200.344, 311.292)
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_8301o"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f3p81"]
-radius = 6.44975
-height = 18.3776
+radius = 5.81029
+height = 15.0269
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yxsyt"]
 radius = 3.0
@@ -2328,6 +2328,8 @@ height = 10.0
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 3
+collision_mask = 3
+motion_mode = 1
 script = ExtResource("1_3dgss")
 SPRITE_SWORD = ExtResource("3_k7e2f")
 SPRITE_NO_SWORD = ExtResource("3_g8436")
@@ -2409,6 +2411,7 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_rpsvp")
 
 [node name="Hitbox" type="Area2D" parent="." groups=["playerHitbox"]]
+visible = false
 position = Vector2(0, -5)
 collision_layer = 8
 collision_mask = 8
@@ -2426,12 +2429,14 @@ one_shot = true
 [node name="DotTimer" type="Timer" parent="Hitbox"]
 
 [node name="SpellHitBox" type="Area2D" parent="." groups=["playerHitbox"]]
+visible = false
 position = Vector2(0, -13.664)
 collision_layer = 8
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SpellHitBox"]
-position = Vector2(-1.19209e-07, 4.76837e-07)
+position = Vector2(0, 3.72417)
+rotation = 1.5708
 shape = SubResource("CapsuleShape2D_6hkfl")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -2462,7 +2467,7 @@ collision_layer = 64
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-1.19209e-07, -5.63219)
+position = Vector2(-1.19209e-07, -4)
 scale = Vector2(0.907753, 0.838556)
 shape = SubResource("CapsuleShape2D_f3p81")
 
@@ -2482,7 +2487,7 @@ shape = SubResource("CapsuleShape2D_yxsyt")
 one_shot = true
 
 [node name="PlayerLight" type="PointLight2D" parent="." groups=["lights"]]
-position = Vector2(-1.19209e-07, -12)
+position = Vector2(0, -12)
 enabled = false
 color = Color(1, 0.976471, 0.372549, 0.819608)
 energy = 0.75
