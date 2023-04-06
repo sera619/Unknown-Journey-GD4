@@ -66,6 +66,10 @@ if __name__ == "__main__":
         menu()
     except KeyboardInterrupt:
         print(Fore.RED + "\n[!] User exit programm!" +  Fore.RESET)
+    except ValueError as ve:
+        print(Fore.RED + "[X] Your input is not valid, exit!\nErrorcode: "+ str(ve) + Fore.RESET)
+    except TypeError as te:
+        print(Fore.RED + "[X] Your input is not valid, exit!\nErrorcode: "+ str(te) + Fore.RESET)
     finally:
         print(Fore.RED + "[!] Quit programm, bye!\n" + Fore.RESET)
     
