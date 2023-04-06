@@ -40,11 +40,18 @@ __IMPORTANT:__ If you already played the game please click the "Reset" Button on
 def menu():
     os.system("cls")
     options = ["1) Codelinecounter", "2) Makefile Updater", "3) Audioconverter", "4) Changelog Update", "0) Exit"]
-    menu_text = Fore.CYAN+f"\n\t++++ Unknown Journey ++++\n\t+++ Developtools +++\n\n\tPlease select an option!\n\t{options[0]}\n\t{options[1]}\n\t{options[2]}\n\t{options[3]}\n\t{options[4]}\n" + Fore.RESET
+    menu_text = Fore.CYAN+f"\n\t++++ Unknown Journey ++++\n\t   +++ Developtools +++   \n\n\tPlease select an option!\n\t{options[0]}\n\t{options[1]}\n\t{options[2]}\n\t{options[3]}\n\t{options[4]}\n" + Fore.RESET
     print(menu_text)
     selection = int(input(Fore.YELLOW + "[?] Option: " + Fore.RESET))
     if selection == 1:
-        print("\n"+countlines(directory="./",ext="gd", skip_blank=True))
+        show_verbos = input(Fore.YELLOW + "[?] List all files? (y/n): " + Fore.RESET)
+        if show_verbos.upper() == "Y":
+            print("\n"+ Fore.GREEN+"[!] Your total lines of code: " + str(countlines(directory="./",ext="gd", skip_blank=True, verbose=True))+ "\n" +Fore.RESET)
+        elif show_verbos.upper() == "N":
+            print("\n"+ Fore.GREEN+"[!] Your total lines of code: " + str(countlines(directory="./",ext="gd", skip_blank=True, verbose=False))+ "\n" +Fore.RESET)
+        else:
+            print(Fore.RED + "[X] Your input is not valid, exit!\n" + Fore.RESET)
+            sys.exit(0)
     elif selection == 2:
         Updater()
     elif selection == 3:
