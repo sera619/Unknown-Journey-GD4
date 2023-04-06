@@ -4,3 +4,4 @@ export
 addons/
 changelog*
 .env
+src/__pycache__/
