@@ -1,8 +1,9 @@
-[gd_scene load_steps=31 format=3 uid="uid://blu2fjm62uqjt"]
+[gd_scene load_steps=32 format=3 uid="uid://blu2fjm62uqjt"]
 
 [ext_resource type="Script" path="res://world/CityCellar.gd" id="1_y4cxl"]
 [ext_resource type="Texture2D" uid="uid://c7fiywcu0t2e4" path="res://assets/World/Inside_A4.png" id="3_5dg5q"]
 [ext_resource type="PackedScene" uid="uid://dcc837c2ujx6g" path="res://prefab/utils/GameCamera.tscn" id="3_nsuir"]
+[ext_resource type="PackedScene" uid="uid://bfunkbx2xnrd7" path="res://prefab/utils/PushBox.tscn" id="6_ib731"]
 [ext_resource type="PackedScene" uid="uid://tlprd1hoiiri" path="res://prefab/props/MetalDoor.tscn" id="6_shs6d"]
 [ext_resource type="Texture2D" uid="uid://bugf6okbmtwfw" path="res://assets/World/victorian-windows-doors.png" id="7_qrfvg"]
 [ext_resource type="PackedScene" uid="uid://cpbapvwfn7ulr" path="res://prefab/props/CampFire.tscn" id="7_tjl36"]
@@ -15870,11 +15871,17 @@ layer_0/tile_data = PackedInt32Array(786449, 1245184, 5, 720913, 1245184, 4, 655
 [node name="GameObjects" type="Node2D" parent="Map"]
 y_sort_enabled = true
 
-[node name="NPC" type="Node2D" parent="Map/GameObjects"]
+[node name="Boxes" type="Node2D" parent="Map/GameObjects"]
 y_sort_enabled = true
 
-[node name="Enemys" type="Node2D" parent="Map/GameObjects"]
-y_sort_enabled = true
+[node name="PushBox" parent="Map/GameObjects/Boxes" instance=ExtResource("6_ib731")]
+position = Vector2(399, 233)
+
+[node name="PushBox3" parent="Map/GameObjects/Boxes" instance=ExtResource("6_ib731")]
+position = Vector2(399, 255)
+
+[node name="PushBox2" parent="Map/GameObjects/Boxes" instance=ExtResource("6_ib731")]
+position = Vector2(399, 211)
 
 [node name="Props" type="Node2D" parent="Map/GameObjects"]
 y_sort_enabled = true
@@ -15929,6 +15936,12 @@ position = Vector2(15, -511)
 
 [node name="BlueTorch7" parent="Map/GameObjects/Props" instance=ExtResource("8_2a7nv")]
 position = Vector2(367, -511)
+
+[node name="NPC" type="Node2D" parent="Map/GameObjects"]
+y_sort_enabled = true
+
+[node name="Enemys" type="Node2D" parent="Map/GameObjects"]
+y_sort_enabled = true
 
 [node name="Teleporter" parent="Map/GameObjects" instance=ExtResource("11_7wxi4")]
 position = Vector2(649, 380)

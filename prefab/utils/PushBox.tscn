@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bo4wv3t8aiw1d" path="res://assets/Shadows/BoxShadowMedium.png" id="1_ydmcp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ryllc"]
-size = Vector2(31.7797, 32.9723)
+size = Vector2(31.5249, 19.4526)
 
 [node name="PushBox" type="CharacterBody2D" groups=["PushObject"]]
 collision_layer = 3
@@ -23,5 +23,5 @@ texture = ExtResource("1_dkv10")
 offset = Vector2(0, -14)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.00759172, -7.46741)
+position = Vector2(-0.119818, -0.707564)
 shape = SubResource("RectangleShape2D_ryllc")
