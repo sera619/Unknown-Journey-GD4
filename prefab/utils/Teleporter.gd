@@ -96,5 +96,7 @@ func teleport_player():
 			"CityCellar":
 				GameManager.game.switch_gamelevel(teleport_location)
 			"CityHotel": 
+				if GameManager.current_world.world_name == "CityCellar":
+					GameManager.game._change_player_spawn("CityCellarCityHotel")
 				GameManager.game.switch_gamelevel(teleport_location)
 		print("[!] Teleporter: Player -> %s!" % teleport_location)

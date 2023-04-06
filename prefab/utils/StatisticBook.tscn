@@ -202,7 +202,7 @@ position = Vector2(0, -29)
 texture = ExtResource("2_es8xj")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_gj8ct")
 
 [node name="PlayerDetector" parent="." instance=ExtResource("1_lcqw8")]

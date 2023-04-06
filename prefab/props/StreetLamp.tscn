@@ -1,7 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://dtxqutqdlt8rn"]
+[gd_scene load_steps=6 format=3 uid="uid://h6divycds8l1"]
 
 [ext_resource type="Texture2D" uid="uid://cq130trvyd152" path="res://assets/objects/lamp-1-post-2-short-single-blue.png" id="1_f0orp"]
-[ext_resource type="Script" path="res://prefab/props/StreetLamp.gd" id="1_qaawc"]
+[ext_resource type="Script" path="res://prefab/props/WorldLight.gd" id="1_fr0gw"]
 [ext_resource type="Texture2D" uid="uid://p5qjf6yxjhlo" path="res://assets/Materials/ParticleTextures/light.png" id="2_lasnu"]
 [ext_resource type="Texture2D" uid="uid://dt2540u4sj5mt" path="res://assets/Shadows/MediumShadow.png" id="2_t1tjf"]
 
@@ -10,14 +10,15 @@ radius = 4.0
 height = 12.0
 
 [node name="StreetLamp" type="Node2D" groups=["street_light"]]
-script = ExtResource("1_qaawc")
+script = ExtResource("1_fr0gw")
+color = Color(0.862745, 0.756863, 0.0901961, 1)
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
 position = Vector2(5.96046e-07, -5.96046e-08)
 scale = Vector2(0.875, 0.8)
 texture = ExtResource("2_t1tjf")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Body" type="Sprite2D" parent="."]
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("1_f0orp")
 offset = Vector2(0, -36)

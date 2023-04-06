@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://c1ywcyppymlpl"]
+[gd_scene load_steps=4 format=3 uid="uid://c1ywcyppymlpl"]
 
+[ext_resource type="Script" path="res://prefab/props/HouseChair.gd" id="1_2anr7"]
 [ext_resource type="Texture2D" uid="uid://cvlvkaue2u7hm" path="res://assets/World/Inside_B.png" id="1_08kea"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oyxyj"]
@@ -8,6 +9,8 @@ size = Vector2(16.5, 22)
 [node name="HouseChair" type="StaticBody2D"]
 collision_layer = 129
 collision_mask = 129
+script = ExtResource("1_2anr7")
+direction = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_08kea")

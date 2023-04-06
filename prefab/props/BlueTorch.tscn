@@ -1,0 +1,85 @@
+[gd_scene load_steps=12 format=3 uid="uid://clabstl1c40y6"]
+
+[ext_resource type="Script" path="res://prefab/props/WorldLight.gd" id="1_ae720"]
+[ext_resource type="Texture2D" uid="uid://yattu1ghafym" path="res://assets/objects/torch_big_blue.png" id="2_i5hwe"]
+[ext_resource type="Texture2D" uid="uid://p5qjf6yxjhlo" path="res://assets/Materials/ParticleTextures/light.png" id="3_21ggw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7glf6"]
+atlas = ExtResource("2_i5hwe")
+region = Rect2(0, 0, 13, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pynul"]
+atlas = ExtResource("2_i5hwe")
+region = Rect2(13, 0, 13, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mwa1h"]
+atlas = ExtResource("2_i5hwe")
+region = Rect2(26, 0, 13, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5cq5c"]
+atlas = ExtResource("2_i5hwe")
+region = Rect2(39, 0, 13, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q2km5"]
+atlas = ExtResource("2_i5hwe")
+region = Rect2(52, 0, 13, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2sqsq"]
+atlas = ExtResource("2_i5hwe")
+region = Rect2(65, 0, 13, 42)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5y5u6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7glf6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pynul")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mwa1h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5cq5c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q2km5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2sqsq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_eoek1"]
+radius = 8.0
+
+[node name="BlueTorch" type="Node2D" groups=["world_light"]]
+script = ExtResource("1_ae720")
+animated = true
+color = Color(0.376471, 0.741176, 0.866667, 1)
+
+[node name="Body" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_5y5u6")
+frame = 5
+frame_progress = 0.992521
+offset = Vector2(0, -8)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -2)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_eoek1")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, -13)
+scale = Vector2(0.949219, 0.800781)
+enabled = false
+color = Color(0.376471, 0.741176, 0.866667, 1)
+energy = 0.25
+shadow_enabled = true
+texture = ExtResource("3_21ggw")

@@ -34,7 +34,8 @@ const TELEPORT_SPAWN_LOCATIONS: Dictionary = {
 	"CityShop": Vector2(-1041, 164),
 	"WoodSmallWood": Vector2(-673, 271),
 	"CitySmallWood": Vector2(225, 595),
-	"CityCityHotel": Vector2(-240, -170)
+	"CityCityHotel": Vector2(-240, -170),
+	"CityCellarCityHotel": Vector2(97, -294) 
 }
 
 var teleport_spawn_location: Vector2 = Vector2.ZERO
@@ -146,6 +147,8 @@ func _change_player_spawn(location: String):
 		"WoodSmallWood":
 			self.teleport_spawn_location = self.TELEPORT_SPAWN_LOCATIONS[str(location)]
 		"CityCityHotel":
+			self.teleport_spawn_location = self.TELEPORT_SPAWN_LOCATIONS[str(location)]
+		"CityCellarCityHotel":
 			self.teleport_spawn_location = self.TELEPORT_SPAWN_LOCATIONS[str(location)]
 	self.change_player_spawn_location = true
 	print("[!] Game: Change player spawn @ %s" % location)
