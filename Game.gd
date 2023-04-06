@@ -24,14 +24,17 @@ const LevelScenes: Dictionary = {
 	"CityShop": preload("res://world/CityShop.tscn"),
 	"GraslandHouse": preload("res://world/GraslandHouse.tscn"),
 	"GameIntro": preload("res://prefab/UI/GameIntro.tscn"),
-	"SmallWood": preload("res://world/SmallWood.tscn")
+	"SmallWood": preload("res://world/SmallWood.tscn"),
+	"CityCellar": preload("res://world/CityCellar.tscn"),
+	"CityHotel": preload("res://world/CityHotel.tscn")
 }
 const TELEPORT_SPAWN_LOCATIONS: Dictionary = {
 	"GraslandHouse": Vector2(1281, 246),
 	"WoodGrasland": Vector2(-349, 149),
 	"CityShop": Vector2(-1041, 164),
 	"WoodSmallWood": Vector2(-673, 271),
-	"CitySmallWood": Vector2(225, 595)
+	"CitySmallWood": Vector2(225, 595),
+	"CityCityHotel": Vector2(-240, -170)
 }
 
 var teleport_spawn_location: Vector2 = Vector2.ZERO
@@ -141,6 +144,8 @@ func _change_player_spawn(location: String):
 		"CitySmallWood":
 			self.teleport_spawn_location = self.TELEPORT_SPAWN_LOCATIONS[str(location)]
 		"WoodSmallWood":
+			self.teleport_spawn_location = self.TELEPORT_SPAWN_LOCATIONS[str(location)]
+		"CityCityHotel":
 			self.teleport_spawn_location = self.TELEPORT_SPAWN_LOCATIONS[str(location)]
 	self.change_player_spawn_location = true
 	print("[!] Game: Change player spawn @ %s" % location)
