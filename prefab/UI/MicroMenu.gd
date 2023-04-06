@@ -67,4 +67,4 @@ func _on_menu_btn_button_down():
 func _on_save_btn_button_down():
 	_create_btn_click_sound()
 	GameManager.save_data()
-	GameManager.info_box.set_info_text("[center][color=green]Information[/color]\n[color=red]Dein Spiel wurde gespeichert![/color][/center]")
+	GameManager.info_box.set_info_text("[center][color=green]Information[/color]\n\n[color=red]Dein Spiel wurde gespeichert![/color][/center]")

@@ -8,11 +8,10 @@ func _ready():
 	anim_player.play("default")
 
 func get_time():
-	var date = Time.get_date_string_from_system()
 	var time = Time.get_time_string_from_system()
-	GameManager.info_box.set_info_text("[center]Es ist jetzt:\n\n[color=blue]%s Uhr[/color][/center]" % time)
+	GameManager.info_box.set_info_text("[center][color=red]Es ist jetzt:[/color]\n\n[color=blue]%s Uhr[/color][/center]" % time)
 
 
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_just_released("interact") and player_detector.can_see_player():
 		get_time()

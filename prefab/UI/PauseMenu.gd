@@ -24,7 +24,7 @@ func _input(event):
 		else:
 			showpause()
 
-func _process(delta):
+func _process(_delta):
 	if self.visible:
 		self.time_label.text = "%s Uhr" % Time.get_time_string_from_system()
 

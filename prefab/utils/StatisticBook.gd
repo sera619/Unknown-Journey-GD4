@@ -10,7 +10,7 @@ var is_showing: bool = false
 func _ready():
 	body_sprite.connect("animation_finished", open_statistic)
 
-func _process(delta):
+func _process(_delta):
 	if player_detector.can_see_player():
 		icon.visible = true
 		if Input.is_action_just_released("interact"):

@@ -33,7 +33,7 @@ func actor_setup():
 func _set_movement_target(pos: Vector2):
 	nav_agent.target_position = pos
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if velocity != Vector2.ZERO: 
 		animtree.set("parameters/Move/blend_position", velocity)
 		animtree.set("parameters/Cast/blend_position", velocity)

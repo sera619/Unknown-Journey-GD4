@@ -64,7 +64,7 @@ texture = ExtResource("1_2ojbe")
 
 [node name="Icon" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(0, -52)
+position = Vector2(0, -42)
 texture = ExtResource("2_xpvj3")
 
 [node name="Body" type="Sprite2D" parent="."]

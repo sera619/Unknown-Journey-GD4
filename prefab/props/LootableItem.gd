@@ -31,8 +31,8 @@ func _loot_item():
 	_check_texture()
 	anim_player.stop()
 	icon.visible = false
-	GameManager.info_box.set_info_text("[center]Du hast\n\n[color=blue]\"%s\"[/color]\n\nerhalten!" % self.item_name)
-	
+	GameManager.interface.notice_box.show_item_notice(self.item_name, 1)
+
 	if respawn_time != 0:
 		respawn_timer.wait_time = respawn_time
 		respawn_timer.start()
@@ -47,7 +47,7 @@ func _loot_item():
 				return
 			QuestManager.current_quest.add_item()
 
-func _process(delta):
+func _process(_delta):
 	if player_detector.can_see_player() and not is_looted:
 		if not anim_player.is_playing():
 			anim_player.play("loop")

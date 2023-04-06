@@ -8,6 +8,7 @@ class_name Chest
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
 @onready var player_detector: PlayerDetector = $PlayerDetector
 @onready var body_sprite: Sprite2D = $Body
+@onready var icon: Sprite2D = $Icon
 
 var is_open: bool = false
 var reward_given: bool = false
@@ -53,6 +54,10 @@ func _on_animation_finished(anim_name):
 	if anim_name == "open":
 		_reward_player()
 
-func _process(delta):
-	if Input.is_action_just_released("interact") and player_detector.can_see_player():
-		_open_chest()
+func _process(_delta):
+	if player_detector.can_see_player() and not is_open:
+		icon.show()
+		if Input.is_action_just_released("interact"):
+			_open_chest()
+	if is_open and icon.visible:
+		icon.hide()

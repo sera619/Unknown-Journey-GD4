@@ -30,7 +30,7 @@ func _ready():
 	if close_time != 0:
 		timer.wait_time = close_time
 
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_just_released("interact"):
 		if not player_detector.can_see_player():
 			return

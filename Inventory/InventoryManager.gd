@@ -74,8 +74,9 @@ func add_item(itemname: String, amount: int):
 	if item.item_amount > item.item_max_amount:
 		item.item_amount = item.item_max_amount
 	else:
-		GameManager.info_box.set_info_text("[center]Du hast\n\n[color=red]%sx %s[/color]\n\nerhalten![/center]" % [amount, item.item_name])
 		EventHandler.emit_signal("player_inventory_item_changed", item)
+		GameManager.interface.notice_box.show_item_notice(item.item_name, amount)
+
 	print("[Inventory]: %sx \"%s\" (%s/%s) added to player inventory" % [amount, itemname, item.item_amount, item.item_max_amount])
 
 func can_use_item(itemname: String) -> bool:

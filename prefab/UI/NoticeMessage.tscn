@@ -45,5 +45,5 @@ scroll_following = true
 autowrap_mode = 2
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 4.0
 one_shot = true

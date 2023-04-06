@@ -10,7 +10,7 @@ var is_talking: bool = false
 func _ready():
 	_on_ready()
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if velocity != Vector2.ZERO: 
 		animtree.set("parameters/Move/blend_position", velocity)
 		animtree.set("parameters/Cast/blend_position", velocity)

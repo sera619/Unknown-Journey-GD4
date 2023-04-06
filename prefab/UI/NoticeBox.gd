@@ -32,10 +32,3 @@ func show_new_quest_notice(questname: String):
 	notice_container.add_child(notice)
 	notice.set_quest_new_msg(questname)
 
-func _input(event):
-	if event.is_action_released("attack"):
-		show_item_notice("Heiltrank", 1)
-	if event.is_action_released("charpanel"):
-		show_new_quest_notice("Das Schwert")
-	if event.is_action_released("qlog"):
-		show_quest_update_notice("Das Schwert", 1, 1)
