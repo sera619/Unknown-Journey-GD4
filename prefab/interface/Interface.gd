@@ -27,7 +27,7 @@ var dev_console: bool = false
 @onready var load_menu: LoadMenu = $LoadMenu
 @onready var statistic_hud: StatisticHUD = $StatisticHUD
 @onready var micro_menu: MicroMenu = $MicroMenu
-
+@onready var notice_box: NoticeBox = $NoticeBox
 var showinfo = true 
 
 func _ready():
@@ -74,6 +74,7 @@ func hide_ui():
 	exp_hud.hide()
 	dialog_box.hide_dialog()
 	dot_hud.hide()
+	notice_box.hide()
 
 func start_transition():
 	animplayer.play("start_transition")
