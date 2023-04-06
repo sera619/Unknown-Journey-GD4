@@ -4,8 +4,6 @@ from src.Updater import Updater
 import os, sys, shutil, pathlib
 from colorama import init, Fore
 
-
-
 def ChangelogUpdater():
     print(Fore.CYAN +"\n+++ Changelog Updater +++\n" + Fore.RESET)
     old_version = input(Fore.YELLOW + "[?] Please enter the old version: " + Fore.RESET)
@@ -19,8 +17,7 @@ Download the zip > Extract to a directory > open directory> run "UnknownJourney-
 __IMPORTANT:__ If you already played the game please click the "Reset" Button on the Loadmenu to Reset Savefiles and escape Gamecrashs!
 
 - Patch v{version}:
-
-    """
+"""
     old_path = "changelog.md"
     log_dir_path = "./changelogs/"
     # rename old file
@@ -33,8 +30,6 @@ __IMPORTANT:__ If you already played the game please click the "Reset" Button on
         f.write(changelogtext)
     print(Fore.GREEN + "\n[!] Changelog successfully updated!\n" + Fore.RESET)
     sys.exit(0)
-
-
 
 
 def menu():
@@ -63,8 +58,6 @@ def menu():
     else:
         print(Fore.RED +"[X] Your input was not valid, exit!" + Fore.RESET)
         sys.exit(0)
-
-
 
 
 if __name__ == "__main__":
