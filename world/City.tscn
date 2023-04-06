@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://1qcyn1bd5uw2"]
+[gd_scene load_steps=59 format=3 uid="uid://1qcyn1bd5uw2"]
 
 [ext_resource type="Script" path="res://world/City.gd" id="1_sbm6d"]
 [ext_resource type="Texture2D" uid="uid://i30uy8osh588" path="res://assets/World/tileset_dungeon.png" id="2_rpbj0"]
@@ -41092,6 +41092,12 @@ radius = 63.0317
 [sub_resource type="CircleShape2D" id="CircleShape2D_7e1vd"]
 radius = 47.0956
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p2t4r"]
+size = Vector2(31, 20)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2p00d"]
+radius = 17.0
+
 [node name="City" type="Node2D" groups=["WorldBase"]]
 script = ExtResource("1_sbm6d")
 world_name = "City"
@@ -42007,6 +42013,17 @@ goal_location = "kleiner Wald"
 position = Vector2(-729, 202)
 goal_location = "Shop"
 
+[node name="Teleporter3" parent="Map/GameObjects" instance=ExtResource("10_s5w8j")]
+position = Vector2(-239, -222)
+teleport_location = "CityHotel"
+
+[node name="CollisionShape2D" parent="Map/GameObjects/Teleporter3/TeleportArea" index="0"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_p2t4r")
+
+[node name="CollisionShape2D" parent="Map/GameObjects/Teleporter3/PlayerDetector" index="0"]
+shape = SubResource("CircleShape2D_2p00d")
+
 [node name="GameCamera" parent="Map" instance=ExtResource("3_d0mdu")]
 zoom = Vector2(0.8, 0.8)
 follow_npc_1 = NodePath("../GameObjects/NPC/NPCSarah")
@@ -42028,4 +42045,6 @@ bus = &"MenuSFX"
 [editable path="Map/GameObjects/Teleporter/PlayerDetector"]
 [editable path="Map/GameObjects/Teleporter2"]
 [editable path="Map/GameObjects/Teleporter2/PlayerDetector"]
+[editable path="Map/GameObjects/Teleporter3"]
+[editable path="Map/GameObjects/Teleporter3/PlayerDetector"]
 [editable path="Map/GameCamera"]
