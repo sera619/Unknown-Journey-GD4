@@ -5,7 +5,10 @@ extends CharacterBody2D
 @export_category("SFX Scenes")
 @export var hurt_sound_scene: PackedScene
 @export var death_sound_scene: PackedScene
-
+@export_category("Reward Settings")
+@export_enum("5%", "10%", "15%", "20%") var reward_chance: int
+@export var reward_gold: int
+@export var reward_scenes: Array[PackedScene]
 
 @onready var hitbox: Area2D = $HitBox
 @onready var attack_timer: Timer = $Timer
@@ -85,6 +88,8 @@ func _physics_process(delta):
 				update_wander()
 			if can_attack and heal_charges > 0 and stats.health < int(stats.max_health/2):
 				state = HEAL
+			if can_attack:
+				state = ATTACK
 			if player_detector.can_see_player():
 				state = CHASE
 				
@@ -116,8 +121,6 @@ func _physics_process(delta):
 		ATTACK:
 			var player = player_detector.player
 			if player != null and can_attack:
-				can_attack = false
-				attack_timer.start()
 				#hurt_box.set_element_type("Poison")
 				attack_state(delta)
 			else:
@@ -143,6 +146,8 @@ func attack_state(_delta):
 	anim_stats.travel("SporeAttack")
 	hurt_box.set_element_type("Poison")
 	velocity = Vector2.ZERO
+	can_attack = false
+	attack_timer.start()
 
 
 func check_collider():
@@ -253,5 +258,42 @@ func reward_player():
 	if not GameManager.player or stats.reward_exp == 0:
 		return
 	GameManager.player.stats.set_exp(GameManager.player.stats.experience + stats.reward_exp)
-		
+
+
+func _get_random_reward():
+	var ran = randi_range(0, reward_scenes.size() - 1)
+	var reward = reward_scenes[ran].instantiate()
+	if reward.name == "CoinDrop":
+		reward.amount = reward_gold
+	reward.global_position = self.global_position
+	GameManager.current_world.game_map.add_child(reward)
+
+func _check_player_reward() -> bool:
+	var chance_to_drop = randf_range(0, 100)
+	match reward_chance:
+		0:
+			if chance_to_drop <= 5:
+				return true
+			else:
+				return false
+		1: 
+			# 10 %
+			if chance_to_drop <= 10:
+				return true
+			else:
+				return false
+		2:
+			# 15 %
+			if chance_to_drop <= 15:
+				return true
+			else:
+				return false
+		3:
+			# 20 %
+			if chance_to_drop <= 20:
+				return true
+			else:
+				return false
+	return false
+
 

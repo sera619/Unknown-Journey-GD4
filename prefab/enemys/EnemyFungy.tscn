@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=3 uid="uid://duqvtvxqoyvgj"]
+[gd_scene load_steps=85 format=3 uid="uid://duqvtvxqoyvgj"]
 
 [ext_resource type="PackedScene" uid="uid://doa5hxcckh64o" path="res://prefab/enemys/EnemyHUD.tscn" id="1_e25t5"]
 [ext_resource type="Script" path="res://scripts/EnemyStats.gd" id="1_rni5g"]
@@ -9,7 +9,10 @@
 [ext_resource type="Texture2D" uid="uid://csmmas47a7m66" path="res://assets/Enemies/mushroom.png" id="3_snscc"]
 [ext_resource type="PackedScene" uid="uid://bpr5kb8nmfivl" path="res://prefab/audio/EnemyHitSound.tscn" id="4_cpnaj"]
 [ext_resource type="PackedScene" uid="uid://uqcsi836bkf" path="res://prefab/audio/EnemyDeathSound.tscn" id="5_68psb"]
+[ext_resource type="PackedScene" uid="uid://coohwdkytapxs" path="res://prefab/itemdrops/EnergiePotDrop.tscn" id="6_lja66"]
 [ext_resource type="Script" path="res://prefab/enemys/EnemyWeapon.gd" id="7_2ci0n"]
+[ext_resource type="PackedScene" uid="uid://dnbng2g6ad7s6" path="res://prefab/itemdrops/HealthPotDrop.tscn" id="7_v70ej"]
+[ext_resource type="PackedScene" uid="uid://bdjnceh2b5es" path="res://prefab/itemdrops/CoinDrop.tscn" id="8_bmejj"]
 [ext_resource type="Shader" path="res://assets/Materials/Outline_Shader.gdshader" id="8_lc6g0"]
 [ext_resource type="PackedScene" uid="uid://ebdq15holk57" path="res://prefab/utils/Softcollision.tscn" id="9_3bkbs"]
 [ext_resource type="PackedScene" uid="uid://b347lo6c415bh" path="res://prefab/utils/WanderController.tscn" id="10_4r3ir"]
@@ -658,18 +661,35 @@ blend_mode = 1
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2vam8"]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1i5yv"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wucrt"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wcl35"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6kblm"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_051kb"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4e8dj"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_x4eoy"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5o6p0"]
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_4wjcs"]
 states/Attack/node = SubResource("AnimationNodeBlendSpace2D_esnby")
-states/Attack/position = Vector2(355, 150)
+states/Attack/position = Vector2(420, 265)
 states/Heal/node = SubResource("AnimationNodeBlendSpace2D_k8w6j")
-states/Heal/position = Vector2(262, 230)
+states/Heal/position = Vector2(180, 180)
 states/Idle/node = SubResource("AnimationNodeBlendSpace2D_dccdl")
 states/Idle/position = Vector2(397, 74)
 states/Move/node = SubResource("AnimationNodeBlendSpace2D_gdwxu")
-states/Move/position = Vector2(620, 135)
+states/Move/position = Vector2(714, 90)
 states/SporeAttack/node = SubResource("AnimationNodeBlendSpace2D_uvbnh")
-states/SporeAttack/position = Vector2(465, 195)
-transitions = ["Idle", "Move", SubResource("AnimationNodeStateMachineTransition_wgv0y"), "Move", "Idle", SubResource("AnimationNodeStateMachineTransition_tkpr8"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_0nu67"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_qh02c"), "Idle", "SporeAttack", SubResource("AnimationNodeStateMachineTransition_heqwl"), "SporeAttack", "Idle", SubResource("AnimationNodeStateMachineTransition_c47of"), "Idle", "Heal", SubResource("AnimationNodeStateMachineTransition_gk61c"), "Heal", "Idle", SubResource("AnimationNodeStateMachineTransition_jbe1d"), "Heal", "Attack", SubResource("AnimationNodeStateMachineTransition_n6sgf"), "Attack", "Heal", SubResource("AnimationNodeStateMachineTransition_pfvyi"), "Heal", "Move", SubResource("AnimationNodeStateMachineTransition_58awf"), "Move", "Heal", SubResource("AnimationNodeStateMachineTransition_2vam8")]
+states/SporeAttack/position = Vector2(714, 246)
+transitions = ["Idle", "Move", SubResource("AnimationNodeStateMachineTransition_wgv0y"), "Move", "Idle", SubResource("AnimationNodeStateMachineTransition_tkpr8"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_0nu67"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_qh02c"), "Idle", "SporeAttack", SubResource("AnimationNodeStateMachineTransition_heqwl"), "SporeAttack", "Idle", SubResource("AnimationNodeStateMachineTransition_c47of"), "Idle", "Heal", SubResource("AnimationNodeStateMachineTransition_gk61c"), "Heal", "Idle", SubResource("AnimationNodeStateMachineTransition_jbe1d"), "Heal", "Attack", SubResource("AnimationNodeStateMachineTransition_n6sgf"), "Attack", "Heal", SubResource("AnimationNodeStateMachineTransition_pfvyi"), "Heal", "Move", SubResource("AnimationNodeStateMachineTransition_58awf"), "Move", "Heal", SubResource("AnimationNodeStateMachineTransition_2vam8"), "SporeAttack", "Move", SubResource("AnimationNodeStateMachineTransition_1i5yv"), "Move", "SporeAttack", SubResource("AnimationNodeStateMachineTransition_wucrt"), "SporeAttack", "Attack", SubResource("AnimationNodeStateMachineTransition_wcl35"), "Attack", "SporeAttack", SubResource("AnimationNodeStateMachineTransition_6kblm"), "Attack", "Move", SubResource("AnimationNodeStateMachineTransition_051kb"), "Move", "Attack", SubResource("AnimationNodeStateMachineTransition_4e8dj"), "Heal", "SporeAttack", SubResource("AnimationNodeStateMachineTransition_x4eoy"), "SporeAttack", "Heal", SubResource("AnimationNodeStateMachineTransition_5o6p0")]
+graph_offset = Vector2(-27, 62)
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_f0jby"]
 
@@ -685,6 +705,9 @@ hit_effect_scene = ExtResource("2_kr1ik")
 death_effect_scene = ExtResource("3_i8ij2")
 hurt_sound_scene = ExtResource("4_cpnaj")
 death_sound_scene = ExtResource("5_68psb")
+reward_chance = 3
+reward_gold = 15
+reward_scenes = Array[PackedScene]([ExtResource("6_lja66"), ExtResource("7_v70ej"), ExtResource("8_bmejj")])
 
 [node name="EnemyHUD" parent="." instance=ExtResource("1_e25t5")]
 offset_left = -14.0
@@ -766,10 +789,10 @@ libraries = {
 tree_root = SubResource("AnimationNodeStateMachine_4wjcs")
 anim_player = NodePath("../AnimationPlayer")
 parameters/playback = SubResource("AnimationNodeStateMachinePlayback_f0jby")
-parameters/Attack/blend_position = Vector2(0, 0)
+parameters/Attack/blend_position = Vector2(-0.998405, -0.00502515)
 parameters/Heal/blend_position = Vector2(0, 0)
 parameters/Idle/blend_position = Vector2(0, 0)
-parameters/Move/blend_position = Vector2(0, 0)
+parameters/Move/blend_position = Vector2(-0.0031898, 0.718593)
 parameters/SporeAttack/blend_position = Vector2(0, 0)
 
 [node name="SoftCollision" parent="." instance=ExtResource("9_3bkbs")]

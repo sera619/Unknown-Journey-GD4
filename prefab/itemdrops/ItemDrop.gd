@@ -62,6 +62,7 @@ func pickup(area):
 		if item_name:
 			InventoryManager.add_item(item_name, amount)
 	elif item_type == 3:
+		GameManager.interface.notice_box.show_item_notice("Gold", amount)
 		GameManager.player.stats.set_gold(GameManager.player.stats.gold + amount)
 	elif item_type == 4:
 		if item_name:

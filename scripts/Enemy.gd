@@ -225,8 +225,6 @@ func reward_player():
 	if not GameManager.player or stats.reward_exp == 0:
 		return
 	GameManager.player.stats.set_exp(GameManager.player.stats.experience + stats.reward_exp)
-	if reward_gold != 0:
-		GameManager.player.stats.set_gold(GameManager.player.stats.gold + reward_gold)
 	if _check_player_reward():
 		_get_random_reward()
 
@@ -234,6 +232,8 @@ func reward_player():
 func _get_random_reward():
 	var ran = randi_range(0, reward_scenes.size() - 1)
 	var reward = reward_scenes[ran].instantiate()
+	if reward.name == "CoinDrop":
+		reward.amount = reward_gold
 	reward.global_position = self.global_position
 	GameManager.current_world.game_map.add_child(reward)
 
