@@ -50,7 +50,7 @@ func activate_quest(questname: String):
 		quest.state = Quest.QS.ACTIVE
 		current_quest = quest
 		print("[!] QuestManager: Quest \"%s\" activated!" % quest.title)
-		GameManager.info_box.set_info_text("[center]Neue Quest:\n\n[color=blue]\"%s\"[/color]\n\nerhalten![/center]" % quest.title)
+		GameManager.interface.notice_box.show_new_quest_notice(quest.title)
 
 func load_quests():
 	var data = D._load_profile_quest_data(GameManager.selected_playername)

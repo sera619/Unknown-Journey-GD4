@@ -57,7 +57,7 @@ func pickup(area):
 			QuestManager.current_quest.add_item()
 	elif item_type == 0:
 		if item_name:
-			GameManager.info_box.set_info_text("[center]Du hast\n\n[color=red]%sx %s[/color]\n\nerhalten![/center]" % [amount, item_name])
+			GameManager.interface.notice_box.show_item_notice(item_name, amount)
 	elif item_type == 1:
 		if item_name:
 			InventoryManager.add_item(item_name, amount)

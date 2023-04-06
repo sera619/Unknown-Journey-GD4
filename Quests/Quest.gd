@@ -28,7 +28,7 @@ func add_item():
 	if self.current_amount == self.required_amount:
 		return
 	self.current_amount += 1
-	GameManager.info_box.set_info_text("[center]Questfortschritt:\n\n[color=blue]\"%s\"[/color]\n\n%s / %s[/center]" % [self.object_name, self.current_amount, self.required_amount])
+	GameManager.interface.notice_box.show_quest_update_notice(self.title, self.current_amount, self.required_amount)
 	if self.current_amount == self.required_amount:
 		finish()
 
@@ -39,7 +39,7 @@ func reset():
 
 func finish():
 	self.state = QS.FINSIH
-	GameManager.info_box.set_info_text("[center]Questfortschritt:\n\n[color=blue]\"%s\"[/color]\n\nbereit zum abgeben![/center]" % self.title)
+	GameManager.interface.notice_box.show_quest_finish_notice(self.title)
 	print("[!] Quest: \"%s\" finished!" % self.title)
 
 
@@ -49,7 +49,7 @@ func complete():
 		stats.set_exp(stats.experience + self.reward_xp)
 	QuestManager.current_quest = null
 	EventHandler.emit_signal("statistic_update_quests")
-	GameManager.info_box.set_info_text("[center]Quest:\n\n[color=blue]\"%s\"[/color]\n\nabgeschlossen![/center]" % self.title)
+	GameManager.interface.notice_box.show_quest_complete_notice(self.title)
 	self.state = QS.COMPLETE
 
 
