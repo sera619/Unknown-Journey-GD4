@@ -5,9 +5,9 @@ class_name EnemyWeapon
 @export_range(1, 4) var max_lightning_dot: int = 1
 @export_range(1, 4) var max_ice_dot: int = 1
 @export_range(1, 4) var max_fire_dot: int = 1
+@onready var damage = 0
 
 var knockback_vector: = Vector2.ZERO
-@onready var damage = 0
 var parent
 var dot_count: int = 1
 var dot_damage: int = 1
