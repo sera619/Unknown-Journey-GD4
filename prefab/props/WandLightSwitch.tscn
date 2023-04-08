@@ -1,0 +1,33 @@
+[gd_scene load_steps=7 format=3 uid="uid://dryyghofo87wq"]
+
+[ext_resource type="Texture2D" uid="uid://dkat8f7iv8n2k" path="res://assets/objects/wand_lever.png" id="1_2fo75"]
+[ext_resource type="Script" path="res://prefab/props/Switch.gd" id="1_clkfy"]
+[ext_resource type="PackedScene" uid="uid://kbo1bay3i1ps" path="res://prefab/utils/PlayerDetector.tscn" id="2_f07gv"]
+[ext_resource type="PackedScene" uid="uid://dml7p34uqirlw" path="res://prefab/audio/SwitchClickSound.tscn" id="2_uelkq"]
+[ext_resource type="Texture2D" uid="uid://hfu2fg2kopso" path="res://assets/UI/E-Key.png" id="3_15eqx"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s1hqa"]
+radius = 13.0
+height = 56.0
+
+[node name="WandLightSwitch" type="Node2D"]
+script = ExtResource("1_clkfy")
+click_sound_scene = ExtResource("2_uelkq")
+
+[node name="Body" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_2fo75")
+hframes = 2
+
+[node name="PlayerDetector" parent="." instance=ExtResource("2_f07gv")]
+
+[node name="CollisionShape2D" parent="PlayerDetector" index="0"]
+position = Vector2(0, 8)
+shape = SubResource("CapsuleShape2D_s1hqa")
+
+[node name="Icon" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -24)
+texture = ExtResource("3_15eqx")
+
+[editable path="PlayerDetector"]
