@@ -1,0 +1,87 @@
+[gd_scene load_steps=11 format=3 uid="uid://bqmd0vl5co3p"]
+
+[ext_resource type="Script" path="res://prefab/props/Candle.gd" id="1_6qggf"]
+[ext_resource type="Texture2D" uid="uid://dt2540u4sj5mt" path="res://assets/Shadows/MediumShadow.png" id="2_ee3lq"]
+[ext_resource type="Texture2D" uid="uid://p5qjf6yxjhlo" path="res://assets/Materials/ParticleTextures/light.png" id="3_jsi1u"]
+[ext_resource type="Texture2D" uid="uid://dj37t4irh8tnc" path="res://assets/objects/BigCandle.png" id="3_qf271"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ltj6"]
+atlas = ExtResource("3_qf271")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4h5dp"]
+atlas = ExtResource("3_qf271")
+region = Rect2(64, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bqcoq"]
+atlas = ExtResource("3_qf271")
+region = Rect2(32, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4cc0c"]
+atlas = ExtResource("3_qf271")
+region = Rect2(96, 0, 32, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ew527"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ltj6")
+}],
+"loop": false,
+"name": &"off",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4h5dp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bqcoq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4cc0c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bqcoq")
+}],
+"loop": true,
+"name": &"on",
+"speed": 6.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dje8e"]
+radius = 4.0
+height = 14.0
+
+[node name="CandleBigl" type="Node2D" groups=["world_light"]]
+script = ExtResource("1_6qggf")
+light_energy = 0.75
+light_fade_time = 1
+color = Color(0.847059, 0.494118, 0.0588235, 1)
+
+[node name="Shadow" type="Sprite2D" parent="."]
+position = Vector2(0, 1)
+scale = Vector2(1.25, 1)
+texture = ExtResource("2_ee3lq")
+
+[node name="Body" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ew527")
+animation = &"off"
+frame_progress = 1.0
+offset = Vector2(0, -28)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, -48)
+scale = Vector2(1.25391, 1.21484)
+enabled = false
+color = Color(1, 0.6, 0.196078, 1)
+energy = 0.75
+shadow_enabled = true
+shadow_item_cull_mask = 3
+texture = ExtResource("3_jsi1u")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_dje8e")

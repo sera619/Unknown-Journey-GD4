@@ -1,0 +1,70 @@
+[gd_scene load_steps=10 format=3 uid="uid://dc1668u505acr"]
+
+[ext_resource type="Script" path="res://prefab/props/Candle.gd" id="1_dqrpj"]
+[ext_resource type="Texture2D" uid="uid://c32xrglribh03" path="res://assets/objects/fireplace-export.png" id="2_cj1yk"]
+[ext_resource type="Texture2D" uid="uid://p5qjf6yxjhlo" path="res://assets/Materials/ParticleTextures/light.png" id="3_oufji"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0c6rl"]
+atlas = ExtResource("2_cj1yk")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t8mc7"]
+atlas = ExtResource("2_cj1yk")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qyqsf"]
+atlas = ExtResource("2_cj1yk")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qgng7"]
+atlas = ExtResource("2_cj1yk")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tbihl"]
+atlas = ExtResource("2_cj1yk")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qtd1u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0c6rl")
+}],
+"loop": false,
+"name": &"off",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t8mc7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qyqsf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qgng7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tbihl")
+}],
+"loop": true,
+"name": &"on",
+"speed": 8.0
+}]
+
+[node name="Fireplace" type="Node2D"]
+script = ExtResource("1_dqrpj")
+light_fade_time = 0.5
+color = Color(0.847059, 0.494118, 0.0588235, 1)
+
+[node name="Body" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_qtd1u")
+animation = &"off"
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+scale = Vector2(0.625, 0.566406)
+enabled = false
+color = Color(1, 0.6, 0.196078, 1)
+energy = 0.15
+shadow_enabled = true
+texture = ExtResource("3_oufji")

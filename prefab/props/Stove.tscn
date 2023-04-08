@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=3 uid="uid://ie2a5g5l008n"]
+
+[ext_resource type="Script" path="res://prefab/props/Candle.gd" id="1_pd8r2"]
+[ext_resource type="Texture2D" uid="uid://5n0wxnhaoaa" path="res://assets/World/animated_tiles/WaterAndFire.png" id="2_fmcx7"]
+[ext_resource type="Texture2D" uid="uid://p5qjf6yxjhlo" path="res://assets/Materials/ParticleTextures/light.png" id="3_r7wn0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g1wa1"]
+atlas = ExtResource("2_fmcx7")
+region = Rect2(0, 192, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8pbwu"]
+atlas = ExtResource("2_fmcx7")
+region = Rect2(32, 192, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5t16k"]
+atlas = ExtResource("2_fmcx7")
+region = Rect2(64, 192, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g46nc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g1wa1")
+}],
+"loop": false,
+"name": &"off",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8pbwu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5t16k")
+}],
+"loop": true,
+"name": &"on",
+"speed": 4.0
+}]
+
+[node name="Stove" type="Node2D"]
+script = ExtResource("1_pd8r2")
+light_energy = 0.2
+light_fade_time = 0.5
+color = Color(0.847059, 0.494118, 0.0588235, 1)
+
+[node name="Body" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_g46nc")
+animation = &"off"
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+scale = Vector2(0.433594, 0.40625)
+color = Color(1, 0.6, 0.196078, 1)
+energy = 0.15
+shadow_enabled = true
+texture = ExtResource("3_r7wn0")
