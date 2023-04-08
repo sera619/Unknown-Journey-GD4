@@ -1,6 +1,7 @@
 extends Node2D
 @export var trap_damage: int
 @export var is_on: bool
+@export var is_right_side: bool
 @export var pathfollow_path: NodePath
 @export var move_time: int
 @export var wait_time: int
@@ -12,7 +13,6 @@ extends Node2D
 
 var pathfollow: PathFollow2D = null
 var can_move: bool = true
-var is_right_side: bool = true
 
 func _ready():
 	self._setup_trap()
