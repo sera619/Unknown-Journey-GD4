@@ -126,9 +126,9 @@ func _physics_process(delta):
 
 func move_state(delta):
 	var input_vector = Vector2.ZERO
+	if not can_interact:
+		return
 	if not GameManager.interface.dev_console:
-		if not can_interact:
-			return
 		input_vector.x = Input.get_axis("move_left", "move_right")
 		input_vector.y = Input.get_axis("move_up", "move_down")
 		input_vector = input_vector.normalized()
@@ -269,7 +269,7 @@ func hurt_state(delta):
 		knockback = knockback.move_toward(Vector2.ZERO, stats.FRICTION * delta)
 		set_velocity(knockback)
 		move_and_slide()
-		animState.travel("Hurt")
+	animState.travel("Hurt")
 
 func attack_state(_delta):
 	velocity = Vector2.ZERO
