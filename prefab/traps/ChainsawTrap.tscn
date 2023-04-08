@@ -1,0 +1,104 @@
+[gd_scene load_steps=15 format=3 uid="uid://s3h22gi4hk4q"]
+
+[ext_resource type="Script" path="res://prefab/enemys/EnemyWeapon.gd" id="1_bno1i"]
+[ext_resource type="Script" path="res://prefab/traps/ChainsawTrap.gd" id="1_mwg2f"]
+[ext_resource type="Texture2D" uid="uid://dorvwnhv75qt" path="res://assets/objects/Suriken.png" id="2_8ocrs"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j62x1"]
+atlas = ExtResource("2_8ocrs")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i1820"]
+atlas = ExtResource("2_8ocrs")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_33vie"]
+atlas = ExtResource("2_8ocrs")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ieamh"]
+atlas = ExtResource("2_8ocrs")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mfg1s"]
+atlas = ExtResource("2_8ocrs")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kbm01"]
+atlas = ExtResource("2_8ocrs")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ubhyr"]
+atlas = ExtResource("2_8ocrs")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ddwg"]
+atlas = ExtResource("2_8ocrs")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i4nxn"]
+atlas = ExtResource("2_8ocrs")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_iwdvn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j62x1")
+}],
+"loop": false,
+"name": &"off",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i1820")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_33vie")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ieamh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mfg1s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kbm01")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ubhyr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ddwg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i4nxn")
+}],
+"loop": true,
+"name": &"on",
+"speed": 64.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ixswa"]
+radius = 16.0
+
+[node name="ChainsawTrap" type="Node2D"]
+script = ExtResource("1_mwg2f")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+
+[node name="Body" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_iwdvn")
+animation = &"off"
+
+[node name="Hitbox" type="Area2D" parent="." groups=["enemyWeapon"]]
+collision_layer = 8
+collision_mask = 8
+script = ExtResource("1_bno1i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_ixswa")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
