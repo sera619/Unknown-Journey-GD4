@@ -1,0 +1,150 @@
+[gd_scene load_steps=22 format=3 uid="uid://bcir1dj3vcylc"]
+
+[ext_resource type="Texture2D" uid="uid://ddf4l43sdb7xj" path="res://assets/World/animated_tiles/Spike Trap.png" id="1_6owkb"]
+[ext_resource type="Script" path="res://prefab/traps/Spiketrap.gd" id="1_dho0o"]
+[ext_resource type="PackedScene" uid="uid://kbo1bay3i1ps" path="res://prefab/utils/PlayerDetector.tscn" id="2_rnpok"]
+[ext_resource type="Script" path="res://prefab/enemys/EnemyWeapon.gd" id="2_xbhqr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ny6t"]
+atlas = ExtResource("1_6owkb")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p15x6"]
+atlas = ExtResource("1_6owkb")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cri87"]
+atlas = ExtResource("1_6owkb")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dectx"]
+atlas = ExtResource("1_6owkb")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_abccl"]
+atlas = ExtResource("1_6owkb")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_og0nv"]
+atlas = ExtResource("1_6owkb")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7s6s5"]
+atlas = ExtResource("1_6owkb")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_00jat"]
+atlas = ExtResource("1_6owkb")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cadnq"]
+atlas = ExtResource("1_6owkb")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_md1da"]
+atlas = ExtResource("1_6owkb")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0fu6x"]
+atlas = ExtResource("1_6owkb")
+region = Rect2(320, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hl8bf"]
+atlas = ExtResource("1_6owkb")
+region = Rect2(352, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lvcc8"]
+atlas = ExtResource("1_6owkb")
+region = Rect2(384, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2u644"]
+atlas = ExtResource("1_6owkb")
+region = Rect2(416, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nra5r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ny6t")
+}],
+"loop": false,
+"name": &"off",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p15x6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cri87")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dectx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_abccl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_og0nv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7s6s5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_00jat")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cadnq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_md1da")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0fu6x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hl8bf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lvcc8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2u644")
+}],
+"loop": false,
+"name": &"on",
+"speed": 18.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qx0ia"]
+size = Vector2(32, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nlbww"]
+size = Vector2(32, 24)
+
+[node name="Spiketrap" type="Node2D"]
+script = ExtResource("1_dho0o")
+trap_damage = 4
+
+[node name="Body" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_nra5r")
+animation = &"off"
+offset = Vector2(0, -8)
+
+[node name="Hitbox" type="Area2D" parent="." groups=["enemyWeapon"]]
+collision_layer = 8
+collision_mask = 8
+script = ExtResource("2_xbhqr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_qx0ia")
+disabled = true
+
+[node name="PlayerDetector" parent="." instance=ExtResource("2_rnpok")]
+
+[node name="CollisionShape2D" parent="PlayerDetector" index="0"]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_nlbww")
+
+[editable path="PlayerDetector"]
