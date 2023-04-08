@@ -21,7 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://cmy5rvwmgippa" path="res://assets/NPC/npc_old1.png" id="12_jbfwc"]
 [ext_resource type="Texture2D" uid="uid://c6durkjv6yx1r" path="res://assets/NPC/npc_child_f1.png" id="13_16pjv"]
 [ext_resource type="PackedScene" uid="uid://dd2hmhqkymjdj" path="res://prefab/destroyable_objects/Gras.tscn" id="13_aevjw"]
-[ext_resource type="PackedScene" uid="uid://dtxqutqdlt8rn" path="res://prefab/props/StreetLamp.tscn" id="15_30kf1"]
+[ext_resource type="PackedScene" uid="uid://h6divycds8l1" path="res://prefab/props/StreetLamp.tscn" id="15_30kf1"]
 [ext_resource type="PackedScene" uid="uid://xex3x1q2v22b" path="res://prefab/utils/Waysign.tscn" id="16_gl8ux"]
 [ext_resource type="PackedScene" uid="uid://don77lxqfcjk6" path="res://prefab/props/FruitBush.tscn" id="16_he6cf"]
 [ext_resource type="Texture2D" uid="uid://daoushex3561y" path="res://assets/NPC/Farmer.png" id="18_34seq"]
@@ -42014,7 +42014,7 @@ position = Vector2(-729, 202)
 goal_location = "Shop"
 
 [node name="Teleporter3" parent="Map/GameObjects" instance=ExtResource("10_s5w8j")]
-position = Vector2(-239, -222)
+position = Vector2(-240, -220)
 teleport_location = "CityHotel"
 
 [node name="CollisionShape2D" parent="Map/GameObjects/Teleporter3/TeleportArea" index="0"]
@@ -42037,7 +42037,6 @@ position = Vector2(174, 841)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("33_inuve")
-volume_db = -6.741
 autoplay = true
 bus = &"MenuSFX"
 

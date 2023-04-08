@@ -1,8 +1,9 @@
-[gd_resource type="TileSet" load_steps=9 format=3 uid="uid://bk5vv7fsil51w"]
+[gd_resource type="TileSet" load_steps=11 format=3 uid="uid://bk5vv7fsil51w"]
 
 [ext_resource type="Texture2D" uid="uid://by0asahacrf8v" path="res://assets/World/terrain_atlas.png" id="1_igrfi"]
 [ext_resource type="Texture2D" uid="uid://uo5fgiwgdoqq" path="res://assets/tiles/water_tiles.png" id="1_s2myt"]
 [ext_resource type="Texture2D" uid="uid://ci8qjlxfcicx4" path="res://assets/World/base_out_atlas.png" id="2_6hcq8"]
+[ext_resource type="Texture2D" uid="uid://ccx8jwigbm45b" path="res://assets/World/animated_tiles/wateranimation.png" id="3_6iwh7"]
 [ext_resource type="Texture2D" uid="uid://dguk66r6bcx5q" path="res://assets/World/[Base]BaseChip_pipo.png" id="3_wcfjg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_smn4h"]
@@ -9644,6 +9645,23 @@ texture_region_size = Vector2i(32, 32)
 7:132/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 7:132/0/physics_layer_0/angular_velocity = 0.0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ui4cl"]
+texture = ExtResource("3_6iwh7")
+texture_region_size = Vector2i(32, 32)
+0:0/animation_frame_0/duration = 0.2
+0:0/animation_frame_1/duration = 0.2
+0:0/animation_frame_2/duration = 0.2
+0:0/animation_frame_3/duration = 0.2
+0:0/animation_frame_4/duration = 0.2
+0:0/animation_frame_5/duration = 0.2
+0:0/animation_frame_6/duration = 0.2
+0:0/animation_frame_7/duration = 0.2
+0:0/animation_frame_8/duration = 0.2
+0:0/animation_frame_9/duration = 16.0
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+
 [resource]
 tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 1
@@ -9666,3 +9684,4 @@ sources/1 = SubResource("TileSetAtlasSource_ho2jp")
 sources/4 = SubResource("TileSetAtlasSource_mnjjc")
 sources/5 = SubResource("TileSetAtlasSource_c64rn")
 sources/0 = SubResource("TileSetAtlasSource_smn4h")
+sources/7 = SubResource("TileSetAtlasSource_ui4cl")

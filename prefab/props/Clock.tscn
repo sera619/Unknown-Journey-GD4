@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://bjvuvridc52x3"]
+[gd_scene load_steps=11 format=3 uid="uid://bjvuvridc52x3"]
 
 [ext_resource type="Texture2D" uid="uid://bg6xo5wgyr6fp" path="res://assets/tiles/animated_clock.png" id="1_10a5m"]
 [ext_resource type="Script" path="res://prefab/props/Clock.gd" id="1_j3cip"]
 [ext_resource type="PackedScene" uid="uid://kbo1bay3i1ps" path="res://prefab/utils/PlayerDetector.tscn" id="2_257sg"]
+[ext_resource type="Texture2D" uid="uid://hfu2fg2kopso" path="res://assets/UI/E-Key.png" id="3_1w0xo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rxdwi"]
 atlas = ExtResource("1_10a5m")
@@ -45,11 +46,14 @@ size = Vector2(28, 61)
 [node name="Clock" type="Node2D"]
 script = ExtResource("1_j3cip")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_xyils")
 offset = Vector2(0, -30)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -33)
+texture = ExtResource("3_1w0xo")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 

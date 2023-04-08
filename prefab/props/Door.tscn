@@ -89,7 +89,7 @@ sound_close_scene = ExtResource("3_1ag2q")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_w50i4")
-animation = &"close"
+animation = &"open"
 offset = Vector2(-1.5, -32)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
