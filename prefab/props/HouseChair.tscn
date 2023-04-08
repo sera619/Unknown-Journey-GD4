@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cvlvkaue2u7hm" path="res://assets/World/Inside_B.png" id="1_08kea"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oyxyj"]
-size = Vector2(16.5, 22)
+size = Vector2(16, 22)
 
 [node name="HouseChair" type="StaticBody2D"]
 collision_layer = 129
@@ -25,6 +25,6 @@ region_enabled = true
 region_rect = Rect2(48, 100, 86, 52)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(9.05e-07, -0.250001)
+position = Vector2(7.38964e-13, -5.36442e-07)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_oyxyj")
