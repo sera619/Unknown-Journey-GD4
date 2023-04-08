@@ -1,15 +1,31 @@
-[gd_scene load_steps=10 format=3 uid="uid://bjh0j476ynyk4"]
+[gd_scene load_steps=11 format=3 uid="uid://bjh0j476ynyk4"]
 
 [ext_resource type="Script" path="res://prefab/PuzzleObjects/PlayerBed.gd" id="1_1hwhk"]
 [ext_resource type="Texture2D" uid="uid://cvlvkaue2u7hm" path="res://assets/World/Inside_B.png" id="1_fq15i"]
+[ext_resource type="Texture2D" uid="uid://bo4wv3t8aiw1d" path="res://assets/Shadows/BoxShadowMedium.png" id="2_5dbkl"]
 [ext_resource type="PackedScene" uid="uid://kbo1bay3i1ps" path="res://prefab/utils/PlayerDetector.tscn" id="2_cruml"]
 [ext_resource type="Texture2D" uid="uid://hfu2fg2kopso" path="res://assets/UI/E-Key.png" id="3_ac57r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y4b5x"]
-size = Vector2(46, 71)
+size = Vector2(46, 58)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tyev5"]
 radius = 72.3395
+
+[sub_resource type="Animation" id="Animation_ojh76"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Icon:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -32)]
+}
 
 [sub_resource type="Animation" id="Animation_jrr0u"]
 resource_name = "loop"
@@ -28,21 +44,6 @@ tracks/0/keys = {
 "values": [Vector2(0, -32), Vector2(0, -42)]
 }
 
-[sub_resource type="Animation" id="Animation_ojh76"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Icon:offset")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, -32)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tudve"]
 _data = {
 "RESET": SubResource("Animation_ojh76"),
@@ -51,6 +52,11 @@ _data = {
 
 [node name="PlayerBed" type="Node2D"]
 script = ExtResource("1_1hwhk")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -12)
+scale = Vector2(1.875, 2.28125)
+texture = ExtResource("2_5dbkl")
 
 [node name="Body" type="Sprite2D" parent="."]
 texture = ExtResource("1_fq15i")
@@ -61,7 +67,7 @@ region_rect = Rect2(71, 302, 50, 82)
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(0, -18.5)
+position = Vector2(0, -12)
 shape = SubResource("RectangleShape2D_y4b5x")
 
 [node name="PlayerDetector" parent="." instance=ExtResource("2_cruml")]
