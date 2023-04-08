@@ -86,6 +86,8 @@ func teleport_player():
 			"City":
 				if GameManager.current_world.world_name == "CityShop":
 					GameManager.game._change_player_spawn("CityShop")
+				if GameManager.current_world.world_name == "CityHotel":
+					GameManager.game._change_player_spawn("CityHotelCity")
 				GameManager.game.switch_gamelevel(teleport_location)
 			"SmallWood":
 				if GameManager.current_world.world_name == "City":
