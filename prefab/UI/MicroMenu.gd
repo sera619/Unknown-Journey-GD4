@@ -35,6 +35,7 @@ func _on_quest_btn_button_down():
 func _on_inventory_btn_button_down():
 	i = GameManager.interface
 	_create_btn_click_sound()
+	_hide_micromenu()
 	if not i.inventory_panel.visible:
 		i.inventory_panel.show_inventory()
 	else:
@@ -43,6 +44,7 @@ func _on_inventory_btn_button_down():
 func _on_char_btn_button_down():
 	i = GameManager.interface
 	_create_btn_click_sound()
+	_hide_micromenu()
 	if not i.charpanel.visible:
 		i.charpanel.show_charpanel()
 	else:
@@ -51,6 +53,7 @@ func _on_char_btn_button_down():
 func _on_pause_btn_button_down():
 	i = GameManager.interface
 	_create_btn_click_sound()
+	_hide_micromenu()
 	if not i.pausmenu.visible:
 		i.pausmenu.showpause()
 	else:
@@ -58,6 +61,7 @@ func _on_pause_btn_button_down():
 
 func _on_menu_btn_button_down():
 	_create_btn_click_sound()
+	_hide_micromenu()
 	if not menu_panel.visible:
 		self._show_micromenu()
 	else:
@@ -66,5 +70,6 @@ func _on_menu_btn_button_down():
 
 func _on_save_btn_button_down():
 	_create_btn_click_sound()
+	_hide_micromenu()
 	GameManager.save_data()
 	GameManager.info_box.set_info_text("[center][color=green]Information[/color]\n\n[color=red]Dein Spiel wurde gespeichert![/color][/center]")

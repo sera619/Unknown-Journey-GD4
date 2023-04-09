@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://b7dks5cm1l8lb"]
+[gd_scene load_steps=28 format=3 uid="uid://b7dks5cm1l8lb"]
 
 [ext_resource type="Script" path="res://prefab/interface/Interface.gd" id="1_ghaf7"]
 [ext_resource type="PackedScene" uid="uid://bdnok5tk1xkmk" path="res://dev/DevConsole.tscn" id="2_g31m3"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://ci8ut3tki2bpo" path="res://prefab/UI/InfoBox.tscn" id="5_1eql3"]
 [ext_resource type="PackedScene" uid="uid://cfbtmo61dtd0j" path="res://prefab/UI/CharacterPanel.tscn" id="5_6wngu"]
 [ext_resource type="PackedScene" uid="uid://ckoys4dftebte" path="res://prefab/UI/DeathScreen.tscn" id="7_bo1t5"]
+[ext_resource type="PackedScene" uid="uid://cvqkftp7jg7m7" path="res://prefab/UI/Actionbar.tscn" id="8_bokdx"]
 [ext_resource type="PackedScene" uid="uid://bcyuj58ovb3b8" path="res://prefab/UI/MicroMenu.tscn" id="9_bb3bs"]
 [ext_resource type="PackedScene" uid="uid://4pvo7rk61tca" path="res://prefab/UI/DialogBox.tscn" id="9_kcv7y"]
 [ext_resource type="PackedScene" uid="uid://cedf8cswltnk0" path="res://prefab/UI/NoticeBox.tscn" id="10_0ruit"]
@@ -101,6 +102,15 @@ offset_top = 91.0
 offset_right = 80.0
 offset_bottom = 91.0
 scale = Vector2(0.5, 0.5)
+
+[node name="Actionbar" parent="." instance=ExtResource("8_bokdx")]
+anchor_top = 0.872
+anchor_right = 0.75
+anchor_bottom = 0.961
+offset_left = 0.320007
+offset_top = 0.0400238
+offset_right = 160.0
+offset_bottom = 16.02
 
 [node name="PotionPanel" parent="." instance=ExtResource("10_p40cy")]
 offset_left = -317.0

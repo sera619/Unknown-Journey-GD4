@@ -15,8 +15,8 @@ func _ready():
 	hitbox.damage = trap_damage
 
 
-func start_trap(body):
-	if body.name != "Player":
+func start_trap(b):
+	if b.name != "Player":
 		return 
 	self.body.play("on")
 

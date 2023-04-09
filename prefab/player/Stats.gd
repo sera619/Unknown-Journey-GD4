@@ -241,6 +241,10 @@ func apply_loaded_stats():
 		playername = data['playername']
 		MAX_HEALTH = data['max_health']
 		has_sword = data['has_sword']
+		if has_sword:
+			GameManager.interface.actionbar.attack_btn.visible = true
+		else:
+			GameManager.interface.actionbar.attack_btn.visible = false
 		MAX_ENERGIE = data['max_energie']
 		experience = data['experience']
 		max_experience = data['max_exp']

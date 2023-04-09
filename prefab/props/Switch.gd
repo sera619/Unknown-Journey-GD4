@@ -50,7 +50,7 @@ func _create_sound():
 	var sound = click_sound_scene.instantiate()
 	self.add_child(sound)
 
-func _process(delta):
+func _process(_delta):
 	if not player_detector.can_see_player():
 		if icon.visible:
 			icon.visible = false

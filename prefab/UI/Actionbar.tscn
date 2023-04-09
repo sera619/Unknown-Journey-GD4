@@ -1,0 +1,200 @@
+[gd_scene load_steps=21 format=3 uid="uid://cvqkftp7jg7m7"]
+
+[ext_resource type="PackedScene" uid="uid://46ykevs1607v" path="res://prefab/UI/ActionBarSlot.tscn" id="1_hakky"]
+[ext_resource type="Script" path="res://prefab/UI/Actionbar.gd" id="1_rggb1"]
+[ext_resource type="Texture2D" uid="uid://dfqjawysr0p3j" path="res://assets/UI/actionbar_icons/healthpot_icon.png" id="2_8wo8l"]
+[ext_resource type="Texture2D" uid="uid://btye1qwee1ia3" path="res://assets/UI/actionbar_icons/energiepot_icon.png" id="3_8kmkj"]
+[ext_resource type="Texture2D" uid="uid://cgp5ifmlixsc6" path="res://assets/UI/actionbar_icons/dash_icon.png" id="4_deewk"]
+[ext_resource type="Texture2D" uid="uid://cf7fpchugb7wp" path="res://assets/UI/actionbar_icons/normal_attack_icon.png" id="5_18dmh"]
+[ext_resource type="Texture2D" uid="uid://cr3tuk3stlrnb" path="res://assets/UI/actionbar_icons/double_attack_icon.png" id="6_5k4aq"]
+[ext_resource type="Texture2D" uid="uid://cmxcm5kc1aei0" path="res://assets/UI/actionbar_icons/heavy_attack_icon.png" id="7_ekprp"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_ygbyl"]
+action = &"healthpotion"
+
+[sub_resource type="Shortcut" id="Shortcut_p4efm"]
+events = [SubResource("InputEventAction_ygbyl")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_drcda"]
+action = &"energiepotion"
+
+[sub_resource type="Shortcut" id="Shortcut_q8ugq"]
+events = [SubResource("InputEventAction_drcda")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_nstf4"]
+action = &"dash"
+
+[sub_resource type="Shortcut" id="Shortcut_esbwr"]
+events = [SubResource("InputEventAction_nstf4")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_ndm6n"]
+action = &"attack"
+
+[sub_resource type="Shortcut" id="Shortcut_8l61g"]
+events = [SubResource("InputEventAction_ndm6n")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_inlwv"]
+action = &"double_attack"
+
+[sub_resource type="Shortcut" id="Shortcut_lqls3"]
+events = [SubResource("InputEventAction_inlwv")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_e334q"]
+action = &"heavy_attack"
+
+[sub_resource type="Shortcut" id="Shortcut_ukop8"]
+events = [SubResource("InputEventAction_e334q")]
+
+[node name="Actionbar" type="Control"]
+layout_mode = 3
+anchor_left = 0.249
+anchor_top = 0.861
+anchor_right = 0.749
+anchor_bottom = 0.95
+offset_left = 0.0393829
+offset_top = 0.81076
+offset_right = 160.039
+offset_bottom = 16.7908
+scale = Vector2(0.5, 0.5)
+size_flags_vertical = 0
+script = ExtResource("1_rggb1")
+
+[node name="H" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 33.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="HealthpotBtn" parent="H" instance=ExtResource("1_hakky")]
+layout_mode = 2
+shortcut = SubResource("Shortcut_p4efm")
+
+[node name="Icon" parent="H/HealthpotBtn" index="0"]
+texture = ExtResource("2_8wo8l")
+
+[node name="SlotNum" parent="H/HealthpotBtn" index="1"]
+anchor_top = 0.697
+anchor_right = 0.641
+anchor_bottom = 0.909
+offset_top = -0.00100136
+offset_right = 8.488
+offset_bottom = 7.003
+
+[node name="ItemAmoun" parent="H/HealthpotBtn" index="2"]
+anchor_left = 0.656
+anchor_top = 0.667
+anchor_right = 0.906
+anchor_bottom = 0.894
+offset_left = 0.00799942
+offset_top = -0.0110016
+offset_right = 8.008
+offset_bottom = 7.498
+
+[node name="EnergiepotBtn" parent="H" instance=ExtResource("1_hakky")]
+visible = false
+layout_mode = 2
+shortcut = SubResource("Shortcut_q8ugq")
+
+[node name="Icon" parent="H/EnergiepotBtn" index="0"]
+texture = ExtResource("3_8kmkj")
+
+[node name="SlotNum" parent="H/EnergiepotBtn" index="1"]
+anchor_top = 0.697
+anchor_right = 0.641
+anchor_bottom = 0.909
+offset_top = -0.00100136
+offset_right = 8.488
+offset_bottom = 7.003
+text = "2"
+
+[node name="ItemAmoun" parent="H/EnergiepotBtn" index="2"]
+anchor_top = 0.667
+anchor_right = 0.922
+offset_top = -0.0110016
+offset_right = 9.496
+offset_bottom = 8.102
+
+[node name="DashBtn" parent="H" instance=ExtResource("1_hakky")]
+visible = false
+layout_mode = 2
+shortcut = SubResource("Shortcut_esbwr")
+
+[node name="Icon" parent="H/DashBtn" index="0"]
+texture = ExtResource("4_deewk")
+
+[node name="SlotNum" parent="H/DashBtn" index="1"]
+anchor_top = 0.697
+anchor_bottom = 0.894
+offset_top = -0.00100136
+offset_bottom = 6.498
+text = "V"
+
+[node name="ItemAmoun" parent="H/DashBtn" index="2"]
+visible = false
+
+[node name="AttackBtn" parent="H" instance=ExtResource("1_hakky")]
+visible = false
+layout_mode = 2
+shortcut = SubResource("Shortcut_8l61g")
+
+[node name="Icon" parent="H/AttackBtn" index="0"]
+texture = ExtResource("5_18dmh")
+
+[node name="SlotNum" parent="H/AttackBtn" index="1"]
+anchor_top = 0.697
+anchor_right = 0.641
+anchor_bottom = 0.879
+offset_top = -0.00100136
+offset_right = 8.488
+offset_bottom = 5.993
+text = "SP"
+
+[node name="ItemAmoun" parent="H/AttackBtn" index="2"]
+visible = false
+
+[node name="DoubleAttackBtn" parent="H" instance=ExtResource("1_hakky")]
+visible = false
+layout_mode = 2
+shortcut = SubResource("Shortcut_lqls3")
+
+[node name="Icon" parent="H/DoubleAttackBtn" index="0"]
+texture = ExtResource("6_5k4aq")
+
+[node name="SlotNum" parent="H/DoubleAttackBtn" index="1"]
+anchor_top = 0.697
+anchor_bottom = 0.909
+offset_top = -0.00100136
+offset_bottom = 7.003
+text = "Q"
+
+[node name="ItemAmoun" parent="H/DoubleAttackBtn" index="2"]
+visible = false
+
+[node name="HeavyAttackBtn" parent="H" instance=ExtResource("1_hakky")]
+visible = false
+layout_mode = 2
+shortcut = SubResource("Shortcut_ukop8")
+
+[node name="Icon" parent="H/HeavyAttackBtn" index="0"]
+texture = ExtResource("7_ekprp")
+
+[node name="SlotNum" parent="H/HeavyAttackBtn" index="1"]
+anchor_top = 0.697
+anchor_right = 0.656
+anchor_bottom = 0.894
+offset_top = -0.00100136
+offset_right = 9.008
+offset_bottom = 6.498
+text = "R"
+
+[node name="ItemAmoun" parent="H/HeavyAttackBtn" index="2"]
+visible = false
+
+[editable path="H/HealthpotBtn"]
+[editable path="H/EnergiepotBtn"]
+[editable path="H/DashBtn"]
+[editable path="H/AttackBtn"]
+[editable path="H/DoubleAttackBtn"]
+[editable path="H/HeavyAttackBtn"]

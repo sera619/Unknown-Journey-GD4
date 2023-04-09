@@ -39,6 +39,10 @@ signal statistic_update_quests
 signal player_inventory_item_changed(item)
 signal player_inventory_equip_changed(equip)
 
+signal actionbar_disable
+signal actionbar_enable
+
+
 signal show_world_shadow
 signal game_load_game
 

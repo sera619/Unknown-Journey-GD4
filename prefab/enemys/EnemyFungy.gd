@@ -88,7 +88,7 @@ func _physics_process(delta):
 				update_wander()
 			if can_attack and heal_charges > 0 and stats.health < int(stats.max_health/2):
 				state = HEAL
-			if can_attack:
+			if can_attack and player_detector.player != null:
 				state = ATTACK
 			if player_detector.can_see_player():
 				state = CHASE
@@ -218,7 +218,7 @@ func take_damage(area):
 		stats.set_health( stats.health - area.damage)
 		emit_signal("enemy_take_damage", area.damage)
 		knockback = area.knockback_vector * 115
-		print("[!] Enemy: %s gets hitted for %s damage!" % [self.name, area.damage])
+		print("[!] Enemy: %s get hit for %s damage!" % [self.name, area.damage])
 		if stats.health <= 0:
 			var death_sound = death_sound_scene.instantiate()
 			get_tree().current_scene.add_child(death_sound)
@@ -258,6 +258,8 @@ func reward_player():
 	if not GameManager.player or stats.reward_exp == 0:
 		return
 	GameManager.player.stats.set_exp(GameManager.player.stats.experience + stats.reward_exp)
+	if _check_player_reward():
+		_get_random_reward()
 
 
 func _get_random_reward():

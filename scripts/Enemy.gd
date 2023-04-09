@@ -37,8 +37,6 @@ signal enemy_healed(heal)
 @onready var sound_controller: SoundController = $SoundController
 @onready var weapon_collider: CollisionShape2D = $WeaponAngle/HurtBox/CollisionShape2D
 
-
-
 enum {
 	WANDER,
 	IDLE,
@@ -146,7 +144,7 @@ func seek_player():
 	else:
 		if player and player_detector.player == null:
 			player = null
-		return
+
 
 func update_wander():
 	state = pick_random_state([IDLE, WANDER])
@@ -200,7 +198,6 @@ func take_damage(area):
 			self.add_child(death_sound)
 			var effect2 = death_effect_scene.instantiate()
 			effect2.connect("effect_finished", kill_enemy)
-			#effect2.global_position.y += animSprite.offset.y
 			GameManager.current_world.enemy_container.add_child(effect2)
 			effect2.global_position = animSprite.global_position
 			self.visible = false

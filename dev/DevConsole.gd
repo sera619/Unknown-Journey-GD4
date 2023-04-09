@@ -38,8 +38,6 @@ func _init_menu_btn():
 	for map_name in GameManager.game.LevelScenes.keys():
 		menu_button.get_popup().add_item(str(map_name))
 
-
-
 func _input(event):
 	if event.is_action_released("devconsole"):
 		self.queue_free()
@@ -238,9 +236,6 @@ func _on_menu_button_pressed():
 func _on_menu_btn_selected(id: int):
 	var itemtext = menu_button.get_popup().get_item_text(id)
 	menu_button.text = itemtext
-	print(itemtext)
-	pass
-
 
 func _on_teleport_btn_pressed():
 	GameManager.save_data()
