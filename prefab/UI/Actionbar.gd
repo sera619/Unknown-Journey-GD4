@@ -10,13 +10,11 @@ class_name Actionbar
 @onready var heavy_attack_btn = $H/HeavyAttackBtn
 
 
-
 func _ready():
 	EventHandler.connect("player_inventory_item_changed", update_potions)
 	EventHandler.connect("actionbar_disable", _disable_bar)
 	EventHandler.connect("actionbar_enable", _enable_bar)
 	EventHandler.connect("player_level_changed", _enable_slot)
-	
 
 func _enable_slot(level):
 	if level > 1:

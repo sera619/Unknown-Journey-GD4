@@ -198,6 +198,7 @@ func _input_handler(_delta):
 		var sound = dash_sound_scene.instantiate()
 		self.add_child(sound)
 		dash_timer.wait_time = stats.DASH_COOLDOWN
+		GameManager.interface.actionbar.dash_btn.start_cooldown(stats.DASH_COOLDOWN)
 		dash_timer.start()
 		can_dash = false
 		can_attack = false
@@ -208,7 +209,7 @@ func _input_handler(_delta):
 		swordHitbox.set_attack_type("Normal")
 		state = ATTACK
 	
-	elif Input.is_action_just_pressed("double_attack") and can_attack and stats.has_sword:
+	if Input.is_action_just_pressed("double_attack") and can_attack and stats.has_sword:
 		if stats.level < stats.DOUBLE_ATTACK_CAP:
 			return
 		if not is_dashing and stats.energie >= stats.DOUBLE_ATTACK_COST:
@@ -374,6 +375,7 @@ func _use_potion(itemname: String):
 				self.add_child(heal_effect)
 				heal_effect.global_position = global_position
 				var sound = potion_sound_scene.instantiate()
+				GameManager.interface.actionbar.healthpot_btn.start_cooldown()
 				self.add_child(sound)
 				switch_shader()
 			"Energietrank":
@@ -383,6 +385,7 @@ func _use_potion(itemname: String):
 				energie_effect.global_position = global_position
 				var sound = potion_sound_scene.instantiate()
 				self.add_child(sound)
+				GameManager.interface.actionbar.energiepot_btn.start_cooldown()
 				switch_energie_shader()
 		InventoryManager.remove_item(itemname, 1)
 	else:
