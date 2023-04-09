@@ -1,6 +1,6 @@
 version = "TechAlpha-v0.3.1"
 build: clean
-	@C:\1Coding\GDScript\godot.exe --export-debug "Windows Desktop"
+	@C:\1Coding\GDScript\godot.exe --quiet --export-debug "Windows Desktop"
 clean:
 	@powershell write-host ""
 	@powershell write-host -fore Yellow "Start cleaning..."
@@ -25,5 +25,5 @@ pack: build
 	@powershell write-host -fore Green "Packaging successfully finished!"
 	@powershell write-host ""
 
-update:
-	@python .\src\Updater.py
+dev:
+	@python .\Devtool.py
