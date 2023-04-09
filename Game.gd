@@ -61,7 +61,8 @@ func _ready():
 		0:
 			switch_gamelevel("GameIntro")
 		1:
-			_development_start()
+			#_development_start()
+			switch_gamelevel("MainMenu")
 
 func start_new_game():
 	QuestManager.reset_quests()

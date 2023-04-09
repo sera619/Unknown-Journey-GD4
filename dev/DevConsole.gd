@@ -23,13 +23,22 @@ const NORMCOLOR = Color(0.16470588743687, 0.99215686321259, 1)
 @onready var mdmgin = $BG/MarginContainer/MainPanel/Panel/RV/mdmgin
 @onready var goldin = $BG/MarginContainer/MainPanel/Panel/RV/goldin
 @onready var infolabel = $BG/MarginContainer/MainPanel/InfoLabel
+@onready var menu_button: MenuButton = $BG/MarginContainer/MainPanel/Panel/RV/MenuButton
 
 var ps: Stats = null
 
 func _ready():
 	ps = GameManager.player.stats
 	pass_header.add_theme_color_override("font_color", NORMCOLOR)
+	menu_button.get_popup().connect("id_pressed", _on_menu_btn_selected)
+	_init_menu_btn()
 	show_passpanel()
+
+func _init_menu_btn():
+	for map_name in GameManager.game.LevelScenes.keys():
+		menu_button.get_popup().add_item(str(map_name))
+
+
 
 func _input(event):
 	if event.is_action_released("devconsole"):
@@ -220,3 +229,19 @@ func _on_add_gold_btn_button_up():
 	if ps:
 		ps.set_gold(ps.gold + int(goldin.text))
 		infolabel.text = "Add %s Gold" % goldin.text
+
+# teleport button 
+
+func _on_menu_button_pressed():
+	print(menu_button.get_popup().get_focused_item())
+
+func _on_menu_btn_selected(id: int):
+	var itemtext = menu_button.get_popup().get_item_text(id)
+	menu_button.text = itemtext
+	print(itemtext)
+	pass
+
+
+func _on_teleport_btn_pressed():
+	GameManager.save_data()
+	GameManager.game.switch_gamelevel(menu_button.text)

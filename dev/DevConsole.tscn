@@ -72,7 +72,6 @@ alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 3
-alignment = 1
 
 [node name="LevelBtn" type="Button" parent="BG/MarginContainer/MainPanel/Panel/LV"]
 layout_mode = 2
@@ -216,6 +215,12 @@ text = "2000"
 alignment = 1
 max_length = 4
 
+[node name="MenuButton" type="MenuButton" parent="BG/MarginContainer/MainPanel/Panel/RV"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_7ftg0")
+theme_override_font_sizes/font_size = 8
+text = "location"
+
 [node name="VBoxContainer" type="VBoxContainer" parent="BG/MarginContainer/MainPanel/Panel"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -283,6 +288,13 @@ theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_fonts/font = ExtResource("1_7ftg0")
 theme_override_font_sizes/font_size = 8
 text = "- G"
+
+[node name="teleportBtn" type="Button" parent="BG/MarginContainer/MainPanel/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_7ftg0")
+theme_override_font_sizes/font_size = 8
+text = "Teleport"
 
 [node name="H" type="HBoxContainer" parent="BG/MarginContainer/MainPanel"]
 layout_mode = 2
@@ -385,6 +397,7 @@ text = "Close"
 [connection signal="button_up" from="BG/MarginContainer/MainPanel/Panel/LV/AddDmgBtn" to="." method="_on_add_dmg_btn_button_up"]
 [connection signal="button_up" from="BG/MarginContainer/MainPanel/Panel/LV/AddMDmgBtn" to="." method="_on_add_m_dmg_btn_button_up"]
 [connection signal="button_up" from="BG/MarginContainer/MainPanel/Panel/LV/AddGoldBtn" to="." method="_on_add_gold_btn_button_up"]
+[connection signal="pressed" from="BG/MarginContainer/MainPanel/Panel/RV/MenuButton" to="." method="_on_menu_button_pressed"]
 [connection signal="button_up" from="BG/MarginContainer/MainPanel/Panel/VBoxContainer/RlvlBtn" to="." method="_on_rlvl_btn_button_up"]
 [connection signal="button_up" from="BG/MarginContainer/MainPanel/Panel/VBoxContainer/RHpBtn" to="." method="_on_r_hp_btn_button_up"]
 [connection signal="button_up" from="BG/MarginContainer/MainPanel/Panel/VBoxContainer/RmhpBtn" to="." method="_on_rmhp_btn_button_up"]
@@ -394,6 +407,7 @@ text = "Close"
 [connection signal="button_up" from="BG/MarginContainer/MainPanel/Panel/VBoxContainer/rdmgBtn" to="." method="_on_rdmg_btn_button_up"]
 [connection signal="button_up" from="BG/MarginContainer/MainPanel/Panel/VBoxContainer/rmdmgBtn" to="." method="_on_rmdmg_btn_button_up"]
 [connection signal="button_up" from="BG/MarginContainer/MainPanel/Panel/VBoxContainer/rmGoldBtn" to="." method="_on_rm_gold_btn_button_up"]
+[connection signal="pressed" from="BG/MarginContainer/MainPanel/Panel/VBoxContainer/teleportBtn" to="." method="_on_teleport_btn_pressed"]
 [connection signal="button_up" from="BG/MarginContainer/MainPanel/H/SpawnBtn" to="." method="_on_spawn_btn_button_up"]
 [connection signal="button_up" from="BG/MarginContainer/MainPanel/H/CharBtn" to="." method="_on_char_btn_button_up"]
 [connection signal="button_up" from="BG/MarginContainer/MainPanel/H2/ExitBtn" to="." method="_on_exit_btn_button_up"]
