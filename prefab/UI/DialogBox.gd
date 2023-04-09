@@ -21,6 +21,7 @@ func _ready():
 func show_dialog():
 	self.visible = true
 	GameManager.player.set_process_input(false)
+	GameManager.interface.actionbar.hide()
 	start_dialog_writing()
 
 func reset_dialog():
@@ -80,6 +81,7 @@ func start_dialog_writing():
 
 func hide_dialog():
 	GameManager.player.set_process_input(true)
+	GameManager.interface.actionbar.hide()
 	self.hide()
 
 func _on_dialog_option_b_btn_button_down():
