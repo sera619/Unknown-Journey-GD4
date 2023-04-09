@@ -2,6 +2,7 @@ extends Control
 class_name LoadMenu
 
 @export var profile_slot_scene: PackedScene
+@export var popup_scene: PackedScene
 @onready var profile_container = $BG/M/V/ScrollContainer/V
 
 func _initialize_loadmenu():
@@ -45,7 +46,18 @@ func _on_load_btn_button_up():
 	else:
 		self.hide_loadmenu()
 
+func _create_popup():
+	var t = "Dieser Vorang wird ALLE Spielstände/Profile löschen!\nDieser Vorgang wird nur empfohlen wenn du eine ältere Spielstandversion gespielt hast!\nBist du sicher das du ALLE Speicherstände löschen willst?"
+	var pop: AcceptPopup = popup_scene.instantiate()
+	GameManager.interface.add_child(pop)
+	pop.connect("popup_accept", _delete_old_version_files)
+	pop.set_text(t)
+	pop.show()
 
-func _on_del_button_button_down():
+func _delete_old_version_files():
 	D._delete_old_save_files()
 	_refresh_loadmenu()
+
+func _on_del_button_button_down():
+	_create_btn_click_sound()
+	_create_popup()

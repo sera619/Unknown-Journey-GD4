@@ -61,7 +61,6 @@ func _on_pause_btn_button_down():
 
 func _on_menu_btn_button_down():
 	_create_btn_click_sound()
-	_hide_micromenu()
 	if not menu_panel.visible:
 		self._show_micromenu()
 	else:

@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://b2vjb6d6ok5vr"]
+[gd_scene load_steps=11 format=3 uid="uid://b2vjb6d6ok5vr"]
 
 [ext_resource type="Script" path="res://prefab/UI/LoadMenu.gd" id="1_phbqq"]
 [ext_resource type="Texture2D" uid="uid://8edplubtbkbr" path="res://assets/UI/wood-box.png" id="1_whrs6"]
 [ext_resource type="Texture2D" uid="uid://bpt7n5fbi8xg5" path="res://assets/UI/text-box.png" id="2_vtmv2"]
+[ext_resource type="PackedScene" uid="uid://cn10r8if5dqwd" path="res://prefab/UI/AcceptPopup.tscn" id="3_1kquj"]
 [ext_resource type="FontFile" uid="uid://bddtsccx0qour" path="res://assets/UI/Fonts/dogicapixel.otf" id="3_qol1k"]
 [ext_resource type="Texture2D" uid="uid://dnmhbqlysi5ph" path="res://assets/UI/red-button-normal.png" id="5_m4wif"]
 [ext_resource type="PackedScene" uid="uid://cjht4oemfexba" path="res://prefab/UI/LoadSlot.tscn" id="5_uy750"]
@@ -22,6 +23,7 @@ grow_vertical = 2
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_phbqq")
 profile_slot_scene = ExtResource("5_uy750")
+popup_scene = ExtResource("3_1kquj")
 
 [node name="BG" type="NinePatchRect" parent="."]
 layout_mode = 1

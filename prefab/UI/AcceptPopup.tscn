@@ -1,0 +1,156 @@
+[gd_scene load_steps=9 format=3 uid="uid://cn10r8if5dqwd"]
+
+[ext_resource type="Texture2D" uid="uid://8edplubtbkbr" path="res://assets/UI/wood-box.png" id="1_bjukj"]
+[ext_resource type="Script" path="res://prefab/UI/AcceptPopup.gd" id="1_o7jyt"]
+[ext_resource type="Texture2D" uid="uid://bpt7n5fbi8xg5" path="res://assets/UI/text-box.png" id="2_j4hvr"]
+[ext_resource type="FontFile" uid="uid://bddtsccx0qour" path="res://assets/UI/Fonts/dogicapixel.otf" id="3_gvi52"]
+[ext_resource type="Texture2D" uid="uid://cefc0kofjjbtu" path="res://assets/UI/big-red-button-normal-export.png" id="4_vl852"]
+[ext_resource type="Texture2D" uid="uid://cvqmjd6jh0jma" path="res://assets/UI/big-red-button-pressed-export.png" id="5_tf56l"]
+[ext_resource type="Texture2D" uid="uid://bnhgifjigfyny" path="res://assets/UI/big-red-button-hover-export.png" id="6_3lrky"]
+[ext_resource type="Texture2D" uid="uid://dg8totcenq1rk" path="res://assets/UI/big-button_disabled-export.png" id="7_2vaam"]
+
+[node name="AcceptPopup" type="Control"]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchor_left = 0.278
+anchor_top = 0.222
+anchor_right = 0.747
+anchor_bottom = 0.689
+offset_left = 0.0399933
+offset_top = 0.0399971
+offset_right = 149.96
+offset_bottom = 83.98
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_o7jyt")
+
+[node name="BG" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_bjukj")
+patch_margin_left = 24
+patch_margin_top = 16
+patch_margin_right = 24
+patch_margin_bottom = 16
+
+[node name="M" type="MarginContainer" parent="BG"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="V" type="VBoxContainer" parent="BG/M"]
+layout_mode = 2
+
+[node name="HeadBG" type="NinePatchRect" parent="BG/M/V"]
+layout_mode = 2
+texture = ExtResource("2_j4hvr")
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+
+[node name="Header" type="Label" parent="BG/M/V/HeadBG"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.886275, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.52549)
+theme_override_fonts/font = ExtResource("3_gvi52")
+theme_override_font_sizes/font_size = 16
+text = "ACHTUNG"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="TextBG" type="NinePatchRect" parent="BG/M/V"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("2_j4hvr")
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+
+[node name="Text" type="Label" parent="BG/M/V/TextBG"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0.462745, 0.956863, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.545098)
+theme_override_fonts/font = ExtResource("3_gvi52")
+theme_override_font_sizes/font_size = 8
+text = "Dies ist ein Testtext der keinen Sinn ergibt, aber zum tesen wirklich prima ist."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="H" type="HBoxContainer" parent="BG/M/V"]
+layout_mode = 2
+alignment = 1
+
+[node name="OkayBtn" type="TextureButton" parent="BG/M/V/H"]
+layout_mode = 2
+texture_normal = ExtResource("4_vl852")
+texture_pressed = ExtResource("5_tf56l")
+texture_hover = ExtResource("6_3lrky")
+texture_disabled = ExtResource("7_2vaam")
+
+[node name="Label" type="Label" parent="BG/M/V/H/OkayBtn"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0178571
+anchor_top = 0.0625
+anchor_right = 0.982143
+anchor_bottom = 0.9375
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_gvi52")
+theme_override_font_sizes/font_size = 8
+text = "Okay"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="BackBtn" type="TextureButton" parent="BG/M/V/H"]
+layout_mode = 2
+texture_normal = ExtResource("4_vl852")
+texture_pressed = ExtResource("5_tf56l")
+texture_hover = ExtResource("6_3lrky")
+texture_disabled = ExtResource("7_2vaam")
+
+[node name="Label" type="Label" parent="BG/M/V/H/BackBtn"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0178571
+anchor_top = 0.0625
+anchor_right = 0.982143
+anchor_bottom = 0.9375
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_gvi52")
+theme_override_font_sizes/font_size = 8
+text = "Zurück"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+metadata/_edit_use_anchors_ = true

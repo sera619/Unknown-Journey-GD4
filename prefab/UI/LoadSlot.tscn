@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://cjht4oemfexba"]
+[gd_scene load_steps=14 format=3 uid="uid://cjht4oemfexba"]
 
 [ext_resource type="Texture2D" uid="uid://cqfo8k23gm0vc" path="res://assets/UI/text-paper.png" id="1_ph8xr"]
 [ext_resource type="Script" path="res://prefab/UI/LoadSlot.gd" id="2_dg5b7"]
 [ext_resource type="FontFile" uid="uid://bddtsccx0qour" path="res://assets/UI/Fonts/dogicapixel.otf" id="2_t2b7c"]
+[ext_resource type="PackedScene" uid="uid://cn10r8if5dqwd" path="res://prefab/UI/AcceptPopup.tscn" id="3_hm186"]
 [ext_resource type="Texture2D" uid="uid://dnmhbqlysi5ph" path="res://assets/UI/red-button-normal.png" id="3_n077b"]
 [ext_resource type="Texture2D" uid="uid://cgoomtgcn04sq" path="res://assets/UI/red-button-pressed.png" id="4_5psn2"]
 [ext_resource type="Texture2D" uid="uid://cl20mjeo1aqyx" path="res://assets/UI/red-button-hover.png" id="5_t1wqs"]
@@ -23,6 +24,7 @@ patch_margin_top = 16
 patch_margin_right = 16
 patch_margin_bottom = 16
 script = ExtResource("2_dg5b7")
+popup_scene = ExtResource("3_hm186")
 
 [node name="M" type="MarginContainer" parent="."]
 layout_mode = 1
