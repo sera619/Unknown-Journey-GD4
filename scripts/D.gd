@@ -14,6 +14,15 @@ var unique_open_data = {
 	],
 	"Wood":[
 		
+	],
+	"CityCellar": [
+		
+	],
+	"CityHotel": [
+		
+	],
+	"Hills": [
+		
 	]
 }
 
@@ -29,6 +38,15 @@ func _reset_unique_data():
 		
 	],
 	"Wood":[
+		
+	],
+	"CityCellar": [
+		
+	],
+	"CityHotel": [
+		
+	],
+	"Hills": [
 		
 	]
 }

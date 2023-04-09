@@ -41,7 +41,7 @@ var npc_to_follow = null
 func _ready():
 	GameManager.register_node(self)
 	EventHandler.connect("start_rain", _start_raining)
-	self.zoom = Vector2(0.8, 0.8)
+	self.zoom = Vector2(0.9, 0.9)
 	randomize()
 	#shakeTween = get_tree().create_tween().bind_node(self)
 	limit_top = topLeft.position.y

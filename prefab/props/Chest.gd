@@ -21,14 +21,18 @@ func _ready():
 func _check_unique():
 	await get_tree().create_timer(0.5).timeout
 	var unique_data: Dictionary = D.unique_open_data
-	for i in unique_data[str(GameManager.current_world.world_name)]:
-		if i == chest_id:
-			is_open = true
-			reward_given = true
-			body_sprite.frame = 6
-			break
-		else:
-			continue
+	if unique_data.has(str(GameManager.current_world.world_name)):
+		for i in unique_data[str(GameManager.current_world.world_name)]:
+			if i == chest_id:
+				is_open = true
+				reward_given = true
+				body_sprite.frame = 6
+				break
+			else:
+				continue
+	else:
+		D.unique_open_data[str(GameManager.current_world.world_name)] = []
+		print("[Data]: New Unique-List created for %s" % GameManager.current_world.world_name)
 
 func _open_chest():
 	if is_open:

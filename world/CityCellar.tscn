@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://blu2fjm62uqjt"]
+[gd_scene load_steps=40 format=3 uid="uid://blu2fjm62uqjt"]
 
 [ext_resource type="Script" path="res://world/CityCellar.gd" id="1_y4cxl"]
 [ext_resource type="Texture2D" uid="uid://dhx7ipu2eqbpl" path="res://assets/tiles/trail.png" id="2_xw1vk"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://c738vytvimynb" path="res://prefab/utils/Teleporter.tscn" id="11_7wxi4"]
 [ext_resource type="PackedScene" uid="uid://s3h22gi4hk4q" path="res://prefab/traps/ChainsawTrap.tscn" id="11_fw78s"]
 [ext_resource type="PackedScene" uid="uid://bcir1dj3vcylc" path="res://prefab/traps/Spiketrap.tscn" id="12_6gtbb"]
+[ext_resource type="PackedScene" uid="uid://rpx6f14c757n" path="res://prefab/props/Chest.tscn" id="12_fufds"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_uohjr"]
 tile_data = PackedInt32Array(0, 65539, 16, 65536, 65539, 17, 131072, 65539, 18, 196608, 65539, 19, 1, 65539, 16, 65537, 65539, 17, 131073, 65539, 18, 196609, 65539, 19, 2, 65539, 16, 65538, 65539, 17, 131074, 65539, 18, 196610, 65539, 19, 3, 65539, 16, 65539, 65539, 17, 131075, 65539, 18, 196611, 65539, 19)
@@ -16200,6 +16201,10 @@ position = Vector2(15, -511)
 
 [node name="BlueTorch7" parent="Map/GameObjects/Props" instance=ExtResource("8_2a7nv")]
 position = Vector2(367, -511)
+
+[node name="Chest" parent="Map/GameObjects/Props" instance=ExtResource("12_fufds")]
+position = Vector2(640, 220)
+chest_id = 3
 
 [node name="Traps" type="Node2D" parent="Map/GameObjects"]
 y_sort_enabled = true

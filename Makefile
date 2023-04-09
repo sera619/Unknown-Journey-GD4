@@ -1,4 +1,4 @@
-version = "TechAlpha-v0.3.1"
+version = "TechAlpha-v0.3.4"
 build: clean
 	@C:\1Coding\GDScript\godot.exe --quiet --export-debug "Windows Desktop"
 clean:
@@ -24,6 +24,3 @@ pack: build
 	@gh release create $(version) -F .\changelog.md '.\export\windows\UnknownJourney-TechAlpha.zip#Windows'
 	@powershell write-host -fore Green "Packaging successfully finished!"
 	@powershell write-host " "
-
-dev:
-	@python .\Devtool.py
