@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://d37hqvwxc31tu"]
+
+[ext_resource type="Script" path="res://prefab/props/SwitchCabinet.gd" id="1_kd4su"]
+[ext_resource type="Texture2D" uid="uid://bjgucfrw8fmoy" path="res://assets/objects/ElectricCase-Off.png" id="2_67ukv"]
+[ext_resource type="Texture2D" uid="uid://cyjyrpgtqburc" path="res://assets/objects/ElectricCase-On.png" id="2_703b5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l8p6q"]
+size = Vector2(32, 12)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_48ktm"]
+polygon = PackedVector2Array(16, -58, 16, 2, -16, 2, -16, -58)
+
+[node name="SwitchCabinet" type="Node2D"]
+script = ExtResource("1_kd4su")
+id = 1
+on_texture = ExtResource("2_703b5")
+off_texture = ExtResource("2_67ukv")
+
+[node name="Body" type="Sprite2D" parent="."]
+texture = ExtResource("2_67ukv")
+offset = Vector2(0, -24)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_l8p6q")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_48ktm")
