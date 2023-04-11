@@ -122,16 +122,16 @@ height = 38.8403
 radius = 34.478
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rpsvp"]
-radius = 4.0
-height = 20.0
+radius = 3.76435
+height = 17.0625
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_inkns"]
-radius = 4.50064
-height = 21.2033
+radius = 4.26968
+height = 18.0625
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6hkfl"]
-radius = 3.49114
-height = 15.2308
+radius = 4.0387
+height = 17.5625
 
 [sub_resource type="Animation" id="Animation_jn3jo"]
 resource_name = "AttackDoubleDown"
@@ -2351,7 +2351,6 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_rpsvp")
 
 [node name="Hitbox" type="Area2D" parent="." groups=["playerHitbox"]]
-visible = false
 position = Vector2(0, -5)
 collision_layer = 8
 collision_mask = 8
@@ -2369,13 +2368,12 @@ one_shot = true
 [node name="DotTimer" type="Timer" parent="Hitbox"]
 
 [node name="SpellHitBox" type="Area2D" parent="." groups=["playerHitbox"]]
-visible = false
 position = Vector2(0, -13.664)
 collision_layer = 8
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SpellHitBox"]
-position = Vector2(0, 3.72417)
+position = Vector2(0, 11.6498)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_6hkfl")
 
