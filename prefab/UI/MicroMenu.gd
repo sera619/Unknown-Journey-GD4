@@ -7,19 +7,21 @@ class_name MicroMenu
 @onready var quest_btn: TextureButton =$H/MenuBox/QuestBtn
 @onready var menu_btn: TextureButton =$H/MenuBtn
 @onready var menu_panel: HBoxContainer =$H/MenuBox
+@onready var animation_player = $AnimationPlayer
 
 var i: Interface = null
 
 func _ready():
+	menu_panel.visible = false
 	i = GameManager.interface
 
 
 func _show_micromenu():
-	menu_panel.show()
-
+	animation_player.play("open")
+	
 func _hide_micromenu():
-	menu_panel.hide()
-
+	animation_player.play("close")
+	
 func _create_btn_click_sound():
 	var sound = GameManager.interface.button_click_sound.instantiate()
 	self.add_child(sound)
