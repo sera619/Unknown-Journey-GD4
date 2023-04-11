@@ -1,0 +1,105 @@
+[gd_scene load_steps=16 format=3 uid="uid://c7ufovjp60qw4"]
+
+[ext_resource type="Texture2D" uid="uid://di0bhuywxtvl0" path="res://assets/objects/Brick1.png" id="1_m4rdl"]
+[ext_resource type="Script" path="res://prefab/props/BreakBricks.gd" id="1_pwnwd"]
+[ext_resource type="PackedScene" uid="uid://kbo1bay3i1ps" path="res://prefab/utils/PlayerDetector.tscn" id="2_ou25m"]
+[ext_resource type="Script" path="res://prefab/enemys/EnemyWeapon.gd" id="4_jvj1y"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_26hps"]
+atlas = ExtResource("1_m4rdl")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tc80y"]
+atlas = ExtResource("1_m4rdl")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_svxel"]
+atlas = ExtResource("1_m4rdl")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fd84e"]
+atlas = ExtResource("1_m4rdl")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h4ci2"]
+atlas = ExtResource("1_m4rdl")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dr5xm"]
+atlas = ExtResource("1_m4rdl")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_doopf"]
+atlas = ExtResource("1_m4rdl")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7a8pr"]
+atlas = ExtResource("1_m4rdl")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xorhx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_26hps")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tc80y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_svxel")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fd84e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h4ci2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dr5xm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_doopf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7a8pr")
+}],
+"loop": false,
+"name": &"default",
+"speed": 16.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n8bkp"]
+size = Vector2(24, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5bri1"]
+size = Vector2(24, 24)
+
+[node name="BreakBricks" type="Node2D"]
+script = ExtResource("1_pwnwd")
+time_alive = 1
+respawn_time = 10
+
+[node name="Body" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_xorhx")
+frame_progress = 0.862723
+
+[node name="PlayerDetector" parent="." instance=ExtResource("2_ou25m")]
+
+[node name="CollisionShape2D" parent="PlayerDetector" index="0"]
+shape = SubResource("RectangleShape2D_n8bkp")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="DamagZone" type="Area2D" parent="." groups=["enemyWeapon"]]
+collision_layer = 8
+collision_mask = 8
+script = ExtResource("4_jvj1y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamagZone"]
+shape = SubResource("RectangleShape2D_5bri1")
+disabled = true
+
+[editable path="PlayerDetector"]
