@@ -12,4 +12,5 @@ object_name = "Rote Beeren"
 reward_xp = 370
 start_text = "Durch das Wasser konnten sich die Pflanzen prima entwickeln! Die Beeren sind jetzt reif und können geerntet werden. Kannst du mir dabei helfen?"
 progress_text = "Gehe in meinen Garten und ernte die Roten Früchte von den Sträuchern dort."
-complete_text = "Du warst ja wirklich schnell! Vielen Dank!"
+complete_text = "Du warst ja wirklich schnell! Vielen Dank!
+Ich habe heute morgen mit der Hotelbesitzerin \"Thalassa\" gesprochen. Sie ist um ihre Tochter besorgt, bitte spreche mit ihr. Du kannst sie im Hotel finden."
