@@ -159,6 +159,7 @@ locale/translations_pot_files=PackedStringArray("res://dialogs/test_dia.dialogue
 2d_physics/layer_6="SoftCollision"
 2d_physics/layer_7="PickupZone"
 2d_physics/layer_9="PushZone"
+2d_physics/layer_11="ActivateZone"
 
 [physics]
 
