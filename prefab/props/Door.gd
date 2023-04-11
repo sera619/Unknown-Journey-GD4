@@ -4,6 +4,7 @@ class_name Door
 @export_enum("Normal", "Metal", "Locked") var door_type: int 
 @export_enum("Left", "Right") var open_side: int
 @export var close_time: int
+@export var locked: bool
 @export var sound_open_scene: PackedScene
 @export var sound_close_scene: PackedScene
 @export var cell_open_sound_scene: PackedScene
@@ -33,6 +34,9 @@ func _ready():
 func _process(_delta):
 	if Input.is_action_just_released("interact"):
 		if not player_detector.can_see_player():
+			return
+		if locked:
+			GameManager.interface.notice_box.show_door_locked_notice("Diese Tür ist\n\nverschlossen!")
 			return
 		if is_open:
 			_close_door()
@@ -64,6 +68,10 @@ func _open_door():
 				self.add_child(sound)
 	is_open = true
 	anim_sprite.play("open")
+
+func unlock_door():
+	locked = false
+	GameManager.interface.notice_box.set_information_msg("Eine Tür wurde\n\nentriegelt!")
 
 func _on_animation_finished():
 	if not is_open:
