@@ -17936,7 +17936,6 @@ shape = SubResource("RectangleShape2D_21ub5")
 shape = SubResource("CircleShape2D_ha0pi")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="Map"]
-visible = false
 color = Color(0.0784314, 0.0784314, 0.0784314, 1)
 
 [node name="GameCamera" parent="Map" instance=ExtResource("3_nsuir")]

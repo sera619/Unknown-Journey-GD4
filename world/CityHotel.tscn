@@ -56850,6 +56850,7 @@ position = Vector2(-219, -76)
 
 [node name="Door" parent="Map/GameObjects/Props" instance=ExtResource("18_m8hny")]
 position = Vector2(-176, -320)
+locked = true
 
 [node name="Teleporter" parent="Map/GameObjects" instance=ExtResource("9_qijaq")]
 position = Vector2(-64, 96)
