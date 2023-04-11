@@ -56,3 +56,24 @@ func get_random_dialog() ->String:
 func get_random_greeting() -> String:
 	var ri = randi_range(0, GREET_DIALOGS.size() -1)
 	return GREET_DIALOGS[ri]
+
+const NPC_NAMES = {
+	"male": [
+		"Marty",
+		],
+		
+	"female": [
+		"Sarah",
+		"Fee",
+		"Elara",
+		"Seraphine",
+		"Lyra",
+		"Isadora",
+		"Danika",
+		"Eirwen",
+		"Aeloria",
+		"Thalassa",
+		"Amara",
+		"Lirien",
+	]
+}
