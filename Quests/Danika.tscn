@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://drv8cy3qkujvb"]
+
+[ext_resource type="Script" path="res://Quests/Quest.gd" id="1_uier8"]
+
+[node name="Danika" type="Node"]
+script = ExtResource("1_uier8")
+type = 1
+title = "Danika"
+description = "Hotelbesitzerin \"Thalassa\" macht sich Sorgen um ihre Tochter \"Danika\". Sie wollte in den Keller des Hotels, finde sie!"
+required_amount = 1
+object_name = "Danika"
+reward_xp = 380
+start_text = "Kannst du mir bitte helfen? Meine Tochter Danika ist vor einiger Zeit in den Keller gegangen. Normalerweise müsste sie schon lange zurück sein! Kannst du nach ihr sehen?"
+progress_text = "Konntest du Danika noch nicht finden? Ich mache mir große Sorgen."
+complete_text = "Gott sei Dank, ich dachte schon ich werde hier ewig bleiben!"
