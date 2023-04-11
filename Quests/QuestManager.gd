@@ -21,6 +21,17 @@ func is_quest_availble(questname: String) -> bool:
 			return true
 	return false
 
+func is_quest_complete(questname: String) -> bool:
+	for quest in current.get_children():
+		if quest.title == questname:
+			if quest.state == Quest.QS.COMPLETE:
+				return true
+			else:
+				return false
+		else:
+			continue
+	return false
+
 func get_quest_information(questname: String):
 	var quest = current.get_node_or_null(questname)
 	if quest != null:
