@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://ce2qgcscf6ubu"]
+[gd_scene load_steps=61 format=3 uid="uid://ce2qgcscf6ubu"]
 
 [ext_resource type="Script" path="res://world/CityHotel.gd" id="1_cofsr"]
 [ext_resource type="PackedScene" uid="uid://dcc837c2ujx6g" path="res://prefab/utils/GameCamera.tscn" id="2_fnk70"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://dufcf53i77hkn" path="res://prefab/utils/StatisticBook.tscn" id="9_ohku1"]
 [ext_resource type="PackedScene" uid="uid://c738vytvimynb" path="res://prefab/utils/Teleporter.tscn" id="9_qijaq"]
 [ext_resource type="PackedScene" uid="uid://c1ywcyppymlpl" path="res://prefab/props/HouseChair.tscn" id="10_l3fdu"]
+[ext_resource type="PackedScene" uid="uid://cq7p6ip14cr4d" path="res://prefab/npc/NPCThalassa.tscn" id="11_51d3q"]
 [ext_resource type="PackedScene" uid="uid://de1qg2ncmb1ps" path="res://prefab/props/HouseTable.tscn" id="12_y6v8m"]
 [ext_resource type="PackedScene" uid="uid://rppgwrdc8f53" path="res://prefab/props/CandleSmall.tscn" id="13_5ewlc"]
 [ext_resource type="PackedScene" uid="uid://dryyghofo87wq" path="res://prefab/props/WandLightSwitch.tscn" id="14_td3pu"]
@@ -56778,6 +56779,9 @@ format = 2
 
 [node name="NPC" type="Node2D" parent="Map/GameObjects"]
 y_sort_enabled = true
+
+[node name="NPCThalassa" parent="Map/GameObjects/NPC" instance=ExtResource("11_51d3q")]
+position = Vector2(-139, -58)
 
 [node name="Enemys" type="Node2D" parent="Map/GameObjects"]
 y_sort_enabled = true
