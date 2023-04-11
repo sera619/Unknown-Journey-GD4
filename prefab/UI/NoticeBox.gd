@@ -32,3 +32,12 @@ func show_new_quest_notice(questname: String):
 	notice_container.add_child(notice)
 	notice.set_quest_new_msg(questname)
 
+func show_door_locked_notice(message: String):
+	var notice: NoticeMessage = notice_scene.instantiate()
+	notice_container.add_child(notice)
+	notice.set_door_locked_msg(message)
+
+func show_common_info_notice(message: String):
+	var notice: NoticeMessage = notice_scene.instantiate()
+	notice_container.add_child(notice)
+	notice.set_information_msg(message)
