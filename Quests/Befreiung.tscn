@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://bpitvywvouby7"]
+
+[ext_resource type="Script" path="res://Quests/Quest.gd" id="1_wsmf4"]
+
+[node name="Befreiung" type="Node"]
+script = ExtResource("1_wsmf4")
+type = 1
+title = "Befreiung"
+description = "Die Tür der Zelle, in der \"Danika\" eingesperrt ist, ist verschlossen! Finde den Mechanismus um die Tür zu öffnen!"
+required_amount = 1
+object_name = "Danika befreit"
+reward_xp = 395
+start_text = "Diese Tür ist mit einem Mechanismus verriegelt. Sie hat kein Schlüsselloch. Es muss etwas anderes geben um die Tür zu öffnen. Durchsuche den Keller danach!"
+progress_text = "Beeile dich bitte mir ist kalt, irgendwo muss ein Mechanismus sein um die Tür zu öffnen!"
+complete_text = "Vielen Dank für deine Hilfe! Jetzt aber schnell hier raus!"
