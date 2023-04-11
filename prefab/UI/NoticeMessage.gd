@@ -14,10 +14,10 @@ func _ready():
 
 func _set_bg(img: Texture):
 	self.texture = img
-	self.patch_margin_left = 64
-	self.patch_margin_top = 16
-	self.patch_margin_right = 64
-	self.patch_margin_bottom = 16
+	self.patch_margin_left = 78
+	self.patch_margin_top = 32
+	self.patch_margin_right = 78
+	self.patch_margin_bottom = 32
 
 func set_item_get_msg(item: String, amount: int):
 	self._set_bg(item_bg)
