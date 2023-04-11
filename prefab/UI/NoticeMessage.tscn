@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ossy0fecnccg"]
+[gd_scene load_steps=8 format=3 uid="uid://ossy0fecnccg"]
 
 [ext_resource type="Texture2D" uid="uid://cbulnqpvnv1et" path="res://assets/UI/NoticePanel.png" id="1_2ricy"]
 [ext_resource type="Script" path="res://prefab/UI/NoticeMessage.gd" id="2_3jfic"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://q30gtd05y1h5" path="res://assets/UI/NoticePanelItem.png" id="3_ric34"]
 [ext_resource type="Texture2D" uid="uid://dbxicfe57g6wf" path="res://assets/UI/NoticePanelQuest.png" id="4_ht2tq"]
 [ext_resource type="Texture2D" uid="uid://ie5mkrqjamsr" path="res://assets/UI/NoticePanelYellow.png" id="5_3yu2u"]
+[ext_resource type="Texture2D" uid="uid://cy4s05dpynxdm" path="res://assets/UI/NoticePanelRed.png" id="6_fy475"]
 
 [node name="NoticeMessage" type="NinePatchRect"]
 scale = Vector2(0.5, 0.5)
@@ -18,6 +19,7 @@ script = ExtResource("2_3jfic")
 item_bg = ExtResource("3_ric34")
 quest_bg = ExtResource("4_ht2tq")
 yellow_bg = ExtResource("5_3yu2u")
+error_bg = ExtResource("6_fy475")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1

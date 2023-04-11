@@ -4,6 +4,7 @@ class_name NoticeMessage
 @export var item_bg: Texture
 @export var quest_bg: Texture
 @export var yellow_bg: Texture
+@export var error_bg: Texture
 @onready var timer: Timer = $Timer
 @onready var label: RichTextLabel = $MarginContainer/Label
 
@@ -45,5 +46,17 @@ func set_quest_complete_msg(questname: String):
 func set_quest_new_msg(questname: String):
 	self._set_bg(quest_bg)
 	label.parse_bbcode("[center][color=orange]Neue Quest erhalten:\n\n[/color][color=white]\"%s\""% questname)
+	self.show()
+	timer.start()
+
+func set_door_locked_msg(message: String):
+	self._set_bg(error_bg)
+	label.parse_bbcode("[center][color=orange]%s[/color][/center]" % message)
+	self.show()
+	timer.start()
+
+func set_information_msg(information: String):
+	self._set_bg(yellow_bg)
+	label.parse_bbcode("[center][color=orange]%s[/color][/center]"% information)
 	self.show()
 	timer.start()
