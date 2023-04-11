@@ -51,5 +51,6 @@ func complete():
 	EventHandler.emit_signal("statistic_update_quests")
 	GameManager.interface.notice_box.show_quest_complete_notice(self.title)
 	self.state = QS.COMPLETE
+	GameManager.save_data()
 
 
