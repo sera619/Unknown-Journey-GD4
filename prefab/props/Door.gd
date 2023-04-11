@@ -71,7 +71,7 @@ func _open_door():
 
 func unlock_door():
 	locked = false
-	GameManager.interface.notice_box.set_information_msg("Eine Tür wurde\n\nentriegelt!")
+	GameManager.interface.notice_box.show_common_info_notice("Eine Tür wurde\n\nentriegelt!")
 
 func _on_animation_finished():
 	if not is_open:
