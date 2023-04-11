@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://hgci6uekhsvq"]
+
+[ext_resource type="Texture2D" uid="uid://dftdm7cuokii0" path="res://assets/objects/box_plattform.png" id="1_jinoh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3isro"]
+radius = 1.41421
+
+[node name="SwitchPlattform" type="Node2D"]
+
+[node name="Body" type="Sprite2D" parent="."]
+texture = ExtResource("1_jinoh")
+offset = Vector2(0, 15)
+
+[node name="ActiveArea" type="Area2D" parent="." groups=["switchPlattform"]]
+position = Vector2(0.166855, 13.5408)
+collision_layer = 1024
+collision_mask = 1024
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ActiveArea"]
+shape = SubResource("CircleShape2D_3isro")
