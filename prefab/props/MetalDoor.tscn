@@ -82,7 +82,7 @@ size = Vector2(32.1057, 5.58641)
 [sub_resource type="CircleShape2D" id="CircleShape2D_in5io"]
 radius = 16.0614
 
-[node name="MetalDoor" type="Node2D"]
+[node name="MetalDoor" type="Node2D" groups=["doors"]]
 script = ExtResource("1_1g23f")
 door_type = 1
 close_time = 5
