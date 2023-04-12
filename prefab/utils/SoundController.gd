@@ -29,7 +29,7 @@ const MOVEMENT: Dictionary = {
 		"Skeleton": preload("res://assets/Music and Sounds/foodsteps/skeleton_step.wav")
 	},
 	"NPC":{
-		"Move": preload("res://assets/Music and Sounds/sfx_movement_footsteps1a.wav")
+		"Move": preload("res://assets/Music and Sounds/foodsteps/mushroom_step.wav")
 	}
 } 
 

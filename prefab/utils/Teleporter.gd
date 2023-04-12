@@ -39,6 +39,7 @@ func start_teleport(body):
 	if not body.name == "Player":
 		return
 	player = body
+	EventHandler.emit_signal("player_set_interact", false)
 	player.velocity = Vector2.ZERO
 	EventHandler.connect("transition_black", teleport_player)
 	EventHandler.emit_signal("start_transition")

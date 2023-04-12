@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://sa1iwjudqfss" path="res://Items/Energietrank.tscn" id="7_ns842"]
 [ext_resource type="Texture2D" uid="uid://b1gm4wok3nu5u" path="res://assets/NPC/vendor_npc.png" id="8_7f66m"]
 [ext_resource type="PackedScene" uid="uid://bjvuvridc52x3" path="res://prefab/props/Clock.tscn" id="8_uxvkj"]
-[ext_resource type="AudioStream" uid="uid://dejc7co1oi6vn" path="res://assets/Music and Sounds/BGCity_BG_sound.wav" id="14_clppy"]
+[ext_resource type="AudioStream" uid="uid://dx8njrf4djcf7" path="res://assets/Music and Sounds/BG/City_BG_sound.mp3" id="14_sj2mo"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_52x3q"]
 texture = ExtResource("2_vs4cm")
@@ -19434,7 +19434,7 @@ position = Vector2(-102, -36)
 position = Vector2(335, 345)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("14_clppy")
+stream = ExtResource("14_sj2mo")
 autoplay = true
 bus = &"Musik"
 

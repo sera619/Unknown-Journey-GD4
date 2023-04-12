@@ -27,6 +27,9 @@ func _physics_process(_delta):
 		icon.visible = true
 	else:
 		icon.visible = false
+	
+	if Input.is_action_just_pressed("interact") and not is_talking and player_detector.can_see_player():
+		interact()
 
 func interact():
 	if not is_talking:
