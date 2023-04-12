@@ -1,4 +1,4 @@
-[gd_scene load_steps=99 format=3 uid="uid://dsjgqh65g0ryt"]
+[gd_scene load_steps=100 format=3 uid="uid://dsjgqh65g0ryt"]
 
 [ext_resource type="Script" path="res://prefab/npc/NPCSarah.gd" id="1_s4q04"]
 [ext_resource type="Texture2D" uid="uid://dd1w6mxdg5pd0" path="res://assets/NPC/speakicon.png" id="2_cqrmd"]
@@ -26,7 +26,7 @@ shader_parameter/u_time = 1.0
 radius = 64.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tfmxq"]
-radius = 51.1034
+radius = 32.0278
 
 [sub_resource type="Animation" id="Animation_18vex"]
 resource_name = "CastDown"
@@ -875,6 +875,8 @@ graph_offset = Vector2(5, 50)
 radius = 2.66667
 height = 21.3333
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_ei5je"]
+
 [node name="NPCSarah" type="CharacterBody2D"]
 scale = Vector2(0.75, 0.75)
 collision_layer = 7
@@ -959,6 +961,13 @@ collision_mask = 128
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
 [node name="WanderController" parent="." instance=ExtResource("8_agwwn")]
+
+[node name="InteractionZone" type="Area2D" parent="."]
+collision_layer = 512
+collision_mask = 512
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionZone"]
+shape = SubResource("CircleShape2D_ei5je")
 
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
 

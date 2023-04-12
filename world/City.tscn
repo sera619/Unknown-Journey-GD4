@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://1qcyn1bd5uw2"]
+[gd_scene load_steps=60 format=3 uid="uid://1qcyn1bd5uw2"]
 
 [ext_resource type="Script" path="res://world/City.gd" id="1_sbm6d"]
 [ext_resource type="Texture2D" uid="uid://i30uy8osh588" path="res://assets/World/tileset_dungeon.png" id="2_rpbj0"]
@@ -33,6 +33,7 @@
 [ext_resource type="PackedScene" uid="uid://dqm03spx8xntp" path="res://prefab/props/Door.tscn" id="21_1pui5"]
 [ext_resource type="PackedScene" uid="uid://5l2uk2ujjved" path="res://prefab/props/Spring.tscn" id="21_8io3d"]
 [ext_resource type="PackedScene" uid="uid://dfe6xiy045ug4" path="res://prefab/props/FlowerCase.tscn" id="21_hvyxs"]
+[ext_resource type="Texture2D" uid="uid://cba714u1pri2q" path="res://assets/NPC/KnightBran.png" id="22_0s3xy"]
 [ext_resource type="PackedScene" uid="uid://bk26dmpt3fsyp" path="res://prefab/props/WatterBottle.tscn" id="26_ne15e"]
 [ext_resource type="PackedScene" uid="uid://tlprd1hoiiri" path="res://prefab/props/MetalDoor.tscn" id="30_xb747"]
 [ext_resource type="AudioStream" uid="uid://dx8njrf4djcf7" path="res://assets/Music and Sounds/BG/City_BG_sound.mp3" id="33_inuve"]
@@ -41156,6 +41157,41 @@ position = Vector2(-1712, -159)
 [node name="Marker2D7" type="Marker2D" parent="Map/GardenMovePos"]
 position = Vector2(-1415, -420)
 
+[node name="SoldierMovePos" type="Node2D" parent="Map"]
+
+[node name="Marker2D" type="Marker2D" parent="Map/SoldierMovePos"]
+position = Vector2(-654, -18)
+
+[node name="Marker2D2" type="Marker2D" parent="Map/SoldierMovePos"]
+position = Vector2(-1181, 721)
+
+[node name="Marker2D3" type="Marker2D" parent="Map/SoldierMovePos"]
+position = Vector2(-745, 717)
+
+[node name="Marker2D4" type="Marker2D" parent="Map/SoldierMovePos"]
+position = Vector2(-1843, -226)
+
+[node name="Marker2D5" type="Marker2D" parent="Map/SoldierMovePos"]
+position = Vector2(-1686, -226)
+
+[node name="Marker2D6" type="Marker2D" parent="Map/SoldierMovePos"]
+position = Vector2(-1803, -291)
+
+[node name="Marker2D7" type="Marker2D" parent="Map/SoldierMovePos"]
+position = Vector2(-1809, -148)
+
+[node name="Marker2D8" type="Marker2D" parent="Map/SoldierMovePos"]
+position = Vector2(-2118, -255)
+
+[node name="Marker2D9" type="Marker2D" parent="Map/SoldierMovePos"]
+position = Vector2(-1752, 29)
+
+[node name="Marker2D10" type="Marker2D" parent="Map/SoldierMovePos"]
+position = Vector2(-1404, -94)
+
+[node name="Marker2D11" type="Marker2D" parent="Map/SoldierMovePos"]
+position = Vector2(-1332, -420)
+
 [node name="GameMap" type="TileMap" parent="Map"]
 y_sort_enabled = true
 tile_set = SubResource("TileSet_frf08")
@@ -41443,6 +41479,21 @@ npc_name = "Farmer"
 npc_sprite = ExtResource("18_34seq")
 lpc_sprite = true
 move_speed = 25
+
+[node name="NPCCitizen4" parent="Map/GameObjects/NPC" instance=ExtResource("11_83b7t")]
+position = Vector2(-1592, 29)
+MAX_WAIT_TIME = 20
+MOVE_POINT_CONTAINER = NodePath("../../../SoldierMovePos")
+npc_name = "Marshall Eldon"
+npc_sprite = ExtResource("22_0s3xy")
+lpc_sprite = true
+
+[node name="NPCCitizen5" parent="Map/GameObjects/NPC" instance=ExtResource("11_83b7t")]
+position = Vector2(-672, -387)
+MOVE_POINT_CONTAINER = NodePath("../../../SoldierMovePos")
+npc_name = "Ritter Bran"
+npc_sprite = ExtResource("22_0s3xy")
+lpc_sprite = true
 
 [node name="Enemys" type="Node2D" parent="Map/GameObjects"]
 y_sort_enabled = true

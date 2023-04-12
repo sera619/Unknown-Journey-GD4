@@ -9,6 +9,8 @@ class_name Waysign
 @export_category("Sprite Settings")
 @export var right_sprite: Texture2D
 @export var left_sprite: Texture2D
+@export_category("Sound Scenes")
+@export var interact_sound_scene: PackedScene 
 
 @onready var icon_sprite: Sprite2D = $Icon
 @onready var body_sprite: Sprite2D = $Body
@@ -35,6 +37,8 @@ func _input(event):
 	if not player_detector.can_see_player():
 		return
 	if event.is_action_pressed("interact"):
+		var sound = interact_sound_scene.instantiate()
+		self.add_child(sound)
 		get_way_information()
 
 func show_interact_icon(body):

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://brsmbfn5xoeba"
+path="res://.godot/imported/spiketrap_sound.mp3-827c9c8794c1b743a2190f61fbfdba6f.mp3str"
+
+[deps]
+
+source_file="res://assets/Music and Sounds/spells/spiketrap_sound.mp3"
+dest_files=["res://.godot/imported/spiketrap_sound.mp3-827c9c8794c1b743a2190f61fbfdba6f.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

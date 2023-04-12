@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://ct8p6s4p6vulu"]
+[gd_scene load_steps=20 format=3 uid="uid://ct8p6s4p6vulu"]
 
 [ext_resource type="Script" path="res://world/WorldBase.gd" id="1_ogdfq"]
 [ext_resource type="Texture2D" uid="uid://by0asahacrf8v" path="res://assets/World/terrain_atlas.png" id="2_jwfej"]
@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dcc837c2ujx6g" path="res://prefab/utils/GameCamera.tscn" id="3_o07db"]
 [ext_resource type="Texture2D" uid="uid://dguk66r6bcx5q" path="res://assets/World/[Base]BaseChip_pipo.png" id="4_tp5oa"]
 [ext_resource type="PackedScene" uid="uid://dewtis55bljv5" path="res://prefab/props/SmallBush.tscn" id="6_fjbiy"]
-[ext_resource type="PackedScene" uid="uid://b4upex2fdmpee" path="res://prefab/enemys/EnemySkeletonMage.tscn" id="6_thinr"]
+[ext_resource type="PackedScene" uid="uid://b2f0sr3p726uh" path="res://prefab/enemys/EnemyEyeball.tscn" id="6_t54rv"]
 [ext_resource type="PackedScene" uid="uid://dnbng2g6ad7s6" path="res://prefab/itemdrops/HealthPotDrop.tscn" id="8_ka3es"]
 [ext_resource type="PackedScene" uid="uid://bdjnceh2b5es" path="res://prefab/itemdrops/CoinDrop.tscn" id="9_e0mx5"]
 [ext_resource type="PackedScene" uid="uid://coohwdkytapxs" path="res://prefab/itemdrops/EnergiePotDrop.tscn" id="10_s54tc"]
@@ -9769,6 +9769,11 @@ sources/5 = SubResource("TileSetAtlasSource_c64rn")
 sources/2 = SubResource("TileSetAtlasSource_cqdve")
 pattern_0 = SubResource("TileMapPattern_sq0ya")
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_wedei"]
+vertices = PackedVector2Array(321, 81, 496, 80, 496, 256, 321, 192, -320, 448, -320, 168, 132, 169, 132, 192, 496, 448, 164, 192)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7), PackedInt32Array(8, 4, 7, 9), PackedInt32Array(8, 9, 3, 2)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(164, 192, 321, 192, 321, 81, 496, 80, 496, 256, 496, 448, -320, 448, -320, 168, 132, 169, 132, 192)])
+
 [node name="Hills" type="Node2D" groups=["WorldBase"]]
 script = ExtResource("1_ogdfq")
 world_name = "Hills"
@@ -9840,6 +9845,9 @@ layer_7/tile_data = PackedInt32Array()
 
 [node name="MapUtils" type="Node2D" parent="Map/GameMap"]
 
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="Map"]
+navigation_polygon = SubResource("NavigationPolygon_wedei")
+
 [node name="GameObjects" type="Node2D" parent="Map"]
 y_sort_enabled = true
 
@@ -9849,8 +9857,8 @@ y_sort_enabled = true
 [node name="Enemys" type="Node2D" parent="Map/GameObjects"]
 y_sort_enabled = true
 
-[node name="EnemySkeletonMage" parent="Map/GameObjects/Enemys" instance=ExtResource("6_thinr")]
-position = Vector2(129, 354)
+[node name="EnemyEyeball" parent="Map/GameObjects/Enemys" instance=ExtResource("6_t54rv")]
+position = Vector2(199, 348)
 
 [node name="Grases" type="Node2D" parent="Map/GameObjects"]
 y_sort_enabled = true

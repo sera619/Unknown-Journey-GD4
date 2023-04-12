@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://k3nonfjw6fbu"
+path="res://.godot/imported/footstep05.ogg-ccb3b0486630b01ae46fc48aa99233ae.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/Music and Sounds/other/footstep05.ogg"
+dest_files=["res://.godot/imported/footstep05.ogg-ccb3b0486630b01ae46fc48aa99233ae.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

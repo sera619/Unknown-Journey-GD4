@@ -29,6 +29,7 @@ var dev_console: bool = false
 @onready var micro_menu: MicroMenu = $MicroMenu
 @onready var notice_box: NoticeBox = $NoticeBox
 @onready var actionbar: Actionbar = $Actionbar
+@onready var infobox: InfoBox = $InfoBox
 var showinfo = true 
 
 func _ready():
@@ -69,14 +70,19 @@ func _input(event):
 			inventory_panel.hide_inventory()
 
 func hide_ui():
-	qlog.hide()
+	qlog.hide_log()
+	charpanel.hide_charpanel()
+	inventory_panel.hide_inventory()
 	stat_hud.hide()
 	potion_panel.hide()
 	exp_hud.hide()
-	dialog_box.hide_dialog()
+	dialog_box.hide()
 	dot_hud.hide()
 	notice_box.hide()
+	infobox.hide()
+	shop_panel.hide()
 	actionbar.hide()
+	statistic_hud.hide_statistic()
 
 func start_transition():
 	animplayer.play("start_transition")

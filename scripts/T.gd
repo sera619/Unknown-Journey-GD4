@@ -60,7 +60,17 @@ func get_random_greeting() -> String:
 const NPC_NAMES = {
 	"male": [
 		"Marty",
-		],
+		"Aiden",
+		"Orion",
+		"Eldon",
+		"Caelan",
+		"Malakai",
+		"Thorne",
+		"Alaric",
+		"Bran",
+		"Eamon",
+		"Ashe",
+	],
 		
 	"female": [
 		"Sarah",

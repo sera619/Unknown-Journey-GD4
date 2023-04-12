@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://blilfi531nqqy"
+path="res://.godot/imported/metalClick.ogg-268e0b55e9550416f7ee89c8368b0f90.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/Music and Sounds/other/metalClick.ogg"
+dest_files=["res://.godot/imported/metalClick.ogg-268e0b55e9550416f7ee89c8368b0f90.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,7 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://c7ufovjp60qw4"]
+[gd_scene load_steps=17 format=3 uid="uid://c7ufovjp60qw4"]
 
 [ext_resource type="Texture2D" uid="uid://di0bhuywxtvl0" path="res://assets/objects/Brick1.png" id="1_m4rdl"]
 [ext_resource type="Script" path="res://prefab/props/BreakBricks.gd" id="1_pwnwd"]
+[ext_resource type="PackedScene" uid="uid://csgyvpvxj43nt" path="res://prefab/audio/BreakBrickSound.tscn" id="2_137ha"]
 [ext_resource type="PackedScene" uid="uid://kbo1bay3i1ps" path="res://prefab/utils/PlayerDetector.tscn" id="2_ou25m"]
 [ext_resource type="Script" path="res://prefab/enemys/EnemyWeapon.gd" id="4_jvj1y"]
 
@@ -79,6 +80,7 @@ size = Vector2(24, 24)
 script = ExtResource("1_pwnwd")
 time_alive = 1
 respawn_time = 10
+break_sound = ExtResource("2_137ha")
 
 [node name="Body" type="AnimatedSprite2D" parent="."]
 scale = Vector2(1.5, 1.5)

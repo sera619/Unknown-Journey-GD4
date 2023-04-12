@@ -56,4 +56,4 @@ shape = SubResource("CapsuleShape2D_16mdh")
 stream = ExtResource("2_31lam")
 autoplay = true
 max_distance = 190.0
-bus = &"PlayerSFX"
+bus = &"Ambiente"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=100 format=3 uid="uid://cehmecngqh6wp"]
+[gd_scene load_steps=101 format=3 uid="uid://cehmecngqh6wp"]
 
 [ext_resource type="Script" path="res://prefab/npc/NPCDanika.gd" id="1_mcyfy"]
 [ext_resource type="Texture2D" uid="uid://dd1w6mxdg5pd0" path="res://assets/NPC/speakicon.png" id="2_jvx8m"]
@@ -876,6 +876,8 @@ graph_offset = Vector2(5, 50)
 radius = 2.66667
 height = 21.3333
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_gdntp"]
+
 [node name="NPCDanika" type="CharacterBody2D"]
 scale = Vector2(0.75, 0.75)
 collision_layer = 2
@@ -965,6 +967,13 @@ collision_mask = 128
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 4.0
 debug_enabled = true
+
+[node name="InteractionZone" type="Area2D" parent="."]
+collision_layer = 512
+collision_mask = 512
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionZone"]
+shape = SubResource("CircleShape2D_gdntp")
 
 [editable path="PlayerDetector"]
 [editable path="SoftCollision"]

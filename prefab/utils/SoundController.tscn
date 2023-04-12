@@ -7,23 +7,23 @@ script = ExtResource("1_8er4f")
 
 [node name="MoveSound" type="AudioStreamPlayer2D" parent="."]
 max_distance = 156.0
-bus = &"PlayerSFX"
+bus = &"Ambiente"
 
 [node name="RunSound" type="AudioStreamPlayer2D" parent="."]
 max_distance = 156.0
-bus = &"PlayerSFX"
+bus = &"Ambiente"
 
 [node name="ImpactPlayer" type="AudioStreamPlayer2D" parent="."]
 max_distance = 156.0
-bus = &"PlayerSFX"
+bus = &"Ambiente"
 
 [node name="CastPlayer" type="AudioStreamPlayer2D" parent="."]
 max_distance = 156.0
-bus = &"PlayerSFX"
+bus = &"Ambiente"
 
 [node name="AttackPlayer" type="AudioStreamPlayer2D" parent="."]
 max_distance = 156.0
-bus = &"PlayerSFX"
+bus = &"Ambiente"
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true

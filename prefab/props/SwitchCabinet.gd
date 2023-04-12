@@ -9,12 +9,16 @@ signal puzzle_piece_off(id)
 @export_category("Textures")
 @export var on_texture: Texture
 @export var off_texture: Texture
+@export_category("Sound Scenes")
+@export var sound_scene: PackedScene
 
 @onready var body = $Body
 
 
 func _puzzle_on():
 	active = true
+	var sound = sound_scene.instantiate()
+	self.add_child(sound)
 	body.texture = on_texture
 	emit_signal("puzzle_piece_on", id)
 	print("[Puzzle]: %s (id: %s) is on." % [self.name, self.id])

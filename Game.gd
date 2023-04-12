@@ -117,6 +117,7 @@ func switch_gamelevel(levelname: String):
 		GameManager.current_world = null
 		GameManager.interface.actionbar.reset_bar()
 		GameManager.interface.actionbar.hide()
+		GameManager.interface.hide_ui()
 	else:
 		GameManager.interface.actionbar.show()
 		GameManager.on_main_menu = false

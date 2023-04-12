@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://bjvuvridc52x3"]
+[gd_scene load_steps=12 format=3 uid="uid://bjvuvridc52x3"]
 
 [ext_resource type="Texture2D" uid="uid://bg6xo5wgyr6fp" path="res://assets/tiles/animated_clock.png" id="1_10a5m"]
 [ext_resource type="Script" path="res://prefab/props/Clock.gd" id="1_j3cip"]
 [ext_resource type="PackedScene" uid="uid://kbo1bay3i1ps" path="res://prefab/utils/PlayerDetector.tscn" id="2_257sg"]
 [ext_resource type="Texture2D" uid="uid://hfu2fg2kopso" path="res://assets/UI/E-Key.png" id="3_1w0xo"]
+[ext_resource type="AudioStream" uid="uid://bia0yrftqcvip" path="res://assets/Music and Sounds/ambiente/ticking_clock_sound.mp3" id="5_xixtm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rxdwi"]
 atlas = ExtResource("1_10a5m")
@@ -65,5 +66,11 @@ shape = SubResource("RectangleShape2D_0smo8")
 [node name="CollisionShape2D" parent="PlayerDetector" index="0"]
 position = Vector2(0, -21.5)
 shape = SubResource("RectangleShape2D_w32h2")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_xixtm")
+autoplay = true
+max_distance = 96.0
+bus = &"Ambiente"
 
 [editable path="PlayerDetector"]

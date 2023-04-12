@@ -57,12 +57,15 @@ func _physics_process(_delta):
 			_idle_state()
 		TALK:
 			_talk_state()
-	if Input.is_action_just_pressed("interact") and player_detector.can_see_player() and not is_talking:
+	move_and_slide()
+
+func interact():
+	if not is_talking:
 		is_talking = true
 		_talk_state()
 		dialog_handler()
-	move_and_slide()
-
+	else:
+		return
 
 func _talk_state():
 	if is_talking:
@@ -84,7 +87,8 @@ func dialog_handler():
 
 func _idle_state():
 	set_velocity(Vector2.ZERO)
-	if wait_timer.is_stopped():
+	
+	if wait_timer.is_stopped() and not player_detector.can_see_player():
 		move_target_position = _get_next_wander_position()
 		_set_waittimer()
 		wait_timer.start()
@@ -99,6 +103,8 @@ func _wander_state():
 		return
 	if is_talking:
 		state = TALK
+	if player_detector.can_see_player():
+		state = IDLE
 	
 	var current_agent_position: Vector2 = global_transform.origin
 	var next_path_position: Vector2 = nav_agent.get_next_path_position()

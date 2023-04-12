@@ -38,9 +38,13 @@ func _physics_process(delta):
 			chase_state(delta)
 	
 	move_and_slide()
-	if Input.is_action_just_pressed("interact") and player_detector.can_see_player() and not is_talking:
+	
+func interact():
+	if not is_talking:
 		is_talking = true
 		dialog_handler()
+	else:
+		return
 
 
 func dialog_handler():

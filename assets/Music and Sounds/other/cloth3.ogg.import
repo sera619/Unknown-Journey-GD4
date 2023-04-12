@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cdlp6vticwi41"
+path="res://.godot/imported/cloth3.ogg-c19c14de65e6b8a7bc14af51bdb49b2e.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/Music and Sounds/other/cloth3.ogg"
+dest_files=["res://.godot/imported/cloth3.ogg-c19c14de65e6b8a7bc14af51bdb49b2e.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

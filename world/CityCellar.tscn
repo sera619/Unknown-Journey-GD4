@@ -1,6 +1,7 @@
-[gd_scene load_steps=77 format=3 uid="uid://blu2fjm62uqjt"]
+[gd_scene load_steps=81 format=3 uid="uid://blu2fjm62uqjt"]
 
 [ext_resource type="Script" path="res://world/CityCellar.gd" id="1_y4cxl"]
+[ext_resource type="Environment" uid="uid://dlb3sxd1qxstv" path="res://WorldEnv.tres" id="2_4y0vp"]
 [ext_resource type="Texture2D" uid="uid://dhx7ipu2eqbpl" path="res://assets/tiles/trail.png" id="2_xw1vk"]
 [ext_resource type="Texture2D" uid="uid://c7fiywcu0t2e4" path="res://assets/World/Inside_A4.png" id="3_5dg5q"]
 [ext_resource type="PackedScene" uid="uid://dcc837c2ujx6g" path="res://prefab/utils/GameCamera.tscn" id="3_nsuir"]
@@ -23,6 +24,9 @@
 [ext_resource type="PackedScene" uid="uid://cpqjbaihholeg" path="res://prefab/utils/SwitchBox.tscn" id="12_nwvfa"]
 [ext_resource type="PackedScene" uid="uid://hgci6uekhsvq" path="res://prefab/props/SwitchPlattform.tscn" id="13_yggcw"]
 [ext_resource type="PackedScene" uid="uid://cehmecngqh6wp" path="res://prefab/npc/NPCDanika.tscn" id="21_itiwa"]
+[ext_resource type="PackedScene" uid="uid://cvno4epl40k3u" path="res://prefab/utils/EnemySpawner.tscn" id="22_l1aa4"]
+[ext_resource type="PackedScene" uid="uid://b2f0sr3p726uh" path="res://prefab/enemys/EnemyEyeball.tscn" id="23_1bmtj"]
+[ext_resource type="AudioStream" uid="uid://qkjq8w1jnf2d" path="res://assets/Music and Sounds/BG/dungeon_bg.ogg" id="24_c3ux8"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_uohjr"]
 tile_data = PackedInt32Array(0, 65539, 16, 65536, 65539, 17, 131072, 65539, 18, 196608, 65539, 19, 1, 65539, 16, 65537, 65539, 17, 131073, 65539, 18, 196609, 65539, 19, 2, 65539, 16, 65538, 65539, 17, 131074, 65539, 18, 196610, 65539, 19, 3, 65539, 16, 65539, 65539, 17, 131075, 65539, 18, 196611, 65539, 19)
@@ -17355,13 +17359,16 @@ radius = 39.3192
 script = ExtResource("1_y4cxl")
 world_name = "CityCellar"
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("2_4y0vp")
+
 [node name="Map" type="Node2D" parent="."]
 
 [node name="RespawnSpot" type="Marker2D" parent="Map"]
 position = Vector2(781, 296)
 
 [node name="EntrySpot" type="Marker2D" parent="Map"]
-position = Vector2(646, 307)
+position = Vector2(141, 32)
 
 [node name="NPCMovemarks" type="Node2D" parent="Map"]
 
@@ -17876,9 +17883,11 @@ chest_id = 3
 y_sort_enabled = true
 
 [node name="Path2D" type="Path2D" parent="Map/GameObjects/Traps"]
+y_sort_enabled = true
 curve = SubResource("Curve2D_b7rfk")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Map/GameObjects/Traps/Path2D"]
+y_sort_enabled = true
 position = Vector2(123, -112)
 rotation = 3.14159
 
@@ -17890,9 +17899,11 @@ pathfollow_path = NodePath("..")
 move_time = 5
 
 [node name="Path2D2" type="Path2D" parent="Map/GameObjects/Traps"]
+y_sort_enabled = true
 curve = SubResource("Curve2D_vrxug")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Map/GameObjects/Traps/Path2D2"]
+y_sort_enabled = true
 position = Vector2(-603, -112)
 
 [node name="ChainsawTrap" parent="Map/GameObjects/Traps/Path2D2/PathFollow2D" instance=ExtResource("11_fw78s")]
@@ -17902,9 +17913,11 @@ pathfollow_path = NodePath("..")
 move_time = 6
 
 [node name="Path2D3" type="Path2D" parent="Map/GameObjects/Traps"]
+y_sort_enabled = true
 curve = SubResource("Curve2D_hvp8x")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Map/GameObjects/Traps/Path2D3"]
+y_sort_enabled = true
 position = Vector2(-379, 304)
 
 [node name="ChainsawTrap" parent="Map/GameObjects/Traps/Path2D3/PathFollow2D" instance=ExtResource("11_fw78s")]
@@ -17924,6 +17937,25 @@ MOVE_POINT_CONTAINER = NodePath("../../../NPCMovemarks")
 
 [node name="Enemys" type="Node2D" parent="Map/GameObjects"]
 y_sort_enabled = true
+
+[node name="EnemySpawner" parent="Map/GameObjects/Enemys" node_paths=PackedStringArray("enemy_container") instance=ExtResource("22_l1aa4")]
+enemy_container = NodePath("..")
+enemy_scene_one = ExtResource("23_1bmtj")
+
+[node name="Marker2D" parent="Map/GameObjects/Enemys/EnemySpawner/SpawnPoints1" index="0"]
+position = Vector2(-526, 8)
+
+[node name="Marker2D2" parent="Map/GameObjects/Enemys/EnemySpawner/SpawnPoints1" index="1"]
+position = Vector2(160, -16)
+
+[node name="Marker2D3" parent="Map/GameObjects/Enemys/EnemySpawner/SpawnPoints1" index="2"]
+position = Vector2(97, -407)
+
+[node name="Marker2D4" parent="Map/GameObjects/Enemys/EnemySpawner/SpawnPoints1" index="3"]
+position = Vector2(-1172, 310)
+
+[node name="Marker2D5" parent="Map/GameObjects/Enemys/EnemySpawner/SpawnPoints1" index="4"]
+position = Vector2(-1544, 341)
 
 [node name="Teleporter" parent="Map/GameObjects" instance=ExtResource("11_7wxi4")]
 position = Vector2(649, 380)
@@ -17947,6 +17979,12 @@ position = Vector2(-1965, -835)
 [node name="BottomRight" parent="Map/GameCamera/Limits" index="1"]
 position = Vector2(948, 560)
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("24_c3ux8")
+autoplay = true
+bus = &"Musik"
+
+[editable path="Map/GameObjects/Enemys/EnemySpawner"]
 [editable path="Map/GameObjects/Teleporter"]
 [editable path="Map/GameObjects/Teleporter/PlayerDetector"]
 [editable path="Map/GameCamera"]

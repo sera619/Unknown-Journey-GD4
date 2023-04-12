@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://ce2qgcscf6ubu"]
+[gd_scene load_steps=62 format=3 uid="uid://ce2qgcscf6ubu"]
 
 [ext_resource type="Script" path="res://world/CityHotel.gd" id="1_cofsr"]
 [ext_resource type="PackedScene" uid="uid://dcc837c2ujx6g" path="res://prefab/utils/GameCamera.tscn" id="2_fnk70"]
@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://dryyghofo87wq" path="res://prefab/props/WandLightSwitch.tscn" id="14_td3pu"]
 [ext_resource type="PackedScene" uid="uid://bqmd0vl5co3p" path="res://prefab/props/CandleBig.tscn" id="16_j7vc8"]
 [ext_resource type="PackedScene" uid="uid://dqm03spx8xntp" path="res://prefab/props/Door.tscn" id="18_m8hny"]
+[ext_resource type="AudioStream" uid="uid://g4qeudbf5giw" path="res://assets/Music and Sounds/BG/HouseBG_sound.ogg" id="22_sostj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_52x3q"]
 texture = ExtResource("2_vrjrr")
@@ -56884,6 +56885,11 @@ position = Vector2(-305, -465)
 
 [node name="BottomRight" parent="Map/GameCamera/Limits" index="1"]
 position = Vector2(225, 143)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("22_sostj")
+autoplay = true
+bus = &"Musik"
 
 [editable path="Map/GameObjects/Teleporter"]
 [editable path="Map/GameObjects/Teleporter/PlayerDetector"]

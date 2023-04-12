@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://d37hqvwxc31tu"]
+[gd_scene load_steps=7 format=3 uid="uid://d37hqvwxc31tu"]
 
 [ext_resource type="Script" path="res://prefab/props/SwitchCabinet.gd" id="1_kd4su"]
 [ext_resource type="Texture2D" uid="uid://bjgucfrw8fmoy" path="res://assets/objects/ElectricCase-Off.png" id="2_67ukv"]
 [ext_resource type="Texture2D" uid="uid://cyjyrpgtqburc" path="res://assets/objects/ElectricCase-On.png" id="2_703b5"]
+[ext_resource type="PackedScene" uid="uid://c2dv2c312mujy" path="res://prefab/audio/EnergieOnSound.tscn" id="4_sg2dq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l8p6q"]
 size = Vector2(32, 12)
@@ -15,6 +16,7 @@ script = ExtResource("1_kd4su")
 id = 1
 on_texture = ExtResource("2_703b5")
 off_texture = ExtResource("2_67ukv")
+sound_scene = ExtResource("4_sg2dq")
 
 [node name="Body" type="Sprite2D" parent="."]
 texture = ExtResource("2_67ukv")

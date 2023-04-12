@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dk00dv5j2jm82"
+path="res://.godot/imported/handleCoins.ogg-6553c36820d62f8e8a59a2d681ffa2c5.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/Music and Sounds/other/handleCoins.ogg"
+dest_files=["res://.godot/imported/handleCoins.ogg-6553c36820d62f8e8a59a2d681ffa2c5.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

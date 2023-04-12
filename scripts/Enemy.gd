@@ -164,7 +164,6 @@ func accelerate_towards_point(point, delta):
 
 	velocity = velocity.move_toward(direction * speed, stats.ACCELERATION * delta)
 	velocity += avoid_obstacles()
-	animSprite.flip_h = velocity.x < 0
 
 func avoid_obstacles():
 	var avoid_vector

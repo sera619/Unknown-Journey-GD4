@@ -27,10 +27,13 @@ func _physics_process(_delta):
 		icon.visible = true
 	else:
 		icon.visible = false
-	if Input.is_action_just_pressed("interact") and player_detector.can_see_player() and not is_talking:
+
+func interact():
+	if not is_talking:
 		is_talking = true
 		dialog_handler()
-
+	else:
+		return
 
 func dialog_handler():
 	var dialog: DialogBox = GameManager.dialog_box

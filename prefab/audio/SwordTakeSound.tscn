@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdwsc48ohtmsr"]
+
+[ext_resource type="AudioStream" uid="uid://cpvitkdbtcpjt" path="res://assets/Music and Sounds/sword_take_sound.mp3" id="1_w3bv7"]
+[ext_resource type="Script" path="res://prefab/audio/SoundEffect.gd" id="2_iba24"]
+
+[node name="SoundEffect" type="AudioStreamPlayer"]
+stream = ExtResource("1_w3bv7")
+pitch_scale = 1.47
+bus = &"Ambiente"
+script = ExtResource("2_iba24")

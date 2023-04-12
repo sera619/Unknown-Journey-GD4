@@ -4,6 +4,7 @@ class_name StatisticBook
 @onready var player_detector: PlayerDetector = $PlayerDetector
 @onready var body_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var icon: Sprite2D = $Icon
+@onready var audio_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 var is_showing: bool = false
 
@@ -16,6 +17,7 @@ func _process(_delta):
 		if Input.is_action_just_released("interact"):
 			if not GameManager.interface.statistic_hud.visible:
 				if not body_sprite.is_playing():
+					audio_player.playing = true
 					body_sprite.play("default")
 			else:
 				GameManager.interface.statistic_hud.hide_statistic()

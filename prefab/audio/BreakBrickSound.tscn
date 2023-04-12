@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://csgyvpvxj43nt"]
+
+[ext_resource type="AudioStream" uid="uid://cs7ubmbmmb2p4" path="res://assets/Music and Sounds/ambiente/brickbreak_sound.mp3" id="1_0rbu8"]
+[ext_resource type="Script" path="res://prefab/audio/SoundEffect.gd" id="1_gnmy5"]
+
+[node name="SoundEffect" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_0rbu8")
+max_distance = 172.0
+bus = &"Ambiente"
+script = ExtResource("1_gnmy5")

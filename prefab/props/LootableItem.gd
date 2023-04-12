@@ -7,6 +7,7 @@ class_name LootableItem
 @export var respawn_time: int
 @export var full_sprite: Texture
 @export var empty_sprite: Texture
+@export var interact_sound_scene: PackedScene
 
 @onready var body_sprite: Sprite2D = $Body
 @onready var icon: Sprite2D = $Icon
@@ -28,6 +29,9 @@ func _loot_item():
 	if is_looted:
 		return
 	is_looted = true
+	if interact_sound_scene:
+		var sound = interact_sound_scene.instantiate()
+		self.add_child(sound)
 	_check_texture()
 	anim_player.stop()
 	icon.visible = false

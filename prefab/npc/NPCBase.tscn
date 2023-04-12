@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://cn2oyye06f0uv"]
+[gd_scene load_steps=6 format=3 uid="uid://cn2oyye06f0uv"]
 
 [ext_resource type="PackedScene" uid="uid://kbo1bay3i1ps" path="res://prefab/utils/PlayerDetector.tscn" id="1_by4u5"]
 [ext_resource type="Script" path="res://prefab/npc/NPCBase.gd" id="1_ksy8k"]
 [ext_resource type="Texture2D" uid="uid://n8ffpghrqlrf" path="res://assets/NPC/fairy.png" id="2_8duif"]
 [ext_resource type="PackedScene" uid="uid://b347lo6c415bh" path="res://prefab/utils/WanderController.tscn" id="3_m3txb"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ksq8a"]
 
 [node name="NPCBase" type="CharacterBody2D"]
 script = ExtResource("1_ksy8k")
@@ -27,3 +29,10 @@ frame = 87
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 anim_player = NodePath("../AnimationPlayer")
+
+[node name="InteractionZone" type="Area2D" parent="."]
+collision_layer = 512
+collision_mask = 512
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionZone"]
+shape = SubResource("CircleShape2D_ksq8a")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=95 format=3 uid="uid://uwk6jeagpd72"]
+[gd_scene load_steps=96 format=3 uid="uid://uwk6jeagpd72"]
 
 [ext_resource type="Script" path="res://prefab/npc/NPCBaseNav.gd" id="1_y4pq8"]
 [ext_resource type="Texture2D" uid="uid://dd1w6mxdg5pd0" path="res://assets/NPC/speakicon.png" id="2_ajdn0"]
@@ -18,7 +18,7 @@ shader_parameter/color = Color(0, 0, 0, 1)
 shader_parameter/u_time = 1.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o3qdu"]
-radius = 64.0
+radius = 32.0
 
 [sub_resource type="Animation" id="Animation_18vex"]
 resource_name = "CastDown"
@@ -931,6 +931,8 @@ graph_offset = Vector2(5, 50)
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_f0jby"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_l6b2u"]
+
 [node name="NPCCitizen" type="CharacterBody2D"]
 scale = Vector2(0.75, 0.75)
 motion_mode = 1
@@ -953,9 +955,6 @@ offset = Vector2(0, -124)
 [node name="Body" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_3eypu")
 offset = Vector2(0, -28)
-hframes = 13
-vframes = 21
-frame = 26
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0
@@ -1010,6 +1009,13 @@ collision_mask = 128
 radius = 32.0
 
 [node name="WanderController" parent="." instance=ExtResource("8_wnr5r")]
+
+[node name="InteractionZone" type="Area2D" parent="."]
+collision_layer = 512
+collision_mask = 512
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionZone"]
+shape = SubResource("CircleShape2D_l6b2u")
 
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
 

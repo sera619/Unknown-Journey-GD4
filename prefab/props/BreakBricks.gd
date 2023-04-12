@@ -2,7 +2,7 @@ extends Node2D
 
 @export var time_alive: int
 @export var respawn_time: int
-
+@export var break_sound: PackedScene
 
 @onready var body = $Body
 @onready var player_detector: PlayerDetector = $PlayerDetector
@@ -22,6 +22,9 @@ func _ready():
 	player_detector.connect("body_entered",_start_break)
 
 func _break_brick():
+	var sound = break_sound.instantiate()
+	self.add_child(sound)
+	sound.global_position = self.global_position
 	body.play("default")
 
 func _start_break(b):

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://e2eq6h2m1bru"
+path="res://.godot/imported/sleep_sound_effect.mp3-5209ee9102789524f68e235418f57921.mp3str"
+
+[deps]
+
+source_file="res://assets/Music and Sounds/ambiente/sleep_sound_effect.mp3"
+dest_files=["res://.godot/imported/sleep_sound_effect.mp3-5209ee9102789524f68e235418f57921.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

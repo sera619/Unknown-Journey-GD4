@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://drivyyw7bnkgh"]
+
+[ext_resource type="AudioStream" uid="uid://byq7yv6imdwms" path="res://assets/Music and Sounds/sword_stick_sound.mp3" id="1_2y6yx"]
+[ext_resource type="Script" path="res://prefab/audio/SoundEffect.gd" id="2_pp1op"]
+
+[node name="SoundEffect" type="AudioStreamPlayer"]
+stream = ExtResource("1_2y6yx")
+volume_db = 1.962
+pitch_scale = 1.5
+bus = &"Ambiente"
+script = ExtResource("2_pp1op")

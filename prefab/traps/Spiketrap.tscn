@@ -1,10 +1,12 @@
-[gd_scene load_steps=37 format=3 uid="uid://bcir1dj3vcylc"]
+[gd_scene load_steps=39 format=3 uid="uid://bcir1dj3vcylc"]
 
 [ext_resource type="Texture2D" uid="uid://ddf4l43sdb7xj" path="res://assets/World/animated_tiles/Spike Trap.png" id="1_6owkb"]
 [ext_resource type="Script" path="res://prefab/traps/Spiketrap.gd" id="1_dho0o"]
+[ext_resource type="AudioStream" uid="uid://brsmbfn5xoeba" path="res://assets/Music and Sounds/spells/spiketrap_sound.mp3" id="2_alff1"]
 [ext_resource type="Texture2D" uid="uid://crkmc37b0faby" path="res://assets/World/animated_tiles/Fire_Trap.png" id="2_h1tr8"]
 [ext_resource type="PackedScene" uid="uid://kbo1bay3i1ps" path="res://prefab/utils/PlayerDetector.tscn" id="2_rnpok"]
 [ext_resource type="Script" path="res://prefab/enemys/EnemyWeapon.gd" id="2_xbhqr"]
+[ext_resource type="AudioStream" uid="uid://8wwdqc4qy46u" path="res://assets/Music and Sounds/spells/fire_impact.wav" id="3_j1qw2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rwod7"]
 atlas = ExtResource("2_h1tr8")
@@ -240,6 +242,8 @@ size = Vector2(32, 24)
 [node name="Spiketrap" type="Node2D"]
 script = ExtResource("1_dho0o")
 trap_damage = 4
+spike_trap_sound = ExtResource("2_alff1")
+fire_trap_sound = ExtResource("3_j1qw2")
 
 [node name="Body" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_nra5r")
@@ -261,5 +265,9 @@ disabled = true
 [node name="CollisionShape2D" parent="PlayerDetector" index="0"]
 position = Vector2(0, -4)
 shape = SubResource("RectangleShape2D_nlbww")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+max_distance = 92.0
+bus = &"Ambiente"
 
 [editable path="PlayerDetector"]

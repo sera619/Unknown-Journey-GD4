@@ -19,6 +19,9 @@ class_name Player
 @export var dash_sound_scene: PackedScene
 @export var potion_sound_scene: PackedScene
 @export var lvlup_sound_scene: PackedScene
+@export var sword_stick_sound_scene: PackedScene
+@export var sword_take_sound_scene: PackedScene
+
 
 @export_category("Shader Materials")
 @export var heal_shader: ShaderMaterial
@@ -67,6 +70,8 @@ var can_interact: bool = true
 @onready var debuff_handler: DebuffHandler = $DebuffHandler
 @onready var sound_controller: SoundController = $SoundController
 @onready var body_collider: CollisionShape2D = $CollisionShape2D
+@onready var interact_ray: RayCast2D = $Interact/InteractRay
+
 
 var vel = Vector2.ZERO
 var PUSH_SPEED = 50
@@ -237,9 +242,11 @@ func _input_handler(_delta):
 		if not combat_timer.is_stopped():
 			return
 		if combat_stance:
+			_create_sword_stick_sound()
 			animState.travel("StickSword")
 			combat_stance = false
 		else:
+			_create_sword_take_sound()
 			animState.travel("TakeSword")
 			combat_stance = true
 				
@@ -249,6 +256,13 @@ func _input_handler(_delta):
 		_use_potion("Heiltrank")
 	if Input.is_action_just_pressed("energiepotion") and stats.level >= 3:
 		_use_potion("Energietrank")
+	
+	if Input.is_action_just_pressed("interact"):
+		if interact_ray.get_collider() != null:
+			var parent = interact_ray.get_collider().get_parent()
+			if parent.has_method("interact"):
+				parent.interact()
+
 	
 	if Input.is_action_just_pressed("debug_key"):
 		#debuff_handler.get_debuff_effect(SkillManager.ELEMENT.POISON)
@@ -363,7 +377,14 @@ func _check_new_skills():
 		GameManager.interface.newskill_hud.set_skill_text("Doppel Angriff", "Du kannst dein\n\nSchwert nun 2x schwingen.\n\nDafür brauchst du 1 Energiepunkt!\n\nDein Schwert sammelt Energie wenn\n\nes mit normalen Angriffen trifft.\n\nDrücke die Taste \"Q\"!")
 	elif stats.level == stats.HEAVY_ATTACK_CAP:
 		GameManager.interface.newskill_hud.set_skill_text("Starker Angriff", "Du kannst dein\n\nSchwert nun rotieren.\n\nDafür brauchst du 2 Energiepunkte!\n\nDein Schwert sammelt Energie wenn\n\nes mit normalen Angriffen trifft.\n\nDrücke die Taste \"Q\"!")		
-	
+
+func _create_sword_stick_sound():
+	var sound = sword_stick_sound_scene.instantiate()
+	self.add_child(sound)
+
+func _create_sword_take_sound():
+	var sound = sword_take_sound_scene.instantiate()
+	self.add_child(sound)
 
 func _use_potion(itemname: String):
 	if InventoryManager.can_use_item(itemname):

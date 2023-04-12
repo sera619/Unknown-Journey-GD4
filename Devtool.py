@@ -14,7 +14,7 @@ def ChangelogUpdater():
 
 Download the zip > Extract to a directory > open directory> run "UnknownJourney-TechAlpha.exe"
 
-__IMPORTANT:__ If you already played the game please click the "Reset" Button on the Loadmenu to Reset Savefiles and escape Gamecrashs!
+__IMPORTANT:__ If you already played the game please click the "Reset" Button on the Loadmenu to Reset Savefiles and prevent Gamecrashs!
 
 __Quick Overview:__
 

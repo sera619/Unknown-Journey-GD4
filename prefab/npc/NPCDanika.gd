@@ -40,11 +40,14 @@ func _physics_process(delta):
 			idle_state(delta)
 		WANDER:
 			wander_state(delta)
-	
-	if Input.is_action_just_pressed("interact") and player_detector.can_see_player() and not is_talking:
+	move_and_slide()
+
+func interact():
+	if not is_talking:
 		is_talking = true
 		dialog_handler()
-	move_and_slide()
+	else:
+		return
 
 func wander_state(_delta):
 	if nav_agent.is_navigation_finished():
