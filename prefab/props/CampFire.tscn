@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://cpbapvwfn7ulr"]
+[gd_scene load_steps=11 format=3 uid="uid://cpbapvwfn7ulr"]
 
 [ext_resource type="Script" path="res://prefab/props/WorldLight.gd" id="1_ikclq"]
 [ext_resource type="Texture2D" uid="uid://c7t6bd8hrogd3" path="res://assets/objects/camp_fire.png" id="1_qty6v"]
 [ext_resource type="Texture2D" uid="uid://p5qjf6yxjhlo" path="res://assets/Materials/ParticleTextures/light.png" id="2_58np1"]
+[ext_resource type="AudioStream" uid="uid://cd7lhox31f47" path="res://assets/Music and Sounds/ambiente/campfire_sound.mp3" id="4_csvow"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y1sc3"]
 atlas = ExtResource("1_qty6v")
@@ -69,3 +70,9 @@ color = Color(0.866667, 0.368627, 0.105882, 1)
 energy = 0.3
 shadow_enabled = true
 texture = ExtResource("2_58np1")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_csvow")
+autoplay = true
+max_distance = 128.0
+bus = &"Ambiente"
