@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cm1v80gxa5eef"]
+
+[ext_resource type="Script" path="res://prefab/audio/SoundEffect.gd" id="1_c8kv6"]
+[ext_resource type="AudioStream" uid="uid://cd7c8xd78ls0y" path="res://assets/Music and Sounds/spells/fire_bolt.wav" id="1_vuums"]
+
+[node name="SoundEffect" type="AudioStreamPlayer"]
+stream = ExtResource("1_vuums")
+bus = &"Ambiente"
+script = ExtResource("1_c8kv6")

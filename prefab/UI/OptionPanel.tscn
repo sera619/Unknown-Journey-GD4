@@ -17,6 +17,7 @@
 
 [node name="OptionPanel" type="Control"]
 process_mode = 3
+visible = false
 layout_mode = 3
 anchor_right = 0.5
 anchor_bottom = 0.5
@@ -170,12 +171,17 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="Options" type="VBoxContainer" parent="BG/M/V/AudioOptions/M"]
+[node name="Options" type="ScrollContainer" parent="BG/M/V/AudioOptions/M"]
 layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/separation = 0
 
-[node name="TabHeader" type="Label" parent="BG/M/V/AudioOptions/M/Options"]
+[node name="V" type="VBoxContainer" parent="BG/M/V/AudioOptions/M/Options"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="TabHeader" type="Label" parent="BG/M/V/AudioOptions/M/Options/V"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.741176, 0.0509804, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.6)
@@ -185,13 +191,13 @@ text = "Audio"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="H" type="HBoxContainer" parent="BG/M/V/AudioOptions/M/Options"]
+[node name="H" type="HBoxContainer" parent="BG/M/V/AudioOptions/M/Options/V"]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="Label" type="Label" parent="BG/M/V/AudioOptions/M/Options/H"]
+[node name="Label" type="Label" parent="BG/M/V/AudioOptions/M/Options/V/H"]
 layout_mode = 2
 size_flags_horizontal = 7
 theme_override_colors/font_color = Color(0.0745098, 0.537255, 0.937255, 1)
@@ -201,7 +207,7 @@ text = "Gesamt"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Value" type="Label" parent="BG/M/V/AudioOptions/M/Options/H"]
+[node name="Value" type="Label" parent="BG/M/V/AudioOptions/M/Options/V/H"]
 layout_mode = 2
 size_flags_horizontal = 7
 theme_override_colors/font_color = Color(0.25098, 0.67451, 0.184314, 1)
@@ -211,7 +217,7 @@ text = "100%"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="AllAudioSlider" type="HSlider" parent="BG/M/V/AudioOptions/M/Options/H"]
+[node name="AllAudioSlider" type="HSlider" parent="BG/M/V/AudioOptions/M/Options/V/H"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
@@ -222,14 +228,13 @@ min_value = -72.0
 max_value = 6.0
 step = 0.1
 
-[node name="H2" type="HBoxContainer" parent="BG/M/V/AudioOptions/M/Options"]
-visible = false
+[node name="H2" type="HBoxContainer" parent="BG/M/V/AudioOptions/M/Options/V"]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="Label" type="Label" parent="BG/M/V/AudioOptions/M/Options/H2"]
+[node name="Label" type="Label" parent="BG/M/V/AudioOptions/M/Options/V/H2"]
 layout_mode = 2
 size_flags_horizontal = 7
 theme_override_colors/font_color = Color(0.0745098, 0.537255, 0.937255, 1)
@@ -239,7 +244,7 @@ text = "Musik"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Value" type="Label" parent="BG/M/V/AudioOptions/M/Options/H2"]
+[node name="Value" type="Label" parent="BG/M/V/AudioOptions/M/Options/V/H2"]
 layout_mode = 2
 size_flags_horizontal = 7
 theme_override_colors/font_color = Color(0.25098, 0.67451, 0.184314, 1)
@@ -249,7 +254,7 @@ text = "100%"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MusicSlider" type="HSlider" parent="BG/M/V/AudioOptions/M/Options/H2"]
+[node name="MusicSlider" type="HSlider" parent="BG/M/V/AudioOptions/M/Options/V/H2"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
@@ -260,13 +265,13 @@ min_value = -72.0
 max_value = 6.0
 step = 0.1
 
-[node name="H3" type="HBoxContainer" parent="BG/M/V/AudioOptions/M/Options"]
+[node name="H3" type="HBoxContainer" parent="BG/M/V/AudioOptions/M/Options/V"]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="Label" type="Label" parent="BG/M/V/AudioOptions/M/Options/H3"]
+[node name="Label" type="Label" parent="BG/M/V/AudioOptions/M/Options/V/H3"]
 layout_mode = 2
 size_flags_horizontal = 7
 theme_override_colors/font_color = Color(0.0745098, 0.537255, 0.937255, 1)
@@ -276,7 +281,7 @@ text = "SFX"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Value" type="Label" parent="BG/M/V/AudioOptions/M/Options/H3"]
+[node name="Value" type="Label" parent="BG/M/V/AudioOptions/M/Options/V/H3"]
 layout_mode = 2
 size_flags_horizontal = 7
 theme_override_colors/font_color = Color(0.25098, 0.67451, 0.184314, 1)
@@ -286,7 +291,7 @@ text = "100%"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="SFXSlider" type="HSlider" parent="BG/M/V/AudioOptions/M/Options/H3"]
+[node name="SFXSlider" type="HSlider" parent="BG/M/V/AudioOptions/M/Options/V/H3"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
@@ -297,23 +302,23 @@ min_value = -72.0
 max_value = 6.0
 step = 0.1
 
-[node name="H4" type="HBoxContainer" parent="BG/M/V/AudioOptions/M/Options"]
+[node name="H4" type="HBoxContainer" parent="BG/M/V/AudioOptions/M/Options/V"]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="Label" type="Label" parent="BG/M/V/AudioOptions/M/Options/H4"]
+[node name="Label" type="Label" parent="BG/M/V/AudioOptions/M/Options/V/H4"]
 layout_mode = 2
 size_flags_horizontal = 7
 theme_override_colors/font_color = Color(0.0745098, 0.537255, 0.937255, 1)
 theme_override_fonts/font = ExtResource("4_bux1i")
 theme_override_font_sizes/font_size = 8
-text = "Musik"
+text = "UI"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Value" type="Label" parent="BG/M/V/AudioOptions/M/Options/H4"]
+[node name="Value" type="Label" parent="BG/M/V/AudioOptions/M/Options/V/H4"]
 layout_mode = 2
 size_flags_horizontal = 7
 theme_override_colors/font_color = Color(0.25098, 0.67451, 0.184314, 1)
@@ -323,7 +328,7 @@ text = "100%"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MenuSlider" type="HSlider" parent="BG/M/V/AudioOptions/M/Options/H4"]
+[node name="MenuSlider" type="HSlider" parent="BG/M/V/AudioOptions/M/Options/V/H4"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
@@ -334,13 +339,50 @@ min_value = -72.0
 max_value = 6.0
 step = 0.1
 
-[node name="H5" type="HBoxContainer" parent="BG/M/V/AudioOptions/M/Options"]
+[node name="H6" type="HBoxContainer" parent="BG/M/V/AudioOptions/M/Options/V"]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="Label" type="Label" parent="BG/M/V/AudioOptions/M/Options/H5"]
+[node name="Label" type="Label" parent="BG/M/V/AudioOptions/M/Options/V/H6"]
+layout_mode = 2
+size_flags_horizontal = 7
+theme_override_colors/font_color = Color(0.0745098, 0.537255, 0.937255, 1)
+theme_override_fonts/font = ExtResource("4_bux1i")
+theme_override_font_sizes/font_size = 8
+text = "Ambiente"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Value" type="Label" parent="BG/M/V/AudioOptions/M/Options/V/H6"]
+layout_mode = 2
+size_flags_horizontal = 7
+theme_override_colors/font_color = Color(0.25098, 0.67451, 0.184314, 1)
+theme_override_fonts/font = ExtResource("4_bux1i")
+theme_override_font_sizes/font_size = 8
+text = "100%"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AmbienteSlider" type="HSlider" parent="BG/M/V/AudioOptions/M/Options/V/H6"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_icons/grabber = ExtResource("9_mqodm")
+theme_override_icons/grabber_highlight = ExtResource("10_j7he6")
+theme_override_icons/grabber_disabled = ExtResource("11_ul2d0")
+min_value = -72.0
+max_value = 6.0
+step = 0.1
+
+[node name="H5" type="HBoxContainer" parent="BG/M/V/AudioOptions/M/Options/V"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Label" type="Label" parent="BG/M/V/AudioOptions/M/Options/V/H5"]
 layout_mode = 2
 size_flags_horizontal = 14
 theme_override_colors/font_color = Color(0.0745098, 0.537255, 0.937255, 1)
@@ -350,7 +392,7 @@ text = "Musik"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MMuteBtn" type="CheckButton" parent="BG/M/V/AudioOptions/M/Options/H5"]
+[node name="MMuteBtn" type="CheckButton" parent="BG/M/V/AudioOptions/M/Options/V/H5"]
 layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 5
@@ -365,7 +407,7 @@ theme_override_icons/unchecked = ExtResource("9_mqodm")
 theme_override_icons/unchecked_disabled = ExtResource("11_ul2d0")
 text = "An"
 
-[node name="CheckIcon" type="TextureRect" parent="BG/M/V/AudioOptions/M/Options/H5/MMuteBtn"]
+[node name="CheckIcon" type="TextureRect" parent="BG/M/V/AudioOptions/M/Options/V/H5/MMuteBtn"]
 visible = false
 layout_mode = 1
 anchors_preset = -1
@@ -936,11 +978,12 @@ vertical_alignment = 1
 [connection signal="button_up" from="BG/M/V/BBox/AudioBtn" to="." method="_on_audio_btn_button_up"]
 [connection signal="button_up" from="BG/M/V/BBox/VideoBtn" to="." method="_on_video_btn_button_up"]
 [connection signal="button_up" from="BG/M/V/BBox/KeyBtn" to="." method="_on_key_btn_button_up"]
-[connection signal="value_changed" from="BG/M/V/AudioOptions/M/Options/H/AllAudioSlider" to="." method="_on_all_audio_slider_value_changed"]
-[connection signal="value_changed" from="BG/M/V/AudioOptions/M/Options/H2/MusicSlider" to="." method="_on_music_slider_value_changed"]
-[connection signal="value_changed" from="BG/M/V/AudioOptions/M/Options/H3/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
-[connection signal="value_changed" from="BG/M/V/AudioOptions/M/Options/H4/MenuSlider" to="." method="_on_menu_slider_value_changed"]
-[connection signal="button_up" from="BG/M/V/AudioOptions/M/Options/H5/MMuteBtn" to="." method="_on_m_mute_btn_button_up"]
+[connection signal="value_changed" from="BG/M/V/AudioOptions/M/Options/V/H/AllAudioSlider" to="." method="_on_all_audio_slider_value_changed"]
+[connection signal="value_changed" from="BG/M/V/AudioOptions/M/Options/V/H2/MusicSlider" to="." method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="BG/M/V/AudioOptions/M/Options/V/H3/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
+[connection signal="value_changed" from="BG/M/V/AudioOptions/M/Options/V/H4/MenuSlider" to="." method="_on_menu_slider_value_changed"]
+[connection signal="value_changed" from="BG/M/V/AudioOptions/M/Options/V/H6/AmbienteSlider" to="." method="_on_ambiente_slider_value_changed"]
+[connection signal="button_up" from="BG/M/V/AudioOptions/M/Options/V/H5/MMuteBtn" to="." method="_on_m_mute_btn_button_up"]
 [connection signal="button_up" from="BG/M/V/VideoOptions/M/Options/H1/CheckButton" to="." method="_on_check_button_button_up"]
 [connection signal="button_up" from="BG/M/V/VideoOptions/M/Options/H2/CheckButton2" to="." method="_on_check_button_2_button_up"]
 [connection signal="button_up" from="BG/M/V/H/OkayBtn" to="." method="_on_okay_btn_button_up"]

@@ -5,4 +5,5 @@
 
 [node name="SoundEffect" type="AudioStreamPlayer"]
 stream = ExtResource("1_yxbac")
+bus = &"MenuSFX"
 script = ExtResource("1_e3wwx")

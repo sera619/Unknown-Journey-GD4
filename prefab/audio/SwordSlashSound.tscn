@@ -6,5 +6,5 @@
 [node name="SoundEffect" type="AudioStreamPlayer2D"]
 stream = ExtResource("1_au6qg")
 volume_db = -52.185
-bus = &"PlayerSFX"
+bus = &"PlayerEffects"
 script = ExtResource("1_k2bsp")

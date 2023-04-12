@@ -5,5 +5,5 @@
 
 [node name="SoundEffect" type="AudioStreamPlayer"]
 stream = ExtResource("1_bysfa")
-bus = &"PlayerSFX"
+bus = &"Ambiente"
 script = ExtResource("1_asd41")

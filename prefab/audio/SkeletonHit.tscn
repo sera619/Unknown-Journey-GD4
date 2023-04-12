@@ -6,4 +6,5 @@
 [node name="SoundEffect" type="AudioStreamPlayer2D"]
 stream = ExtResource("1_fvjxk")
 max_distance = 156.0
+bus = &"Ambiente"
 script = ExtResource("1_2ycy1")

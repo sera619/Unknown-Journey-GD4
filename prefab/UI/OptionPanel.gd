@@ -2,17 +2,19 @@ extends Control
 class_name OptionPanel
 
 # AUDIO
-@onready var audio_all_label = $BG/M/V/AudioOptions/M/Options/H/Value
-@onready var audio_music_label = $BG/M/V/AudioOptions/M/Options/H2/Value
-@onready var audio_sfx_label = $BG/M/V/AudioOptions/M/Options/H3/Value
-@onready var audio_menu_label = $BG/M/V/AudioOptions/M/Options/H4/Value
+@onready var audio_all_label = $BG/M/V/AudioOptions/M/Options/V/H/Value
+@onready var audio_music_label = $BG/M/V/AudioOptions/M/Options/V/H2/Value
+@onready var audio_sfx_label = $BG/M/V/AudioOptions/M/Options/V/H3/Value
+@onready var audio_menu_label = $BG/M/V/AudioOptions/M/Options/V/H4/Value
+@onready var audio_ambiente_label = $BG/M/V/AudioOptions/M/Options/V/H6/Value
 
-@onready var audio_all_slider = $BG/M/V/AudioOptions/M/Options/H/AllAudioSlider
-@onready var audio_music_slider = $BG/M/V/AudioOptions/M/Options/H2/MusicSlider
-@onready var audio_sfx_slider = $BG/M/V/AudioOptions/M/Options/H3/SFXSlider
-@onready var audio_menu_slider = $BG/M/V/AudioOptions/M/Options/H4/MenuSlider
-@onready var music_mute_btn = $BG/M/V/AudioOptions/M/Options/H5/MMuteBtn
-@onready var music_mute_icon = $BG/M/V/AudioOptions/M/Options/H5/MMuteBtn/CheckIcon
+@onready var audio_all_slider = $BG/M/V/AudioOptions/M/Options/V/H/AllAudioSlider
+@onready var audio_music_slider = $BG/M/V/AudioOptions/M/Options/V/H2/MusicSlider
+@onready var audio_sfx_slider = $BG/M/V/AudioOptions/M/Options/V/H3/SFXSlider
+@onready var audio_ambiente_slider = $BG/M/V/AudioOptions/M/Options/V/H6/AmbienteSlider
+@onready var audio_menu_slider = $BG/M/V/AudioOptions/M/Options/V/H4/MenuSlider
+@onready var music_mute_btn = $BG/M/V/AudioOptions/M/Options/V/H5/MMuteBtn
+@onready var music_mute_icon = $BG/M/V/AudioOptions/M/Options/V/H5/MMuteBtn/CheckIcon
 
 @onready var audio_btn = $BG/M/V/BBox/AudioBtn
 @onready var video_btn = $BG/M/V/BBox/VideoBtn
@@ -48,14 +50,14 @@ func _reset_panels():
 
 func _update_audio_all():
 	var value = self.audio_all_slider.value
-	var old_value = AudioServer.get_bus_volume_db(0)
+	var old_value = AudioServer.get_bus_volume_db(1)
 	if value == old_value:
 		return
 	GameManager._update_audio_all(value)
 
 func _update_audio_music():
 	var value = self.audio_music_slider.value
-	var old_value = AudioServer.get_bus_volume_db(1)
+	var old_value = AudioServer.get_bus_volume_db(5)
 	if value == old_value:
 		return
 	GameManager._update_audio_music(value)
@@ -69,10 +71,17 @@ func _update_audio_sfx():
 
 func _update_audio_menu():
 	var value = self.audio_menu_slider.value
-	var old_value = AudioServer.get_bus_volume_db(3)
+	var old_value = AudioServer.get_bus_volume_db(4)
 	if value == old_value:
 		return
 	GameManager._update_audio_menu(value)
+
+func _update_audio_ambiente():
+	var value = self.audio_ambiente_slider.value
+	var old_value = AudioServer.get_bus_volume_db(3)
+	if value == old_value:
+		return
+	GameManager._update_audio_ambiente(value)
 
 func _update_window_mode():
 	if screen_res_btn.button_pressed:
@@ -106,15 +115,17 @@ func _update_music_mute():
 	
 
 func _set_current_audio_values():
-	var all = AudioServer.get_bus_volume_db(0)
-	var music = AudioServer.get_bus_volume_db(3)
-	var sfx = AudioServer.get_bus_volume_db(1)
-	var menu = AudioServer.get_bus_volume_db(2)
+	var all = AudioServer.get_bus_volume_db(1)
+	var music = AudioServer.get_bus_volume_db(5)
+	var sfx = AudioServer.get_bus_volume_db(2)
+	var menu = AudioServer.get_bus_volume_db(4)
+	var ambiente = AudioServer.get_bus_volume_db(3)
 	GameManager.current_game_options["audio_all"] = all
 	GameManager.current_game_options['audio_music'] = music
 	GameManager.current_game_options['audio_sfx'] = sfx
 	GameManager.current_game_options['audio_menu'] = menu
-	GameManager.current_game_options['musicmute'] = AudioServer.is_bus_mute(3)
+	GameManager.current_game_options['audio_ambiente'] = ambiente
+	GameManager.current_game_options['musicmute'] = AudioServer.is_bus_mute(5)
 	if GameManager.current_game_options['musicmute'] == true:
 		self.music_mute_btn.button_pressed = true
 		self.music_mute_btn.text = "AUS"
@@ -128,10 +139,12 @@ func _set_current_audio_values():
 	self.audio_music_label.text = "%d DB" % int(music)
 	self.audio_sfx_label.text = "%d DB" % int(sfx)
 	self.audio_menu_label.text = "%d DB" % int(menu)
+	self.audio_ambiente_label.text = "%d DB" % int(ambiente)
 	self.audio_all_slider.value = all
 	self.audio_menu_slider.value = menu
 	self.audio_music_slider.value = music
 	self.audio_sfx_slider.value = sfx
+	self.audio_ambiente_slider.value = ambiente
 
 func _set_current_video_values():
 	var full_screen = DisplayServer.window_get_mode()
@@ -192,19 +205,24 @@ func _on_back_btn_button_up():
 
 func _on_sfx_slider_value_changed(value):
 	audio_sfx_label.text = "%s DB" % floor(value)
-	AudioServer.set_bus_volume_db(1, value)
+	AudioServer.set_bus_volume_db(2, value)
 
 func _on_music_slider_value_changed(value):
 	audio_music_label.text = "%s DB" % floor(value)
-	AudioServer.set_bus_volume_db(3, value)
+	AudioServer.set_bus_volume_db(5, value)
 
 func _on_menu_slider_value_changed(value):
 	audio_menu_label.text = "%s DB" % floor(value)
-	AudioServer.set_bus_volume_db(3, value)
+	AudioServer.set_bus_volume_db(4, value)
 
 func _on_all_audio_slider_value_changed(value):
 	audio_all_label.text = "%s DB" % floor(value)
-	AudioServer.set_bus_volume_db(0,value)
+	AudioServer.set_bus_volume_db(1, value)
+
+func _on_ambiente_slider_value_changed(value):
+	audio_ambiente_label.text = "%s DB" % floor(value)
+	AudioServer.set_bus_volume_db(3, value)
+
 
 func _on_audio_btn_button_up():
 	_create_btn_click_sound()
@@ -232,3 +250,5 @@ func _on_check_button_2_button_up():
 func _on_m_mute_btn_button_up():
 	_create_btn_click_sound()
 	_update_music_mute()
+
+
