@@ -30,6 +30,7 @@ const DEFAULT_GAME_OPTIONS: Dictionary = {
 	"audio_all":0.0,
 	"audio_menu":0.0,
 	"audio_music":0.0,
+	"audio_ambiente": 0.0,
 	"audio_sfx":0.0,
 	"musicmute": false,
 	"fullscreen":false,
@@ -54,11 +55,12 @@ func _setup_game_settings():
 	print("[!] GameManager: Gameoptions setup successfully!")
 
 func _set_game_settings(settings: Dictionary):
-	AudioServer.set_bus_volume_db(0, settings['audio_all'])
-	AudioServer.set_bus_volume_db(1, settings['audio_music'])
+	AudioServer.set_bus_volume_db(1, settings['audio_all'])
+	AudioServer.set_bus_volume_db(5, settings['audio_music'])
+	AudioServer.set_bus_volume_db(3, settings['audio_ambiente'])
 	AudioServer.set_bus_volume_db(2, settings['audio_sfx'])
-	AudioServer.set_bus_volume_db(3, settings['audio_menu'])
-	AudioServer.set_bus_mute(3, settings['musicmute'])
+	AudioServer.set_bus_volume_db(4, settings['audio_menu'])
+	AudioServer.set_bus_mute(5, settings['musicmute'])
 	if settings['fullscreen'] == true:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	else:
@@ -71,29 +73,34 @@ func _set_game_settings(settings: Dictionary):
 
 
 func _update_audio_all(value):
-	AudioServer.set_bus_volume_db(0, value)
+	AudioServer.set_bus_volume_db(1, value)
 	self.current_game_options['audio_all'] = value
 	print("[!] GameManger: All audio volume set to: %s" % value)
 
 func _update_audio_music(value):
-	AudioServer.set_bus_volume_db(2, value)
+	AudioServer.set_bus_volume_db(5, value)
 	self.current_game_options['audio_music'] = value
 	print("[!] GameManger: Music audio volume set to: %s" % value)
 
 func _update_audio_sfx(value):
-	AudioServer.set_bus_volume_db(1, value)
+	AudioServer.set_bus_volume_db(2, value)
 	self.current_game_options['audio_sfx'] = value
 	print("[!] GameManger: SFX audio volume set to: %s" % value)
 
 func _update_audio_menu(value):
-	AudioServer.set_bus_volume_db(3, value)
+	AudioServer.set_bus_volume_db(4, value)
 	self.current_game_options['audio_menu'] = value
 	print("[!] GameManger: Menu audio volume set to: %s" % value)
 
 func _update_musik_mute(mode: bool):
 	self.current_game_options['musicmute'] = mode
-	AudioServer.set_bus_mute(3, mode)
+	AudioServer.set_bus_mute(5, mode)
 	print("[!] GameManger: Musicmute set to: %s" % mode)
+
+func _update_audio_ambiente(value):
+	AudioServer.set_bus_volume_db(3, value)
+	self.current_game_options['audio_ambiente'] = value
+	print("[!] GameManger: Ambiente audio volume set to: %s" % value)
 
 func _update_window_mode(mode: bool):
 	self.current_game_options['fullscreen'] = mode
