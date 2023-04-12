@@ -17361,7 +17361,7 @@ world_name = "CityCellar"
 position = Vector2(781, 296)
 
 [node name="EntrySpot" type="Marker2D" parent="Map"]
-position = Vector2(420, -388)
+position = Vector2(646, 307)
 
 [node name="NPCMovemarks" type="Node2D" parent="Map"]
 

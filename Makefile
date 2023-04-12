@@ -1,4 +1,4 @@
-version = "TechAlpha-v0.3.4"
+version = "TechAlpha-v0.3.7"
 build: clean
 	@C:\1Coding\GDScript\godot.exe --quiet --export-debug "Windows Desktop"
 clean:
