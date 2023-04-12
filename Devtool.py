@@ -16,6 +16,8 @@ Download the zip > Extract to a directory > open directory> run "UnknownJourney-
 
 __IMPORTANT:__ If you already played the game please click the "Reset" Button on the Loadmenu to Reset Savefiles and escape Gamecrashs!
 
+__Quick Overview:__
+
 - Patch v{version}:
 """
     old_path = "changelog.md"
