@@ -640,7 +640,7 @@ position = Vector2(1223, 670)
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_c1uyu")
 autoplay = true
-bus = &"MenuSFX"
+bus = &"Musik"
 
 [editable path="Map/GameObjects/Teleporter"]
 [editable path="Map/GameObjects/Teleporter/PlayerDetector"]

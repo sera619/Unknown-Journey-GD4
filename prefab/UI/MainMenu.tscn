@@ -864,7 +864,7 @@ libraries = {
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_rvfd6")
 autoplay = true
-bus = &"MenuSFX"
+bus = &"Musik"
 
 [connection signal="button_down" from="Panel/M/V/MMStartBtn" to="." method="_on_mm_start_btn_button_down"]
 [connection signal="button_down" from="Panel/M/V/MMLoadBtn" to="." method="_on_mm_load_btn_button_down"]

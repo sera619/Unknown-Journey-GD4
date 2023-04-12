@@ -2659,9 +2659,6 @@ animated = true
 position = Vector2(0, -16)
 shape = SubResource("CircleShape2D_kykhg")
 
-[node name="PlayerDetector" parent="Map/GameObjects/Teleporter" index="1"]
-visible = true
-
 [node name="CollisionShape2D" parent="Map/GameObjects/Teleporter/PlayerDetector" index="0"]
 position = Vector2(0, -20)
 shape = SubResource("CircleShape2D_mwn7j")

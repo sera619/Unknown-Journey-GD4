@@ -299,7 +299,7 @@ patch_margin_bottom = 76
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_q7aqx")
-bus = &"MenuSFX"
+bus = &"Musik"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

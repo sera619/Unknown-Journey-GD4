@@ -3866,7 +3866,7 @@ position = Vector2(1699, 670)
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("20_n60f5")
 autoplay = true
-bus = &"MenuSFX"
+bus = &"Musik"
 
 [editable path="Map/GameMap/MapUtils/EnemySpawner"]
 [editable path="Map/GameObjects/Teleporter"]
