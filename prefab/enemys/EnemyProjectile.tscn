@@ -1,6 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://dueybk0elqb3i"]
+[gd_scene load_steps=5 format=3 uid="uid://caecdrucoo0q7"]
 
-[ext_resource type="Script" path="res://prefab/enemys/EnemyProjectile.gd" id="1_2kf47"]
+[ext_resource type="Script" path="res://prefab/enemys/EnemyProjectile.gd" id="1_bean2"]
 
 [sub_resource type="Animation" id="Animation_qxlgb"]
 resource_name = "loop"
@@ -16,7 +16,7 @@ radius = 532.015
 [node name="EnemyProjectile" type="Area2D" groups=["enemyWeapon"]]
 collision_layer = 8
 collision_mask = 8
-script = ExtResource("1_2kf47")
+script = ExtResource("1_bean2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 

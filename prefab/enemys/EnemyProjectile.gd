@@ -71,9 +71,6 @@ func _physics_process(delta):
 				position += direction * speed * delta
 				look_at(global_position + direction)
 
-
-
-
 func set_drag_factor(new_value: float) -> void:
 	drag_factor = clamp(new_value, 0.01, 0.5)
 
@@ -95,7 +92,7 @@ func _create_impact_effect(area):
 	var effect = impact_effect_scene.instantiate()
 	effect.global_position = self.global_position
 	var sound = impact_sound_scene.instantiate()
-	sound.global_position = self.global_position
+	#sound.global_position = self.global_position
 	get_tree().current_scene.add_child(sound)
 	get_tree().current_scene.add_child(effect)
 	self.queue_free()
