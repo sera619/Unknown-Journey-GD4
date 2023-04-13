@@ -87,3 +87,33 @@ const NPC_NAMES = {
 		"Lirien",
 	]
 }
+
+const INGAME_MAP_NAMES = [
+	"Arkairos",
+	"Düstermark",
+	"Sonnenglanz",
+	"Elfenhain",
+	"kleiner Wald",
+	"Hotel Keller",
+	"Arkairos Hotel",
+	"Marty's Laden",
+	"Grüner Hain",
+	"Schwert Grube",
+	"Dunkler Wald",
+	"Schattenwald",
+	"Kristallturm",
+	"Drachenfels",
+	"Feuersee",
+	"Silbermond",
+	"Eisklippen",
+	"Schlangengrube",
+	"Phantomtiefen",
+	"Sumpf des Verderbens",
+	"Himmelsfeste",
+	"Eisenzitadelle",
+	"Blutmondhöhle",
+	"Verlorenes Tal",
+	"Schwarzwasserbucht",
+	"Ruinenstadt",
+	"Froststeppe",
+]
