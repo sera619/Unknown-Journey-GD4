@@ -44818,7 +44818,7 @@ lpc_sprite = true
 position = Vector2(-2938, -32)
 MAX_WAIT_TIME = 20
 MOVE_POINT_CONTAINER = NodePath("../../../FarmMovePos")
-npc_name = "Bauer Dieter"
+npc_name = "Bauer Caelan"
 npc_sprite = ExtResource("23_81fc5")
 lpc_sprite = true
 
