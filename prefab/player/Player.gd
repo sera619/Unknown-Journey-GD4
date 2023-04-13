@@ -5,6 +5,9 @@ class_name Player
 @export var SPRITE_SWORD: Texture2D
 @export var SPRITE_NO_SWORD: Texture2D
 
+@export_category("Spell/Item Scenes")
+@export var bomb_scene: PackedScene
+
 @export_category('Effect Scenes')
 @export var hit_effect_scene: PackedScene
 @export var levelup_effect_scene: PackedScene
@@ -71,7 +74,7 @@ var can_interact: bool = true
 @onready var sound_controller: SoundController = $SoundController
 @onready var body_collider: CollisionShape2D = $CollisionShape2D
 @onready var interact_ray: RayCast2D = $Interact/InteractRay
-
+@onready var itemdrop_position: Marker2D = $Interact/ItemDrop 
 
 var vel = Vector2.ZERO
 var PUSH_SPEED = 50
@@ -262,7 +265,9 @@ func _input_handler(_delta):
 			var parent = interact_ray.get_collider().get_parent()
 			if parent.has_method("interact"):
 				parent.interact()
-
+	
+	if Input.is_action_just_pressed("bomb"):
+		_use_item("Bombe")
 	
 	if Input.is_action_just_pressed("debug_key"):
 		#debuff_handler.get_debuff_effect(SkillManager.ELEMENT.POISON)
@@ -278,6 +283,18 @@ func move():
 	set_velocity(velocity)
 	move_and_slide()
 	velocity = velocity
+
+func _use_item(itemname):
+	match itemname:
+		"Bombe":
+			if InventoryManager.can_use_item(itemname):
+				InventoryManager.remove_item(itemname, 1)
+				_place_bomb()
+
+func _place_bomb():
+	var bomb = bomb_scene.instantiate()
+	GameManager.current_world.enemy_container.add_child(bomb)
+	bomb.global_position = itemdrop_position.global_position
 
 func hurt_state(delta):
 	if knockback != Vector2.ZERO:
