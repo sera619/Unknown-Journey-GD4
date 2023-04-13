@@ -44,6 +44,12 @@ var exp_multiplikator:float = 1.2
 var parent = null
 var dmg_label: RichTextLabel = null
 var played_time = 0
+
+var player_last_death = {
+	"time": "",
+	"date": ""
+}
+
 var player_statistic: Dictionary = {
 	"max_dmg_taken": 0,
 	"max_gold_hold": 0,
@@ -75,6 +81,10 @@ func _ready():
 		GameManager.game.new_game = false
 	else: 
 		apply_loaded_stats()
+
+func _update_last_death():
+	player_last_death['time'] = Time.get_time_string_from_system()
+	player_last_death['date'] = Time.get_date_string_from_system()
 
 func _check_died():
 	player_statistic['died'] += 1
@@ -251,6 +261,8 @@ func apply_loaded_stats():
 		level = data['level']
 		gold = data['gold']
 		player_statistic = data['statistic']
+		if data.has('last_death'):
+			player_last_death = data['last_death']
 		GameManager.seen_npcs.clear()
 		for n in data['seen_npcs']:
 			GameManager.seen_npcs.append(n)
@@ -286,6 +298,7 @@ func save():
 		"seen_npcs": GameManager.seen_npcs,
 		"gold": self.gold,
 		"played_time": self.played_time,
-		"statistic": self.player_statistic
+		"statistic": self.player_statistic,
+		"last_death": self.player_last_death
 	}
 	return save_dict
