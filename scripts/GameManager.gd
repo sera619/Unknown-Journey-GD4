@@ -51,7 +51,7 @@ func _setup_game_settings():
 	if not FileAccess.file_exists(path):
 		self._save_settings(DEFAULT_GAME_OPTIONS)
 	current_game_options = self._load_settings()
-	if not current_game_options.has("audio_ambiente"):
+	if !current_game_options.has("audio_ambiente"):
 		print("[!] GameManager: Optionsavefile is not on actual version. Create new.")
 		self._save_settings(DEFAULT_GAME_OPTIONS)
 	current_game_options = self._load_settings()
