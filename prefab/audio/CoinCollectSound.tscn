@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://6gdy5ost6y7n"]
+
+[ext_resource type="AudioStream" uid="uid://xe1ekavautvu" path="res://assets/Music and Sounds/coin_collect.mp3" id="1_u65at"]
+[ext_resource type="Script" path="res://prefab/audio/SoundEffect.gd" id="2_6weib"]
+
+[node name="SoundEffect" type="AudioStreamPlayer"]
+stream = ExtResource("1_u65at")
+bus = &"Ambiente"
+script = ExtResource("2_6weib")
