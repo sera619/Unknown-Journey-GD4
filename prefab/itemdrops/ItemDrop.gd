@@ -14,6 +14,7 @@ signal interaction_finished()
 @export var item_drop_sound: PackedScene
 @export var quest_pick_sound: PackedScene
 @export var interact_sound: PackedScene
+@export var collect_coin_sound: PackedScene
 
 @onready var pickup_zone: Area2D = $Area2D 
 @onready var shadow_sprite: Sprite2D = $Shadow
@@ -69,6 +70,9 @@ func pickup(area):
 				get_tree().current_scene.add_child(sound)
 			InventoryManager.add_item(item_name, amount)
 	elif item_type == 3:
+		if collect_coin_sound:
+			var sound = collect_coin_sound.instantiate()
+			get_tree().current_scene.add_child(sound)
 		GameManager.interface.notice_box.show_item_notice("Gold", amount)
 		GameManager.player.stats.set_gold(GameManager.player.stats.gold + amount)
 	elif item_type == 4:
