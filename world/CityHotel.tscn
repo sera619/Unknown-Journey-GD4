@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://ce2qgcscf6ubu"]
+[gd_scene load_steps=63 format=3 uid="uid://ce2qgcscf6ubu"]
 
 [ext_resource type="Script" path="res://world/CityHotel.gd" id="1_cofsr"]
 [ext_resource type="PackedScene" uid="uid://dcc837c2ujx6g" path="res://prefab/utils/GameCamera.tscn" id="2_fnk70"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://c738vytvimynb" path="res://prefab/utils/Teleporter.tscn" id="9_qijaq"]
 [ext_resource type="PackedScene" uid="uid://c1ywcyppymlpl" path="res://prefab/props/HouseChair.tscn" id="10_l3fdu"]
 [ext_resource type="PackedScene" uid="uid://cq7p6ip14cr4d" path="res://prefab/npc/NPCThalassa.tscn" id="11_51d3q"]
+[ext_resource type="PackedScene" uid="uid://bpwdwut7qwb1v" path="res://prefab/utils/PlayerGraveyard.tscn" id="11_a4r0e"]
 [ext_resource type="PackedScene" uid="uid://de1qg2ncmb1ps" path="res://prefab/props/HouseTable.tscn" id="12_y6v8m"]
 [ext_resource type="PackedScene" uid="uid://rppgwrdc8f53" path="res://prefab/props/CandleSmall.tscn" id="13_5ewlc"]
 [ext_resource type="PackedScene" uid="uid://dryyghofo87wq" path="res://prefab/props/WandLightSwitch.tscn" id="14_td3pu"]
@@ -56721,6 +56722,7 @@ radius = 21.0238
 [node name="CityHotel" type="Node2D" groups=["WorldBase"]]
 script = ExtResource("1_cofsr")
 world_name = "CityHotel"
+ingame_name = "Arkairos Hotel"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("2_w2fvt")
@@ -56777,6 +56779,9 @@ y_sort_enabled = true
 tile_set = SubResource("TileSet_13iod")
 cell_quadrant_size = 32
 format = 2
+
+[node name="PlayerGraveyard" parent="Map/GameObjects" instance=ExtResource("11_a4r0e")]
+position = Vector2(285, 8)
 
 [node name="NPC" type="Node2D" parent="Map/GameObjects"]
 y_sort_enabled = true

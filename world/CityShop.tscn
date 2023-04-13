@@ -19354,6 +19354,7 @@ radius = 58.0345
 [node name="CityShop" type="Node2D" groups=["WorldBase"]]
 script = ExtResource("1_mvxqd")
 world_name = "CityShop"
+ingame_name = "Marty's Laden"
 
 [node name="Map" type="Node2D" parent="."]
 y_sort_enabled = true

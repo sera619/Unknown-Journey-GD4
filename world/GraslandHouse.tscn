@@ -14548,6 +14548,7 @@ radius = 34.0147
 [node name="GraslandHouse" type="Node" groups=["WorldBase"]]
 script = ExtResource("1_gjfdg")
 world_name = "GraslandHouse"
+ingame_name = "Mein Haus"
 
 [node name="Map" type="Node2D" parent="."]
 

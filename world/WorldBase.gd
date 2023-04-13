@@ -3,6 +3,7 @@ class_name WorldBase
 
 @export_category('Base Information')
 @export var world_name: String
+@export var ingame_name: String
 
 
 @onready var maputils = $Map/GameMap/MapUtils
@@ -13,6 +14,7 @@ class_name WorldBase
 @onready var player_scene = preload("res://prefab/player/Player.tscn")
 @onready var game_map = $Map/GameObjects
 @onready var map_container = $Map
+@onready var player_graveyard = $Map/GameObjects/PlayerGraveyard
 
 func _ready():
 	_on_ready()
@@ -20,6 +22,7 @@ func _ready():
 func _on_ready():
 	spawn_player()
 	GameManager.register_node(self)
+	GameManager.interface.notice_box.show_common_info_notice("Du bist jetzt in:\n\n[color=white]\"%s\"[/color]" % ingame_name)
 	if GameManager.load_game:
 		QuestManager.load_quests()
 		GameManager.load_game = false
@@ -39,7 +42,10 @@ func revive_player():
 		GameManager.player = null
 	var new_player = player_scene.instantiate()
 	game_map.add_child(new_player)
-	new_player.global_position = get_respawn_spot()
+	if world_name == "CityShop" or world_name == "GraslandHouse" or world_name == "CityHotel" or world_name == "CityShop":
+		new_player.global_position = get_respawn_spot()
+	else:
+		new_player.global_position = player_graveyard.get_respawn_pos()
 
 
 func spawn_player():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=81 format=3 uid="uid://blu2fjm62uqjt"]
+[gd_scene load_steps=82 format=3 uid="uid://blu2fjm62uqjt"]
 
 [ext_resource type="Script" path="res://world/CityCellar.gd" id="1_y4cxl"]
 [ext_resource type="Environment" uid="uid://dlb3sxd1qxstv" path="res://WorldEnv.tres" id="2_4y0vp"]
@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://d37hqvwxc31tu" path="res://prefab/props/SwitchCabinet.tscn" id="11_g2ah1"]
 [ext_resource type="Script" path="res://world/QuestController.gd" id="11_ucevl"]
 [ext_resource type="PackedScene" uid="uid://bcir1dj3vcylc" path="res://prefab/traps/Spiketrap.tscn" id="12_6gtbb"]
+[ext_resource type="PackedScene" uid="uid://bpwdwut7qwb1v" path="res://prefab/utils/PlayerGraveyard.tscn" id="12_a6ipd"]
 [ext_resource type="PackedScene" uid="uid://rpx6f14c757n" path="res://prefab/props/Chest.tscn" id="12_fufds"]
 [ext_resource type="PackedScene" uid="uid://cpqjbaihholeg" path="res://prefab/utils/SwitchBox.tscn" id="12_nwvfa"]
 [ext_resource type="PackedScene" uid="uid://hgci6uekhsvq" path="res://prefab/props/SwitchPlattform.tscn" id="13_yggcw"]
@@ -17358,6 +17359,7 @@ radius = 39.3192
 [node name="CityCellar" type="Node2D" groups=["WorldBase"]]
 script = ExtResource("1_y4cxl")
 world_name = "CityCellar"
+ingame_name = "Hotel Keller"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("2_4y0vp")
@@ -17748,6 +17750,9 @@ format = 2
 layer_0/y_sort_enabled = true
 layer_0/y_sort_origin = 22
 layer_0/tile_data = PackedInt32Array(-786415, 524288, 6, -720879, 524288, 7, -786414, 524288, 6, -720878, 524288, 7, -786413, 524288, 6, -720877, 524288, 7, -786412, 524288, 6, -720876, 524288, 7, -786417, 524288, 6, -720881, 524288, 7)
+
+[node name="PlayerGraveyard" parent="Map/GameObjects" instance=ExtResource("12_a6ipd")]
+position = Vector2(781, 246)
 
 [node name="QuestObject" type="Node2D" parent="Map/GameObjects"]
 y_sort_enabled = true

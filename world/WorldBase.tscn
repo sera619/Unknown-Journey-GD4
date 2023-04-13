@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://0mowwnt4tjc1"]
+[gd_scene load_steps=7 format=3 uid="uid://0mowwnt4tjc1"]
 
 [ext_resource type="Script" path="res://world/WorldBase.gd" id="1_56egy"]
 [ext_resource type="Texture2D" uid="uid://i30uy8osh588" path="res://assets/World/tileset_dungeon.png" id="2_4tf8h"]
+[ext_resource type="PackedScene" uid="uid://bpwdwut7qwb1v" path="res://prefab/utils/PlayerGraveyard.tscn" id="3_gxj80"]
 [ext_resource type="PackedScene" uid="uid://dcc837c2ujx6g" path="res://prefab/utils/GameCamera.tscn" id="4_ej23u"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ol6bj"]
@@ -612,6 +613,8 @@ layer_2/tile_data = PackedInt32Array(-6, 65536, 2, 65530, 262144, 1, 131066, 0, 
 
 [node name="GameObjects" type="Node2D" parent="Map"]
 y_sort_enabled = true
+
+[node name="PlayerGraveyard" parent="Map/GameObjects" instance=ExtResource("3_gxj80")]
 
 [node name="NPC" type="Node2D" parent="Map/GameObjects"]
 y_sort_enabled = true

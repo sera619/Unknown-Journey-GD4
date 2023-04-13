@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://hkw6vakpucsu"]
+[gd_scene load_steps=25 format=3 uid="uid://hkw6vakpucsu"]
 
 [ext_resource type="Script" path="res://world/WorldBase.gd" id="1_31k03"]
 [ext_resource type="TileSet" uid="uid://bk5vv7fsil51w" path="res://prefab/tilesets/GraslandTileset.tres" id="2_o6h7u"]
@@ -14,6 +14,7 @@
 [ext_resource type="AudioStream" uid="uid://by0hknsdbofxt" path="res://assets/Music and Sounds/BG/Forest_BG.mp3" id="9_rki4w"]
 [ext_resource type="PackedScene" uid="uid://rpx6f14c757n" path="res://prefab/props/Chest.tscn" id="11_hw4p1"]
 [ext_resource type="PackedScene" uid="uid://xex3x1q2v22b" path="res://prefab/utils/Waysign.tscn" id="12_o1g6m"]
+[ext_resource type="PackedScene" uid="uid://bpwdwut7qwb1v" path="res://prefab/utils/PlayerGraveyard.tscn" id="13_vtp5k"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_35fdi"]
 texture = ExtResource("3_md2b6")
@@ -6598,6 +6599,9 @@ layer_1/y_sort_enabled = true
 layer_1/y_sort_origin = 0
 layer_1/z_index = 0
 layer_1/tile_data = PackedInt32Array(327677, 589825, 25, 458751, 655361, 26, 589823, 589825, 26, 262145, 589825, 26, 655363, 589825, 24, 458757, 720897, 24, 262152, 589825, 25, 589832, 589825, 25, 589833, 589825, 24, 262155, 589825, 24, 786444, 720897, 25, 983019, 589825, 26, 1245164, 720897, 25, 720877, 655361, 25, 851951, 720897, 25, 1048559, 720897, 24, 720880, 589825, 26, 917488, 589825, 25, 1048560, 589825, 24, 983025, 655361, 26, 1245170, 720897, 26, 983027, 720897, 25, 1179635, 720897, 26, 917492, 589825, 24, 1114100, 720897, 24, 786422, 589825, 24, 1245174, 720897, 26, 1245175, 589825, 26, 786425, 589825, 24, 851961, 589825, 26, 1114105, 720897, 24, 327670, 720897, 25, 262135, 589825, 25, 458744, 720897, 24, -131072, 720897, 24, 0, 589825, 24, -327679, 720897, 25, -458750, 655361, 24, -327678, 720897, 25, -327676, 655361, 25, -327672, 655361, 25, -327670, 655361, 26, -65526, 589825, 24, -458741, 655361, 26, -393205, 655361, 24, -327669, 720897, 25, -262133, 589825, 24, -65525, 720897, 26, -458740, 655361, 26, -131060, 655361, 24, -393229, 589825, 24, -22, 720897, 26, 327658, 655361, 25, 196587, 589825, 26, 327659, 720897, 26, -20, 589825, 26, 131053, 655361, 25, -18, 720897, 25, 196590, 720897, 24, 1048578, 720897, 26, 1245186, 720897, 26, 1245187, 720897, 26, 1245193, 655361, 24, 1245199, 589825, 26)
+
+[node name="PlayerGraveyard" parent="Map/GameObjects" instance=ExtResource("13_vtp5k")]
+position = Vector2(507, 262)
 
 [node name="NPC" type="Node2D" parent="Map/GameObjects"]
 y_sort_enabled = true
