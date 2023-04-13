@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://byyxwaxqn7ck5"]
+
+[ext_resource type="Script" path="res://Items/Item.gd" id="1_hoyj3"]
+[ext_resource type="Texture2D" uid="uid://bknkh1cfv2axv" path="res://assets/Effects/Bomb.png" id="2_n71l5"]
+
+[node name="Bombe" type="Node"]
+script = ExtResource("1_hoyj3")
+item_name = "Bombe"
+item_icon = ExtResource("2_n71l5")
+item_max_amount = 10
+item_type = "Consumable"
+item_description = "Eine kleine Bombe die 10 Schaden in einem größeren Bereich anrichtet. Vielleicht kann man damit auch noch andere Dinge öffnen. Anzünden, weglaufen!"
+item_price = 50
+item_sellprice = 25
+item_value = 10
