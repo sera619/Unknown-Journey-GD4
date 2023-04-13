@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://c6tgajp28urqq"]
+
+[ext_resource type="AudioStream" uid="uid://dohbr50w41l6c" path="res://assets/Music and Sounds/ambiente/falling_rocks.mp3" id="1_7e8kv"]
+[ext_resource type="Script" path="res://prefab/audio/SoundEffect.gd" id="2_2er53"]
+
+[node name="SoundEffect" type="AudioStreamPlayer"]
+stream = ExtResource("1_7e8kv")
+bus = &"Ambiente"
+script = ExtResource("2_2er53")
