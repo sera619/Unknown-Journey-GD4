@@ -12,9 +12,9 @@
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_2ricy")
 patch_margin_left = 78
-patch_margin_top = 32
+patch_margin_top = 28
 patch_margin_right = 78
-patch_margin_bottom = 32
+patch_margin_bottom = 28
 script = ExtResource("2_3jfic")
 item_bg = ExtResource("3_ric34")
 quest_bg = ExtResource("4_ht2tq")
@@ -42,7 +42,6 @@ text = "[center]1x Heiltrank
 
 erhalten.[/center]"
 fit_content = true
-scroll_active = false
 scroll_following = true
 autowrap_mode = 2
 

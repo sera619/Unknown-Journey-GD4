@@ -15,48 +15,49 @@ func _ready():
 func _set_bg(img: Texture):
 	self.texture = img
 	self.patch_margin_left = 78
-	self.patch_margin_top = 32
+	self.patch_margin_top = 28
 	self.patch_margin_right = 78
-	self.patch_margin_bottom = 32
+	self.patch_margin_bottom = 28
+	
 
 func set_item_get_msg(item: String, amount: int):
 	self._set_bg(item_bg)
-	label.parse_bbcode("[center][color=orange]Gegenstand erhalten[/color]\n\n[color=white]%sx %s[/color][center]" % [amount, item])
+	label.parse_bbcode("[center][color=orange]\n\nGegenstand erhalten[/color]\n\n[color=white]%sx %s[/color][center]" % [amount, item])
 	self.show()
 	timer.start()
 
 func set_quest_finish_msg(questname: String):
 	self._set_bg(quest_bg)
-	label.parse_bbcode("[center][color=orange]Quest bereit zum abgeben[/color]\n[color=white]\"%s\"[/color][/center]" % questname)
+	label.parse_bbcode("[center][color=orange]\n\nQuest bereit zum abgeben[/color]\n[color=white]\"%s\"[/color][/center]" % questname)
 	self.show()
 	timer.start()
 
 func set_quest_update_msg(questname: String, amount: int, max_amount: int):
-	self._set_bg(yellow_bg)
-	label.parse_bbcode("[center][color=orange]Questfortschritt[/color]\n[color=white]\"%s\"[/color]\n[color=green]%s / %s[/color][/center]" % [questname, amount, max_amount])
+	self._set_bg(quest_bg)
+	label.parse_bbcode("[center][color=orange]\nQuestfortschritt[/color]\n\n[color=white]\"%s\"[/color]\n\n[color=green]%s / %s[/color][/center]" % [questname, amount, max_amount])
 	self.show()
 	timer.start()
 
 func set_quest_complete_msg(questname: String):
 	self._set_bg(quest_bg)
-	label.parse_bbcode("[center][color=orange]Quest abgeschlossen\n[/color]\n[color=white]\"%s\"[/color][/center]" % questname)
+	label.parse_bbcode("[center][color=orange]\nQuest abgeschlossen\n[/color]\n[color=white]\"%s\"[/color][/center]" % questname)
 	self.show()
 	timer.start()
 
 func set_quest_new_msg(questname: String):
 	self._set_bg(quest_bg)
-	label.parse_bbcode("[center][color=orange]Neue Quest erhalten:\n\n[/color][color=white]\"%s\""% questname)
+	label.parse_bbcode("[center][color=orange]\nNeue Quest erhalten:\n\n[/color][color=white]\"%s\""% questname)
 	self.show()
 	timer.start()
 
 func set_door_locked_msg(message: String):
 	self._set_bg(error_bg)
-	label.parse_bbcode("[center][color=orange]%s[/color][/center]" % message)
+	label.parse_bbcode("[center][color=orange]\n%s[/color][/center]" % message)
 	self.show()
 	timer.start()
 
 func set_information_msg(information: String):
 	self._set_bg(yellow_bg)
-	label.parse_bbcode("[center][color=orange]%s[/color][/center]"% information)
+	label.parse_bbcode("[center][color=orange]\n%s[/color][/center]"% information)
 	self.show()
 	timer.start()
