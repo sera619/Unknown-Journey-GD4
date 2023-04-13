@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dathmd5c627as"]
+
+[ext_resource type="AudioStream" uid="uid://ds05hkgkj7nl7" path="res://assets/Music and Sounds/spells/bomb_explotion_sound.mp3" id="1_w2k37"]
+[ext_resource type="Script" path="res://prefab/audio/SoundEffect.gd" id="2_in3uv"]
+
+[node name="SoundEffect" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_w2k37")
+max_distance = 380.0
+bus = &"Ambiente"
+script = ExtResource("2_in3uv")
