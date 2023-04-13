@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://c6mrqxqq142ct"]
+[gd_scene load_steps=11 format=3 uid="uid://c6mrqxqq142ct"]
 
 [ext_resource type="Script" path="res://prefab/itemdrops/ItemDrop.gd" id="1_peejx"]
 [ext_resource type="PackedScene" uid="uid://bchvi3ge3woi" path="res://prefab/audio/ItemDropSound.tscn" id="2_6ykf1"]
 [ext_resource type="Texture2D" uid="uid://bkiw8qsmbvtow" path="res://assets/Shadows/SmallShadow.png" id="2_si46e"]
 [ext_resource type="Texture2D" uid="uid://ds24kcdfflu2t" path="res://assets/items/Practice Sword.png" id="3_807nx"]
 [ext_resource type="PackedScene" uid="uid://3ke52rknu6gw" path="res://prefab/audio/QuestPickupSound.tscn" id="3_jklxc"]
+[ext_resource type="PackedScene" uid="uid://didvayvbknuc8" path="res://prefab/audio/InteractSound.tscn" id="4_d6vrj"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xh0m3"]
 radius = 6.0
@@ -75,6 +76,7 @@ _data = {
 script = ExtResource("1_peejx")
 item_drop_sound = ExtResource("2_6ykf1")
 quest_pick_sound = ExtResource("3_jklxc")
+interact_sound = ExtResource("4_d6vrj")
 
 [node name="Shadow" type="Sprite2D" parent="."]
 texture = ExtResource("2_si46e")
