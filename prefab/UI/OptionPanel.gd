@@ -25,10 +25,20 @@ class_name OptionPanel
 @onready var key_panel = $BG/M/V/KeyOptions
 
 # VIDEO
-@onready var screen_res_btn: CheckButton = $BG/M/V/VideoOptions/M/Options/H1/CheckButton
-@onready var check_icon: TextureRect = $BG/M/V/VideoOptions/M/Options/H1/CheckButton/CheckIcon
-@onready var vsync_btn: CheckButton = $BG/M/V/VideoOptions/M/Options/H2/CheckButton2
-@onready var vsync_icon: TextureRect = $BG/M/V/VideoOptions/M/Options/H2/CheckButton2/CheckIcon
+@onready var screen_res_btn: CheckButton = $BG/M/V/VideoOptions/M/S/Options/H1/CheckButton
+@onready var check_icon: TextureRect = $BG/M/V/VideoOptions/M/S/Options/H1/CheckButton/CheckIcon
+@onready var vsync_btn: CheckButton = $BG/M/V/VideoOptions/M/S/Options/H2/CheckButton2
+@onready var vsync_icon: TextureRect = $BG/M/V/VideoOptions/M/S/Options/H2/CheckButton2/CheckIcon
+
+@onready var brightness_slider = $BG/M/V/VideoOptions/M/S/Options/H/BrightnessSlider
+@onready var contrast_slider = $BG/M/V/VideoOptions/M/S/Options/H3/ContrastSlider
+@onready var hue_slider = $BG/M/V/VideoOptions/M/S/Options/H4/HueSlider
+@onready var hue_label = $BG/M/V/VideoOptions/M/S/Options/H4/Value
+@onready var contrast_label = $BG/M/V/VideoOptions/M/S/Options/H3/Value
+@onready var brightness_label = $BG/M/V/VideoOptions/M/S/Options/H/Value
+
+
+
 
 func _ready():
 	$BG/M/V/HeadBG/Label.add_theme_color_override("font_color", GameManager.COLORS.lightgreen_text)
@@ -219,6 +229,16 @@ func _on_all_audio_slider_value_changed(value):
 	audio_all_label.text = "%s DB" % floor(value)
 	AudioServer.set_bus_volume_db(1, value)
 
+func _on_brightness_slider_value_changed(value):
+	brightness_label.text = "%s" % floor(value)
+
+
+func _on_contrast_slider_value_changed(value):
+	contrast_label.text = "%s" % floor(value)
+
+func _on_hue_slider_value_changed(value):
+	hue_label.text = "%s" % floor(value)
+
 func _on_ambiente_slider_value_changed(value):
 	audio_ambiente_label.text = "%s DB" % floor(value)
 	AudioServer.set_bus_volume_db(3, value)
@@ -250,5 +270,6 @@ func _on_check_button_2_button_up():
 func _on_m_mute_btn_button_up():
 	_create_btn_click_sound()
 	_update_music_mute()
+
 
 

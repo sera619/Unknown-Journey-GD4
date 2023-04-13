@@ -88,6 +88,9 @@ visible = false
 offset_right = -226.0
 offset_bottom = -163.0
 
+[node name="NoticeBox" parent="." instance=ExtResource("10_0ruit")]
+mouse_filter = 2
+
 [node name="DotHUD" parent="." instance=ExtResource("4_v8vmd")]
 offset_left = 59.0
 offset_top = 3.0
@@ -174,8 +177,6 @@ offset_right = 38.0
 offset_bottom = 64.0
 grow_vertical = 1
 scale = Vector2(0.5, 0.5)
-
-[node name="NoticeBox" parent="." instance=ExtResource("10_0ruit")]
 
 [node name="DialogBox" parent="." instance=ExtResource("9_kcv7y")]
 visible = false
