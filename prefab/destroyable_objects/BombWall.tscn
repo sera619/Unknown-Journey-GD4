@@ -1,0 +1,49 @@
+[gd_scene load_steps=10 format=3 uid="uid://bssyle1nuyib3"]
+
+[ext_resource type="Texture2D" uid="uid://bakwy8c01yeor" path="res://assets/World/destroyable_wall.png" id="1_2yavd"]
+[ext_resource type="Script" path="res://prefab/destroyable_objects/BombWall.gd" id="1_qi03g"]
+[ext_resource type="PackedScene" uid="uid://wgpncfmlr60d" path="res://prefab/effects/ExplotionEffect.tscn" id="2_oksjw"]
+[ext_resource type="PackedScene" uid="uid://c6tgajp28urqq" path="res://prefab/audio/RockFallSound.tscn" id="3_cadv0"]
+[ext_resource type="Texture2D" uid="uid://cg877fyfd68yd" path="res://assets/World/destroyable-wall-way.png" id="4_e42vh"]
+[ext_resource type="Texture2D" uid="uid://dyobka7ay0kwf" path="res://assets/World/destroyable-wall-noway.png" id="5_kem3p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dt1v7"]
+size = Vector2(64, 11)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_snpts"]
+radius = 20.0
+height = 44.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5wimn"]
+size = Vector2(40, 9)
+
+[node name="BombWall" type="Area2D"]
+collision_layer = 16
+collision_mask = 16
+script = ExtResource("1_qi03g")
+effect_scene = ExtResource("2_oksjw")
+sound_scene = ExtResource("3_cadv0")
+way_sprite = ExtResource("4_e42vh")
+noway_sprite = ExtResource("5_kem3p")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_2yavd")
+offset = Vector2(0, -16)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 5.5)
+shape = SubResource("RectangleShape2D_dt1v7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -6)
+shape = SubResource("CapsuleShape2D_snpts")
+
+[node name="InteractionZone" type="Area2D" parent="."]
+collision_layer = 512
+collision_mask = 512
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionZone"]
+position = Vector2(0, 6.5)
+shape = SubResource("RectangleShape2D_5wimn")
