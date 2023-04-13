@@ -1,9 +1,10 @@
-[gd_scene load_steps=20 format=3 uid="uid://cvqkftp7jg7m7"]
+[gd_scene load_steps=23 format=3 uid="uid://cvqkftp7jg7m7"]
 
 [ext_resource type="PackedScene" uid="uid://46ykevs1607v" path="res://prefab/UI/ActionBarSlot.tscn" id="1_hakky"]
 [ext_resource type="Script" path="res://prefab/UI/Actionbar.gd" id="1_rggb1"]
 [ext_resource type="Texture2D" uid="uid://btye1qwee1ia3" path="res://assets/UI/actionbar_icons/energiepot_icon.png" id="3_8kmkj"]
 [ext_resource type="Texture2D" uid="uid://cgp5ifmlixsc6" path="res://assets/UI/actionbar_icons/dash_icon.png" id="4_deewk"]
+[ext_resource type="Texture2D" uid="uid://w0u7rkco56iq" path="res://assets/UI/actionbar_icons/bomb_icon.png" id="4_e3r3h"]
 [ext_resource type="Texture2D" uid="uid://cf7fpchugb7wp" path="res://assets/UI/actionbar_icons/normal_attack_icon.png" id="5_18dmh"]
 [ext_resource type="Texture2D" uid="uid://cr3tuk3stlrnb" path="res://assets/UI/actionbar_icons/double_attack_icon.png" id="6_5k4aq"]
 [ext_resource type="Texture2D" uid="uid://cmxcm5kc1aei0" path="res://assets/UI/actionbar_icons/heavy_attack_icon.png" id="7_ekprp"]
@@ -19,6 +20,12 @@ action = &"energiepotion"
 
 [sub_resource type="Shortcut" id="Shortcut_q8ugq"]
 events = [SubResource("InputEventAction_drcda")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_7otx1"]
+action = &"bomb"
+
+[sub_resource type="Shortcut" id="Shortcut_3pllw"]
+events = [SubResource("InputEventAction_7otx1")]
 
 [sub_resource type="InputEventAction" id="InputEventAction_nstf4"]
 action = &"dash"
@@ -122,6 +129,37 @@ offset_right = 24.0702
 offset_bottom = 20.1581
 texture_progress = ExtResource("3_8kmkj")
 
+[node name="BombBtn" parent="H" instance=ExtResource("1_hakky")]
+visible = false
+layout_mode = 2
+shortcut = SubResource("Shortcut_3pllw")
+
+[node name="SlotNum" parent="H/BombBtn" index="0"]
+anchor_top = 0.697
+anchor_right = 0.641
+anchor_bottom = 0.909
+offset_top = -0.00100136
+offset_right = 8.488
+offset_bottom = 7.003
+text = "3"
+
+[node name="ItemAmoun" parent="H/BombBtn" index="1"]
+anchor_left = 0.656
+anchor_top = 0.667
+anchor_right = 0.906
+anchor_bottom = 0.894
+offset_left = 0.00799942
+offset_top = -0.0110016
+offset_right = 8.008
+offset_bottom = 7.498
+
+[node name="CDProgress" parent="H/BombBtn" index="2"]
+offset_left = -7.50113
+offset_top = -11.4977
+offset_right = 24.4989
+offset_bottom = 20.5023
+texture_progress = ExtResource("4_e3r3h")
+
 [node name="DashBtn" parent="H" instance=ExtResource("1_hakky")]
 visible = false
 layout_mode = 2
@@ -212,6 +250,7 @@ texture_progress = ExtResource("7_ekprp")
 
 [editable path="H/HealthpotBtn"]
 [editable path="H/EnergiepotBtn"]
+[editable path="H/BombBtn"]
 [editable path="H/DashBtn"]
 [editable path="H/AttackBtn"]
 [editable path="H/DoubleAttackBtn"]
