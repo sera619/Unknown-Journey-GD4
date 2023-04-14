@@ -111,6 +111,15 @@ func add_equip(equipname: String):
 	GameManager.info_box.set_info_text("[center]Du hast\n\n[color=red]%sx %s[/color]\n\nerhalten![/center]" % [1, equip.item_name])
 	EventHandler.emit_signal("player_inventory_equip_changed", equip)
 
+
+func _get_equiped_weapon():
+	for item in current_equip.get_children():
+		if item.item_equipped == true:
+			return item
+		else:
+			continue
+	return null
+
 func _equip_item(equipname: String):
 	var equip: Item = current_equip.get_node(equipname)
 	if equip.item_equipped:
