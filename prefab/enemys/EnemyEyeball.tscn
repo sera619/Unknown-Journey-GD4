@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=3 uid="uid://b2f0sr3p726uh"]
+[gd_scene load_steps=70 format=3 uid="uid://b2f0sr3p726uh"]
 
 [ext_resource type="PackedScene" uid="uid://doa5hxcckh64o" path="res://prefab/enemys/EnemyHUD.tscn" id="1_363mu"]
 [ext_resource type="Script" path="res://prefab/enemys/EnemyEyeball.gd" id="1_vjc2i"]
@@ -9,7 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://cblcbsx1gpy2q" path="res://prefab/effects/DeathEffect.tscn" id="4_7ngb8"]
 [ext_resource type="PackedScene" uid="uid://kbo1bay3i1ps" path="res://prefab/utils/PlayerDetector.tscn" id="4_klekj"]
 [ext_resource type="Texture2D" uid="uid://dt2540u4sj5mt" path="res://assets/Shadows/MediumShadow.png" id="5_3t2lc"]
+[ext_resource type="Material" uid="uid://fqy3iw8adqtq" path="res://assets/Materials/LPCDeadEffectMaterial.tres" id="5_mmjwh"]
 [ext_resource type="PackedScene" uid="uid://bpr5kb8nmfivl" path="res://prefab/audio/EnemyHitSound.tscn" id="5_vhqm5"]
+[ext_resource type="Material" uid="uid://b47wfikaj16y1" path="res://assets/Materials/LPCHealEffectMaterial.tres" id="6_k1kwc"]
 [ext_resource type="PackedScene" uid="uid://uqcsi836bkf" path="res://prefab/audio/EnemyDeathSound.tscn" id="6_te2ns"]
 [ext_resource type="Texture2D" uid="uid://dd4eovugubrjq" path="res://assets/Enemies/eyeball.png" id="6_tfaka"]
 [ext_resource type="PackedScene" uid="uid://ebdq15holk57" path="res://prefab/utils/Softcollision.tscn" id="7_1fuxx"]
@@ -522,6 +524,8 @@ script = ExtResource("1_vjc2i")
 spell_scene = ExtResource("2_rtovm")
 hit_effect_scene = ExtResource("3_dxjj5")
 death_effect_scene = ExtResource("4_7ngb8")
+dmg_shader = ExtResource("5_mmjwh")
+heal_shader = ExtResource("6_k1kwc")
 hurt_sound_scene = ExtResource("5_vhqm5")
 death_sound_scene = ExtResource("6_te2ns")
 reward_scenes = Array[PackedScene]([ExtResource("7_m3nqy"), ExtResource("8_itvl4"), ExtResource("9_0ocd4")])

@@ -11,6 +11,10 @@ signal enemy_healed(heal)
 @export var hit_effect_scene: PackedScene
 @export var death_effect_scene: PackedScene
 
+@export_category("Materials")
+@export var dmg_shader: ShaderMaterial
+@export var heal_shader: ShaderMaterial
+
 @export_category("Sound Scenes")
 @export var hurt_sound_scene: PackedScene
 @export var death_sound_scene: PackedScene
@@ -58,6 +62,9 @@ func _setup_enemy():
 	hitbox.connect("area_entered", take_damage)
 	attack_timer.connect("timeout", _on_attacktimer_timeout)
 	pick_random_state([IDLE, WANDER])
+
+
+
 
 func _physics_process(delta):
 	if knockback != Vector2.ZERO:
@@ -168,6 +175,7 @@ func take_damage(area):
 		knockback = area.knockback_vector * 105
 		EventHandler.emit_signal("statistic_update_dmg_done", area.damage)
 		emit_signal("enemy_take_damage", area.damage)
+		switch_dmg_shader()
 		if stats.health <= 0:
 			var death_sound = death_sound_scene.instantiate()
 			self.add_child(death_sound)
@@ -179,6 +187,11 @@ func take_damage(area):
 			emit_signal("enemy_died", self)
 	else:
 		return
+
+func switch_dmg_shader():
+	body.material = dmg_shader
+	await get_tree().create_timer(0.6).timeout
+	body.material = null
 
 
 func update_wander():
