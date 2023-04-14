@@ -325,6 +325,7 @@ func _reward_player():
 		return
 	GameManager.player.stats.set_exp(GameManager.player.stats.experience + stats.reward_exp)
 
+
 func _create_death_effect():
 #	var effect = death_effect_scene.instantiate()
 #	add_child(effect)
