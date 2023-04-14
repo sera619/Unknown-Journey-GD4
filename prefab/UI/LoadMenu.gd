@@ -47,11 +47,10 @@ func _on_load_btn_button_up():
 		self.hide_loadmenu()
 
 func _create_popup():
-	var t = "Dieser Vorang wird ALLE Spielstände/Profile löschen!\nDieser Vorgang wird nur empfohlen wenn du eine ältere Spielstandversion gespielt hast!\nBist du sicher das du ALLE Speicherstände löschen willst?"
 	var pop: AcceptPopup = popup_scene.instantiate()
 	GameManager.interface.add_child(pop)
 	pop.connect("popup_accept", _delete_old_version_files)
-	pop.set_text(t)
+	pop.set_text(T.ACCEPT_DIALOG_TEXT.SAVE_RESET)
 	pop.show()
 
 func _delete_old_version_files():
