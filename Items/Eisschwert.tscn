@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://ce8ia1r58oopy"]
+[gd_scene load_steps=4 format=3 uid="uid://ce8ia1r58oopy"]
 
 [ext_resource type="Script" path="res://Items/Item.gd" id="1_hu4ay"]
 [ext_resource type="Texture2D" uid="uid://hmapibrgsupj" path="res://assets/items/Eis-Schwert.png" id="2_bp54y"]
+[ext_resource type="PackedScene" uid="uid://p3solx0xphwi" path="res://prefab/spells/IceWeaponEffect.tscn" id="3_pghi8"]
 
 [node name="Eisschwert" type="Node"]
 script = ExtResource("1_hu4ay")
@@ -9,5 +10,8 @@ item_name = "Eisschwert"
 item_icon = ExtResource("2_bp54y")
 item_max_amount = 1
 item_type = "Equip"
-item_description = "Eine frostige Klinge. Der Griff ist so kalt, das deine Hand langsam taub wird."
-item_damage = 10
+item_description = "Eine frostige Klinge. Der Griff ist so kalt, das deine Hand langsam taub wird. Hat eine Chance den Gegner mit Eis-Splittern zu treffen."
+item_damage = 6
+trigger_chance = 7
+extra_dmg = 2
+effect_scene = ExtResource("3_pghi8")
