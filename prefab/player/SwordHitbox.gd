@@ -19,6 +19,7 @@ var attack_element = SkillManager.ELEMENT.NONE
 func _ready():
 	EventHandler.connect("player_maxdamage_changed", set_sword_max_damage)
 	EventHandler.connect("player_damage_changed", set_sword_damage)
+	self.connect("area_entered", _get_effect)
 
 func set_element_type(new_element: String):
 	match new_element:
@@ -42,6 +43,16 @@ func set_sword_damage(dmg):
 func set_sword_max_damage(max_dmg):
 	self.max_damage = max_dmg
 
+func _get_effect(area):
+	if InventoryManager._get_equiped_weapon() != null:
+		var weapon: Item = InventoryManager._get_equiped_weapon()
+		if weapon._get_weapon_effect():
+			if weapon.effect_scene:
+				var effect = weapon.effect_scene.instantiate()
+				area.get_parent().add_child(effect)
+				effect.global_position = area.get_parent().global_position
+		else:
+			return
 
 func set_attack_type(new_type: String):
 	match new_type:
