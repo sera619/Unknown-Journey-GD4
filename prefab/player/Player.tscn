@@ -1,4 +1,4 @@
-[gd_scene load_steps=232 format=3 uid="uid://bulsih1uk7ua"]
+[gd_scene load_steps=234 format=3 uid="uid://bulsih1uk7ua"]
 
 [ext_resource type="Script" path="res://prefab/player/Player.gd" id="1_3dgss"]
 [ext_resource type="Texture2D" uid="uid://dt2540u4sj5mt" path="res://assets/Shadows/MediumShadow.png" id="2_2ndm1"]
@@ -7,9 +7,11 @@
 [ext_resource type="Script" path="res://prefab/player/Stats.gd" id="3_l31qu"]
 [ext_resource type="PackedScene" uid="uid://c4qwbfsr4fe74" path="res://prefab/effects/HitEffect.tscn" id="4_1ydt2"]
 [ext_resource type="PackedScene" uid="uid://dfa72h0u7euvi" path="res://prefab/spells/Bomb.tscn" id="4_jxntb"]
+[ext_resource type="Texture2D" uid="uid://baxjg0wompoje" path="res://assets/Player/Hero_with_ice_sword.png" id="4_snvgm"]
 [ext_resource type="Script" path="res://prefab/player/SwordHitbox.gd" id="4_x1oi4"]
 [ext_resource type="PackedScene" uid="uid://ddq1kas24xw88" path="res://prefab/player/GhostSprite.tscn" id="5_cmmjq"]
 [ext_resource type="PackedScene" uid="uid://mgopvrriygx2" path="res://prefab/effects/LevelupEffect.tscn" id="5_cmv2u"]
+[ext_resource type="Texture2D" uid="uid://vlxyiwg1evbs" path="res://assets/Player/Hero_with_fire_sword.png" id="5_sqpgp"]
 [ext_resource type="PackedScene" uid="uid://c7r64swnyno2b" path="res://prefab/effects/HealEffect.tscn" id="7_4yh51"]
 [ext_resource type="PackedScene" uid="uid://xt3agvot17mp" path="res://prefab/audio/FoodASound.tscn" id="8_1ma6h"]
 [ext_resource type="PackedScene" uid="uid://ebdq15holk57" path="res://prefab/utils/Softcollision.tscn" id="8_6a312"]
@@ -2816,6 +2818,8 @@ motion_mode = 1
 script = ExtResource("1_3dgss")
 SPRITE_SWORD = ExtResource("3_k7e2f")
 SPRITE_NO_SWORD = ExtResource("3_g8436")
+SPRITE_ICESWORD = ExtResource("4_snvgm")
+SPRITE_FIRESWORD = ExtResource("5_sqpgp")
 bomb_scene = ExtResource("4_jxntb")
 hit_effect_scene = ExtResource("4_1ydt2")
 levelup_effect_scene = ExtResource("5_cmv2u")

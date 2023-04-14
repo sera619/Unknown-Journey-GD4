@@ -4,6 +4,8 @@ class_name Player
 @export_category('Player Sprites')
 @export var SPRITE_SWORD: Texture2D
 @export var SPRITE_NO_SWORD: Texture2D
+@export var SPRITE_ICESWORD: Texture2D
+@export var SPRITE_FIRESWORD: Texture2D
 
 @export_category("Spell/Item Scenes")
 @export var bomb_scene: PackedScene
@@ -447,6 +449,10 @@ func set_sprite(sprite: int):
 			bodySprite.texture = SPRITE_NO_SWORD
 		1:
 			bodySprite.texture = SPRITE_SWORD
+		2:
+			bodySprite.texture = SPRITE_ICESWORD
+		3: 
+			bodySprite.texture = SPRITE_FIRESWORD
 
 func create_dash_trail():
 	var ghost = dash_ghost_screne.instantiate()
