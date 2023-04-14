@@ -202,6 +202,7 @@ offset_bottom = 22.0
 scale = Vector2(0.5, 0.5)
 
 [node name="OptionPanel" parent="." instance=ExtResource("15_06kas")]
+visible = false
 offset_left = 77.0
 offset_top = 40.0
 offset_right = 237.0

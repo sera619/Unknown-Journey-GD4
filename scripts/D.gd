@@ -273,3 +273,13 @@ func _delete_old_save_files():
 	if FileAccess.file_exists("user://inventorysavegame.save"):
 		DirAccess.remove_absolute("user://inventorysavegame.save")
 
+
+##################### GAME SETUP #####################
+# Change mousecursors
+func _setup_game_mouse():
+	var normal_mouse = load("res://assets/UI/menu/mouse_normal.png")
+	var beam_cursor = load("res://assets/UI/menu/mouse_beam.png")
+	Input.set_custom_mouse_cursor(normal_mouse)
+	Input.set_custom_mouse_cursor(beam_cursor,Input.CURSOR_IBEAM)
+
+

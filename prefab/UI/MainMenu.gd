@@ -50,13 +50,8 @@ func load_new():
 func _input(event):
 	if event is InputEventKey:
 		if event.is_pressed():
-			if event.keycode == KEY_ENTER:
+			if event.keycode == KEY_ENTER or event.keycode == KEY_KP_ENTER:
 				anim_player.play("instant")
-			elif event.keycode == KEY_C:
-				if not loadpanel.visible:
-					loadpanel.show_loadmenu()
-				else:
-					loadpanel.hide_loadmenu()
 
 func _create_btn_click_sound():
 	var sound = GameManager.interface.button_click_sound.instantiate()
@@ -70,14 +65,23 @@ func _on_ok_btn_button_down():
 		GameManager.interface.add_child(popup)
 		popup.connect("popup_accept", _create_default_player)
 		popup.set_text(T.ACCEPT_DIALOG_TEXT.NO_NAME_INPUT)
+	elif D._check_profile_exists(namepopup.nameinput.text):
+		var pop = dialog_scene.instantiate()
+		GameManager.interface.add_child(pop)
+		namepopup.nameinput.text = ""
+		pop.set_text(T.ACCEPT_DIALOG_TEXT.NAME_EXISTS)
 	else:
 		GameManager.set_player_name(namepopup.nameinput.text)
 		namepopup.nameinput.text = ""
 		EventHandler.connect("transition_black", start_new)
 		EventHandler.emit_signal("start_transition")
 
+
 func _create_default_player():
-	GameManager.set_player_name("Held")
+	var defaultname = "Held"
+	if D._check_profile_exists(defaultname):
+		defaultname += "1"
+	GameManager.set_player_name(defaultname)
 	namepopup.nameinput.text = ""
 	EventHandler.connect("transition_black", start_new)
 	EventHandler.emit_signal("start_transition")

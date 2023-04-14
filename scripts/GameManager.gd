@@ -48,6 +48,7 @@ func _ready():
 func _initial_process():
 	_setup_game_settings()
 	D._setup_profiles()
+	D._setup_game_mouse()
 
 func _setup_game_settings():
 	var path = "user://gameoptions.save"
