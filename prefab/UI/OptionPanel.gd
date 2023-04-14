@@ -1,6 +1,8 @@
 extends Control
 class_name OptionPanel
 
+@export var dialog_scene: PackedScene
+
 # AUDIO
 @onready var audio_all_label = $BG/M/V/AudioOptions/M/Options/V/H/Value
 @onready var audio_music_label = $BG/M/V/AudioOptions/M/Options/V/H2/Value
@@ -36,7 +38,7 @@ class_name OptionPanel
 @onready var hue_label = $BG/M/V/VideoOptions/M/S/Options/H4/Value
 @onready var contrast_label = $BG/M/V/VideoOptions/M/S/Options/H3/Value
 @onready var brightness_label = $BG/M/V/VideoOptions/M/S/Options/H/Value
-
+@onready var reset_btn = $BG/M/V/H/ResetBtn
 
 
 func _ready():
@@ -155,6 +157,51 @@ func _set_current_audio_values():
 	self.audio_sfx_slider.value = sfx
 	self.audio_ambiente_slider.value = ambiente
 
+
+func _reset_audio_settings():
+	GameManager.current_game_options["audio_all"] = 0.0
+	GameManager.current_game_options['audio_music'] = 0.0
+	GameManager.current_game_options['audio_sfx'] = 0.0
+	GameManager.current_game_options['audio_menu'] = 0.0
+	GameManager.current_game_options['audio_ambiente'] = 0.0
+	GameManager.current_game_options['musicmute'] = false
+	GameManager._save_settings(GameManager.current_game_options)
+	AudioServer.set_bus_volume_db(1, GameManager.current_game_options["audio_all"])
+	AudioServer.set_bus_volume_db(5, GameManager.current_game_options['audio_music'])
+	AudioServer.set_bus_volume_db(2, GameManager.current_game_options['audio_sfx'])
+	AudioServer.set_bus_volume_db(4, GameManager.current_game_options['audio_menu'])
+	AudioServer.set_bus_volume_db(3, GameManager.current_game_options['audio_ambiente'])
+	AudioServer.set_bus_mute(5, false)
+	self.music_mute_btn.button_pressed = false
+	self.music_mute_btn.text = "AN"
+	self.music_mute_icon.visible = false
+	self.audio_all_label.text = "%d DB" % int(GameManager.current_game_options["audio_all"])
+	self.audio_music_label.text = "%d DB" % int(GameManager.current_game_options['audio_music'])
+	self.audio_sfx_label.text = "%d DB" % int(GameManager.current_game_options['audio_sfx'])
+	self.audio_menu_label.text = "%d DB" % int(GameManager.current_game_options['audio_menu'])
+	self.audio_ambiente_label.text = "%d DB" % int(GameManager.current_game_options['audio_ambiente'])
+	self.audio_all_slider.value = GameManager.current_game_options["audio_all"] 
+	self.audio_menu_slider.value = GameManager.current_game_options['audio_menu']
+	self.audio_music_slider.value = GameManager.current_game_options['audio_music'] 
+	self.audio_sfx_slider.value = GameManager.current_game_options['audio_sfx'] 
+	self.audio_ambiente_slider.value = GameManager.current_game_options['audio_ambiente']
+
+func _reset_video_settings():
+	GameManager.current_game_options['video_saturation'] = 1.0
+	GameManager.current_game_options['video_contrast'] = 1.0
+	GameManager.current_game_options['video_brightness'] = 1.0
+	GameManager._save_settings(GameManager.current_game_options)
+	GameManager._update_video_brightness(1.0)
+	GameManager._update_video_contrast(1.0)
+	GameManager._update_video_saturation(1.0)
+	self.brightness_label.text = "%s %s" % [GameManager.current_game_options['video_brightness'] * 100, "%"]
+	self.contrast_label.text = "%s %s" % [GameManager.current_game_options['video_contrast'] * 100, "%"]
+	self.hue_label.text = "%s %s" % [GameManager.current_game_options['video_saturation'] * 100, "%"]
+	self.hue_slider.value = GameManager.current_game_options['video_saturation']
+	self.contrast_slider.value = GameManager.current_game_options['video_contrast']
+	self.brightness_slider.value = GameManager.current_game_options['video_brightness']
+	
+
 func _set_current_video_values():
 	var full_screen = DisplayServer.window_get_mode()
 	if full_screen == DisplayServer.WINDOW_MODE_FULLSCREEN:
@@ -175,19 +222,29 @@ func _set_current_video_values():
 		self.vsync_btn.button_pressed = false
 		self.vsync_icon.visible = false
 		self.vsync_btn.text = "AUS"
+	
+	self.brightness_label.text = "%s %s" % [GameManager.current_game_options['video_brightness'] * 100, "%"]
+	self.contrast_label.text = "%s %s" % [GameManager.current_game_options['video_contrast'] * 100, "%"]
+	self.hue_label.text = "%s %s" % [GameManager.current_game_options['video_saturation'] * 100, "%"]
+	self.hue_slider.value = GameManager.current_game_options['video_saturation']
+	self.contrast_slider.value = GameManager.current_game_options['video_contrast']
+	self.brightness_slider.value = GameManager.current_game_options['video_brightness']
 
 func _show_audio_panel():
 	self.video_panel.hide()
 	self.audio_panel.show()
+	self.reset_btn.visible = true
 	self.key_panel.hide()
 
 func _show_video_panel():
 	self.video_panel.show()
+	self.reset_btn.visible = true
 	self.audio_panel.hide()
 	self.key_panel.hide()
 
 func _show_key_panel():
 	self.video_panel.hide()
+	self.reset_btn.visible = false
 	self.audio_panel.hide()
 	self.key_panel.show()
 
@@ -229,25 +286,22 @@ func _on_all_audio_slider_value_changed(value):
 	AudioServer.set_bus_volume_db(1, value)
 
 func _on_brightness_slider_value_changed(value):
-	var world_envi = GameManager.game.get_node("WorldEnvironment")
 	brightness_label.text = "%s %s" % [value * 100, "%"]
-	world_envi.environment.adjustment_brightness = value
-
+	GameManager._update_video_brightness(value)
 
 func _on_contrast_slider_value_changed(value):
-	var world_envi = GameManager.game.get_node("WorldEnvironment")
 	contrast_label.text = "%s %s" % [value * 100, "%"]
-	world_envi.environment.adjustment_contrast = value
+	GameManager._update_video_contrast(value)
 
 func _on_hue_slider_value_changed(value):
-	var world_envi = GameManager.game.get_node("WorldEnvironment")
 	hue_label.text =  "%s %s" % [value * 100, "%"]
-	world_envi.environment.adjustment_saturation = value
+	GameManager._update_video_saturation(value)
 
 
 func _on_ambiente_slider_value_changed(value):
 	audio_ambiente_label.text = "%s DB" % floor(value)
 	AudioServer.set_bus_volume_db(3, value)
+
 
 
 func _on_audio_btn_button_up():
@@ -278,4 +332,23 @@ func _on_m_mute_btn_button_up():
 	_update_music_mute()
 
 
+func _show_video_reset_dialog():
+	var popup = dialog_scene.instantiate()
+	GameManager.interface.add_child(popup)
+	popup.connect("popup_accept", _reset_video_settings)
+	popup.set_text(T.ACCEPT_DIALOG_TEXT.VIDEO_RESET)
 
+func _show_audio_reset_dialog():
+	var popup = dialog_scene.instantiate()
+	GameManager.interface.add_child(popup)
+	popup.set_text(T.ACCEPT_DIALOG_TEXT.AUDIO_RESET)
+	popup.connect("popup_accept", _reset_audio_settings)
+
+func _on_reset_btn_pressed():
+	_create_btn_click_sound()
+	if video_panel.visible:
+		_show_video_reset_dialog()
+	elif audio_panel.visible:
+		_show_audio_reset_dialog()
+	else:
+		return
