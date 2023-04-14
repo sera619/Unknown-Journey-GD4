@@ -542,8 +542,7 @@ enemy_stats_path = NodePath("../EnemyStats")
 
 [node name="EnemyStats" type="Node" parent="."]
 script = ExtResource("2_ew1c6")
-max_health = 10
-damage = 4
+max_health = 50000
 MAX_SPEED = 25
 ACCELERATION = 200
 FRICTION = 300

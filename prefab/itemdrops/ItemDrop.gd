@@ -6,6 +6,7 @@ signal interaction_finished()
 @export var item_name: String
 @export var item_image: Texture2D
 @export var shadow_image: Texture2D
+@export var particle_material: ParticleProcessMaterial
 @export_enum('Normal', 'Consumable', 'Quest', 'Gold', "Equip") var item_type: int
 @export var quest_id: int
 @export var amount: int
@@ -22,14 +23,18 @@ signal interaction_finished()
 @onready var animplayer: AnimationPlayer = $AnimationPlayer
 @onready var coll_shape: CollisionShape2D = $Area2D/CollisionShape2D
 @onready var timer: Timer = $Timer
+@onready var particles: GPUParticles2D = $Body/ItemDropParticle
 
 func _ready():
+	if particle_material:
+		particles.process_material = particle_material
 	body_sprite.texture = item_image
+	animplayer.connect("animation_finished", _change_animation)
 	shadow_sprite.texture = shadow_image
 	if item_type == 3:
 		body_sprite.hframes = 16
 	pickup_zone.connect("area_entered", pickup)
-	animplayer.play("loop")
+	animplayer.play("drop")
 	if item_drop_sound != null:
 		var sound = item_drop_sound.instantiate()
 		get_tree().current_scene.add_child(sound)
@@ -47,7 +52,9 @@ func _ready():
 		timer.wait_time = despawn_time
 		timer.start()
 
-
+func _change_animation(anim_name):
+	if anim_name == "drop":
+		animplayer.play("loop")
 
 func pickup(area):
 	if not area.is_in_group("playerPickupzone"):

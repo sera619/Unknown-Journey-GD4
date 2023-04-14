@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cd0xyr4qrb6po"]
+
+[ext_resource type="Material" uid="uid://cghj0m3oo24xb" path="res://assets/Materials/ItemDropProcessMaterial.tres" id="1_a6hnu"]
+[ext_resource type="Texture2D" uid="uid://comoa1posqs3" path="res://assets/Materials/ParticleTextures/star_08.png" id="2_xmlsc"]
+
+[node name="ItemDropParticle" type="GPUParticles2D"]
+amount = 12
+process_material = ExtResource("1_a6hnu")
+texture = ExtResource("2_xmlsc")
+lifetime = 1.2
+randomness = 0.3

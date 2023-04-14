@@ -37,6 +37,7 @@ window/size/window_width_override=1280
 window/size/window_height_override=720
 window/per_pixel_transparency/allowed=true
 window/vsync/vsync_mode=2
+mouse_cursor/custom_image_hotspot=Vector2(16, -18)
 window/stretch/mode="canvas_items"
 
 [filesystem]

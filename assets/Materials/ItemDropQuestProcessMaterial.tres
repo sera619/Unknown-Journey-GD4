@@ -1,0 +1,24 @@
+[gd_resource type="ParticleProcessMaterial" load_steps=3 format=3 uid="uid://d63ikovruoe"]
+
+[sub_resource type="Curve" id="Curve_sa5p1"]
+_data = [Vector2(0.0229008, 0.0363636), 0.0, 0.0, 0, 0, Vector2(0.526718, 0.963636), 0.0, 0.0, 0, 0, Vector2(1, 0.0454545), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_eltmt"]
+curve = SubResource("Curve_sa5p1")
+
+[resource]
+lifetime_randomness = 0.21
+emission_shape = 1
+emission_sphere_radius = 15.0
+particle_flag_disable_z = true
+spread = 65.0
+gravity = Vector3(0, -12, 0)
+angular_velocity_min = -80.56
+angular_velocity_max = 80.56
+orbit_velocity_min = 0.01
+orbit_velocity_max = 0.01
+scale_min = 0.01
+scale_max = 0.03
+scale_curve = SubResource("CurveTexture_eltmt")
+color = Color(0.627451, 1, 0.556863, 1)
