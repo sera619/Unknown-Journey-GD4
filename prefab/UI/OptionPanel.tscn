@@ -17,7 +17,6 @@
 
 [node name="OptionPanel" type="Control"]
 process_mode = 3
-visible = false
 layout_mode = 3
 anchor_right = 0.5
 anchor_bottom = 0.5
@@ -151,6 +150,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="AudioOptions" type="NinePatchRect" parent="BG/M/V"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 texture = ExtResource("3_vc324")
@@ -424,7 +424,6 @@ texture = ExtResource("13_8qtrb")
 expand_mode = 1
 
 [node name="VideoOptions" type="NinePatchRect" parent="BG/M/V"]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 texture = ExtResource("3_vc324")
@@ -557,7 +556,6 @@ texture = ExtResource("13_8qtrb")
 expand_mode = 1
 
 [node name="H" type="HBoxContainer" parent="BG/M/V/VideoOptions/M/S/Options"]
-visible = false
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/separation = 10
@@ -590,12 +588,11 @@ size_flags_vertical = 4
 theme_override_icons/grabber = ExtResource("9_mqodm")
 theme_override_icons/grabber_highlight = ExtResource("10_j7he6")
 theme_override_icons/grabber_disabled = ExtResource("11_ul2d0")
-min_value = -72.0
-max_value = 6.0
-step = 0.1
+max_value = 2.0
+step = 0.01
+value = 1.0
 
 [node name="H3" type="HBoxContainer" parent="BG/M/V/VideoOptions/M/S/Options"]
-visible = false
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/separation = 10
@@ -628,12 +625,11 @@ size_flags_vertical = 4
 theme_override_icons/grabber = ExtResource("9_mqodm")
 theme_override_icons/grabber_highlight = ExtResource("10_j7he6")
 theme_override_icons/grabber_disabled = ExtResource("11_ul2d0")
-min_value = -72.0
-max_value = 6.0
-step = 0.1
+max_value = 2.0
+step = 0.01
+value = 1.0
 
 [node name="H4" type="HBoxContainer" parent="BG/M/V/VideoOptions/M/S/Options"]
-visible = false
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/separation = 10
@@ -666,9 +662,9 @@ size_flags_vertical = 4
 theme_override_icons/grabber = ExtResource("9_mqodm")
 theme_override_icons/grabber_highlight = ExtResource("10_j7he6")
 theme_override_icons/grabber_disabled = ExtResource("11_ul2d0")
-min_value = -72.0
-max_value = 6.0
-step = 0.1
+max_value = 2.0
+step = 0.01
+value = 1.0
 
 [node name="KeyOptions" type="NinePatchRect" parent="BG/M/V"]
 visible = false

@@ -1,9 +1,8 @@
-[gd_scene load_steps=63 format=3 uid="uid://ce2qgcscf6ubu"]
+[gd_scene load_steps=62 format=3 uid="uid://ce2qgcscf6ubu"]
 
 [ext_resource type="Script" path="res://world/CityHotel.gd" id="1_cofsr"]
 [ext_resource type="PackedScene" uid="uid://dcc837c2ujx6g" path="res://prefab/utils/GameCamera.tscn" id="2_fnk70"]
 [ext_resource type="Texture2D" uid="uid://cvlvkaue2u7hm" path="res://assets/World/Inside_B.png" id="2_vrjrr"]
-[ext_resource type="Environment" uid="uid://dlb3sxd1qxstv" path="res://WorldEnv.tres" id="2_w2fvt"]
 [ext_resource type="Texture2D" uid="uid://c7fiywcu0t2e4" path="res://assets/World/Inside_A4.png" id="3_r124j"]
 [ext_resource type="Texture2D" uid="uid://b4qbbwfrqi71q" path="res://assets/World/Inside_A2.png" id="4_sus4e"]
 [ext_resource type="Texture2D" uid="uid://bryx180ksggwu" path="res://assets/tiles/victorian-garden.png" id="5_6kofh"]
@@ -56723,9 +56722,6 @@ radius = 21.0238
 script = ExtResource("1_cofsr")
 world_name = "CityHotel"
 ingame_name = "Arkairos Hotel"
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = ExtResource("2_w2fvt")
 
 [node name="Map" type="Node2D" parent="."]
 

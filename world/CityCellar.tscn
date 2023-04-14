@@ -1,7 +1,6 @@
-[gd_scene load_steps=82 format=3 uid="uid://blu2fjm62uqjt"]
+[gd_scene load_steps=81 format=3 uid="uid://blu2fjm62uqjt"]
 
 [ext_resource type="Script" path="res://world/CityCellar.gd" id="1_y4cxl"]
-[ext_resource type="Environment" uid="uid://dlb3sxd1qxstv" path="res://WorldEnv.tres" id="2_4y0vp"]
 [ext_resource type="Texture2D" uid="uid://dhx7ipu2eqbpl" path="res://assets/tiles/trail.png" id="2_xw1vk"]
 [ext_resource type="Texture2D" uid="uid://c7fiywcu0t2e4" path="res://assets/World/Inside_A4.png" id="3_5dg5q"]
 [ext_resource type="PackedScene" uid="uid://dcc837c2ujx6g" path="res://prefab/utils/GameCamera.tscn" id="3_nsuir"]
@@ -17360,9 +17359,6 @@ radius = 39.3192
 script = ExtResource("1_y4cxl")
 world_name = "CityCellar"
 ingame_name = "Hotel Keller"
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = ExtResource("2_4y0vp")
 
 [node name="Map" type="Node2D" parent="."]
 

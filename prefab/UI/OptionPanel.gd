@@ -39,7 +39,6 @@ class_name OptionPanel
 
 
 
-
 func _ready():
 	$BG/M/V/HeadBG/Label.add_theme_color_override("font_color", GameManager.COLORS.lightgreen_text)
 	self._reset_panels()
@@ -230,14 +229,21 @@ func _on_all_audio_slider_value_changed(value):
 	AudioServer.set_bus_volume_db(1, value)
 
 func _on_brightness_slider_value_changed(value):
-	brightness_label.text = "%s" % floor(value)
+	var world_envi = GameManager.game.get_node("WorldEnvironment")
+	brightness_label.text = "%s %s" % [value * 100, "%"]
+	world_envi.environment.adjustment_brightness = value
 
 
 func _on_contrast_slider_value_changed(value):
-	contrast_label.text = "%s" % floor(value)
+	var world_envi = GameManager.game.get_node("WorldEnvironment")
+	contrast_label.text = "%s %s" % [value * 100, "%"]
+	world_envi.environment.adjustment_contrast = value
 
 func _on_hue_slider_value_changed(value):
-	hue_label.text = "%s" % floor(value)
+	var world_envi = GameManager.game.get_node("WorldEnvironment")
+	hue_label.text =  "%s %s" % [value * 100, "%"]
+	world_envi.environment.adjustment_saturation = value
+
 
 func _on_ambiente_slider_value_changed(value):
 	audio_ambiente_label.text = "%s DB" % floor(value)
