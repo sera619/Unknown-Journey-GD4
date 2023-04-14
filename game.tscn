@@ -1,11 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://ixbyhoij3yf1"]
+[gd_scene load_steps=4 format=3 uid="uid://ixbyhoij3yf1"]
 
 [ext_resource type="Script" path="res://Game.gd" id="1_ds55b"]
 [ext_resource type="PackedScene" uid="uid://b7dks5cm1l8lb" path="res://prefab/interface/Interface.tscn" id="2_f3qs3"]
+[ext_resource type="Environment" uid="uid://dlb3sxd1qxstv" path="res://WorldEnv.tres" id="2_ipxca"]
 
 [node name="Game" type="Node"]
 script = ExtResource("1_ds55b")
+run_type = 1
 dev_start_map = "None"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("2_ipxca")
 
 [node name="Interface" parent="." instance=ExtResource("2_f3qs3")]
 
