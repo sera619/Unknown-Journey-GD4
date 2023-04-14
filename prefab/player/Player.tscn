@@ -209,6 +209,18 @@ tracks/4/keys = {
 "update": 1,
 "values": [1.5708, 1.5708]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("GrabblingRays:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1.5708, 1.5708]
+}
 
 [sub_resource type="Animation" id="Animation_35a28"]
 resource_name = "AttackDoubleLeft"
@@ -279,6 +291,18 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0, 0.9),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
+"values": [3.14159, 3.14159]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("GrabblingRays:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
 "values": [3.14159, 3.14159]
 }
 
@@ -353,6 +377,18 @@ tracks/4/keys = {
 "update": 1,
 "values": [0.0, 0.0]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("GrabblingRays:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
 
 [sub_resource type="Animation" id="Animation_j4ebu"]
 resource_name = "AttackDoubleUp"
@@ -425,6 +461,18 @@ tracks/4/keys = {
 "update": 1,
 "values": [-1.5708, -1.5708]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("GrabblingRays:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-1.5708, -1.5708]
+}
 
 [sub_resource type="Animation" id="Animation_q76du"]
 resource_name = "AttackDown"
@@ -492,6 +540,18 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
+"values": [1.5708, 1.5708]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("GrabblingRays:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
 "values": [1.5708, 1.5708]
 }
 
@@ -563,6 +623,18 @@ tracks/4/keys = {
 "update": 1,
 "values": [3.14159, 3.14159]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("GrabblingRays:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [3.14159, 3.14159]
+}
 
 [sub_resource type="Animation" id="Animation_48k67"]
 resource_name = "AttackRight"
@@ -630,6 +702,18 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
+"values": [0.0, 0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("GrabblingRays:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
 "values": [0.0, 0.0]
 }
 
@@ -701,6 +785,18 @@ tracks/4/keys = {
 "update": 1,
 "values": [-1.5708, -1.5708]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("GrabblingRays:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-1.5708, -1.5708]
+}
 
 [sub_resource type="Animation" id="Animation_upyga"]
 resource_name = "CombatMoveDown"
@@ -745,6 +841,18 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.8),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
+"values": [1.5708, 1.5708]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GrabblingRays:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
 "values": [1.5708, 1.5708]
 }
 
@@ -793,6 +901,18 @@ tracks/2/keys = {
 "update": 1,
 "values": [3.14159, 3.14159]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GrabblingRays:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [3.14159, 3.14159]
+}
 
 [sub_resource type="Animation" id="Animation_expd4"]
 resource_name = "CombatMoveRight"
@@ -839,6 +959,18 @@ tracks/2/keys = {
 "update": 1,
 "values": [0.0, 0.0]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GrabblingRays:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
 
 [sub_resource type="Animation" id="Animation_1mpci"]
 resource_name = "CombatMoveUp"
@@ -883,6 +1015,18 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.8),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
+"values": [-1.5708, -1.5708]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GrabblingRays:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
 "values": [-1.5708, -1.5708]
 }
 
@@ -1187,6 +1331,18 @@ tracks/2/keys = {
 "update": 1,
 "values": [1.5708, 1.5708]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GrabblingRays:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.5708, 1.5708]
+}
 
 [sub_resource type="Animation" id="Animation_krwar"]
 resource_name = "HurtLeft"
@@ -1227,6 +1383,18 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
+"values": [3.14159, 3.14159]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GrabblingRays:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
 "values": [3.14159, 3.14159]
 }
 
@@ -1271,6 +1439,18 @@ tracks/2/keys = {
 "update": 1,
 "values": [0.0, 0.0]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GrabblingRays:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
 
 [sub_resource type="Animation" id="Animation_3e4of"]
 resource_name = "HurtUp"
@@ -1313,6 +1493,18 @@ tracks/2/keys = {
 "update": 0,
 "values": [-1.5708, -1.5708]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GrabblingRays:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-1.5708, -1.5708]
+}
 
 [sub_resource type="Animation" id="Animation_b476o"]
 resource_name = "IdleDown"
@@ -1342,6 +1534,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [1.5708, 1.5708]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GrabblingRays:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.5708, 1.5708]
+}
 
 [sub_resource type="Animation" id="Animation_r8ftv"]
 resource_name = "IdleLeft"
@@ -1366,6 +1570,18 @@ tracks/1/path = NodePath("Interact:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [3.14159, 3.14159]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GrabblingRays:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.8),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
@@ -1400,6 +1616,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [0.0, 0.0]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GrabblingRays:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0.0, 0.0]
+}
 
 [sub_resource type="Animation" id="Animation_v0m1c"]
 resource_name = "IdleUp"
@@ -1424,6 +1652,18 @@ tracks/1/path = NodePath("Interact:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [-1.5708, -1.5708]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GrabblingRays:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.8),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
@@ -1475,6 +1715,18 @@ tracks/2/keys = {
 "update": 1,
 "values": [1.5708, 1.5708]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GrabblingRays:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1.5708, 1.5708]
+}
 
 [sub_resource type="Animation" id="Animation_q4gmd"]
 resource_name = "MoveLeft"
@@ -1518,7 +1770,19 @@ tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.8),
 "transitions": PackedFloat32Array(1, 1),
-"update": 0,
+"update": 1,
+"values": [3.14159, 3.14159]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GrabblingRays:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
 "values": [3.14159, 3.14159]
 }
 
@@ -1564,7 +1828,19 @@ tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.8),
 "transitions": PackedFloat32Array(1, 1),
-"update": 0,
+"update": 1,
+"values": [0.0, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GrabblingRays:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
 "values": [0.0, 0.0]
 }
 
@@ -1610,7 +1886,19 @@ tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.8),
 "transitions": PackedFloat32Array(1, 1),
-"update": 0,
+"update": 1,
+"values": [-1.5708, -1.5708]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GrabblingRays:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
 "values": [-1.5708, -1.5708]
 }
 
@@ -1659,6 +1947,18 @@ tracks/3/path = NodePath("Interact:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.5708]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("GrabblingRays:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -1756,6 +2056,18 @@ tracks/2/keys = {
 "update": 0,
 "values": [3.14159, 3.14159]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GrabblingRays:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [3.14159, 3.14159]
+}
 
 [sub_resource type="Animation" id="Animation_w5n2v"]
 resource_name = "RunRight"
@@ -1848,6 +2160,18 @@ tracks/2/keys = {
 "update": 0,
 "values": [-1.5708, -1.5708]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GrabblingRays:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-1.5708, -1.5708]
+}
 
 [sub_resource type="Animation" id="Animation_c5ms0"]
 resource_name = "StickSwordDown"
@@ -1904,6 +2228,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [3.14159, 3.14159]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GrabblingRays:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [3.14159, 3.14159]
+}
 
 [sub_resource type="Animation" id="Animation_nftbq"]
 resource_name = "StickSwordRight"
@@ -1932,6 +2268,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [0.0, 0.0]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GrabblingRays:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
 
 [sub_resource type="Animation" id="Animation_aylhc"]
 resource_name = "StickSwordUp"
@@ -1958,6 +2306,18 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
+"values": [-1.5708, -1.5708]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GrabblingRays:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
 "values": [-1.5708, -1.5708]
 }
 
@@ -2042,6 +2402,18 @@ tracks/2/keys = {
 "update": 0,
 "values": [3.14159, 3.14159]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GrabblingRays:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [3.14159, 3.14159]
+}
 
 [sub_resource type="Animation" id="Animation_b3c2e"]
 resource_name = "SwordIdleRight"
@@ -2083,6 +2455,18 @@ tracks/2/keys = {
 "update": 0,
 "values": [0.0, 0.0]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GrabblingRays:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
 
 [sub_resource type="Animation" id="Animation_jwj0o"]
 resource_name = "SwordIdleUp"
@@ -2119,6 +2503,18 @@ tracks/2/path = NodePath("Interact:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-1.5708, -1.5708]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GrabblingRays:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.8),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
@@ -2208,6 +2604,18 @@ tracks/2/keys = {
 "update": 1,
 "values": [3.14159, 3.14159]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GrabblingRays:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [3.14159, 3.14159]
+}
 
 [sub_resource type="Animation" id="Animation_mcn4q"]
 resource_name = "TakeSwordRight"
@@ -2250,6 +2658,18 @@ tracks/2/keys = {
 "update": 1,
 "values": [0.0, 0.0]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GrabblingRays:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
 
 [sub_resource type="Animation" id="Animation_vocca"]
 resource_name = "TakeSwordUp"
@@ -2290,6 +2710,18 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
+"values": [-1.5708, -1.5708]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GrabblingRays:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
 "values": [-1.5708, -1.5708]
 }
 
@@ -2864,7 +3296,6 @@ text = "[center]
 
 [node name="SwordHolder" type="Marker2D" parent="."]
 position = Vector2(0, -12)
-rotation = 3.14159
 
 [node name="SwordHitbox" type="Area2D" parent="SwordHolder" groups=["playerSword"]]
 position = Vector2(0, 20)
@@ -3010,6 +3441,193 @@ DASH_COOLDOWN = 2
 
 [node name="DebuffHandler" parent="." instance=ExtResource("21_kbir8")]
 position = Vector2(-1.19209e-07, -13.664)
+
+[node name="GrabblingRays" type="Node2D" parent="."]
+position = Vector2(0, -14)
+rotation = 1.5708
+
+[node name="GrabblingRay01" type="RayCast2D" parent="GrabblingRays"]
+position = Vector2(14, 0)
+target_position = Vector2(180, 0)
+collision_mask = 2048
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="GrabblingRay02" type="RayCast2D" parent="GrabblingRays"]
+position = Vector2(14, -2)
+rotation = -0.0349066
+target_position = Vector2(180, 0)
+collision_mask = 2048
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="GrabblingRay03" type="RayCast2D" parent="GrabblingRays"]
+position = Vector2(14, -4)
+rotation = -0.0698132
+target_position = Vector2(180, 0)
+collision_mask = 2048
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="GrabblingRay04" type="RayCast2D" parent="GrabblingRays"]
+position = Vector2(14, -6)
+rotation = -0.10472
+target_position = Vector2(180, 0)
+collision_mask = 2048
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="GrabblingRay05" type="RayCast2D" parent="GrabblingRays"]
+position = Vector2(14, -8)
+rotation = -0.139626
+target_position = Vector2(180, 0)
+collision_mask = 2048
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="GrabblingRay06" type="RayCast2D" parent="GrabblingRays"]
+position = Vector2(14, -10)
+rotation = -0.174533
+target_position = Vector2(180, 0)
+collision_mask = 2048
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="GrabblingRay07" type="RayCast2D" parent="GrabblingRays"]
+position = Vector2(14, -12)
+rotation = -0.20944
+target_position = Vector2(180, 0)
+collision_mask = 2048
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="GrabblingRay08" type="RayCast2D" parent="GrabblingRays"]
+position = Vector2(14, -14)
+rotation = -0.244346
+target_position = Vector2(180, 0)
+collision_mask = 2048
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="GrabblingRay09" type="RayCast2D" parent="GrabblingRays"]
+position = Vector2(14, -16)
+rotation = -0.279253
+target_position = Vector2(180, 0)
+collision_mask = 2048
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="GrabblingRay10" type="RayCast2D" parent="GrabblingRays"]
+position = Vector2(14, -18)
+rotation = -0.314159
+target_position = Vector2(180, 0)
+collision_mask = 2048
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="GrabblingRay11" type="RayCast2D" parent="GrabblingRays"]
+position = Vector2(14, -20)
+rotation = -0.349066
+target_position = Vector2(180, 0)
+collision_mask = 2048
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="GrabblingRay12" type="RayCast2D" parent="GrabblingRays"]
+position = Vector2(14, -22)
+rotation = -0.383972
+target_position = Vector2(180, 0)
+collision_mask = 2048
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="GrabblingRay13" type="RayCast2D" parent="GrabblingRays"]
+position = Vector2(14, 22)
+rotation = 0.383972
+target_position = Vector2(180, 0)
+collision_mask = 2048
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="GrabblingRay14" type="RayCast2D" parent="GrabblingRays"]
+position = Vector2(14, 20)
+rotation = 0.349066
+target_position = Vector2(180, 0)
+collision_mask = 2048
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="GrabblingRay15" type="RayCast2D" parent="GrabblingRays"]
+position = Vector2(14, 18)
+rotation = 0.314159
+target_position = Vector2(180, 0)
+collision_mask = 2048
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="GrabblingRay16" type="RayCast2D" parent="GrabblingRays"]
+position = Vector2(14, 16)
+rotation = 0.279253
+target_position = Vector2(180, 0)
+collision_mask = 2048
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="GrabblingRay17" type="RayCast2D" parent="GrabblingRays"]
+position = Vector2(14, 14)
+rotation = 0.244346
+target_position = Vector2(180, 0)
+collision_mask = 2048
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="GrabblingRay18" type="RayCast2D" parent="GrabblingRays"]
+position = Vector2(14, 12)
+rotation = 0.20944
+target_position = Vector2(180, 0)
+collision_mask = 2048
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="GrabblingRay19" type="RayCast2D" parent="GrabblingRays"]
+position = Vector2(14, 10)
+rotation = 0.174533
+target_position = Vector2(180, 0)
+collision_mask = 2048
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="GrabblingRay20" type="RayCast2D" parent="GrabblingRays"]
+position = Vector2(14, 8)
+rotation = 0.139626
+target_position = Vector2(180, 0)
+collision_mask = 2048
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="GrabblingRay21" type="RayCast2D" parent="GrabblingRays"]
+position = Vector2(14, 6)
+rotation = 0.10472
+target_position = Vector2(180, 0)
+collision_mask = 2048
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="GrabblingRay22" type="RayCast2D" parent="GrabblingRays"]
+position = Vector2(14, 4)
+rotation = 0.0698132
+target_position = Vector2(180, 0)
+collision_mask = 2048
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="GrabblingRay23" type="RayCast2D" parent="GrabblingRays"]
+position = Vector2(14, 2)
+rotation = 0.0349066
+target_position = Vector2(180, 0)
+collision_mask = 2048
+collide_with_areas = true
+collide_with_bodies = false
 
 [node name="Interact" type="Node2D" parent="."]
 rotation = 1.5708

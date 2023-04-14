@@ -34,12 +34,16 @@ class_name Player
 @export var energie_shader: ShaderMaterial
 
 enum { 
-	MOVE, ATTACK, HEAVY_ATTACK, DASH, HURT, DOUBLE_ATTACK
+	MOVE, ATTACK, HEAVY_ATTACK, DASH, HURT, DOUBLE_ATTACK, GRABBLING
 }
 var state = MOVE
 var roll_vector: Vector2 = Vector2.LEFT
 var dash_vector: Vector2 = Vector2.RIGHT
 var knockback: Vector2 = Vector2.ZERO
+
+var hock_position: Vector2 = Vector2.ZERO
+var hooked: bool = false
+
 var attackable: bool = true
 var combat_stance: bool = false
 
@@ -77,6 +81,8 @@ var can_interact: bool = true
 @onready var body_collider: CollisionShape2D = $CollisionShape2D
 @onready var interact_ray: RayCast2D = $Interact/InteractRay
 @onready var itemdrop_position: Marker2D = $Interact/ItemDrop 
+@onready var grabbling_rays: Node2D = $GrabblingRays
+
 
 var vel = Vector2.ZERO
 var PUSH_SPEED = 50
@@ -133,6 +139,8 @@ func _physics_process(delta):
 			hurt_state(delta)
 		DOUBLE_ATTACK:
 			double_attack_state(delta)
+		GRABBLING:
+			grabbling_state(delta)
 
 func move_state(delta):
 	var input_vector = Vector2.ZERO
@@ -188,8 +196,32 @@ func move_state(delta):
 			animState.travel("Idle")
 	if get_slide_collision_count() > 0:
 		check_box_collision(input_vector)
-
 	_input_handler(delta)
+
+func check_grabbling_collision():
+	for hookray in grabbling_rays.get_children():
+		if hookray.get_collider() != null:
+			var collider = hookray.get_collider()
+			if collider.is_in_group("hookSpot"):
+				if not hooked:
+					hock_position = collider.get_hook_position()
+
+
+func grabbling_state(delta):
+	if self.global_position.distance_to(hock_position) >= 2:
+		if body_collider.disabled == false:
+			body_collider.set_deferred("disabled", true)
+		hooked = true
+		velocity = velocity.move_toward(global_position.direction_to(hock_position).normalized() * stats.speed, stats.ACCELERATION * delta)
+		move_and_slide()
+	else:
+		if body_collider.disabled == true:
+			body_collider.set_deferred("disabled", false)
+		hock_position = Vector2.ZERO
+		velocity = Vector2.ZERO
+		hooked = false
+		state = MOVE
+
 
 func check_box_collision(push_velocity):
 	var box = get_slide_collision(0).get_collider() as PhysicBox
@@ -213,6 +245,12 @@ func _input_handler(_delta):
 		can_dash = false
 		can_attack = false
 		state = DASH
+	
+	if Input.is_action_just_pressed("hook") and not hooked and not is_dashing:
+		# Hookshot
+		check_grabbling_collision()
+		if hock_position != Vector2.ZERO:
+			state = GRABBLING
 	
 	if Input.is_action_just_pressed("attack") and can_attack and stats.has_sword and not is_dashing:
 		can_attack = false
