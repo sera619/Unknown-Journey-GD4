@@ -1,5 +1,8 @@
 extends Control
 class_name MainMenu
+
+
+@export var dialog_scene: PackedScene
 @onready var namepopup: NamePopup = $NamePopup
 @onready var menupanel: Control = $Panel/M 
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
@@ -62,7 +65,19 @@ func _create_btn_click_sound():
 # Name Buttons
 func _on_ok_btn_button_down():
 	_create_btn_click_sound()
-	GameManager.set_player_name(namepopup.nameinput.text)
+	if namepopup.nameinput.text == "":
+		var popup = dialog_scene.instantiate()
+		GameManager.interface.add_child(popup)
+		popup.connect("popup_accept", _create_default_player)
+		popup.set_text(T.ACCEPT_DIALOG_TEXT.NO_NAME_INPUT)
+	else:
+		GameManager.set_player_name(namepopup.nameinput.text)
+		namepopup.nameinput.text = ""
+		EventHandler.connect("transition_black", start_new)
+		EventHandler.emit_signal("start_transition")
+
+func _create_default_player():
+	GameManager.set_player_name("Held")
 	namepopup.nameinput.text = ""
 	EventHandler.connect("transition_black", start_new)
 	EventHandler.emit_signal("start_transition")

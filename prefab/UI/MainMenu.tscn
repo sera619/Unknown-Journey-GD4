@@ -1,7 +1,8 @@
-[gd_scene load_steps=22 format=3 uid="uid://jif6vrcb1jke"]
+[gd_scene load_steps=23 format=3 uid="uid://jif6vrcb1jke"]
 
 [ext_resource type="Texture2D" uid="uid://cxcioix0e3f74" path="res://assets/UI/menu/rpg3.png" id="1_3jww1"]
 [ext_resource type="Script" path="res://prefab/UI/MainMenu.gd" id="1_iuelm"]
+[ext_resource type="PackedScene" uid="uid://cn10r8if5dqwd" path="res://prefab/UI/AcceptPopup.tscn" id="2_x5em8"]
 [ext_resource type="Texture2D" uid="uid://dek50oixsuepp" path="res://assets/UI/NoPixelart/GameLogo.png" id="3_g2obs"]
 [ext_resource type="Texture2D" uid="uid://cefc0kofjjbtu" path="res://assets/UI/big-red-button-normal-export.png" id="4_gr38b"]
 [ext_resource type="Texture2D" uid="uid://cvqmjd6jh0jma" path="res://assets/UI/big-red-button-pressed-export.png" id="5_0gs6k"]
@@ -688,6 +689,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_iuelm")
+dialog_scene = ExtResource("2_x5em8")
 metadata/_edit_horizontal_guides_ = [-50.0]
 
 [node name="Panel" type="TextureRect" parent="."]
