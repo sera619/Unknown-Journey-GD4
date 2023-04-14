@@ -117,3 +117,10 @@ const INGAME_MAP_NAMES = [
 	"Ruinenstadt",
 	"Froststeppe",
 ]
+
+const ACCEPT_DIALOG_TEXT: Dictionary = {
+	"AUDIO_RESET": "Wenn du fortfährst werden ALLE Audio-Optionen auf die Standart-Einstellungen zurück gesetzt!\nMöchtest du die Audio-Optionen wirklich zurücksetzten?",
+	"VIDEO_RESET": "Wenn du fortfährst werden ALLE Video-Optionen auf die Standart-Einstellungen zurück gesetzt!\nMöchtest du die Video-Optionen wirklich zurücksetzten?",
+	"SAVE_RESET":  "Dieser Vorang wird ALLE Spielstände/Profile löschen!\nDieser Vorgang wird nur empfohlen wenn du eine ältere Spielstandversion gespielt hast!\nBist du sicher das du ALLE Speicherstände löschen willst?",
+	"NO_NAME_INPUT": "Du hast keinen Namen ausgewählt.\nWenn du fortfährst wird dein Character\n\'Held\'\nheißen!\nMöchstest du mit diesem Namen starten?",
+}
