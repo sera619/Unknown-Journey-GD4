@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://cn10r8if5dqwd"]
+[gd_scene load_steps=10 format=3 uid="uid://cn10r8if5dqwd"]
 
 [ext_resource type="Texture2D" uid="uid://8edplubtbkbr" path="res://assets/UI/wood-box.png" id="1_bjukj"]
 [ext_resource type="Script" path="res://prefab/UI/AcceptPopup.gd" id="1_o7jyt"]
+[ext_resource type="PackedScene" uid="uid://cjorh74mgakdb" path="res://prefab/audio/AttentionSound.tscn" id="2_bhh5x"]
 [ext_resource type="Texture2D" uid="uid://bpt7n5fbi8xg5" path="res://assets/UI/text-box.png" id="2_j4hvr"]
 [ext_resource type="FontFile" uid="uid://bddtsccx0qour" path="res://assets/UI/Fonts/dogicapixel.otf" id="3_gvi52"]
 [ext_resource type="Texture2D" uid="uid://cefc0kofjjbtu" path="res://assets/UI/big-red-button-normal-export.png" id="4_vl852"]
@@ -25,6 +26,7 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_o7jyt")
+attention_sound = ExtResource("2_bhh5x")
 
 [node name="BG" type="NinePatchRect" parent="."]
 layout_mode = 1
