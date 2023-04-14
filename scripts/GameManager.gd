@@ -32,6 +32,9 @@ const DEFAULT_GAME_OPTIONS: Dictionary = {
 	"audio_music":0.0,
 	"audio_ambiente": 0.0,
 	"audio_sfx":0.0,
+	"video_brightness": 1.0,
+	"video_saturation": 1.0,
+	"video_contrast": 1.0,
 	"musicmute": false,
 	"fullscreen":false,
 	"vsync": true
@@ -51,14 +54,19 @@ func _setup_game_settings():
 	if not FileAccess.file_exists(path):
 		self._save_settings(DEFAULT_GAME_OPTIONS)
 	current_game_options = self._load_settings()
-	if !current_game_options.has("audio_ambiente"):
+	if !current_game_options.has("audio_ambiente") or !current_game_options.has("video_contrast"):
 		print("[!] GameManager: Optionsavefile is not on actual version. Create new.")
 		self._save_settings(DEFAULT_GAME_OPTIONS)
 	current_game_options = self._load_settings()
 	self._set_game_settings(current_game_options)
 	print("[!] GameManager: Gameoptions setup successfully!")
 
+
 func _set_game_settings(settings: Dictionary):
+	_update_video_saturation(settings['video_saturation'])
+	_update_video_contrast(settings['video_contrast'])
+	_update_video_brightness(settings['video_brightness'])
+
 	AudioServer.set_bus_volume_db(1, settings['audio_all'])
 	AudioServer.set_bus_volume_db(5, settings['audio_music'])
 	AudioServer.set_bus_volume_db(3, settings['audio_ambiente'])
@@ -74,6 +82,20 @@ func _set_game_settings(settings: Dictionary):
 	else:
 		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
 	print("[!] GameManager: game settings applied!")
+
+
+func _update_video_brightness(value):
+	var world_envi = get_node("/root/Game/WorldEnvironment")
+	world_envi.environment.adjustment_brightness = value
+
+func _update_video_saturation(value):
+	var world_envi = get_node("/root/Game/WorldEnvironment")
+	world_envi.environment.adjustment_saturation = value
+
+func _update_video_contrast(value):
+	var world_envi = get_node("/root/Game/WorldEnvironment")
+	world_envi.environment.adjustment_contrast = value
+
 
 
 func _update_audio_all(value):
