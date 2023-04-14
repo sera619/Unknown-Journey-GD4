@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://b8dfvmtx107ef"]
+
+[ext_resource type="Script" path="res://Items/Item.gd" id="1_thgks"]
+[ext_resource type="Texture2D" uid="uid://blma6vjwq02hd" path="res://assets/items/Blitz-Schwert.png" id="2_2wlwq"]
+[ext_resource type="PackedScene" uid="uid://7ochc3t874ey" path="res://prefab/spells/LightningWeaponEffect.tscn" id="3_pajww"]
+
+[node name="Blitzschwert" type="Node"]
+script = ExtResource("1_thgks")
+item_name = "Blitzschwert"
+item_icon = ExtResource("2_2wlwq")
+item_max_amount = 1
+item_type = "Equip"
+item_description = "Eine grell leuchtende Klinge. Kleine Blitze zucken über die Schneide. Hat eine Chance den Gegner mit Blitzen zu treffen."
+item_damage = 8
+trigger_chance = 7
+extra_dmg = 3
+effect_scene = ExtResource("3_pajww")
