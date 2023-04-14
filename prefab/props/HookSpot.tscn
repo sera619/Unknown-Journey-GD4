@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://ci6kr7sbn21pv"]
+
+[ext_resource type="Script" path="res://prefab/props/HookSpot.gd" id="1_7f7yk"]
+[ext_resource type="Texture2D" uid="uid://bp4qygf7xrub6" path="res://assets/objects/GrabblingSpot.png" id="1_i8uet"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4cx2g"]
+radius = 3.46725
+height = 8.60679
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yaj03"]
+radius = 2.0
+
+[node name="HookSpot" type="Area2D" groups=["hookSpot"]]
+collision_layer = 2048
+collision_mask = 2048
+script = ExtResource("1_7f7yk")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_4cx2g")
+
+[node name="Body" type="Sprite2D" parent="."]
+texture = ExtResource("1_i8uet")
+offset = Vector2(0, -12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -20.6473)
+shape = SubResource("CircleShape2D_yaj03")
+
+[node name="HookPos" type="Marker2D" parent="."]
+position = Vector2(0, 13)
