@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://c68wiw8qyw3r4"]
+
+[ext_resource type="AudioStream" uid="uid://b02anb7lqe5nw" path="res://assets/Music and Sounds/other/drop_object.ogg" id="1_5smwo"]
+[ext_resource type="Script" path="res://prefab/audio/SoundEffect.gd" id="2_tk2na"]
+
+[node name="SoundEffect" type="AudioStreamPlayer"]
+stream = ExtResource("1_5smwo")
+bus = &"PlayerEffects"
+script = ExtResource("2_tk2na")
