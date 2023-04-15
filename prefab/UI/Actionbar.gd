@@ -16,8 +16,7 @@ func _ready():
 	EventHandler.connect("actionbar_disable", _disable_bar)
 	EventHandler.connect("actionbar_enable", _enable_bar)
 	EventHandler.connect("player_level_changed", _enable_slot)
-	for button in button_container.get_children():
-		button
+
 
 func _enable_slot(level):
 	if level > 1:
@@ -31,7 +30,8 @@ func _enable_slot(level):
 	else:
 		double_attack_btn.visible = false
 		energiepot_btn.visible = false
-	if level > 5:
+		
+	if QuestManager.is_quest_complete("Bombig"):
 		bomb_btn.visible = true
 	else:
 		bomb_btn.visible = false

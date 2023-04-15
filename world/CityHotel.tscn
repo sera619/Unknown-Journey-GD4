@@ -1,6 +1,7 @@
-[gd_scene load_steps=62 format=3 uid="uid://ce2qgcscf6ubu"]
+[gd_scene load_steps=64 format=3 uid="uid://ce2qgcscf6ubu"]
 
 [ext_resource type="Script" path="res://world/CityHotel.gd" id="1_cofsr"]
+[ext_resource type="PackedScene" uid="uid://iv71d2fcqfof" path="res://prefab/npc/NPCAiden.tscn" id="2_fjrta"]
 [ext_resource type="PackedScene" uid="uid://dcc837c2ujx6g" path="res://prefab/utils/GameCamera.tscn" id="2_fnk70"]
 [ext_resource type="Texture2D" uid="uid://cvlvkaue2u7hm" path="res://assets/World/Inside_B.png" id="2_vrjrr"]
 [ext_resource type="Texture2D" uid="uid://c7fiywcu0t2e4" path="res://assets/World/Inside_A4.png" id="3_r124j"]
@@ -56682,6 +56683,9 @@ sources/5 = SubResource("TileSetAtlasSource_npkx8")
 sources/7 = SubResource("TileSetAtlasSource_pmiv4")
 sources/6 = SubResource("TileSetAtlasSource_yh2au")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7l1tl"]
+size = Vector2(188, 49)
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5vgv3"]
 texture = ExtResource("8_xdj3b")
 texture_region_size = Vector2i(32, 32)
@@ -56720,6 +56724,7 @@ radius = 21.0238
 
 [node name="CityHotel" type="Node2D" groups=["WorldBase"]]
 script = ExtResource("1_cofsr")
+prof_scene = ExtResource("2_fjrta")
 world_name = "CityHotel"
 ingame_name = "Arkairos Hotel"
 
@@ -56768,6 +56773,15 @@ layer_4/tile_data = PackedInt32Array(327668, 65537, 2, 327669, 65537, 2, 393207,
 
 [node name="MapUtils" type="Node2D" parent="Map/GameMap"]
 
+[node name="Questchecker" type="Area2D" parent="Map"]
+position = Vector2(97, -294)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Questchecker"]
+position = Vector2(0, 7.5)
+shape = SubResource("RectangleShape2D_7l1tl")
+
 [node name="GameObjects" type="Node2D" parent="Map"]
 y_sort_enabled = true
 
@@ -56784,6 +56798,9 @@ y_sort_enabled = true
 
 [node name="NPCThalassa" parent="Map/GameObjects/NPC" instance=ExtResource("11_51d3q")]
 position = Vector2(-139, -58)
+
+[node name="ProfSpawn" type="Marker2D" parent="Map/GameObjects/NPC"]
+position = Vector2(140, -294)
 
 [node name="Enemys" type="Node2D" parent="Map/GameObjects"]
 y_sort_enabled = true
@@ -56869,7 +56886,7 @@ position = Vector2(97, -318)
 teleport_location = "CityCellar"
 
 [node name="CollisionShape2D" parent="Map/GameObjects/Teleporter2/TeleportArea" index="0"]
-position = Vector2(-1, -4)
+position = Vector2(0, -5)
 shape = SubResource("RectangleShape2D_d26ad")
 
 [node name="CollisionShape2D" parent="Map/GameObjects/Teleporter2/PlayerDetector" index="0"]
@@ -56888,6 +56905,7 @@ position = Vector2(-305, -465)
 position = Vector2(225, 143)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
 stream = ExtResource("22_sostj")
 autoplay = true
 bus = &"Musik"

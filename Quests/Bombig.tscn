@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://8bw7fp43fqwj"]
+
+[ext_resource type="Script" path="res://Quests/Quest.gd" id="1_c7ora"]
+
+[node name="Bombig" type="Node"]
+script = ExtResource("1_c7ora")
+type = 1
+title = "Bombig"
+description = "Der Alchemist arbeitet an einer neuen Idee. Er braucht dafür die Asche von Skelett-Magiern im dunklen Wald. Besorge die Asche."
+required_amount = 5
+object_name = "Asche"
+reward_xp = 410
+start_text = "Also dann, ich kann dir nicht sagen  um was es genau geht aber ich brauche dringend die Asche von Untoten. Das wird ein riesen Ding! Im dunklen Wald gibt es Untote. Gehe dort hin und hole die Asche im Gegenzug teile ich meine Erfindung mit dir.	"
+progress_text = "Der dunkle Wald befindet sich westlich des kleinen Waldes. Sei vorsichtig die Gegner dort beherschen mächtige Zauber."
+complete_text = "Das ist genau das was ich brauche! Ich stehe zu meinem Wort hier bitte aber sei vorsichtig damit!"

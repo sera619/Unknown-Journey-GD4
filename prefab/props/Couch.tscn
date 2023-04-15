@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://na1osiqebrii"]
+
+[ext_resource type="Texture2D" uid="uid://cvlvkaue2u7hm" path="res://assets/World/Inside_B.png" id="1_1wnna"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3ahrx"]
+size = Vector2(22.5, 64)
+
+[node name="Couch" type="StaticBody2D"]
+collision_layer = 129
+collision_mask = 129
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_1wnna")
+offset = Vector2(0, -8)
+region_enabled = true
+region_rect = Rect2(0, 401, 64, 31)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Sprite2D"]
+show_behind_parent = true
+position = Vector2(0, 51)
+region_enabled = true
+region_rect = Rect2(48, 100, 86, 52)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2.71499e-06, -3.75)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_3ahrx")

@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://w2pgyedjllcg"]
+
+[ext_resource type="Texture2D" uid="uid://bryx180ksggwu" path="res://assets/tiles/victorian-garden.png" id="1_kt6qx"]
+[ext_resource type="Texture2D" uid="uid://bqguk5b6x5gjb" path="res://assets/Shadows/LargeShadow.png" id="2_32jwt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nxr07"]
+size = Vector2(15.5, 32)
+
+[node name="ChessTable" type="StaticBody2D"]
+collision_layer = 129
+collision_mask = 129
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -12)
+texture = ExtResource("1_kt6qx")
+region_enabled = true
+region_rect = Rect2(0, 1056.1, 32.0409, 32.8953)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Sprite2D"]
+show_behind_parent = true
+position = Vector2(0, 10)
+scale = Vector2(0.9375, 0.6)
+texture = ExtResource("2_32jwt")
+region_rect = Rect2(220, 205, 46, 24)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(4.52499e-06, -4.25)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_nxr07")

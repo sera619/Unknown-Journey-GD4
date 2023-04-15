@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dnh51soalgk55"]
+
+[ext_resource type="Shader" path="res://prefab/props/TeleportShader.gdshader" id="1_3vjxu"]
+
+[resource]
+shader = ExtResource("1_3vjxu")
+shader_parameter/progress = 0.0
+shader_parameter/noise_desnity = 60.0
+shader_parameter/beam_size = 0.065
+shader_parameter/color = Color(0, 1.02, 1.2, 1)

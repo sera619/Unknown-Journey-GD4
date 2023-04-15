@@ -73,4 +73,4 @@ func _on_save_btn_button_down():
 	_create_btn_click_sound()
 	_hide_micromenu()
 	GameManager.save_data()
-	GameManager.info_box.set_info_text("[center][color=green]Information[/color]\n\n[color=red]Dein Spiel wurde gespeichert![/color][/center]")
+	GameManager.interface.notice_box.show_save_notice()

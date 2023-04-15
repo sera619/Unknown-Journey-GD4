@@ -6537,6 +6537,7 @@ radius = 76.1052
 [node name="SmallWood" type="Node2D" groups=["WorldBase"]]
 script = ExtResource("1_31k03")
 world_name = "SmallWood"
+ingame_name = "kleiner Wald"
 
 [node name="Map" type="Node2D" parent="."]
 
@@ -7217,7 +7218,7 @@ position = Vector2(-241, 596)
 position = Vector2(-241, 596)
 
 [node name="Teleporter" parent="Map/GameObjects" instance=ExtResource("5_0ktek")]
-position = Vector2(-730, 275)
+position = Vector2(-729, 275)
 teleport_location = "Wood"
 
 [node name="CollisionShape2D" parent="Map/GameObjects/Teleporter/TeleportArea" index="0"]

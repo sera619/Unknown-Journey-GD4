@@ -283,3 +283,5 @@ func _setup_game_mouse():
 	Input.set_custom_mouse_cursor(beam_cursor,Input.CURSOR_IBEAM)
 
 
+
+

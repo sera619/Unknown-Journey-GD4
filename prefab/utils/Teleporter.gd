@@ -14,7 +14,9 @@ var player: Player = null
 "SmallWood",
 "CityHotel",
 "CityCellar",
-"CityAlchemy") var teleport_location: String
+"CityAlchemy",
+"CityFarm",
+"WoodCave") var teleport_location: String
 @export var animated: bool
 
 @onready var teleArea = $TeleportArea
@@ -40,8 +42,8 @@ func start_teleport(body):
 	if not body.name == "Player":
 		return
 	player = body
-	EventHandler.emit_signal("player_set_interact", false)
 	player.velocity = Vector2.ZERO
+	EventHandler.emit_signal("player_set_interact", false)
 	EventHandler.connect("transition_black", teleport_player)
 	EventHandler.emit_signal("start_transition")
 	
@@ -70,6 +72,8 @@ func teleport_player():
 			"SmallCave":
 				GameManager.game.switch_gamelevel(teleport_location)
 			"Wood":
+				if GameManager.current_world.world_name == "WoodCave":
+					GameManager.game._change_player_spawn("WoodCaveWood")
 				GameManager.game.switch_gamelevel(teleport_location)
 			"SwordCave":
 				GameManager.game.switch_gamelevel(teleport_location)
@@ -92,6 +96,8 @@ func teleport_player():
 					GameManager.game._change_player_spawn("CityHotelCity")
 				if GameManager.current_world.world_name == "CityAlchemy":
 					GameManager.game._change_player_spawn("CityAlchemyCity")
+				if GameManager.current_world.world_name == "CityFarm":
+					GameManager.game._change_player_spawn("CityFarmCity")
 				GameManager.game.switch_gamelevel(teleport_location)
 			"SmallWood":
 				if GameManager.current_world.world_name == "City":
@@ -104,5 +110,11 @@ func teleport_player():
 			"CityHotel": 
 				if GameManager.current_world.world_name == "CityCellar":
 					GameManager.game._change_player_spawn("CityCellarCityHotel")
+				GameManager.game.switch_gamelevel(teleport_location)
+			"CityAlchemy":
+				GameManager.game.switch_gamelevel(teleport_location)
+			"CityFarm":
+				GameManager.game.switch_gamelevel(teleport_location)
+			"WoodCave":
 				GameManager.game.switch_gamelevel(teleport_location)
 		print("[!] Teleporter: Player -> %s!" % teleport_location)

@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://dqei3frfmaly3"]
+
+[ext_resource type="Script" path="res://Quests/Quest.gd" id="1_dfjla"]
+
+[node name="Das Labor" type="Node"]
+script = ExtResource("1_dfjla")
+type = 1
+title = "Das Labor"
+description = "Triff den Professor in seinem Alchemielabor im Süden der Stadt."
+required_amount = 1
+object_name = "Professor getroffen"
+reward_xp = 120
+start_text = "Hallo junger Held. Ich will dich gar nicht lange stören, ich wollte dich nur bitten mich in meinem Labor zu besuchen wenn du Zeit hast. Ich möchte ein Experiment durchführen. Dafür brauche ich deine Hilfe."
+complete_text = "Ah da bist du ja schön dich zu sehen!"

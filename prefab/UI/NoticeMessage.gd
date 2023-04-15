@@ -28,7 +28,7 @@ func set_item_get_msg(item: String, amount: int):
 
 func set_quest_finish_msg(questname: String):
 	self._set_bg(quest_bg)
-	label.parse_bbcode("[center][color=orange]\n\nQuest bereit zum abgeben[/color]\n[color=white]\"%s\"[/color][/center]" % questname)
+	label.parse_bbcode("[center][color=orange]\nQuest bereit\n\nzum abgeben[/color]\n\n[color=white]\"%s\"[/color][/center]" % questname)
 	self.show()
 	timer.start()
 
@@ -53,6 +53,12 @@ func set_quest_new_msg(questname: String):
 func set_door_locked_msg(message: String):
 	self._set_bg(error_bg)
 	label.parse_bbcode("[center][color=orange]\n%s[/color][/center]" % message)
+	self.show()
+	timer.start()
+
+func set_save_msg():
+	self._set_bg(item_bg)
+	label.parse_bbcode("[center][color=orange]\nDein Spielstand\n\nwurde gespeichert![/color][/center]")
 	self.show()
 	timer.start()
 

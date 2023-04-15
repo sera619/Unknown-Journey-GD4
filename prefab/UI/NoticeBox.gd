@@ -42,6 +42,11 @@ func show_common_info_notice(message: String):
 	notice_container.add_child(notice)
 	notice.set_information_msg(message)
 
+func show_save_notice():
+	var notice: NoticeMessage = notice_scene.instantiate()
+	notice_container.add_child(notice)
+	notice.set_save_msg()
+
 func _input(_event):
 	if GameManager.game.run_type == 1:
 		if Input.is_key_pressed(KEY_KP_7):

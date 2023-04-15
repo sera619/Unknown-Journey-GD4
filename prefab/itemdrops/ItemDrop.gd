@@ -60,10 +60,13 @@ func pickup(area):
 	if not area.is_in_group("playerPickupzone"):
 		return
 	if item_type == 2:
-		if QuestManager.current_quest and QuestManager.current_quest.title == "Das Schwert":
-			var sound = quest_pick_sound.instantiate()
-			get_tree().current_scene.add_child(sound)
-			QuestManager.current_quest.add_item()
+		if QuestManager.current_quest:
+			if QuestManager.current_quest.title == "Das Schwert" and self.item_name == "Schwert":
+				var sound = quest_pick_sound.instantiate()
+				get_tree().current_scene.add_child(sound)
+				QuestManager.current_quest.add_item()
+			elif QuestManager.current_quest.title == "Bombig" and self.item_name == "Asche":
+				QuestManager.current_quest.add_item()
 	elif item_type == 0:
 		if item_name:
 			if interact_sound:

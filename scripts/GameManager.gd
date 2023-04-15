@@ -55,7 +55,10 @@ func _setup_game_settings():
 	if not FileAccess.file_exists(path):
 		self._save_settings(DEFAULT_GAME_OPTIONS)
 	current_game_options = self._load_settings()
-	if !current_game_options.has("audio_ambiente") or !current_game_options.has("video_contrast"):
+	if not current_game_options.has("audio_ambiente"):
+		print("[!] GameManager: Optionsavefile is not on actual version. Create new.")
+		self._save_settings(DEFAULT_GAME_OPTIONS)
+	if not current_game_options.has("video_contrast"):
 		print("[!] GameManager: Optionsavefile is not on actual version. Create new.")
 		self._save_settings(DEFAULT_GAME_OPTIONS)
 	current_game_options = self._load_settings()
@@ -102,32 +105,32 @@ func _update_video_contrast(value):
 func _update_audio_all(value):
 	AudioServer.set_bus_volume_db(1, value)
 	self.current_game_options['audio_all'] = value
-	print("[!] GameManger: All audio volume set to: %s" % value)
+	#print("[!] GameManger: All audio volume set to: %s" % value)
 
 func _update_audio_music(value):
 	AudioServer.set_bus_volume_db(5, value)
 	self.current_game_options['audio_music'] = value
-	print("[!] GameManger: Music audio volume set to: %s" % value)
+	#print("[!] GameManger: Music audio volume set to: %s" % value)
 
 func _update_audio_sfx(value):
 	AudioServer.set_bus_volume_db(2, value)
 	self.current_game_options['audio_sfx'] = value
-	print("[!] GameManger: SFX audio volume set to: %s" % value)
+	#print("[!] GameManger: SFX audio volume set to: %s" % value)
 
 func _update_audio_menu(value):
 	AudioServer.set_bus_volume_db(4, value)
 	self.current_game_options['audio_menu'] = value
-	print("[!] GameManger: Menu audio volume set to: %s" % value)
+	#print("[!] GameManger: Menu audio volume set to: %s" % value)
 
 func _update_musik_mute(mode: bool):
 	self.current_game_options['musicmute'] = mode
 	AudioServer.set_bus_mute(5, mode)
-	print("[!] GameManger: Musicmute set to: %s" % mode)
+	#print("[!] GameManger: Musicmute set to: %s" % mode)
 
 func _update_audio_ambiente(value):
 	AudioServer.set_bus_volume_db(3, value)
 	self.current_game_options['audio_ambiente'] = value
-	print("[!] GameManger: Ambiente audio volume set to: %s" % value)
+	#print("[!] GameManger: Ambiente audio volume set to: %s" % value)
 
 func _update_window_mode(mode: bool):
 	self.current_game_options['fullscreen'] = mode

@@ -51,4 +51,6 @@ signal stop_rain
 
 signal spawn_enemys
 
+signal version_outdated
+
 

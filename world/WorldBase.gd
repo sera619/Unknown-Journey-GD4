@@ -4,8 +4,6 @@ class_name WorldBase
 @export_category('Base Information')
 @export var world_name: String
 @export var ingame_name: String
-
-
 @onready var maputils = $Map/GameMap/MapUtils
 @onready var npc_container = $Map/GameObjects/NPC
 @onready var enemy_container = $Map/GameObjects/Enemys
@@ -27,8 +25,6 @@ func _on_ready():
 		QuestManager.load_quests()
 		GameManager.load_game = false
 
-
-
 func get_entry_spot():
 	if entry_spot:
 		return entry_spot.global_position
@@ -46,7 +42,6 @@ func revive_player():
 		new_player.global_position = get_respawn_spot()
 	else:
 		new_player.global_position = player_graveyard.get_respawn_pos()
-
 
 func spawn_player():
 	if GameManager.player != null:

@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwn4gap18sikn"]
+
+[ext_resource type="Texture2D" uid="uid://cvlvkaue2u7hm" path="res://assets/World/Inside_B.png" id="1_igllb"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x50yu"]
+radius = 6.0
+height = 38.0
+
+[node name="Table" type="StaticBody2D"]
+collision_layer = 129
+collision_mask = 129
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_igllb")
+offset = Vector2(0, -8)
+region_enabled = true
+region_rect = Rect2(200, 239, 48, 27)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Sprite2D"]
+show_behind_parent = true
+position = Vector2(0, 51)
+region_enabled = true
+region_rect = Rect2(48, 100, 86, 52)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_x50yu")

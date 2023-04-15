@@ -26,7 +26,10 @@ const LevelScenes: Dictionary = {
 	"GameIntro": preload("res://prefab/UI/GameIntro.tscn"),
 	"SmallWood": preload("res://world/SmallWood.tscn"),
 	"CityCellar": preload("res://world/CityCellar.tscn"),
-	"CityHotel": preload("res://world/CityHotel.tscn")
+	"CityHotel": preload("res://world/CityHotel.tscn"),
+	"CityAlchemy": preload("res://world/CityAlchemy.tscn"),
+	"CityFarm": preload("res://world/CityFarm.tscn"),
+	"WoodCave": preload("res://world/WoodCave.tscn")
 }
 const TELEPORT_SPAWN_LOCATIONS: Dictionary = {
 	"GraslandHouse": Vector2(1281, 246),
@@ -35,19 +38,15 @@ const TELEPORT_SPAWN_LOCATIONS: Dictionary = {
 	"WoodSmallWood": Vector2(-673, 271),
 	"CitySmallWood": Vector2(225, 595),
 	"CityHotelCity": Vector2(-240, -170),
-	"CityCellarCityHotel": Vector2(97, -294) 
+	"CityCellarCityHotel": Vector2(97, -294),
+	"CityAlchemyCity": Vector2(-816, 661),
+	"CityFarmCity": Vector2(-2768, -141),
+	"WoodCaveWood": Vector2(-607, 136)
 }
 
 var teleport_spawn_location: Vector2 = Vector2.ZERO
 var world_shadow = null
 
-func _development_start():
-	new_game = true
-	GameManager.selected_playername = "Sera"
-	if dev_start_map == "None":
-		load_game()
-	else:
-		switch_gamelevel(dev_start_map)
 
 func _process(delta):
 	G.delta = delta
@@ -154,6 +153,10 @@ func _change_player_spawn(location: String):
 		"CityHotelCity":
 			self.teleport_spawn_location = self.TELEPORT_SPAWN_LOCATIONS[str(location)]
 		"CityCellarCityHotel":
+			self.teleport_spawn_location = self.TELEPORT_SPAWN_LOCATIONS[str(location)]
+		"CityAlchemyCity":
+			self.teleport_spawn_location = self.TELEPORT_SPAWN_LOCATIONS[str(location)]
+		"CityFarmCity":
 			self.teleport_spawn_location = self.TELEPORT_SPAWN_LOCATIONS[str(location)]
 	self.change_player_spawn_location = true
 	print("[!] Game: Change player spawn @ %s" % location)
