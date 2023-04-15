@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dxmixje725o85"]
+
+[ext_resource type="AudioStream" uid="uid://c7gyxwekrtnfw" path="res://assets/Music and Sounds/spells/lightning_impact.wav" id="1_mdan6"]
+[ext_resource type="Script" path="res://prefab/audio/SoundEffect.gd" id="2_ear0d"]
+
+[node name="SoundEffect" type="AudioStreamPlayer"]
+stream = ExtResource("1_mdan6")
+bus = &"PlayerEffects"
+script = ExtResource("2_ear0d")
