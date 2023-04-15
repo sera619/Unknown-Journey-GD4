@@ -6,7 +6,6 @@
 
 [node name="Game" type="Node"]
 script = ExtResource("1_ds55b")
-run_type = 1
 dev_start_map = "None"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://04scy05jiaid"]
+[gd_scene load_steps=51 format=3 uid="uid://04scy05jiaid"]
 
 [ext_resource type="Script" path="res://world/WorldBase.gd" id="1_gjfdg"]
 [ext_resource type="Texture2D" uid="uid://cvlvkaue2u7hm" path="res://assets/World/Inside_B.png" id="2_421gp"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://de1qg2ncmb1ps" path="res://prefab/props/HouseTable.tscn" id="7_ivai8"]
 [ext_resource type="Texture2D" uid="uid://d05s3w0oy167w" path="res://assets/tiles/obj_misk_atlas.png" id="7_lsvvn"]
 [ext_resource type="PackedScene" uid="uid://dufcf53i77hkn" path="res://prefab/utils/StatisticBook.tscn" id="8_7g62a"]
+[ext_resource type="PackedScene" uid="uid://bpwdwut7qwb1v" path="res://prefab/utils/PlayerGraveyard.tscn" id="8_a2107"]
 [ext_resource type="PackedScene" uid="uid://c1ywcyppymlpl" path="res://prefab/props/HouseChair.tscn" id="9_g0w8e"]
 [ext_resource type="AudioStream" uid="uid://g4qeudbf5giw" path="res://assets/Music and Sounds/BG/HouseBG_sound.ogg" id="12_u1d58"]
 [ext_resource type="PackedScene" uid="uid://dryyghofo87wq" path="res://prefab/props/WandLightSwitch.tscn" id="12_v6wqh"]
@@ -14590,6 +14591,9 @@ layer_3/tile_data = PackedInt32Array(-196607, 65537, 3, -196606, 65537, 3, -1966
 
 [node name="GameObjects" type="Node2D" parent="Map"]
 y_sort_enabled = true
+
+[node name="PlayerGraveyard" parent="Map/GameObjects" instance=ExtResource("8_a2107")]
+position = Vector2(904, -29)
 
 [node name="NPC" type="Node2D" parent="Map/GameObjects"]
 y_sort_enabled = true

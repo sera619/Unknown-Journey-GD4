@@ -107,6 +107,11 @@ func _ready():
 	sound_controller._setup_sounds("Player")
 	InventoryManager.load_inventory()
 	_auto_save()
+	if QuestManager.is_quest_complete("Bombig") == true:
+		GameManager.interface.actionbar.bomb_btn.visible = true
+	else:
+		GameManager.interface.actionbar.bomb_btn.visible = false
+
 
 func _auto_save():
 	await get_tree().create_timer(1).timeout

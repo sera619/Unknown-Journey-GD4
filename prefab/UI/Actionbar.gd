@@ -30,11 +30,7 @@ func _enable_slot(level):
 	else:
 		double_attack_btn.visible = false
 		energiepot_btn.visible = false
-		
-	if QuestManager.is_quest_complete("Bombig"):
-		bomb_btn.visible = true
-	else:
-		bomb_btn.visible = false
+
 		
 	if level > 7:
 		heavy_attack_btn.visible = true

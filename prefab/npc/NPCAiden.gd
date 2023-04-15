@@ -92,3 +92,6 @@ func _handle_quest():
 					QuestManager.current_quest.complete()
 		elif QuestManager.current_quest.title == "Bombig":
 			QuestManager.current_quest.complete()
+			InventoryManager.add_item("Bombe", 4)
+			GameManager.interface.actionbar.bomb_btn.visible = true
+			GameManager.interface.newskill_hud.set_skill_text("Bombe", "Du hast ein paar Bomben erhalten!\n\nUm sie zu scharf zu machen\n\nund zu platzieren\n\nDrücke die Taste \"3\"!")

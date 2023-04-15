@@ -631,7 +631,6 @@ position = Vector2(911, 479)
 position = Vector2(455, 103)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="Map"]
-visible = false
 color = Color(0, 0, 0, 0.803922)
 
 [node name="GameCamera" parent="Map" instance=ExtResource("4_jn70g")]

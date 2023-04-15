@@ -18,12 +18,12 @@ func _ready():
 	_on_ready()
 	
 func _on_ready():
-	spawn_player()
 	GameManager.register_node(self)
-	GameManager.interface.notice_box.show_common_info_notice("Du bist jetzt in:\n\n[color=white]\"%s\"[/color]" % ingame_name)
 	if GameManager.load_game:
 		QuestManager.load_quests()
 		GameManager.load_game = false
+	spawn_player()
+	GameManager.interface.notice_box.show_common_info_notice("Du bist jetzt in:\n\n[color=white]\"%s\"[/color]" % ingame_name)
 
 func get_entry_spot():
 	if entry_spot:
@@ -38,7 +38,7 @@ func revive_player():
 		GameManager.player = null
 	var new_player = player_scene.instantiate()
 	game_map.add_child(new_player)
-	if world_name == "CityShop" or world_name == "GraslandHouse" or world_name == "CityHotel" or world_name == "CityShop":
+	if world_name == "CityShop" or world_name == "GraslandHouse" or world_name == "CityHotel" or world_name == "CityShop" or world_name == "GraslandHouse":
 		new_player.global_position = get_respawn_spot()
 	else:
 		new_player.global_position = player_graveyard.get_respawn_pos()
