@@ -5,3 +5,4 @@ addons/
 changelog*
 .env
 .\src\__pycache__
+fb.md
