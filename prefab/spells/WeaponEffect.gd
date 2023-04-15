@@ -4,6 +4,7 @@ class_name WeaponEffect
 @export var effect_damage: int
 @export_enum("None", "Ice", "Fire", "Lightning", "Poison") var element_type: int
 
+@onready var lightning_impact_sound: PackedScene = preload("res://prefab/audio/LightningImpactSound.tscn")
 @onready var hitbox = $Hitbox
 @onready var collider = $Hitbox/CollisionShape2D
 @onready var body = $Body
@@ -24,6 +25,8 @@ func _ready():
 		SkillManager.ELEMENT.FIRE:
 			body.play("fire_animate")
 		SkillManager.ELEMENT.LIGHTNING:
+			var sound = lightning_impact_sound.instantiate()
+			get_tree().current_scene.add_child(sound)
 			body.offset = Vector2(0, -256)
 			body.scale = Vector2(0.15, 0.15)
 			body.play("lightning_animate")
