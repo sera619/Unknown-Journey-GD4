@@ -10,4 +10,6 @@ item_icon = ExtResource("2_nppem")
 item_max_amount = 1
 item_type = "Equip"
 item_description = "Die Klinge des Schwerts glüht vor Hitze. Hat eine Chance den Gegner in Flammen zu hüllen."
-item_damage = 12
+item_damage = 10
+trigger_chance = 7
+extra_dmg = 4
