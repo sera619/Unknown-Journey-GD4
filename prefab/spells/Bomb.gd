@@ -4,6 +4,7 @@ extends Node2D
 @export var bomb_damage: int
 @export var effect_scene: PackedScene
 @export var sound_scene: PackedScene
+@export var drop_sound_scene: PackedScene
 @onready var timer = $Timer
 @onready var knockback_vector: Vector2 = Vector2()
 @onready var body = $Body
@@ -13,6 +14,9 @@ extends Node2D
 
 
 func _ready():
+	if drop_sound_scene:
+		var dropsound = drop_sound_scene.instantiate()
+		self.add_child(dropsound)
 	hitbox.damage = bomb_damage
 	timer.connect("timeout", _explode)
 	timer.start(explotion_time)
