@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dfa72h0u7euvi"]
+[gd_scene load_steps=16 format=3 uid="uid://dfa72h0u7euvi"]
 
 [ext_resource type="Texture2D" uid="uid://dt2540u4sj5mt" path="res://assets/Shadows/MediumShadow.png" id="1_ji4qb"]
 [ext_resource type="Script" path="res://prefab/spells/Bomb.gd" id="1_q6frx"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://wgpncfmlr60d" path="res://prefab/effects/ExplotionEffect.tscn" id="2_l6r1e"]
 [ext_resource type="Texture2D" uid="uid://dtaqreq2ux1b8" path="res://assets/Effects/Bomb-sheet.png" id="2_x15k6"]
 [ext_resource type="PackedScene" uid="uid://dathmd5c627as" path="res://prefab/audio/BombImpactSound.tscn" id="3_wyqo8"]
+[ext_resource type="PackedScene" uid="uid://c68wiw8qyw3r4" path="res://prefab/audio/ItemPlaceSound.tscn" id="4_rullw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_28sus"]
 radius = 56.0
@@ -63,6 +64,7 @@ explotion_time = 3
 bomb_damage = 8
 effect_scene = ExtResource("2_l6r1e")
 sound_scene = ExtResource("3_wyqo8")
+drop_sound_scene = ExtResource("4_rullw")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 4.0
