@@ -1,4 +1,4 @@
-[gd_scene load_steps=121 format=3 uid="uid://b4upex2fdmpee"]
+[gd_scene load_steps=124 format=3 uid="uid://b4upex2fdmpee"]
 
 [ext_resource type="Script" path="res://ai/LPCEnemy.gd" id="1_w4hhm"]
 [ext_resource type="PackedScene" uid="uid://bjfxwi2rlu7co" path="res://prefab/enemys/EnemyIceProjectile.tscn" id="2_3ri4c"]
@@ -21,7 +21,10 @@
 [ext_resource type="PackedScene" uid="uid://kbo1bay3i1ps" path="res://prefab/utils/PlayerDetector.tscn" id="11_s8ruv"]
 [ext_resource type="PackedScene" uid="uid://ebdq15holk57" path="res://prefab/utils/Softcollision.tscn" id="12_y7rhu"]
 [ext_resource type="PackedScene" uid="uid://b347lo6c415bh" path="res://prefab/utils/WanderController.tscn" id="13_uocry"]
+[ext_resource type="PackedScene" uid="uid://dnbng2g6ad7s6" path="res://prefab/itemdrops/HealthPotDrop.tscn" id="14_vybvt"]
 [ext_resource type="PackedScene" uid="uid://bk15h3dxda4v0" path="res://prefab/utils/SoundController.tscn" id="15_1twe5"]
+[ext_resource type="PackedScene" uid="uid://coohwdkytapxs" path="res://prefab/itemdrops/EnergiePotDrop.tscn" id="15_lmcxd"]
+[ext_resource type="PackedScene" uid="uid://bdjnceh2b5es" path="res://prefab/itemdrops/CoinDrop.tscn" id="16_w5i5o"]
 
 [sub_resource type="Shader" id="Shader_qc56t"]
 code = "//Shader BY LURGX second shader */
@@ -1144,6 +1147,9 @@ death_sound_scene = ExtResource("6_mre50")
 flee_ai = ExtResource("5_n18kv")
 chase_ai = ExtResource("6_6n86j")
 wander_ai = ExtResource("2_pe4u2")
+reward_chance = 3
+reward_gold = 20
+reward_scenes = Array[PackedScene]([ExtResource("14_vybvt"), ExtResource("15_lmcxd"), ExtResource("16_w5i5o")])
 
 [node name="EnemyHUD" parent="." instance=ExtResource("6_muj8m")]
 offset_left = -14.0

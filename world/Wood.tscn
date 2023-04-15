@@ -2627,6 +2627,7 @@ y_sort_enabled = true
 enemy_container = NodePath("../Enemys")
 enemy_scene_one = ExtResource("13_p3y7m")
 enemy_scene_two = ExtResource("14_l8txa")
+enemys_2 = true
 
 [node name="Marker2D" parent="Map/GameObjects/EnemySpawner/SpawnPoints1" index="0"]
 position = Vector2(-71, 339)

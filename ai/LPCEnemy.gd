@@ -328,14 +328,15 @@ func _reward_player():
 	if not GameManager.player or stats.reward_exp == 0:
 		return
 	GameManager.player.stats.set_exp(GameManager.player.stats.experience + stats.reward_exp)
+	if QuestManager.current_quest and QuestManager.current_quest.title == "Bombig":
+		var qitem = preload("res://prefab/itemdrops/AshDrop.tscn").instantiate()
+		qitem.global_position = self.global_position
+		GameManager.current_world.game_map.add_child(qitem)
 	if _check_player_reward():
 		_get_random_reward()
 
 func _get_random_reward():
 	var ran = randi_range(0, reward_scenes.size() - 1)
-	if QuestManager.current_quest:
-		if QuestManager.current_quest.title == "Bombig":
-			reward_scenes.append(preload("res://prefab/itemdrops/AshDrop.tscn"))
 	var reward = reward_scenes[ran].instantiate()
 	if reward.name == "CoinDrop":
 		reward.amount = reward_gold

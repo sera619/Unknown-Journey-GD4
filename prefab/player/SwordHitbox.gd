@@ -48,11 +48,17 @@ func _get_effect(area):
 		var weapon: Item = InventoryManager._get_equiped_weapon()
 		if weapon._get_weapon_effect():
 			if weapon.effect_scene:
-				var effect = weapon.effect_scene.instantiate()
-				area.get_parent().add_child(effect)
-				effect.global_position = area.get_parent().global_position
+				
+				_cast_effect(weapon.effect_scene, area.get_parent())
+				
 		else:
 			return
+
+func _cast_effect(effect:PackedScene, target):
+	var e = effect.instantiate()
+	target.add_child(e)
+	e.global_position = target.global_position
+
 
 func set_attack_type(new_type: String):
 	match new_type:
