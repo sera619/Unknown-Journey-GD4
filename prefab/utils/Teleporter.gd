@@ -13,7 +13,8 @@ var player: Player = null
 "CityShop",
 "SmallWood",
 "CityHotel",
-"CityCellar") var teleport_location: String
+"CityCellar",
+"CityAlchemy") var teleport_location: String
 @export var animated: bool
 
 @onready var teleArea = $TeleportArea
@@ -89,6 +90,8 @@ func teleport_player():
 					GameManager.game._change_player_spawn("CityShop")
 				if GameManager.current_world.world_name == "CityHotel":
 					GameManager.game._change_player_spawn("CityHotelCity")
+				if GameManager.current_world.world_name == "CityAlchemy":
+					GameManager.game._change_player_spawn("CityAlchemyCity")
 				GameManager.game.switch_gamelevel(teleport_location)
 			"SmallWood":
 				if GameManager.current_world.world_name == "City":
