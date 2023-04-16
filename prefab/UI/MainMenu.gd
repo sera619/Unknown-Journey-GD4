@@ -92,6 +92,7 @@ func _on_cancel_btn_button_down():
 	anim_player.play("name-menu")
 
 func _on_animation_finished(anim_name):
+	V._version_check_routine()
 	if anim_name == "start":
 		pass
 		#GameManager.interface._show_alphainfo()

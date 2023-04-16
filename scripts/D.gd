@@ -256,11 +256,9 @@ func _create_profile_directory(playername: String):
 	DirAccess.make_dir_absolute(user_path+playername)
 
 func _setup_profiles():
-	if DirAccess.dir_exists_absolute(user_path):
-		print("[Data]: User Directory already exists!")
-	else:
+	if not DirAccess.dir_exists_absolute(user_path):
 		DirAccess.make_dir_absolute(user_path)
-		print("[Data]: User Directory created!")
+		print("[Data]: No Profile-directory found, create new.")
 
 func _delete_old_save_files():
 	for n in _get_all_player_profile_names():

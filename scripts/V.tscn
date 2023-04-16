@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://b1j1n64ow2rhy"]
+
+[ext_resource type="Script" path="res://scripts/V.gd" id="1_xdhaq"]
+[ext_resource type="PackedScene" uid="uid://cn10r8if5dqwd" path="res://prefab/UI/AcceptPopup.tscn" id="2_2ka6v"]
+
+[node name="V" type="Node"]
+script = ExtResource("1_xdhaq")
+accept_popup = ExtResource("2_2ka6v")

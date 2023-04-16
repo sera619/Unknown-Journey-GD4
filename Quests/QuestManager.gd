@@ -13,7 +13,7 @@ func initialize_quests():
 	for quest_scene in available_quests_list:
 		var quest: Quest = quest_scene.instantiate()
 		available.add_child(quest)
-		print("[!] QuestManager: %s initialized!" % quest.title)
+		#print("[!] QuestManager: %s initialized!" % quest.title)
 
 func is_quest_availble(questname: String) -> bool:
 	for quest in available.get_children():
@@ -70,10 +70,10 @@ func load_quests():
 		quest.current_amount = int(loaded_quest['amount'])
 		available.remove_child(quest)
 		current.add_child(quest)
-		print("[!] QuestManager: Quest \"%s\" successfully loaded!" % quest.title)
+		#print("[!] QuestManager: Quest \"%s\" successfully loaded!" % quest.title)
 	if data['current_quest'] != "":
 		current_quest = current.get_node(data['current_quest'])
-		print("[!] QuestManager: Current Quest is \"%s\"!" % current_quest.title)
+		#print("[!] QuestManager: Current Quest is \"%s\"!" % current_quest.title)
 
 func load_quest_data():
 	var loadpath = "user://questsavegame.save"

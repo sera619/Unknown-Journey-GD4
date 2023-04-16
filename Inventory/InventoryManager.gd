@@ -17,11 +17,11 @@ func initialize_items():
 	for item_scene in available_item_list:
 		var item: Item = item_scene.instantiate()
 		available.add_child(item)
-		print("[Inventory]: Item \"%s\" initialized." % item.item_name)
+		#print("[Inventory]: Item \"%s\" initialized." % item.item_name)
 	for equip_scene in available_equip_list:
 		var equip: Item = equip_scene.instantiate()
 		available_equip.add_child(equip)
-		print("[Inventory]: Equip-Item \"%s\" initialized." % equip.item_name)
+		#print("[Inventory]: Equip-Item \"%s\" initialized." % equip.item_name)
 
 func get_item_information(itemname: String):
 	var item = current.get_node_or_null(itemname)

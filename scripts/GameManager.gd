@@ -50,6 +50,7 @@ func _initial_process():
 	D._setup_profiles()
 	D._setup_game_mouse()
 
+
 func _setup_game_settings():
 	var path = "user://gameoptions.save"
 	if not FileAccess.file_exists(path):
@@ -151,31 +152,31 @@ func _update_vsync_mode(mode: bool):
 func register_node(node: Node):
 	if node.name == "Player":
 		player = node
-		print("[!] GameManager: Node: %s registered!" % node.name)
+		#print("[!] GameManager: Node: %s registered!" % node.name)
 	elif node.name == "GameCamera":
 		camera = node
-		print("[!] GameManager: Node: %s registered!" % node.name)
+		#print("[!] GameManager: Node: %s registered!" % node.name)
 	elif node.is_in_group("WorldBase"):
 		current_world = node
-		print("[!] GameManager: Node: %s registered!" % node.name)
+		#print("[!] GameManager: Node: %s registered!" % node.name)
 	elif node.name == "Game":
 		game = node
-		print("[!] GameManager: Node: %s registered!" % node.name)
+		#print("[!] GameManager: Node: %s registered!" % node.name)
 	elif node.name == "Interface":
 		interface = node
-		print("[!] GameManager: Node: %s registered!" % node.name)
+		#print("[!] GameManager: Node: %s registered!" % node.name)
 	elif node.name == "Questlog":
 		ui_questlog = node
-		print("[!] GameManager: Node: %s registered!" % node.name)
+		#print("[!] GameManager: Node: %s registered!" % node.name)
 	elif node.name == "DialogBox":
 		dialog_box = node
-		print("[!] GameManager: Node: %s registered!" % node.name)
+		#print("[!] GameManager: Node: %s registered!" % node.name)
 	elif node.name == "InfoBox":
 		info_box = node
-		print("[!] GameManager: Node: %s registered!" % node.name)
+		#print("[!] GameManager: Node: %s registered!" % node.name)
 	elif node.name == "MainMenu":
 		main_menu = node
-		print("[!] GameManager: Node: %s registered!" % node.name)
+		#print("[!] GameManager: Node: %s registered!" % node.name)
 	else:
 		print("[!] GameManager: Cant register: %s" % node.name)
 
@@ -207,7 +208,7 @@ func save_data(playername=""):
 	D._save_profile_quest_data(GameManager.player.stats.playername)
 	D._save_profile_inventory_data(GameManager.player.stats.playername)
 	D._save_unique_open_data(GameManager.player.stats.playername)
-	print("[ZEIT]: Gespielte zeit %s" % self.get_played_time_string(self.player.stats.played_time))
+	#print("[ZEIT]: Gespielte zeit %s" % self.get_played_time_string(self.player.stats.played_time))
 	print("[!] Data: Savegame successfully saved!")
 
 
