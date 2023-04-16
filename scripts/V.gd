@@ -9,6 +9,7 @@ var temp_path = "user://temp_config.cfg"
 func _version_check_routine():
 	if not _check_internet_connection():
 		print("[Versioncheck] No internet connection found.")
+		return
 	_get_github_file()
 
 func _show_update_popup():
