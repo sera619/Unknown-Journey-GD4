@@ -876,7 +876,8 @@ graph_offset = Vector2(5, 50)
 radius = 2.66667
 height = 21.3333
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_gdntp"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_w4ydc"]
+radius = 40.0
 
 [node name="NPCDanika" type="CharacterBody2D"]
 scale = Vector2(0.75, 0.75)
@@ -972,7 +973,7 @@ collision_layer = 512
 collision_mask = 512
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionZone"]
-shape = SubResource("CircleShape2D_gdntp")
+shape = SubResource("CircleShape2D_w4ydc")
 
 [editable path="PlayerDetector"]
 [editable path="SoftCollision"]
