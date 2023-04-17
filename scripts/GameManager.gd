@@ -28,14 +28,15 @@ const COLORS: Dictionary = {
 
 const DEFAULT_GAME_OPTIONS: Dictionary = {
 	"audio_all":0.0,
-	"audio_menu":0.0,
-	"audio_music":0.0,
-	"audio_ambiente": 0.0,
-	"audio_sfx":0.0,
+	"audio_menu":-16.0,
+	"audio_music":-26.0,
+	"audio_ambiente": -14.0,
+	"audio_sfx":-5.0,
 	"video_brightness": 1.0,
 	"video_saturation": 1.0,
 	"video_contrast": 1.0,
 	"musicmute": false,
+	"full_mute": false,
 	"fullscreen":false,
 	"vsync": true
 }

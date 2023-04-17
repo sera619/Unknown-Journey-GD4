@@ -146,6 +146,7 @@ func _set_current_audio_values():
 		self.music_mute_btn.button_pressed = false
 		self.music_mute_btn.text = "AN"
 		self.music_mute_icon.visible = false
+	
 	var options = GameManager.current_game_options
 	var all = options['audio_all']
 	var music = options['audio_music']
