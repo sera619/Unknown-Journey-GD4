@@ -16,7 +16,6 @@ var dev_console: bool = false
 @onready var pausmenu: PauseMenu = $PauseMenu
 @onready var stat_hud = $StatHUD
 @onready var charpanel: CharacterPanel = $CharacterPanel
-@onready var potion_panel= $PotionPanel
 @onready var exp_hud = $ExpHUD
 @onready var dialog_box: DialogBox = $DialogBox
 @onready var newskill_hud: NewSkillHUD = $NewSkillHUD
@@ -31,6 +30,7 @@ var dev_console: bool = false
 @onready var actionbar: Actionbar = $Actionbar
 @onready var infobox: InfoBox = $InfoBox
 var showinfo = true 
+var last_window_pos = 14
 
 func _ready():
 	GameManager.register_node(self)
@@ -74,7 +74,6 @@ func hide_ui():
 	charpanel.hide_charpanel()
 	inventory_panel.hide_inventory()
 	stat_hud.hide()
-	potion_panel.hide()
 	exp_hud.hide()
 	dialog_box.hide()
 	dot_hud.hide()
