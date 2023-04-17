@@ -47,17 +47,22 @@ func show_save_notice():
 	notice_container.add_child(notice)
 	notice.set_save_msg()
 
-func _input(_event):
-	if GameManager.game.run_type == 1:
-		if Input.is_key_pressed(KEY_KP_7):
-			show_common_info_notice("Common Notice")
-		if Input.is_key_pressed(KEY_KP_8):
-			show_door_locked_notice("Door Locked Notice")
-		if Input.is_key_pressed(KEY_KP_9):
-			show_item_notice("Itemname", 10)
-		if Input.is_key_pressed(KEY_KP_4):
-			show_new_quest_notice("Questname new")
-		if Input.is_key_pressed(KEY_KP_5):
-			show_quest_complete_notice("Questname complete")
-		if Input.is_key_pressed(KEY_KP_6):
-			show_quest_update_notice("Questitem", 10, 10)
+func show_time_notice():
+	var notice: NoticeMessage = notice_scene.instantiate()
+	notice_container.add_child(notice)
+	notice.set_time_msg()
+
+#func _input(_event):
+#	if GameManager.game.run_type == 1:
+#		if Input.is_key_pressed(KEY_KP_7):
+#			show_common_info_notice("Common Notice")
+#		if Input.is_key_pressed(KEY_KP_8):
+#			show_door_locked_notice("Door Locked Notice")
+#		if Input.is_key_pressed(KEY_KP_9):
+#			show_item_notice("Itemname", 10)
+#		if Input.is_key_pressed(KEY_KP_4):
+#			show_new_quest_notice("Questname new")
+#		if Input.is_key_pressed(KEY_KP_5):
+#			show_quest_complete_notice("Questname complete")
+#		if Input.is_key_pressed(KEY_KP_6):
+#			show_quest_update_notice("Questitem", 10, 10)
