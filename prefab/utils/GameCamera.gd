@@ -104,8 +104,6 @@ func _input(event):
 				npc_to_follow = get_node(follow_npc_2)
 			elif event.keycode == KEY_KP_0:
 				npc_to_follow = null
-			elif event.keycode == KEY_KP_8:
-				add_trauma(0.8)
 	
 	if event is InputEventMouseButton:
 		if event.is_pressed():
