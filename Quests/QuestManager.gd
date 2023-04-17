@@ -49,7 +49,7 @@ func reset_quests():
 		current.remove_child(quest)
 		available.add_child(quest)
 		current_quest = null
-		print("[!] QuestManager: %s successfully reseted!" % quest.title)
+		#print("[!] QuestManager: %s successfully reseted!" % quest.title)
 
 func activate_quest(questname: String):
 	for quest in available.get_children():
