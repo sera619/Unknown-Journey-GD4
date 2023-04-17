@@ -231,17 +231,17 @@ func _load_all_player_char_data() -> Array:
 func _get_all_player_profile_names() -> Array:
 	var list = []
 	var dir = DirAccess.open(user_path)
-	var count: int = 0
+	#var count: int = 0
 	if dir:
 		dir.list_dir_begin()
 		var file_name = dir.get_next()
 		while file_name != "":
 			if dir.current_is_dir():
-				print("[Data]: Found profile: %s" % file_name)
+				#print("[Data]: Found profile: %s" % file_name)
 				list.append(file_name)
-				count += 1
+				#count += 1
 			file_name = dir.get_next()
-	print("[Data]: %sx Profilenames found" % count)
+	#print("[Data]: %sx Profilenames found" % count)
 	return list
 
 func _check_profile_exists(playername: String) -> bool:
@@ -279,6 +279,9 @@ func _setup_game_mouse():
 	var beam_cursor = load("res://assets/UI/menu/mouse_beam.png")
 	Input.set_custom_mouse_cursor(normal_mouse)
 	Input.set_custom_mouse_cursor(beam_cursor,Input.CURSOR_IBEAM)
+	Input.set_custom_mouse_cursor(beam_cursor,Input.CURSOR_DRAG)
+	Input.set_custom_mouse_cursor(normal_mouse,Input.CURSOR_POINTING_HAND)
+	
 
 
 
