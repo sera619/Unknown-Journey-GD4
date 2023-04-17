@@ -1,4 +1,4 @@
-[gd_scene load_steps=234 format=3 uid="uid://bulsih1uk7ua"]
+[gd_scene load_steps=235 format=3 uid="uid://bulsih1uk7ua"]
 
 [ext_resource type="Script" path="res://prefab/player/Player.gd" id="1_3dgss"]
 [ext_resource type="Texture2D" uid="uid://dt2540u4sj5mt" path="res://assets/Shadows/MediumShadow.png" id="2_2ndm1"]
@@ -12,10 +12,10 @@
 [ext_resource type="PackedScene" uid="uid://ddq1kas24xw88" path="res://prefab/player/GhostSprite.tscn" id="5_cmmjq"]
 [ext_resource type="PackedScene" uid="uid://mgopvrriygx2" path="res://prefab/effects/LevelupEffect.tscn" id="5_cmv2u"]
 [ext_resource type="Texture2D" uid="uid://vlxyiwg1evbs" path="res://assets/Player/Hero_with_fire_sword.png" id="5_sqpgp"]
+[ext_resource type="Texture2D" uid="uid://cas7we3c2awhh" path="res://assets/Player/Hero_with_lightning_sword.png" id="6_3eokf"]
 [ext_resource type="PackedScene" uid="uid://c7r64swnyno2b" path="res://prefab/effects/HealEffect.tscn" id="7_4yh51"]
 [ext_resource type="PackedScene" uid="uid://xt3agvot17mp" path="res://prefab/audio/FoodASound.tscn" id="8_1ma6h"]
 [ext_resource type="PackedScene" uid="uid://ebdq15holk57" path="res://prefab/utils/Softcollision.tscn" id="8_6a312"]
-[ext_resource type="FontFile" uid="uid://dabqnx5sqarav" path="res://assets/UI/Fonts/dogicapixelbold.otf" id="8_i6y6l"]
 [ext_resource type="PackedScene" uid="uid://7cggqvy0gsec" path="res://prefab/effects/EnergieEffect.tscn" id="8_lb4u7"]
 [ext_resource type="PackedScene" uid="uid://cckqaywayyhtk" path="res://prefab/audio/FoodBSound.tscn" id="9_msjkb"]
 [ext_resource type="PackedScene" uid="uid://b0n4aoy7admi8" path="res://prefab/audio/HurtSound.tscn" id="10_768l8"]
@@ -29,6 +29,7 @@
 [ext_resource type="Material" uid="uid://bwdq0jw5irjrg" path="res://assets/Materials/WhiteColorFlash.tres" id="16_vp8ed"]
 [ext_resource type="PackedScene" uid="uid://bk15h3dxda4v0" path="res://prefab/utils/SoundController.tscn" id="20_a285j"]
 [ext_resource type="PackedScene" uid="uid://c22yxboo4u2jv" path="res://prefab/utils/DebuffHandler.tscn" id="21_kbir8"]
+[ext_resource type="PackedScene" uid="uid://ckumpl45hmii" path="res://prefab/UI/ValueDisplay.tscn" id="30_3babh"]
 
 [sub_resource type="Shader" id="Shader_vhbhr"]
 code = "//Shader BY LURGX second shader */
@@ -3252,6 +3253,7 @@ SPRITE_SWORD = ExtResource("3_k7e2f")
 SPRITE_NO_SWORD = ExtResource("3_g8436")
 SPRITE_ICESWORD = ExtResource("4_snvgm")
 SPRITE_FIRESWORD = ExtResource("5_sqpgp")
+SPRITE_LIGHTNINGSWORD = ExtResource("6_3eokf")
 bomb_scene = ExtResource("4_jxntb")
 hit_effect_scene = ExtResource("4_1ydt2")
 levelup_effect_scene = ExtResource("5_cmv2u")
@@ -3269,30 +3271,6 @@ sword_take_sound_scene = ExtResource("16_kkydu")
 heal_shader = SubResource("ShaderMaterial_fmngq")
 dmg_shader = SubResource("ShaderMaterial_mgeth")
 energie_shader = SubResource("ShaderMaterial_b82l7")
-
-[node name="DamageDisplay" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_left = -19.0
-offset_top = -69.0
-offset_right = 21.0
-offset_bottom = -49.0
-
-[node name="DamageLabel" type="RichTextLabel" parent="DamageDisplay"]
-visible = false
-layout_mode = 0
-offset_left = 5.65913
-offset_top = 8.45323
-offset_right = 45.6591
-offset_bottom = 28.4532
-scale = Vector2(1.25, 1.25)
-theme_override_colors/default_color = Color(0.329412, 0.784314, 0.152941, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_fonts/normal_font = ExtResource("8_i6y6l")
-theme_override_font_sizes/normal_font_size = 8
-bbcode_enabled = true
-text = "[center]
-[wave amp=40 freq=10]-10[/wave][/center]"
 
 [node name="SwordHolder" type="Marker2D" parent="."]
 position = Vector2(0, -12)
@@ -3416,13 +3394,17 @@ texture = ExtResource("13_e5flh")
 texture_scale = 0.3
 script = ExtResource("14_d00ft")
 
+[node name="ValueDisplay" parent="." instance=ExtResource("30_3babh")]
+position = Vector2(0, -35.845)
+
 [node name="Stats" type="Node" parent="." groups=["Persist"]]
+process_mode = 3
 script = ExtResource("3_l31qu")
 playername = "Sera"
 MAX_DAMAGE = 2
 gold = 5
 MAX_GOLD = 80
-dmg_label_path = NodePath("../DamageDisplay/DamageLabel")
+value_label_path = NodePath("../ValueDisplay")
 MAX_SPEED = 75
 RUN_SPEED = 150
 COMBAT_MOVE_SPEED = 40
