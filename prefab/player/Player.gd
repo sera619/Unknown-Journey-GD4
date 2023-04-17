@@ -6,6 +6,7 @@ class_name Player
 @export var SPRITE_NO_SWORD: Texture2D
 @export var SPRITE_ICESWORD: Texture2D
 @export var SPRITE_FIRESWORD: Texture2D
+@export var SPRITE_LIGHTNINGSWORD: Texture2D
 
 @export_category("Spell/Item Scenes")
 @export var bomb_scene: PackedScene
@@ -251,11 +252,11 @@ func _input_handler(_delta):
 		can_attack = false
 		state = DASH
 	
-	if Input.is_action_just_pressed("hook") and not hooked and not is_dashing:
-		# Hookshot
-		check_grabbling_collision()
-		if hock_position != Vector2.ZERO:
-			state = GRABBLING
+#	if Input.is_action_just_pressed("hook") and not hooked and not is_dashing:
+#		# Hookshot
+#		check_grabbling_collision()
+#		if hock_position != Vector2.ZERO:
+#			state = GRABBLING
 	
 	if Input.is_action_just_pressed("attack") and can_attack and stats.has_sword and not is_dashing:
 		can_attack = false
@@ -496,6 +497,8 @@ func set_sprite(sprite: int):
 			bodySprite.texture = SPRITE_ICESWORD
 		3: 
 			bodySprite.texture = SPRITE_FIRESWORD
+		4:
+			bodySprite.texture = SPRITE_LIGHTNINGSWORD
 
 func create_dash_trail():
 	var ghost = dash_ghost_screne.instantiate()
@@ -512,9 +515,10 @@ func hit_timer_timeout():
 func hurt_animation_finished():
 	Engine.time_scale = 1
 	if stats.health <= 0:
+		GameManager.save_data()
 		is_alive = false
 		EventHandler.emit_signal("player_died")
-		
+		await get_tree().create_timer(1.5).timeout
 		GameManager.camera.player = null
 		GameManager.player = null
 		self.queue_free()
