@@ -60,6 +60,7 @@ var can_dash: bool = true
 var can_teleport: bool = true
 var can_attack: bool = true
 var can_interact: bool = true
+var can_use_item: bool = true
 
 @onready var animPlayer = $AnimationPlayer
 @onready var animTree = $AnimationTree
@@ -83,12 +84,13 @@ var can_interact: bool = true
 @onready var interact_ray: RayCast2D = $Interact/InteractRay
 @onready var itemdrop_position: Marker2D = $Interact/ItemDrop 
 @onready var grabbling_rays: Node2D = $GrabblingRays
-
+@onready var item_use_timer: Timer = $Stats/Timer
 
 var vel = Vector2.ZERO
 var PUSH_SPEED = 50
 func _ready():
 	GameManager.register_node(self)
+	item_use_timer.connect("timeout", _on_item_timer_timeout)
 	hitbx.connect("area_entered", take_damage)
 	spell_hitbox.connect("area_entered", take_damage)
 	combat_timer.connect("timeout", combat_timer_timeout)
@@ -123,6 +125,8 @@ func _set_interact(mode: bool):
 
 func _process(delta):
 	stats._record_playtime(delta)
+	if stats.energie >= 1:
+		pass
 	G.player = self
 	G.player_data.pos = global_position
 	G.player_data.rotation = rotation
@@ -200,6 +204,7 @@ func move_state(delta):
 			animState.travel("SwordIdle")
 		else:
 			animState.travel("Idle")
+	
 	if get_slide_collision_count() > 0:
 		check_box_collision(input_vector)
 	_input_handler(delta)
@@ -302,8 +307,12 @@ func _input_handler(_delta):
 
 	if Input.is_action_just_pressed("healthpotion") and stats.health < stats.MAX_HEALTH:
 		#use_health_potion()
+		if not can_use_item:
+			return
 		_use_potion("Heiltrank")
 	if Input.is_action_just_pressed("energiepotion") and stats.level >= 3:
+		if not can_use_item:
+			return
 		_use_potion("Energietrank")
 	
 	if Input.is_action_just_pressed("interact"):
@@ -313,6 +322,8 @@ func _input_handler(_delta):
 				parent.interact()
 	
 	if Input.is_action_just_pressed("bomb"):
+		if not can_use_item:
+			return
 		_use_item("Bombe")
 	
 	if Input.is_action_just_pressed("debug_key"):
@@ -331,9 +342,12 @@ func move():
 	velocity = velocity
 
 func _use_item(itemname):
+	can_use_item = false
+	item_use_timer.start()
 	match itemname:
 		"Bombe":
 			if InventoryManager.can_use_item(itemname):
+				GameManager.interface.actionbar.bomb_btn.start_cooldown()
 				InventoryManager.remove_item(itemname, 1)
 				_place_bomb()
 
@@ -451,6 +465,8 @@ func _create_sword_take_sound():
 
 func _use_potion(itemname: String):
 	if InventoryManager.can_use_item(itemname):
+		item_use_timer.start()
+		can_use_item = false
 		var item = InventoryManager.get_item_information(itemname)
 		match itemname:
 			"Heiltrank":
@@ -550,6 +566,9 @@ func _play_attack_sound():
 
 func _on_dash_timer_timeout():
 	can_dash = true
+
+func _on_item_timer_timeout():
+	can_use_item = true
 
 func _on_dot_timer_timeout():
 	if self.dot_count >= 0:

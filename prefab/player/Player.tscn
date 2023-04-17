@@ -3419,6 +3419,13 @@ HEAVY_ATTACK_CAP = 8
 HEAVY_ATTACK_COST = 2
 DASH_COOLDOWN = 2
 
+[node name="Timer" type="Timer" parent="Stats"]
+one_shot = true
+
+[node name="Timer2" type="Timer" parent="Stats"]
+wait_time = 4.0
+one_shot = true
+
 [node name="SoundController" parent="." instance=ExtResource("20_a285j")]
 
 [node name="DebuffHandler" parent="." instance=ExtResource("21_kbir8")]
@@ -3618,7 +3625,6 @@ rotation = 1.5708
 scale = Vector2(1, 2)
 target_position = Vector2(24, 0)
 collision_mask = 512
-hit_from_inside = true
 collide_with_areas = true
 collide_with_bodies = false
 

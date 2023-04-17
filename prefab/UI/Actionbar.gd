@@ -16,6 +16,18 @@ func _ready():
 	EventHandler.connect("actionbar_disable", _disable_bar)
 	EventHandler.connect("actionbar_enable", _enable_bar)
 	EventHandler.connect("player_level_changed", _enable_slot)
+	EventHandler.connect("player_energie_changed", _check_buttons)
+
+func _check_buttons(value):
+	if value <= 0:
+		double_attack_btn.get_node("CDProgress").modulate = Color(0.33000001311302, 0.33000001311302, 0.33000001311302)
+	else:
+		double_attack_btn.get_node("CDProgress").modulate = Color(1, 1, 1)
+		
+	if value <= 1:
+		heavy_attack_btn.get_node("CDProgress").modulate = Color(0.33000001311302, 0.33000001311302, 0.33000001311302)
+	else:
+		heavy_attack_btn.get_node("CDProgress").modulate = Color(1, 1, 1)
 
 
 func _enable_slot(level):

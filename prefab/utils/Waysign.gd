@@ -31,7 +31,7 @@ func set_body_sprite():
 		body_sprite.offset.x = 1
 
 func get_way_information():
-	GameManager.info_box.set_info_text("[center]In diese Richtung geht es nach:\n\n[color=blue]\"%s\"[/color][/center]" % goal_location)
+	GameManager.interface.notice_box.show_waysign_notice(goal_location)
 
 func _input(event):
 	if not player_detector.can_see_player():

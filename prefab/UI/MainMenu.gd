@@ -19,26 +19,26 @@ func _ready():
 
 func _on_mm_start_btn_button_down():
 	_create_btn_click_sound()
-	print("[!] MainMenu: Start Btn clicked")
+	#print("[!] MainMenu: Start Btn clicked")
 	GameManager.interface.showinfo = true
 	anim_player.play("menu-name")
 
 	
 func _on_mm_load_btn_button_down():
 	_create_btn_click_sound()
-	print("[!] MainMenu: Load Btn clicked")
+	#print("[!] MainMenu: Load Btn clicked")
 	loadpanel._initialize_loadmenu()
 	anim_player.play("menu-load")
 
 func _on_mm_option_btn_button_down():
 	_create_btn_click_sound()
 	option_panel._show_audio_panel()
-	print("[!] MainMenu: Option Btn clicked")
+	#print("[!] MainMenu: Option Btn clicked")
 	anim_player.play("menu-option")
 
 func _on_mm_exit_btn_button_down():
 	_create_btn_click_sound()
-	print("[!] MainMenu: Exit Btn clicked")
+	#print("[!] MainMenu: Exit Btn clicked")
 	get_tree().quit()
 
 func start_new():

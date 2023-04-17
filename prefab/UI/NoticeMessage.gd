@@ -73,3 +73,9 @@ func set_time_msg():
 	label.parse_bbcode("[fill][center][color=orange]\nAktuelle Uhrzeit:\n\n[/color][color=white]%s Uhr[/color][/center]" % Time.get_time_string_from_system())
 	self.show()
 	timer.start()
+
+func set_waysign_msg(locationname: String):
+	self._set_bg(yellow_bg)
+	label.parse_bbcode("[fill][center][color=orange]\nIn diese Richtung:[/color]\n\n[color=white]\"%s\"[/color][/center]" % locationname)
+	self.show()
+	timer.start()

@@ -60,11 +60,13 @@ var player_statistic: Dictionary = {
 	"died": 0
 }
 
+@onready var energie_reduce_timer: Timer = $Timer2
 
 func _record_playtime(delta: float):
 	played_time += delta
 
 func _ready():
+	energie_reduce_timer.connect("timeout", _reduce_energie)
 	EventHandler.connect("player_died", _check_died)
 	EventHandler.connect("player_inventory_equip_changed", _change_equip)
 	EventHandler.connect("statistic_update_dmg_done", _check_max_dmg_done)
@@ -80,6 +82,7 @@ func _ready():
 		GameManager.game.new_game = false
 	else: 
 		apply_loaded_stats()
+
 
 func _update_last_death():
 	player_last_death['time'] = Time.get_time_string_from_system()
@@ -189,11 +192,17 @@ func set_energie(value):
 	value_label._show_energie_value(int(value))
 	if energie > MAX_ENERGIE:
 		energie = MAX_ENERGIE
+	if energie >= 0:
+		energie_reduce_timer.start()
 	EventHandler.emit_signal("player_energie_changed", energie)
 
 func set_max_energie(value):
 	MAX_ENERGIE = value
 	EventHandler.emit_signal("player_maxenergie_changed", MAX_ENERGIE)
+
+func _reduce_energie():
+	set_energie(self.energie - 1)
+
 
 func set_level(value):
 	level = value
@@ -254,7 +263,7 @@ func apply_loaded_stats():
 			GameManager.seen_npcs.append(n)
 		if data['played_time'] != null:
 			self.played_time = data['played_time']
-		print("[!] %s: Set health to %s !" % [parent, MAX_HEALTH])
+		#print("[!] %s: Set health to %s !" % [parent, MAX_HEALTH])
 		set_max_health(MAX_HEALTH)
 		set_health(MAX_HEALTH, true)
 		set_level(level)

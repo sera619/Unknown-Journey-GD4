@@ -52,6 +52,11 @@ func show_time_notice():
 	notice_container.add_child(notice)
 	notice.set_time_msg()
 
+func show_waysign_notice(locationname: String):
+	var notice: NoticeMessage = notice_scene.instantiate()
+	notice_container.add_child(notice)
+	notice.set_waysign_msg(locationname)
+
 #func _input(_event):
 #	if GameManager.game.run_type == 1:
 #		if Input.is_key_pressed(KEY_KP_7):

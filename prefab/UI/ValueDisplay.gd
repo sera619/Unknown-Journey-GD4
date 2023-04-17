@@ -14,6 +14,8 @@ class_name ValueDisplay
 @onready var heal_timer = $HealValue/Timer
 @onready var energie_timer = $EnergyValue/Timer
 
+var last_energie_value = 0
+
 func _ready():
 	_setup()
 
@@ -39,6 +41,9 @@ func _show_dmg_value(value):
 	dmg_value.show()
 
 func _show_energie_value(value):
+	if not value >= last_energie_value:
+		return
+	last_energie_value = value
 	energy_value.parse_bbcode("[center][wave amp=40 freq=10]\n\n+%s[/wave][/center]" % str(value))
 	energie_timer.start()
 	energy_value.show()
