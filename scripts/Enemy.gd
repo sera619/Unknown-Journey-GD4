@@ -6,11 +6,6 @@ signal enemy_died()
 signal enemy_healed(heal)
 
 @export var item_name: String
-@export_category("Reward Settings")
-@export_enum("5%", "10%", "15%", "20%") var reward_chance: int
-@export var reward_gold: int
-@export var reward_scenes: Array[PackedScene]
-
 @export_category("VFX Scenes")
 @export var hit_effect_scene: PackedScene
 @export var death_effect_scene: PackedScene
@@ -36,6 +31,8 @@ signal enemy_healed(heal)
 @onready var enemy_hud: EnemyHUD = $EnemyHUD
 @onready var sound_controller: SoundController = $SoundController
 @onready var weapon_collider: CollisionShape2D = $WeaponAngle/HurtBox/CollisionShape2D
+@onready var reward_controller: RewardController = $RewardController
+
 
 enum {
 	WANDER,
@@ -221,42 +218,4 @@ func reward_player():
 	if not GameManager.player or stats.reward_exp == 0:
 		return
 	GameManager.player.stats.set_exp(GameManager.player.stats.experience + stats.reward_exp)
-	if _check_player_reward():
-		_get_random_reward()
-
-
-func _get_random_reward():
-	var ran = randi_range(0, reward_scenes.size() - 1)
-	var reward = reward_scenes[ran].instantiate()
-	if reward.name == "CoinDrop":
-		reward.amount = reward_gold
-	reward.global_position = self.global_position
-	GameManager.current_world.game_map.add_child(reward)
-
-func _check_player_reward() -> bool:
-	var chance_to_drop = randf_range(0, 100)
-	match reward_chance:
-		0:
-			if chance_to_drop <= 5:
-				return true
-			else:
-				return false
-		1: 
-			# 10 %
-			if chance_to_drop <= 10:
-				return true
-			else:
-				return false
-		2:
-			# 15 %
-			if chance_to_drop <= 15:
-				return true
-			else:
-				return false
-		3:
-			# 20 %
-			if chance_to_drop <= 20:
-				return true
-			else:
-				return false
-	return false
+	reward_controller.get_reward()
