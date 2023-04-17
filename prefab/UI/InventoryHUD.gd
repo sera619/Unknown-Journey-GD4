@@ -40,6 +40,7 @@ func hide_inventory():
 	self.hide()
 
 func show_inventory():
+	get_parent().move_child(self, 11)
 	self._show_bag_panel()
 	self._update_inventory_hud()
 	self._update_equip_hud()
