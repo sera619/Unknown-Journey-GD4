@@ -115,7 +115,29 @@ func _ready():
 		GameManager.interface.actionbar.bomb_btn.visible = true
 	else:
 		GameManager.interface.actionbar.bomb_btn.visible = false
+	if InventoryManager.current_equip != null:
+		var current_weapon = InventoryManager._get_equiped_weapon().item_name
+		match current_weapon:
+			"Blitzschwert":
+				set_sprite(4)
+			"Feuerschwert":
+				set_sprite(3)
+			"Eisschwert":
+				set_sprite(2)
 
+
+func set_sprite(sprite: int):
+	match sprite:
+		0:
+			bodySprite.texture = SPRITE_NO_SWORD
+		1:
+			bodySprite.texture = SPRITE_SWORD
+		2:
+			bodySprite.texture = SPRITE_ICESWORD
+		3: 
+			bodySprite.texture = SPRITE_FIRESWORD
+		4:
+			bodySprite.texture = SPRITE_LIGHTNINGSWORD
 
 func _auto_save():
 	await get_tree().create_timer(1).timeout
@@ -505,18 +527,7 @@ func switch_shader():
 	bodySprite.material = dmg_shader
 	print("[!] Player: Switch dmgshader")
 
-func set_sprite(sprite: int):
-	match sprite:
-		0:
-			bodySprite.texture = SPRITE_NO_SWORD
-		1:
-			bodySprite.texture = SPRITE_SWORD
-		2:
-			bodySprite.texture = SPRITE_ICESWORD
-		3: 
-			bodySprite.texture = SPRITE_FIRESWORD
-		4:
-			bodySprite.texture = SPRITE_LIGHTNINGSWORD
+
 
 func create_dash_trail():
 	var ghost = dash_ghost_screne.instantiate()
