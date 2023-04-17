@@ -22,6 +22,7 @@ func _create_btn_click_sound():
 
 func show_log():
 	load_quest_infos()
+	get_parent().move_child(self, 11)
 	self.visible = true
 
 func hide_log():
