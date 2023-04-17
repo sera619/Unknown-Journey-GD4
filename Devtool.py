@@ -37,7 +37,7 @@ __Quick Overview:__
     config_text = f'''[common]
 
 name="Unknown Journey"
-version="TechAlpha-v{version}"
+version="TechAlpha-v{old_version}"
 platform="Windows Desktop"
 author="S3R3o3"'''
     with open(config_path, "w") as d:
