@@ -1,13 +1,13 @@
 extends Control
 class_name CharacterPanel
 
-@onready var damage_label = $BG/M/V/StatsBG/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/Damage
-@onready var health_label = $BG/M/V/StatsBG/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/Health
-@onready var name_label = $BG/M/V/StatsBG/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/Name
-@onready var energie_label = $BG/M/V/StatsBG/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/Energie
-@onready var level_label =  $BG/M/V/StatsBG/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/Level
-@onready var exp_label = $BG/M/V/StatsBG/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/Exp
-@onready var gold_label = $BG/M/V/StatsBG/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/Gold
+@onready var damage_label = $BG/M/V/StatsBG/MarginContainer/V/HBoxContainer4/Damage
+@onready var health_label = $BG/M/V/StatsBG/MarginContainer/V/HBoxContainer/Health
+@onready var name_label = $BG/M/V/StatsBG/MarginContainer/V/Name
+@onready var energie_label = $BG/M/V/StatsBG/MarginContainer/V/HBoxContainer3/Energie
+@onready var level_label =  $BG/M/V/StatsBG/MarginContainer/V/HBoxContainer2/Level
+@onready var exp_label = $BG/M/V/StatsBG/MarginContainer/V/HBoxContainer5/Exp
+@onready var gold_label = $BG/M/V/StatsBG/MarginContainer/V/HBoxContainer6/Gold
 
 func _ready():
 	EventHandler.connect("player_health_changed", update_health)
@@ -25,6 +25,7 @@ func _ready():
 	hide_charpanel()
 
 func show_charpanel():
+	get_parent().move_child(self, 11)
 	if GameManager.player:
 		var s = GameManager.player.stats 
 		health_label.text = "%s / %s" % [s.health, s.MAX_HEALTH]
