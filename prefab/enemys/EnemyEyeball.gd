@@ -50,7 +50,7 @@ enum {
 }
 var state = IDLE
 var can_move: bool = true
-var can_attack: bool = false
+var can_attack: bool = true
 var knockback: Vector2 = Vector2.ZERO
 var last_target_position: Vector2 = Vector2.ZERO
 

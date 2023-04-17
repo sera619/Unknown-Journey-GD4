@@ -75,8 +75,6 @@ func _ready():
 	EventHandler.connect("statistic_update_quests", _check_quests_done)
 	if not parent:
 		parent = get_parent().name
-	if value_label_path:
-		value_label = get_node(value_label_path)
 	if GameManager.game.new_game:
 		set_default_stats()
 		GameManager.game.new_game = false
@@ -147,9 +145,9 @@ func set_health(value, loaded=false):
 	EventHandler.emit_signal("player_health_changed", health)
 	if loaded == false:
 		if old_healt > health:
-			value_label._show_dmg_value(int(old_healt-health))
+			get_parent().value_display._show_dmg_value(int(old_healt-health))
 		elif old_healt < health:
-			value_label._show_heal_value(int(health - old_healt))
+			get_parent().value_display._show_heal_value(int(health - old_healt))
 
 
 func heal_player(value):
@@ -157,7 +155,7 @@ func heal_player(value):
 		health = MAX_HEALTH
 	else:
 		health += value
-	value_label._show_heal_value(int(value))
+	get_parent().value_display._show_heal_value(int(value))
 	EventHandler.emit_signal("player_health_changed", health)
 
 func set_max_health(value):
@@ -189,7 +187,6 @@ func set_exp(value):
 	
 func set_energie(value):
 	energie = value
-	value_label._show_energie_value(int(value))
 	if energie > MAX_ENERGIE:
 		energie = MAX_ENERGIE
 	if energie < 0:

@@ -41,7 +41,7 @@ func _show_dmg_value(value):
 	dmg_value.show()
 
 func _show_energie_value(value):
-	if not value >= last_energie_value:
+	if not value > last_energie_value:
 		return
 	last_energie_value = value
 	energy_value.parse_bbcode("[center][wave amp=40 freq=10]\n\n+%s[/wave][/center]" % str(value))

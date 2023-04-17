@@ -51,7 +51,8 @@ func interact():
 
 func wander_state(_delta):
 	if nav_agent.is_navigation_finished():
-		self.queue_free()
+		if QuestManager.is_quest_complete("Befreiung"):
+			self.queue_free()
 		return
 	if is_talking:
 		state = IDLE

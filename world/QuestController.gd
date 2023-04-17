@@ -20,7 +20,7 @@ func _object_is_active(id):
 		get_tree().call_group("doors", "unlock_door")
 		if QuestManager.current_quest:
 			var q = QuestManager.current_quest
-			if q.title == "Befreiung" and q.state == Quest.QS.ACTIVE:
+			if q.title == "Befreiung":
 				q.add_item()
 
 func _check_condition() -> bool:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=97 format=3 uid="uid://c03d0kx4rqt14"]
+[gd_scene load_steps=98 format=3 uid="uid://c03d0kx4rqt14"]
 
 [ext_resource type="Script" path="res://prefab/npc/NPCVendor.gd" id="1_5vude"]
 [ext_resource type="Texture2D" uid="uid://cjrafp47r61s3" path="res://assets/NPC/ShopNpc.png" id="2_jsjer"]
@@ -867,6 +867,9 @@ graph_offset = Vector2(5, 50)
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_f0jby"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_541o4"]
+radius = 120.473
+
 [node name="NPCVendor" type="CharacterBody2D"]
 scale = Vector2(0.75, 0.75)
 collision_layer = 3
@@ -949,6 +952,11 @@ collision_mask = 128
 [node name="SoundController" parent="." instance=ExtResource("6_im70k")]
 
 [node name="WanderController" parent="." instance=ExtResource("7_j4wi7")]
+
+[node name="InteractionZone" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionZone"]
+shape = SubResource("CircleShape2D_541o4")
 
 [editable path="PlayerDetector"]
 [editable path="SoftCollision"]

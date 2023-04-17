@@ -85,6 +85,7 @@ var can_use_item: bool = true
 @onready var itemdrop_position: Marker2D = $Interact/ItemDrop 
 @onready var grabbling_rays: Node2D = $GrabblingRays
 @onready var item_use_timer: Timer = $Stats/Timer
+@onready var value_display: ValueDisplay = $ValueDisplay
 
 var vel = Vector2.ZERO
 var PUSH_SPEED = 50
@@ -485,6 +486,7 @@ func _use_potion(itemname: String):
 				energie_effect.global_position = global_position
 				var sound = potion_sound_scene.instantiate()
 				self.add_child(sound)
+				value_display._show_energie_value(item.item_value)
 				GameManager.interface.actionbar.energiepot_btn.start_cooldown()
 				switch_energie_shader()
 		InventoryManager.remove_item(itemname, 1)

@@ -3,7 +3,8 @@
 [ext_resource type="Script" path="res://prefab/audio/SoundEffect.gd" id="1_asd41"]
 [ext_resource type="AudioStream" uid="uid://b3g1tph15n1ml" path="res://assets/Music and Sounds/door_close.wav" id="1_bysfa"]
 
-[node name="SoundEffect" type="AudioStreamPlayer"]
+[node name="SoundEffect" type="AudioStreamPlayer2D"]
 stream = ExtResource("1_bysfa")
+max_distance = 256.0
 bus = &"Ambiente"
 script = ExtResource("1_asd41")

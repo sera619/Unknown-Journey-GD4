@@ -3,7 +3,8 @@
 [ext_resource type="AudioStream" uid="uid://c1lhbw5wqojm1" path="res://assets/Music and Sounds/metal_door_open.wav" id="1_fcokn"]
 [ext_resource type="Script" path="res://prefab/audio/SoundEffect.gd" id="2_pg3fg"]
 
-[node name="SoundEffect" type="AudioStreamPlayer"]
+[node name="SoundEffect" type="AudioStreamPlayer2D"]
 stream = ExtResource("1_fcokn")
+max_distance = 256.0
 bus = &"Ambiente"
 script = ExtResource("2_pg3fg")

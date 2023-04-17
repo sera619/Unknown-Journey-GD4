@@ -1,6 +1,7 @@
 extends NPCBase
 
 @onready var speak_icon: Sprite2D = $SpeakIcon
+@onready var interaction_zone: Area2D = $InteractionZone
 var is_talking: bool = false
 
 func _ready():

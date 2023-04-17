@@ -1,4 +1,4 @@
-[gd_scene load_steps=100 format=3 uid="uid://cq7p6ip14cr4d"]
+[gd_scene load_steps=101 format=3 uid="uid://cq7p6ip14cr4d"]
 
 [ext_resource type="Script" path="res://prefab/npc/NPCThalassa.gd" id="1_03ki2"]
 [ext_resource type="Texture2D" uid="uid://cuc7usedi58u0" path="res://assets/NPC/Thalassa.png" id="2_ybral"]
@@ -876,6 +876,9 @@ graph_offset = Vector2(5, 50)
 radius = 2.66667
 height = 21.3333
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_ea2tg"]
+radius = 61.3478
+
 [node name="NPCThalassa" type="CharacterBody2D"]
 scale = Vector2(0.75, 0.75)
 collision_layer = 7
@@ -961,6 +964,13 @@ collision_mask = 128
 [node name="SoundController" parent="." instance=ExtResource("8_yuqm4")]
 
 [node name="WanderController" parent="." instance=ExtResource("9_3cstb")]
+
+[node name="InteractionZone" type="Area2D" parent="."]
+collision_layer = 512
+collision_mask = 512
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionZone"]
+shape = SubResource("CircleShape2D_ea2tg")
 
 [editable path="PlayerDetector"]
 [editable path="SoftCollision"]

@@ -3423,7 +3423,7 @@ DASH_COOLDOWN = 2
 one_shot = true
 
 [node name="Timer2" type="Timer" parent="Stats"]
-wait_time = 4.0
+wait_time = 5.0
 one_shot = true
 
 [node name="SoundController" parent="." instance=ExtResource("20_a285j")]
