@@ -17,26 +17,36 @@ const NORMCOLOR = Color(0.16470588743687, 0.99215686321259, 1)
 @onready var hpin = $BG/MarginContainer/MainPanel/Panel/RV/hpin
 @onready var mhpin = $BG/MarginContainer/MainPanel/Panel/RV/mhpin
 @onready var expin = $BG/MarginContainer/MainPanel/Panel/RV/expin
-@onready var hin = $BG/MarginContainer/MainPanel/Panel/RV/hin
-@onready var ein = $BG/MarginContainer/MainPanel/Panel/RV/ein
+@onready var itemin = $BG/MarginContainer/MainPanel/Panel/RV/itemin
 @onready var dmgin = $BG/MarginContainer/MainPanel/Panel/RV/dmgin
 @onready var mdmgin = $BG/MarginContainer/MainPanel/Panel/RV/mdmgin
 @onready var goldin = $BG/MarginContainer/MainPanel/Panel/RV/goldin
 @onready var infolabel = $BG/MarginContainer/MainPanel/InfoLabel
 @onready var menu_button: MenuButton = $BG/MarginContainer/MainPanel/Panel/RV/MenuButton
+@onready var item_menu_button: MenuButton = $BG/MarginContainer/MainPanel/Panel/RV/ItemMenuBtn
+
 
 var ps: Stats = null
 
 func _ready():
 	ps = GameManager.player.stats
 	pass_header.add_theme_color_override("font_color", NORMCOLOR)
+	menu_button.get_popup().add_theme_font_override("font",load("res://assets/UI/Fonts/dogicapixel.otf"))
+	menu_button.get_popup().add_theme_font_size_override("font_size", 8)
+	item_menu_button.get_popup().add_theme_font_override("font",load("res://assets/UI/Fonts/dogicapixel.otf"))
+	item_menu_button.get_popup().add_theme_font_size_override("font_size", 8)
+	
 	menu_button.get_popup().connect("id_pressed", _on_menu_btn_selected)
+	item_menu_button.get_popup().connect("id_pressed", _on_item_menu_selected)
 	_init_menu_btn()
 	show_passpanel()
 
 func _init_menu_btn():
 	for map_name in GameManager.game.LevelScenes.keys():
 		menu_button.get_popup().add_item(str(map_name))
+	InventoryManager.all_items.sort()
+	for item_name in InventoryManager.all_items:
+		item_menu_button.get_popup().add_item(str(item_name))
 
 func _input(event):
 	if event.is_action_released("devconsole"):
@@ -102,20 +112,6 @@ func _on_add_xp_button_up():
 	else:
 		print("[DEV] No stats currently loaded!")
 
-func _on_add_h_pot_btn_button_up():
-	if ps:
-		InventoryManager.add_item("Heiltrank", int(hin.text))
-#		print("[DEV] Console: Add %s + HP pot to player!" % hin.text)
-		infolabel.text = "Add %s + Health Pot" % hin.text
-	else:
-		print("[DEV] No stats currently loaded!")
-
-func _on_add_e_pot_btn_button_up():
-	if ps:
-		InventoryManager.add_item("Energietrank", int(ein.text))
-		infolabel.text = "Add %s + Energie Pot" % ein.text
-	else:
-		print("[DEV] No stats currently loaded!")
 
 func _on_add_dmg_btn_button_up():
 	if ps:
@@ -188,20 +184,7 @@ func _on_remove_exp_button_up():
 	else:
 		print("[DEV] No stats currently loaded!")
 
-func _on_rhpot_btn_button_up():
-	if ps:
-		InventoryManager.remove_item("Heiltrank", int(hin.text))
-#		print("[DEV] Console: Add %s + HP pot to player!" % hin.text)
-		infolabel.text = "Remove %s + Health Pot" % hin.text
-	else:
-		print("[DEV] No stats currently loaded!")
 
-func _on_repot_btn_button_up():
-	if ps:
-		InventoryManager.remove_item("Energietrank", int(ein.text))
-		infolabel.text = "Remove %s + Energie Pot" % ein.text
-	else:
-		print("[DEV] No stats currently loaded!")
 
 func _on_rdmg_btn_button_up():
 	if ps:
@@ -231,12 +214,33 @@ func _on_add_gold_btn_button_up():
 # teleport button 
 
 func _on_menu_button_pressed():
-	print(menu_button.get_popup().get_focused_item())
+	pass
 
 func _on_menu_btn_selected(id: int):
 	var itemtext = menu_button.get_popup().get_item_text(id)
 	menu_button.text = itemtext
 
 func _on_teleport_btn_pressed():
+	if menu_button.text == "location":
+		return
 	GameManager.save_data()
 	GameManager.game.switch_gamelevel(menu_button.text)
+
+
+func _on_remove_item_btn_pressed():
+	if itemin.text == "" or item_menu_button.text == "Item":
+		return
+	InventoryManager.remove_item(item_menu_button.text, int(itemin.text))
+
+
+func _on_add_item_btn_pressed():
+	if itemin.text == "" or item_menu_button.text == "Item":
+		return
+	InventoryManager.add_item(item_menu_button.text, int(itemin.text))
+
+func _on_item_menu_selected(id):
+	var itemtext = item_menu_button.get_popup().get_item_text(id)
+	item_menu_button.text = itemtext
+
+func _on_item_menu_btn_pressed():
+	pass # Replace with function body.
