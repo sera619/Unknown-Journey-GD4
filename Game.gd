@@ -29,7 +29,8 @@ const LevelScenes: Dictionary = {
 	"CityHotel": preload("res://world/CityHotel.tscn"),
 	"CityAlchemy": preload("res://world/CityAlchemy.tscn"),
 	"CityFarm": preload("res://world/CityFarm.tscn"),
-	"WoodCave": preload("res://world/WoodCave.tscn")
+	"WoodCave": preload("res://world/WoodCave.tscn"),
+	"DevWorld": preload("res://world/DevWorld.tscn")
 }
 const TELEPORT_SPAWN_LOCATIONS: Dictionary = {
 	"GraslandHouse": Vector2(1281, 246),
@@ -107,7 +108,6 @@ func switch_gamelevel(levelname: String):
 	if levelname == "MainMenu" or levelname == "GameIntro":
 		GameManager.on_main_menu = true
 		GameManager.interface.stat_hud.hide()
-		GameManager.interface.potion_panel.hide()
 		GameManager.interface.exp_hud.hide()
 		QuestManager.reset_quests()
 		GameManager.player = null
@@ -121,7 +121,6 @@ func switch_gamelevel(levelname: String):
 		GameManager.interface.actionbar.show()
 		GameManager.on_main_menu = false
 		GameManager.interface.stat_hud.show()
-		GameManager.interface.potion_panel.show()
 		GameManager.interface.exp_hud.show()
 		GameManager.interface.dot_hud.show()
 		GameManager.interface.micro_menu.show()
@@ -136,7 +135,7 @@ func switch_gamelevel(levelname: String):
 		world_holder.get_child(0).call_deferred("queue_free")
 	var node = LevelScenes[str(levelname)].instantiate()
 	world_holder.call_deferred("add_child",node)
-	print("[!] Game: Scene - %s successfully loaded!" % levelname)
+	print("[!] Game: Current Level: \"%s\" successfully loaded!" % levelname)
 
 func _change_player_spawn(location: String):
 	match location:
