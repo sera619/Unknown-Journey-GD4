@@ -138,4 +138,4 @@ libraries = {
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_2tnhq")
-bus = &"Musik"
+bus = &"Ambiente"

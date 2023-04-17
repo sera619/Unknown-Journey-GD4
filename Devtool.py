@@ -20,6 +20,7 @@ __Quick Overview:__
 
 - Patch v{version}:
 """
+
     old_path = "changelog.md"
     log_dir_path = "./changelogs/"
     # rename old file
@@ -31,6 +32,19 @@ __Quick Overview:__
     with open(old_path, 'w') as f:
         f.write(changelogtext)
     print(Fore.GREEN + "\n[!] Changelog successfully updated!\n" + Fore.RESET)
+
+    config_path = "./conf/base.cfg"
+    config_text = f'''[common]
+
+name="Unknown Journey"
+version="TechAlpha-v{version}"
+platform="Windows Desktop"
+author="S3R3o3"'''
+    with open(config_path, "w") as d:
+        d.write(config_text)
+    print(Fore.GREEN + "[!] Configfile successfully updated!"+ Fore.RESET)
+
+
     sys.exit(0)
 
 

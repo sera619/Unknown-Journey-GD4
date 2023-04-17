@@ -8,6 +8,7 @@ class_name MainMenu
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
 @onready var load_btn: TextureButton = $Panel/M/V/MMLoadBtn
 @onready var loadpanel: LoadMenu = $LoadMenu
+@onready var option_panel: OptionPanel = $OptionPanel
 
 func _ready():
 	GameManager.register_node(self)
@@ -31,6 +32,7 @@ func _on_mm_load_btn_button_down():
 
 func _on_mm_option_btn_button_down():
 	_create_btn_click_sound()
+	option_panel._show_audio_panel()
 	print("[!] MainMenu: Option Btn clicked")
 	anim_player.play("menu-option")
 

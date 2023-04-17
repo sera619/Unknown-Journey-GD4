@@ -4,12 +4,12 @@
 [ext_resource type="Texture2D" uid="uid://8edplubtbkbr" path="res://assets/UI/wood-box.png" id="2_u6yxu"]
 [ext_resource type="PackedScene" uid="uid://cn10r8if5dqwd" path="res://prefab/UI/AcceptPopup.tscn" id="2_yhfed"]
 [ext_resource type="Texture2D" uid="uid://bpt7n5fbi8xg5" path="res://assets/UI/text-box.png" id="3_vc324"]
-[ext_resource type="Texture2D" uid="uid://dnmhbqlysi5ph" path="res://assets/UI/red-button-normal.png" id="4_8st83"]
 [ext_resource type="FontFile" uid="uid://bddtsccx0qour" path="res://assets/UI/Fonts/dogicapixel.otf" id="4_bux1i"]
-[ext_resource type="Texture2D" uid="uid://cgoomtgcn04sq" path="res://assets/UI/red-button-pressed.png" id="5_d5dbl"]
-[ext_resource type="Texture2D" uid="uid://cl20mjeo1aqyx" path="res://assets/UI/red-button-hover.png" id="6_bmld6"]
-[ext_resource type="Texture2D" uid="uid://6py808jaoso2" path="res://assets/UI/button_disabled.png" id="7_hw82d"]
+[ext_resource type="Texture2D" uid="uid://cefc0kofjjbtu" path="res://assets/UI/big-red-button-normal-export.png" id="6_45gh3"]
+[ext_resource type="Texture2D" uid="uid://cvqmjd6jh0jma" path="res://assets/UI/big-red-button-pressed-export.png" id="7_c00mx"]
+[ext_resource type="Texture2D" uid="uid://bnhgifjigfyny" path="res://assets/UI/big-red-button-hover-export.png" id="8_054sr"]
 [ext_resource type="Texture2D" uid="uid://bclxecir5ivmv" path="res://assets/UI/button-red-small-normalt.png" id="9_mqodm"]
+[ext_resource type="Texture2D" uid="uid://dg8totcenq1rk" path="res://assets/UI/big-button_disabled-export.png" id="9_o03tx"]
 [ext_resource type="Texture2D" uid="uid://c2mepjbti1rjb" path="res://assets/UI/button-red-small-hovert.png" id="10_j7he6"]
 [ext_resource type="Texture2D" uid="uid://7t4cecn0xlc6" path="res://assets/UI/button-red-small-pressedt.png" id="11_bk0r5"]
 [ext_resource type="Texture2D" uid="uid://dlbf0ofue7pd0" path="res://assets/UI/button-small-disabled.png" id="11_ul2d0"]
@@ -87,10 +87,12 @@ alignment = 1
 
 [node name="AudioBtn" type="TextureButton" parent="BG/M/V/BBox"]
 layout_mode = 2
-texture_normal = ExtResource("4_8st83")
-texture_pressed = ExtResource("5_d5dbl")
-texture_hover = ExtResource("6_bmld6")
-texture_disabled = ExtResource("7_hw82d")
+toggle_mode = true
+action_mode = 0
+texture_normal = ExtResource("6_45gh3")
+texture_pressed = ExtResource("7_c00mx")
+texture_hover = ExtResource("8_054sr")
+texture_disabled = ExtResource("9_o03tx")
 
 [node name="Label" type="Label" parent="BG/M/V/BBox/AudioBtn"]
 layout_mode = 1
@@ -109,10 +111,12 @@ vertical_alignment = 1
 
 [node name="VideoBtn" type="TextureButton" parent="BG/M/V/BBox"]
 layout_mode = 2
-texture_normal = ExtResource("4_8st83")
-texture_pressed = ExtResource("5_d5dbl")
-texture_hover = ExtResource("6_bmld6")
-texture_disabled = ExtResource("7_hw82d")
+toggle_mode = true
+action_mode = 0
+texture_normal = ExtResource("6_45gh3")
+texture_pressed = ExtResource("7_c00mx")
+texture_hover = ExtResource("8_054sr")
+texture_disabled = ExtResource("9_o03tx")
 
 [node name="Label" type="Label" parent="BG/M/V/BBox/VideoBtn"]
 layout_mode = 1
@@ -131,10 +135,12 @@ vertical_alignment = 1
 
 [node name="KeyBtn" type="TextureButton" parent="BG/M/V/BBox"]
 layout_mode = 2
-texture_normal = ExtResource("4_8st83")
-texture_pressed = ExtResource("5_d5dbl")
-texture_hover = ExtResource("6_bmld6")
-texture_disabled = ExtResource("7_hw82d")
+toggle_mode = true
+action_mode = 0
+texture_normal = ExtResource("6_45gh3")
+texture_pressed = ExtResource("7_c00mx")
+texture_hover = ExtResource("8_054sr")
+texture_disabled = ExtResource("9_o03tx")
 
 [node name="Label" type="Label" parent="BG/M/V/BBox/KeyBtn"]
 layout_mode = 1
@@ -152,7 +158,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="AudioOptions" type="NinePatchRect" parent="BG/M/V"]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 texture = ExtResource("3_vc324")
@@ -426,6 +431,7 @@ texture = ExtResource("13_8qtrb")
 expand_mode = 1
 
 [node name="VideoOptions" type="NinePatchRect" parent="BG/M/V"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 texture = ExtResource("3_vc324")
@@ -704,33 +710,53 @@ text = "Tasten"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="H" type="HBoxContainer" parent="BG/M/V/KeyOptions/M/Options"]
+[node name="ScrollContainer" type="ScrollContainer" parent="BG/M/V/KeyOptions/M/Options"]
 layout_mode = 2
+size_flags_vertical = 3
+scroll_vertical = 256
+
+[node name="H" type="VBoxContainer" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme_override_constants/separation = 17
 alignment = 1
 
-[node name="LV" type="VBoxContainer" parent="BG/M/V/KeyOptions/M/Options/H"]
+[node name="LV" type="VBoxContainer" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 3
 
-[node name="Key1" type="HBoxContainer" parent="BG/M/V/KeyOptions/M/Options/H/LV"]
+[node name="Label" type="Label" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 0.741176, 0.0509804, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.545098)
+theme_override_fonts/font = ExtResource("4_bux1i")
+theme_override_font_sizes/font_size = 8
+text = "Character
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Key1" type="HBoxContainer" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="BG/M/V/KeyOptions/M/Options/H/LV/Key1"]
+[node name="Label" type="Label" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key1"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.0745098, 0.537255, 0.937255, 1)
 theme_override_fonts/font = ExtResource("4_bux1i")
 theme_override_font_sizes/font_size = 8
 text = "Oben"
+horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TextureRect" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/H/LV/Key1"]
+[node name="TextureRect" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key1"]
 layout_mode = 2
-size_flags_horizontal = 10
+size_flags_horizontal = 6
 size_flags_vertical = 4
 texture = ExtResource("14_7hvbg")
 region_rect = Rect2(76, 21, 15, 14)
@@ -739,23 +765,24 @@ patch_margin_top = 7
 patch_margin_right = 8
 patch_margin_bottom = 7
 
-[node name="Key2" type="HBoxContainer" parent="BG/M/V/KeyOptions/M/Options/H/LV"]
+[node name="Key2" type="HBoxContainer" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="BG/M/V/KeyOptions/M/Options/H/LV/Key2"]
+[node name="Label" type="Label" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key2"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.0745098, 0.537255, 0.937255, 1)
 theme_override_fonts/font = ExtResource("4_bux1i")
 theme_override_font_sizes/font_size = 8
 text = "Links"
+horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TextureRect" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/H/LV/Key2"]
+[node name="TextureRect" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key2"]
 layout_mode = 2
-size_flags_horizontal = 10
+size_flags_horizontal = 6
 size_flags_vertical = 4
 texture = ExtResource("14_7hvbg")
 region_rect = Rect2(70, 35, 12, 12)
@@ -764,12 +791,12 @@ patch_margin_top = 6
 patch_margin_right = 6
 patch_margin_bottom = 6
 
-[node name="Key3" type="HBoxContainer" parent="BG/M/V/KeyOptions/M/Options/H/LV"]
+[node name="Key3" type="HBoxContainer" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="BG/M/V/KeyOptions/M/Options/H/LV/Key3"]
+[node name="Label" type="Label" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key3"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.0745098, 0.537255, 0.937255, 1)
@@ -777,11 +804,12 @@ theme_override_fonts/font = ExtResource("4_bux1i")
 theme_override_font_sizes/font_size = 8
 text = "Rechts
 "
+horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TextureRect" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/H/LV/Key3"]
+[node name="TextureRect" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key3"]
 layout_mode = 2
-size_flags_horizontal = 10
+size_flags_horizontal = 6
 size_flags_vertical = 4
 texture = ExtResource("14_7hvbg")
 region_rect = Rect2(96, 35, 12, 12)
@@ -792,13 +820,13 @@ patch_margin_bottom = 6
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
-[node name="Key4" type="HBoxContainer" parent="BG/M/V/KeyOptions/M/Options/H/LV"]
+[node name="Key4" type="HBoxContainer" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 1
 
-[node name="Label" type="Label" parent="BG/M/V/KeyOptions/M/Options/H/LV/Key4"]
+[node name="Label" type="Label" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key4"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.0745098, 0.537255, 0.937255, 1)
@@ -806,11 +834,12 @@ theme_override_fonts/font = ExtResource("4_bux1i")
 theme_override_font_sizes/font_size = 8
 text = "Unten
 "
+horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TextureRect" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/H/LV/Key4"]
+[node name="TextureRect" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key4"]
 layout_mode = 2
-size_flags_horizontal = 10
+size_flags_horizontal = 6
 size_flags_vertical = 4
 texture = ExtResource("14_7hvbg")
 region_rect = Rect2(83, 35, 12, 12)
@@ -821,107 +850,24 @@ patch_margin_bottom = 6
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
-[node name="MV" type="VBoxContainer" parent="BG/M/V/KeyOptions/M/Options/H"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 3
-
-[node name="Key1" type="HBoxContainer" parent="BG/M/V/KeyOptions/M/Options/H/MV"]
+[node name="Key5" type="HBoxContainer" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="BG/M/V/KeyOptions/M/Options/H/MV/Key1"]
+[node name="Label2" type="Label" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key5"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.0745098, 0.537255, 0.937255, 1)
 theme_override_fonts/font = ExtResource("4_bux1i")
 theme_override_font_sizes/font_size = 8
-text = "Angriff"
+text = "Dash"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TextureRect" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/H/MV/Key1"]
+[node name="TextureRect" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key5"]
 layout_mode = 2
-size_flags_horizontal = 10
-size_flags_vertical = 4
-texture = ExtResource("14_7hvbg")
-region_rect = Rect2(111, 48, 22, 12)
-patch_margin_left = 11
-patch_margin_top = 6
-patch_margin_right = 11
-patch_margin_bottom = 6
-
-[node name="Key2" type="HBoxContainer" parent="BG/M/V/KeyOptions/M/Options/H/MV"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Label" type="Label" parent="BG/M/V/KeyOptions/M/Options/H/MV/Key2"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_color = Color(0.0745098, 0.537255, 0.937255, 1)
-theme_override_fonts/font = ExtResource("4_bux1i")
-theme_override_font_sizes/font_size = 8
-text = "Angriff 2"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="TextureRect" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/H/MV/Key2"]
-layout_mode = 2
-size_flags_horizontal = 10
-size_flags_vertical = 4
-texture = ExtResource("14_7hvbg")
-region_rect = Rect2(64, 22, 12, 12)
-patch_margin_left = 6
-patch_margin_top = 6
-patch_margin_right = 6
-patch_margin_bottom = 6
-
-[node name="Key3" type="HBoxContainer" parent="BG/M/V/KeyOptions/M/Options/H/MV"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Label" type="Label" parent="BG/M/V/KeyOptions/M/Options/H/MV/Key3"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_color = Color(0.0745098, 0.537255, 0.937255, 1)
-theme_override_fonts/font = ExtResource("4_bux1i")
-theme_override_font_sizes/font_size = 8
-text = "Angriff 3"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="TextureRect" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/H/MV/Key3"]
-layout_mode = 2
-size_flags_horizontal = 10
-size_flags_vertical = 4
-texture = ExtResource("14_7hvbg")
-region_rect = Rect2(104, 22, 12, 12)
-patch_margin_left = 6
-patch_margin_top = 6
-patch_margin_right = 6
-patch_margin_bottom = 6
-
-[node name="Key4" type="HBoxContainer" parent="BG/M/V/KeyOptions/M/Options/H/MV"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Label" type="Label" parent="BG/M/V/KeyOptions/M/Options/H/MV/Key4"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_color = Color(0.0745098, 0.537255, 0.937255, 1)
-theme_override_fonts/font = ExtResource("4_bux1i")
-theme_override_font_sizes/font_size = 8
-text = "Sprint"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="TextureRect" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/H/MV/Key4"]
-layout_mode = 2
-size_flags_horizontal = 10
+size_flags_horizontal = 6
 size_flags_vertical = 4
 texture = ExtResource("14_7hvbg")
 region_rect = Rect2(134, 48, 12, 12)
@@ -930,17 +876,38 @@ patch_margin_top = 6
 patch_margin_right = 6
 patch_margin_bottom = 6
 
-[node name="RV" type="VBoxContainer" parent="BG/M/V/KeyOptions/M/Options/H"]
+[node name="Key6" type="HBoxContainer" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/separation = 3
+size_flags_vertical = 3
 
-[node name="Key4" type="HBoxContainer" parent="BG/M/V/KeyOptions/M/Options/H/RV"]
+[node name="Label2" type="Label" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key6"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.0745098, 0.537255, 0.937255, 1)
+theme_override_fonts/font = ExtResource("4_bux1i")
+theme_override_font_sizes/font_size = 8
+text = "Rennen"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key6"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+texture = ExtResource("14_7hvbg")
+region_rect = Rect2(49, 35, 20, 12)
+patch_margin_left = 10
+patch_margin_top = 6
+patch_margin_right = 10
+patch_margin_bottom = 6
+
+[node name="Key7" type="HBoxContainer" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
 
-[node name="Label" type="Label" parent="BG/M/V/KeyOptions/M/Options/H/RV/Key4"]
+[node name="Label" type="Label" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key7"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.0745098, 0.537255, 0.937255, 1)
@@ -950,9 +917,9 @@ text = "Aktion"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TextureRect" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/H/RV/Key4"]
+[node name="TextureRect" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key7"]
 layout_mode = 2
-size_flags_horizontal = 10
+size_flags_horizontal = 6
 size_flags_vertical = 4
 texture = ExtResource("14_7hvbg")
 region_rect = Rect2(91, 22, 12, 12)
@@ -961,64 +928,12 @@ patch_margin_top = 6
 patch_margin_right = 6
 patch_margin_bottom = 6
 
-[node name="Key1" type="HBoxContainer" parent="BG/M/V/KeyOptions/M/Options/H/RV"]
+[node name="Key8" type="HBoxContainer" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
 
-[node name="Label" type="Label" parent="BG/M/V/KeyOptions/M/Options/H/RV/Key1"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_color = Color(0.0745098, 0.537255, 0.937255, 1)
-theme_override_fonts/font = ExtResource("4_bux1i")
-theme_override_font_sizes/font_size = 8
-text = "Character"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="TextureRect" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/H/RV/Key1"]
-layout_mode = 2
-size_flags_horizontal = 10
-size_flags_vertical = 4
-texture = ExtResource("14_7hvbg")
-region_rect = Rect2(98, 48, 12, 12)
-patch_margin_left = 6
-patch_margin_top = 6
-patch_margin_right = 6
-patch_margin_bottom = 6
-
-[node name="Key2" type="HBoxContainer" parent="BG/M/V/KeyOptions/M/Options/H/RV"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 6
-
-[node name="Label" type="Label" parent="BG/M/V/KeyOptions/M/Options/H/RV/Key2"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_color = Color(0.0745098, 0.537255, 0.937255, 1)
-theme_override_fonts/font = ExtResource("4_bux1i")
-theme_override_font_sizes/font_size = 8
-text = "Questlog"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="TextureRect" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/H/RV/Key2"]
-layout_mode = 2
-size_flags_horizontal = 10
-size_flags_vertical = 4
-texture = ExtResource("14_7hvbg")
-region_rect = Rect2(174, 35, 12, 12)
-patch_margin_left = 6
-patch_margin_top = 6
-patch_margin_right = 6
-patch_margin_bottom = 6
-
-[node name="Key3" type="HBoxContainer" parent="BG/M/V/KeyOptions/M/Options/H/RV"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 6
-
-[node name="Label" type="Label" parent="BG/M/V/KeyOptions/M/Options/H/RV/Key3"]
+[node name="Label" type="Label" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key8"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.0745098, 0.537255, 0.937255, 1)
@@ -1028,15 +943,309 @@ text = "Heiltrank"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TextureRect" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/H/RV/Key3"]
+[node name="TextureRect" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key8"]
 layout_mode = 2
-size_flags_horizontal = 10
+size_flags_horizontal = 6
 size_flags_vertical = 4
 texture = ExtResource("14_7hvbg")
 region_rect = Rect2(64, 9, 12, 12)
 patch_margin_left = 6
 patch_margin_top = 6
 patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="Key9" type="HBoxContainer" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+
+[node name="Label" type="Label" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key9"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.0745098, 0.537255, 0.937255, 1)
+theme_override_fonts/font = ExtResource("4_bux1i")
+theme_override_font_sizes/font_size = 8
+text = "Energietrank"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key9"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+texture = ExtResource("14_7hvbg")
+region_rect = Rect2(77, 9, 12, 12)
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="Key10" type="HBoxContainer" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+
+[node name="Label" type="Label" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key10"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.0745098, 0.537255, 0.937255, 1)
+theme_override_fonts/font = ExtResource("4_bux1i")
+theme_override_font_sizes/font_size = 8
+text = "Bombe"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key10"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+texture = ExtResource("14_7hvbg")
+region_rect = Rect2(90, 9, 12, 12)
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="MV" type="VBoxContainer" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 3
+
+[node name="Label" type="Label" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/MV"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 0.741176, 0.0509804, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.545098)
+theme_override_fonts/font = ExtResource("4_bux1i")
+theme_override_font_sizes/font_size = 8
+text = "Kampf
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Key4" type="HBoxContainer" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/MV"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/MV/Key4"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.0745098, 0.537255, 0.937255, 1)
+theme_override_fonts/font = ExtResource("4_bux1i")
+theme_override_font_sizes/font_size = 8
+text = "Kampfmodus an/aus"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/MV/Key4"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+texture = ExtResource("14_7hvbg")
+region_rect = Rect2(109, 35, 12, 12)
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="Key1" type="HBoxContainer" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/MV"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/MV/Key1"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.0745098, 0.537255, 0.937255, 1)
+theme_override_fonts/font = ExtResource("4_bux1i")
+theme_override_font_sizes/font_size = 8
+text = "Angriff"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/MV/Key1"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+texture = ExtResource("14_7hvbg")
+region_rect = Rect2(111, 48, 22, 12)
+patch_margin_left = 11
+patch_margin_top = 6
+patch_margin_right = 11
+patch_margin_bottom = 6
+
+[node name="Key2" type="HBoxContainer" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/MV"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/MV/Key2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.0745098, 0.537255, 0.937255, 1)
+theme_override_fonts/font = ExtResource("4_bux1i")
+theme_override_font_sizes/font_size = 8
+text = "Doppel-Angriff"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/MV/Key2"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+texture = ExtResource("14_7hvbg")
+region_rect = Rect2(64, 22, 12, 12)
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="Key3" type="HBoxContainer" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/MV"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/MV/Key3"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.0745098, 0.537255, 0.937255, 1)
+theme_override_fonts/font = ExtResource("4_bux1i")
+theme_override_font_sizes/font_size = 8
+text = "Wirbel-Angriff"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/MV/Key3"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+texture = ExtResource("14_7hvbg")
+region_rect = Rect2(104, 22, 12, 12)
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="RV" type="VBoxContainer" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 3
+
+[node name="Label" type="Label" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/RV"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 0.741176, 0.0509804, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.545098)
+theme_override_fonts/font = ExtResource("4_bux1i")
+theme_override_font_sizes/font_size = 8
+text = "Interface
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Key1" type="HBoxContainer" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/RV"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+
+[node name="Label" type="Label" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/RV/Key1"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.0745098, 0.537255, 0.937255, 1)
+theme_override_fonts/font = ExtResource("4_bux1i")
+theme_override_font_sizes/font_size = 8
+text = "Character"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/RV/Key1"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+texture = ExtResource("14_7hvbg")
+region_rect = Rect2(98, 48, 12, 12)
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="Key2" type="HBoxContainer" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/RV"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+
+[node name="Label" type="Label" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/RV/Key2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.0745098, 0.537255, 0.937255, 1)
+theme_override_fonts/font = ExtResource("4_bux1i")
+theme_override_font_sizes/font_size = 8
+text = "Questlog"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/RV/Key2"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+texture = ExtResource("14_7hvbg")
+region_rect = Rect2(174, 35, 12, 12)
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="Key3" type="HBoxContainer" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/RV"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+
+[node name="Label" type="Label" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/RV/Key3"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.0745098, 0.537255, 0.937255, 1)
+theme_override_fonts/font = ExtResource("4_bux1i")
+theme_override_font_sizes/font_size = 8
+text = "Inventar"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/RV/Key3"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+texture = ExtResource("14_7hvbg")
+region_rect = Rect2(157, 22, 11, 12)
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="Key4" type="HBoxContainer" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/RV"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+
+[node name="Label" type="Label" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/RV/Key4"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.0745098, 0.537255, 0.937255, 1)
+theme_override_fonts/font = ExtResource("4_bux1i")
+theme_override_font_sizes/font_size = 8
+text = "Pause"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/RV/Key4"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+texture = ExtResource("14_7hvbg")
+region_rect = Rect2(14, 0, 20, 12)
+patch_margin_left = 10
+patch_margin_top = 6
+patch_margin_right = 10
 patch_margin_bottom = 6
 
 [node name="H" type="HBoxContainer" parent="BG/M/V"]
@@ -1047,10 +1256,10 @@ alignment = 1
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture_normal = ExtResource("4_8st83")
-texture_pressed = ExtResource("5_d5dbl")
-texture_hover = ExtResource("6_bmld6")
-texture_disabled = ExtResource("7_hw82d")
+texture_normal = ExtResource("6_45gh3")
+texture_pressed = ExtResource("7_c00mx")
+texture_hover = ExtResource("8_054sr")
+texture_disabled = ExtResource("9_o03tx")
 
 [node name="Label" type="Label" parent="BG/M/V/H/ResetBtn"]
 layout_mode = 1
@@ -1071,10 +1280,10 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture_normal = ExtResource("4_8st83")
-texture_pressed = ExtResource("5_d5dbl")
-texture_hover = ExtResource("6_bmld6")
-texture_disabled = ExtResource("7_hw82d")
+texture_normal = ExtResource("6_45gh3")
+texture_pressed = ExtResource("7_c00mx")
+texture_hover = ExtResource("8_054sr")
+texture_disabled = ExtResource("9_o03tx")
 
 [node name="Label" type="Label" parent="BG/M/V/H/OkayBtn"]
 layout_mode = 1
@@ -1095,10 +1304,10 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture_normal = ExtResource("4_8st83")
-texture_pressed = ExtResource("5_d5dbl")
-texture_hover = ExtResource("6_bmld6")
-texture_disabled = ExtResource("7_hw82d")
+texture_normal = ExtResource("6_45gh3")
+texture_pressed = ExtResource("7_c00mx")
+texture_hover = ExtResource("8_054sr")
+texture_disabled = ExtResource("9_o03tx")
 
 [node name="Label" type="Label" parent="BG/M/V/H/BackBtn"]
 layout_mode = 1
@@ -1115,9 +1324,9 @@ text = "Zurück"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[connection signal="button_up" from="BG/M/V/BBox/AudioBtn" to="." method="_on_audio_btn_button_up"]
-[connection signal="button_up" from="BG/M/V/BBox/VideoBtn" to="." method="_on_video_btn_button_up"]
-[connection signal="button_up" from="BG/M/V/BBox/KeyBtn" to="." method="_on_key_btn_button_up"]
+[connection signal="pressed" from="BG/M/V/BBox/AudioBtn" to="." method="_on_audio_btn_pressed"]
+[connection signal="pressed" from="BG/M/V/BBox/VideoBtn" to="." method="_on_video_btn_pressed"]
+[connection signal="pressed" from="BG/M/V/BBox/KeyBtn" to="." method="_on_key_btn_pressed"]
 [connection signal="value_changed" from="BG/M/V/AudioOptions/M/Options/V/H/AllAudioSlider" to="." method="_on_all_audio_slider_value_changed"]
 [connection signal="value_changed" from="BG/M/V/AudioOptions/M/Options/V/H2/MusicSlider" to="." method="_on_music_slider_value_changed"]
 [connection signal="value_changed" from="BG/M/V/AudioOptions/M/Options/V/H3/SFXSlider" to="." method="_on_sfx_slider_value_changed"]

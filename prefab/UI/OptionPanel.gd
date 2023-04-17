@@ -44,6 +44,7 @@ class_name OptionPanel
 func _ready():
 	$BG/M/V/HeadBG/Label.add_theme_color_override("font_color", GameManager.COLORS.lightgreen_text)
 	self._reset_panels()
+	self._show_audio_panel()
 	self._set_current_audio_values()
 	self._set_current_video_values()
 	#self.key_btn.disabled = true
@@ -236,6 +237,9 @@ func _set_current_video_values():
 	self.brightness_slider.value = GameManager.current_game_options['video_brightness']
 
 func _show_audio_panel():
+	self.video_btn.button_pressed = false
+	self.key_btn.button_pressed = false
+	self.audio_btn.button_pressed = true
 	self.video_panel.hide()
 	self.audio_panel.show()
 	self.reset_btn.visible = true
@@ -243,11 +247,15 @@ func _show_audio_panel():
 
 func _show_video_panel():
 	self.video_panel.show()
+	self.audio_btn.button_pressed = false
+	self.key_btn.button_pressed = false
 	self.reset_btn.visible = true
 	self.audio_panel.hide()
 	self.key_panel.hide()
 
 func _show_key_panel():
+	self.audio_btn.button_pressed = false
+	self.video_btn.button_pressed = false
 	self.video_panel.hide()
 	self.reset_btn.visible = false
 	self.audio_panel.hide()
@@ -260,6 +268,7 @@ func _on_okay_btn_button_up():
 		GameManager.main_menu.anim_player.play_backwards("menu-option")
 	else:
 		self.hide()
+		self._show_audio_panel()
 
 func _on_back_btn_button_up():
 	_create_btn_click_sound()
@@ -267,6 +276,7 @@ func _on_back_btn_button_up():
 		GameManager.main_menu.anim_player.play_backwards("menu-option")
 	else:
 		self.hide()
+		self._show_audio_panel()
 
 func _on_sfx_slider_value_changed(value):
 	audio_sfx_label.text = "%s DB" % floor(value)
@@ -296,22 +306,9 @@ func _on_hue_slider_value_changed(value):
 	hue_label.text =  "%s %s" % [value * 100, "%"]
 	GameManager._update_video_saturation(value)
 
-
 func _on_ambiente_slider_value_changed(value):
 	audio_ambiente_label.text = "%s DB" % floor(value)
 	GameManager._update_audio_ambiente(value)
-
-func _on_audio_btn_button_up():
-	_create_btn_click_sound()
-	_show_audio_panel()
-	
-func _on_video_btn_button_up():
-	_create_btn_click_sound()
-	_show_video_panel()
-	
-func _on_key_btn_button_up():
-	_create_btn_click_sound()
-	_show_key_panel()
 
 # screen size button
 func _on_check_button_button_up():
@@ -349,3 +346,16 @@ func _on_reset_btn_pressed():
 		_show_audio_reset_dialog()
 	else:
 		return
+
+
+func _on_audio_btn_pressed():
+	_create_btn_click_sound()
+	_show_audio_panel()
+
+func _on_video_btn_pressed():
+	_create_btn_click_sound()
+	_show_video_panel()
+
+func _on_key_btn_pressed():
+	_create_btn_click_sound()
+	_show_key_panel()
