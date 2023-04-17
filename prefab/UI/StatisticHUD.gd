@@ -32,6 +32,7 @@ func _ready():
 
 
 func show_statistic():
+	get_parent().move_child(self, 11)
 	self.show()
 	self._update_statistic()
 
