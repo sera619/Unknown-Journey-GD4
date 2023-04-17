@@ -1,14 +1,11 @@
-[gd_scene load_steps=35 format=3 uid="uid://b1kt7f88vq11f"]
+[gd_scene load_steps=33 format=3 uid="uid://b1kt7f88vq11f"]
 
 [ext_resource type="Script" path="res://scripts/Enemy.gd" id="1_3in87"]
-[ext_resource type="PackedScene" uid="uid://coohwdkytapxs" path="res://prefab/itemdrops/EnergiePotDrop.tscn" id="2_b8ug6"]
 [ext_resource type="PackedScene" uid="uid://kbo1bay3i1ps" path="res://prefab/utils/PlayerDetector.tscn" id="2_ss6cg"]
 [ext_resource type="Texture2D" uid="uid://cvnvhq4vu7ktw" path="res://assets/Enemies/Bat.png" id="2_ve70t"]
 [ext_resource type="PackedScene" uid="uid://c4qwbfsr4fe74" path="res://prefab/effects/HitEffect.tscn" id="2_wfl4r"]
 [ext_resource type="PackedScene" uid="uid://cblcbsx1gpy2q" path="res://prefab/effects/DeathEffect.tscn" id="3_4hokx"]
-[ext_resource type="PackedScene" uid="uid://dnbng2g6ad7s6" path="res://prefab/itemdrops/HealthPotDrop.tscn" id="3_fl3s6"]
 [ext_resource type="PackedScene" uid="uid://bpr5kb8nmfivl" path="res://prefab/audio/EnemyHitSound.tscn" id="4_5r0xc"]
-[ext_resource type="PackedScene" uid="uid://bdjnceh2b5es" path="res://prefab/itemdrops/CoinDrop.tscn" id="4_441x3"]
 [ext_resource type="Script" path="res://scripts/EnemyStats.gd" id="4_f2vjp"]
 [ext_resource type="PackedScene" uid="uid://b347lo6c415bh" path="res://prefab/utils/WanderController.tscn" id="4_nxulv"]
 [ext_resource type="PackedScene" uid="uid://uqcsi836bkf" path="res://prefab/audio/EnemyDeathSound.tscn" id="5_6303i"]
@@ -18,6 +15,7 @@
 [ext_resource type="Script" path="res://prefab/enemys/EnemyWeapon.gd" id="7_w14fy"]
 [ext_resource type="PackedScene" uid="uid://doa5hxcckh64o" path="res://prefab/enemys/EnemyHUD.tscn" id="11_5vyps"]
 [ext_resource type="PackedScene" uid="uid://bk15h3dxda4v0" path="res://prefab/utils/SoundController.tscn" id="14_oos6h"]
+[ext_resource type="PackedScene" uid="uid://cqwoenanbmyd5" path="res://prefab/utils/RewardController.tscn" id="16_rhqma"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_f7h26"]
 shader = ExtResource("6_b1wm7")
@@ -131,9 +129,6 @@ collision_mask = 5
 motion_mode = 1
 script = ExtResource("1_3in87")
 item_name = "Fledermaus"
-reward_chance = 3
-reward_gold = 10
-reward_scenes = Array[PackedScene]([ExtResource("2_b8ug6"), ExtResource("3_fl3s6"), ExtResource("4_441x3")])
 hit_effect_scene = ExtResource("2_wfl4r")
 death_effect_scene = ExtResource("3_4hokx")
 hurt_sound_scene = ExtResource("4_5r0xc")
@@ -238,6 +233,10 @@ target_position = Vector2(30, 0)
 collision_mask = 128
 
 [node name="SoundController" parent="." instance=ExtResource("14_oos6h")]
+
+[node name="RewardController" parent="." instance=ExtResource("16_rhqma")]
+reward_chance = 19
+reward_gold = 30
 
 [editable path="PlayerDetector"]
 [editable path="SoftCollision"]
