@@ -86,7 +86,7 @@ func _set_game_settings(settings: Dictionary):
 		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED)
 	else:
 		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
-	print("[!] GameManager: game settings applied!")
+	print("[!] GameManager: Gameoptions applied!")
 
 
 func _update_video_brightness(value):
@@ -209,7 +209,7 @@ func save_data(playername=""):
 	D._save_profile_inventory_data(GameManager.player.stats.playername)
 	D._save_unique_open_data(GameManager.player.stats.playername)
 	#print("[ZEIT]: Gespielte zeit %s" % self.get_played_time_string(self.player.stats.played_time))
-	print("[!] Data: Savegame successfully saved!")
+	print("[Data]: Savegame successfully saved!")
 
 
 func get_played_time_string(time_played):
