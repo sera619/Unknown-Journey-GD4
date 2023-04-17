@@ -18,6 +18,7 @@ func _ready():
 		var dropsound = drop_sound_scene.instantiate()
 		self.add_child(dropsound)
 	hitbox.damage = bomb_damage
+	hitbox.connect("area_entered", _apply_knockback)
 	timer.connect("timeout", _explode)
 	timer.start(explotion_time)
 	body.play("bomb")
@@ -42,3 +43,6 @@ func _explode():
 
 func _kill():
 	call_deferred("queue_free")
+
+func _apply_knockback(area):
+	hitbox.knockback_vector = self.global_position.direction_to(area.get_parent().global_position)
