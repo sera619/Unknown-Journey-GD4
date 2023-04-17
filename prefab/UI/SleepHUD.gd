@@ -14,4 +14,4 @@ func start_sleep():
 func _on_animation_finished(_anim_name):
 	get_tree().paused = false
 	GameManager.save_data()
-	GameManager.info_box.set_info_text("[center]\n\nDein Spielstand wurde gespeichert![/center]")
+	GameManager.interface.notice_box.show_save_notice()
