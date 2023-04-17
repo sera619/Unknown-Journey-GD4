@@ -1,8 +1,9 @@
 extends Control
 class_name StatHUD
 
-@onready var healthbar = $VBoxContainer/HealthBar
-@onready var energiebar = $VBoxContainer/EnergieBar
+@onready var energiebar = $VBoxContainer/HBoxContainer2/EnergieBar
+@onready var healthbar = $VBoxContainer/HBoxContainer/HealthBar
+
 
 var maximum_health
 var maximum_energie
