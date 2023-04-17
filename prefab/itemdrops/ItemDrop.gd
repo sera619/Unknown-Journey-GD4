@@ -26,6 +26,7 @@ signal interaction_finished()
 @onready var particles: GPUParticles2D = $Body/ItemDropParticle
 
 func _ready():
+	particles.emitting = true
 	if particle_material:
 		particles.process_material = particle_material
 	body_sprite.texture = item_image
@@ -47,11 +48,8 @@ func _ready():
 		#body_sprite.scale.x = 0.25 
 		if despawn_time != 0:
 			timer.wait_time = despawn_time
-		else:
-			despawn_time = 10
-		timer.wait_time = despawn_time
-		timer.start()
-
+			timer.start()
+		
 func _change_animation(anim_name):
 	if anim_name == "drop":
 		animplayer.play("loop")
