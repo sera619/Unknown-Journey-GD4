@@ -192,6 +192,8 @@ func set_energie(value):
 	value_label._show_energie_value(int(value))
 	if energie > MAX_ENERGIE:
 		energie = MAX_ENERGIE
+	if energie < 0:
+		energie = 0
 	if energie >= 0:
 		energie_reduce_timer.start()
 	EventHandler.emit_signal("player_energie_changed", energie)
