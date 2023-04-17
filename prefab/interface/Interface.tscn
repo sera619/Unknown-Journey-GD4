@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://b7dks5cm1l8lb"]
+[gd_scene load_steps=27 format=3 uid="uid://b7dks5cm1l8lb"]
 
 [ext_resource type="Script" path="res://prefab/interface/Interface.gd" id="1_ghaf7"]
 [ext_resource type="PackedScene" uid="uid://bdnok5tk1xkmk" path="res://dev/DevConsole.tscn" id="2_g31m3"]
@@ -16,7 +16,6 @@
 [ext_resource type="PackedScene" uid="uid://bcyuj58ovb3b8" path="res://prefab/UI/MicroMenu.tscn" id="9_bb3bs"]
 [ext_resource type="PackedScene" uid="uid://4pvo7rk61tca" path="res://prefab/UI/DialogBox.tscn" id="9_kcv7y"]
 [ext_resource type="PackedScene" uid="uid://cedf8cswltnk0" path="res://prefab/UI/NoticeBox.tscn" id="10_0ruit"]
-[ext_resource type="PackedScene" uid="uid://cfsnddkshv6p8" path="res://prefab/UI/PotionPanel.tscn" id="10_p40cy"]
 [ext_resource type="PackedScene" uid="uid://6ma28lukrg4r" path="res://prefab/UI/NewSkillHUD.tscn" id="11_r8hlj"]
 [ext_resource type="PackedScene" uid="uid://b2vjb6d6ok5vr" path="res://prefab/UI/LoadMenu.tscn" id="13_cofjd"]
 [ext_resource type="PackedScene" uid="uid://l61eqwib72yh" path="res://prefab/UI/SleepHUD.tscn" id="13_q1ex6"]
@@ -84,19 +83,29 @@ alpha_info_scene = ExtResource("3_j5v3i")
 button_click_sound = ExtResource("4_hpb42")
 
 [node name="StatHUD" parent="." instance=ExtResource("3_1qqj3")]
-visible = false
-offset_right = -226.0
-offset_bottom = -163.0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 101.0
+offset_bottom = 32.0
+grow_horizontal = 1
+grow_vertical = 1
+scale = Vector2(0.75, 0.75)
+
+[node name="DotHUD" parent="." instance=ExtResource("4_v8vmd")]
+anchor_left = 0.00625
+anchor_top = 0.127778
+anchor_right = 0.16875
+anchor_bottom = 0.2
+offset_left = -1.0
+offset_right = 51.0
+offset_bottom = 13.0
 
 [node name="NoticeBox" parent="." instance=ExtResource("10_0ruit")]
 mouse_filter = 2
-
-[node name="DotHUD" parent="." instance=ExtResource("4_v8vmd")]
-offset_left = 59.0
-offset_top = 3.0
-offset_right = -105.0
-offset_bottom = -129.0
-scale = Vector2(0.325, 0.325)
 
 [node name="ExpHUD" parent="." instance=ExtResource("3_ojkx5")]
 visible = false
@@ -107,6 +116,7 @@ offset_bottom = 91.0
 scale = Vector2(0.5, 0.5)
 
 [node name="Actionbar" parent="." instance=ExtResource("8_bokdx")]
+visible = false
 anchor_top = 0.872
 anchor_right = 0.75
 anchor_bottom = 0.961
@@ -115,14 +125,8 @@ offset_top = 0.0400238
 offset_right = 160.0
 offset_bottom = 16.02
 
-[node name="PotionPanel" parent="." instance=ExtResource("10_p40cy")]
-offset_left = -317.0
-offset_top = -161.0
-offset_right = -239.0
-offset_bottom = -115.0
-scale = Vector2(0.25, 0.25)
-
 [node name="MicroMenu" parent="." instance=ExtResource("9_bb3bs")]
+visible = false
 offset_left = -4.0
 offset_top = -3.0
 offset_right = -4.0
@@ -131,12 +135,13 @@ offset_bottom = -3.0
 [node name="Questlog" parent="." instance=ExtResource("2_ka8y8")]
 visible = false
 anchors_preset = -1
-anchor_left = 0.021875
-anchor_top = 0.144444
-anchor_right = 0.55
-anchor_bottom = 0.8
-offset_right = 169.0
-offset_bottom = 118.0
+anchor_left = 0.025
+anchor_top = 0.155556
+anchor_right = 0.540625
+anchor_bottom = 0.844444
+offset_top = 4.0
+offset_right = 165.0
+offset_bottom = 128.0
 scale = Vector2(0.5, 0.5)
 size_flags_horizontal = 2
 size_flags_vertical = 2
@@ -144,17 +149,23 @@ metadata/_edit_use_anchors_ = true
 
 [node name="CharacterPanel" parent="." instance=ExtResource("5_6wngu")]
 visible = false
-offset_left = 23.0
-offset_top = 47.0
-offset_right = -91.0
-offset_bottom = 47.0
-scale = Vector2(0.5, 0.5)
+offset_left = 8.0
+offset_top = 38.0
+offset_right = -114.0
+offset_bottom = 82.0
 
 [node name="InventoryHUD" parent="." instance=ExtResource("18_p0ljd")]
 visible = false
-offset_left = 156.0
-offset_top = 24.0
-offset_right = 136.0
+anchors_preset = -1
+anchor_left = 0.465625
+anchor_top = 0.155556
+anchor_right = 1.00937
+anchor_bottom = 0.844444
+offset_left = -2.0
+offset_top = 4.0
+offset_right = 154.0
+offset_bottom = 128.0
+metadata/_edit_use_anchors_ = true
 
 [node name="ShopHUD" parent="." instance=ExtResource("19_iv8cx")]
 visible = false
