@@ -67,3 +67,9 @@ func set_information_msg(information: String):
 	label.parse_bbcode("[center][color=orange]\n%s[/color][/center]"% information)
 	self.show()
 	timer.start()
+
+func set_time_msg():
+	self._set_bg(item_bg)
+	label.parse_bbcode("[fill][center][color=orange]\nAktuelle Uhrzeit:\n\n[/color][color=white]%s Uhr[/color][/center]" % Time.get_time_string_from_system())
+	self.show()
+	timer.start()
