@@ -8,7 +8,7 @@ class_name Stats
 @export var MAX_DAMAGE: int
 @export var gold: int
 @export var MAX_GOLD: int
-@export var dmg_label_path: NodePath
+@export var value_label_path: NodePath
 @export_category('Movement Settings')
 @export var MAX_SPEED:int
 @export var RUN_SPEED: int
@@ -42,7 +42,7 @@ var damage: int = 0
 var speed: int = 0
 var exp_multiplikator:float = 1.2
 var parent = null
-var dmg_label: RichTextLabel = null
+var value_label: ValueDisplay = null
 var played_time = 0
 
 var player_last_death = {
@@ -73,9 +73,8 @@ func _ready():
 	EventHandler.connect("statistic_update_quests", _check_quests_done)
 	if not parent:
 		parent = get_parent().name
-	if dmg_label_path:
-		dmg_label = get_node(dmg_label_path)
-		dmg_label.visible = false
+	if value_label_path:
+		value_label = get_node(value_label_path)
 	if GameManager.game.new_game:
 		set_default_stats()
 		GameManager.game.new_game = false
@@ -145,11 +144,9 @@ func set_health(value, loaded=false):
 	EventHandler.emit_signal("player_health_changed", health)
 	if loaded == false:
 		if old_healt > health:
-			dmg_label.add_theme_color_override("default_color", Color(0.7843137383461, 0.12156862765551, 0.03529411926866))
-			show_dmg_display("[wave amp=40 freq=10]\n-%s[/wave]" % int(old_healt - health))
+			value_label._show_dmg_value(int(old_healt-health))
 		elif old_healt < health:
-			dmg_label.add_theme_color_override("default_color", Color(0.32941177487373, 0.7843137383461, 0.15294118225574))
-			show_dmg_display("[wave amp=40 freq=10]\n+%s[/wave]" % int(health - old_healt))
+			value_label._show_heal_value(int(health - old_healt))
 
 
 func heal_player(value):
@@ -157,21 +154,9 @@ func heal_player(value):
 		health = MAX_HEALTH
 	else:
 		health += value
+	value_label._show_heal_value(int(value))
 	EventHandler.emit_signal("player_health_changed", health)
-	dmg_label.add_theme_color_override("default_color", Color(0.32941177487373, 0.7843137383461, 0.15294118225574))
-	dmg_label.text = "[wave amp=40 freq=10]\n+%s[/wave]" % value
-	dmg_label.visible = true
-	await get_tree().create_timer(1.4).timeout
-	dmg_label.text = ""
-	dmg_label.visible = false
 
-func show_dmg_display(dmgvalue: String):
-	dmg_label.text = dmgvalue
-	dmg_label.visible = true
-	await get_tree().create_timer(1.4).timeout
-	dmg_label.text = ""
-	dmg_label.visible = false
-	
 func set_max_health(value):
 	MAX_HEALTH = value
 	EventHandler.emit_signal("player_maxhealth_changed", MAX_HEALTH)
@@ -201,6 +186,7 @@ func set_exp(value):
 	
 func set_energie(value):
 	energie = value
+	value_label._show_energie_value(int(value))
 	if energie > MAX_ENERGIE:
 		energie = MAX_ENERGIE
 	EventHandler.emit_signal("player_energie_changed", energie)
