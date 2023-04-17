@@ -7,6 +7,7 @@ extends Node
 @onready var available_equip: Node = $AvailableEquip
 @onready var current_equip: Node = $CurrentEquip
 
+var all_items = []
 
 const MAX_SLOTS: int = 5
 
@@ -16,6 +17,7 @@ func _ready():
 func initialize_items():
 	for item_scene in available_item_list:
 		var item: Item = item_scene.instantiate()
+		all_items.append(item.item_name)
 		available.add_child(item)
 		#print("[Inventory]: Item \"%s\" initialized." % item.item_name)
 	for equip_scene in available_equip_list:
@@ -108,7 +110,7 @@ func add_equip(equipname: String):
 	available_equip.remove_child(equip)
 	current_equip.add_child(equip)
 	equip.item_amount = 1
-	GameManager.info_box.set_info_text("[center]Du hast\n\n[color=red]%sx %s[/color]\n\nerhalten![/center]" % [1, equip.item_name])
+	GameManager.interface.notice_box.show_item_notice(equip.item_name, 1)
 	EventHandler.emit_signal("player_inventory_equip_changed", equip)
 
 
@@ -135,6 +137,8 @@ func _equip_item(equipname: String):
 		GameManager.player.set_sprite(3)
 	elif equipname == "Schwert":
 		GameManager.player.set_sprite(1)
+	elif equipname == "Blitzschwert":
+		GameManager.player.set_sprite(4)
 	#GameManager.info_box.set_info_text("[center]Du hast\n\n[color=red]%s[/color]\n\nausgerüstet![/center]" %  [equip.item_name])
 	EventHandler.emit_signal("player_inventory_equip_changed", equip)
 
