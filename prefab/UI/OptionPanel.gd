@@ -2,7 +2,7 @@ extends Control
 class_name OptionPanel
 
 @export var dialog_scene: PackedScene
-
+@export var hotkey_popup: PackedScene
 # AUDIO
 @onready var audio_all_label = $BG/M/V/AudioOptions/M/Options/V/H/Value
 @onready var audio_music_label = $BG/M/V/AudioOptions/M/Options/V/H2/Value
@@ -40,6 +40,28 @@ class_name OptionPanel
 @onready var brightness_label = $BG/M/V/VideoOptions/M/S/Options/H/Value
 @onready var reset_btn = $BG/M/V/H/ResetBtn
 
+var hotkey_popup_open: bool = false
+var changing_texture = null
+@onready var up_key_icon = $BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key1/move_up
+@onready var left_key_icon = $BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key2/move_left
+@onready var right_key_icon = $BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key3/move_right
+@onready var down_key_icon = $BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key4/move_down
+@onready var dash_key_icon = $BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key5/dash
+@onready var run_key_icon = $BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key6/run
+@onready var interact_key_icon = $BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key7/interact
+@onready var healthpot_key_icon = $BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key8/healthpotion
+@onready var energiepot_key_icon = $BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key9/energiepotion
+@onready var bomb_key_icon = $BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key10/bomb
+@onready var combat_key_icon = $BG/M/V/KeyOptions/M/Options/ScrollContainer/H/MV/Key4/combatmode
+@onready var attack_key_icon = $BG/M/V/KeyOptions/M/Options/ScrollContainer/H/MV/Key1/attack
+@onready var double_attack_key_icon = $BG/M/V/KeyOptions/M/Options/ScrollContainer/H/MV/Key2/double_attack
+@onready var heavy_attack_key_icon = $BG/M/V/KeyOptions/M/Options/ScrollContainer/H/MV/Key3/heavy_attack
+@onready var charpanel_key_icon = $BG/M/V/KeyOptions/M/Options/ScrollContainer/H/RV/Key1/charpanel
+@onready var qlog_key_icon = $BG/M/V/KeyOptions/M/Options/ScrollContainer/H/RV/Key2/qlog
+@onready var inv_key_icon = $BG/M/V/KeyOptions/M/Options/ScrollContainer/H/RV/Key3/inventory
+@onready var menu_key_icon = $BG/M/V/KeyOptions/M/Options/ScrollContainer/H/RV/Key4/menu
+
+
 
 func _ready():
 	$BG/M/V/HeadBG/Label.add_theme_color_override("font_color", GameManager.COLORS.lightgreen_text)
@@ -50,6 +72,19 @@ func _ready():
 	#self.key_btn.disabled = true
 	#self.video_btn.disabled = true
 	self.hide()
+
+
+func _set_current_keys():
+	if D.hotkey_settings.is_empty():
+		return
+	for k in D.hotkey_settings.keys():
+		var e = InputEventKey.new()
+		e.keycode = int(D.hotkey_settings[k])
+		e.physical_keycode = int(D.hotkey_settings[k])
+		e.pressed = true
+		var node = self.find_child(str(k))
+		if node != null:
+			node.texture = load("res://assets/UI/keyboard_single_icons/"+e.as_text().to_upper()+".png")
 
 func _create_btn_click_sound():
 	var sound = GameManager.interface.button_click_sound.instantiate()
@@ -258,7 +293,8 @@ func _show_key_panel():
 	self.audio_btn.button_pressed = false
 	self.video_btn.button_pressed = false
 	self.video_panel.hide()
-	self.reset_btn.visible = false
+	_set_current_keys()
+#	self.reset_btn.visible = false
 	self.audio_panel.hide()
 	self.key_panel.show()
 
@@ -339,14 +375,24 @@ func _show_audio_reset_dialog():
 	popup.set_text(T.ACCEPT_DIALOG_TEXT.AUDIO_RESET)
 	popup.connect("popup_accept", _reset_audio_settings)
 
+func _show_key_reset_dialog():
+	var popup = dialog_scene.instantiate()
+	GameManager.interface.add_child(popup)
+	popup.set_text(T.ACCEPT_DIALOG_TEXT.HOTKEY_RESET)
+	popup.connect("popup_accept", _reset_hotkey_settings)
+
+func _reset_hotkey_settings():
+	D._reset_hotkey_profile()
+	self._set_current_keys()
+
 func _on_reset_btn_pressed():
 	_create_btn_click_sound()
 	if video_panel.visible:
 		_show_video_reset_dialog()
 	elif audio_panel.visible:
 		_show_audio_reset_dialog()
-	else:
-		return
+	elif key_panel.visible:
+		_show_key_reset_dialog()
 
 
 func _on_audio_btn_pressed():
@@ -360,3 +406,72 @@ func _on_video_btn_pressed():
 func _on_key_btn_pressed():
 	_create_btn_click_sound()
 	_show_key_panel()
+
+#### HOTKEY EDIT BUTTON SIGNALS ####
+
+func _open_hotkey_popup(actionname: String, currentkey, node):
+	if hotkey_popup_open:
+		return
+	hotkey_popup_open = true
+	_create_btn_click_sound()
+	var p: HotkeyPopup = hotkey_popup.instantiate()
+	self.add_child(p)
+	p._set_hotkey_text(actionname, currentkey, node)
+	p.connect("tree_exited", _set_popup_state)
+
+func _set_popup_state():
+	hotkey_popup_open = false
+
+func _on_move_up_edit_btn_pressed():
+	_open_hotkey_popup("Oben", InputMap.action_get_events("move_up")[0].as_text(), up_key_icon)
+
+func _on_move_left_edit_btn_pressed():
+	_open_hotkey_popup("Links", InputMap.action_get_events("move_left")[0].as_text(), left_key_icon)
+
+func _on_move_right_edit_btn_pressed():
+	_open_hotkey_popup("Rechts", InputMap.action_get_events("move_right")[0].as_text(), right_key_icon)
+
+func _on_move_down_edit_btn_pressed():
+	_open_hotkey_popup("Unten", InputMap.action_get_events("move_down")[0].as_text(), down_key_icon)
+
+func _on_dash_edit_btn_pressed():
+	_open_hotkey_popup("Dash", InputMap.action_get_events("dash")[0].as_text(), dash_key_icon)
+
+func _on_run_edit_b_tn_pressed():
+	_open_hotkey_popup("Rennen", InputMap.action_get_events("run")[0].as_text(), run_key_icon)
+
+func _on_interact_edit_btn_pressed():
+	_open_hotkey_popup("Aktion", InputMap.action_get_events("interact")[0].as_text(), interact_key_icon)
+
+func _on_h_pot_edit_btn_pressed():
+	_open_hotkey_popup("Heiltrank", InputMap.action_get_events("healthpotion")[0].as_text(), healthpot_key_icon)
+
+func _on_e_pot_edit_btn_pressed():
+	_open_hotkey_popup("Energietrank", InputMap.action_get_events("energiepotion")[0].as_text(), energiepot_key_icon)
+
+func _on_bomb_edit_btn_pressed():
+	_open_hotkey_popup("Bombe", InputMap.action_get_events("bomb")[0].as_text(), bomb_key_icon)
+
+func _on_combat_edit_b_tn_pressed():
+	_open_hotkey_popup("Kampfmodus", InputMap.action_get_events("combatmode")[0].as_text(), combat_key_icon)
+
+func _on_attack_edit_btn_pressed():
+	_open_hotkey_popup("Angriff", InputMap.action_get_events("attack")[0].as_text(),attack_key_icon)
+
+func _on_double_attack_edit_btn_pressed():
+	_open_hotkey_popup("Doppelangriff", InputMap.action_get_events("double_attack")[0].as_text(), double_attack_key_icon)
+
+func _on_heavy_attack_edit_btn_pressed():
+	_open_hotkey_popup("Wirbelangriff", InputMap.action_get_events("heavy_attack")[0].as_text(), heavy_attack_key_icon)
+
+func _on_charpanel_edit_btn_pressed():
+	_open_hotkey_popup("CharakterHUD", InputMap.action_get_events("charpanel")[0].as_text(), charpanel_key_icon)
+
+func _on_qlog_edit_btn_pressed():
+	_open_hotkey_popup("QuestlogHUD", InputMap.action_get_events("qlog")[0].as_text(), qlog_key_icon)
+
+func _on_inventory_edit_btn_pressed():
+	_open_hotkey_popup("InventarHUD", InputMap.action_get_events("inventory")[0].as_text(), inv_key_icon)
+
+func _on_menu_edit_btn_pressed():
+	_open_hotkey_popup("Pause/Menü", InputMap.action_get_events("menu")[0].as_text(), menu_key_icon)
