@@ -26,7 +26,7 @@ func _ready():
 func _set_hotkey_text(actionname: String, current_key, node):
 	var text = "Bitte drücke eine\nTaste und bestätige mit \"Okay\", um\n\"%s\"\nneu zu belegen." % actionname
 	info_label.text = text
-	key_label.text = current_key
+	key_label.text = "Aktuell: %s" % current_key
 	cur_key = current_key
 	texturenode = node
 	choosed_actionanme = actionname

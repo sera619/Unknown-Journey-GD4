@@ -352,16 +352,13 @@ func _on_check_button_button_up():
 	_create_btn_click_sound()
 	_update_window_mode()
 
-
 func _on_check_button_2_button_up():
 	_create_btn_click_sound()
 	_update_vsync_mode()
 
-
 func _on_m_mute_btn_button_up():
 	_create_btn_click_sound()
 	_update_music_mute()
-
 
 func _show_video_reset_dialog():
 	var popup = dialog_scene.instantiate()
