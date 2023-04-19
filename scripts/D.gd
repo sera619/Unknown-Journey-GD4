@@ -2,6 +2,36 @@ extends Node
 
 const user_path: String = "user://profiles/"
 
+var default_hotkey_settings: Dictionary = {
+	"attack":32,
+	"bomb":51,
+	"charpanel":67,
+	"combatmode":70,
+	"dash":86,
+	"debug_key":4194332,
+	"devconsole":4194336,
+	"dialog_key":4194333,
+	"double_attack":81,
+	"energiepotion":50,
+	"healthpotion":49,
+	"heavy_attack":82,
+	"hook":52,
+	"interact":69,
+	"inventory":73,
+	"menu":4194305,
+	"move_down":83,
+	"move_left":65,
+	"move_right":68,
+	"move_up":87,
+	"qlog":76,
+	"run":4194325,
+	"testaction":4194443
+}
+
+var hotkey_settings: Dictionary = {
+	
+}
+
 var unique_open_data = {
 	"Grasland":[
 		
@@ -207,6 +237,48 @@ func _load_profile_inventory_data(playername: String):
 		return inventory_data
 
 
+func _load_hotkey_profile():
+	var file = FileAccess.open("user://actiondict.save", FileAccess.READ)
+	while file.get_position() < file.get_length():
+		var j_string = file.get_line()
+		var j = JSON.new()
+		var result = j.parse(j_string)
+		var content = j.get_data()
+		return content
+	#hotkey_settings = content
+	#print(hotkey_settings)
+
+func _save_hotkey_profile(data):
+	var json_string = JSON.stringify(data)
+	var file = FileAccess.open("user://actiondict.save", FileAccess.WRITE)
+	file.store_line(json_string)
+	print('[Data]: Hotkey-Profile saved!')
+
+func _reset_hotkey_profile():
+	_save_hotkey_profile(default_hotkey_settings)
+	hotkey_settings = _load_hotkey_profile()
+	for k in hotkey_settings.keys():
+		var e = InputEventKey.new()
+		e.keycode = int(D.hotkey_settings[k])
+		e.physical_keycode = int(D.hotkey_settings[k])
+		e.pressed = true
+		InputMap.action_erase_events(str(k))
+		InputMap.action_add_event(str(k), e)
+
+func _setup_hotkey_profile():
+	if not FileAccess.file_exists("user://actiondict.save"):
+		_save_hotkey_profile(default_hotkey_settings)
+		hotkey_settings = _load_hotkey_profile()
+	else:
+		hotkey_settings = _load_hotkey_profile()
+		for k in hotkey_settings.keys():
+			var e = InputEventKey.new()
+			e.keycode = int(D.hotkey_settings[k])
+			e.physical_keycode = int(D.hotkey_settings[k])
+			e.pressed = true
+			InputMap.action_erase_events(str(k))
+			InputMap.action_add_event(str(k), e)
+		
 func _delete_profile(playername: String):
 	if not _check_profile_exists(playername):
 		return
