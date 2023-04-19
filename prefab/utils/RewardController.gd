@@ -33,9 +33,9 @@ func get_reward():
 		return
 	var s = GameManager.player.stats
 	if s.level >= 2:
-		reward_scenes[2] = null
+		reward_scenes.remove_at(2)
 	if not QuestManager.is_quest_complete("Bombig"):
-		reward_scenes[3] = null
+		reward_scenes.remove_at(3)
 	var r = randi_range(0, reward_scenes.size() - 1)
 	var reward = reward_scenes[r].instantiate()
 	if reward.name == "CoinDrop":
