@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://ctsfrp6cxtycd"]
+[gd_scene load_steps=4 format=3 uid="uid://ctsfrp6cxtycd"]
 
 [ext_resource type="Script" path="res://Items/Item.gd" id="1_v8gxt"]
 [ext_resource type="Texture2D" uid="uid://ba8u4lempndgx" path="res://assets/items/Feuer-Schwert.png" id="2_nppem"]
+[ext_resource type="PackedScene" uid="uid://l0smlh6sy2vy" path="res://prefab/spells/FireWeaponEffect.tscn" id="3_18nh1"]
 
 [node name="Feuerschwert" type="Node"]
 script = ExtResource("1_v8gxt")
@@ -13,3 +14,4 @@ item_description = "Die Klinge des Schwerts glüht vor Hitze. Hat eine Chance de
 item_damage = 10
 trigger_chance = 7
 extra_dmg = 4
+effect_scene = ExtResource("3_18nh1")
