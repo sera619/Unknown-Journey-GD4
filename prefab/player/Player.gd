@@ -327,7 +327,6 @@ func _input_handler(_delta):
 			animState.travel("TakeSword")
 			combat_stance = true
 				
-
 	if Input.is_action_just_pressed("healthpotion") and stats.health < stats.MAX_HEALTH:
 		#use_health_potion()
 		if not can_use_item:
@@ -522,12 +521,10 @@ func switch_energie_shader():
 	
 func switch_shader():
 	bodySprite.material = heal_shader
-	print("[!] Player: Switch healshader")
+	#print("[!] Player: Switch healshader")
 	await(get_tree().create_timer(0.6).timeout)
 	bodySprite.material = dmg_shader
-	print("[!] Player: Switch dmgshader")
-
-
+	#print("[!] Player: Switch dmgshader")
 
 func create_dash_trail():
 	var ghost = dash_ghost_screne.instantiate()
@@ -544,9 +541,9 @@ func hit_timer_timeout():
 func hurt_animation_finished():
 	Engine.time_scale = 1
 	if stats.health <= 0:
-		GameManager.save_data()
-		is_alive = false
 		EventHandler.emit_signal("player_died")
+		is_alive = false
+		GameManager.save_data()
 		await get_tree().create_timer(1.5).timeout
 		GameManager.camera.player = null
 		GameManager.player = null

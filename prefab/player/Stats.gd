@@ -208,11 +208,11 @@ func set_level(value):
 	EventHandler.emit_signal("player_level_changed", level)
 
 func set_gold(value):
-	player_statistic['total_gold'] += (value - gold)
+	player_statistic['total_gold'] += value
 	gold = value
-	_check_max_gold_hold(gold)
 	if gold > MAX_GOLD:
 		gold = MAX_GOLD
+	_check_max_gold_hold(gold)
 	EventHandler.emit_signal("player_gold_changed", gold)
 
 func set_max_gold(value):
