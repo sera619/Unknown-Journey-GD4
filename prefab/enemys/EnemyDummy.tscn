@@ -1,0 +1,49 @@
+[gd_scene load_steps=10 format=3 uid="uid://ooxw8ihtthbi"]
+
+[ext_resource type="PackedScene" uid="uid://doa5hxcckh64o" path="res://prefab/enemys/EnemyHUD.tscn" id="1_bdrgg"]
+[ext_resource type="Script" path="res://prefab/enemys/EnemyDummy.gd" id="1_ugt66"]
+[ext_resource type="PackedScene" uid="uid://c4qwbfsr4fe74" path="res://prefab/effects/HitEffect.tscn" id="2_3n8bq"]
+[ext_resource type="Texture2D" uid="uid://cvoux6pb1sixd" path="res://assets/objects/TestTarget.png" id="2_kbcqo"]
+[ext_resource type="PackedScene" uid="uid://bpr5kb8nmfivl" path="res://prefab/audio/EnemyHitSound.tscn" id="3_2nf3t"]
+[ext_resource type="Script" path="res://scripts/EnemyStats.gd" id="3_ypg8t"]
+[ext_resource type="PackedScene" uid="uid://ckumpl45hmii" path="res://prefab/UI/ValueDisplay.tscn" id="4_6kx4k"]
+[ext_resource type="Texture2D" uid="uid://bkiw8qsmbvtow" path="res://assets/Shadows/SmallShadow.png" id="6_7504n"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7uhv0"]
+radius = 14.0
+height = 46.0
+
+[node name="Dummy" type="Node2D"]
+script = ExtResource("1_ugt66")
+hit_scene = ExtResource("2_3n8bq")
+hit_sound_scene = ExtResource("3_2nf3t")
+
+[node name="EnemyHUD" parent="." instance=ExtResource("1_bdrgg")]
+offset_left = -27.0
+offset_top = -65.0
+offset_right = -27.0
+offset_bottom = -65.0
+enemy_stats_path = NodePath("../EnemyStats")
+
+[node name="EnemyStats" type="Node" parent="."]
+script = ExtResource("3_ypg8t")
+max_health = 200
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(0, 1)
+texture = ExtResource("6_7504n")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_kbcqo")
+offset = Vector2(0, -30)
+
+[node name="ValueDisplay" parent="." instance=ExtResource("4_6kx4k")]
+position = Vector2(0, -56)
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, -23)
+shape = SubResource("CapsuleShape2D_7uhv0")
