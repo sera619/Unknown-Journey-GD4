@@ -6,8 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://bpwdwut7qwb1v" path="res://prefab/utils/PlayerGraveyard.tscn" id="3_sbd22"]
 [ext_resource type="Texture2D" uid="uid://d05s3w0oy167w" path="res://assets/tiles/obj_misk_atlas.png" id="4_4cb0g"]
 [ext_resource type="PackedScene" uid="uid://dcc837c2ujx6g" path="res://prefab/utils/GameCamera.tscn" id="4_sve82"]
-[ext_resource type="PackedScene" uid="uid://b1kt7f88vq11f" path="res://prefab/enemys/EnemyBat.tscn" id="6_0vvb6"]
 [ext_resource type="PackedScene" uid="uid://bcir1dj3vcylc" path="res://prefab/traps/Spiketrap.tscn" id="7_o50t0"]
+[ext_resource type="PackedScene" uid="uid://ooxw8ihtthbi" path="res://prefab/enemys/EnemyDummy.tscn" id="8_m0xuj"]
 [ext_resource type="PackedScene" uid="uid://wcwj8ki1033" path="res://prefab/traps/TimeMine.tscn" id="8_pfo2w"]
 [ext_resource type="PackedScene" uid="uid://b0j3um82frqhj" path="res://prefab/itemdrops/BombDrop.tscn" id="9_8pagp"]
 [ext_resource type="PackedScene" uid="uid://bdjnceh2b5es" path="res://prefab/itemdrops/CoinDrop.tscn" id="10_87dwl"]
@@ -6400,8 +6400,8 @@ y_sort_enabled = true
 [node name="Enemys" type="Node2D" parent="Map/GameObjects"]
 y_sort_enabled = true
 
-[node name="EnemyBat" parent="Map/GameObjects/Enemys" instance=ExtResource("6_0vvb6")]
-position = Vector2(509, -205)
+[node name="Dummy" parent="Map/GameObjects/Enemys" instance=ExtResource("8_m0xuj")]
+position = Vector2(-512, 56)
 
 [node name="Props" type="Node2D" parent="Map/GameObjects"]
 y_sort_enabled = true
@@ -6427,6 +6427,8 @@ position = Vector2(-512, -199)
 position = Vector2(-512, -241)
 
 [node name="EnergiePotDrop" parent="Map/GameObjects" instance=ExtResource("12_etw66")]
+position = Vector2(-512, -160)
+despawn_time = 0
 
 [node name="FireSwordDrop" parent="Map/GameObjects" instance=ExtResource("16_0qn2t")]
 position = Vector2(-466, -241)
