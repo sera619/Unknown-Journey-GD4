@@ -50,8 +50,8 @@ func _initial_process():
 	_setup_game_settings()
 	D._setup_profiles()
 	D._setup_game_mouse()
-
-
+	D._setup_hotkey_profile()
+	
 func _setup_game_settings():
 	var path = "user://gameoptions.save"
 	if not FileAccess.file_exists(path):
@@ -101,7 +101,6 @@ func _update_video_saturation(value):
 func _update_video_contrast(value):
 	var world_envi = get_node("/root/Game/WorldEnvironment")
 	world_envi.environment.adjustment_contrast = value
-
 
 
 func _update_audio_all(value):
