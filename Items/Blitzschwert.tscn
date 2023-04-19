@@ -12,6 +12,6 @@ item_max_amount = 1
 item_type = "Equip"
 item_description = "Eine grell leuchtende Klinge. Kleine Blitze zucken über die Schneide. Hat eine Chance den Gegner mit Blitzen zu treffen."
 item_damage = 8
-trigger_chance = 7
+trigger_chance = 3
 extra_dmg = 3
 effect_scene = ExtResource("3_pajww")
