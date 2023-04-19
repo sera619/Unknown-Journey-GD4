@@ -1,59 +1,79 @@
 extends Node2D
 class_name ValueDisplay
 
-@export var display_time: float
+
 @export var damage_color: Color
 @export var heal_color: Color
 @export var energie_color: Color
+@export var text_scene: PackedScene
+@onready var heal_timer = $HealTimer
+@onready var attack_timer = $AttackTimer
+@onready var energie_timer = $EnergieTimer
 
-@onready var heal_value = $HealValue
-@onready var energy_value = $EnergyValue
-@onready var dmg_value = $DmgValue
+@onready var left: bool = true
 
-@onready var dmg_timer =$DmgValue/Timer
-@onready var heal_timer = $HealValue/Timer
-@onready var energie_timer = $EnergyValue/Timer
-
-var last_energie_value = 0
+var dmg_value_cache:Array = []
+var energie_value_cache: Array = []
+var heal_value_cache: Array = []
 
 func _ready():
-	_setup()
+	heal_timer.connect("timeout", _check_heal_values)
+	attack_timer.connect("timeout", _check_dmg_values)
+	energie_timer.connect("timeout", _check_energie_values)
 
-func _setup():
-	heal_value.add_theme_color_override("default_color", heal_color)
-	dmg_value.add_theme_color_override("default_color", damage_color)
-	energy_value.add_theme_color_override("default_color", energie_color)
-	dmg_timer.wait_time = display_time
-	heal_timer.wait_time = display_time
-	energie_timer.wait_time = display_time
-	heal_timer.connect("timeout", _hide_heal_value)
-	dmg_timer.connect("timeout", _hide_dmg_value)
-	energie_timer.connect("timeout", _hide_energie_value)
+func _check_dmg_values():
+	if dmg_value_cache.is_empty():
+		return
+	_show_dmg_value(dmg_value_cache.pop_front())
+	attack_timer.start()
+
+func _check_heal_values():
+	if heal_value_cache.is_empty():
+		return
+	_show_heal_value(heal_value_cache.pop_front())
+	heal_timer.start()
+	
+func _check_energie_values():
+	if energie_value_cache.is_empty():
+		return
+	_show_energie_value(energie_value_cache.pop_front())
+	energie_timer.start()
 
 func _show_heal_value(value):
-	heal_value.parse_bbcode("[center][wave amp=40 freq=10]\n\n+%s[/wave][/center]" % str(value))
+	if not heal_timer.is_stopped():
+		heal_value_cache.append(value)
+		return
+	var l: FloatingText = text_scene.instantiate()
+	if not left:
+		left = true
+	else:
+		left = false
+	self.add_child(l)
+	l._set_heal_value(value, heal_color, left)
 	heal_timer.start()
-	heal_value.show()
 
 func _show_dmg_value(value):
-	dmg_value.parse_bbcode("[center][wave amp=40 freq=10]\n\n-%s[/wave][/center]" % str(value))
-	dmg_timer.start()
-	dmg_value.show()
+	if not attack_timer.is_stopped():
+		dmg_value_cache.append(value)
+		return
+	var l: FloatingText = text_scene.instantiate()
+	if not left:
+		left = true
+	else:
+		left = false
+	self.add_child(l)
+	l._set_dmg_value(value, damage_color, left)
+	attack_timer.start()
 
 func _show_energie_value(value):
-	last_energie_value = value
-	energy_value.parse_bbcode("[center][wave amp=40 freq=10]\n\n+%s[/wave][/center]" % str(value))
+	if not energie_timer.is_stopped():
+		energie_value_cache.append(value)
+		return
+	var l: FloatingText = text_scene.instantiate()
+	if not left:
+		left = true
+	else:
+		left = false
+	self.add_child(l)
+	l._set_energie_value(value, energie_color, left)
 	energie_timer.start()
-	energy_value.show()
-
-func _hide_dmg_value():
-	dmg_value.parse_bbcode("")
-	dmg_value.hide()
-
-func _hide_energie_value():
-	energy_value.parse_bbcode("")
-	energy_value.hide()
-
-func _hide_heal_value():
-	heal_value.parse_bbcode("")
-	heal_value.hide()
