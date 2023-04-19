@@ -1,0 +1,157 @@
+[gd_scene load_steps=9 format=3 uid="uid://ds11iwu7qar47"]
+
+[ext_resource type="Script" path="res://prefab/UI/HotkeyPopup.gd" id="1_bibt2"]
+[ext_resource type="Texture2D" uid="uid://8edplubtbkbr" path="res://assets/UI/wood-box.png" id="1_l7qg0"]
+[ext_resource type="Texture2D" uid="uid://bpt7n5fbi8xg5" path="res://assets/UI/text-box.png" id="2_686ha"]
+[ext_resource type="FontFile" uid="uid://bddtsccx0qour" path="res://assets/UI/Fonts/dogicapixel.otf" id="3_ugwq5"]
+[ext_resource type="Texture2D" uid="uid://cefc0kofjjbtu" path="res://assets/UI/big-red-button-normal-export.png" id="4_tgw22"]
+[ext_resource type="Texture2D" uid="uid://cvqmjd6jh0jma" path="res://assets/UI/big-red-button-pressed-export.png" id="5_uptar"]
+[ext_resource type="Texture2D" uid="uid://bnhgifjigfyny" path="res://assets/UI/big-red-button-hover-export.png" id="6_4oi3m"]
+[ext_resource type="Texture2D" uid="uid://dg8totcenq1rk" path="res://assets/UI/big-button_disabled-export.png" id="7_7vxhc"]
+
+[node name="HotkeyPopup" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bibt2")
+
+[node name="C" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.545098)
+
+[node name="BG" type="NinePatchRect" parent="C"]
+layout_mode = 2
+anchor_left = 0.284375
+anchor_top = 0.188889
+anchor_right = 0.741
+anchor_bottom = 0.743
+offset_right = 48.88
+offset_bottom = 33.26
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("1_l7qg0")
+patch_margin_left = 24
+patch_margin_top = 16
+patch_margin_right = 24
+patch_margin_bottom = 16
+metadata/_edit_use_anchors_ = true
+
+[node name="M" type="MarginContainer" parent="C/BG"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="V" type="VBoxContainer" parent="C/BG/M"]
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="BG" type="NinePatchRect" parent="C/BG/M/V"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("2_686ha")
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+
+[node name="M" type="MarginContainer" parent="C/BG/M/V/BG"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="V" type="VBoxContainer" parent="C/BG/M/V/BG/M"]
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="InfoLabel" type="Label" parent="C/BG/M/V/BG/M/V"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_ugwq5")
+theme_override_font_sizes/font_size = 8
+text = "Bitte drücke eine 
+Taste um
+\"Actionname\"
+neu zu belegen."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="KeyLabel" type="Label" parent="C/BG/M/V/BG/M/V"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.709804, 0, 1)
+theme_override_fonts/font = ExtResource("3_ugwq5")
+theme_override_font_sizes/font_size = 8
+text = "Derzeitige Taste"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="H" type="HBoxContainer" parent="C/BG/M/V"]
+layout_mode = 2
+alignment = 1
+
+[node name="OkBtn" type="TextureButton" parent="C/BG/M/V/H"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("4_tgw22")
+texture_pressed = ExtResource("5_uptar")
+texture_hover = ExtResource("6_4oi3m")
+texture_disabled = ExtResource("7_7vxhc")
+
+[node name="Label" type="Label" parent="C/BG/M/V/H/OkBtn"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_ugwq5")
+theme_override_font_sizes/font_size = 8
+text = "Okay"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BackBtn" type="TextureButton" parent="C/BG/M/V/H"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("4_tgw22")
+texture_pressed = ExtResource("5_uptar")
+texture_hover = ExtResource("6_4oi3m")
+texture_disabled = ExtResource("7_7vxhc")
+
+[node name="Label" type="Label" parent="C/BG/M/V/H/BackBtn"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_ugwq5")
+theme_override_font_sizes/font_size = 8
+text = "Abbruch"
+horizontal_alignment = 1
+vertical_alignment = 1
