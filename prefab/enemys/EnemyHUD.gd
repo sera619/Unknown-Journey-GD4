@@ -15,8 +15,10 @@ func _ready():
 		damage_display.visible = false
 		stats.connect("enemy_health_changed", update_health)
 		stats.connect("enemy_maxhealth_changed", update_max_health)
-		get_parent().connect("enemy_take_damage", show_damage)
-		get_parent().connect("enemy_healed", show_heal)
+		if get_parent().has_signal("enemy_take_damage"):
+			get_parent().connect("enemy_take_damage", show_damage)
+		if get_parent().has_signal("enemy_healed"):
+			get_parent().connect("enemy_healed", show_heal)
 		update_health(stats.health)
 		update_max_health(stats.max_health)
 
