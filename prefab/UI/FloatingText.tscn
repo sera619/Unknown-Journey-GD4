@@ -1,0 +1,114 @@
+[gd_scene load_steps=7 format=3 uid="uid://c01to73ba30u0"]
+
+[ext_resource type="FontFile" uid="uid://dabqnx5sqarav" path="res://assets/UI/Fonts/dogicapixelbold.otf" id="1_qpmxb"]
+[ext_resource type="Script" path="res://prefab/UI/FloatingText.gd" id="2_mu0q3"]
+
+[sub_resource type="Animation" id="Animation_8ll3n"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-22, -32)]
+}
+
+[sub_resource type="Animation" id="Animation_owxk7"]
+resource_name = "float_left"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-10, -26), Vector2(-10, -76)]
+}
+
+[sub_resource type="Animation" id="Animation_yddq5"]
+resource_name = "float_right"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-38, -26), Vector2(-38, -76)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1yled"]
+_data = {
+"RESET": SubResource("Animation_8ll3n"),
+"float_left": SubResource("Animation_owxk7"),
+"float_right": SubResource("Animation_yddq5")
+}
+
+[node name="FloatingText" type="RichTextLabel"]
+offset_left = -22.0
+offset_top = -32.0
+offset_right = 24.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("1_qpmxb")
+theme_override_font_sizes/normal_font_size = 8
+bbcode_enabled = true
+text = "
+
+[center]-10"
+fit_content = true
+scroll_active = false
+script = ExtResource("2_mu0q3")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_1yled")
+}
