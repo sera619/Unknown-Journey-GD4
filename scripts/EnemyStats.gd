@@ -60,4 +60,6 @@ func take_damage(dmg):
 		health = 0
 		emit_signal("enemy_died")
 	print("[!] EnemyStats: %s get damage: %s | new health: %s" % [get_parent().name, dmg, health])
-	
+
+func heal_enemy():
+	set_health(self.max_health)
