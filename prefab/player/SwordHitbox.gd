@@ -5,6 +5,7 @@ class_name PlayerSword
 
 @onready var damage: int = 0
 @onready var max_damage: int = 0
+@onready var effect_timer: Timer = $EffectTimer
 
 var normal_dmg: int = 0
 enum Type {
@@ -13,12 +14,13 @@ enum Type {
 	DOUBLE
 }
 var attack_type: Type = Type.NORMAL
-
+var can_cast: bool = true
 var attack_element = SkillManager.ELEMENT.NONE
 
 func _ready():
 	EventHandler.connect("player_maxdamage_changed", set_sword_max_damage)
 	EventHandler.connect("player_damage_changed", set_sword_damage)
+	effect_timer.connect("timeout", _on_effect_timer_timeout)
 	self.connect("area_entered", _get_effect)
 
 func set_element_type(new_element: String):
@@ -43,21 +45,30 @@ func set_sword_damage(dmg):
 func set_sword_max_damage(max_dmg):
 	self.max_damage = max_dmg
 
+func _on_effect_timer_timeout():
+	can_cast = true
+
 func _get_effect(area):
 	if InventoryManager._get_equiped_weapon() != null:
 		var weapon: Item = InventoryManager._get_equiped_weapon()
 		if weapon._get_weapon_effect():
-			if weapon.effect_scene:
-				
-				_cast_effect(weapon.effect_scene, area.get_parent())
+			if weapon.effect_scene and can_cast:
+				var effect = weapon.effect_scene
+				var target = area
+				call_deferred("_cast_effect", effect, target)
+			else:
+				return
 				
 		else:
 			return
 
 func _cast_effect(effect:PackedScene, target):
+	if not can_cast:
+		return
+	can_cast = false
+	effect_timer.start()
 	var e = effect.instantiate()
 	target.add_child(e)
-	e.global_position = target.global_position
 
 
 func set_attack_type(new_type: String):
