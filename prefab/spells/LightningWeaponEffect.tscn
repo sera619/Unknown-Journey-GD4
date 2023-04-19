@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bef1n1qhg2m8t" path="res://assets/Effects/Ice_spikes.png" id="4_2dpa1"]
 [ext_resource type="Texture2D" uid="uid://c7gx6petvhf8x" path="res://assets/Effects/lightning_bolt.png" id="5_ube8v"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_sjum0"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_0o38t"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oe68b"]
 atlas = ExtResource("4_2dpa1")
@@ -249,7 +249,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"lightning_animate",
-"speed": 10.0
+"speed": 8.0
 }, {
 "frames": [],
 "loop": true,
@@ -262,17 +262,19 @@ script = ExtResource("1_3cig2")
 effect_damage = 3
 element_type = 3
 
-[node name="Hitbox" parent="." instance=ExtResource("2_q74xo")]
+[node name="Hitbox" parent="." groups=["playerSword"] instance=ExtResource("2_q74xo")]
+position = Vector2(0, -8)
 script = ExtResource("3_jsohi")
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
-shape = SubResource("CircleShape2D_sjum0")
-disabled = true
+shape = SubResource("CircleShape2D_0o38t")
 
 [node name="Body" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.25, 0.25)
+scale = Vector2(0.35, 0.35)
 sprite_frames = SubResource("SpriteFrames_m37cu")
-animation = &"poison_animate"
-offset = Vector2(0, -128)
+animation = &"lightning_animate"
+frame = 8
+frame_progress = 1.0
+offset = Vector2(0, -256)
 
 [editable path="Hitbox"]
