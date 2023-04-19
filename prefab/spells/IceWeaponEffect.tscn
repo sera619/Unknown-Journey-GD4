@@ -262,12 +262,11 @@ script = ExtResource("1_u4f3b")
 effect_damage = 2
 element_type = 1
 
-[node name="Hitbox" parent="." instance=ExtResource("2_hek7x")]
+[node name="Hitbox" parent="." groups=["playerSword"] instance=ExtResource("2_hek7x")]
 script = ExtResource("3_bdip5")
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
 shape = SubResource("CircleShape2D_sjum0")
-disabled = true
 
 [node name="Body" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.25, 0.25)
