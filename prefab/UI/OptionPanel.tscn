@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://d2qg587omjywm"]
+[gd_scene load_steps=35 format=3 uid="uid://d2qg587omjywm"]
 
 [ext_resource type="Script" path="res://prefab/UI/OptionPanel.gd" id="1_v2t62"]
 [ext_resource type="Texture2D" uid="uid://8edplubtbkbr" path="res://assets/UI/wood-box.png" id="2_u6yxu"]
 [ext_resource type="PackedScene" uid="uid://cn10r8if5dqwd" path="res://prefab/UI/AcceptPopup.tscn" id="2_yhfed"]
+[ext_resource type="PackedScene" uid="uid://ds11iwu7qar47" path="res://prefab/UI/HotkeyPopup.tscn" id="3_31klh"]
 [ext_resource type="Texture2D" uid="uid://bpt7n5fbi8xg5" path="res://assets/UI/text-box.png" id="3_vc324"]
 [ext_resource type="FontFile" uid="uid://bddtsccx0qour" path="res://assets/UI/Fonts/dogicapixel.otf" id="4_bux1i"]
 [ext_resource type="Texture2D" uid="uid://cefc0kofjjbtu" path="res://assets/UI/big-red-button-normal-export.png" id="6_45gh3"]
@@ -14,7 +15,25 @@
 [ext_resource type="Texture2D" uid="uid://7t4cecn0xlc6" path="res://assets/UI/button-red-small-pressedt.png" id="11_bk0r5"]
 [ext_resource type="Texture2D" uid="uid://dlbf0ofue7pd0" path="res://assets/UI/button-small-disabled.png" id="11_ul2d0"]
 [ext_resource type="Texture2D" uid="uid://b01dlyko5c35h" path="res://assets/UI/checkmark.png" id="13_8qtrb"]
-[ext_resource type="Texture2D" uid="uid://blg1nfccii8ah" path="res://assets/UI/keyboard.png" id="14_7hvbg"]
+[ext_resource type="Texture2D" uid="uid://dpnyrdhprgpkt" path="res://assets/UI/keyboard_single_icons/W.png" id="16_3hln2"]
+[ext_resource type="Texture2D" uid="uid://df12lrh1pqbse" path="res://assets/UI/ui_icons/edit_icon.png" id="16_x1scj"]
+[ext_resource type="Texture2D" uid="uid://vqr0l02svlu0" path="res://assets/UI/keyboard_single_icons/D.png" id="18_lq8w6"]
+[ext_resource type="Texture2D" uid="uid://msa8gkmpjta5" path="res://assets/UI/keyboard_single_icons/A.png" id="19_vuow1"]
+[ext_resource type="Texture2D" uid="uid://b7hyk1xupoiv0" path="res://assets/UI/keyboard_single_icons/S.png" id="20_2kv2r"]
+[ext_resource type="Texture2D" uid="uid://bbp5shxpg4p20" path="res://assets/UI/keyboard_single_icons/V.png" id="21_krrys"]
+[ext_resource type="Texture2D" uid="uid://b7esqdns6gus7" path="res://assets/UI/keyboard_single_icons/SHIFT.png" id="22_t3oct"]
+[ext_resource type="Texture2D" uid="uid://3xcm1w12sr13" path="res://assets/UI/keyboard_single_icons/E.png" id="23_mjykf"]
+[ext_resource type="Texture2D" uid="uid://cudtglktclw8b" path="res://assets/UI/keyboard_single_icons/1.png" id="24_cm3ra"]
+[ext_resource type="Texture2D" uid="uid://op4kl6o42gug" path="res://assets/UI/keyboard_single_icons/2.png" id="25_2ctnt"]
+[ext_resource type="Texture2D" uid="uid://c6gpcbchhtwt5" path="res://assets/UI/keyboard_single_icons/3.png" id="26_2dy07"]
+[ext_resource type="Texture2D" uid="uid://dw63qrlpvdvon" path="res://assets/UI/keyboard_single_icons/F.png" id="27_pb7ft"]
+[ext_resource type="Texture2D" uid="uid://27nysg5yi4u2" path="res://assets/UI/keyboard_single_icons/SPACE.png" id="28_s8p02"]
+[ext_resource type="Texture2D" uid="uid://y3mpojody364" path="res://assets/UI/keyboard_single_icons/Q.png" id="29_1mmum"]
+[ext_resource type="Texture2D" uid="uid://bmarsajcr63mg" path="res://assets/UI/keyboard_single_icons/R.png" id="30_1uycn"]
+[ext_resource type="Texture2D" uid="uid://cm2wnl60tefyd" path="res://assets/UI/keyboard_single_icons/C.png" id="31_3qh2t"]
+[ext_resource type="Texture2D" uid="uid://l3nt0bpntil1" path="res://assets/UI/keyboard_single_icons/L.png" id="32_268lq"]
+[ext_resource type="Texture2D" uid="uid://4v444f7ww7ow" path="res://assets/UI/keyboard_single_icons/I.png" id="32_fp7hj"]
+[ext_resource type="Texture2D" uid="uid://g4ciujx2o26w" path="res://assets/UI/keyboard_single_icons/ESCAPE.png" id="33_pmw80"]
 
 [node name="OptionPanel" type="Control"]
 process_mode = 3
@@ -28,6 +47,7 @@ grow_vertical = 2
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_v2t62")
 dialog_scene = ExtResource("2_yhfed")
+hotkey_popup = ExtResource("3_31klh")
 
 [node name="BG" type="NinePatchRect" parent="."]
 layout_mode = 1
@@ -158,6 +178,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="AudioOptions" type="NinePatchRect" parent="BG/M/V"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 texture = ExtResource("3_vc324")
@@ -675,7 +696,6 @@ step = 0.01
 value = 1.0
 
 [node name="KeyOptions" type="NinePatchRect" parent="BG/M/V"]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 texture = ExtResource("3_vc324")
@@ -713,7 +733,6 @@ vertical_alignment = 1
 [node name="ScrollContainer" type="ScrollContainer" parent="BG/M/V/KeyOptions/M/Options"]
 layout_mode = 2
 size_flags_vertical = 3
-scroll_vertical = 256
 
 [node name="H" type="VBoxContainer" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer"]
 layout_mode = 2
@@ -754,42 +773,32 @@ text = "Oben"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TextureRect" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key1"]
+[node name="move_up" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key1"]
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
-texture = ExtResource("14_7hvbg")
-region_rect = Rect2(76, 21, 15, 14)
-patch_margin_left = 8
+texture = ExtResource("16_3hln2")
+patch_margin_left = 14
 patch_margin_top = 7
-patch_margin_right = 8
+patch_margin_right = 14
 patch_margin_bottom = 7
 
-[node name="Key2" type="HBoxContainer" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV"]
+[node name="MoveUpEditBtn" type="TextureButton" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key1"]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
+texture_normal = ExtResource("9_mqodm")
+texture_pressed = ExtResource("11_bk0r5")
+texture_hover = ExtResource("10_j7he6")
+texture_disabled = ExtResource("11_ul2d0")
 
-[node name="Label" type="Label" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key2"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_color = Color(0.0745098, 0.537255, 0.937255, 1)
-theme_override_fonts/font = ExtResource("4_bux1i")
-theme_override_font_sizes/font_size = 8
-text = "Links"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="TextureRect" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key2"]
-layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 4
-texture = ExtResource("14_7hvbg")
-region_rect = Rect2(70, 35, 12, 12)
-patch_margin_left = 6
-patch_margin_top = 6
-patch_margin_right = 6
-patch_margin_bottom = 6
+[node name="TextureRect" type="TextureRect" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key1/MoveUpEditBtn"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("16_x1scj")
+expand_mode = 5
 
 [node name="Key3" type="HBoxContainer" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV"]
 layout_mode = 2
@@ -807,18 +816,34 @@ text = "Rechts
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TextureRect" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key3"]
+[node name="move_right" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key3"]
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
-texture = ExtResource("14_7hvbg")
-region_rect = Rect2(96, 35, 12, 12)
-patch_margin_left = 6
-patch_margin_top = 6
-patch_margin_right = 6
-patch_margin_bottom = 6
+texture = ExtResource("19_vuow1")
+patch_margin_left = 14
+patch_margin_top = 7
+patch_margin_right = 14
+patch_margin_bottom = 7
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
+
+[node name="MoveRightEditBtn" type="TextureButton" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key3"]
+layout_mode = 2
+texture_normal = ExtResource("9_mqodm")
+texture_pressed = ExtResource("11_bk0r5")
+texture_hover = ExtResource("10_j7he6")
+texture_disabled = ExtResource("11_ul2d0")
+
+[node name="TextureRect" type="TextureRect" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key3/MoveRightEditBtn"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("16_x1scj")
+expand_mode = 3
 
 [node name="Key4" type="HBoxContainer" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV"]
 layout_mode = 2
@@ -837,18 +862,76 @@ text = "Unten
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TextureRect" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key4"]
+[node name="move_down" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key4"]
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
-texture = ExtResource("14_7hvbg")
-region_rect = Rect2(83, 35, 12, 12)
-patch_margin_left = 6
-patch_margin_top = 6
-patch_margin_right = 6
-patch_margin_bottom = 6
+texture = ExtResource("20_2kv2r")
+patch_margin_left = 14
+patch_margin_top = 7
+patch_margin_right = 14
+patch_margin_bottom = 7
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
+
+[node name="MoveDownEditBtn" type="TextureButton" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key4"]
+layout_mode = 2
+texture_normal = ExtResource("9_mqodm")
+texture_pressed = ExtResource("11_bk0r5")
+texture_hover = ExtResource("10_j7he6")
+texture_disabled = ExtResource("11_ul2d0")
+
+[node name="TextureRect" type="TextureRect" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key4/MoveDownEditBtn"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("16_x1scj")
+expand_mode = 3
+
+[node name="Key2" type="HBoxContainer" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.0745098, 0.537255, 0.937255, 1)
+theme_override_fonts/font = ExtResource("4_bux1i")
+theme_override_font_sizes/font_size = 8
+text = "Links"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="move_left" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key2"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+texture = ExtResource("18_lq8w6")
+patch_margin_left = 14
+patch_margin_top = 7
+patch_margin_right = 14
+patch_margin_bottom = 7
+
+[node name="MoveLeftEditBtn" type="TextureButton" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key2"]
+layout_mode = 2
+texture_normal = ExtResource("9_mqodm")
+texture_pressed = ExtResource("11_bk0r5")
+texture_hover = ExtResource("10_j7he6")
+texture_disabled = ExtResource("11_ul2d0")
+
+[node name="TextureRect" type="TextureRect" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key2/MoveLeftEditBtn"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("16_x1scj")
+expand_mode = 3
 
 [node name="Key5" type="HBoxContainer" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV"]
 layout_mode = 2
@@ -865,16 +948,32 @@ text = "Dash"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TextureRect" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key5"]
+[node name="dash" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key5"]
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
-texture = ExtResource("14_7hvbg")
-region_rect = Rect2(134, 48, 12, 12)
-patch_margin_left = 6
-patch_margin_top = 6
-patch_margin_right = 6
-patch_margin_bottom = 6
+texture = ExtResource("21_krrys")
+patch_margin_left = 14
+patch_margin_top = 7
+patch_margin_right = 14
+patch_margin_bottom = 7
+
+[node name="DashEditBtn" type="TextureButton" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key5"]
+layout_mode = 2
+texture_normal = ExtResource("9_mqodm")
+texture_pressed = ExtResource("11_bk0r5")
+texture_hover = ExtResource("10_j7he6")
+texture_disabled = ExtResource("11_ul2d0")
+
+[node name="TextureRect" type="TextureRect" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key5/DashEditBtn"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("16_x1scj")
+expand_mode = 3
 
 [node name="Key6" type="HBoxContainer" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV"]
 layout_mode = 2
@@ -891,16 +990,32 @@ text = "Rennen"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TextureRect" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key6"]
+[node name="run" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key6"]
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
-texture = ExtResource("14_7hvbg")
-region_rect = Rect2(49, 35, 20, 12)
-patch_margin_left = 10
-patch_margin_top = 6
-patch_margin_right = 10
-patch_margin_bottom = 6
+texture = ExtResource("22_t3oct")
+patch_margin_left = 14
+patch_margin_top = 7
+patch_margin_right = 14
+patch_margin_bottom = 7
+
+[node name="RunEditBTn" type="TextureButton" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key6"]
+layout_mode = 2
+texture_normal = ExtResource("9_mqodm")
+texture_pressed = ExtResource("11_bk0r5")
+texture_hover = ExtResource("10_j7he6")
+texture_disabled = ExtResource("11_ul2d0")
+
+[node name="TextureRect" type="TextureRect" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key6/RunEditBTn"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("16_x1scj")
+expand_mode = 3
 
 [node name="Key7" type="HBoxContainer" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV"]
 layout_mode = 2
@@ -917,16 +1032,32 @@ text = "Aktion"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TextureRect" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key7"]
+[node name="interact" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key7"]
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
-texture = ExtResource("14_7hvbg")
-region_rect = Rect2(91, 22, 12, 12)
-patch_margin_left = 6
-patch_margin_top = 6
-patch_margin_right = 6
-patch_margin_bottom = 6
+texture = ExtResource("23_mjykf")
+patch_margin_left = 14
+patch_margin_top = 7
+patch_margin_right = 14
+patch_margin_bottom = 7
+
+[node name="InteractEditBtn" type="TextureButton" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key7"]
+layout_mode = 2
+texture_normal = ExtResource("9_mqodm")
+texture_pressed = ExtResource("11_bk0r5")
+texture_hover = ExtResource("10_j7he6")
+texture_disabled = ExtResource("11_ul2d0")
+
+[node name="TextureRect" type="TextureRect" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key7/InteractEditBtn"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("16_x1scj")
+expand_mode = 3
 
 [node name="Key8" type="HBoxContainer" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV"]
 layout_mode = 2
@@ -943,16 +1074,32 @@ text = "Heiltrank"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TextureRect" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key8"]
+[node name="healthpotion" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key8"]
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
-texture = ExtResource("14_7hvbg")
-region_rect = Rect2(64, 9, 12, 12)
-patch_margin_left = 6
-patch_margin_top = 6
-patch_margin_right = 6
-patch_margin_bottom = 6
+texture = ExtResource("24_cm3ra")
+patch_margin_left = 14
+patch_margin_top = 7
+patch_margin_right = 14
+patch_margin_bottom = 7
+
+[node name="HPotEditBtn" type="TextureButton" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key8"]
+layout_mode = 2
+texture_normal = ExtResource("9_mqodm")
+texture_pressed = ExtResource("11_bk0r5")
+texture_hover = ExtResource("10_j7he6")
+texture_disabled = ExtResource("11_ul2d0")
+
+[node name="TextureRect" type="TextureRect" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key8/HPotEditBtn"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("16_x1scj")
+expand_mode = 3
 
 [node name="Key9" type="HBoxContainer" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV"]
 layout_mode = 2
@@ -969,16 +1116,32 @@ text = "Energietrank"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TextureRect" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key9"]
+[node name="energiepotion" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key9"]
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
-texture = ExtResource("14_7hvbg")
-region_rect = Rect2(77, 9, 12, 12)
-patch_margin_left = 6
-patch_margin_top = 6
-patch_margin_right = 6
-patch_margin_bottom = 6
+texture = ExtResource("25_2ctnt")
+patch_margin_left = 14
+patch_margin_top = 7
+patch_margin_right = 14
+patch_margin_bottom = 7
+
+[node name="EPotEditBtn" type="TextureButton" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key9"]
+layout_mode = 2
+texture_normal = ExtResource("9_mqodm")
+texture_pressed = ExtResource("11_bk0r5")
+texture_hover = ExtResource("10_j7he6")
+texture_disabled = ExtResource("11_ul2d0")
+
+[node name="TextureRect" type="TextureRect" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key9/EPotEditBtn"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("16_x1scj")
+expand_mode = 3
 
 [node name="Key10" type="HBoxContainer" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV"]
 layout_mode = 2
@@ -995,16 +1158,32 @@ text = "Bombe"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TextureRect" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key10"]
+[node name="bomb" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key10"]
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
-texture = ExtResource("14_7hvbg")
-region_rect = Rect2(90, 9, 12, 12)
-patch_margin_left = 6
-patch_margin_top = 6
-patch_margin_right = 6
-patch_margin_bottom = 6
+texture = ExtResource("26_2dy07")
+patch_margin_left = 14
+patch_margin_top = 7
+patch_margin_right = 14
+patch_margin_bottom = 7
+
+[node name="BombEditBtn" type="TextureButton" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key10"]
+layout_mode = 2
+texture_normal = ExtResource("9_mqodm")
+texture_pressed = ExtResource("11_bk0r5")
+texture_hover = ExtResource("10_j7he6")
+texture_disabled = ExtResource("11_ul2d0")
+
+[node name="TextureRect" type="TextureRect" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key10/BombEditBtn"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("16_x1scj")
+expand_mode = 3
 
 [node name="MV" type="VBoxContainer" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H"]
 layout_mode = 2
@@ -1038,16 +1217,32 @@ text = "Kampfmodus an/aus"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TextureRect" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/MV/Key4"]
+[node name="combatmode" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/MV/Key4"]
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
-texture = ExtResource("14_7hvbg")
-region_rect = Rect2(109, 35, 12, 12)
-patch_margin_left = 6
-patch_margin_top = 6
-patch_margin_right = 6
-patch_margin_bottom = 6
+texture = ExtResource("27_pb7ft")
+patch_margin_left = 14
+patch_margin_top = 7
+patch_margin_right = 14
+patch_margin_bottom = 7
+
+[node name="CombatEditBTn" type="TextureButton" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/MV/Key4"]
+layout_mode = 2
+texture_normal = ExtResource("9_mqodm")
+texture_pressed = ExtResource("11_bk0r5")
+texture_hover = ExtResource("10_j7he6")
+texture_disabled = ExtResource("11_ul2d0")
+
+[node name="TextureRect" type="TextureRect" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/MV/Key4/CombatEditBTn"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("16_x1scj")
+expand_mode = 3
 
 [node name="Key1" type="HBoxContainer" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/MV"]
 layout_mode = 2
@@ -1064,16 +1259,32 @@ text = "Angriff"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TextureRect" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/MV/Key1"]
+[node name="attack" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/MV/Key1"]
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
-texture = ExtResource("14_7hvbg")
-region_rect = Rect2(111, 48, 22, 12)
-patch_margin_left = 11
-patch_margin_top = 6
-patch_margin_right = 11
-patch_margin_bottom = 6
+texture = ExtResource("28_s8p02")
+patch_margin_left = 14
+patch_margin_top = 7
+patch_margin_right = 14
+patch_margin_bottom = 7
+
+[node name="AttackEditBtn" type="TextureButton" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/MV/Key1"]
+layout_mode = 2
+texture_normal = ExtResource("9_mqodm")
+texture_pressed = ExtResource("11_bk0r5")
+texture_hover = ExtResource("10_j7he6")
+texture_disabled = ExtResource("11_ul2d0")
+
+[node name="TextureRect" type="TextureRect" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/MV/Key1/AttackEditBtn"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("16_x1scj")
+expand_mode = 3
 
 [node name="Key2" type="HBoxContainer" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/MV"]
 layout_mode = 2
@@ -1090,16 +1301,32 @@ text = "Doppel-Angriff"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TextureRect" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/MV/Key2"]
+[node name="double_attack" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/MV/Key2"]
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
-texture = ExtResource("14_7hvbg")
-region_rect = Rect2(64, 22, 12, 12)
-patch_margin_left = 6
-patch_margin_top = 6
-patch_margin_right = 6
-patch_margin_bottom = 6
+texture = ExtResource("29_1mmum")
+patch_margin_left = 14
+patch_margin_top = 7
+patch_margin_right = 14
+patch_margin_bottom = 7
+
+[node name="DoubleAttackEditBtn" type="TextureButton" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/MV/Key2"]
+layout_mode = 2
+texture_normal = ExtResource("9_mqodm")
+texture_pressed = ExtResource("11_bk0r5")
+texture_hover = ExtResource("10_j7he6")
+texture_disabled = ExtResource("11_ul2d0")
+
+[node name="TextureRect" type="TextureRect" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/MV/Key2/DoubleAttackEditBtn"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("16_x1scj")
+expand_mode = 3
 
 [node name="Key3" type="HBoxContainer" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/MV"]
 layout_mode = 2
@@ -1116,16 +1343,32 @@ text = "Wirbel-Angriff"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TextureRect" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/MV/Key3"]
+[node name="heavy_attack" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/MV/Key3"]
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
-texture = ExtResource("14_7hvbg")
-region_rect = Rect2(104, 22, 12, 12)
-patch_margin_left = 6
-patch_margin_top = 6
-patch_margin_right = 6
-patch_margin_bottom = 6
+texture = ExtResource("30_1uycn")
+patch_margin_left = 14
+patch_margin_top = 7
+patch_margin_right = 14
+patch_margin_bottom = 7
+
+[node name="HeavyAttackEditBtn" type="TextureButton" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/MV/Key3"]
+layout_mode = 2
+texture_normal = ExtResource("9_mqodm")
+texture_pressed = ExtResource("11_bk0r5")
+texture_hover = ExtResource("10_j7he6")
+texture_disabled = ExtResource("11_ul2d0")
+
+[node name="TextureRect" type="TextureRect" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/MV/Key3/HeavyAttackEditBtn"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("16_x1scj")
+expand_mode = 3
 
 [node name="RV" type="VBoxContainer" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H"]
 layout_mode = 2
@@ -1159,16 +1402,32 @@ text = "Character"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TextureRect" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/RV/Key1"]
+[node name="charpanel" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/RV/Key1"]
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
-texture = ExtResource("14_7hvbg")
-region_rect = Rect2(98, 48, 12, 12)
-patch_margin_left = 6
-patch_margin_top = 6
-patch_margin_right = 6
-patch_margin_bottom = 6
+texture = ExtResource("31_3qh2t")
+patch_margin_left = 14
+patch_margin_top = 7
+patch_margin_right = 14
+patch_margin_bottom = 7
+
+[node name="CharpanelEditBtn" type="TextureButton" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/RV/Key1"]
+layout_mode = 2
+texture_normal = ExtResource("9_mqodm")
+texture_pressed = ExtResource("11_bk0r5")
+texture_hover = ExtResource("10_j7he6")
+texture_disabled = ExtResource("11_ul2d0")
+
+[node name="TextureRect" type="TextureRect" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/RV/Key1/CharpanelEditBtn"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("16_x1scj")
+expand_mode = 3
 
 [node name="Key2" type="HBoxContainer" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/RV"]
 layout_mode = 2
@@ -1185,16 +1444,32 @@ text = "Questlog"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TextureRect" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/RV/Key2"]
+[node name="qlog" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/RV/Key2"]
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
-texture = ExtResource("14_7hvbg")
-region_rect = Rect2(174, 35, 12, 12)
-patch_margin_left = 6
-patch_margin_top = 6
-patch_margin_right = 6
-patch_margin_bottom = 6
+texture = ExtResource("32_268lq")
+patch_margin_left = 14
+patch_margin_top = 7
+patch_margin_right = 14
+patch_margin_bottom = 7
+
+[node name="QlogEditBtn" type="TextureButton" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/RV/Key2"]
+layout_mode = 2
+texture_normal = ExtResource("9_mqodm")
+texture_pressed = ExtResource("11_bk0r5")
+texture_hover = ExtResource("10_j7he6")
+texture_disabled = ExtResource("11_ul2d0")
+
+[node name="TextureRect" type="TextureRect" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/RV/Key2/QlogEditBtn"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("16_x1scj")
+expand_mode = 3
 
 [node name="Key3" type="HBoxContainer" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/RV"]
 layout_mode = 2
@@ -1211,16 +1486,32 @@ text = "Inventar"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TextureRect" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/RV/Key3"]
+[node name="inventory" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/RV/Key3"]
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
-texture = ExtResource("14_7hvbg")
-region_rect = Rect2(157, 22, 11, 12)
-patch_margin_left = 6
-patch_margin_top = 6
-patch_margin_right = 6
-patch_margin_bottom = 6
+texture = ExtResource("32_fp7hj")
+patch_margin_left = 14
+patch_margin_top = 7
+patch_margin_right = 14
+patch_margin_bottom = 7
+
+[node name="InventoryEditBtn" type="TextureButton" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/RV/Key3"]
+layout_mode = 2
+texture_normal = ExtResource("9_mqodm")
+texture_pressed = ExtResource("11_bk0r5")
+texture_hover = ExtResource("10_j7he6")
+texture_disabled = ExtResource("11_ul2d0")
+
+[node name="TextureRect" type="TextureRect" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/RV/Key3/InventoryEditBtn"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("16_x1scj")
+expand_mode = 3
 
 [node name="Key4" type="HBoxContainer" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/RV"]
 layout_mode = 2
@@ -1237,16 +1528,32 @@ text = "Pause"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TextureRect" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/RV/Key4"]
+[node name="menu" type="NinePatchRect" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/RV/Key4"]
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
-texture = ExtResource("14_7hvbg")
-region_rect = Rect2(14, 0, 20, 12)
-patch_margin_left = 10
-patch_margin_top = 6
-patch_margin_right = 10
-patch_margin_bottom = 6
+texture = ExtResource("33_pmw80")
+patch_margin_left = 14
+patch_margin_top = 7
+patch_margin_right = 14
+patch_margin_bottom = 7
+
+[node name="MenuEditBtn" type="TextureButton" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/RV/Key4"]
+layout_mode = 2
+texture_normal = ExtResource("9_mqodm")
+texture_pressed = ExtResource("11_bk0r5")
+texture_hover = ExtResource("10_j7he6")
+texture_disabled = ExtResource("11_ul2d0")
+
+[node name="TextureRect" type="TextureRect" parent="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/RV/Key4/MenuEditBtn"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("16_x1scj")
+expand_mode = 3
 
 [node name="H" type="HBoxContainer" parent="BG/M/V"]
 layout_mode = 2
@@ -1338,6 +1645,24 @@ vertical_alignment = 1
 [connection signal="value_changed" from="BG/M/V/VideoOptions/M/S/Options/H/BrightnessSlider" to="." method="_on_brightness_slider_value_changed"]
 [connection signal="value_changed" from="BG/M/V/VideoOptions/M/S/Options/H3/ContrastSlider" to="." method="_on_contrast_slider_value_changed"]
 [connection signal="value_changed" from="BG/M/V/VideoOptions/M/S/Options/H4/HueSlider" to="." method="_on_hue_slider_value_changed"]
+[connection signal="pressed" from="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key1/MoveUpEditBtn" to="." method="_on_move_up_edit_btn_pressed"]
+[connection signal="pressed" from="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key3/MoveRightEditBtn" to="." method="_on_move_right_edit_btn_pressed"]
+[connection signal="pressed" from="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key4/MoveDownEditBtn" to="." method="_on_move_down_edit_btn_pressed"]
+[connection signal="pressed" from="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key2/MoveLeftEditBtn" to="." method="_on_move_left_edit_btn_pressed"]
+[connection signal="pressed" from="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key5/DashEditBtn" to="." method="_on_dash_edit_btn_pressed"]
+[connection signal="pressed" from="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key6/RunEditBTn" to="." method="_on_run_edit_b_tn_pressed"]
+[connection signal="pressed" from="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key7/InteractEditBtn" to="." method="_on_interact_edit_btn_pressed"]
+[connection signal="pressed" from="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key8/HPotEditBtn" to="." method="_on_h_pot_edit_btn_pressed"]
+[connection signal="pressed" from="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key9/EPotEditBtn" to="." method="_on_e_pot_edit_btn_pressed"]
+[connection signal="pressed" from="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/LV/Key10/BombEditBtn" to="." method="_on_bomb_edit_btn_pressed"]
+[connection signal="pressed" from="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/MV/Key4/CombatEditBTn" to="." method="_on_combat_edit_b_tn_pressed"]
+[connection signal="pressed" from="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/MV/Key1/AttackEditBtn" to="." method="_on_attack_edit_btn_pressed"]
+[connection signal="pressed" from="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/MV/Key2/DoubleAttackEditBtn" to="." method="_on_double_attack_edit_btn_pressed"]
+[connection signal="pressed" from="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/MV/Key3/HeavyAttackEditBtn" to="." method="_on_heavy_attack_edit_btn_pressed"]
+[connection signal="pressed" from="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/RV/Key1/CharpanelEditBtn" to="." method="_on_charpanel_edit_btn_pressed"]
+[connection signal="pressed" from="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/RV/Key2/QlogEditBtn" to="." method="_on_qlog_edit_btn_pressed"]
+[connection signal="pressed" from="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/RV/Key3/InventoryEditBtn" to="." method="_on_inventory_edit_btn_pressed"]
+[connection signal="pressed" from="BG/M/V/KeyOptions/M/Options/ScrollContainer/H/RV/Key4/MenuEditBtn" to="." method="_on_menu_edit_btn_pressed"]
 [connection signal="pressed" from="BG/M/V/H/ResetBtn" to="." method="_on_reset_btn_pressed"]
 [connection signal="button_up" from="BG/M/V/H/OkayBtn" to="." method="_on_okay_btn_button_up"]
 [connection signal="button_up" from="BG/M/V/H/BackBtn" to="." method="_on_back_btn_button_up"]
